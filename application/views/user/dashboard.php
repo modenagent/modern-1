@@ -1,0 +1,454 @@
+<!--Features section -->
+<section id="steps">
+        <div class="container"> <!-- Smart Wizard -->
+                <div id="choose-presentation"class="clearfix" style="">
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="step-0-content clearfix">
+                                <h2>Create Your Presentation</h2>
+                                <div class="buttonholder">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-lp" type="button" style="" onclick="choose_presentation('buyer');"> Buyers Presentation </button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-lp" type="button" style="" onclick="choose_presentation('seller');"> Sellers Presentation </button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button style="width:212px;" class="btn btn-lp" type="button" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" >
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="wizard" class="swMain loader-back" style="display:none;">
+                    <ul>
+                        <li id="step-1-link">
+                            <a href="#step-1"> 
+                                <span class="stepNumber">01</span> 
+                                <span class="stepDesc"> Step 1<br /><small class="little">Find Your Property</small></span> 
+                            </a>
+                        </li>
+                        <li id="step-2-link">
+                            <a href="#step-2"> 
+                                <span class="stepNumber">02</span> 
+                                <span class="stepDesc"> Step 2<br /><small class="little">Enter Your Information</small></span>
+                            </a>
+                        </li>
+                        <li id="step-3-link">
+                            <a href="#step-3"> 
+                                <span class="stepNumber">03</span> 
+                                <span class="stepDesc marketUpdateHide"> Step 3<br /><small class="little">Branding & Options</small></span>
+                                <span class="stepDesc marketUpdateShow"> Step 3<br /><small class="little">Branding</small></span>
+                            </a>
+                        </li>
+                        <li id="step-4-link">
+                            <a href="#step-4"> 
+                                <span class="stepNumber">04</span> 
+                                <span class="stepDesc marketUpdateHide"> Step 4<br /><small class="little">Checkout &amp; Download</small></span>
+                                <span class="stepDesc marketUpdateShow"> Step 4<br /><small class="little">Download</small></span> 
+                            </a>
+                        </li>
+                    </ul>
+                    <div id="step-1" class="clearfix">
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-1">
+                                <p>&nbsp;</p>
+                                <div class="step-1-content clearfix">
+                                    <h2>Enter Address to Start</h2>
+                                    <p>Search By Property Address or APN</p>
+
+                                    <form accept-charset="UTF-8" action="" class="huge-search" method="get">
+                                        <div class="form-group">
+                                            <input name="utf8" type="hidden" value="✓">
+                                            <div class="input-group">
+                                                <input class="form-control" name="term" id="searchbox" placeholder="e.g. ‘123 Success Ave’" type="search">
+                                                <input type="text" id="searchboxcity" class="citynames" placeholder="Choose City">
+                                                <input type="hidden" id="neighbourhood">
+                                                <input type="hidden" id="state">
+                                                <span class="input-group-btn">
+                                                    <button class="btn btn-lp" type="button" id="search-btn"> Search </button>
+                                                </span> 
+                                            </div>
+                                        </div>
+                                        <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
+                                        <div class="search-result hidden">
+                                            <div class="search-loader"></div>
+                                            <table class="table-responsive hidden">
+                                                <thead>
+                                                    <tr>
+                                                        <th width="15%">APN</th>
+                                                        <th width="15%">Unit #</th>
+                                                        <th width="25%">Address</th>
+                                                        <th width="20%">Owner Name</th>
+                                                        <th width="10%">City</th>
+                                                        <th width="15%">Run Listing</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-12" >
+                                <p>&nbsp;</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- step 1 ends -->
+                    <div id="step-2" class="clearfix">
+                        <form id="run-pma-form" >
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-xs-12 col-lg-6 col-md-6">
+                                      <h2><strong>Agent:</strong> Upload Pic &amp; Enter Info</h2>
+                                      <div class="row">
+                                        <div class="col-md-3">
+                                          <div class="leftpic"> <a href="javascript:;">
+                                            <?php
+                                            if(empty($users[0]['profile_image'])){
+                                            ?>
+                                            <i class="icon-camera"></i>
+                                            <br>
+                                            Upload Picture
+                                            <?php
+                                            }
+                                            else{
+                                            ?>
+                                            <img  src="<?php echo base_url().$users[0]['profile_image']; ?>" width="100%" >
+                                            <?php
+                                            }
+                                            ?>
+                                          </a>
+                                          <input type="file"  class="file-type hidden" >
+                                          <input type="text" id="fileimage" class="hidden file-path" name="user[profile_image]" value="<?php echo $users[0]['profile_image']; ?>" >
+                                        </div>
+                                      </div>
+                                      <div class="col-md-9">
+                                        <input type="hidden" class="form-control"   name="user_image"      id="user_image" value=""    />
+                                        <input type="text" class="form-control"   name="user[fullname]"   id="" placeholder="Name"    value="<?php echo $users[0]['first_name'].' '.$users[0]['last_name']; ?>" />
+                                        <input type="text" class="form-control"   name="user[title]"      id="" placeholder="Title"   value="<?php echo $users[0]['title']; ?>"/>
+                                        <input type="text" class="form-control"   name="user[phone]"      id="" placeholder="Phone"   value="<?php echo $users[0]['phone']; ?>"/>
+                                        <input type="text" class="form-control"   name="user[email]"      id="" placeholder="Email"   value="<?php echo $users[0]['email']; ?>"/>
+                                        <input type="text" class="form-control"   name="user[licenceno]"  id="" placeholder="CA BRE#" value="<?php echo $users[0]['license_no']; ?>"/>
+                                        <input type="hidden" class="form-control"   name="presentation"  id="presentation" value=""/>
+                                        
+                                      </div>
+                                    </div>
+                                  </div>
+                                <div class="col-xs-12 col-lg-6 col-md-6">
+                                  <h2><strong>Company:</strong> Upload Logo &amp; Enter Info</h2>
+                                  <div class="row">
+                                    <div class="col-md-3">
+                                      <div class="rightpic"> <a href="javascript:;">
+                                        <?php
+                                        if(empty($users[0]['company_logo'])){
+                                        ?>
+                                        <i class="icon-camera"></i>
+                                        <br>
+                                        Upload Picture
+                                        <?php
+                                        }
+                                        else{
+                                        ?>
+                                        <img  src="<?php echo base_url().$users[0]['company_logo']; ?>" width="100%" >
+                                        <?php
+                                        }
+                                        ?>
+                                      </a>
+                                      <input type="file" class="file-type hidden">
+                                      <input type="text" class="hidden file-path" name="user[company_logo]" value="<?php echo $users[0]['company_logo']; ?>" >
+                                    </div>
+                                  </div>
+                                  <div class="col-md-9">
+                                    <input type="hidden" class="form-control"   name="company_image"      id="company_image" value=""    />
+                                    <input type="text" class="form-control"   name="user[companyname]"  id="" placeholder="Company Name"    value="<?php echo $users[0]['company_name'] ?>"/>
+                                    <input type="text" class="form-control"   name="user[street]"       id="" placeholder="Street Address"  value="<?php echo $users[0]['company_add'] ?>"/>
+                                    <input type="text" class="form-control"   name="user[city]"         id="" placeholder="City"            value="<?php echo $users[0]['company_city'] ?>"/>
+                                    <input type="text" class="form-control"   name="user[zip]"          id="" placeholder="ZIP"             value="<?php echo $users[0]['comapny_zip'] ?>"/>
+                                    <input type="text" class="form-control"   name="user[state]"        id="" placeholder="State"           value="<?php echo $users[0]['company_state'] ?>"/>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="clearfix">
+                            <p></p>
+                            </div>
+                            <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                              <div class="row">
+                                <div class="col-xs-6 col-md-offset-3 col-sm-6 col-md-6 col-lg-6">
+                                </div>
+                              </div>
+                            </div>
+                            </div>
+                            <div class="clearfix">
+                            <p></p>
+                            </div>
+
+
+                            </div>
+                            <div class="clearfix" id="addNewPartner">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- step 2 -->
+                    <div id="step-3" class="clearfix">
+                      <div class="loader1 hidden">
+                        <img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                        <p class="loader-text">Preparing list of comparable properties ...</p>
+                      </div>
+                      <div class="backwrap hidden"></div>
+                      <div class="col-md-12">
+                        <div class="col-md-12">
+                      <div class="col-md-6">
+                        <h2><strong>Choose Your Branding</strong></h2>
+                      </div>
+                      <div class="col-md-6" id="butcomp">
+                        <?php $_email = $this->session->userdata('user_email');?>
+                        <div class="pull-right1" style=""> Report Language: 
+                          <select name="report_lang" style="background-color:transparent; border:none;"><option  style="color:#000000;"" value="english">English</option><option style="color:#000000;" value="spanish">Spanish</option></select>
+                        </div>
+                        <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
+                      </div>
+                        </div>
+                        <div class="carousel-container">
+                      <div id="owl-example" class="owl-carousel">
+                        <?php
+                          foreach ($reportTemplates as $key => $report) {
+                            if($report->template_color != ''){
+                        ?>
+                          <div class="item">
+                            <input type="radio"  
+                            <?php 
+                              if($report->report_templates_id_pk==$agentInfo->default_template){
+                                echo 'checked';
+                              }
+                            ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
+                            <label class="user-heading alt gray-bg" for="pb">
+                              <div class="text-center"> 
+                                <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
+                                <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
+                                <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                              </div>
+
+                            </label>
+                          </div>
+                        <?php 
+                              }
+                            }
+                        ?>
+                      </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- step 3 -->
+                    <div id="step-4" class="clearfix">
+                      <div class="loader1 hidden"><img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                        <p class="loader-text">Please wait</p>
+                      </div>
+                      <div class="backwrap hidden"></div>
+                            <div class="alert alert-success" id="apply-coupan-alert"  style="display:none"></div>
+
+                        <p class="clearfix">&nbsp;</p>
+                        <div class="panel panel-body order-detail">
+                        <section class="invoice ">
+                          <header class="clearfix">
+                            <div id="logo">
+                              <img src="<?php echo base_url(); ?>assets/images-2/logo.png"/>
+                            </div>
+                            <div id="company">
+                            </div>
+                          </header>
+                          <article>
+                            <div id="details" class="clearfix">
+                              <div id="client">
+                                <div class="to">INVOICE TO:</div>
+                                <h2 class="name"><?php  echo $users[0]['first_name'].' '.$users[0]['last_name']; ?></h2>
+                                <div class="address"><?php echo $users[0]['address_line_1'].' '.$users[0]['state_code'].' '.$users[0]['country_code']; ?></div>
+                              </div>
+                              <div id="invoice">
+                                <div class="date invoice-date">Date of Invoice: <?php echo date("m-d-Y"); ?></div>
+                              </div>
+                            </div>
+
+                            <table border="0" cellspacing="0" cellpadding="0" class="invoice-table" style="margin-bottom: 30px;">
+                              <thead>
+                                <tr>
+                                  <th class="no">#</th>
+                                  <th class="desc">DESCRIPTION</th>
+                                  <th class="unit">UNIT PRICE</th>
+
+                                  <th class="total">TOTAL</th>
+                                </tr>
+                              </thead>
+                              <tbody id="lp_invoice" >
+                                <tr>
+                                  <td class="no">01</td>
+                                  <td class="desc"></td>
+                                  <td class="unit" style="text-align: right;">$3</td>
+
+                                  <td class="total" style="text-align: right;">$3.00</td>
+                                </tr>
+                              </tbody>
+                              <tfoot>
+                                <tr>
+                                  <td colspan=""></td>
+                                  <td colspan="2">SUBTOTAL</td>
+                                  <td>$3.00</td>
+                                </tr>
+
+                                <tr id="coupandiscount" style="display:none">
+                                  <td colspan=""></td>
+                                  <td colspan="2">Discount</td>
+                                  <td>$0.00</td>
+                                </tr>
+
+                                <tr id="totalInvoiceAmount">
+                                  <td colspan="" style="border-top:1px solid #fff;"></td>
+                                  <td colspan="2">GRAND TOTAL</td>
+                                  <td>$3.00</td>
+                                </tr>
+                              </tfoot>
+                            </table>
+                            <div class="row">
+                              <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+                                <div class="input-group">
+                                  <input class="from-field form-control" type="text" id="coupon_code" placeholder="Coupon Code" >
+                                  <span class="input-group-btn">
+                                  <a href="#javascript:;" class="btn btn-lp"  id="apply_coupon">Apply coupon</a>
+                                  </span>
+                                </div><!-- /input-group -->
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="clearfix" >
+                           </div>
+                          </article>
+                        </section>
+                        </div>      
+                <div class="order-summary panel panel-body" style="display:none;">
+                  <table width="100%" border="0" style="background-color:transparent;" cellspacing="0" cellpadding="0">
+                  <tr class="invoice-header">
+                  <td width="45%" bgcolor=""><img src="<?php echo base_url(); ?>assets/images-2/logo.png"/></td>
+                    <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $3.00</strong></td>
+                    <td width="15%" style="color:#ffffff;" class="text-right" ><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
+                  </tr>
+                  </table>
+                  <p>&nbsp;</p>
+                  <div class="panel panel-default">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Payment Information</h3>
+                  </div>
+                  <div class="panel-body">
+
+                    <form action="<?php echo base_url(); ?>index.php?/user/cart_payment" method="POST" id="payment-form" class="form-horizontal" role="form">
+                      <div class="alert alert-danger payment-errors" style="display:none"></div>
+                      <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="3.00">
+                      <input type="hidden" id="coupon-id" name="coupon_id">
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>
+                        <div class="col-sm-9">
+                          <input type="text" size="80" data-stripe="name" class="form-control" placeholder="Card Holder's Name" id="cardname">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="card-number">Card Number:</label>
+                        <div class="col-sm-9">
+                          <input type="text" size="20" data-stripe="number" class="form-control" placeholder="Card Number." id="cardno">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="cvv">Card CVV:</label>
+                        <div class="col-sm-2">
+                          <input type="text" size="4" data-stripe="cvc" class="form-control" placeholder="CVV" id="cardcvv">
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-3 control-label" for="expiry-month">Expiration Date:</label>
+                        <div class="col-sm-9">
+                          <div class="row">
+                            <div class="col-xs-6">
+                              <input type="text" size="2" data-stripe="exp-month" class="form-control" placeholder="Month" id="expmonth">
+                            </div>
+                            <div class="col-xs-6">
+                              <input type="text" size="4" data-stripe="exp-year" class="form-control" placeholder="Year" id="expyear">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-9" id="paynow">
+                          <button type="button" class="btn btn-lp pay" id="paynow">Checkout & Download</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  </div>
+                  <div class="loaders" style="opacity:1!important;"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
+                  </div>
+                                <div class=" clearfix text-right  ">
+                              <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
+                        </div> 
+                  </div>
+                <!-- step 4 -->
+                </div>
+                <div id="checkout"></div>
+        </div>
+        <!-- End SmartWizard Content --> </div>
+</section>
+<!-- Features section -->
+<!-- Recent LP's section -->
+<section id="recent-lp">
+        <div class="container">
+                <h1 class="page-header">Recently Created Presentations</h1>
+                <p>We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p>
+                <p>&nbsp;</p>
+                <?php $this->load->view('user/listing_table',array('reports'=>$reports)); ?>
+        </div>
+</section>
+<!-- Screenshots section -->
+<script type="text/javascript">
+    function choose_presentation(presentation){
+        if(presentation === 'buyer'){
+            $("#config-comps-btn").hide();
+            $("#presentation").val("buyer");
+            $('#wizard').smartWizard("buyer");
+            $('.seller_template').hide(function(){
+                $('.buyer_template').show();
+                $('.marketUpdate_template').hide();
+            });
+        }else if(presentation === 'marketUpdate'){
+            $("#presentation").val("marketUpdate");
+            $('#wizard').smartWizard("marketUpdate");
+            // adding class marketUpdate so that we can manipulate the visibility of different steps
+            $('#wizard').addClass('marketUpdate');
+
+            $('.buyer_template').hide(function(){
+                $('.seller_template').hide();
+                $('.marketUpdate_template').show();
+            });
+            $("#config-comps-btn").show();
+        }else {
+            $("#presentation").val("seller");
+            $('#wizard').smartWizard("seller");
+            $('.buyer_template').hide(function(){
+                $('.seller_template').show();
+                $('.marketUpdate_template').hide();
+            });
+            $("#config-comps-btn").show();
+        }
+        //Set classes
+        $("#search-btn").addClass(presentation);
+        $('#choose-presentation').hide(function(){
+            $('#wizard').show(function(){
+                $(".swMain ul.anchor li a").addClass(presentation);
+            });
+        });    
+    }
+</script>

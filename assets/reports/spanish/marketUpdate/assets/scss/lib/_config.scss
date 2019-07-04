@@ -1,0 +1,61 @@
+// config.scss
+// contains all the required configurations
+
+
+// Grays:
+$white 		    : #fff !default;
+$black	 		: #000 !default;
+$gray-lighter   : #e0e0e0 !default;
+$gray-light     : #f2f2f2;
+$gray           : #3f474f;
+$gray-dark      : #1a2128;
+$gray-darker    : #262626;
+
+$gray-content 	: #8a8a8a;
+
+$clr-light      : $white;
+$clr-dark       : $black;
+
+// Colors
+$clr-pri        : #F37527 !default;
+$clr-sec        : $gray !default;
+$clr-accent     : $black !default;
+
+// Fonts        :
+$sans-serif				 : Helvetica, Arial, sans-serif;
+$serif					     : Helvetica, Arial, sans-serif;
+
+$font-pri             : $sans-serif !default;
+$font-sec             : $serif !default;
+
+// Paths
+$path-images 			      : '../images' !default;
+$path-fonts 			       : '../fonts' !default;
+
+// Sprite (if using the old school way)
+$sprite-svg 			       : '#{$path-images}/icons.svg' !default;
+$sprite-png 			       : '#{$path-images}/icons.png'!default;
+$fallback-extension 	 : 'png';
+$retina-suffix 			    : '@2x';
+
+$base-font-size       : 62.5%;
+$z-base               : 100;
+// -----------------------------------------------------------------------------------
+// Responsive
+$iphone4				             : 'iphone4';
+$iphone5 				            : 'iphone5';
+$iphone6 				            : 'iphone6';
+$iphone6plus 			         : 'iphone6plus';
+$xs 					                : 480px; 					// Default Mobile-first approach
+$sm 					                : 768px;					// Respond Mixin's Default Tablet size
+$md 					                : 992px;					// Medium Desktops and Laptops
+$lg 					                : 1200px;					// Large Screens
+$mobile_first_approach 	 : true !default;			// if set false, the min-width will change to max-width
+$most_used_device 		     : $iphone4;   				// Values : iphone4, iphone5, iphone6, iphone plus
+
+// ------------------------------------------------------------------------------------
+// Containers
+// overriding bootstrap defaults as per design
+// $container-sm 			: 960px;
+$container-md 			: 990px;
+$container-lg 			: 990px;

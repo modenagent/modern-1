@@ -1,0 +1,425 @@
+<?php
+    /**
+     * The Library for the operations related to Report Generation.
+     *
+     * @author: Deependra Singh     
+     * Date: Nov 30, 2016
+     */
+    class Reports {
+
+        // constructor for the library to initialize the CI object
+        public function __construct() {
+            // initiating the CI object
+
+        }
+
+        function getPropertyData(){
+            $CI = & get_instance();
+            
+            // loading library for pdf generation
+            $CI->load->library('mpdf');
+
+            // loading the required helper
+            $CI->load->helper('dataapi');
+            
+            $rep111 = $_POST['report111'];
+            $rep111 = urldecode($rep111);
+            $report111 = simplexml_load_file($rep111);
+            
+            $rep187 = $_POST['report187'];
+            $rep187 = urldecode($rep187);
+            $report187 = simplexml_load_file($rep187);
+
+            $data['mapinfo'] = $report111;
+            $data['property'] = $report187;
+
+            $data['user'] = $_POST['user'];
+            if($_POST['user_image'] != ''){
+                $data['user']['profile_image'] = $_POST['user_image'];
+            }
+            if($_POST['company_image'] != ''){
+                $data['user']['company_logo'] = $_POST['company_image'];
+            }
+
+            $data['partner'] =  array();
+            if($_POST['showpartner']=='on'){
+                $data['partner'] = $_POST['partner'];
+                $data['partner']['profile_image'] = $_POST['profile_image'];
+                $data['user_id_fk'] = $CI->session->userdata('userid');
+                $CI->base_model->insert_one_row('lp_partner_details',$data['partner']);
+                // $partnerData =  array('' => , );
+            }
+            
+            $reportItems['comparable']=array();
+            $reportItems['comparableTemp']=array();
+
+            $hasComparable = array();
+            $minBuildArea = floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea)-(floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea)*20/100);
+            $maxBuildArea = floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea)+(floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea)*20/100);
+            for ($j = 0; $j < sizeof($report187->ComparableSalesReport->ComparableSales->ComparableSale); $j++) {
+                // echo $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Proximity[0]. '<= 0.2 <br >';
+                // if(sizeof($reportItems['comparableTemp'])<9){
+
+                    $proximity_val = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Proximity[0].'';
+                    $build_area = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->BuildingArea[0].'';
+                    $date = new DateTime();
+                    $currentdate = $date->format('m/d/Y');
+                    $months_diff  = monthsBetween(formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]),$currentdate); 
+                    // echo '($minBuildArea<=floatval($build_area)) && ($maxBuildArea>=floatval($build_area))'.$minBuildArea.','.$maxBuildArea.','.$build_area;
+                    if(floatval($proximity_val)<=2 ){ //&& ($minBuildArea<=floatval($build_area)) && ($maxBuildArea>=floatval($build_area)) && $months_diff<=12
+                        $i = strval($j + 1);
+                        $tmp['Date'] = formatDate((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]);
+                        $tmp['Price'] = dollars(number_format((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0]));
+                        $tmp['PriceRate'] = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0];
+                        $tmp['PricePerSQFT']=(string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->PricePerSQFT[0];
+                        $tmp['TotalRooms']=(string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->TotalRooms[0];
+
+                        $tmp['Address'] = properCase((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteAddress[0].' '.$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteCity[0]);
+                        $tmp['Distance'] = floatval((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Proximity[0]) ;
+                        $tmp['Beds'] = number_format((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Bedrooms[0]);
+                        $tmp['SquareFeet'] = number_format((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->BuildingArea[0]);
+                        $tmp['BuildingArea'] = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->BuildingArea[0].'';
+                        $tmp['Baths'] = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Baths[0];
+                        $tmp['Year'] = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->YearBuilt[0];
+                        $tmp['LotSize'] = number_format((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->LotSize);
+                        $tmp['Latitude'] = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Latitude;
+                        $tmp['Longitude'] = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Longitude;
+                        $tmpPool = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Pool[0];
+                        if ($tmpPool != 'Yes') {
+                            $tmpPool = 'No';
+                        }           
+                        $tmp['Pool']=$tmpPool;
+                        $apn= (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->APN[0].'';
+                        array_push($reportItems['comparableTemp'], $tmp);               
+                        array_push($hasComparable, $apn);
+                    // }    
+                }
+            }
+
+            // print_r($reportItems['comparableTemp']);
+
+            //********* COmpare ale property Sold in last 12 months ************/
+            $reportItems['comparableTempSold'] = array();
+            foreach ($reportItems['comparableTemp'] as $key => $compareableProperty) {
+                // echo '$months_diff = '.$compareableProperty['Date'] . ' -- '.$currentdate;
+                $months_diff  = monthsBetween($compareableProperty['Date'],$currentdate); 
+                if($months_diff<=12){
+                        array_push($reportItems['comparableTempSold'], $compareableProperty);               
+                }
+                // break;
+            }
+
+            //********* COmpare ale property -10 and +10 % of build area ************/
+            // echo json_encode($reportItems['comparableTempSold']);
+            $reportItems['comparable'] = array();
+            foreach ($reportItems['comparableTempSold'] as $key => $compareableProperty) {
+                // echo '$$minBuildArea = '.$minBuildArea .'$$maxBuildArea = '.$maxBuildArea . ' --BuildingArea '. $compareableProperty['BuildingArea'];
+                $build_area  = floatval($compareableProperty['BuildingArea']); 
+                if($minBuildArea<=$build_area && $maxBuildArea>=$build_area){
+                        array_push($reportItems['comparable'], $compareableProperty);               
+                }
+                // break;
+            }
+
+            //echo '//comparable '.json_encode($reportItems['comparable']) . ' //comparable';
+            // print_r($reportItems['comparableTemp']);
+
+            // exit;
+
+
+            // array_multisort($edition, SORT_ASC,SORT_NUMERIC, $reportItems['comparable']);
+
+            /*if(sizeof($reportItems['comparable'])>1){
+
+                usort($reportItems['comparable'], 'sortDistance');
+            }*/
+
+
+
+            /*if(sizeof($reportItems['comparable'])<9){
+
+                $newCompareAble = array();  
+                
+
+                //**** Adding compareable properties to sort based on date ***********
+                for ($j = 0; $j < sizeof($report187->ComparableSalesReport->ComparableSales->ComparableSale); $j++) {
+                    $apn = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->APN[0].'';
+                    if(!in_array($apn, $hasComparable) ){
+                        
+                        $i = strval($j + 1);
+                        $tmp['Date'] = formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]);
+                        $tmp['Price'] = dollars(number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0]));
+                        $tmp['PriceRate'] = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0];
+                        $tmp['PricePerSQFT']=$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->PricePerSQFT[0];
+                        $tmp['TotalRooms']=$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->TotalRooms[0];
+
+                        $tmp['Address'] = properCase($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteAddress[0].' '.$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteCity[0]);
+                        $tmp['Distance'] = floatval($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Proximity[0]) ;
+                        $tmp['Beds'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Bedrooms[0]);
+                        $tmp['SquareFeet'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->BuildingArea[0]);
+                        $tmp['Baths'] = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Baths[0];
+                        $tmp['Year'] = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->YearBuilt[0];
+                        $tmp['LotSize'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->LotSize);
+                        $tmp['Latitude'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Latitude);
+                        $tmp['Longitude'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Longitude);
+                        $tmpPool = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Pool[0];
+                        if ($tmpPool != 'Yes') {
+                            $tmpPool = 'No';
+                        }           
+                        $tmp['Pool']=$tmpPool;
+                        array_push($newCompareAble, $tmp);  
+                    }
+                }
+                
+                //****** Sorting compareable proerties based on last sale ************
+                usort($newCompareAble, 'sortproperty');
+
+                foreach ($newCompareAble as $key => $value) {
+                    if(sizeof($reportItems['comparable'])<9){
+                        array_push($reportItems['comparable'], $value);
+                    }
+                }
+            }*/
+
+        
+
+            $tmp_property = 0; $min_tmp_price = 0; $max_tmp_price = 0;
+            $tmp_lot_size = 0; $min_lot_size = 0; $max_lot_size = 0;
+            
+            foreach ($reportItems['comparable'] as $key => $row) {
+                $lotSize = str_replace(",", "", $row['LotSize']);
+                if($key > 8) break;
+                if($key==0){
+                    $minPrice = floatval($row['PriceRate']);
+                    $maxPrice = floatval($row['PriceRate']);
+                    
+                    $min_lot_size = $lotSize;
+                    $max_lot_size = $lotSize;           
+                }
+                if($minPrice>floatval($row['PriceRate']) ){
+                    $minPrice = floatval($row['PriceRate']);
+                }
+                if($maxPrice< floatval($row['PriceRate'])){
+                    $maxPrice = floatval($row['PriceRate']);
+                }
+                
+                if($min_lot_size> $lotSize){
+                    $min_lot_size = $lotSize;
+                }
+                if($max_lot_size< $lotSize){
+                    $max_lot_size = $lotSize;
+                }
+                
+                $tmp_property += $row['PriceRate'];         
+                $tmp_lot_size += $lotSize;
+                //print_r($row); echo "<br/>"; 
+            }
+            //echo 'value > '.$tmp_lot_size.' > '.$min_lot_size.' > '.$max_lot_size;
+            
+            $reportItems['priceMinRange'] = round(($minPrice + ($minPrice*5/100))/1000,2);
+            $reportItems['priceMaxRange'] = round(($maxPrice + ($maxPrice*5/100))/1000,2);
+
+            // echo 'adad';
+            // exit;
+
+            // $reportItems['areaYear'] = minMaxArray('Year', 'min', $reportItems['comparable']);
+            
+            $propertyYear = (string)$report187->PropertyProfile->PropertyCharacteristics->YearBuilt[0];
+            $reportItems['areaYear'] = $propertyYear;
+            $reportItems['areaYearLow'] = minMaxArray('Year', 'min', $reportItems['comparable']);
+            $reportItems['areaYearMedian'] = minMaxArray('Year', 'median', $reportItems['comparable']);
+            $reportItems['areaYearHigh'] = minMaxArray('Year', 'max', $reportItems['comparable']);
+
+            $reportItems['areaBedrooms'] = (string)$report187->PropertyProfile->PropertyCharacteristics->Bedrooms[0];
+            $reportItems['areaBedroomsLow'] = minMaxArray('Beds', 'min', $reportItems['comparable']);
+            $reportItems['areaBedroomsMedian'] = minMaxArray('Beds', 'median', $reportItems['comparable']);
+            $reportItems['areaBedroomsHigh'] = minMaxArray('Beds', 'max', $reportItems['comparable']);
+
+            $reportItems['areaBaths'] = (string)$report187->PropertyProfile->PropertyCharacteristics->Baths[0];
+            $reportItems['areaBathsLow'] = minMaxArray('Baths', 'min', $reportItems['comparable']);
+            $reportItems['areaBathsMedian'] = minMaxArray('Baths', 'median', $reportItems['comparable']);
+            $reportItems['areaBathsHigh'] = minMaxArray('Baths', 'max', $reportItems['comparable']);
+            
+            $areaLotSize = number_format((string)$report187->PropertyProfile->PropertyCharacteristics->LotSize[0]);
+            $areaLotSizeLow = number_format($min_lot_size);             //number_format(minMaxArray('LotSize', 'min', $reportItems['comparable']));
+            $areaLotSizeMedian = number_format($tmp_lot_size/9);            //number_format(minMaxArray('LotSize', 'median', $reportItems['comparable']));
+            $areaLotSizeHigh = number_format($max_lot_size);                // number_format(minMaxArray('LotSize', 'max', $reportItems['comparable']));
+
+
+            $reportItems['areaLotSize'] = $areaLotSize;
+            $reportItems['areaLotSizeLow'] = $areaLotSizeLow;
+            $reportItems['areaLotSizeMedian'] = $areaLotSizeMedian;
+            $reportItems['areaLotSizeHigh'] = $areaLotSizeHigh;
+
+
+            $areaLivingAreaLow = number_format(minMaxArray('BuildingArea', 'min', $reportItems['comparable']));
+            $areaLivingAreaMedian = number_format(minMaxArray('BuildingArea', 'median', $reportItems['comparable']));
+            $areaLivingAreaHigh = number_format(minMaxArray('BuildingArea', 'max', $reportItems['comparable']));
+
+            $reportItems['areaLivingArea']   = (string)$report187->PropertyProfile->PropertyCharacteristics->BuildingArea[0];
+            $reportItems['areaLivingAreaLow'] = $areaLivingAreaLow;
+            $reportItems['areaLivingAreaMedian'] = $areaLivingAreaMedian;
+            $reportItems['areaLivingAreaHigh'] = $areaLivingAreaHigh;
+
+            $areaSalePriceLow = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->PriceRangeMin);
+            $areaSalePriceMedian = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->MedianValue);
+            $areaSalePriceHigh = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->PriceRangeMax);
+
+            $reportItems['areaPriceFoot'] = number_format((string)$report187->PropertyProfile->SaleLoanInfo->PricePerSQFT[0]);
+            $reportItems['areaPriceFootLow'] = number_format(minMaxArray('PricePerSQFT', 'min', $reportItems['comparable']));
+            $reportItems['areaPriceFootMedian'] = number_format(minMaxArray('PricePerSQFT', 'median', $reportItems['comparable']));
+            $reportItems['areaPriceFootHigh'] = number_format(minMaxArray('PricePerSQFT', 'max', $reportItems['comparable']));
+
+            $reportItems['areaSalePriceLow'] = dollars($areaSalePriceLow);
+            $reportItems['areaSalePriceMedian'] = dollars($areaSalePriceMedian);
+            $reportItems['areaSalePriceHigh'] = dollars($areaSalePriceHigh);
+
+            $reportItems['areaTotalRoomsLow'] = minMaxArray('TotalRooms', 'min', $reportItems['comparable']);
+            $reportItems['areaTotalRoomsMedian'] = minMaxArray('TotalRooms', 'median', $reportItems['comparable']);
+            $reportItems['areaTotalRoomsHigh'] = minMaxArray('TotalRooms', 'max', $reportItems['comparable']);
+
+            $reportItems['stories'] = (string)$report187->PropertyProfile->PropertyCharacteristics->NoOfStories[0];
+            $propPool = $report187->PropertyProfile->PropertyCharacteristics->Pool[0];
+                if ($propPool != 'Yes') {
+                    $propPool = 'No';
+                }
+            $reportItems['propertyPool'] = number_format((double)$report187->PropertyProfile->PropertyCharacteristics->Pool[0]);
+            $reportItems['propertyPoolLow'] = number_format((double)minMaxArray('Pool', 'min', $reportItems['comparable']));
+            $reportItems['propertyPoolMedian'] = number_format((double)minMaxArray('Pool', 'median', $reportItems['comparable']));
+            $reportItems['propertyPoolHign'] = number_format((double)minMaxArray('Pool', 'max', $reportItems['comparable']));
+
+            $reportItems['propertySalePrice'] = number_format((double)$report187->PropertyProfile->PropertyCharacteristics->SalePrice);
+            $reportItems['propertySalePriceLow'] =  number_format($minPrice);       //number_format(minMaxArray('PriceRate', 'min', $reportItems['comparable']));
+            $reportItems['propertySalePriceMedian'] =   number_format($tmp_property/9); //number_format(minMaxArray('PriceRate', 'median', $reportItems['comparable']));
+            $reportItems['propertySalePriceLowHigh'] =  number_format($maxPrice);   //number_format(minMaxArray('PriceRate', 'max', $reportItems['comparable']));
+
+            $areaSalesChart['series']='';
+            $areaSalesChart['date']='';
+
+            $minRadius = minMaxArray('Distance', 'min', $reportItems['comparable']);
+            $medianRadius = minMaxArray('Distance', 'median', $reportItems['comparable']);
+            $maxRadius = minMaxArray('Distance', 'max', $reportItems['comparable']);
+            $reportItems['areaMinRadius'] = $minRadius;
+            $reportItems['areaMedianRadius'] = $medianRadius;
+            $reportItems['areaMaxRadius'] = $maxRadius;
+
+
+            /*
+            for ($j = 0; $j < sizeof($report187->ComparableSalesReport->ComparableSales->ComparableSale); $j++) {
+                $i = strval($j + 1);
+                $tmp['Date'] = formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]);
+                $tmp['Price'] = dollars(number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0]));
+                $tmp['PriceRate'] = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0];
+
+                $tmp['Address'] = properCase($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteAddress[0].' '.$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteCity[0]);
+                $tmp['Distance'] = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Proximity[0];
+                $tmp['Beds'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Bedrooms[0]);
+                $tmp['SquareFeet'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->BuildingArea[0]);
+                $tmp['Baths'] = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Baths[0];
+                $tmp['Year'] = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->YearBuilt[0];
+                $tmp['LotSize'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->LotSize);
+                $tmp['Latitude'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Latitude);
+                $tmp['Longitude'] = number_format($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Longitude);
+                $tmpPool = $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Pool[0];
+                if ($tmpPool != 'Yes') {
+                    $tmpPool = 'No';
+                }           
+                $tmp['Pool']=$tmpPool;
+                array_push($reportItems['comparable'], $tmp);
+            }
+
+            foreach ($reportItems['comparable'] as $key => $row) {
+                $edition[$key]  = $row['PriceRate'];
+               
+            }
+            array_multisort($edition, SORT_ASC, $reportItems['comparable']);
+            */
+
+            
+
+            $ChartArr = array();
+            $tmp2=array();
+            //for ($i = 1; $i <= 12; $i++) {
+            for ($i = 0; $i < 12; $i++) {
+                  // $months[] = date("M Y", strtotime( date( 'Y-m-01' )." -$i months"));
+                  //$months[] = array('date'=>date("M'y", strtotime( date( 'Y-m-01' )." -$i months")),'value'=>'_') ;   commented by vijay
+                   $months[] = array('date'=>date("M'y", strtotime( date( 'Y-m-01' )." -$i months")),'value'=>'_') ;
+            }
+
+            $totalMonthsReport=0;       
+            foreach ($reportItems['comparable'] as $key => $item) {
+                /*****************************************/
+                if($key > 8) break;
+                $date=date_create($item['Date']);
+                $tmepDate = date_format($date,"M'y");
+                foreach ($months as $key2 => $itemMonth) {
+                    if($itemMonth['date']==$tmepDate){          
+                        $months[$key2]['value'] = $item['PriceRate'];
+                    }
+                }
+            }
+
+            foreach ($months as $key => $itemMonth) {
+                if($key<(sizeof($months)-1)){
+                    $tmp2['date'].=$itemMonth['date'].'|';
+                    $tmp2['series'].=$itemMonth['value'].',';
+                }else{
+                    $tmp2['date'].=$itemMonth['date'];
+                    $tmp2['series'].=$itemMonth['value'];
+                }
+                if($itemMonth['value']!='_'){
+                    $totalMonthsReport++;
+                }
+                array_push($ChartArr, $tmp2);
+            }
+
+            
+            $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
+            $reportItems['chart']=$tmp2;
+            $reportItems['totalMonthsReport'] = $totalMonthsReport;
+            $data['areaSalesAnalysis'] = $reportItems;
+
+            // print_r($data['areaSalesAnalysis']['chart']);
+            // echo "https://chart.googleapis.com/chart?cht=bvs&chd=t:".$data['areaSalesAnalysis']['chart']['series']."&chs=600x400&chl=".$data['areaSalesAnalysis']['chart']['date']."&chbh=a,50&chco=".$data['areaSalesAnalysis']['chart']['color'];
+            // exit;
+            // $data['footer_template'] = '<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color:'.$CI->input->post('theme').';"><tr><td border="0" bg="'.$CI->input->post('theme').'" ><table width="89%" border="0" cellspacing="0" cellpadding="15" style="" align="center"><tr><td  border="0" align="left" width="50%" bgcolor="'.$CI->input->post('theme').'" style="color:#fff;"><strong >Listing Proposal</strong> <br />'.$report187->PropertyProfile->SiteAddress.' '.$report187->PropertyProfile->SiteCity.' '.$report187->PropertyProfile->SiteState.'</td><td  border="0" align="right" bgcolor="'.$CI->input->post('theme').'" style="color:#fff; margin-right:150px;">Page {PAGENO}</td></tr></table></td></tr></table>';
+            if($_POST['presentation'] == 'buyer') {
+                $html = $CI->load->view("pdf_template_bp",$data,true);
+                $html=str_replace("80a7b7", str_replace('#','',$CI->input->post('theme')), $html);        
+            } else {
+                $html = $CI->load->view("pdf_template",$data,true);
+                $html=str_replace("f15d3e", str_replace('#','',$CI->input->post('theme')), $html);        
+            }
+            //file_put_contents("tmp.html", $html);//die;
+            
+            // $mpdf=new mPDF('','array(215.9,279.4)','A4','',0,0,0,0); 
+            // $mpdf = new mPDF('','', 0, '', 15, 15, 16, 16, 9, 9, 'L');
+            // $html = $CI->load->view('pdf_template','',true);
+            // $mpdf=new mPDF('','A4','','',0,0,0,0); 
+            $mpdf=new mPDF('','Letter','','',0,0,0,0,0,0);
+            // $mpdf->SetFooter('<table width="100%" border="0" cellspacing="0" cellpadding="15" style="font-family:Helvetica, Arial, sans-serif; ><tr><td align="left" width="50%" bgcolor="'.$CI->input->post('theme').'" style="color:#fff; font-family:tharlon;"><strong>Listing Proposal</strong><br />'.$report187->PropertyProfile->SiteAddress.'</td><td align="right" bgcolor="'.$CI->input->post('theme').'" style="color:#fff; font-family:hum521l;">Page {PAGENO}</td></tr></table>');
+            /*$mpdf->SetFooter('<table width="100%" border="0" cellspacing="0" cellpadding="15" style=""><tr><td align="left" width="50%" bgcolor="'.$CI->input->post('theme').'" style="color:#fff;  margin-left:150px;"><strong style="margin-left:200px;">Listing Proposal</strong> <p>&nbsp; </p><div style="margin-bottom:-10px;">'.$report187->PropertyProfile->SiteAddress.' '.$report187->PropertyProfile->SiteCity.' '.$report187->PropertyProfile->SiteState.'</div></td><td align="right" bgcolor="'.$CI->input->post('theme').'" style="color:#fff; margin-right:150px;">Page {PAGENO}</td></tr></table>');*/
+            // $mpdf->SetFooter('<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color:'.$CI->input->post('theme').';"><tr><td border="0" bg="'.$CI->input->post('theme').'" ><table width="89%" border="0" cellspacing="0" cellpadding="15" style="" align="center"><tr><td  border="0" align="left" width="50%" bgcolor="'.$CI->input->post('theme').'" style="color:#fff;"><strong >Listing Proposal</strong> <br />'.$report187->PropertyProfile->SiteAddress.' '.$report187->PropertyProfile->SiteCity.' '.$report187->PropertyProfile->SiteState.'</td><td  border="0" align="right" bgcolor="'.$CI->input->post('theme').'" style="color:#fff; margin-right:150px;">Page {PAGENO}</td></tr></table></td></tr></table>');
+
+            $mpdf->WriteHTML($html);
+            $pdfFileName = 'temp/'.$report187->PropertyProfile->SiteAddress.'_'.uniqid().'.pdf';
+            $mpdf->Output($pdfFileName,'F'); 
+
+            $insertPdfReport =  array(
+                                        'project_name'=>$CI->db->escape_str($report187->PropertyProfile->SiteAddress),
+                                        'report_path'=>$pdfFileName,
+                                        'user_id_fk'=>$CI->session->userdata('userid'),
+                                        'property_owner'=>$CI->db->escape_str($report187->PropertyProfile->PrimaryOwnerName),
+                                        'property_address'=>$CI->db->escape_str($report187->PropertyProfile->SiteAddress.''.$report187->PropertyProfile->SiteCity.''.$report187->PropertyProfile->SiteState.''.$report187->PropertyProfile->SiteZip),
+                                        'property_apn'=>$CI->db->escape_str($report187->PropertyProfile->APN),
+                                        'property_lat'=>$CI->db->escape_str($report187->PropertyProfile->PropertyCharacteristics->Latitude),
+                                        'property_lng'=>$CI->db->escape_str($report187->PropertyProfile->PropertyCharacteristics->Longitude),
+                                        'report_type'=>$_POST['presentation'],
+                                );
+
+            $CI->base_model->insert_one_row('lp_my_listing', $insertPdfReport);
+            $CI->session->set_userdata('project_id', $CI->base_model->get_last_insert_id());
+            // $CI->load->view('pdf_template');
+        }
+    }
+?>

@@ -1,0 +1,26 @@
+form input.error, form textarea.error, form select.error{border-color:#db4c4a !important;}
+.badge-open{background:none repeat scroll 0 0 orange; border-radius:100%; font-weight:bolder; position:absolute; right:10%; top:20%;}
+.page-loading{position:fixed; left:0px; top:0px; height:100%; width:100%; z-index:10; background:rgba(255, 255, 255, .75) url(../img/loading.gif) no-repeat center;}
+.loader{margin:10em auto; font-size:10px; overflow:hidden; position:relative; text-indent:-9999em; border-top:1.1em solid rgba(255, 255, 255, 0.2); border-right:1.1em solid rgba(255, 255, 255, 0.2); border-bottom:1.1em solid rgba(255, 255, 255, 0.2); border-left:1.1em solid #fff; -webkit-transform:translateZ(o); -ms-transform:translateZ(o); transform:translateZ(o); -webkit-animation:load8 1.1s infinite linear; animation:load8 1.1s infinite linear;}
+.loader, .loader::after{border-radius:50%; height:10em; position:absolute; width:10em; left:46%; z-index:100;}
+@-webkit-keyframes load8{
+	0%{-webkit-transform:rotate(0deg); transform:rotate(0deg);}
+  100%{-webkit-transform:rotate(360deg); transform:rotate(360deg);}
+}
+@keyframes load8{
+	0%{-webkit-transform:rotate(0deg); transform:rotate(0deg);}
+  100%{-webkit-transform:rotate(360deg); transform:rotate(360deg);}
+}
+.loader-back{opacity:0;}
+label.error{color:red; font-weight:300;}
+h3.panel-title b{width:100%; text-overflow:ellipsis; white-space:nowrap; display:block; overflow:hidden;}
+.itsd{width:100%; text-overflow:ellipsis; white-space:nowrap; display:block; overflow:hidden;}
+
+.portfolio-item{width:280px; margin:0 10px 10px 0; float:left;}
+.jplist-panel .jplist-pagination button, .jplist-panel .jplist-pagination button:focus, .jplist-panel .jplist-pagination button:active{outline:none;}
+
+.flyer-catogery .jplist-list-view .list-item{display:table;}
+.flyer-catogery .jplist-list-view .list-item .panel-body hr{display:none;}
+.flyer-catogery .jplist-list-view .list-item .panel-body .thumbnail, .flyer-catogery .jplist-list-view .list-item .panel-body center{display:table-cell; vertical-align:top; text-align:left;}
+.flyer-catogery .jplist-list-view .list-item .panel-body .btn-primary{margin-right:5px;}
+.jplist-list-view .jplist-list-view, .jplist-grid-view .jplist-grid-view{background-color:#20af9e; border-color:#20af9e; color:#fff;}

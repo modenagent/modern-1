@@ -1,0 +1,68 @@
+<div class="container">
+	<div class="section">
+		<div class="body">
+			<img width="100%" class="img-responsive" src="<?php echo base_url("assets/seller/images/1/1_b2.jpg") ?>">	
+			<div class="section-content">
+				<p>Seller's Report</p>
+				<h1>1358 5th st</h1>
+
+				<div class="line"></div>
+
+				<p>LA VERNE, CA 91750</p>
+			</div>
+		</div>
+		<div class="footer">
+			<!-- <div class="container" style="border: 1px solid yellow;"> -->
+				<div class="row">
+					<div class="footer-inner">
+						<div class="col-xs-12">
+							 <table class="pg-1-clients cf">
+            <tr>
+                <td>
+			<table width="350" border="0" align="left" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="64px" rowspan="2" align="center" valign="top"><?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?><img src="<?php echo base_url().$user['profile_image']; ?>" style="max-width:165px; height:220px;" alt="" /><?php endif; ?></td>
+                    <td width="245" class="client-name"><?php echo $user['fullname']; ?></td>
+                </tr>
+                <tr>
+                    <td width="245" align="left" valign="top" class="client-detail"><?php echo $user['title']; ?><br />CaBRE#<?php echo $user['licenceno']; ?><br />Direct: <?php echo $user['phone']; ?><br /><?php echo $user['email']; ?><br /><?php echo $user['companyname']; ?><br /><?php echo $user['street']; ?><br/><?php echo $user['city']; ?>, <?php echo $user['state']; ?><?php echo $user['zip']; ?><br /></td>
+                </tr>
+                <?php if($partner): ?>
+                <tr>
+                    <td colspan="2" align="left" valign="bottom" ><?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:75px;max-width:185px;"  alt="Logo Image"/><?php endif; ?></td>
+                </tr>
+                <?php endif; ?>
+                </table>
+                </td>
+                <td <?php echo (!$partner)?'valign="top"':''; ?>>
+            <table width="350" border="0" align="right" cellpadding="0" cellspacing="0">
+            <?php if($partner): ?>
+            <tr>
+            <td width="245" align="right" valign="top" class="client-name"><?php echo $partner['fullname']; ?></td>
+            <td rowspan="2" align="right" width="64px" valign="top"><img src="<?php echo base_url().$partner['profile_image']; ?>"   style="max-width:64px; max-height:115px; height:115px;" alt=""/></td>
+            </tr>
+            <tr>
+            <td width="245" align="right" valign="top" class="client-detail"><?php echo $partner['title']; ?><br />CaBRE#<?php echo $partner['licenceno']; ?><br />Direct: <?php echo $partner['phone']; ?><br /><?php echo $partner['email']; ?><br /><?php echo $partner['website']; ?></td>
+            </tr>
+            <tr>
+            <td colspan="2" align="right" valign="top"><?php if($partner['company_image']): ?><img src="<?php echo base_url().$partner['company_image']; ?>" style="max-height:75px;max-width:185px;padding-top: 5px;"  alt="Logo Image"/><?php endif; ?></td>
+            </tr>
+            <?php else: ?>
+                <tr>
+                    <td colspan="2" align="right" valign="top"><?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:130px;max-width:300px;padding-bottom: 10px;"  alt="Logo Image"/><?php endif; ?></td>
+                </tr>
+            <?php endif; ?>
+            </table>
+            
+        </td></tr>
+            
+        </table>
+						</div>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+	</div>
+
+<!--	<div class="seperator"></div>-->
+</div>

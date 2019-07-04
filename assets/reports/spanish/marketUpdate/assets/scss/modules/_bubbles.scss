@@ -1,0 +1,292 @@
+/*.bubbles {
+    @extend %font-pri;
+    @include clearfix;
+    width: 920px;
+    height: 630px;
+    padding: 10px;
+    position: relative;
+    margin-top: 60px;
+    margin-bottom: -80px;
+    margin-left: auto;
+    margin-right: auto;
+    @include respond-to (tablets) {
+        width: auto;
+        height: auto;
+        margin-top: 30px;
+        margin-bottom: 0;
+    }
+}
+
+.bubble {
+    color: $clr-accent;
+    display: block;
+    position: absolute;
+    .bubble__name {
+        color: $gray-darker;
+        font-size: 12px;
+        margin-bottom: 5px;
+        text-align: center;
+        display: block;
+        text-transform: uppercase;
+    }
+    .bubble__value {
+        display: table;
+        border-radius: 50%;
+        margin: auto;
+        background: $gray-light;
+        // translate3d( 0, 0, 0);
+        -webkit-animation-name: floatingOne !important;
+        -webkit-animation-duration: 15s !important;
+        -webkit-animation-iteration-count: infinite !important;
+        -webkit-animation-timing-function: ease-in-out !important;
+        animation-name: floatingOne !important;
+        animation-duration: 30s !important;
+        animation-iteration-count: infinite !important;
+        animation-timing-function: ease-in-out !important;
+    }
+    .bubble__value-inner {
+        -webkit-font-smoothing: antialiased;
+        text-align: center;
+        display: table-cell;
+        vertical-align: middle;
+    }
+    $bubble-xl: 126px;
+    $bubble-lg: 99px;
+    $bubble-md: 73px;
+    $bubble-sm: 58px;
+    $bubble-xs: 36px;
+    &.bubble--xl {
+        .bubble__value {
+            width: $bubble-xl;
+            height: $bubble-xl;
+        }
+    }
+    &.bubble--lg {
+        .bubble__value {
+            width: $bubble-lg;
+            height: $bubble-lg;
+        }
+    }
+    &.bubble--md {
+        .bubble__value {
+            width: $bubble-md;
+            height: $bubble-md;
+        }
+    }
+    &.bubble--sm {
+        .bubble__value {
+            width: $bubble-sm;
+            height: $bubble-sm;
+        }
+    }
+    &.bubble--xs {
+        .bubble__value {
+            width: $bubble-xs;
+            height: $bubble-xs;
+        }
+    }
+    &.bubble--main {
+        display: table;
+        width: 190px;
+        height: 190px;
+        background-color: $clr-accent;
+        color: $white;
+        top: 50%;
+        left: 50%;
+        margin-top: -95px;
+        margin-left: -95px;
+        border-radius: 50%;
+        .bubble--main__inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+    }
+    &.bubble--vit-d {
+        top: 4%;
+        left: 33%;
+    }
+    &.bubble--magnesium {
+        top: 1%;
+        left: 50%;
+    }
+    &.bubble--pyridoxine {
+        top: 4%;
+        left: 67%;
+    }
+    &.bubble--crude {
+        top: 15%;
+        left: 22%;
+    }
+    &.bubble--niacin {
+        top: 120px;
+        left: 10%;
+    }
+    &.bubble--riboflavin {
+        top: 54%;
+        left: 5%;
+    }
+    &.bubble--potassium {
+        top: 43%;
+        left: 15%;
+    }
+    &.bubble--copper {
+        top: 31%;
+        left: 24%;
+    }
+    &.bubble--crude-fat {
+        top: 26%;
+        left: 32%;
+    }
+    &.bubble--crude-protein {
+        top: 17%;
+        left: 42%;
+    }
+    &.bubble--iodine {
+        top: 17%;
+        left: 58%;
+    }
+    &.bubble--sodium {
+        top: 24%;
+        left: 74%;
+    }
+    &.bubble--vitamin-b12 {
+        top: 9%;
+        left: 84%;
+    }
+    &.bubble--thiamine {
+        top: 28%;
+        left: 90%;
+    }
+    &.bubble--chloride {
+        top: 38%;
+        left: 76%;
+    }
+    &.bubble--iron {
+        top: 38%;
+        left: 63%;
+    }
+    &.bubble--moisture {
+        top: 51%;
+        left: 25%;
+    }
+    &.bubble--phosphorous {
+        top: 68%;
+        left: 15%;
+    }
+    &.bubble--ascorbic-acid {
+        top: 67%;
+        left: 30%;
+    }
+    &.bubble--calcium {
+        top: 72%;
+        left: 50%;
+    }
+    &.bubble--vit-e {
+        top: 62%;
+        left: 65%;
+    }
+    &.bubble--zinc {
+        top: 65%;
+        left: 77%;
+    }
+    &.bubble--vit-a {
+        top: 49%;
+        left: 84%;
+    }
+    &.bubble--manganese {
+        top: 52%;
+        left: 97%;
+    }
+    @include respond-to (tablets) {
+        position: static;
+        width: 14%;
+        float: left;
+        margin-top: 20px;
+        &.bubble--main {
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            float: none;
+        }
+    }
+    @include respond-to (mobiles) {
+        margin-bottom: 30px;
+        width: 100%;
+    }
+}
+
+@keyframes floatingOne {
+    from {
+        transform: perspective(1px) translate(0px, 0px);
+    }
+    10% {
+        transform: perspective(1px) translate(5px, 5px);
+    }
+    20% {
+        transform: perspective(1px) translate(-5px, 5px);
+    }
+    30% {
+        transform: perspective(1px) translate(0px, 0px);
+    }
+    40% {
+        transform: perspective(1px) translate(-5px, 5px);
+    }
+    50% {
+        transform: perspective(1px) translate(5px, -5px);
+    }
+    60% {
+        transform: perspective(1px) translate(0px, 0px);
+    }
+    70% {
+        transform: perspective(1px) translate(5px, -5px);
+    }
+    80% {
+        transform: perspective(1px) translate(0px, -5px);
+    }
+    90% {
+        transform: perspective(1px) translate(0px, 5px);
+    }
+    to {
+        transform: perspective(1px) translate(0px, 0px);
+    }
+}
+
+@-webkit-keyframes floatingOne {
+    from {
+        -webkit-transform: translate(0px, 0px);
+    }
+    10% {
+        -webkit-transform: translate(5px, 5px);
+    }
+    20% {
+        -webkit-transform: translate(-5px, 5px);
+    }
+    30% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    40% {
+        -webkit-transform: translate(-5px, 5px);
+    }
+    50% {
+        -webkit-transform: translate(5px, -5px);
+    }
+    60% {
+        -webkit-transform: translate(0px, 0px);
+    }
+    70% {
+        -webkit-transform: translate(5px, -5px);
+    }
+    80% {
+        -webkit-transform: translate(0px, -5px);
+    }
+    90% {
+        -webkit-transform: translate(0px, 5px);
+    }
+    to {
+        -webkit-transform: translate(0px, 0px);
+    }
+}
+*/

@@ -1,0 +1,87 @@
+<div class="container">
+	<div class="section">
+		<div class="body">
+			<img width="100%" class="img-responsive" src="<?php echo base_url("assets/v2/images/1/1.jpg")?>">	
+			<div class="section-content">
+				<p>Buyers Report</p>
+				<h1><?php echo $property->PropertyProfile->SiteAddress ; ?></h1>
+
+				<div class="line"></div>
+
+				<p><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></p>
+			</div>
+		</div>
+		<div class="footer">
+			<!-- <div class="container" style="border: 1px solid yellow;"> -->
+				<div class="row">
+					<div class="footer-inner">
+						<div class="col-xs-12">
+                                                    <table class="pg-1-clients cf">
+            <tr>
+                <td>
+			<table width="350" border="0" align="left" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="64px" rowspan="2" align="center" valign="top"><?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?><img src="<?php echo base_url().$user['profile_image']; ?>" style="max-width:100px; height:120px;" alt="" /><?php endif; ?></td>
+                    <td width="245" class="client-name"><?php echo $user['fullname']; ?></td>
+                </tr>
+                <tr>
+                    <td width="245" align="left" valign="top" class="client-detail"><?php echo $user['title']; ?><br />CaBRE#<?php echo $user['licenceno']; ?><br />Direct: <?php echo $user['phone']; ?><br /><?php echo $user['email']; ?><br /><?php echo $user['website']; ?></td>
+                </tr>
+                <?php if($partner): ?>
+                <tr>
+                    <td colspan="2" align="left" valign="top"><?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:75px;max-width:185px;padding-top: 5px;"  alt="Logo Image"/><?php endif; ?></td>
+                </tr>
+                <?php endif; ?>
+                </table>
+                </td>
+                <td <?php echo (!$partner)?'valign="bottom"':''; ?>>
+            <table width="350" border="0" align="right" cellpadding="0" cellspacing="0">
+            <?php if($partner): ?>
+            <tr>
+            <td width="245" align="right" valign="top" class="client-name"><?php echo $partner['fullname']; ?></td>
+            <td rowspan="2" align="right" width="64px" valign="top"><img src="<?php echo base_url().$partner['profile_image']; ?>"   style="max-width:64px; max-height:115px; height:115px;" alt=""/></td>
+            </tr>
+            <tr>
+            <td width="245" align="right" valign="top" class="client-detail"><?php echo $partner['title']; ?><br />CaBRE#<?php echo $partner['licenceno']; ?><br />Direct: <?php echo $partner['phone']; ?><br /><?php echo $partner['email']; ?><br /><?php echo $partner['website']; ?></td>
+            </tr>
+            <tr>
+            <td colspan="2" align="right" valign="top"><?php if($partner['company_image']): ?><img src="<?php echo base_url().$partner['company_image']; ?>" style="max-height:75px;max-width:185px;padding-top: 5px;"  alt="Logo Image"/><?php endif; ?></td>
+            </tr>
+            <?php else: ?>
+                <tr>
+                    <td colspan="2" align="right" valign="top"><?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:75px;max-width:185px;padding-bottom: 10px;"  alt="Logo Image"/><?php endif; ?></td>
+                </tr>
+            <?php endif; ?>
+            </table>
+            
+        </td></tr>
+            
+        </table>
+	<!--						<div class="left-footer pull-left">
+								<div class="row">
+									<div class="col-xs-5">
+										<img width="100%" class="img-responsive" src="<?php echo base_url("assets/v2/images/1/profile.png")?>" >
+									</div>
+									<div class="col-xs-7">
+										<h4>Zachary Mateo</h4>
+										<p>
+											<small>Realtor</small> <br >
+											CA BRE#012345678 <br >
+											Direct: 0000000000 <br >
+											info@agentprez.com <br >
+										</p>		
+									</div>
+								</div>
+							</div>
+							<div class="right-footer pull-right">
+								<img width="100%" class="img-responsive" src="<?php echo base_url("assets/v2/1/logo.jpg")?>" alt="">
+							</div>-->
+						</div>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+	</div>
+
+	<div class="page-seperator"></div>
+</div>

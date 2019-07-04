@@ -1,0 +1,2794 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XML187 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+ xmlns="http://api.sitexdata.com/GetReport">
+  <PropertyProfile>
+    <PrimaryOwnerName>HERNANDEZ, GERARDO JOVANNI; MENDOZA, YESSICA S</PrimaryOwnerName>
+    <SecondaryOwnerName />
+    <MailAddress>1358 5TH ST</MailAddress>
+    <MailUnit />
+    <MailUnitType />
+    <MailCity>LA VERNE</MailCity>
+    <MailState>CA</MailState>
+    <MailZip>91750</MailZip>
+    <MailZip4>4224</MailZip4>
+    <OwnerPhoneNum />
+    <SiteAddress>1358 5TH ST</SiteAddress>
+    <SiteUnit />
+    <SiteUnitType />
+    <SiteCity>LA VERNE</SiteCity>
+    <SiteState>CA</SiteState>
+    <SiteZip>91750</SiteZip>
+    <SiteZip4>4224</SiteZip4>
+    <APN>8381-021-001</APN>
+    <CensusTract>4016.03</CensusTract>
+    <HousingTract>6654</HousingTract>
+    <LotNumber>44</LotNumber>
+    <TBMPage>600</TBMPage>
+    <TBMGrid>E2</TBMGrid>
+    <LegalDescriptionInfo>
+      <LotCode>44     </LotCode>
+      <Block />
+      <Section />
+      <District />
+      <Subdivision />
+      <TractNumber>6654      </TractNumber>
+      <PhaseNumber />
+      <Unit />
+      <LandLot />
+      <MapRef />
+      <SecTwnshipRange />
+      <LegalBriefDescription>LOT:44      CITY:REGION/CLUSTER: 06/06128 TR#:6654       TRACT NO 6654 LOT
+ 44 </LegalBriefDescription>
+      <CityMuniTwp>REGION/CLUSTER: 06/06128</CityMuniTwp>
+    </LegalDescriptionInfo>
+    <PropertyCharacteristics>
+      <Bedrooms>2</Bedrooms>
+      <YearBuilt>1949</YearBuilt>
+      <BuildingArea>786</BuildingArea>
+      <Baths>1</Baths>
+      <GarageType />
+      <GarageNumCars>0</GarageNumCars>
+      <LotSize>6156</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <TotalRooms />
+      <Fireplace />
+      <NumUnits>1</NumUnits>
+      <Zoning>LVPR4.5D*</Zoning>
+      <Pool />
+      <UseCode>Single Family Residential</UseCode>
+      <Basement />
+      <Latitude>34.105439</Latitude>
+      <Longitude>-117.782125</Longitude>
+      <NoOfStories />
+      <BuildingStyle />
+    </PropertyCharacteristics>
+    <SaleLoanInfo>
+      <TransferDate>20151223</TransferDate>
+      <SellerName>DIENY, ERIN W; DIENY, KEVIN J</SellerName>
+      <SalesPrice>369000</SalesPrice>
+      <DocumentNumber>15-1611995</DocumentNumber>
+      <Book />
+      <Page />
+      <PricePerSQFT>469</PricePerSQFT>
+      <LoanAmount>362316</LoanAmount>
+      <LenderName>BANC HOME LOANS</LenderName>
+      <TitleCompany>USA NATIONAL TITLE COMPANY</TitleCompany>
+    </SaleLoanInfo>
+    <AssessmentTaxInfo>
+      <AssessedValue>369000</AssessedValue>
+      <PercentImproved>0.2122</PercentImproved>
+      <HomeOwnerExemption />
+      <LandValue>290700</LandValue>
+      <TaxAmount>4407.69</TaxAmount>
+      <TaxRateArea>5-283</TaxRateArea>
+      <ImprovementValue>78300</ImprovementValue>
+      <TaxAccountID />
+      <TaxStatus>Current</TaxStatus>
+      <MarketImprovementValue>0</MarketImprovementValue>
+      <MarketLandValue>0</MarketLandValue>
+      <MarketValue>0</MarketValue>
+      <TaxYear>2016</TaxYear>
+    </AssessmentTaxInfo>
+  </PropertyProfile>
+  <Status>OK</Status>
+  <PropertyMapURL>http://utils.sitexdata.com/DisplayMap/displaymapv2.aspx?mapstring=lZJLboQwEESv0sjrjNz
+%2be9ljnIDEQARmUOYskc8eIyVRshnMrhev%2blNd1GaU2oFOHSypCSkPBPc4j7FZUg7UPN6zR6t5M1CW6oJcK%2bmbYcoviPZinUChP6l0UdIcd9lJYZwGmudpg277OIBRooXrNPaJgO7xkHawwdtA7ZKmMX7vstAIbX
+%2bj5Z%2fCyl3hEGGEX%2bJnxjOJMEafWMlzC6HCFaUcvFZwKMuJcm4rjsP9ujOb1n6wvHr7gz51SxoLpi4Xp3wVEmKlD5Lras%2b88CUQgRLNFFJVHnBXxDUMVIXzkugqm9ErC
+%2faIZF2WlrMta87ZIyOyEPK6sECZszVkZP2tVLdSfQE%3d</PropertyMapURL>
+  <ComparableSalesReport>
+    <ComparableSales>
+      <ComparableSale>
+        <Proximity>.09</Proximity>
+        <Latitude>34.105028</Latitude>
+        <Longitude>-117.780541</Longitude>
+        <SiteAddress>1436 5TH ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>4226</SiteZip4>
+        <RecordingDate>20170703</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>465000</SalePrice>
+        <PricePerSQFT>591</PricePerSQFT>
+        <BuildingArea>786</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1949</YearBuilt>
+        <LotSize>6342</LotSize>
+        <Pool />
+        <APN>8381-020-006</APN>
+        <DocumentNumber>17-0740822</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>35</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber>6654</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB113 PG43 44</MapRef>
+        <Buyer1FName>MARIA</Buyer1FName>
+        <Buyer1LName>COBIAN</Buyer1LName>
+        <Buyer2FName>DANIEL A</Buyer2FName>
+        <Buyer2LName>VALENZUELA</Buyer2LName>
+        <Seller1FName>TIFFANY</Seller1FName>
+        <Seller1LName>NOVAK</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>DBA DELAWARE PACIFIC</LenderName>
+        <Loan1Amount>372000</Loan1Amount>
+        <PID>9212360</PID>
+        <AssessmentValue>378000</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.49</Proximity>
+        <Latitude>34.092599</Latitude>
+        <Longitude>-117.761263</Longitude>
+        <SiteAddress>2685 ARROW HWY</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>5604</SiteZip4>
+        <RecordingDate>20170621</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>425000</SalePrice>
+        <PricePerSQFT>472</PricePerSQFT>
+        <BuildingArea>900</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1941</YearBuilt>
+        <LotSize>6320</LotSize>
+        <Pool />
+        <APN>8371-006-028</APN>
+        <DocumentNumber>17-0683999</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>46</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber>3795</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB117 PG88 89</MapRef>
+        <Buyer1FName>DUSAN</Buyer1FName>
+        <Buyer1LName>MILINKOVIC</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>RAMON</Seller1FName>
+        <Seller1LName>DEL REAL</Seller1LName>
+        <Seller2FName>ROSEMARY</Seller2FName>
+        <Seller2LName>DEL REAL</Seller2LName>
+        <LenderName>CALIBER HOME LOANS INC</LenderName>
+        <Loan1Amount>417302</Loan1Amount>
+        <PID>9201360</PID>
+        <AssessmentValue>290222</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.10</Proximity>
+        <Latitude>34.105475</Latitude>
+        <Longitude>-117.783837</Longitude>
+        <SiteAddress>1317 BONITA AVE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>5236</SiteZip4>
+        <RecordingDate>20170616</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>390000</SalePrice>
+        <PricePerSQFT>526</PricePerSQFT>
+        <BuildingArea>741</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1951</YearBuilt>
+        <LotSize>6150</LotSize>
+        <Pool />
+        <APN>8381-021-019</APN>
+        <DocumentNumber>17-0668468</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>62</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LAVERNE</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber>6654</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB113 PG43 44</MapRef>
+        <Buyer1FName>ALLAN J</Buyer1FName>
+        <Buyer1LName>PAGANUCCI</Buyer1LName>
+        <Buyer2FName>PATRICIA A</Buyer2FName>
+        <Buyer2LName>PAGANUCCI</Buyer2LName>
+        <Seller1FName>RYAN</Seller1FName>
+        <Seller1LName>ATKINSON</Seller1LName>
+        <Seller2FName>KELLY</Seller2FName>
+        <Seller2LName>ATKINSON</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <PID>9198856</PID>
+        <AssessmentValue>365000</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.64</Proximity>
+        <Latitude>34.11362</Latitude>
+        <Longitude>-117.808987</Longitude>
+        <SiteAddress>138 W GLADSTONE ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>1831</SiteZip4>
+        <RecordingDate>20170531</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>480000</SalePrice>
+        <PricePerSQFT>527</PricePerSQFT>
+        <BuildingArea>910</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1924</YearBuilt>
+        <LotSize>8070</LotSize>
+        <Pool />
+        <APN>8387-002-055</APN>
+        <DocumentNumber>17-0600120</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>26</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName>ALTADIMAS TRACT</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB17 PG27</MapRef>
+        <Buyer1FName>CARLOS MANUEL</Buyer1FName>
+        <Buyer1LName>CHACON</Buyer1LName>
+        <Buyer2FName>ZOBEYDA</Buyer2FName>
+        <Buyer2LName>CHACON</Buyer2LName>
+        <Seller1FName>KRISTI</Seller1FName>
+        <Seller1LName>WOLFORD</Seller1LName>
+        <Seller2FName>JOSH</Seller2FName>
+        <Seller2LName>WOLFORD</Seller2LName>
+        <LenderName>HOMEBRIDGE FINANCIAL SERVICES INC</LenderName>
+        <Loan1Amount>471306</Loan1Amount>
+        <PID>9183655</PID>
+        <AssessmentValue>327118</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.65</Proximity>
+        <Latitude>34.116296</Latitude>
+        <Longitude>-117.807766</Longitude>
+        <SiteAddress>811 N SAN DIMAS AVE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>1834</SiteZip4>
+        <RecordingDate>20170505</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>2900000</SalePrice>
+        <PricePerSQFT>3584</PricePerSQFT>
+        <BuildingArea>809</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>1</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1933</YearBuilt>
+        <LotSize>125017.682914934</LotSize>
+        <Pool />
+        <APN>8392-013-032</APN>
+        <DocumentNumber>17-0500985</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber />
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer>NE4SW4NE4 S03T01SR09W SBB&amp;M</SecTwpRngMer>
+        <MapRef />
+        <Buyer1FName />
+        <Buyer1LName>MJW INVESTMENTS LLC</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>RAMON V</Seller1FName>
+        <Seller1LName>NUNO</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <PID>9163207</PID>
+        <AssessmentValue>694714</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.38</Proximity>
+        <Latitude>34.099052</Latitude>
+        <Longitude>-117.759253</Longitude>
+        <SiteAddress>2665 BONITA AVE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>5037</SiteZip4>
+        <RecordingDate>20170306</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>550000</SalePrice>
+        <PricePerSQFT>690</PricePerSQFT>
+        <BuildingArea>797</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1953</YearBuilt>
+        <LotSize>6817</LotSize>
+        <Pool>Yes</Pool>
+        <APN>8370-004-014</APN>
+        <DocumentNumber>17-0256215</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>9</LotNumber>
+        <Block>43</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName>LORDSBURG TOWNSITE</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR18 PG9-14</MapRef>
+        <Buyer1FName>BARBARA A</Buyer1FName>
+        <Buyer1LName>SAPIEN</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>EDGAR</Seller1FName>
+        <Seller1LName>CONTRERAS</Seller1LName>
+        <Seller2FName>GIUSEPPE</Seller2FName>
+        <Seller2LName>CONSOLIDA</Seller2LName>
+        <LenderName>VISION ONE MORTGAGE INC</LenderName>
+        <Loan1Amount>440000</Loan1Amount>
+        <PID>9111441</PID>
+        <AssessmentValue>203079</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.73</Proximity>
+        <Latitude>34.097589</Latitude>
+        <Longitude>-117.773539</Longitude>
+        <SiteAddress>1907 C ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>5408</SiteZip4>
+        <RecordingDate>20170303</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>278000</SalePrice>
+        <PricePerSQFT>370</PricePerSQFT>
+        <BuildingArea>750</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1920</YearBuilt>
+        <LotSize>5104</LotSize>
+        <Pool />
+        <APN>8378-005-051</APN>
+        <DocumentNumber>17-0250288</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>9</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber>4049</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB128 PG77 78</MapRef>
+        <Buyer1FName />
+        <Buyer1LName>909 COMPANY LLC</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>DARLEEN DIANE GUERRERO</Seller1FName>
+        <Seller1LName>FULLER</Seller1LName>
+        <Seller2FName />
+        <Seller2LName>CHRISTINE E GUERRERO TRUST</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <PID>9109641</PID>
+        <AssessmentValue>21057</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.99</Proximity>
+        <Latitude>34.101105</Latitude>
+        <Longitude>-117.765713</Longitude>
+        <SiteAddress>2448 F ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>4925</SiteZip4>
+        <RecordingDate>20170124</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>385000</SalePrice>
+        <PricePerSQFT>594</PricePerSQFT>
+        <BuildingArea>648</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1939</YearBuilt>
+        <LotSize>3493</LotSize>
+        <Pool />
+        <APN>8377-005-011</APN>
+        <DocumentNumber>17-0093370</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>10</LotNumber>
+        <Block>40</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName>LORDSBURG</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR18 PG9</MapRef>
+        <Buyer1FName>KAARLA</Buyer1FName>
+        <Buyer1LName>SELVA</Buyer1LName>
+        <Buyer2FName>JOSHUA</Buyer2FName>
+        <Buyer2LName>MARTINEZ</Buyer2LName>
+        <Seller1FName />
+        <Seller1LName>A4 REHRIG PACIFICO CORP</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>PROVIDENT SAVINGS BANK FSB</LenderName>
+        <Loan1Amount>378026</Loan1Amount>
+        <PID>9078195</PID>
+        <AssessmentValue>300000</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.63</Proximity>
+        <Latitude>34.109967</Latitude>
+        <Longitude>-117.810008</Longitude>
+        <SiteAddress>213 W 3RD ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>2640</SiteZip4>
+        <RecordingDate>20161108</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>410000</SalePrice>
+        <PricePerSQFT>474</PricePerSQFT>
+        <BuildingArea>864</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1902</YearBuilt>
+        <LotSize>7104</LotSize>
+        <Pool />
+        <APN>8387-010-005</APN>
+        <DocumentNumber>16-1391558</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>176</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName>THE TOWNSITE</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR16 PG53 54</MapRef>
+        <Buyer1FName>ANDREW J</Buyer1FName>
+        <Buyer1LName>AMUNDSON</Buyer1LName>
+        <Buyer2FName>HAYLEY R</Buyer2FName>
+        <Buyer2LName>AMUNDSON</Buyer2LName>
+        <Seller1FName>TODD</Seller1FName>
+        <Seller1LName>LAWLESS</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>MASON MCDUFFIE MORTGAGE CORP</LenderName>
+        <Loan1Amount>379000</Loan1Amount>
+        <PID>9013320</PID>
+        <AssessmentValue>171286</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.41</Proximity>
+        <Latitude>34.103293</Latitude>
+        <Longitude>-117.775429</Longitude>
+        <SiteAddress>1811 BONITA AVE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>4832</SiteZip4>
+        <RecordingDate>20160923</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>425000</SalePrice>
+        <PricePerSQFT>470</PricePerSQFT>
+        <BuildingArea>904</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1946</YearBuilt>
+        <LotSize>6745</LotSize>
+        <Pool />
+        <APN>8381-016-011</APN>
+        <DocumentNumber>16-1161117</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>12</LotNumber>
+        <Block>13</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName>EOLINE TRACT</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB21 PG172</MapRef>
+        <Buyer1FName>RYAN M</Buyer1FName>
+        <Buyer1LName>PETTIBONE</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>CATHY</Seller1FName>
+        <Seller1LName>LOGERFO</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>JPMORGAN CHASE BANK NA</LenderName>
+        <Loan1Amount>340000</Loan1Amount>
+        <PID>8977693</PID>
+        <AssessmentValue>200617</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.53</Proximity>
+        <Latitude>34.103181</Latitude>
+        <Longitude>-117.773286</Longitude>
+        <SiteAddress>1906 5TH ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>4427</SiteZip4>
+        <RecordingDate>20160907</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>353500</SalePrice>
+        <PricePerSQFT>398</PricePerSQFT>
+        <BuildingArea>888</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1960</YearBuilt>
+        <LotSize>4989</LotSize>
+        <Pool />
+        <APN>8377-001-012</APN>
+        <DocumentNumber>16-1071657</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>23&amp;24</LotNumber>
+        <Block>36</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR18 PG9</MapRef>
+        <Buyer1FName>MICHAEL</Buyer1FName>
+        <Buyer1LName>LOUMAGNE</Buyer1LName>
+        <Buyer2FName>DANIELLE L</Buyer2FName>
+        <Buyer2LName>LOUMAGNE</Buyer2LName>
+        <Seller1FName>DAVID B</Seller1FName>
+        <Seller1LName>BELCHER</Seller1LName>
+        <Seller2FName>DENISE L</Seller2FName>
+        <Seller2LName>BELCHER</Seller2LName>
+        <LenderName>CHRISTIAN COMMUNITY CU</LenderName>
+        <Loan1Amount>282800</Loan1Amount>
+        <PID>8955291</PID>
+        <AssessmentValue>148499</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.70</Proximity>
+        <Latitude>34.111397</Latitude>
+        <Longitude>-117.810996</Longitude>
+        <SiteAddress>236 W 5TH ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>2128</SiteZip4>
+        <RecordingDate>20160902</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>463500</SalePrice>
+        <PricePerSQFT>501</PricePerSQFT>
+        <BuildingArea>924</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1930</YearBuilt>
+        <LotSize>6987</LotSize>
+        <Pool />
+        <APN>8387-008-042</APN>
+        <DocumentNumber>16-1058184</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>91</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR16 PG53 54</MapRef>
+        <Buyer1FName>GERALDINE</Buyer1FName>
+        <Buyer1LName>MOROSAN</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>MARK J</Seller1FName>
+        <Seller1LName>MARTIN</Seller1LName>
+        <Seller2FName>PAMEY K</Seller2FName>
+        <Seller2LName>MARTIN</Seller2LName>
+        <LenderName>STEARNS LENDING LLC</LenderName>
+        <Loan1Amount>303550</Loan1Amount>
+        <AddSellers>
+          <AddSeller>
+            <AdditionalInfo>
+              <FirstName />
+              <LastName>THE MARK J MARTIN &amp; PAMEY K MARTIN REVOC</LastName>
+            </AdditionalInfo>
+          </AddSeller>
+        </AddSellers>
+        <PID>8952529</PID>
+        <AssessmentValue>355000</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.06</Proximity>
+        <Latitude>34.102383</Latitude>
+        <Longitude>-117.76402</Longitude>
+        <SiteAddress>2367 6TH ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>4524</SiteZip4>
+        <RecordingDate>20160812</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>425000</SalePrice>
+        <PricePerSQFT>454</PricePerSQFT>
+        <BuildingArea>936</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1925</YearBuilt>
+        <LotSize>6964</LotSize>
+        <Pool />
+        <APN>8375-028-020</APN>
+        <DocumentNumber>16-0958243</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>18</LotNumber>
+        <Block>18</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName>LORDSBURG</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR18 PG9-14</MapRef>
+        <Buyer1FName>DANIEL M</Buyer1FName>
+        <Buyer1LName>HOLLAR</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>LORETTA ARLOA</Seller1FName>
+        <Seller1LName>GARCIA</Seller1LName>
+        <Seller2FName>CYNTHIA M</Seller2FName>
+        <Seller2LName>MONTERO</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <AddSellers>
+          <AddSeller>
+            <AdditionalInfo>
+              <FirstName />
+              <LastName>THE GARCIA FAMILY TRUST</LastName>
+            </AdditionalInfo>
+          </AddSeller>
+        </AddSellers>
+        <PID>8931694</PID>
+        <AssessmentValue>145552</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.38</Proximity>
+        <Latitude>34.099052</Latitude>
+        <Longitude>-117.759253</Longitude>
+        <SiteAddress>2665 BONITA AVE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>5037</SiteZip4>
+        <RecordingDate>20160727</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>340000</SalePrice>
+        <PricePerSQFT>426</PricePerSQFT>
+        <BuildingArea>797</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1953</YearBuilt>
+        <LotSize>6817</LotSize>
+        <Pool>Yes</Pool>
+        <APN>8370-004-014</APN>
+        <DocumentNumber>16-0882066</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>9</LotNumber>
+        <Block>43</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName>LORDSBURG TOWNSITE</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR18 PG8-14</MapRef>
+        <Buyer1FName>EDGAR</Buyer1FName>
+        <Buyer1LName>CONTRERAS</Buyer1LName>
+        <Buyer2FName>GIUSEPPE</Buyer2FName>
+        <Buyer2LName>CONSOLIDA</Buyer2LName>
+        <Seller1FName />
+        <Seller1LName>DLI PROPERTIES LLC</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>GILBERT J FERNANDEZ &amp; SHARON J FERNANDEZ</LenderName>
+        <Loan1Amount>315000</Loan1Amount>
+        <PID>8917665</PID>
+        <AssessmentValue>203079</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.41</Proximity>
+        <Latitude>34.109965</Latitude>
+        <Longitude>-117.806073</Longitude>
+        <SiteAddress>123 E 3RD ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>2634</SiteZip4>
+        <RecordingDate>20160720</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>300000</SalePrice>
+        <PricePerSQFT>320</PricePerSQFT>
+        <BuildingArea>936</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1946</YearBuilt>
+        <LotSize>7060</LotSize>
+        <Pool />
+        <APN>8387-012-006</APN>
+        <DocumentNumber>16-0845969</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>134</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName>SAN DIMAS TRACT</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR16 PG53 54</MapRef>
+        <Buyer1FName>ERIK R</Buyer1FName>
+        <Buyer1LName>MARSHALL</Buyer1LName>
+        <Buyer2FName>LAUREN N</Buyer2FName>
+        <Buyer2LName>MARSHALL</Buyer2LName>
+        <Seller1FName>ROBERT L</Seller1FName>
+        <Seller1LName>MARSHALL JR</Seller1LName>
+        <Seller2FName>DAWNA J</Seller2FName>
+        <Seller2LName>MARSHALL</Seller2LName>
+        <LenderName>PRIMELENDING</LenderName>
+        <Loan1Amount>240000</Loan1Amount>
+        <AddSellers>
+          <AddSeller>
+            <AdditionalInfo>
+              <FirstName />
+              <LastName>MARSHALL FAMILY TRUST</LastName>
+            </AdditionalInfo>
+          </AddSeller>
+        </AddSellers>
+        <PID>8909573</PID>
+        <AssessmentValue>116643</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.73</Proximity>
+        <Latitude>34.109934</Latitude>
+        <Longitude>-117.811831</Longitude>
+        <SiteAddress>305 W 3RD ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>2033</SiteZip4>
+        <RecordingDate>20160628</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>370000</SalePrice>
+        <PricePerSQFT>440</PricePerSQFT>
+        <BuildingArea>840</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1925</YearBuilt>
+        <LotSize>5901</LotSize>
+        <Pool />
+        <APN>8386-013-038</APN>
+        <DocumentNumber>16-0747222</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>3</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber>682</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB17 PG195</MapRef>
+        <Buyer1FName>DEE CHIUYEN</Buyer1FName>
+        <Buyer1LName>LIN</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName />
+        <Seller1LName>PEACH TREE INVESTMENTS INC</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>BANK OF THE WEST</LenderName>
+        <Loan1Amount>170000</Loan1Amount>
+        <PID>8889598</PID>
+        <AssessmentValue>253812</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.94</Proximity>
+        <Latitude>34.118488</Latitude>
+        <Longitude>-117.812069</Longitude>
+        <SiteAddress>929 N CATARACT AVE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>1449</SiteZip4>
+        <RecordingDate>20160429</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>460000</SalePrice>
+        <PricePerSQFT>522</PricePerSQFT>
+        <BuildingArea>880</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1929</YearBuilt>
+        <LotSize>37548</LotSize>
+        <Pool />
+        <APN>8392-016-047</APN>
+        <DocumentNumber>16-0488894</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>30</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName>RANCHO SAN JOSE ADDITION</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription>STR: S33 34T01NR09W   S04 03T01SR09W SBB M</LegalBriefDescription>
+        <SecTwpRngMer />
+        <MapRef>MR60 PG8</MapRef>
+        <Buyer1FName />
+        <Buyer1LName>HAROUT SAKAOGHLI TRUST</Buyer1LName>
+        <Buyer2FName>HAROUT</Buyer2FName>
+        <Buyer2LName>SAKAOGHLI</Buyer2LName>
+        <Seller1FName>JOHN F</Seller1FName>
+        <Seller1LName>PREHN</Seller1LName>
+        <Seller2FName />
+        <Seller2LName>MILTON A PREHN TRUST</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <AddBuyers>
+          <AddBuyer>
+            <AdditionalInfo>
+              <FirstName />
+              <LastName>MARKOSIAN FAMILY TRUST</LastName>
+            </AdditionalInfo>
+            <AdditionalInfo>
+              <FirstName>LEON</FirstName>
+              <LastName>MARKOSIAN</LastName>
+            </AdditionalInfo>
+            <AdditionalInfo>
+              <FirstName>ROCIO</FirstName>
+              <LastName>MARKOSIAN</LastName>
+            </AdditionalInfo>
+          </AddBuyer>
+        </AddBuyers>
+        <PID>8841760</PID>
+        <AssessmentValue>610923</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>1.97</Proximity>
+        <Latitude>34.109403</Latitude>
+        <Longitude>-117.81619</Longitude>
+        <SiteAddress>219 N EUCLA AVE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>SAN DIMAS</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91773</SiteZip>
+        <SiteZip4>2041</SiteZip4>
+        <RecordingDate>20160408</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>400000</SalePrice>
+        <PricePerSQFT>568</PricePerSQFT>
+        <BuildingArea>704</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1954</YearBuilt>
+        <LotSize>7583</LotSize>
+        <Pool />
+        <APN>8386-009-014</APN>
+        <DocumentNumber>16-0390242</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>59</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>SAN DIMAS</CityMuniTwp>
+        <SubdivisionName />
+        <PhaseNumber />
+        <TractNumber>5052</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB122 PG6 7</MapRef>
+        <Buyer1FName>ALEX R</Buyer1FName>
+        <Buyer1LName>ACOSTA</Buyer1LName>
+        <Buyer2FName>LISAMARIE H</Buyer2FName>
+        <Buyer2LName>ACOSTA</Buyer2LName>
+        <Seller1FName>DELIA G</Seller1FName>
+        <Seller1LName>LEE</Seller1LName>
+        <Seller2FName />
+        <Seller2LName>JOSEPHINE G GARCIA TRUST</Seller2LName>
+        <LenderName>PLATINUM HOME MORTGAGE CORP</LenderName>
+        <Loan1Amount>320000</Loan1Amount>
+        <AddBuyers>
+          <AddBuyer>
+            <AdditionalInfo>
+              <FirstName>MARY M</FirstName>
+              <LastName>HERNANDEZ</LastName>
+            </AdditionalInfo>
+          </AddBuyer>
+        </AddBuyers>
+        <PID>8823200</PID>
+        <AssessmentValue>70868</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.67</Proximity>
+        <Latitude>34.103123</Latitude>
+        <Longitude>-117.770812</Longitude>
+        <SiteAddress>2017 5TH ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>4430</SiteZip4>
+        <RecordingDate>20160311</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>435000</SalePrice>
+        <PricePerSQFT>483</PricePerSQFT>
+        <BuildingArea>900</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1928</YearBuilt>
+        <LotSize>7001</LotSize>
+        <Pool />
+        <APN>8375-014-012</APN>
+        <DocumentNumber>16-0269187</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode />
+        <LotNumber>12</LotNumber>
+        <Block>30</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName>LORDSBURG TOWNSITE</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR18 PG9</MapRef>
+        <Buyer1FName>BRILLIANT</Buyer1FName>
+        <Buyer1LName>TRAN</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>JOHN T</Seller1FName>
+        <Seller1LName>SIGENFUSE</Seller1LName>
+        <Seller2FName>LEAHA</Seller2FName>
+        <Seller2LName>SIGENFUSE</Seller2LName>
+        <LenderName>NEW AMERICAN FUNDING</LenderName>
+        <Loan1Amount>424297</Loan1Amount>
+        <PID>8798691</PID>
+        <AssessmentValue>326799</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.60</Proximity>
+        <Latitude>34.105415</Latitude>
+        <Longitude>-117.771598</Longitude>
+        <SiteAddress>1947 7TH ST</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>LA VERNE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>91750</SiteZip>
+        <SiteZip4>4410</SiteZip4>
+        <RecordingDate>20160229</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>350000</SalePrice>
+        <PricePerSQFT>452</PricePerSQFT>
+        <BuildingArea>774</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>1</Baths>
+        <YearBuilt>1952</YearBuilt>
+        <LotSize>7072</LotSize>
+        <Pool />
+        <APN>8375-009-017</APN>
+        <DocumentNumber>16-0215527</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Single Family Residential</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>9</LotNumber>
+        <Block>9</Block>
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+        <SubdivisionName>LORDSBURG</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MR18 PG9</MapRef>
+        <Buyer1FName>WILLIAM</Buyer1FName>
+        <Buyer1LName>KUENY</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>SUSANNE ROULHAC</Seller1FName>
+        <Seller1LName>DAVIES</Seller1LName>
+        <Seller2FName>CHARLES</Seller2FName>
+        <Seller2LName>DAVIES</Seller2LName>
+        <LenderName>CALIBER HOME LOANS INC</LenderName>
+        <Loan1Amount>343660</Loan1Amount>
+        <PID>8787784</PID>
+        <AssessmentValue>236141</AssessmentValue>
+      </ComparableSale>
+    </ComparableSales>
+    <AreaSalesAnalysisInfo>
+      <TotalAreaSales>20</TotalAreaSales>
+      <MedianLotSize>6890.5</MedianLotSize>
+      <MedianLivingArea>852</MedianLivingArea>
+      <PriceRangeMin>278000</PriceRangeMin>
+      <PriceRangeMax>2900000</PriceRangeMax>
+      <MedianValue>417500</MedianValue>
+      <MedianNumBeds>2</MedianNumBeds>
+      <MedianNumBaths>1</MedianNumBaths>
+      <MedianYearBuilt>1940</MedianYearBuilt>
+      <AgeRangeMin>57</AgeRangeMin>
+      <AgeRangeMax>115</AgeRangeMax>
+      <MedianAge>77</MedianAge>
+    </AreaSalesAnalysisInfo>
+    <SortFlag>2</SortFlag>
+  </ComparableSalesReport>
+  <TransferHistory>
+    <TransferWithDefault>
+      <Loan1Type>New Conventional</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654</TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>LA VERNE                      </CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20160912</RecordingDate>
+      <ContractDate>20160829</ContractDate>
+      <DocumentNumber>16-1093515</DocumentNumber>
+      <DocumentType />
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate>20460901</Loan1DueDate>
+      <Loan1Amount>372500</Loan1Amount>
+      <MortDoc />
+      <LenderName>FINANCE OF AMERICA MORTGAGE LLC         </LenderName>
+      <LenderType>Mortgage company</LenderType>
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>HERNANDEZ,GERARDO JOVANNI; MENDOZA,YESSICA S</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>Joint Tenancy</BuyerVesting>
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654      </TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef>MB113 PG43&amp;44</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>1</TypeCD>
+      <RecordingDate>20151223</RecordingDate>
+      <ContractDate>20151119</ContractDate>
+      <DocumentNumber>15-1611995</DocumentNumber>
+      <DocumentType>Grant Deed</DocumentType>
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN>A</MultiAPN>
+      <Loan1DueDate />
+      <Loan1Amount>362316</Loan1Amount>
+      <MortDoc>15-1611996</MortDoc>
+      <LenderName>BANC HOME LOANS</LenderName>
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>HERNANDEZ, GERARDO JOVANNI; MENDOZA, YESSICA S</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>Joint Tenancy</BuyerVesting>
+      <BuyerID />
+      <SellerName>DIENY, ERIN W; DIENY, KEVIN J</SellerName>
+      <SellerID />
+      <SalePrice>369000</SalePrice>
+      <SalePriceCode />
+      <SaleType>Sales Price Rounded from Tax</SaleType>
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>New Conventional</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654</TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>LA VERNE                      </CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20141223</RecordingDate>
+      <ContractDate>20141216</ContractDate>
+      <DocumentNumber>14-1395147</DocumentNumber>
+      <DocumentType />
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate>20450101</Loan1DueDate>
+      <Loan1Amount>315500</Loan1Amount>
+      <MortDoc />
+      <LenderName>STRATIS FINANCIAL CORPORATION           </LenderName>
+      <LenderType>*N</LenderType>
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>DIENY,ERIN W; DIENY,KEVIN J</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>Community Property(Marital Community)</BuyerVesting>
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654      </TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef>MB113 PG43&amp;44</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>1</TypeCD>
+      <RecordingDate>20131001</RecordingDate>
+      <ContractDate>20130911</ContractDate>
+      <DocumentNumber>13-1417429</DocumentNumber>
+      <DocumentType>Grant Deed</DocumentType>
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN>A</MultiAPN>
+      <Loan1DueDate />
+      <Loan1Amount>315185</Loan1Amount>
+      <MortDoc>13-1417430</MortDoc>
+      <LenderName>FLAGSTAR BANK FSB</LenderName>
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>DIENY, ERIN W; DIENY, KEVIN J</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>Community Property(Marital Community)</BuyerVesting>
+      <BuyerID />
+      <SellerName>ARELLANO, ERIC M; ARELLANO, CLAUDIA</SellerName>
+      <SellerID />
+      <SalePrice>321000</SalePrice>
+      <SalePriceCode />
+      <SaleType>Sales Price Rounded from Tax</SaleType>
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654      </TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef>MB113 PG43&amp;44</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>LA VERNE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>1</TypeCD>
+      <RecordingDate>20040618</RecordingDate>
+      <ContractDate>20040518</ContractDate>
+      <DocumentNumber>04-1560030</DocumentNumber>
+      <DocumentType>Grant Deed</DocumentType>
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN>A</MultiAPN>
+      <Loan1DueDate />
+      <Loan1Amount>306000</Loan1Amount>
+      <MortDoc>04-1560031</MortDoc>
+      <LenderName>SECURED BANKERS MORTGAGE CO</LenderName>
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>ARELLANO, ERIC M</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>N/A</BuyerVesting>
+      <BuyerID />
+      <SellerName>KNUDSEN, BARBARA M</SellerName>
+      <SellerID />
+      <SalePrice>340000</SalePrice>
+      <SalePriceCode />
+      <SaleType>Full-Computed from Transfer Tax</SaleType>
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>Unknown</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654</TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>LA VERNE                      </CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20030501</RecordingDate>
+      <ContractDate>20030422</ContractDate>
+      <DocumentNumber>03-1242222</DocumentNumber>
+      <DocumentType />
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate>20180501</Loan1DueDate>
+      <Loan1Amount>95000</Loan1Amount>
+      <MortDoc />
+      <LenderName>GREENLIGHT FINANCIAL SERVICES           </LenderName>
+      <LenderType>Mortgage company</LenderType>
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>KNUDSEN,BARBARA M</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>N/A</BuyerVesting>
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>Unknown</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654</TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>LA VERNE                      </CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20020226</RecordingDate>
+      <ContractDate />
+      <DocumentNumber>02-0450125</DocumentNumber>
+      <DocumentType />
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate>20320301</Loan1DueDate>
+      <Loan1Amount>92000</Loan1Amount>
+      <MortDoc />
+      <LenderName>AMERICAN UNIFIED MTG INC                </LenderName>
+      <LenderType>Mortgage company</LenderType>
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>KNUDSEN,BARBARA M</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>N/A</BuyerVesting>
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>Stand Alone Second</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>44        </LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>6654</TractNumber>
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp />
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>19990719</RecordingDate>
+      <ContractDate />
+      <DocumentNumber>99-1323641</DocumentNumber>
+      <DocumentType />
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate>20140801</Loan1DueDate>
+      <Loan1Amount>25000</Loan1Amount>
+      <MortDoc />
+      <LenderName>FIRST FED S/L SGAB                      </LenderName>
+      <LenderType>Lending institution</LenderType>
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>KNUDSEN,BARBARA M</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>N/A</BuyerVesting>
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+    </TransferWithDefault>
+  </TransferHistory>
+  <Neighborhood>
+    <Neighbor>
+      <OwnerName>HERNANDEZ, GERARDO JOVANNI; MENDOZA, YESSICA S</OwnerName>
+      <SiteAddress>1358 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-001</APN>
+      <Phone />
+      <BuildingArea>786</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6156</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>METCALF STEVE D AND KATHY J TRS; STEVEN AND KATHY METCALF TRUST</OwnerName>
+      <SiteAddress>1346 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-002</APN>
+      <Phone />
+      <BuildingArea>793</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1954</YearBuilt>
+      <LotSize>6287</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>AROLA CAMERON &amp; EDNA</OwnerName>
+      <SiteAddress>1344 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-003</APN>
+      <Phone />
+      <BuildingArea>786</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6114</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>HOWICK JOHNATHON R; WONG TERRY M</OwnerName>
+      <SiteAddress>1402 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-020-014</APN>
+      <Phone />
+      <BuildingArea>1006</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6450</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>GONZALES RICHARD C CO TR; GONZALES FAMILY TRUST</OwnerName>
+      <SiteAddress>1381 BONITA AVE</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-029</APN>
+      <Phone />
+      <BuildingArea>1653</BuildingArea>
+      <Bedrooms>4</Bedrooms>
+      <Baths>3</Baths>
+      <YearBuilt>1958</YearBuilt>
+      <LotSize>6160</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>DE HERRERA IVAN L JR</OwnerName>
+      <SiteAddress>1340 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-004</APN>
+      <Phone />
+      <BuildingArea>786</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6524</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>SOLIS, JOHN; SOLIS, MARIA LUZ</OwnerName>
+      <SiteAddress>1349 BONITA AVE</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-028</APN>
+      <Phone />
+      <BuildingArea>995</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6232</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>MOORE GLORIA M</OwnerName>
+      <SiteAddress>1408 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-020-013</APN>
+      <Phone />
+      <BuildingArea>1049</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1947</YearBuilt>
+      <LotSize>6043</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>BORBOA ERNIE &amp; DEBBIE</OwnerName>
+      <SiteAddress>1345 BONITA AVE</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-027</APN>
+      <Phone />
+      <BuildingArea>1321</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6103</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>STRADA, TAYLOR</OwnerName>
+      <SiteAddress>1401 BONITA AVE</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-020-015</APN>
+      <Phone />
+      <BuildingArea>916</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1952</YearBuilt>
+      <LotSize>6688</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>HERNANDEZ M AND M TRS M AND M HERNANDEZ TRUST</OwnerName>
+      <SiteAddress>1361 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-019-013</APN>
+      <Phone />
+      <BuildingArea>1408</BuildingArea>
+      <Bedrooms>4</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>1964</YearBuilt>
+      <LotSize>6436</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>SMITH, BRIAN LEE</OwnerName>
+      <SiteAddress>1353 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-019-012</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>1947</YearBuilt>
+      <LotSize>6296</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>LINDMEIER, MELISSA; THE MELISSA LINDMEIER TRUST, </OwnerName>
+      <SiteAddress>1338 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-005</APN>
+      <Phone />
+      <BuildingArea>769</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6126</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>BENNETT MICHAEL E &amp; SHARON K</OwnerName>
+      <SiteAddress>1412 5TH ST</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-020-012</APN>
+      <Phone />
+      <BuildingArea>1859</BuildingArea>
+      <Bedrooms>4</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>1947</YearBuilt>
+      <LotSize>6267</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>SNIDER SCOTT &amp; AMY L</OwnerName>
+      <SiteAddress>1341 BONITA AVE</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>LA VERNE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>91750</SiteZip>
+      <APN>8381-021-026</APN>
+      <Phone />
+      <BuildingArea>769</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>1</Baths>
+      <YearBuilt>1949</YearBuilt>
+      <LotSize>6288</LotSize>
+      <LotSizeUnits>SF</LotSizeUnits>
+      <GarageType />
+    </Neighbor>
+  </Neighborhood>
+  <SubjectValueInfo>
+    <OwnerName>HERNANDEZ GERARDO J</OwnerName>
+    <Unit />
+    <Address>1358 5TH ST</Address>
+    <City>LA VERNE</City>
+    <State>CA</State>
+    <Zip>91750</Zip>
+    <Zip4>4224</Zip4>
+    <APN>8381-021-001</APN>
+    <CountyName>LOS ANGELES</CountyName>
+    <FIPS>06037</FIPS>
+  </SubjectValueInfo>
+  <NeighborhoodDemographics>
+    <Population>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2000</Description>
+          <ZipTotal>33,587</ZipTotal>
+          <NationalTotal>281,421,906</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>34,700</ZipTotal>
+          <NationalTotal>309,731,508</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2014</Description>
+          <ZipTotal>35,386</ZipTotal>
+          <NationalTotal>324,062,684</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Growth Rate</Description>
+          <ZipTotal>0.4 %</ZipTotal>
+          <NationalTotal>1.0 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Growth Centile</Description>
+          <ZipTotal>30.0 %</ZipTotal>
+          <NationalTotal />
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </Population>
+    <Household>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2000</Description>
+          <ZipTotal>11,551</ZipTotal>
+          <NationalTotal>105,480,101</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>11,666</ZipTotal>
+          <NationalTotal>116,523,156</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2014</Description>
+          <ZipTotal>11,823</ZipTotal>
+          <NationalTotal>122,109,448</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Household Growth Rate</Description>
+          <ZipTotal>0.1 %</ZipTotal>
+          <NationalTotal>1.1 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Average Household Size</Description>
+          <ZipTotal>2.9</ZipTotal>
+          <NationalTotal>2.6</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </Household>
+    <Family>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2000</Description>
+          <ZipTotal>8,653</ZipTotal>
+          <NationalTotal>71,787,347</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>8,749</ZipTotal>
+          <NationalTotal>77,956,117</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Family Growth Rate</Description>
+          <ZipTotal>0.1 %</ZipTotal>
+          <NationalTotal>0.9 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </Family>
+    <AgeDistribution>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>0-4</Description>
+          <ZipTotal>5.6 %</ZipTotal>
+          <NationalTotal>6.8 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>5-9</Description>
+          <ZipTotal>6.0 %</ZipTotal>
+          <NationalTotal>6.7 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>10-14</Description>
+          <ZipTotal>6.6 %</ZipTotal>
+          <NationalTotal>6.6 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>15-19</Description>
+          <ZipTotal>7.7 %</ZipTotal>
+          <NationalTotal>7.1 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>20-24</Description>
+          <ZipTotal>5.9 %</ZipTotal>
+          <NationalTotal>6.9 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>25-44</Description>
+          <ZipTotal>24.7 %</ZipTotal>
+          <NationalTotal>27.0 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>45-64</Description>
+          <ZipTotal>29.1 %</ZipTotal>
+          <NationalTotal>26.0 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>65-84</Description>
+          <ZipTotal>12.2 %</ZipTotal>
+          <NationalTotal>10.9 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>85+</Description>
+          <ZipTotal>2.2 %</ZipTotal>
+          <NationalTotal>1.9 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </AgeDistribution>
+    <MedianAge>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>40.2</ZipTotal>
+          <NationalTotal>36.9</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Male Ratio</Description>
+          <ZipTotal>48.5 %</ZipTotal>
+          <NationalTotal>49.2 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Female Ratio</Description>
+          <ZipTotal>51.5 %</ZipTotal>
+          <NationalTotal>50.8 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </MedianAge>
+    <HouseholdIncome>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>% &lt; $25K</Description>
+          <ZipTotal>12.3 %</ZipTotal>
+          <NationalTotal>20.9 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% $25K-50K</Description>
+          <ZipTotal>17.8 %</ZipTotal>
+          <NationalTotal>24.4 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% $50K-100K</Description>
+          <ZipTotal>37.9 %</ZipTotal>
+          <NationalTotal>35.3 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% $100K-150K</Description>
+          <ZipTotal>17.4 %</ZipTotal>
+          <NationalTotal>11.7 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% &gt;$150K</Description>
+          <ZipTotal>14.6 %</ZipTotal>
+          <NationalTotal>7.6 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </HouseholdIncome>
+    <MedianHouseholdIncome>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>$74,482.00</ZipTotal>
+          <NationalTotal>$54,719.00</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2014</Description>
+          <ZipTotal>$75,350.00</ZipTotal>
+          <NationalTotal>$56,938.00</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Per Capita Income</Description>
+          <ZipTotal>$32,344.00</ZipTotal>
+          <NationalTotal>$27,277.00</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </MedianHouseholdIncome>
+    <HouseholdIncomeCentile>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>National</Description>
+          <ZipTotal>89.0 %</ZipTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>State</Description>
+          <ZipTotal>75.0 %</ZipTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>91750</SubjectZip>
+    </HouseholdIncomeCentile>
+  </NeighborhoodDemographics>
+  <PublicSchoolsReport>
+    <Schools>
+      <School>
+        <SchoolName>Grace Miller Elementary</SchoolName>
+        <Distance>.41</Distance>
+        <SchoolAddress>1629 Holly Oak St.</SchoolAddress>
+        <SchoolCity>La Verne</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>1750</SchoolZip4>
+        <SchoolPhone>909-971-8206</SchoolPhone>
+        <LowestGrade>Kindergarten</LowestGrade>
+        <HighestGrade>Grade 5</HighestGrade>
+        <StudentTeacherRatio>1:18.9</StudentTeacherRatio>
+        <Administrators>25</Administrators>
+        <KindergartenMembership>72</KindergartenMembership>
+        <Grade1Membership>78</Grade1Membership>
+        <Grade2Membership>55</Grade2Membership>
+        <Grade3Membership>73</Grade3Membership>
+        <Grade4Membership>74</Grade4Membership>
+        <Grade5Membership>78</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>430</TotalEnrolled>
+        <APIDecile>8</APIDecile>
+      </School>
+      <School>
+        <SchoolName>Roynon (Marion J.) Elementary</SchoolName>
+        <Distance>.87</Distance>
+        <SchoolAddress>2715 E St.</SchoolAddress>
+        <SchoolCity>La Verne</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>1750</SchoolZip4>
+        <SchoolPhone>909-971-8207</SchoolPhone>
+        <LowestGrade>Kindergarten</LowestGrade>
+        <HighestGrade>Grade 5</HighestGrade>
+        <StudentTeacherRatio>1:20.6</StudentTeacherRatio>
+        <Administrators>40</Administrators>
+        <KindergartenMembership>127</KindergartenMembership>
+        <Grade1Membership>115</Grade1Membership>
+        <Grade2Membership>101</Grade2Membership>
+        <Grade3Membership>138</Grade3Membership>
+        <Grade4Membership>102</Grade4Membership>
+        <Grade5Membership>137</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>720</TotalEnrolled>
+        <APIDecile>7</APIDecile>
+      </School>
+      <School>
+        <SchoolName>Ramona Middle</SchoolName>
+        <Distance>.91</Distance>
+        <SchoolAddress>3490 Ramona Ave.</SchoolAddress>
+        <SchoolCity>La Verne</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>1750</SchoolZip4>
+        <SchoolPhone>909-971-8260</SchoolPhone>
+        <LowestGrade>Grade 6</LowestGrade>
+        <HighestGrade>Grade 8</HighestGrade>
+        <StudentTeacherRatio>1:27.4</StudentTeacherRatio>
+        <Administrators>59</Administrators>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>444</Grade6Membership>
+        <Grade7Membership>536</Grade7Membership>
+        <Grade8Membership>487</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>1,467</TotalEnrolled>
+        <APIDecile>8</APIDecile>
+      </School>
+      <School>
+        <SchoolName>Bonita High</SchoolName>
+        <Distance>.86</Distance>
+        <SchoolAddress>3102 D St.</SchoolAddress>
+        <SchoolCity>La Verne</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>1750</SchoolZip4>
+        <SchoolPhone>909-392-6500</SchoolPhone>
+        <LowestGrade>Grade 9</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>1:27.5</StudentTeacherRatio>
+        <Administrators>81</Administrators>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>506</Grade9Membership>
+        <Grade10Membership>477</Grade10Membership>
+        <Grade11Membership>463</Grade11Membership>
+        <Grade12Membership>415</Grade12Membership>
+        <TotalEnrolled>1,861</TotalEnrolled>
+        <APIDecile>8</APIDecile>
+      </School>
+    </Schools>
+    <SchoolDistrict>
+      <DistrictName>BONITA UNIFIED</DistrictName>
+      <DistrictAddress>115 WEST ALLEN AVE.</DistrictAddress>
+      <DistrictCity>SAN DIMAS</DistrictCity>
+      <DistrictState>CA</DistrictState>
+      <DistrictZip>91773</DistrictZip>
+      <DistrictZip4>1437</DistrictZip4>
+      <DistrictPhone>909-971-8200</DistrictPhone>
+      <GradeSpan>KG-12</GradeSpan>
+      <StudentTeacherRatio>23.5:1</StudentTeacherRatio>
+      <TotalEnrollment>10,193</TotalEnrollment>
+      <NumOfGraduates>N/A</NumOfGraduates>
+      <NumOfTeachers>433.6</NumOfTeachers>
+      <NumOfTeachersAids>69.5</NumOfTeachersAids>
+      <NumOfGuidanceCounselors>12.1</NumOfGuidanceCounselors>
+      <NumOfAdministrators>22</NumOfAdministrators>
+      <NumOfSchools>14</NumOfSchools>
+    </SchoolDistrict>
+  </PublicSchoolsReport>
+  <PrivateSchoolsReport>
+    <Schools>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>All-Female</Gender>
+        <SchoolName>JOAN MACY SCHOOL</SchoolName>
+        <Distance>.19</Distance>
+        <SchoolAddress>1350 3RD STREET</SchoolAddress>
+        <SchoolCity>LA VERNE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>5201</SchoolZip4>
+        <SchoolPhone>909-596-3173</SchoolPhone>
+        <LowestGrade>Grade 7</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>1:7.3</StudentTeacherRatio>
+        <Administrators>6.3</Administrators>
+        <PreschoolMembership>0</PreschoolMembership>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>1</Grade7Membership>
+        <Grade8Membership>7</Grade8Membership>
+        <Grade9Membership>7</Grade9Membership>
+        <Grade10Membership>10</Grade10Membership>
+        <Grade11Membership>11</Grade11Membership>
+        <Grade12Membership>10</Grade12Membership>
+        <TotalEnrolled>46</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Roman Catholic</Affiliation>
+        <Gender>All-Male</Gender>
+        <SchoolName>DAMIEN HIGH SCHOOL</SchoolName>
+        <Distance>.35</Distance>
+        <SchoolAddress>2280 DAMIEN AVENUE</SchoolAddress>
+        <SchoolCity>LA VERNE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>5210</SchoolZip4>
+        <SchoolPhone>909-596-1946</SchoolPhone>
+        <LowestGrade>Grade 9</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>1:18.8</StudentTeacherRatio>
+        <Administrators>60.3</Administrators>
+        <PreschoolMembership>0</PreschoolMembership>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>342</Grade9Membership>
+        <Grade10Membership>281</Grade10Membership>
+        <Grade11Membership>254</Grade11Membership>
+        <Grade12Membership>258</Grade12Membership>
+        <TotalEnrolled>1,135</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Baptist</Affiliation>
+        <Gender />
+        <SchoolName>CALVARY BAPTIST SCHOOLS</SchoolName>
+        <Distance>.45</Distance>
+        <SchoolAddress>2990 DAMIEN AVENUE</SchoolAddress>
+        <SchoolCity>LA VERNE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>4110</SchoolZip4>
+        <SchoolPhone>909-593-4672</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>N/A</StudentTeacherRatio>
+        <Administrators>N/A</Administrators>
+        <PreschoolMembership>13</PreschoolMembership>
+        <KindergartenMembership>13</KindergartenMembership>
+        <Grade1Membership>5</Grade1Membership>
+        <Grade2Membership>6</Grade2Membership>
+        <Grade3Membership>6</Grade3Membership>
+        <Grade4Membership>11</Grade4Membership>
+        <Grade5Membership>8</Grade5Membership>
+        <Grade6Membership>4</Grade6Membership>
+        <Grade7Membership>8</Grade7Membership>
+        <Grade8Membership>11</Grade8Membership>
+        <Grade9Membership>4</Grade9Membership>
+        <Grade10Membership>10</Grade10Membership>
+        <Grade11Membership>11</Grade11Membership>
+        <Grade12Membership>11</Grade12Membership>
+        <TotalEnrolled>121</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Roman Catholic</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>HOLY NAME OF MARY ELEM SCHOOL</SchoolName>
+        <Distance>.67</Distance>
+        <SchoolAddress>124 S SAN DIMAS CANYON ROAD</SchoolAddress>
+        <SchoolCity>SAN DIMAS</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91773</SchoolZip>
+        <SchoolZip4>3152</SchoolZip4>
+        <SchoolPhone>909-542-0449</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Grade 8</HighestGrade>
+        <StudentTeacherRatio>1:22.1</StudentTeacherRatio>
+        <Administrators>14</Administrators>
+        <PreschoolMembership>20</PreschoolMembership>
+        <KindergartenMembership>32</KindergartenMembership>
+        <Grade1Membership>33</Grade1Membership>
+        <Grade2Membership>35</Grade2Membership>
+        <Grade3Membership>35</Grade3Membership>
+        <Grade4Membership>35</Grade4Membership>
+        <Grade5Membership>35</Grade5Membership>
+        <Grade6Membership>35</Grade6Membership>
+        <Grade7Membership>35</Grade7Membership>
+        <Grade8Membership>35</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>330</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>HAYNES EDUCATION CENTER</SchoolName>
+        <Distance>1.04</Distance>
+        <SchoolAddress>PO BOX 400</SchoolAddress>
+        <SchoolCity>LA VERNE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>0400</SchoolZip4>
+        <SchoolPhone>909-593-2581</SchoolPhone>
+        <LowestGrade>Grade 2</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>1:7.2</StudentTeacherRatio>
+        <Administrators>12</Administrators>
+        <PreschoolMembership>0</PreschoolMembership>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>1</Grade2Membership>
+        <Grade3Membership>3</Grade3Membership>
+        <Grade4Membership>5</Grade4Membership>
+        <Grade5Membership>4</Grade5Membership>
+        <Grade6Membership>5</Grade6Membership>
+        <Grade7Membership>7</Grade7Membership>
+        <Grade8Membership>8</Grade8Membership>
+        <Grade9Membership>13</Grade9Membership>
+        <Grade10Membership>14</Grade10Membership>
+        <Grade11Membership>12</Grade11Membership>
+        <Grade12Membership>14</Grade12Membership>
+        <TotalEnrolled>86</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Lutheran Church - Missouri Synod</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>LUTHERAN HIGH SCHOOL</SchoolName>
+        <Distance>1.29</Distance>
+        <SchoolAddress>3960 FRUIT STREET</SchoolAddress>
+        <SchoolCity>LA VERNE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91750</SchoolZip>
+        <SchoolZip4>2951</SchoolZip4>
+        <SchoolPhone>909-593-4494</SchoolPhone>
+        <LowestGrade>Grade 9</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>1:9.4</StudentTeacherRatio>
+        <Administrators>15.5</Administrators>
+        <PreschoolMembership>0</PreschoolMembership>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>43</Grade9Membership>
+        <Grade10Membership>48</Grade10Membership>
+        <Grade11Membership>36</Grade11Membership>
+        <Grade12Membership>18</Grade12Membership>
+        <TotalEnrolled>145</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>FOOTHILL MONTESSORI SCHOOL</SchoolName>
+        <Distance>1.34</Distance>
+        <SchoolAddress>730 E FOOTHILL BLVD</SchoolAddress>
+        <SchoolCity>SAN DIMAS</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>91773</SchoolZip>
+        <SchoolZip4>1209</SchoolZip4>
+        <SchoolPhone>909-599-1800</SchoolPhone>
+        <LowestGrade>Kindergarten</LowestGrade>
+        <HighestGrade>Kindergarten</HighestGrade>
+        <StudentTeacherRatio>1:2.0</StudentTeacherRatio>
+        <Administrators>1</Administrators>
+        <PreschoolMembership>0</PreschoolMembership>
+        <KindergartenMembership>2</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>2</TotalEnrolled>
+      </School>
+    </Schools>
+  </PrivateSchoolsReport>
+</XML187>

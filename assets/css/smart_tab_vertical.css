@@ -1,0 +1,213 @@
+/*
+ * SmartTab plugin v2.0
+ * jQuery Tab Control Plugin
+ * 
+ * by Dipu Raj
+ * http://techlaboratory.net/smarttab
+ * 
+ * License 
+ * http://creativecommons.org/licenses/by-sa/3.0/  
+ */
+
+.stMain {
+    display: block;
+    margin: 0;
+    padding: 0;
+    color: #666;
+    border: 0px solid #CCC;
+    font-weight: 300;
+    font-family: 'Open Sans', Arial;
+    font-style: normal;
+    font-size: 100%;
+    width: 100%;
+}
+
+.stContainer {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #fff;
+    overflow: hidden;
+    position: relative;
+    height: 375px !important;
+    background: rgba(225, 225, 225, .35);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+}
+
+.stMain div.tabContent {
+    display: table;
+    position: absolute;
+    margin: 0;
+    padding: 10px;
+    border: 0px solid #D4D4D4;
+    background-color: #;
+    text-align: left;
+    height: 100%;
+}
+
+.stMain ul.tabAnchor {
+    display: inline-block;
+    list-style-type: none;
+    position: relative;
+    padding: 0;
+    margin: 0;
+    clear: both;
+    margin-right: -1px;
+    margin-top: 0px;
+    z-index: 100;
+    float: left;
+}
+
+.stMain ul.tabAnchor li {
+    position: relative;
+    margin: 0;
+    padding: 0px 0px 0px 0px;
+    height: 75px;
+}
+
+.stMain ul.tabAnchor li a {
+    display: block;
+    margin: 0;
+    margin-bottom: 2px;
+    padding: 13px;
+    height: 75px;
+    width: 160px;
+    color: #fff;
+    text-decoration: none;
+    outline-style: none;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-left: none;
+    background: rgba(225, 225, 225, .35);
+    border-left: 5px solid transparent;
+    color: white;
+    font-family: Montserrat;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 21px;
+    text-transform: uppercase;
+}
+
+
+.stMain ul.tabAnchor li:last-child a {
+    border-bottom: none;
+}
+
+.stMain ul.tabAnchor li a p {
+    font-family: 'Roboto', sans-serif;
+}
+
+.stMain ul.tabAnchor li a p#accountupdate {
+    font-size: 11px;
+    color: #fff;
+    font-weight: 300; //    font-family: 'Open Sans', Arial;
+    font-style: normal;
+}
+
+.stMain ul.tabAnchor li a:hover {
+    color: #FFF;
+    background: rgba(225, 225, 225, .75);
+    border-left: 5px solid #fff;
+}
+
+.stMain ul.tabAnchor li a.sel {
+    color: #fff;
+    border-right-color: #FFF;
+    cursor: text;
+    background-color: rgba(255, 255, 255, 0.7)!important;
+}
+
+.loader {
+    position: absolute;
+    left: 48%;
+    top: 40%;
+    display: block;
+    margin: 0;
+    padding: 5px;
+    padding-top: 35px;
+    font-size: 10px;
+    color: #666;
+    text-decoration: none;
+    outline-style: none;
+    border: 1px solid #D4D4D4;
+    background: #f6f6f6 url(../images/loader.gif) no-repeat 10px 10px;
+}
+
+a.stLinks {
+    margin: 0;
+    padding: 5px;
+    color: #666;
+    text-decoration: none;
+    outline-style: none;
+    border: 1px solid #D4D4D4;
+    background-color: #f6f6f6;
+}
+
+a.stLinks:hover {
+    color: #FFF;
+    background-color: #00A7DB;
+}
+
+.content-inner label {
+    color: #fff;
+    font-weight: lighter;
+    display: block;
+    width: 100%;
+    font-weight: 700;
+}
+
+#loginInfoForm input[type="submit"] {
+    border-radius: 0px!important;
+}
+
+
+.content-inner {
+    margin-bottom: 0px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 90%;
+}
+
+.tab-title {
+    margin: 0px!important;
+    padding: 0px!important;
+
+    padding-left: 15px;
+}
+
+.tab-subtitle {
+    color: #fff;
+}
+
+.sel {
+    border-left: 5px solid #fff!important;
+}
+
+#subscriptionForm-wraper {
+    margin-top: 20px;
+    margin-left: -15px!important;
+}
+
+#subscriptionForm-wraper .col-sm-2 {
+    padding-left: 0px;
+}
+
+#subscriptionForm-wraper .col-sm-6 {
+    padding-left: 0px;
+}
+
+.form-group input {
+	    letter-spacing: 1px;
+    color: #a6a6a6;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.form-group button {
+    font-family: 'Roboto', sans-serif;
+}

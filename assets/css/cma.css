@@ -1,0 +1,140 @@
+.cma-wraper{
+    padding: 50px 0;
+}
+.cma-wraper,.cma-wraper p{
+    color:white;
+    padding-bottom:5px;
+}
+.cma-wraper .form-control, .cma-wraper .btn{
+    height: 40px;
+    width: 100%;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.35);
+    color: #fff !important;
+}
+.cma-wraper .form-group input::placeholder{
+    color:white;
+}
+.cma-wraper .icheckbox_minimal-grey{
+    display:none !important;
+}
+.cma-wraper #step-1 > div{
+    margin-left: 0;
+    width: 100%;
+}
+.cma-wraper h2.logh {
+    font-family: Montserrat;
+    font-weight: bold;
+    padding: 15px 0px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+.cma-wraper form#payment-form {
+    color: #333;
+}
+.cma-wraper .btn-lp.active, .cma-wraper .btn-lp.focus, .cma-wraper  .btn-lp:active, .cma-wraper  .btn-lp:focus, .cma-wraper  .btn-lp:hover, .cma-wraper  .open > .dropdown-toggle.btn-lp {
+    background: #cc9964;
+    background-color: rgb(204, 153, 100);
+    color: #fff;
+}
+.cma-wraper .btn:hover{
+    background-color: rgba(225, 225, 225, .7);
+}
+.cma-wraper .citynames2 {
+    z-index: 300;
+    right: 160px;
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+    border: 1px solid #eee;
+    top: 8px;
+    font-size: 15px;
+    font-family: Roboto;
+    margin-top: 20px;
+    font-weight: 300;
+    height: 54px;
+    background-color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 20px;
+}
+.cma-wraper .search-result {
+    margin-bottom: 20px;
+    margin-top: 30px;
+    position: relative;
+}
+.cma-wraper .search-loader {
+    background: rgba(0, 0, 0, 0) url("../images/animated-overlay.gif") repeat scroll 0 0;
+    height: 2em;
+    width: 100%;
+    left: 0;
+    top: 0px;
+    opacity: 0.25;
+    position: relative;
+    margin-bottom: 20px;
+}
+.cma-wraper table {
+    font-size: 13px;
+    width: 100%;
+    border: 0;
+    vertical-align: middle;
+    color: #fff;
+    background: rgba(0, 0, 0, .5);
+}
+.cma-wraper table th, .cma-wraper table td {
+    padding: 9px 10px;
+}
+.cma-wraper table tr:nth-child(2n+1) td {
+    background: rgba(255, 255, 255, .4);
+}
+.cma-wraper .loader1 img{
+    display: none !important;
+}
+.cma-wraper .loader-text{
+    font-size: 14px;
+}
+.cma-wraper .loader1::before {
+    margin-bottom: 30px;
+}
+.cma-wraper .backwrap {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99;
+    background: rgba(0, 0, 0, 0.5);
+}
+.cma-wraper .modal{
+    z-index: 2000;
+}
+.cma-wraper .ui-progressbar {
+    position: relative;
+}
+.cma-wraper .progress-label {
+    position: absolute;
+    left: 50%;
+    top: 4px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 #fff;
+}
+.cma-wraper #progress{
+    color: #666;
+}
+.cma-wraper .modal-header {
+    font-family: Montserrat;
+	font-weight:bold;
+	text-align: center;
+	font-size: 18px;
+}
+.cma-wraper  #progress p {
+    font-family: GlacialIndifference;
+    margin: 0px;
+    font-size: 20px;
+    color: #666;
+}
+@media (max-width: 768px) {
+	.search-result table tr td:nth-child(1),.search-result table tr th:nth-child(1){
+            display:none;
+        }
+}

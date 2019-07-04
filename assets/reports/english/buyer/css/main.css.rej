@@ -1,0 +1,10 @@
+diff a/assets/v2/css/main.css b/assets/v2/css/main.css	(rejected hunks)
+@@ -3661,7 +3661,7 @@
+     font-size: 22px;
+ }
+ .page_parties {
+-    padding-bottom:24.50%;
++    padding-bottom:24.20%;
+ }
+ .page_parties .columns{
+     margin-top:100px;

@@ -1,0 +1,135 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+.page-16-header {
+    height: 250px; 
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+.title-center{
+	text-align: center;
+}
+.heading-market {
+    padding-top: 75px;
+    padding-bottom: 10px;
+    color: white;
+    font-size: 53px;
+    text-transform: uppercase;
+}
+.heading-zipcode {
+    text-transform: uppercase;
+    color: white;
+    font-size: 26px;
+    margin: 0;
+    padding: 0;
+}
+.page-16-content{
+	background-color: #fff;
+	text-align: center;
+}
+.table-heading p{
+	text-transform: uppercase;
+}
+.sale-price-560{
+}
+.page-16-content p{
+    font-size: 14px;
+    color: #333;
+    line-height: 32px;
+}
+.curious-about-heading{
+	font-size: 18px;
+	margin: 11px;
+    padding: 0px;
+}
+.section-article{
+	position: relative;
+	background-color: #fff;
+	text-align: center;
+	text-transform: uppercase;	
+	overflow: hidden;
+}
+.section-article p{
+	padding-top: 20px;
+	font-size: 18px;
+}
+.section-article h3 {
+    font-size: 16px;
+    padding: 0;
+    margin: 11px;
+}
+.article-1 {
+    padding: 25px;
+    position: relative;
+    margin: 0px 15px;
+}
+.article-1 img{
+    width: 90px;
+}
+.article-2{
+	padding: 25px;
+    position: relative;
+    margin: 0px 15px;
+}
+.article-2 img{
+	width: 90px;
+}
+.page-16-ftr{
+	background-position: center;
+	background-repeat: no-repeat;
+	
+}
+
+.page-16-ftr-agentpic{
+	height: 200px;
+}
+	
+
+
+.page-16-ftr-img{
+	padding: 0px 0px 0px 0px;
+	border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+    height: 150px;
+    width: 150px;
+    margin-top: 24px;
+}
+.page-16-ftr-logo{
+	padding: 20px;
+	max-width:230px;
+}
+
+.page-16-ftrr-logo{
+	
+	height: 200px;
+    padding-top: 40px;
+	text-align: right;
+    padding-right: 100px;
+	
+}
+
+.page-16-ftr-address{
+	padding: 21px 0px;
+}
+.page-16-ftr-address p{
+	color: #fff;
+	font-size: 15px;
+	margin-top: -3px;
+}
+.page-16-ftr-address h4{
+	color: #fff;
+	font-size: 13px;
+	text-transform: uppercase;
+}
+h4.client-name {
+    margin: 0;
+    padding: 5px;
+	padding-left:0px;
+	font-size:18px;
+
+}

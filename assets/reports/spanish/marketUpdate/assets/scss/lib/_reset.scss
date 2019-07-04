@@ -1,0 +1,141 @@
+//------------------------------------------------ Base
+a {
+	&:focus {
+		outline: none;
+		text-decoration: none;
+	}
+
+    &:hover {
+        color: #b30021;
+    }
+}
+
+//------------------------------------------------ Base
+ *,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+*:focus, *:active {
+    outline: none;
+}
+
+
+
+// mozilla firefox 
+::-moz-selection {
+    color: #000;
+    background: #ffd758;
+    text-shadow: none;
+}
+
+// webkit, opera, IE9 
+::selection {
+    color: #fff;
+    background: #ffd758;
+    text-shadow: none;
+}
+
+// placeholders' styles
+::-webkit-input-placeholder {
+    color: #222;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+}
+
+::-moz-placeholder {
+    /* Firefox 19+ */
+}
+
+:-ms-input-placeholder {
+    color: #fff;
+}
+
+
+
+iframe {
+    border: 0;
+}
+
+
+main,
+li {
+    display: block;
+}
+
+strong {
+    font-weight: bold;
+}
+
+sup {
+    position: relative;
+    top: -.5em;
+    font-size: 65%;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+a,
+button {
+    color: inherit;
+}
+
+a {
+    text-decoration: none;
+    &:focus, &:hover, &:active  {
+        text-decoration: none;
+    }
+}
+
+button {
+    overflow: visible;
+    border: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    background: none;
+    cursor: pointer;
+    -webkit-font-smoothing: inherit;
+    &:focus {
+        outline: 0;
+    }
+}
+
+::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    border: 0;
+}
+
+input[type=search] {
+    box-shadow: none; // overwrite firefox default box shadow on invalid search field
+}
+
+// iOS "clickable elements" fix for role="button"
+//
+// Fixes "clickability" issue (and more generally, the firing of events such as focus as well)
+// for traditionally non-focusable elements with role="button"
+// see https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+// Upstream patch for normalize.css submitted: https://github.com/necolas/normalize.css/pull/379 - remove this fix once that is merged
+[role="button"] {
+    cursor: pointer;
+}
+
+input {
+    -webkit-appearance: none; // force iOS to not show rounded borders
+    border-radius: 0!important;
+    &:focus {
+        outline: 0;
+    }
+}
+
+address {
+    font-style: normal;
+} 

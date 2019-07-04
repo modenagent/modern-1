@@ -1,0 +1,30 @@
+#RewriteEngine on
+#RewriteCond $1 !^(index.php|resources|robots.txt)
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^(.*)$ index.php?/$1 [L,QSA]
+
+#<IfModule mod_rewrite.c>					
+#        RewriteEngine On					
+#        RewriteBase /mylistingpitch					
+#        RewriteCond $1 !^(index\.php|assets|upload|robots\.txt|.*\.css)					
+#	RewriteRule ^(.*)$ index.php/$1 [L]				
+#</IfModule>					
+
+#RewriteEngine On
+#RewriteCond %{HTTP_HOST}  	^23.239.7.251/[nocase]
+#RewriteCond %{HTTP_HOST}  ^www.agentprez.com [nocase]
+#RewriteRule ^(.*)         	http://23.239.7.251%{REQUEST_URI} [last,redirect=301]
+#RewriteRule ^(.*)         https://agentprez.com%{REQUEST_URI} [last,redirect=301]
+#RewriteEngine On
+#RewriteCond %{HTTPS} !on
+#RewriteRule (.* ) https://agentprez.com%{REQUEST_URI} [last,redirect=301]
+RewriteEngine on
+RewriteCond $1 !^(index.php|resources|robots.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]
+
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
