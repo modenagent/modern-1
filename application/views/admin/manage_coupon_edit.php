@@ -13,7 +13,7 @@
   </div>
  
     <div class="well">
-      <form action="" method="POST" role="form" id="edit_coupon">
+      <form action="" method="POST" role="form" id="edit_coupon" autocomplete="off">
         <legend>Edit Coupon</legend>        
           <div class="row">
             <div class="col-md-6">
@@ -29,11 +29,11 @@
               <div class="form-group">
                 <label for="">Coupon Start Date</label>
                  
-                  <input type="text" class="form-control datepicker" id="" name="startdate" placeholder="Start Date" value="<?php echo date('d-m-Y', strtotime($coupon->start_date)); ?>">
+                  <input type="text" class="form-control" id="startdate" name="startdate" placeholder="Start Date" value="<?php echo date('d-m-Y', strtotime($coupon->start_date)); ?>">
                 
               </div>
             </div>
-         <div class="col-md-6">
+            <div class="col-md-6">
                 <div class="form-group">
                    <label for="">Coupon Amount</label>                    
                   <input type="text" class="form-control" id="coupon_amt" name="coupon_amt" placeholder="Coupon Amount" value="<?php echo $coupon->coupon_amt; ?>">
@@ -49,7 +49,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="" >Coupon End Date</label>                
-                  <input type="text" class="form-control datepicker" id="" name="enddate" placeholder="End Date" value="<?php echo date('d-m-Y', strtotime($coupon->end_date)); ?>" >
+                  <input type="text" class="form-control" id="enddate" name="enddate" placeholder="End Date" value="<?php echo date('d-m-Y', strtotime($coupon->end_date)); ?>" >
                 
               </div>
             </div>
@@ -65,3 +65,36 @@
 </div>
 </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    var startDate = new Date('01/01/2012');
+    var FromEndDate = new Date();
+    var ToEndDate = new Date();
+    ToEndDate.setDate(ToEndDate.getDate() + 365);
+    $('#startdate').datepicker({
+      format: "dd-mm-yyyy",
+      weekStart: 1,
+      startDate: '01/01/2012',
+      /*endDate: FromEndDate,*/
+      autoclose: true
+    })
+    .on('changeDate', function (selected) {
+        startDate = new Date(selected.date.valueOf());
+        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+        $('#enddate').datepicker('setStartDate', startDate);
+    });
+    $('#enddate').datepicker({
+        format: "dd-mm-yyyy",
+        weekStart: 1,
+        startDate: startDate,
+        endDate: ToEndDate,
+        autoclose: true
+    })
+    .on('changeDate', function (selected) {
+        FromEndDate = new Date(selected.date.valueOf());
+        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+        $('#startdate').datepicker('setEndDate', FromEndDate);
+    });
+
+  });
+</script>

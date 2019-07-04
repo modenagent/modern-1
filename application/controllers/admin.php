@@ -344,10 +344,10 @@ MSG;
             $data['user_role'] = '';
             $data['add_form'] = 'end_user';
             if($_isAdmin) {
-                $data['parents'] = $this->role_model->get_sales_reps();    
+                $data['parents'] = $this->role_model->get_sales_reps(null, 'Y');    
                 $data['choose'] = 'Sales Rep';
             } else if($_isManager) {
-                $data['parents'] = $this->role_model->get_sales_reps($adminId);    
+                $data['parents'] = $this->role_model->get_sales_reps($adminId, 'Y');    
                 $data['choose'] = 'Sales Rep';
             }
             $companies = array();
@@ -718,21 +718,11 @@ MSG;
                 );
 
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
-                //var_dump($result);die;
-                if($result){
-                    $resp = array(
-                        "status" => "success",
-                        "msg" => "Updated succesfully."
-                    );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array(
-                        "status" => "error",
-                        "msg" => "Update failed."
-                    );
-                    echo json_encode($resp);
-                }
-
+                $resp = array(
+                    "status" => "success",
+                    "msg" => "Updated succesfully."
+                );
+                echo json_encode($resp);
             }
         }else{
             redirect('admin/index');
@@ -1629,6 +1619,15 @@ MSG;
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
 
+                if ($e_date<$s_date) {
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Coupon start date can not greater than end date.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
+
                 $table = "lp_coupon_mst";
                 $where = array('coupon_code'=> $coupon_code);
                 $resultCheck = $this->base_model->check_existent($table,$where);
@@ -1686,6 +1685,15 @@ MSG;
                 $s_date = date('Y-m-d', strtotime($startdate));
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
+
+                if ($e_date<$s_date) {
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Coupon start date can not greater than end date.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
 
                 $table = "lp_coupon_mst";
                 $data = array(
@@ -1968,7 +1976,7 @@ MSG;
             $data['user_role'] = '';
             $data['add_form'] = 'sales_rep';
             if($_isAdmin) {
-                $data['parents'] = $this->role_model->get_companies();
+                $data['parents'] = $this->role_model->get_companies('Y');
                 $companies = array();
                 foreach($data['parents'] as $_company){
                     $companies[$_company['user_id_pk']]['cadd'] = $_company['company_add'];

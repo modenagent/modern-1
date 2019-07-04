@@ -39,7 +39,7 @@
             <tr>
               <th colspan="3">Personal Information 
               <?php if($this->role_lib->is_admin()): ?>
-                <button class="btn btn-primary pull-right" onclick="location.href = '<?php echo site_url('admin/set_password/'.$user->user_id_pk); ?>'">Set Password</button>
+                <a class="btn btn-primary pull-right" href='<?php echo site_url('admin/set_password/'.$user->user_id_pk); ?>'>Set Password</a>
               <?php endif; ?>
               </th>
             </tr>

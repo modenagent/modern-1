@@ -19,13 +19,13 @@
           <div class="fileupload fileupload-new">
             <div class="user-image"> 
              <?php
-              if($users->profile_image != ""){
+              if ($users->profile_image != "" && file_exists($users->profile_image)) {
                   $uimg = $users->profile_image;
               }else{
                   $uimg = 'assets/img/user.jpg';
               }                                    
               ?>                 
-              <img class="img-responsive" src="<?php echo site_url().$uimg; ?>">              
+              <img class="img-responsive" src="<?php echo base_url().$uimg; ?>">              
             </div>
           </div>
           <hr>

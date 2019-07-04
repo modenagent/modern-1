@@ -163,8 +163,8 @@ ul.nav-user li.dropdown a.dropdown-toggle {
 	left: 0;
 	bottom: 0;
 	background: #000;
-    font-family: montserrat;
-    font-size: 12px;
+    /*font-family: montserrat;*/
+    font-size: 11px;
     color: #fff;
 	z-index: 10;
 	-webkit-transition: All 0.3s ease;
@@ -195,8 +195,9 @@ ul.nav-user li.dropdown a.dropdown-toggle {
 	color: #f4f4f4;
 	text-decoration: none;
 	display: block;
-	padding-right: 47px;
-	width: 195px;
+	padding-right: 25px;
+	width: 220px;
+	text-transform: uppercase;
 }
 .sidebar-left .list-group .list-group-item.active a {
 	color: #f4f4f4;
@@ -444,7 +445,7 @@ div.timeline {
 	position: relative;
 }
 p {
-	font-family: montserrat;
+	/*font-family: montserrat;*/
     text-transform: uppercase;
     letter-spacing: 2.0px;
     font-size: 12px;
@@ -654,7 +655,7 @@ div.timeline_element.purple:hover:after {
 }
 .table-responsive {
     font-size: 12px;
-    font-family: montserrat;
+    /*font-family: montserrat;*/
 }
 .table-hover.table-striped.table-bordered.table-advanced {
 	width: 100%;
@@ -982,11 +983,11 @@ table > thead > tr >th {
 }
 .panel-title .pull-right.btn-size{    margin: -10px 0 0 5px;
     font-size: 13px;
-    font-family: montserrat;
+    /*font-family: montserrat;*/
 	background: #AACB0A}
 
 	.panel-title {
-	   font-family: montserrat;
+	   /*font-family: montserrat;*/
     text-transform: uppercase;
     font-size: 12px;
     letter-spacing: 2.0px;
@@ -1009,7 +1010,7 @@ table > thead > tr >th {
 	border:black;
 }
 td {
-	font-family: montserrat;
+	/*font-family: montserrat;*/
 }
 .btn-success {
     background-color: #AACB0A;
@@ -1113,7 +1114,7 @@ aTables_wrapper .dataTables_paginate .paginate_button:hover {
 
 @media screen and (min-width: 769px) { 
 	.table-responsive {
-		overflow-x: hidden !important;
+		overflow-x: inherit !important;
 	}
 }
 
@@ -1131,6 +1132,12 @@ table.dataTable thead th:last-child, table.dataTable tbody td:last-child {
 
 .ma-font-36 {
 	font-size: 36px;
+}
+
+button:disabled,
+button[disabled]{
+  cursor: no-drop !important;
+  pointer-events: inherit !important;
 }
 
 /* MY CUSTOM STYLE END */

@@ -130,7 +130,7 @@
                          <?php if($this->role_lib->has_access('manage_companies')): ?>
                         <li class="list-group-item <?php echo ($title=='Manage Companies')?'active':''; ?>">
                             <a class="" href="<?php echo site_url('admin/manage_companies'); ?>">
-                            <i class="fa fa-users icon-sidebar"></i> 
+                            <i class="fa fa-building-o icon-sidebar"></i> 
                             <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                                 <span class="isw-mail"></span><span class="text">Companies</span>
                             </a>

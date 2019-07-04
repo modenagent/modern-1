@@ -27,6 +27,7 @@
       <form action="" method="POST" role="form" id="add_user_form">
         <legend><?php echo $add_title; ?></legend> 
           <div class="row">
+            <div class="col-md-12">
             <div class="col-md-3">
               <div class="form-group">
                 <input type="text" placeholder="First Name" name="fname" class="form-control" id="fname">
@@ -42,11 +43,13 @@
                   <input type="text" placeholder="Email" name="uemail" class="form-control" id="uemail">
                 </div>
             </div>
-             <div class="col-md-3">
+            <div class="col-md-3">
                 <div class="form-group">                  
                   <input type="text" placeholder="User Name" name="uname" class="form-control" id="uname">
                 </div>
             </div>
+            </div>
+            <div class="col-md-12">
             <div class="col-md-3">
                 <div class="form-group">
                   <input type="password" placeholder="Password" name="password" class="form-control" id="user_pass">
@@ -67,6 +70,8 @@
                   <input type="text" placeholder="License No." name="ulicence" class="form-control" id="ulicence">
                 </div> 
             </div>
+            </div>
+            <div class="col-md-12">
             <?php if($add_form=='sales_rep'): ?>
             <div class="col-md-3">
                 <div class="form-group">
@@ -108,6 +113,7 @@
                 <div class="form-group">
                   <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company')?'readonly="readonly"':''; ?>>
                 </div> 
+            </div>
             </div>
             <input type="hidden" name="role_id" value="<?php echo $newUserRoleId; ?>" id="role_id">
             <input type="hidden" name="backend" value="1">
@@ -224,6 +230,11 @@ $(document).ready(function(){
             var caddress = $("#caddress").val();
             var parent_id = $("#parent_id").val();
             var role_id = $("#role_id").val();
+
+            var submit = $('#add_user_form').closest('form').find(':submit');
+            submit.html('<i class="fa fa-spinner fa-spin"></i>');
+            submit.prop('disabled', true);
+
             $.ajax({
                 url: '<?php echo site_url('auth/userregister/format/json/'); ?>',
                 method: 'post',
@@ -243,6 +254,10 @@ $(document).ready(function(){
                 }
             }).success(function(resp) {
                 var obj = resp;
+                
+                submit.html('Submit');
+                submit.prop('disabled', false);
+
                 if (obj.status == "success") {
                     var msg = obj.msg;
                     Notify('Register Success', msg, 'success');
