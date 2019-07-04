@@ -11,10 +11,7 @@
     color: black;
     text-transform: uppercase;
     letter-spacing: 1px;
-<<<<<<< HEAD
-=======
 	margin-bottom: 8px;
->>>>>>> 276f9d42d8b88df54ce5f4f081a9d1787050e9d5
 	
 }
 .multiselect-header2{
@@ -24,10 +21,7 @@
     color: black;
     text-transform: uppercase;
     letter-spacing: 1px;
-<<<<<<< HEAD
-=======
 	margin-bottom: 8px;
->>>>>>> 276f9d42d8b88df54ce5f4f081a9d1787050e9d5
 	
 }
 .ms-container{
@@ -65,11 +59,7 @@
   -ms-transition: border linear 0.2s, box-shadow linear 0.2s;
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
-<<<<<<< HEAD
-  border: 1px solid #ccc;
-=======
   border: 1px solid #000;
->>>>>>> 276f9d42d8b88df54ce5f4f081a9d1787050e9d5
   -webkit-border-radius: 0px;
   -moz-border-radius: 0px;
   border-radius: 0px;
