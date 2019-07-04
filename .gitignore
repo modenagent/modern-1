@@ -2,15 +2,15 @@ temp/
 
 *.zip
 
-assets/uploads/user_invoices/
 application/logs/
-assets/captcha/
-assets/images/*.jpg
-assets/images/*.JPG
-assets/images/*.png
 
-assets/uploads/agent_company_logo/
-assets/uploads/agent_img/
+#assets/captcha/
+#assets/images/*.jpg
+#assets/images/*.JPG
+#assets/images/*.png
+#assets/uploads/user_invoices/
+#assets/uploads/agent_company_logo/
+#assets/uploads/agent_img/
 
 config/development/
 
