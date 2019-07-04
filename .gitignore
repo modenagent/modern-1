@@ -8,10 +8,11 @@ assets/captcha/
 assets/images/*.jpg
 assets/images/*.JPG
 assets/images/*.png
+
 assets/uploads/agent_company_logo/
 assets/uploads/agent_img/
 
-config/development
+config/development/
 
 */logs/log-*.php
 !*/logs/index.html
@@ -27,4 +28,3 @@ application/logs/
 
 development/
 beta/
-testWidget/

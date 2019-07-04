@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAACwUlEQVR4nO2bPWsUURSGn4la+BE1URsDooLBQsgHGKMgYgSVdIqFiJ0ilha2gpWQP2BlSGlnZyMqAUVQLNQmUUK2sIiJETVGFN2wFjNDJM7suXNn5p5Zcx84sMzdPed9X2aH2bu7AW4IgEHgKDAA9AB7gbZovQFMA2+AF8AT4Fl0vKXZAFwD3hGayVJTwHVgk3PVBRAAl4BZshtfWR+BqyyfLZWnCxgnv/GV9RTY5c6GHYPAHMWbj+sT4XWkkgwBi5RnPq4fwGlHnozpBb5Svvm4FoGDTpwZ0AnUcGc+rvfADgf+RO5iLnoBGAOGCS+W66LaCZwC7gBfMvS758BfU05gJvQXMAJsN+jZAdwCfhr2Hi7MjQXPU0T9XbPAYYveA8CMQf9XhPcdzjlkIO470J9jxgHCt40051iOGdbcNhB2oYA5Zw3mjBYwJxMB8un5qMB594VZ8zi+Vd4vCGoARwqc12cwr7fAeSIXBTHTJcycEGZetmlqe9rsE9YfWvZtxgNhXdKUiG0A24T1mmXfPD1N7jH+wTaAjcL6B8u+zZgR1q02TmwDkF5Xt+zbjN/C+hqbpi2zy1IWPgBtAdr4ALQFaLPqA1hr8Jw2wm9yuoEt0bFu4TXHgfU5dCXRJ6zvAa5Ej78Bb4HXwFKeoUOE39CYblFVrWrASVvzZwi3srRN5K06cD6r+Q7gcwXEF1ULpOwgp10EzwFbjaJqDdpJOQvSAugpT4saiRsmaQFIn/Zakfakg6v+PsAHoC1AGx+AtgBtfADaArTxAWgL0MYHoC1AGx+AtgBtfADaArTxAWgL0MYHoC1AGx+AtgBtfADaArTxAWgL0CYtgIZTFW5I9JQWwHyJQrSYSzqYFsB4eTrUeJzlyQHLf17+H+olFr8k7QImKyA+b00Bu7Oaj9kM3IiCqFfAjGktEf5j/SbCDz3+AH3YgaTmj2MtAAAAAElFTkSuQmCC">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style>
+      body{ background-color: #3498db; background-attachment:fixed;background-position:center top;}
+      body{color:#666;font-family:'Open Sans',sans-serif;}
+      *{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+      .box{display:block;margin:auto;box-sizing:border-box;overflow:hidden;background:#EDEDED;box-shadow:0px 0px 10px rgba(0,0,0,.3);width:90%;max-width:380px;padding:20px 60px;margin-bottom:20px;margin-top:140px;}
+      @media(max-height:450px){.box{margin-top:50px;}}
+      @media(max-width:400px){.box{padding: 10px 30px;}
+      .submit{margin-bottom:20px;}}
+      #password{-webkit-appearance:none;width:100%;height:50px;padding:15px;outline:none!important;border:2px solid #bdc3c7;font-family:'Open Sans',sans-serif;font-size:13px;transition:.2s all;}
+      #password:focus{border:2px solid #3498db;}
+      .submit{display:block;font-family:'Open Sans',sans-serif;font-weight:bold;margin:30px auto;height:35px;width:100px;text-align:center;line-height:35px;border:none;background:#3498db;color:white;text-transform:uppercase;font-size:13px;cursor:pointer;outline:none!important;}
+      .submit:hover{background:#2980b9;}
+      .error{display:none;color:#e74c3c;margin:10px;font-size: 15px; text-align: center;}
+      .wrong #password{-webkit-appearance:none;border:2px solid rgba(255, 0, 0, 0.4);}
+      .show{display:block !important;}
+    </style>
+    <link href="http://fonts.googleapis.com/css?family=Open Sans:500,300,400" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <form action="" method="POST" class="box{$wrong}">
+      <h3>Login</h3>
+      <input type="password" name="access_pass" id="password" 
+             placeholder="Type the password..." autofocus="autofocus" autocomplete="off" />
+      <span class="error{$error1}">Wrong password! Try again!</span>
+      <span class="error{$error2}">Too many attempted sign-ins!</span>
+      <span class="error{$error3}">Your IP address is banned!</span>
+      <input type="submit" value="Enter" class="submit">
+    </form>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAACwUlEQVR4nO2bPWsUURSGn4la+BE1URsDooLBQsgHGKMgYgSVdIqFiJ0ilha2gpWQP2BlSGlnZyMqAUVQLNQmUUK2sIiJETVGFN2wFjNDJM7suXNn5p5Zcx84sMzdPed9X2aH2bu7AW4IgEHgKDAA9AB7gbZovQFMA2+AF8AT4Fl0vKXZAFwD3hGayVJTwHVgk3PVBRAAl4BZshtfWR+BqyyfLZWnCxgnv/GV9RTY5c6GHYPAHMWbj+sT4XWkkgwBi5RnPq4fwGlHnozpBb5Svvm4FoGDTpwZ0AnUcGc+rvfADgf+RO5iLnoBGAOGCS+W66LaCZwC7gBfMvS758BfU05gJvQXMAJsN+jZAdwCfhr2Hi7MjQXPU0T9XbPAYYveA8CMQf9XhPcdzjlkIO470J9jxgHCt40051iOGdbcNhB2oYA5Zw3mjBYwJxMB8un5qMB594VZ8zi+Vd4vCGoARwqc12cwr7fAeSIXBTHTJcycEGZetmlqe9rsE9YfWvZtxgNhXdKUiG0A24T1mmXfPD1N7jH+wTaAjcL6B8u+zZgR1q02TmwDkF5Xt+zbjN/C+hqbpi2zy1IWPgBtAdr4ALQFaLPqA1hr8Jw2wm9yuoEt0bFu4TXHgfU5dCXRJ6zvAa5Ej78Bb4HXwFKeoUOE39CYblFVrWrASVvzZwi3srRN5K06cD6r+Q7gcwXEF1ULpOwgp10EzwFbjaJqDdpJOQvSAugpT4saiRsmaQFIn/Zakfakg6v+PsAHoC1AGx+AtgBtfADaArTxAWgL0MYHoC1AGx+AtgBtfADaArTxAWgL0MYHoC1AGx+AtgBtfADaArTxAWgL0CYtgIZTFW5I9JQWwHyJQrSYSzqYFsB4eTrUeJzlyQHLf17+H+olFr8k7QImKyA+b00Bu7Oaj9kM3IiCqFfAjGktEf5j/SbCDz3+AH3YgaTmj2MtAAAAAElFTkSuQmCC">
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <style>
+      body{ background-color: #DE505F; background-attachment:fixed;background-position:center top;color:white;font-family:'Open Sans',sans-serif;}
+      *{box-sizing:border-box;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;}
+      .box{display:block;width:100%;max-width:280px;height:50px;margin:auto;background:white;border:4px solid black;border-radius:25px;overflow:hidden;margin-top:250px;}
+      @media(max-height:500px){.box{margin-top:190px;}}
+      @media(max-height:400px){.box{margin-top:140px;}}
+      @media(max-height:300px){.box{margin-top:90px;}}
+      @media(max-height:200px){.box{margin-top:50px;}}
+      @media(min-height:800px){.box{margin-top:380px;}}
+      label,.fheader{display:none;}
+      .submit{display:block;overflow:hidden;font-size:0;line-height:0;float:right;width:36px;height:36px;margin:3px;margin-right:7px;border:0;cursor:pointer;outline:none!important;transition:.2s all;border-radius: 20px; background-position: center; background-color: white; background-image: url('data:image/png;base64,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'); background-size: 100%;}
+      .submit:hover{transform:rotate(45deg);}
+      #password{-webkit-appearance:none;width:75%;border:none;height:36px;margin-top:2px;margin-left:13px;outline:none!important;font-size:14px;font-family:'Open Sans',sans-serif;}
+      .error{display:none;color:white;margin:13px;font-size:15px;text-align:center;}
+      .wrong.box{border:4px solid #FDDF61;}
+      .show{display:block !important;}
+    </style>
+    <link href="http://fonts.googleapis.com/css?family=Open Sans:500,300,400" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <form action="" method="POST" class="box{$wrong}">
+      <div class="fheader">Login</div><label for="password">Password:</label>
+      <input type="password" name="access_pass" id="password" 
+             placeholder="Type the Password..." autofocus="autofocus" autocomplete="off" />
+      <input type="submit" value="Enter" class="submit"></form>
+    <span class="error{$error1}">Wrong password! Try again!</span>
+    <span class="error{$error2}">Too many attempted sign-ins!</span>
+    <span class="error{$error3}">Your IP address is banned!</span>
+  </body>
+</html>
