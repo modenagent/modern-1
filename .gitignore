@@ -24,7 +24,6 @@ config/development/
 application/logs/
 !application/logs/index.html
 !application/logs/.htaccess
-/vendor/
 
 development/
 beta/
