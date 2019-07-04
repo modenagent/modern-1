@@ -1,34 +1,4 @@
 // User list 
-<<<<<<< HEAD
-function userlist(role_id){       
-    $.ajax({
-        url:site_url('admin/userlist_view'),
-        method:'POST',
-        data:{
-            type:"userlist",
-            role_id: role_id
-        }
-    }).success(function(resp){
-        var obj = JSON.parse(resp);
-        if(obj.status == "success"){
-          var users_list = obj.userlist_table;
-          $("#user_table").html(users_list);  
-          $("#user-table").dataTable({
-            // paging:   false,
-            // "iDisplayLength": 10,
-            // "aLengthMenu":false,
-            // 'bLengthChange': false,
-            // "bFilter": false,
-            "order": [[ 3, "desc" ]],
-            "aoColumnDefs": [ { "bSortable": false, "aTargets": [ 4 ] } ]
-          });
-          $("[data-toggle='tooltip']").tooltip();
-        }else{
-          Notify('Error', 'Invalid Request.', 'error');
-        }                 
-    }); 
-    return false;   
-=======
 var user_table_datatable = '';
 function userlist(role_id){     
   
@@ -83,5 +53,4 @@ function userlist(role_id){
         }
     });
   }
->>>>>>> master
 }
