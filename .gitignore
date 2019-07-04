@@ -6,6 +6,7 @@ application/logs/
 
 assets/captcha/
 assets/images/
+assets/uploads/
 assets/uploads/user_invoices/
 assets/uploads/agent_company_logo/
 assets/uploads/agent_img/
