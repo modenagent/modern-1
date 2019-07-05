@@ -18,16 +18,21 @@
         <div class="text-center">
           <h4><?php echo ucfirst($user->first_name)." ".ucfirst($user->last_name);?></h4>
           <div class="fileupload fileupload-new">
-            <div class="user-image">
-              <img class="img-responsive" src="https://0.s3.envato.com/files/50024461/153%20-%2032143.jpg">
-              <input type="file">
+            <div class="user-image"> 
+              <?php
+                $uimg = '';
+                if ($user->profile_image != "" && file_exists($user->profile_image)) {
+                    $uimg = $user->profile_image;
+                }else{
+                    $uimg = 'assets/img/user.jpg';
+                }                                    
+              ?>                 
+              <img class="img-responsive" src="<?php echo base_url().$uimg; ?>">              
             </div>
-            <center>
+            <br/>
             <a href="#" class="btn btn-default">Change Profile</a>
-            </center>
-        
-        </div>
-        <hr>
+          </div>
+          <hr>
       </div>
       
     </div>
@@ -119,6 +124,7 @@
                     </td>                
                 </tr>
                 <?php endif; ?>
+                <?php if($this->role_lib->is_sales_rep($user->role_id_fk)): ?>
                 <tr>
                   <td>Referral Code</td>
                   <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control" placeholder="Referral Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
@@ -130,6 +136,7 @@
                     });
                   </script>
                 </tr>
+                <?php endif; ?>
               <?php endif; ?>
           <input type="hidden" name="userid" id="userid" value="<?php echo $user->user_id_pk; ?>">
           <tr>

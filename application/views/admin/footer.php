@@ -308,6 +308,9 @@ switch ($title){
                     var obj = JSON.parse(resp);
                     if(obj.status == "success"){
                       Notify('Success', obj.msg, 'success');
+                      setTimeout(function(){ 
+                        location.reload();
+                      }, 3000);
                     }else{
                       Notify('Error', obj.msg, 'error');
                     }

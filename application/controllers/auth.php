@@ -78,7 +78,8 @@ class Auth extends REST_Controller
     }
 
     // user register api
-    public function userregister_post(){
+    public function userregister_post()
+    {
         $table = "lp_user_mst";
         $email = $this->post('uemail');
         $where = array('email'=> $email);
@@ -100,6 +101,20 @@ class Auth extends REST_Controller
                 }
             }
 
+            $referral_code = $this->post('referral_code');
+            $where = array('ref_code'=> $referral_code);
+            $resultCheck = $this->base_model->check_existent($table,$where);
+            if ($resultCheck) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Referral code already exists.'
+                );
+                if($this->get('callback')){
+                    echo $this->get('callback')."(".json_encode($resp).")";
+                }else{
+                    $this->response($resp, 200);
+                }
+            }
             $roleId = $this->get('role_id')?$this->get('role_id'):$this->post('role_id');
             if(!isset($roleId) || !is_numeric($roleId) ) {
                 $roleId = 4;
@@ -145,6 +160,12 @@ class Auth extends REST_Controller
                 'registered_date' => date('Y-m-d H:i:s', time()),
                 'is_active' => 'Y',
             );
+
+            $this->load->library('role_lib');
+            if ($this->role_lib->is_sales_rep($roleId) && !empty($referral_code)) {
+                $user['ref_code'] = $referral_code;
+            }
+
             $resp = $this->base_model->insert_one_row('lp_user_mst', $user);
             if($resp){
                 if($this->get('backend')){

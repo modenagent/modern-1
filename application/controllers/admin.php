@@ -670,7 +670,10 @@ MSG;
                 $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
                 $parentId = (!empty($this->input->post('parent_id')))?$this->input->post('parent_id'):0;
-                $referralCode = (!empty($this->input->post('ref_code')))?$this->input->post('ref_code'):$this->user_model->setRefCode($uid);
+                
+                if($this->role_lib->is_sales_rep($roleId)) {
+                    $referralCode = (!empty($this->input->post('ref_code')))?$this->input->post('ref_code'):$this->user_model->setRefCode($uid);
+                }
 
                 $table = "lp_user_mst";
                 $data = array(
@@ -1985,6 +1988,9 @@ MSG;
                 $data['companies'] = json_encode($companies);
                 $data['choose'] = 'Choose Company';
             }
+            $this->load->model('user_model');
+            $randomReferralCode = $this->user_model->getRandomRefCode();
+            $data['referral_code'] = $randomReferralCode;
             $this->load->view('admin/header',$data);
             $this->load->view('admin/manage_user',$data);
             $this->load->view('admin/footer',$data);

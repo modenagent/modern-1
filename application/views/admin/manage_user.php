@@ -24,7 +24,7 @@
   </div>
   <div class="collapse" id="collapseExample">
     <div class="well clearfix">
-      <form action="" method="POST" role="form" id="add_user_form">
+      <form action="" method="POST" role="form" id="add_user_form" autocomplete="off">
         <legend><?php echo $add_title; ?></legend> 
           <div class="row">
             <div class="col-md-12">
@@ -114,6 +114,13 @@
                   <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company')?'readonly="readonly"':''; ?>>
                 </div> 
             </div>
+            <?php if($add_form=='sales_rep'): ?>
+            <div class="col-md-3">
+              <div class="form-group">
+                <input type="text" autocomplete="off" placeholder="Referral Code" name="refcode" class="form-control" id="refcode" value="<?php echo $referral_code; ?>">
+              </div> 
+            </div>
+            <?php endif; ?>
             </div>
             <input type="hidden" name="role_id" value="<?php echo $newUserRoleId; ?>" id="role_id">
             <input type="hidden" name="backend" value="1">
@@ -195,7 +202,7 @@ $(document).ready(function(){
             },
             ulicence: "required",
             cname: "required",
-            caddress: "required"
+            caddress: "required",
         },
         messages: {
             password: "Please enter password.",
@@ -230,6 +237,10 @@ $(document).ready(function(){
             var caddress = $("#caddress").val();
             var parent_id = $("#parent_id").val();
             var role_id = $("#role_id").val();
+            var referral_code = '';
+            if ($("#refcode").length > 0) {
+              referral_code = $("#refcode").val();
+            }
 
             var submit = $('#add_user_form').closest('form').find(':submit');
             submit.html('<i class="fa fa-spinner fa-spin"></i>');
@@ -251,6 +262,7 @@ $(document).ready(function(){
                     role_id: role_id,
                     parent_id:parent_id,
                     backend:"1",
+                    referral_code: referral_code
                 }
             }).success(function(resp) {
                 var obj = resp;
@@ -262,9 +274,13 @@ $(document).ready(function(){
                     var msg = obj.msg;
                     Notify('Register Success', msg, 'success');
                     $('#add_user_form')[0].reset();
+                    $("#refcode").val('');
                     $('.collapse').collapse('hide');
                     //location.reload();
                     user_table_datatable.ajax.reload( null, false );
+                    <?php if($add_form=='sales_rep'): ?>
+                    get_random_referral_code();
+                    <?php endif; ?>
                 }
                 if (obj.status == "error") {
                     var msg = obj.msg;
@@ -295,6 +311,15 @@ function autofillCompany(user_id){
             $("#caddress").val(data.cadd);
             $("#cname").val(data.cname);
         }
+    });
+}
+
+function get_random_referral_code() {
+    $.ajax({
+        url: '<?php echo site_url('user/get_random_referral_code'); ?>',
+        method: 'post',
+    }).success(function(code) {
+        $("#refcode").val(code);
     });
 }
 </script>

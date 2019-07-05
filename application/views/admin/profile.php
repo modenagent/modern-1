@@ -83,7 +83,8 @@
           <tr>
                 <td>Referral Code</td>
                 <td>
-                    REF<?php echo sprintf("%05d", $users->user_id_pk); ?>
+                    <?php echo ($users->ref_code)?$users->ref_code:'-'; ?>
+                    <?php /*REF<?php echo sprintf("%05d", $users->user_id_pk); ?>  */ ?>
                 </td>
           </tr>
           <?php endif; ?>

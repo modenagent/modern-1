@@ -3228,6 +3228,13 @@ Thank you for your order. Below you can find the details of your order. If you o
         header('Content-disposition: attachment; filename="' . $pdfFileName . '"');
         echo $output;
     }
+
+    function get_random_referral_code() 
+    {
+        $this->load->model('user_model');
+        $ref_code = $this->user_model->getRandomRefCode();
+        echo $ref_code;
+    }
 	
    // Class ends here
 }
