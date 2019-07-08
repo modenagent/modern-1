@@ -607,14 +607,16 @@ MSG;
     public function profile($uid)
     {
         $data['title'] = "Profile View";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');        
-        if($adminId){
+        $adminId = $data['admin_id'] = $this->session->userdata('adminid');    
+        $adminDetails = $this->base_model->get_record_by_id('lp_user_mst',array('user_id_pk' => $adminId));
+        if($adminDetails){
 
             $user = $this->base_model->get_record_by_id('lp_user_mst',array('user_id_pk' => $uid));
             if (empty($user)) {
                 redirect('admin/index');
             }
-            $having_access = $this->admin_model->having_user_access($uid, $adminId, $user->role_id_fk);
+
+            $having_access = $this->admin_model->having_user_access($uid, $adminId, $adminDetails->role_id_fk, $user->role_id_fk);
             if (!$having_access) {
                 redirect('admin/index');
             }
