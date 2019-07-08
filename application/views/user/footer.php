@@ -629,7 +629,7 @@
       form_data.append('fileToUpload', file_data)
       // alert(form_data);                             
       $.ajax({
-        url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script 
+        url: '<?php echo base_url(); ?>index.php?/user/upload_file/profile-image', // point to server-side PHP script 
         dataType: 'text', // what to expect back from the PHP script, if anything
         cache: false,
         contentType: false,
@@ -639,7 +639,7 @@
         success: function(php_script_response) {
           console.log(JSON.parse(php_script_response));
           var object = JSON.parse(php_script_response);
-          if (object.status) {
+          if (object.status=='success') {
               $(ele).closest('.leftpic').find('a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
               if(object.status == 'success'){
                           $("#user_image").val(object.fileuri);
@@ -658,7 +658,7 @@
                 $('#agent_profile_image').attr('value',object.fileuri);
               }
           } else {
-
+            alert(object.msg);
           }
         }
       });
@@ -669,7 +669,7 @@
           var form_data = new FormData();
           form_data.append('fileToUpload', file_data)                   
           $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/upload_file/company-image', // point to server-side PHP script 
               dataType: 'text', // what to expect back from the PHP script, if anything
               cache: false,
               contentType: false,
@@ -680,15 +680,15 @@
                   
                   console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
-                  if (object.status) {
+                  if (object.status=='success') {
                       $('.rightpic a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
                       
-            if(object.status == 'success'){
+                      if(object.status == 'success'){
                         $("#company_image").val(object.fileuri);
-            }else{
-              $("#company_image").val('no');
-            }
-            /*
+                      }else{
+                        $("#company_image").val('no');
+                      }
+                      /*
                         If user is at my account page will the values
                       */
                       if($('#agent_company_logo')){
@@ -696,7 +696,7 @@
                       }
 
                   } else {
-
+                    alert(object.msg);
                   }
               }
           });

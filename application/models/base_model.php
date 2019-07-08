@@ -70,11 +70,22 @@ class Base_model extends CI_Model
             return $query->row(); 
     }
     /*  retrun only one row */
-    public function get_record_by_id($table,$data)  
+    public function get_record_by_id($table,$data, $fields='')  
     {
-            $query = $this->db->get_where($table,$data);
-            // echo $this->db->last_query(); die();
-            return $query->row();
+        $columns = '*';
+        if (!empty($fields)) {
+            if (is_array($fields)) {
+                $columns = implode(',', $fields);
+            } else {
+                $columns = $fields;
+            }
+        } else {
+            $columns = '*';
+        }
+        $this->db->select($columns);
+        $query = $this->db->get_where($table,$data);
+        // echo $this->db->last_query(); die();
+        return $query->row();
     }
     /* get all record by condition; returns only one row */
     public function get_all_record_by_condition($table,$data)
@@ -84,10 +95,21 @@ class Base_model extends CI_Model
             return $query->result();
     }
     // result array
-    public function get_record_result_array($table,$data)
+    public function get_record_result_array($table,$data, $fields='')
     {
-            $query = $this->db->get_where($table,$data);
-            return $query->result_array();
+        $columns = '*';
+        if (!empty($fields)) {
+            if (is_array($fields)) {
+                $columns = implode(',', $fields);
+            } else {
+                $columns = $fields;
+            }
+        } else {
+            $columns = '*';
+        }
+        $this->db->select($columns);
+        $query = $this->db->get_where($table,$data);
+        return $query->result_array();
     }
     // result array
     public function get_record_result_array_by($table,$data,$column,$order="asc")

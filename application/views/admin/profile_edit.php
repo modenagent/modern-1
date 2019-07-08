@@ -16,20 +16,29 @@
     <div class="col-sm-5 col-md-4">
       <div class="user-left">
         <div class="text-center">
-          <h4><?php echo ucfirst($user->first_name)." ".ucfirst($user->last_name);?></h4>
+          <h4><?php echo ucfirst($user->first_name)." ".ucfirst($user->last_name);?></h4>             
           <div class="fileupload fileupload-new">
-            <div class="user-image">
-              <img class="img-responsive" src="https://0.s3.envato.com/files/50024461/153%20-%2032143.jpg">
-              <input type="file">
+            <div class="user-image"> 
+             <?php
+              if($user->profile_image != ""){
+                  if (file_exists(FCPATH.'/'.$user->profile_image)) {
+                    $uimg = $user->profile_image;
+                  } else {
+                    $uimg = 'assets/img/user.jpg';
+                  }
+              }else{
+                $uimg = 'assets/img/user.jpg';
+              }                                    
+              ?>       
+              <a href="javascript:void(0)"><img class="img-responsive" src="<?php echo base_url().$uimg; ?>" /></a>
+              <input type="file" class="file-type hidden" />
+              <input type="text" id="fileimage" class="hidden file-path" name="user[profile_image]" value="<?php echo $user->profile_image; ?>" />
             </div>
-            <center>
-            <a href="#" class="btn btn-default">Change Profile</a>
-            </center>
-        
-        </div>
+          </div>
+          <br/>
+          <a id="image-change" href="javascript:void(0)" class="btn btn-default">Change Profile</a>
         <hr>
       </div>
-      
     </div>
   </div>
   <div class="col-sm-7 col-md-8">
@@ -155,3 +164,31 @@
 <!-- page end-->
 </div>
 </div>
+<script type="text/javascript">
+$("#image-change").click(function() {                                                
+  $(".user-image").find(".file-type").trigger("click");
+});
+$(".user-image .file-type").change(function(){
+  var file_data = $(this).prop('files')[0];
+  console.log(file_data);
+  var form_data = new FormData();
+  form_data.append('fileToUpload', file_data)                   
+  $.ajax({
+      url: '<?php echo base_url(); ?>admin/admin_upload_file/<?php echo $user->user_id_pk; ?>/profile-image',
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(object) {
+          console.log(object);
+          if (object.status=='success') {
+            $('.user-image a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
+          } else {
+            alert(object.msg);
+          }
+      }
+  });
+});
+</script>

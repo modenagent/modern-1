@@ -178,16 +178,19 @@ switch ($title){
         },
         pass_confirm:{
           required: true,
-          minlength: 3,
-          maxlength: 20,
           equalTo: '#password'
         }
 
       },
       messages:{
-        old_password:"",
-        password:"",
-        pass_confirm:""
+        old_password:"Old password is required.",
+        password: {
+          required: "New password is required.",
+        },
+        pass_confirm: {
+          required: "Confirm password is required.",
+          equalTo: "New password and Confirm password should be same."
+        }
       }
     });
     // Change password form submit
@@ -199,13 +202,25 @@ switch ($title){
         var new_pass = $("#password").val();
         var confirm_pass = $("#pass_confirm").val();
 
+        var submit = $('#change_pass').closest('form').find(':submit');
+        submit.html('<i class="fa fa-spinner fa-spin"></i>');
+        submit.prop('disabled', true);
         $.ajax({
           url     : "<?php echo site_url('admin/get_password/'); ?>",
           method    : "post",
         }).success(function(resp){
+
+          submit.html('Save');
+          submit.prop('disabled', false);
+
           var obj = JSON.parse(resp);
           if(obj.status == "success"){
             if(obj.data == old ){
+
+              var old = $("#old_password").val();
+              var new_pass = $("#password").val();
+              var confirm_pass = $("#pass_confirm").val();
+
               $.ajax({
                 url     : "<?php echo site_url('admin/update_password/'); ?>",
                 method    : "post",
@@ -213,6 +228,10 @@ switch ($title){
                   pass : new_pass
                 }
               }).success(function(resp2){
+
+                submit.html('Save');
+                submit.prop('disabled', false);
+
                 var obj2 = JSON.parse(resp2);
                 if(obj2.status == "success"){
                   $('#change_pass').trigger("reset");
@@ -225,11 +244,11 @@ switch ($title){
               });
 
             }else{
-              Notify('Password Error', 'Old password doen not match..', 'error');
+              Notify('Password Error', 'Old password does not match..', 'error');
             }
 
           }else{
-            Notify('Password Error', 'User doen not exist..', 'error');
+            Notify('Password Error', 'User does not exist..', 'error');
           }
 
         });
@@ -261,13 +280,13 @@ switch ($title){
         cadd : "required" 
       },
       messages:{
-        fname: "",
-        lname: "",
-        email: "",
-        phone: "",   
-        license: "",
-        cname : "",
-        cadd : ""
+        fname: "Please enter first name.",
+        lname: "Please enter last name.",
+        email: "Please enter email.",
+        phone: "Please use 12 digits.",   
+        license: "Please enter license no.",
+        cname : "Please enter company name.",
+        cadd : "Please enter address."
       }
     });
     // user edit form submit
@@ -275,15 +294,23 @@ switch ($title){
             if(!$(this).valid()){
                 return false;
             }else{
+                var submit = $('#user_edit').closest('form').find(':submit');
+                submit.html('<i class="fa fa-spinner fa-spin"></i>');
+                submit.prop('disabled', true);
                 var form_data = $(this).serialize();
                 $.ajax({
                     url:'<?php echo site_url('admin/user_edit'); ?>',
                     method:'post',
                     data: form_data
                 }).success(function(resp){
+                    submit.html('Update');
+                    submit.prop('disabled', false);
                     var obj = JSON.parse(resp);
                     if(obj.status == "success"){
                       Notify('Success', obj.msg, 'success');
+                      setTimeout(function(){ 
+                        location.reload();
+                      }, 3000);
                     }else{
                       Notify('Error', obj.msg, 'error');
                     }
@@ -316,12 +343,12 @@ switch ($title){
 
       },
       messages:{
-        coupon_name:"",
-        coupon_code:"",
-        coupon_des:"",
-        startdate:"",
-        enddate:"",
-        coupon_amt:""
+        coupon_name:"Name is required.",
+        coupon_code:"Code is required.",
+        coupon_des:"Description is required.",
+        startdate:"Start date is required.",
+        enddate:"End date is required.",
+        coupon_amt:"Amount is required."
       }
     });
 
@@ -330,6 +357,9 @@ switch ($title){
         if(!$(this).valid()){
             return false;
         }else{
+            var submit = $('#add_coupon').closest('form').find(':submit');
+            submit.html('<i class="fa fa-spinner fa-spin"></i>');
+            submit.prop('disabled', true);
             var form_data = $(this).serialize();
             $.ajax({
                 url:'<?php echo site_url('admin/coupon_add'); ?>',
@@ -338,7 +368,8 @@ switch ($title){
             }).success(function(resp){
                 var obj = JSON.parse(resp);
                 if(obj.status == "success"){
-
+                  submit.html('Submit');
+                  submit.prop('disabled', false);
                   $('#add_coupon')[0].reset();
                   $('.collapse').collapse('hide');
                   coupon_list_table_datatable.ajax.reload( null, false );
@@ -369,14 +400,18 @@ switch ($title){
         },
         enddate:{
           required:true
+        },
+        coupon_amt:{
+          required:true
         }
       },
       messages:{
-        coupon_name:"",
-        coupon_code:"",
-        coupon_des:"",
-        startdate:"",
-        enddate:""
+        coupon_name:"Name is required.",
+        coupon_code:"Code is required.",
+        coupon_des:"Description is required.",
+        startdate:"Start date is required.",
+        enddate:"End date is required.",
+        coupon_amt:"Amount is required."
       }
     });
 
@@ -385,6 +420,9 @@ switch ($title){
         if(!$(this).valid()){
             return false;
         }else{
+            var submit = $('#edit_coupon').closest('form').find(':submit');
+            submit.html('<i class="fa fa-spinner fa-spin"></i>');
+            submit.prop('disabled', true);
             var form_data = $(this).serialize();
             $.ajax({
                 url:'<?php echo site_url('admin/coupon_edit'); ?>',
@@ -396,11 +434,18 @@ switch ($title){
                   Notify('Success', obj.msg, 'success');
                 }else{
                   Notify('Error', obj.msg, 'error');
-                }               
+                }          
+                submit.html('Submit');
+                submit.prop('disabled', false);     
             });
             return false;
         }
     }); 
+
+    $('.numeric').on('input', function (event) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
 // document end here
 });
 // Custom Functions

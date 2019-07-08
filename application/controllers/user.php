@@ -38,18 +38,27 @@ class User extends CI_Controller
 		send_email('noreply@mylistingpitch.com','No Reply', $replyto, $subject, $message, array($file));
 	}
 	
-    public function upload_file(){
+    public function upload_file($type)
+    {
        $status = "";
        $msg = "";
        $fileuri='';
        $file_element_name = 'fileToUpload';
-        
+       $userId = $this->session->userdata('userid');
        if ($status != "error")
        {
           $config['upload_path'] = 'assets/images/';
           $config['allowed_types'] = 'gif|jpg|png|doc|txt';
-          $config['max_size']  = 10240;
-          $config['encrypt_name'] = TRUE;
+          $config['max_size']  = '2048';
+          if ($type == '') {
+            $config['encrypt_name'] = TRUE;
+          } else if ($type == 'profile-image') {
+            $new_name = 'user_'.$userId.'_'.time().rand(10,100000);
+            $config['file_name'] = $new_name;
+          } else if ($type == 'company-image') {
+            $new_name = 'user_company_'.$userId.'_'.time().rand(10,100000);
+            $config['file_name'] = $new_name;
+          }
      
           $this->load->library('upload', $config);
      
@@ -64,15 +73,28 @@ class User extends CI_Controller
              $status = "success";
              $msg = "File successfully uploaded";
              $fileuri=  $config['upload_path'].$data['file_name'];
+
+             if ($userId) {
+                $user_old_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$userId], ['profile_image', 'company_logo']);
+                if ($type == 'profile-image') {
+                  $this->base_model->update_record_by_id('lp_user_mst',array('profile_image'=>$fileuri),array('user_id_pk'=>$userId));
+                  if ($user_old_details->profile_image != '' && file_exists(FCPATH.'/'.$user_old_details->profile_image)) {
+                    $deleted = unlink(FCPATH.'/'.$user_old_details->profile_image);     
+                  }
+                } else if ($type == 'company-image') {
+                  $this->base_model->update_record_by_id('lp_user_mst',array('company_logo'=>$fileuri),array('user_id_pk'=>$userId));
+                  if ($user_old_details->company_logo != '' && file_exists(FCPATH.'/'.$user_old_details->company_logo)) {
+                    $deleted = unlink(FCPATH.'/'.$user_old_details->company_logo); 
+                  }
+                }
+             }
           }
-          // @unlink($_FILES[$file_element_name]);
        }
        if($fileuri!=''){
            echo json_encode(array('status' => $status, 'msg' => $msg,'fileuri'=>$fileuri ) );
        }else{
            echo json_encode(array('status' => $status, 'msg' => $msg, 'message' =>'file not uploaded'));
        }
-       
     }
 
     public function getSvg($pid,$fid){
