@@ -26,9 +26,12 @@ class Role_model extends CI_Model {
      * Get All manager level 1 users
      * @return array
      */
-    public function get_companies() {
+    public function get_companies($status='') {
         $this->db->select("user_id_pk, first_name, last_name,company_name,company_add");
         $this->db->where('role_id_fk',2);
+        if (!empty($status)) {
+            $this->db->where('is_active', $status);
+        }
         $res = $this->db->get('lp_user_mst')->result_array();
         return $res;
     }
@@ -37,11 +40,14 @@ class Role_model extends CI_Model {
      * @param intger $parentId To get Sale Reps under a parent
      * @return array
      */
-    public function get_sales_reps($parentId = null) {
+    public function get_sales_reps($parentId = null, $status='') {
         $this->db->select("user_id_pk, first_name, last_name,company_name,company_add");
         $this->db->where('role_id_fk',3);
         if(!is_null($parentId)){
             $this->db->where('parent_id',$parentId);
+        }
+        if (!empty($status)) {
+            $this->db->where('is_active', $status);
         }
         $res = $this->db->get('lp_user_mst')->result_array();
         return $res;

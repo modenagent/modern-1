@@ -24,90 +24,96 @@
   </div>
   <div class="collapse" id="collapseExample">
     <div class="well clearfix">
-      <form action="" method="POST" role="form" id="add_user_form">
+      <form action="" method="POST" role="form" id="add_user_form" autocomplete="off">
         <legend><?php echo $add_title; ?></legend> 
           <div class="row">
-            <div class="col-md-3">
-              <div class="form-group">
-                <input type="text" placeholder="First Name" name="fname" class="form-control" id="fname">
+            <div class="col-md-12">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="First Name" name="fname" class="form-control" id="fname">
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Last Name" name="lname" class="form-control" id="lname">
+                </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">                  
+                    <input type="text" placeholder="Email" name="uemail" class="form-control" id="uemail">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">                  
+                    <input type="text" placeholder="User Name" name="uname" class="form-control" id="uname">
+                  </div>
               </div>
             </div>
-            <div class="col-md-3">
-              <div class="form-group">
-                <input type="text" placeholder="Last Name" name="lname" class="form-control" id="lname">
+            <div class="col-md-12">
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="password" placeholder="Password" name="password" class="form-control" id="user_pass">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="password" placeholder="Confirm Password" name="cpassword" class="form-control" id="cpass">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">                  
+                    <input type="text" placeholder="Phone No." name="uphone" class="form-control numeric" id="uphone" maxlength="12">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" placeholder="License No." name="ulicence" class="form-control" id="ulicence">
+                  </div> 
               </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">                  
-                  <input type="text" placeholder="Email" name="uemail" class="form-control" id="uemail">
-                </div>
-            </div>
-             <div class="col-md-3">
-                <div class="form-group">                  
-                  <input type="text" placeholder="User Name" name="uname" class="form-control" id="uname">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                  <input type="password" placeholder="Password" name="password" class="form-control" id="user_pass">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                  <input type="password" placeholder="Confirm Password" name="cpassword" class="form-control" id="cpass">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">                  
-                  <input type="text" placeholder="Phone No." name="uphone" class="form-control" id="uphone">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                  <input type="text" placeholder="License No." name="ulicence" class="form-control" id="ulicence">
-                </div> 
-            </div>
-            <?php if($add_form=='sales_rep'): ?>
-            <div class="col-md-3">
-                <div class="form-group">
-                  <select placeholder="Choose <?php echo $choose; ?>" name="parent_id" class="form-control choose_option" id="parent_id">
-                    <option selected="selected" disabled=""> --Select Company Name-- </option>
-                    <?php foreach ($parents as $key => $parent): ?>
-                        <option value="<?php echo $parent['user_id_pk']; ?>"><?php echo $parent['company_name']; ?></option>
-                        
-                    <?php endforeach; ?>
-                  </select>
-                </div> 
-                <input type="hidden" name="cname" id="cname">
-            </div>
-            <?php elseif ($add_form=='end_user'): ?>
-            <div class="col-md-3">
-                <div class="form-group">
-                  <select placeholder="Choose <?php echo $choose; ?>" name="parent_id" class="form-control choose_option" id="parent_id">
-                    <option selected="selected" disabled=""> --Select Sales Rep-- </option>
-                    <?php foreach ($parents as $key => $parent): ?>
-                        <option value="<?php echo $parent['user_id_pk']; ?>"><?php echo $parent['first_name'] ." ". $parent['last_name']; ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                </div> 
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                  <input type="text" placeholder="Company Name" name="cname" class="form-control" id="cname" readonly="readonly">
-                </div> 
-            </div>
-            <?php elseif ($add_form=='company'): ?>
-                <input type="hidden" name="parent_id" value="<?php echo $admin_id ?>" id="parent_id">
-                <div class="col-md-3">
-                    <div class="form-group">
-                      <input type="text" placeholder="Company Name" name="cname" class="form-control" id="cname">
-                    </div> 
-                </div>
-            <?php endif; ?>
-            <div class="col-md-6">
-                <div class="form-group">
-                  <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company')?'readonly="readonly"':''; ?>>
-                </div> 
+            <div class="col-md-12">
+              <?php if($add_form=='sales_rep'): ?>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <select placeholder="Choose <?php echo $choose; ?>" name="parent_id" class="form-control choose_option" id="parent_id">
+                      <option selected="selected" disabled=""> --Select Company Name-- </option>
+                      <?php foreach ($parents as $key => $parent): ?>
+                          <option value="<?php echo $parent['user_id_pk']; ?>"><?php echo $parent['company_name']; ?></option>
+                          
+                      <?php endforeach; ?>
+                    </select>
+                  </div> 
+                  <input type="hidden" name="cname" id="cname">
+              </div>
+              <?php elseif ($add_form=='end_user'): ?>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <select placeholder="Choose <?php echo $choose; ?>" name="parent_id" class="form-control choose_option" id="parent_id">
+                      <option selected="selected" disabled=""> --Select Sales Rep-- </option>
+                      <?php foreach ($parents as $key => $parent): ?>
+                          <option value="<?php echo $parent['user_id_pk']; ?>"><?php echo $parent['first_name'] ." ". $parent['last_name']; ?></option>
+                      <?php endforeach; ?>
+                    </select>
+                  </div> 
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" placeholder="Company Name" name="cname" class="form-control" id="cname" readonly="readonly">
+                  </div> 
+              </div>
+              <?php elseif ($add_form=='company'): ?>
+                  <input type="hidden" name="parent_id" value="<?php echo $admin_id ?>" id="parent_id">
+                  <div class="col-md-3">
+                      <div class="form-group">
+                        <input type="text" placeholder="Company Name" name="cname" class="form-control" id="cname">
+                      </div> 
+                  </div>
+              <?php endif; ?>
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company')?'readonly="readonly"':''; ?>>
+                  </div> 
+              </div>
             </div>
             <input type="hidden" name="role_id" value="<?php echo $newUserRoleId; ?>" id="role_id">
             <input type="hidden" name="backend" value="1">
@@ -224,6 +230,11 @@ $(document).ready(function(){
             var caddress = $("#caddress").val();
             var parent_id = $("#parent_id").val();
             var role_id = $("#role_id").val();
+
+            var submit = $('#add_user_form').closest('form').find(':submit');
+            submit.html('<i class="fa fa-spinner fa-spin"></i>');
+            submit.prop('disabled', true);
+
             $.ajax({
                 url: '<?php echo site_url('auth/userregister/format/json/'); ?>',
                 method: 'post',
@@ -242,6 +253,10 @@ $(document).ready(function(){
                     backend:"1",
                 }
             }).success(function(resp) {
+
+                submit.html('Submit');
+                submit.prop('disabled', false);
+
                 var obj = resp;
                 if (obj.status == "success") {
                     var msg = obj.msg;

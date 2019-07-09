@@ -19,13 +19,13 @@
           <div class="fileupload fileupload-new">
             <div class="user-image"> 
              <?php
-              if($users->profile_image != ""){
+              if ($users->profile_image != "" && file_exists($users->profile_image)) {
                   $uimg = $users->profile_image;
               }else{
                   $uimg = 'assets/img/user.jpg';
               }                                    
               ?>                 
-              <img class="img-responsive" src="<?php echo site_url().$uimg; ?>">              
+              <img class="img-responsive" src="<?php echo base_url().$uimg; ?>">              
             </div>
           </div>
           <hr>
@@ -83,7 +83,13 @@
           <tr>
                 <td>Referral Code</td>
                 <td>
-                    REF<?php echo sprintf("%05d", $users->user_id_pk); ?>
+                    <?php 
+                    if (strlen($users->user_id_pk) < 5) {
+                      echo 'REF'.sprintf("%05d", $users->user_id_pk);
+                    } else {
+                      echo 'REF0'.$users->user_id_pk;
+                    }
+                    ?>
                 </td>
           </tr>
           <?php endif; ?>

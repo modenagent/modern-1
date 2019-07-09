@@ -78,12 +78,29 @@ class Auth extends REST_Controller
     }
 
     // user register api
-    public function userregister_post(){
+    public function userregister_post()
+    {
         $table = "lp_user_mst";
         $email = $this->post('uemail');
         $where = array('email'=> $email);
         $resultCheck = $this->base_model->check_existent($table,$where);
         if(!$resultCheck){
+
+            $uname = $this->post('uname');
+            $where = array('user_name'=> $uname);
+            $resultCheck = $this->base_model->check_existent($table,$where);
+            if ($resultCheck) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Username already exists.'
+                );
+                if($this->get('callback')){
+                    echo $this->get('callback')."(".json_encode($resp).")";
+                }else{
+                    $this->response($resp, 200);
+                }
+            }
+
             $roleId = $this->get('role_id')?$this->get('role_id'):$this->post('role_id');
             if(!isset($roleId) || !is_numeric($roleId) ) {
                 $roleId = 4;

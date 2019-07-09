@@ -12,7 +12,7 @@ function userlist(role_id){
         "paging": true,
         "searching": true,
         "order": [
-          [0, "DESC"]
+          [3, "DESC"]
         ],
         // Load data from an Ajax source
         "ajax": {
