@@ -103,31 +103,43 @@
     var startDate = new Date('01/01/2012');
     var FromEndDate = new Date();
     var ToEndDate = new Date();
-    ToEndDate.setDate(ToEndDate.getDate() + 365);
+    ToEndDate.setDate(ToEndDate.getDate() + 3650);
     $('#startdate').datepicker({
       format: "dd-mm-yyyy",
       weekStart: 1,
       startDate: FromEndDate,
       /*endDate: FromEndDate,*/
-      autoclose: true
+      autoclose: true,
+      clearBtn: true
     })
     .on('changeDate', function (selected) {
-        startDate = new Date(selected.date.valueOf());
-        startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
-        $('#enddate').datepicker('setStartDate', startDate);
+        if (selected.dates.length > 0) {
+          startDate = new Date(selected.date.valueOf());
+          startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+          $('#enddate').datepicker('setStartDate', startDate); 
+        }
+    }).on('clearDate', function () {
+        var FromEndDate = new Date();
+        $('#enddate').datepicker('setStartDate', FromEndDate);
     });
     $('#enddate').datepicker({
         format: "dd-mm-yyyy",
         weekStart: 1,
-        startDate: startDate,
+        startDate: FromEndDate,
         endDate: ToEndDate,
-        autoclose: true
+        autoclose: true,
+        clearBtn: true
     })
     .on('changeDate', function (selected) {
-       FromEndDate = new Date(selected.date.valueOf());
-        FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
-        $('#startdate').datepicker('setEndDate', FromEndDate);
+        if (selected.dates.length > 0) {
+          FromEndDate = new Date(selected.date.valueOf());
+          FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+          $('#startdate').datepicker('setEndDate', FromEndDate);
+        }
+    }).on('clearDate', function () {
+        var newToEndDate = new Date();
+        newToEndDate.setDate(newToEndDate.getDate() + 3650);
+        $('#startdate').datepicker('setEndDate', newToEndDate);
     });
-
   });
 </script>
