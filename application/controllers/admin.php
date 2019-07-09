@@ -686,7 +686,7 @@ MSG;
                 if (!empty($parentId)) {
                     $parent_user_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$parentId], ['user_id_pk', 'role_id_fk']);
                     if (!empty($parent_user_details)) {
-                        if($this->role_lib->is_sales_rep($parent_user_details->role_id_fk)) {
+                        if($this->role_lib->is_sales_rep($parent_user_details->role_id_fk) && $roleId == '4') {
                             $referralCode = (!empty($this->input->post('ref_code')))?$this->input->post('ref_code'):$this->user_model->setRefCode($uid);
                         }
                     }
@@ -1727,19 +1727,11 @@ MSG;
                 );
                 $where = array('coupon_id_pk'=> $coupon_id);
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
-                if($result){
-                    $resp = array(
-                        'status'=>'success',
-                        'msg'=>'Coupon edited successfully.'
-                    );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array(
-                        'status'=>'error',
-                        'msg'=>'Coupon edit failled.'
-                    );
-                    echo json_encode($resp);
-                }
+                $resp = array(
+                    'status'=>'success',
+                    'msg'=>'Coupon edited successfully.'
+                );
+                echo json_encode($resp);
             }else{
                 $resp = array(
                     'status'=>'error',

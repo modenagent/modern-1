@@ -36,7 +36,7 @@
          <div class="col-md-6">
                 <div class="form-group">
                    <label for="">Coupon Amount</label>                    
-                  <input type="text" class="form-control" id="coupon_amt" name="coupon_amt" placeholder="Coupon Amount" value="<?php echo $coupon->coupon_amt; ?>">
+                  <input type="text" class="form-control numeric" id="coupon_amt" name="coupon_amt" placeholder="Coupon Amount" value="<?php echo $coupon->coupon_amt; ?>">
                 </div>
 
               <div class="form-group">
@@ -53,9 +53,12 @@
                 
               </div>
             </div>
-            <div class="col-md-offset-10 col-md-2">
+            <div class="col-md-offset-6 col-md-2">
               <input type="hidden" name="cid" id="cid" value="<?php echo $coupon->coupon_id_pk; ?>">
               <button type="submit" class="btn btn-block btn-primary">Submit</button>
+            </div>
+            <div class="col-md-2">
+              <a href="<?php echo site_url().'admin/manage_coupon'; ?>" class="btn btn-block btn-default">Back</a>
             </div>
         </div>
       </form>

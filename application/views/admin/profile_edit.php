@@ -130,8 +130,8 @@
                 <?php endif; ?>
                 <?php if($user->role_id_fk == '4'): ?>
                 <tr>
-                  <td>Referral Code</td>
-                  <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control" placeholder="Referral Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
+                  <td>Marketing Code</td>
+                  <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control" placeholder="Marketing Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
                   <script type="text/javascript">
                     $('#ref_code').keypress(function(e){ 
                        if (e.which == 48){
@@ -145,7 +145,24 @@
           <input type="hidden" name="userid" id="userid" value="<?php echo $user->user_id_pk; ?>">
           <tr>
             <td></td>
-            <td><button class="btn btn-primary">Update</button></td>
+            <td>
+              <button class="btn btn-primary">Update</button>
+              <?php
+              $back_url = '';
+              switch ($user->role_id_fk) {
+                case '2':
+                  $back_url = site_url().'admin/manage_companies';
+                  break;
+                case '3':
+                  $back_url = site_url().'admin/manage_sales_reps';
+                  break;
+                case '4':
+                  $back_url = site_url().'admin/manage_user';
+                  break;
+              }
+              ?>
+              <a href="<?php echo $back_url; ?>" class="btn btn-default">Back</a>
+            </td>
           </tr>
           
         </tbody>
