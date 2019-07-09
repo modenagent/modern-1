@@ -29,7 +29,7 @@
               <div class="form-group">
                 <label for="">Coupon Start Date</label>
                  
-                  <input type="text" class="form-control" id="startdate" name="startdate" placeholder="Start Date" value="<?php echo date('d-m-Y', strtotime($coupon->start_date)); ?>">
+                  <input type="text" class="form-control" id="startdate" name="startdate" placeholder="Start Date" value="">
                 
               </div>
             </div>
@@ -49,7 +49,7 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="" >Coupon End Date</label>                
-                  <input type="text" class="form-control" id="enddate" name="enddate" placeholder="End Date" value="<?php echo date('d-m-Y', strtotime($coupon->end_date)); ?>" >
+                  <input type="text" class="form-control" id="enddate" name="enddate" placeholder="End Date" value="" >
                 
               </div>
             </div>
@@ -76,25 +76,40 @@
       weekStart: 1,
       startDate: '01/01/2012',
       /*endDate: FromEndDate,*/
-      autoclose: true
+      autoclose: true,
+      clearBtn: true
     })
     .on('changeDate', function (selected) {
+      if (selected.dates.length > 0) {
         startDate = new Date(selected.date.valueOf());
         startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
         $('#enddate').datepicker('setStartDate', startDate);
+      }
+    }).on('clearDate', function () {
+        var FromEndDate = new Date();
+        $('#enddate').datepicker('setStartDate', FromEndDate);
     });
     $('#enddate').datepicker({
         format: "dd-mm-yyyy",
         weekStart: 1,
         startDate: startDate,
         endDate: ToEndDate,
-        autoclose: true
+        autoclose: true,
+        clearBtn: true
     })
     .on('changeDate', function (selected) {
+      if (selected.dates.length > 0) {
         FromEndDate = new Date(selected.date.valueOf());
         FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
         $('#startdate').datepicker('setEndDate', FromEndDate);
+      }
+    }).on('clearDate', function () {
+        var newToEndDate = new Date();
+        newToEndDate.setDate(newToEndDate.getDate() + 3650);
+        $('#startdate').datepicker('setEndDate', newToEndDate);
     });
 
+    $('#startdate').datepicker("setDate", "<?php echo date('d-m-Y', strtotime($coupon->start_date)); ?>");
+    $('#enddate').datepicker("setDate", "<?php echo date('d-m-Y', strtotime($coupon->end_date)); ?>");
   });
 </script>
