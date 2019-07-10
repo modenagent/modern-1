@@ -270,10 +270,10 @@ switch ($title){
           email:true
         },
         phone:{
-          required:false,
+          required:true,
           number:true,
           minlength: 10,
-          maxlength: 10
+          maxlength: 12
         },
 //        license: "required",
         cname : "required",
@@ -282,8 +282,12 @@ switch ($title){
       messages:{
         fname: "Please enter first name.",
         lname: "Please enter last name.",
-        email: "Please enter email.",
-        phone: "Please use 12 digits.",   
+        email: {
+          required: "Please enter email.",
+        },
+        phone: {
+          required: "Please enter Phone No."
+        },
         license: "Please enter license no.",
         cname : "Please enter company name.",
         cadd : "Please enter address."
@@ -445,6 +449,10 @@ switch ($title){
 
     $('.numeric').on('input', function (event) {
         this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    $('.alphanumeric').on('input', function (event) {
+        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
     });
 // document end here
 });

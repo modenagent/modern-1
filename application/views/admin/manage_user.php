@@ -30,12 +30,12 @@
             <div class="col-md-12">
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" placeholder="First Name" name="fname" class="form-control" id="fname">
+                  <input type="text" placeholder="First Name" name="fname" class="form-control alphanumeric" id="fname">
                 </div>
               </div>
               <div class="col-md-3">
                 <div class="form-group">
-                  <input type="text" placeholder="Last Name" name="lname" class="form-control" id="lname">
+                  <input type="text" placeholder="Last Name" name="lname" class="form-control alphanumeric" id="lname">
                 </div>
               </div>
               <div class="col-md-3">
@@ -45,7 +45,7 @@
               </div>
               <div class="col-md-3">
                   <div class="form-group">                  
-                    <input type="text" placeholder="User Name" name="uname" class="form-control" id="uname">
+                    <input type="text" placeholder="User Name" name="uname" class="form-control alphanumeric" id="uname">
                   </div>
               </div>
             </div>
@@ -98,14 +98,14 @@
               </div>
               <div class="col-md-3">
                   <div class="form-group">
-                    <input type="text" placeholder="Company Name" name="cname" class="form-control" id="cname" readonly="readonly">
+                    <input type="text" placeholder="Company Name" name="cname" class="form-control alphanumeric" id="cname" readonly="readonly">
                   </div> 
               </div>
               <?php elseif ($add_form=='company'): ?>
                   <input type="hidden" name="parent_id" value="<?php echo $admin_id ?>" id="parent_id">
                   <div class="col-md-3">
                       <div class="form-group">
-                        <input type="text" placeholder="Company Name" name="cname" class="form-control" id="cname">
+                        <input type="text" placeholder="Company Name" name="cname" class="form-control alphanumeric" id="cname">
                       </div> 
                   </div>
               <?php endif; ?>
@@ -202,8 +202,12 @@ $(document).ready(function(){
             cpassword: "Password does not match.",
             fname: "Please enter first name.",
             lname: "Please enter last name.",
-            uemail: "Please enter email.",
-            uphone: "Please use 12 digits.",
+            uemail: {
+              required: "Please enter email.",
+            },
+            uphone: {
+              required: "Please enter Phone No."
+            },
             ulicence: "Please enter license no.",
             cname: "Please enter company name.",
             caddress: "Please enter address.",

@@ -676,7 +676,8 @@ MSG;
                 $fname = mysqli_real_escape_string($this->dbConn, $postedArr['fname']);
                 $lname = mysqli_real_escape_string($this->dbConn, $postedArr['lname']);
                 $email = mysqli_real_escape_string($this->dbConn, $postedArr['email']);
-                $username = mysqli_real_escape_string($this->dbConn, $postedArr['username']);
+                // USER NAME CAN NOT BE CHANGED ONCE CREATED
+                //$username = mysqli_real_escape_string($this->dbConn, $postedArr['username']);
                 $phone = mysqli_real_escape_string($this->dbConn, $postedArr['phone']);
                 $license = mysqli_real_escape_string($this->dbConn, $postedArr['license']);
                 $cname = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
@@ -705,18 +706,19 @@ MSG;
                     'company_add' => $cadd,
                 );
                 $resultCheck = false;
-                if($username!='') {
-                    $resultCheck = $this->base_model->check_existent($table,array("user_name = '$username' && user_id_pk!="=>$uid));
-                    $data['user_name'] = $username;
-                }
-                if($resultCheck) {
-                    $resp = array(
-                        'status'=>'error',
-                        'msg'=>'Username taken.'
-                        );
-                    echo json_encode($resp);
-                    exit;
-                }
+                // USER NAME CAN NOT BE CHANGED ONCE CREATED
+                // if($username!='') {
+                //     $resultCheck = $this->base_model->check_existent($table,array("user_name = '$username' && user_id_pk!="=>$uid));
+                //     $data['user_name'] = $username;
+                // }
+                // if($resultCheck) {
+                //     $resp = array(
+                //         'status'=>'error',
+                //         'msg'=>'Username taken.'
+                //         );
+                //     echo json_encode($resp);
+                //     exit;
+                // }
                 $resultCheck = $this->base_model->check_existent($table,array("email = '$email' && user_id_pk!="=>$uid));
                 if($resultCheck) {
                     $resp = array(

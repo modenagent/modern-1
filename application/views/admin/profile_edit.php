@@ -56,12 +56,12 @@
         <tbody>
           <tr>
             <td>First Name :</td>
-            <td><input type="text" class="form-control" placeholder="Enter first name" name="fname" id="fname" value="<?php echo $user->first_name; ?>"></td>
+            <td><input type="text" class="form-control alphanumeric" placeholder="Enter first name" name="fname" id="fname" value="<?php echo $user->first_name; ?>"></td>
             
           </tr>
           <tr>
             <td>Last Name :</td>
-            <td><input type="text" class="form-control" placeholder="Enter last name" name="lname" id="lname" value="<?php echo $user->last_name; ?>"></td>
+            <td><input type="text" class="form-control alphanumeric" placeholder="Enter last name" name="lname" id="lname" value="<?php echo $user->last_name; ?>"></td>
             
           </tr>
           <tr>
@@ -71,13 +71,14 @@
           </tr>
           <tr>
               <td>Username :</td>
-              <td><input type="text" class="form-control" name="username" id="username" value="<?php echo $user->user_name; ?>" placeholder="User Name"></td>
-              
+              <td>
+                <?php echo ($user->user_name)?$user->user_name:'-'; ?>
+              </td>
           </tr>
 
           <tr>
             <td>Phone No. :</td>
-            <td><input type="text" class="form-control" placeholder="Phone No" name="phone" id="phone" value="<?php echo $user->phone; ?>"></td>
+            <td><input type="text" class="form-control numeric" maxlength="12" placeholder="Phone No" name="phone" id="phone" value="<?php echo $user->phone; ?>"></td>
           </tr>
           
           <tr>
@@ -88,7 +89,7 @@
 
           <tr>
             <td>Company Name</td>
-            <td><input type="text" placeholder="" class="form-control" placeholder="Company Name" name="cname" id="cname" value="<?php echo $user->company_name; ?>"></td>            
+            <td><input type="text" placeholder="" class="form-control alphanumeric" placeholder="Company Name" name="cname" id="cname" value="<?php echo $user->company_name; ?>"></td>            
           </tr>
           <tr>
             <td>Company Address</td>
@@ -131,7 +132,7 @@
                 <?php if($user->role_id_fk == '4'): ?>
                 <tr>
                   <td>Marketing Code</td>
-                  <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control" placeholder="Marketing Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
+                  <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control alphanumeric" placeholder="Marketing Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
                   <script type="text/javascript">
                     $('#ref_code').keypress(function(e){ 
                        if (e.which == 48){
@@ -151,13 +152,13 @@
               $back_url = '';
               switch ($user->role_id_fk) {
                 case '2':
-                  $back_url = site_url().'admin/manage_companies';
+                  $back_url = site_url().'/admin/manage_companies';
                   break;
                 case '3':
-                  $back_url = site_url().'admin/manage_sales_reps';
+                  $back_url = site_url().'/admin/manage_sales_reps';
                   break;
                 case '4':
-                  $back_url = site_url().'admin/manage_user';
+                  $back_url = site_url().'/admin/manage_user';
                   break;
               }
               ?>
