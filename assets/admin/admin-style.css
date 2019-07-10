@@ -1141,4 +1141,9 @@ button[disabled]{
   pointer-events: inherit !important;
 }
 
+.admin-signin-btn {
+	background: #cc9964;
+	color: #fff;
+}
+
 /* MY CUSTOM STYLE END */

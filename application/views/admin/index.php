@@ -57,7 +57,7 @@
                           </div>
                           <div class="row"> 
                           <div class="col-md-12"> 
-                            <button type="submit" class="btn  btn-lp btn-block">Sign in</button>
+                            <button type="submit" class="btn  btn-lp btn-block admin-signin-btn">Sign in</button>
                           </div>
                          </div>               
                         </form>
