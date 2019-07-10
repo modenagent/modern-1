@@ -459,6 +459,24 @@ class Admin_model extends CI_Model
         return $result->result();
     }
 
+    public function get_invoice($invoice_number) 
+    {
+        $sql = "SELECT 
+            invoice.invoice_num, invoice.invoice_amount, invoice.invoice_date, invoice.invoice_to, invoice.invoice_addr, invoice.invoice_pdf, 
+            cart.total_amount, cart.is_success,
+            listing.project_name, listing.property_address, listing.report_type
+        FROM lp_invoices invoice
+            LEFT JOIN lp_my_cart cart ON invoice.cart_id_fk = cart.cart_id_pk
+            LEFT JOIN lp_my_listing listing ON cart.project_id_fk = listing.project_id_pk
+        WHERE invoice.invoice_num = ? ";
+        $result = $this->db->query($sql, [$invoice_number]);
+        $data = [];
+        if ($result->num_rows()>0) {
+            $data = $result->row_array();
+        } 
+        return $data;
+    }
+
     public function view_orders()
     {
         $this->db->select('orders.*,order_detail.*,registration.first_name,registration.last_name,registration.email_id');

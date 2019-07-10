@@ -389,7 +389,8 @@ MSG;
         $data['title'] = "invoice";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $data['user_invoices'] = $this->admin_model->user_invoices($uid);
+            //$data['user_invoices'] = $this->admin_model->user_invoices($uid);
+            $data['user_invoice'] = $this->admin_model->get_invoice($uid);
             $this->load->view('admin/header',$data);
             $this->load->view('admin/invoice',$data);
             $this->load->view('admin/footer',$data);

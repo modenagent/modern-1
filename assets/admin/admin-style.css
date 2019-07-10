@@ -1146,4 +1146,24 @@ button[disabled]{
 	color: #fff;
 }
 
+.border-none {
+	border: none !important;
+}
+
+.invoice-hr1 {
+	margin: 15px 0px !important;
+}
+
+.invoice-amount-hr {
+	margin: 5px 0px !important;
+}
+
+.invoice-table p {
+	margin: 5px 0px;
+}
+
+.invoice-header {
+	text-transform: uppercase;
+}
+
 /* MY CUSTOM STYLE END */
