@@ -56,31 +56,6 @@
                                 </div>
                                 <br/>
                                 <hr class="invoice-hr1" />
-                                <div class="row" style="display:none;">
-                                    <div class="col-md-3">
-                                        <address>
-                                        <strong>Billed To:</strong><br/>
-
-                                        <?php echo $showAdd; ?>
-
-                                        </address>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <address>
-                                        <strong>Shipped To:</strong><br/>
-                                        <?php echo $showAdd; ?>
-                                        </address>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <address><strong>Date:</strong><br/><?php echo $invDate; ?></address>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <address><strong>Balance:</strong><br/>
-
-                                            <h2 class="text-green"><strong>$ <?php echo $invAmt; ?></strong></h2></address>
-                                    </div>
-                                </div>
-                                <br/>
                                 </div>
                         </div>
                     </div>
