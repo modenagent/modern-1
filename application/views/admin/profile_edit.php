@@ -18,20 +18,29 @@
         <div class="text-center">
           <h4><?php echo ucfirst($user->first_name)." ".ucfirst($user->last_name);?></h4>
           <div class="fileupload fileupload-new">
-            <div class="user-image">
-              <img class="img-responsive" src="https://0.s3.envato.com/files/50024461/153%20-%2032143.jpg">
-              <input type="file">
+            <div class="user-image"> 
+              <?php
+                if($user->profile_image != ""){
+                    if (file_exists(FCPATH.'/'.$user->profile_image)) {
+                      $uimg = $user->profile_image;
+                    } else {
+                      $uimg = 'assets/img/user.jpg';
+                    }
+                }else{
+                  $uimg = 'assets/img/user.jpg';
+                }                                    
+              ?>       
+              <a href="javascript:void(0)"><img class="img-responsive" src="<?php echo base_url().$uimg; ?>" /></a>
+              <input type="file" class="file-type hidden" />
+              <input type="text" id="fileimage" class="hidden file-path" name="user[profile_image]" value="<?php echo $user->profile_image; ?>" />
             </div>
-            <center>
-            <a href="#" class="btn btn-default">Change Profile</a>
-            </center>
-        
+            <br/>
+            <a id="image-change" href="javascript:void(0)" class="btn btn-default">Change Profile</a>
+            <hr>
+          </div>
         </div>
-        <hr>
       </div>
-      
-    </div>
-  </div>
+      </div>
   <div class="col-sm-7 col-md-8">
     <form method="post" role="form" id="user_edit">
       <table class="table-condensed table-hover">
@@ -39,7 +48,7 @@
             <tr>
               <th colspan="3">Personal Information 
               <?php if($this->role_lib->is_admin()): ?>
-                <button class="btn btn-primary pull-right" onclick="location.href = '<?php echo site_url('admin/set_password/'.$user->user_id_pk); ?>'">Set Password</button>
+                <a class="btn btn-primary pull-right" href='<?php echo site_url('admin/set_password/'.$user->user_id_pk); ?>'>Set Password</a>
               <?php endif; ?>
               </th>
             </tr>
@@ -119,9 +128,10 @@
                     </td>                
                 </tr>
                 <?php endif; ?>
+                <?php if($user->role_id_fk == '4'): ?>
                 <tr>
-                  <td>Referral Code</td>
-                  <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control" placeholder="Referral Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
+                  <td>Marketing Code</td>
+                  <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control" placeholder="Marketing Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
                   <script type="text/javascript">
                     $('#ref_code').keypress(function(e){ 
                        if (e.which == 48){
@@ -130,11 +140,29 @@
                     });
                   </script>
                 </tr>
+                <?php endif; ?>
               <?php endif; ?>
           <input type="hidden" name="userid" id="userid" value="<?php echo $user->user_id_pk; ?>">
           <tr>
             <td></td>
-            <td><button class="btn btn-primary">Update</button></td>
+            <td>
+              <button class="btn btn-primary">Update</button>
+              <?php
+              $back_url = '';
+              switch ($user->role_id_fk) {
+                case '2':
+                  $back_url = site_url().'admin/manage_companies';
+                  break;
+                case '3':
+                  $back_url = site_url().'admin/manage_sales_reps';
+                  break;
+                case '4':
+                  $back_url = site_url().'admin/manage_user';
+                  break;
+              }
+              ?>
+              <a href="<?php echo $back_url; ?>" class="btn btn-default">Back</a>
+            </td>
           </tr>
           
         </tbody>
@@ -155,3 +183,32 @@
 <!-- page end-->
 </div>
 </div>
+<script type="text/javascript">
+$(".user-image a").click(function() {                                                
+  $(".user-image").find(".file-type").trigger("click");
+});
+$("#image-change").click(function() {                                                
+  $(".user-image").find(".file-type").trigger("click");
+});
+$(".user-image .file-type").change(function(){
+  var file_data = $(this).prop('files')[0];
+  var form_data = new FormData();
+  form_data.append('fileToUpload', file_data)                   
+  $.ajax({
+      url: '<?php echo base_url(); ?>admin/admin_upload_file/<?php echo $user->user_id_pk; ?>/profile-image',
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,
+      type: 'post',
+      success: function(object) {
+          if (object.status=='success') {
+            $('.user-image a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
+          } else {
+            alert(object.msg);
+          }
+      }
+  });
+});
+</script>

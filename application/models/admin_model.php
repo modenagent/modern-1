@@ -661,6 +661,32 @@ class Admin_model extends CI_Model
         $query = $this->db->get('lp_leads as l');
         return $query->result();
     }
+    
+    // Get Users
+    public function having_user_access($userId, $adminId, $adminRoleId, $roleId)
+    {
+        $this->db->select('main.user_id_pk');
+        $this->load->library('role_lib');
+        if ($adminRoleId == '1') {
+            $this->db->where("main.role_id_fk = {$roleId}");
+        } else {
+            if($roleId==4 && $this->role_lib->is_manager_l1()) {
+                $this->db->join('lp_user_mst as child','child.user_id_pk = main.parent_id','left');
+                $this->db->where("(main.parent_id = {$adminId} or child.parent_id = {$adminId}) && main.role_id_fk = {$roleId}");
+            } else {
+                $this->db->where("main.parent_id = {$adminId} && main.role_id_fk = {$roleId}");
+            }
+        }
+        
+        $this->db->where("main.user_id_pk = {$userId}");
+        $query = $this->db->get('lp_user_mst as main');
+        if ($query->num_rows()>0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
 // class ends here
 }
 ?>

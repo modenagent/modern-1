@@ -136,5 +136,16 @@ class User_model extends Base_model
         $query = $this->db->get('lp_user_mst user');
         return $result = $query->row_array();
     }
+
+    public function getRandomRefCode() 
+    {
+        $refCode = '';
+        do {
+            $refCode = $this->generateRandomCode();
+            $_checkSql = "select count(user_id_pk) as count from lp_user_mst where ref_code='{$refCode}'";
+            $_res = $this->db->query($_checkSql);
+        } while($_res->row()->count);
+        return $refCode;
+    }
 }          
 ?>

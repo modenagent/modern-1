@@ -344,10 +344,10 @@ MSG;
             $data['user_role'] = '';
             $data['add_form'] = 'end_user';
             if($_isAdmin) {
-                $data['parents'] = $this->role_model->get_sales_reps();    
+                $data['parents'] = $this->role_model->get_sales_reps(null, 'Y');    
                 $data['choose'] = 'Sales Rep';
             } else if($_isManager) {
-                $data['parents'] = $this->role_model->get_sales_reps($adminId);    
+                $data['parents'] = $this->role_model->get_sales_reps($adminId, 'Y');    
                 $data['choose'] = 'Sales Rep';
             }
             $companies = array();
@@ -607,8 +607,20 @@ MSG;
     public function profile($uid)
     {
         $data['title'] = "Profile View";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
+        $adminId = $data['admin_id'] = $this->session->userdata('adminid');    
+        $adminDetails = $this->base_model->get_record_by_id('lp_user_mst',array('user_id_pk' => $adminId));
+        if($adminDetails){
+
+            $user = $this->base_model->get_record_by_id('lp_user_mst',array('user_id_pk' => $uid));
+            if (empty($user)) {
+                redirect('admin/index');
+            }
+
+            $having_access = $this->admin_model->having_user_access($uid, $adminId, $adminDetails->role_id_fk, $user->role_id_fk);
+            if (!$having_access) {
+                redirect('admin/index');
+            }
+
             $this->load->library('stripe');
             // Create the library object
             $stripe = new Stripe( null );
@@ -670,7 +682,16 @@ MSG;
                 $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
                 $parentId = (!empty($this->input->post('parent_id')))?$this->input->post('parent_id'):0;
-                $referralCode = (!empty($this->input->post('ref_code')))?$this->input->post('ref_code'):$this->user_model->setRefCode($uid);
+
+                if (!empty($parentId)) {
+                    $parent_user_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$parentId], ['user_id_pk', 'role_id_fk']);
+                    if (!empty($parent_user_details)) {
+                        if($this->role_lib->is_sales_rep($parent_user_details->role_id_fk) && $roleId == '4') {
+                            $referralCode = (!empty($this->input->post('ref_code')))?$this->input->post('ref_code'):$this->user_model->setRefCode($uid);
+                        }
+                    }
+                }
+                
 
                 $table = "lp_user_mst";
                 $data = array(
@@ -718,21 +739,11 @@ MSG;
                 );
 
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
-                //var_dump($result);die;
-                if($result){
-                    $resp = array(
-                        "status" => "success",
-                        "msg" => "Updated succesfully."
-                    );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array(
-                        "status" => "error",
-                        "msg" => "Update failed."
-                    );
-                    echo json_encode($resp);
-                }
-
+                $resp = array(
+                    "status" => "success",
+                    "msg" => "Updated succesfully."
+                );
+                echo json_encode($resp);
             }
         }else{
             redirect('admin/index');
@@ -1629,6 +1640,15 @@ MSG;
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
 
+                if ($e_date<$s_date) {
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Coupon start date can not greater than end date.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
+
                 $table = "lp_coupon_mst";
                 $where = array('coupon_code'=> $coupon_code);
                 $resultCheck = $this->base_model->check_existent($table,$where);
@@ -1687,6 +1707,15 @@ MSG;
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
 
+                if ($e_date<$s_date) {
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Coupon start date can not greater than end date.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
+
                 $table = "lp_coupon_mst";
                 $data = array(
                     'coupon_code' => $coupon_code,
@@ -1698,19 +1727,11 @@ MSG;
                 );
                 $where = array('coupon_id_pk'=> $coupon_id);
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
-                if($result){
-                    $resp = array(
-                        'status'=>'success',
-                        'msg'=>'Coupon edited successfully.'
-                    );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array(
-                        'status'=>'error',
-                        'msg'=>'Coupon edit failled.'
-                    );
-                    echo json_encode($resp);
-                }
+                $resp = array(
+                    'status'=>'success',
+                    'msg'=>'Coupon edited successfully.'
+                );
+                echo json_encode($resp);
             }else{
                 $resp = array(
                     'status'=>'error',
@@ -1968,7 +1989,7 @@ MSG;
             $data['user_role'] = '';
             $data['add_form'] = 'sales_rep';
             if($_isAdmin) {
-                $data['parents'] = $this->role_model->get_companies();
+                $data['parents'] = $this->role_model->get_companies('Y');
                 $companies = array();
                 foreach($data['parents'] as $_company){
                     $companies[$_company['user_id_pk']]['cadd'] = $_company['company_add'];
@@ -2308,6 +2329,64 @@ MSG;
                 "data" => []
             );    
             echo json_encode($output);
+        }
+    }
+
+    public function admin_upload_file($userId, $type)
+    {
+        $status = "";
+        $msg = "";
+        $fileuri='';
+        $file_element_name = 'fileToUpload';
+
+        $user_old_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$userId], ['profile_image', 'company_logo']);
+        if (empty($user_old_details)) {
+            echo json_encode(array('status' => 'error', 'msg' => 'User does not exists', 'message' =>'file not uploaded'));
+            exit();
+        }
+
+        if ($status != "error")
+        {
+            $config['upload_path'] = 'assets/images/';
+            $config['allowed_types'] = 'gif|jpg|png|doc|txt';
+            $config['max_size']  = '2048';
+            if ($type == '') {
+            $config['encrypt_name'] = TRUE;
+            } else if ($type == 'profile-image') {
+            $new_name = 'user_'.$userId.'_'.time().rand(10,100000);
+            $config['file_name'] = $new_name;
+            } else if ($type == 'company-image') {
+            $new_name = 'user_company_'.$userId.'_'.time().rand(10,100000);
+            $config['file_name'] = $new_name;
+            }
+        
+            $this->load->library('upload', $config);
+        
+            if (!$this->upload->do_upload($file_element_name))
+            {
+                $status = 'error';
+                $msg = $this->upload->display_errors('', '');
+            }
+            else
+            {
+                $data = $this->upload->data();
+                $status = "success";
+                $msg = "File successfully uploaded";
+                $fileuri=  $config['upload_path'].$data['file_name'];
+                if ($user_old_details) {
+                    if ($type == 'profile-image') {
+                        $this->base_model->update_record_by_id('lp_user_mst',array('profile_image'=>$fileuri),array('user_id_pk'=>$userId));
+                        if ($user_old_details->profile_image != '' && file_exists(FCPATH.'/'.$user_old_details->profile_image)) {
+                        $deleted = unlink(FCPATH.'/'.$user_old_details->profile_image);     
+                        }
+                    }
+                }
+            }
+        }
+        if($fileuri!=''){
+            echo json_encode(array('status' => $status, 'msg' => $msg,'fileuri'=>$fileuri ) );
+        }else{
+            echo json_encode(array('status' => $status, 'msg' => $msg, 'message' =>'file not uploaded'));
         }
     }
 

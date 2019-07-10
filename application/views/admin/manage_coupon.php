@@ -15,41 +15,43 @@
   </div>
   <div class="collapse" id="collapseExample">
     <div class="well clearfix">
-      <form action="" method="POST" role="form" id="add_coupon">
+      <form action="" method="POST" role="form" id="add_coupon" autocomplete="off">
         <legend>Add Coupon</legend> 
           <div class="row">
-            <div class="col-md-6">
-              <div class="form-group">
-                
-                <input type="text" class="form-control" id="coupon_name" name="coupon_name" placeholder="Coupon Name">
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="coupon_name" name="coupon_name" placeholder="Coupon Name">
+                </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">                  
+                    <input type="text" class="form-control" id="coupon_code" name="coupon_code" placeholder="Coupon Code">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">                  
+                    <input type="text" class="form-control numeric" id="coupon_amt" name="coupon_amt" placeholder="Coupon Amount">
+                  </div>
               </div>
             </div>
-            <div class="col-md-3">
-                <div class="form-group">                  
-                  <input type="text" class="form-control" id="coupon_code" name="coupon_code" placeholder="Coupon Code">
-                </div>
-            </div>
-             <div class="col-md-3">
-                <div class="form-group">                  
-                  <input type="text" class="form-control" id="coupon_amt" name="coupon_amt" placeholder="Coupon Amount">
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                  
-                  <input type="text" class="form-control" id="coupon_des" name="coupon_des" placeholder="Coupon Description">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">                  
-                  <input type="text" class="form-control datepicker" id="startdate" name="startdate" placeholder="Start Date">
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                  
-                  <input type="text" class="form-control datepicker" id="enddate" name="enddate" placeholder="End Date">
-                </div> 
+            <div class="col-md-12">
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="coupon_des" name="coupon_des" placeholder="Coupon Description">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">                  
+                    <input type="text" class="form-control" id="startdate" name="startdate" placeholder="Start Date">
+                  </div>
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    
+                    <input type="text" class="form-control" id="enddate" name="enddate" placeholder="End Date">
+                  </div> 
+              </div>
             </div>
             <div class="col-md-offset-10 col-md-2">      
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -98,5 +100,46 @@
       $("#ma-toggle-icon").addClass('fa-plus').removeClass('fa-minus');
     });
 
+    var startDate = new Date('01/01/2012');
+    var FromEndDate = new Date();
+    var ToEndDate = new Date();
+    ToEndDate.setDate(ToEndDate.getDate() + 3650);
+    $('#startdate').datepicker({
+      format: "dd-mm-yyyy",
+      weekStart: 1,
+      startDate: FromEndDate,
+      /*endDate: FromEndDate,*/
+      autoclose: true,
+      clearBtn: true
+    })
+    .on('changeDate', function (selected) {
+        if (selected.dates.length > 0) {
+          startDate = new Date(selected.date.valueOf());
+          startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
+          $('#enddate').datepicker('setStartDate', startDate); 
+        }
+    }).on('clearDate', function () {
+        var FromEndDate = new Date();
+        $('#enddate').datepicker('setStartDate', FromEndDate);
+    });
+    $('#enddate').datepicker({
+        format: "dd-mm-yyyy",
+        weekStart: 1,
+        startDate: FromEndDate,
+        endDate: ToEndDate,
+        autoclose: true,
+        clearBtn: true
+    })
+    .on('changeDate', function (selected) {
+        if (selected.dates.length > 0) {
+          FromEndDate = new Date(selected.date.valueOf());
+          FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
+          $('#startdate').datepicker('setEndDate', FromEndDate);
+        }
+    }).on('clearDate', function () {
+        var newToEndDate = new Date();
+        newToEndDate.setDate(newToEndDate.getDate() + 3650);
+        $('#startdate').datepicker('setEndDate', newToEndDate);
+    });
   });
 </script>
