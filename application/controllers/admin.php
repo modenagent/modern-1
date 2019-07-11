@@ -698,6 +698,7 @@ MSG;
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
                 $parentId = (!empty($this->input->post('parent_id')))?$this->input->post('parent_id'):0;
 
+                $referralCode = '';
                 if (!empty($parentId)) {
                     $parent_user_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$parentId], ['user_id_pk', 'role_id_fk']);
                     if (!empty($parent_user_details)) {
@@ -713,7 +714,7 @@ MSG;
                     'first_name' => $fname,
                     'last_name' => $lname,
                     'email'=> $email,
-                    'mobile'=>  $phone,
+                    'phone'=>  $phone,
                     'license_no' => $license,
                     'company_name' => $cname,
                     'company_add' => $cadd,
