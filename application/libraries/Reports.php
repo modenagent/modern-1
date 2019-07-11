@@ -548,15 +548,16 @@ use Knp\Snappy\Pdf;
                 );
             }
             if($turboMode){
+                $qpdf_path =  $CI->config->item('qpdf_path');
                 //Merging Static pdf pages with dynamic pdf pages
                 $pdfFileName = 'temp/'.str_replace(" ", "_", $siteAddress).'_'.md5(time() . rand()).'.pdf';
                 if($presentationType=="seller"){
-                    $res = exec("qpdf  {$pdfFileDynamic} --pages {$pdfFileDynamic} 1 {$contentsFile} 1 {$pdfFileDynamic} 2-7 {$tailFile} 1-12 -- {$pdfFileName}");
+                    $res = exec($qpdf_path." {$pdfFileDynamic} --pages {$pdfFileDynamic} 1 {$contentsFile} 1 {$pdfFileDynamic} 2-7 {$tailFile} 1-12 -- {$pdfFileName}");
                 } else {
-                    $res = exec("qpdf  {$pdfFileDynamic} --pages {$pdfFileDynamic} 1 {$contentsFile} 1 {$pdfFileDynamic} 2-6 {$tailFile} 1-13 -- {$pdfFileName}");
+                    $res = exec($qpdf_path." {$pdfFileDynamic} --pages {$pdfFileDynamic} 1 {$contentsFile} 1 {$pdfFileDynamic} 2-6 {$tailFile} 1-13 -- {$pdfFileName}");
                 }
                 //Removing dynamic as it is not needed any more
-                exec("rm {$pdfFileDynamic}");
+                unlink($pdfFileDynamic);
             } /*else {
                 $pdfFileName = $pdfFileDynamic;
                 //$res = exec("qpdf  {$pdffFileDynamic} --pages {$pdfFileDynamic} 1 temp/S-2.pdf 1 {$pdfFileDynamic} 2-7 temp/S-9-20.pdf 1-12 -- {$pdfFileName}");
