@@ -193,7 +193,7 @@ $(document).ready(function(){
                 maxlength: 12,
                 number: true
             },
-            ulicence: "required",
+            //ulicence: "required",
             cname: "required",
             caddress: "required"
         },

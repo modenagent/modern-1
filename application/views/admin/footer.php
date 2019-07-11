@@ -183,7 +183,9 @@ switch ($title){
 
       },
       messages:{
-        old_password:"Old password is required.",
+        old_password:{
+          required: "Old password is required.",
+        },
         password: {
           required: "New password is required.",
         },
@@ -275,7 +277,7 @@ switch ($title){
           minlength: 10,
           maxlength: 12
         },
-        license: "required",
+        //license: "required",
         cname : "required",
         cadd : "required" 
       },
