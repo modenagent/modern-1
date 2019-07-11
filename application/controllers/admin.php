@@ -307,7 +307,7 @@ MSG;
             $form_data = $_POST['pass'];
             $result = $this->admin_model->update_password($form_data,$adminId);
             if($result == true){
-                $resp = array('status' => 'success', 'msg' => 'Pasword updated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'Pasword updated successfully.' );
                 echo json_encode($resp);
             }
         }
@@ -578,7 +578,7 @@ MSG;
         if($adminId){
             $delResult = $this->admin_model->deleteuser($id);
             if($delResult){
-                $resp = array('status' => 'success', 'msg' => 'User deleted succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'User deleted successfully.' );
                 echo json_encode($resp);
             }
         }
@@ -593,7 +593,7 @@ MSG;
         if($adminId){
             $verifyResult = $this->admin_model->verifyuser($id);
             if($verifyResult){
-                $resp = array('status' => 'success', 'msg' => 'User activated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'User activated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -608,7 +608,7 @@ MSG;
         if($adminId){
             $unverifyResult = $this->admin_model->unverifyuser($id);
             if($unverifyResult){
-                $resp = array('status' => 'success', 'msg' => 'User inactivated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'User inactivated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -757,7 +757,7 @@ MSG;
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
                 $resp = array(
                     "status" => "success",
-                    "msg" => "Updated succesfully."
+                    "msg" => "Updated successfully."
                 );
                 echo json_encode($resp);
             }
@@ -1301,7 +1301,7 @@ MSG;
             if($delResult){
                 $delResult2 = $this->admin_model->deleteproduct($id);
                 if($delResult2){
-                    $resp = array('status' => 'success', 'msg' => 'Product deleted succesfully.' );
+                    $resp = array('status' => 'success', 'msg' => 'Product deleted successfully.' );
                     echo json_encode($resp);
                 }
             }else{
@@ -1321,7 +1321,7 @@ MSG;
         if($adminId){
             $verifyResult = $this->admin_model->verifyproduct($id);
             if($verifyResult){
-                $resp = array('status' => 'success', 'msg' => 'Product activated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'Product activated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -1336,7 +1336,7 @@ MSG;
         if($adminId){
             $unverifyResult = $this->admin_model->unverifyproduct($id);
             if($unverifyResult){
-                $resp = array('status' => 'success', 'msg' => 'Product inactivated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'Product inactivated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -1455,7 +1455,7 @@ MSG;
                 );
                 $delResult = $this->base_model->delete_record_by_id($table,$where1);
                 if($delResult){
-                    $resp = array('status' => 'success', 'msg' => 'Category deleted succesfully.' );
+                    $resp = array('status' => 'success', 'msg' => 'Category deleted successfully.' );
                     echo json_encode($resp);
                 }
             }else{
@@ -1847,7 +1847,7 @@ MSG;
                 if($todayDate < $getCouponDate->start_date){
                     $delResult = $this->base_model->delete_record_by_id($table2,$where2);
                     if($delResult){
-                        $resp = array('status' => 'success', 'msg' => 'Coupon deleted succesfully.' );
+                        $resp = array('status' => 'success', 'msg' => 'Coupon deleted successfully.' );
                         echo json_encode($resp);
                     }
                 }else{
@@ -2118,47 +2118,34 @@ MSG;
             } else {
                 $users = $this->admin_model->manage_user($adminId, 4);
             }
-            include 'application/third_party/phpexcel/PHPExcel.php';
 
-            /** PHPExcel_Writer_Excel2007 */
-            include 'application/third_party/phpexcel/PHPExcel/Writer/Excel2007.php';
-            $objPHPExcel = new PHPExcel();
-            $objPHPExcel->setActiveSheetIndex(0);
-            $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setWidth("20");
-            $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setWidth("30");
-            $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setWidth("30");
-            $objPHPExcel->getActiveSheet()->getColumnDimension('D')->setWidth("20");
-            $objPHPExcel->getActiveSheet()->getColumnDimension('E')->setWidth("30");
-            $objPHPExcel->getActiveSheet()->getColumnDimension('F')->setWidth("20");
-            $objPHPExcel->getActiveSheet()->getColumnDimension('G')->setWidth("20");
-            $objPHPExcel->getActiveSheet()->getStyle("A1:G1")->getFont()->setBold(true);
-            $objPHPExcel->getActiveSheet()->SetCellValue('A1', 'Name');
-            $objPHPExcel->getActiveSheet()->SetCellValue('B1', 'Email');
-            $objPHPExcel->getActiveSheet()->SetCellValue('C1', 'Comapny');
-            $objPHPExcel->getActiveSheet()->SetCellValue('D1', 'Comapny Address');
-            $objPHPExcel->getActiveSheet()->SetCellValue('E1', 'Comapny City');
-            $objPHPExcel->getActiveSheet()->SetCellValue('F1', 'Comapny Zip');
-            $objPHPExcel->getActiveSheet()->SetCellValue('G1', 'Creation date');
-            $row=2;
-            foreach($users as $info){
-                $objPHPExcel->getActiveSheet()->SetCellValue('A'.$row, $info->first_name.' '.$info->last_name);
-                $objPHPExcel->getActiveSheet()->SetCellValue('B'.$row, $info->email);
-                $objPHPExcel->getActiveSheet()->SetCellValue('C'.$row, $info->company_name);
-                $objPHPExcel->getActiveSheet()->SetCellValue('D'.$row, $info->company_add);
-                $objPHPExcel->getActiveSheet()->SetCellValue('E'.$row, $info->company_city);
-                $objPHPExcel->getActiveSheet()->SetCellValue('F'.$row, $info->company_zip);
-                $objPHPExcel->getActiveSheet()->SetCellValue('G'.$row, date("F j, Y", strtotime($info->registered_date)));
-                $row++;
+            $this->load->library("excel");
+            $object = new PHPExcel();
+            $object->setActiveSheetIndex(0);
+
+            $table_columns = array("Name", "Email", "Company", "Company Address", "Company City", "Company Zip", "Creation Date");
+            $column = 0;
+            foreach ($table_columns as $field) {
+                $object->getActiveSheet()->setCellValueByColumnAndRow($column, 1, $field);
+                $column++;
             }
-            $objWriter = new PHPExcel_Writer_Excel2007($objPHPExcel);
-            // We'll be outputting an excel file
-            header('Content-type: application/vnd.ms-excel');
+            $excel_row = 2;
+            foreach($users as $info)
+            {
+                $object->getActiveSheet()->setCellValueByColumnAndRow(0, $excel_row, $info->first_name.' '.$info->last_name);
+                $object->getActiveSheet()->setCellValueByColumnAndRow(1, $excel_row, $info->email);
+                $object->getActiveSheet()->setCellValueByColumnAndRow(2, $excel_row, $info->company_name);
+                $object->getActiveSheet()->setCellValueByColumnAndRow(3, $excel_row, $info->company_add);
+                $object->getActiveSheet()->setCellValueByColumnAndRow(4, $excel_row, $info->company_city);
+                $object->getActiveSheet()->setCellValueByColumnAndRow(5, $excel_row, $info->company_zip);
+                $object->getActiveSheet()->setCellValueByColumnAndRow(6, $excel_row, date("F j, Y", strtotime($info->registered_date)));
+                $excel_row++;
+            }
 
-            // It will be called file.xls
-            header('Content-Disposition: attachment; filename="file.xls"');
-
-            // Write file to the browser
-            $objWriter->save('php://output');
+            $object_writer = PHPExcel_IOFactory::createWriter($object, 'Excel5');
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="file.xls"');
+            $object_writer->save('php://output');
             exit;
         }else{
             redirect('admin/index');
@@ -2193,7 +2180,7 @@ MSG;
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
                 $resp = array(
                     'status'=>'success',
-                    'msg'=>'Pssword updated successfully.'
+                    'msg'=>'Password updated successfully.'
                 );
                 echo json_encode($resp);
             }else{

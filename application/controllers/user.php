@@ -1068,7 +1068,7 @@ class User extends CI_Controller
         if($userId){
             $delResult = $this->admin_model->deleteuser($id); 
             if($delResult){
-                $resp = array('status' => 'success', 'msg' => 'User deleted succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'User deleted successfully.' );
                 echo json_encode($resp);
             }           
         }
@@ -1347,7 +1347,7 @@ class User extends CI_Controller
           );  
           $delResult = $this->base_model->delete_record_by_id('lp_my_flyers',$where); 
           if($delResult){
-            $resp = array('status' => 'success', 'msg' => 'Flyer deleted succesfully.' );
+            $resp = array('status' => 'success', 'msg' => 'Flyer deleted successfully.' );
             echo json_encode($resp);
           }           
         }
@@ -1470,7 +1470,7 @@ class User extends CI_Controller
           if($result){
             $resp = array(
               'status' => 'success',
-              'msg' => 'Flyer drafted succesfully.'
+              'msg' => 'Flyer drafted successfully.'
               );
             echo json_encode($resp);
           }
