@@ -246,6 +246,4 @@
 		</div> <!-- .table-wrapper -->
 
 	</div>
-
-<!--	<div class="seperator"></div>-->
 </div>
