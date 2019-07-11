@@ -145,6 +145,26 @@
           </tr>
         <?php endif; ?>
           <?php endif; ?>
+
+            <tr>
+              <td colspan="2">
+              <?php
+              $back_url = '';
+              switch ($users->role_id_fk) {
+                case '2':
+                  $back_url = site_url().'/admin/manage_companies';
+                  break;
+                case '3':
+                  $back_url = site_url().'/admin/manage_sales_reps';
+                  break;
+                case '4':
+                  $back_url = site_url().'/admin/manage_user';
+                  break;
+              }
+              ?>
+              <a href="<?php echo $back_url; ?>" class="btn btn-default">Back</a>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

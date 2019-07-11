@@ -275,7 +275,7 @@ switch ($title){
           minlength: 10,
           maxlength: 12
         },
-//        license: "required",
+        license: "required",
         cname : "required",
         cadd : "required" 
       },

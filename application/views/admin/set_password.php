@@ -17,9 +17,15 @@
         <div class="text-center">
           <h4><?php echo ucfirst($user->first_name)." ".ucfirst($user->last_name);?></h4>
           <div class="fileupload fileupload-new">
-            <div class="user-image">              
-              <img class="img-responsive" src="https://0.s3.envato.com/files/50024461/153%20-%2032143.jpg">
-              <input type="file">              
+            <div class="user-image">  
+              <?php
+              if ($user->profile_image != "" && file_exists($user->profile_image)) {
+                  $uimg = $user->profile_image;
+              }else{
+                  $uimg = 'assets/img/user.jpg';
+              }                                    
+              ?>                 
+              <img class="img-responsive" src="<?php echo base_url().$uimg; ?>">
             </div>
           </div>
           <hr>
@@ -57,7 +63,10 @@
               <input type="hidden" name="userid" id="userid" value="<?php echo $user->user_id_pk; ?>">
               <tr>
               <td></td>
-              <td><button class="btn btn-primary">Update</button></td>
+              <td>
+                <button class="btn btn-primary">Update</button>
+                <a href="<?php echo site_url().'/admin/profile_edit/'.$user->user_id_pk; ?>" class="btn btn-default">Back</a>
+              </td>
               </tr>
               
             </tbody>
@@ -78,11 +87,24 @@
 
     $('#set_password').validate({
       rules:{
-            pass: "required",
-            re_pass: {
-              equalTo: "#pass"
-            }
-          }
+        pass: {
+          required: true,
+          minlength: 3,
+          maxlength: 20
+        },
+        re_pass: {
+          equalTo: "#pass"
+        }
+      },
+      messages:{
+        pass: {
+          required: "New password is required."
+        },
+        re_pass: {
+          required: "Retype password is required.",
+          equalTo: "New password and Retype password should be same."
+        }
+      }
     });
     // user edit form submit
     $('#set_password').submit(function(){

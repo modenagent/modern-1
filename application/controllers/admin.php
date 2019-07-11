@@ -46,22 +46,35 @@ class Admin extends CI_Controller
                 $admin = $this->admin_model->get_admin_login_data( $tableName,$username,$password );
 
                 if($admin){
-                    // admin login
-                    $newdata = array(
-                        'adminid'    => $admin->user_id_pk,
-                        'username'  => $admin->user_name,
-                        'email'     => $admin->email,
-                        'role_id'     => $admin->role_id_fk,
-                        'name'      => $admin->first_name . ' ' . $admin->last_name,
-                        'logged_in' => TRUE
-                    );
-                    $sessionData = $this->session->set_userdata($newdata);
-                    $this->role_lib->set_access_paths($admin->role_id_fk);
-                    $resp = array(
-                        "status"=>"admin_success",
-                        "msg"=>"login successful"
-                    );
-                    echo json_encode($resp);
+
+                    if ($admin->is_active == 'Y') {
+
+                        // admin login
+                        $newdata = array(
+                            'adminid'    => $admin->user_id_pk,
+                            'username'  => $admin->user_name,
+                            'email'     => $admin->email,
+                            'role_id'     => $admin->role_id_fk,
+                            'name'      => $admin->first_name . ' ' . $admin->last_name,
+                            'logged_in' => TRUE
+                        );
+                        $sessionData = $this->session->set_userdata($newdata);
+                        $this->role_lib->set_access_paths($admin->role_id_fk);
+                        $resp = array(
+                            "status"=>"admin_success",
+                            "msg"=>"login successful"
+                        );
+                        echo json_encode($resp);
+
+                    } else {
+
+                        $resp = array(
+                            "status"=>"error",
+                            "msg"=>"Your account has been deactivated."
+                        );
+                        echo json_encode($resp);
+
+                    }
                 } else {
                     $resp = array(
                         "status"=>"error",
@@ -2178,19 +2191,11 @@ MSG;
                 );
                 $where = array('user_id_pk'=> $this->input->post('userid'));
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
-                if($result){
-                    $resp = array(
-                        'status'=>'success',
-                        'msg'=>'Pssword updated successfully.'
-                    );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array(
-                        'status'=>'error',
-                        'msg'=>'Password update failled.'
-                    );
-                    echo json_encode($resp);
-                }
+                $resp = array(
+                    'status'=>'success',
+                    'msg'=>'Pssword updated successfully.'
+                );
+                echo json_encode($resp);
             }else{
                 $resp = array(
                     'status'=>'error',

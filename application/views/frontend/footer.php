@@ -106,6 +106,9 @@
         $("#login-form").submit(function() {
             var uname = $("#uemail").val();
             var upass = $("#upass").val();
+            if ($.trim(uname) == '' || $.trim(upass) == '') {
+                return false;
+            }
             $.ajax({
                 url: '<?php echo site_url('auth/userlogin/format/json/'); ?>',
                 method: 'post',

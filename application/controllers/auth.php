@@ -56,7 +56,7 @@ class Auth extends REST_Controller
                 }else{
                     $resp = array(
                         "status"=>"error",
-                        "msg"=>"User is inactive"
+                        "msg"=>"Your account has been deactivated."
                         );
                     if($this->post('callback')){
                         echo $this->post('callback')."(".json_encode($resp).")";

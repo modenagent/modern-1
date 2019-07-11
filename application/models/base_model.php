@@ -132,7 +132,7 @@ class Base_model extends CI_Model
     public function get_login_data($table,$login,$password)
     {
             /* get data from user table */
-            $res = $this->db->query("SELECT * FROM $table WHERE email='".$login."' and password='".$password."'");
+            $res = $this->db->query("SELECT * FROM $table WHERE email=? and password=?", [$login, $password]);
             return $res->row();
     }
      /* LOGIN WITH userId retruns only one row */
