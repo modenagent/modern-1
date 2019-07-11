@@ -383,6 +383,7 @@ $config['proxy_ips'] = '';
 $config['wkhtmltopdf_path'] = '/usr/local/bin/wkhtmltopdf';
 $config['wkhtmltopdf_zoom'] = 1.285;
 $config['wkhtmltopdf_zoom_seller'] = 0.7999;
+$config['qpdf_path'] = 'qpdf';
 
 /* End of file config.php */
 /* Location: ./application/config/config.php */
