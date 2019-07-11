@@ -307,7 +307,7 @@ MSG;
             $form_data = $_POST['pass'];
             $result = $this->admin_model->update_password($form_data,$adminId);
             if($result == true){
-                $resp = array('status' => 'success', 'msg' => 'Pasword updated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'Pasword updated successfully.' );
                 echo json_encode($resp);
             }
         }
@@ -578,7 +578,7 @@ MSG;
         if($adminId){
             $delResult = $this->admin_model->deleteuser($id);
             if($delResult){
-                $resp = array('status' => 'success', 'msg' => 'User deleted succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'User deleted successfully.' );
                 echo json_encode($resp);
             }
         }
@@ -593,7 +593,7 @@ MSG;
         if($adminId){
             $verifyResult = $this->admin_model->verifyuser($id);
             if($verifyResult){
-                $resp = array('status' => 'success', 'msg' => 'User activated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'User activated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -608,7 +608,7 @@ MSG;
         if($adminId){
             $unverifyResult = $this->admin_model->unverifyuser($id);
             if($unverifyResult){
-                $resp = array('status' => 'success', 'msg' => 'User inactivated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'User inactivated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -757,7 +757,7 @@ MSG;
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
                 $resp = array(
                     "status" => "success",
-                    "msg" => "Updated succesfully."
+                    "msg" => "Updated successfully."
                 );
                 echo json_encode($resp);
             }
@@ -1301,7 +1301,7 @@ MSG;
             if($delResult){
                 $delResult2 = $this->admin_model->deleteproduct($id);
                 if($delResult2){
-                    $resp = array('status' => 'success', 'msg' => 'Product deleted succesfully.' );
+                    $resp = array('status' => 'success', 'msg' => 'Product deleted successfully.' );
                     echo json_encode($resp);
                 }
             }else{
@@ -1321,7 +1321,7 @@ MSG;
         if($adminId){
             $verifyResult = $this->admin_model->verifyproduct($id);
             if($verifyResult){
-                $resp = array('status' => 'success', 'msg' => 'Product activated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'Product activated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -1336,7 +1336,7 @@ MSG;
         if($adminId){
             $unverifyResult = $this->admin_model->unverifyproduct($id);
             if($unverifyResult){
-                $resp = array('status' => 'success', 'msg' => 'Product inactivated succesfully.' );
+                $resp = array('status' => 'success', 'msg' => 'Product inactivated successfully.' );
                 echo json_encode($resp);
             }
         }else{
@@ -1455,7 +1455,7 @@ MSG;
                 );
                 $delResult = $this->base_model->delete_record_by_id($table,$where1);
                 if($delResult){
-                    $resp = array('status' => 'success', 'msg' => 'Category deleted succesfully.' );
+                    $resp = array('status' => 'success', 'msg' => 'Category deleted successfully.' );
                     echo json_encode($resp);
                 }
             }else{
@@ -1847,7 +1847,7 @@ MSG;
                 if($todayDate < $getCouponDate->start_date){
                     $delResult = $this->base_model->delete_record_by_id($table2,$where2);
                     if($delResult){
-                        $resp = array('status' => 'success', 'msg' => 'Coupon deleted succesfully.' );
+                        $resp = array('status' => 'success', 'msg' => 'Coupon deleted successfully.' );
                         echo json_encode($resp);
                     }
                 }else{
