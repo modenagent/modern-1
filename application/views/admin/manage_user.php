@@ -210,7 +210,7 @@ $(document).ready(function(){
             },
             ulicence: "Please enter license no.",
             cname: "Please enter company name.",
-            caddress: "Please enter address.",
+            caddress: "Please enter company address.",
             uname: "Please enter username.",
         },
         errorPlacement: function(error, element) {
