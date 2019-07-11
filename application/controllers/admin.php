@@ -2180,7 +2180,7 @@ MSG;
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
                 $resp = array(
                     'status'=>'success',
-                    'msg'=>'Pssword updated successfully.'
+                    'msg'=>'Password updated successfully.'
                 );
                 echo json_encode($resp);
             }else{

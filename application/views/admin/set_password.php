@@ -93,6 +93,7 @@
           maxlength: 20
         },
         re_pass: {
+          required: true,
           equalTo: "#pass"
         }
       },
