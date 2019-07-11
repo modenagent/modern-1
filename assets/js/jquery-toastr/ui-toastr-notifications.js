@@ -1,5 +1,4 @@
 function Notify(msg, title, type){
-	
 	toastr.options = {
 			  "closeButton": false,
 			  "debug": false,
@@ -12,7 +11,11 @@ function Notify(msg, title, type){
 			  "showEasing": "swing",
 			  "hideEasing": "linear",
 			  "showMethod": "fadeIn",
-			  "hideMethod": "fadeOut"
+			  "hideMethod": "fadeOut",
+			  "preventDuplicates": true,
+			  "maxOpened": 1,
+			  "autoDismiss": true
 			}
+	toastr.clear();
 	var $toast = toastr[type](msg, title);
 }

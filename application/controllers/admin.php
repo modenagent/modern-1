@@ -46,22 +46,35 @@ class Admin extends CI_Controller
                 $admin = $this->admin_model->get_admin_login_data( $tableName,$username,$password );
 
                 if($admin){
-                    // admin login
-                    $newdata = array(
-                        'adminid'    => $admin->user_id_pk,
-                        'username'  => $admin->user_name,
-                        'email'     => $admin->email,
-                        'role_id'     => $admin->role_id_fk,
-                        'name'      => $admin->first_name . ' ' . $admin->last_name,
-                        'logged_in' => TRUE
-                    );
-                    $sessionData = $this->session->set_userdata($newdata);
-                    $this->role_lib->set_access_paths($admin->role_id_fk);
-                    $resp = array(
-                        "status"=>"admin_success",
-                        "msg"=>"login successful"
-                    );
-                    echo json_encode($resp);
+
+                    if ($admin->is_active == 'Y') {
+
+                        // admin login
+                        $newdata = array(
+                            'adminid'    => $admin->user_id_pk,
+                            'username'  => $admin->user_name,
+                            'email'     => $admin->email,
+                            'role_id'     => $admin->role_id_fk,
+                            'name'      => $admin->first_name . ' ' . $admin->last_name,
+                            'logged_in' => TRUE
+                        );
+                        $sessionData = $this->session->set_userdata($newdata);
+                        $this->role_lib->set_access_paths($admin->role_id_fk);
+                        $resp = array(
+                            "status"=>"admin_success",
+                            "msg"=>"login successful"
+                        );
+                        echo json_encode($resp);
+
+                    } else {
+
+                        $resp = array(
+                            "status"=>"error",
+                            "msg"=>"Your account has been deactivated."
+                        );
+                        echo json_encode($resp);
+
+                    }
                 } else {
                     $resp = array(
                         "status"=>"error",
@@ -389,7 +402,8 @@ MSG;
         $data['title'] = "invoice";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $data['user_invoices'] = $this->admin_model->user_invoices($uid);
+            //$data['user_invoices'] = $this->admin_model->user_invoices($uid);
+            $data['user_invoice'] = $this->admin_model->get_invoice($uid);
             $this->load->view('admin/header',$data);
             $this->load->view('admin/invoice',$data);
             $this->load->view('admin/footer',$data);
@@ -675,7 +689,8 @@ MSG;
                 $fname = mysqli_real_escape_string($this->dbConn, $postedArr['fname']);
                 $lname = mysqli_real_escape_string($this->dbConn, $postedArr['lname']);
                 $email = mysqli_real_escape_string($this->dbConn, $postedArr['email']);
-                $username = mysqli_real_escape_string($this->dbConn, $postedArr['username']);
+                // USER NAME CAN NOT BE CHANGED ONCE CREATED
+                //$username = mysqli_real_escape_string($this->dbConn, $postedArr['username']);
                 $phone = mysqli_real_escape_string($this->dbConn, $postedArr['phone']);
                 $license = mysqli_real_escape_string($this->dbConn, $postedArr['license']);
                 $cname = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
@@ -704,18 +719,19 @@ MSG;
                     'company_add' => $cadd,
                 );
                 $resultCheck = false;
-                if($username!='') {
-                    $resultCheck = $this->base_model->check_existent($table,array("user_name = '$username' && user_id_pk!="=>$uid));
-                    $data['user_name'] = $username;
-                }
-                if($resultCheck) {
-                    $resp = array(
-                        'status'=>'error',
-                        'msg'=>'Username taken.'
-                        );
-                    echo json_encode($resp);
-                    exit;
-                }
+                // USER NAME CAN NOT BE CHANGED ONCE CREATED
+                // if($username!='') {
+                //     $resultCheck = $this->base_model->check_existent($table,array("user_name = '$username' && user_id_pk!="=>$uid));
+                //     $data['user_name'] = $username;
+                // }
+                // if($resultCheck) {
+                //     $resp = array(
+                //         'status'=>'error',
+                //         'msg'=>'Username taken.'
+                //         );
+                //     echo json_encode($resp);
+                //     exit;
+                // }
                 $resultCheck = $this->base_model->check_existent($table,array("email = '$email' && user_id_pk!="=>$uid));
                 if($resultCheck) {
                     $resp = array(
@@ -2175,19 +2191,11 @@ MSG;
                 );
                 $where = array('user_id_pk'=> $this->input->post('userid'));
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
-                if($result){
-                    $resp = array(
-                        'status'=>'success',
-                        'msg'=>'Pssword updated successfully.'
-                    );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array(
-                        'status'=>'error',
-                        'msg'=>'Password update failled.'
-                    );
-                    echo json_encode($resp);
-                }
+                $resp = array(
+                    'status'=>'success',
+                    'msg'=>'Pssword updated successfully.'
+                );
+                echo json_encode($resp);
             }else{
                 $resp = array(
                     'status'=>'error',

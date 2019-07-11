@@ -21,12 +21,12 @@
             <div class="col-md-12">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="coupon_name" name="coupon_name" placeholder="Coupon Name">
+                  <input type="text" class="form-control alphanumeric" id="coupon_name" name="coupon_name" placeholder="Coupon Name">
                 </div>
               </div>
               <div class="col-md-3">
                   <div class="form-group">                  
-                    <input type="text" class="form-control" id="coupon_code" name="coupon_code" placeholder="Coupon Code">
+                    <input type="text" class="form-control alphanumeric" id="coupon_code" name="coupon_code" placeholder="Coupon Code">
                   </div>
               </div>
               <div class="col-md-3">

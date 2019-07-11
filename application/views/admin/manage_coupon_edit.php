@@ -19,12 +19,12 @@
             <div class="col-md-6">
               <div class="form-group">
                 <label for="">Coupon Name</label>                
-                <input type="text" class="form-control" id="coupon_name" name="coupon_name" placeholder="Coupon Name" value="<?php echo $coupon->coupon_name; ?>">                
+                <input type="text" class="form-control alphanumeric" id="coupon_name" name="coupon_name" placeholder="Coupon Name" value="<?php echo $coupon->coupon_name; ?>">                
               </div>
             
               <div class="form-group">
                 <label for="">Coupon Code</label>                
-                  <input type="text" class="form-control" id="coupon_code" name="coupon_code" placeholder="Coupon Code" value="<?php echo $coupon->coupon_code; ?>">                
+                  <input type="text" class="form-control alphanumeric" id="coupon_code" name="coupon_code" placeholder="Coupon Code" value="<?php echo $coupon->coupon_code; ?>">                
               </div>
               <div class="form-group">
                 <label for="">Coupon Start Date</label>
@@ -58,7 +58,7 @@
               <button type="submit" class="btn btn-block btn-primary">Submit</button>
             </div>
             <div class="col-md-2">
-              <a href="<?php echo site_url().'admin/manage_coupon'; ?>" class="btn btn-block btn-default">Back</a>
+              <a href="<?php echo site_url().'/admin/manage_coupon'; ?>" class="btn btn-block btn-default">Back</a>
             </div>
         </div>
       </form>
