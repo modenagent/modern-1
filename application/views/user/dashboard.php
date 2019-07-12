@@ -291,16 +291,16 @@
                                 <tr>
                                   <td class="no">01</td>
                                   <td class="desc"></td>
-                                  <td class="unit" style="text-align: right;">$3</td>
+                                  <td class="unit" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
 
-                                  <td class="total" style="text-align: right;">$3.00</td>
+                                  <td class="total" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
                                 </tr>
                               </tbody>
                               <tfoot>
                                 <tr>
                                   <td colspan=""></td>
                                   <td colspan="2">SUBTOTAL</td>
-                                  <td>$3.00</td>
+                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
                                 </tr>
 
                                 <tr id="coupandiscount" style="display:none">
@@ -312,7 +312,7 @@
                                 <tr id="totalInvoiceAmount">
                                   <td colspan="" style="border-top:1px solid #fff;"></td>
                                   <td colspan="2">GRAND TOTAL</td>
-                                  <td>$3.00</td>
+                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
                                 </tr>
                               </tfoot>
                             </table>
@@ -336,7 +336,7 @@
                   <table width="100%" border="0" style="background-color:transparent;" cellspacing="0" cellpadding="0">
                   <tr class="invoice-header">
                   <td width="45%" bgcolor=""><img src="<?php echo base_url(); ?>assets/images-2/logo.png"/></td>
-                    <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $3.00</strong></td>
+                    <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<?php echo number_format($report_price,2,".",""); ?></strong></td>
                     <td width="15%" style="color:#ffffff;" class="text-right" ><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
                   </tr>
                   </table>
@@ -349,7 +349,7 @@
 
                     <form action="<?php echo base_url(); ?>index.php?/user/cart_payment" method="POST" id="payment-form" class="form-horizontal" role="form">
                       <div class="alert alert-danger payment-errors" style="display:none"></div>
-                      <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="3.00">
+                      <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="<?php echo $report_price; ?>">
                       <input type="hidden" id="coupon-id" name="coupon_id">
                       <div class="form-group">
                         <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>

@@ -1166,4 +1166,8 @@ button[disabled]{
 	text-transform: uppercase;
 }
 
+.lp-p-15 {
+	padding: 15px !important;
+}
+
 /* MY CUSTOM STYLE END */

@@ -2386,6 +2386,43 @@ MSG;
         }
     }
 
+    public function packages()
+    {
+        $data['title'] = "Manage Packages";
+        $data['admin_id'] = $this->session->userdata('adminid');
+        $is_admin = $this->role_lib->is_admin();
+        if ($is_admin) {
+
+            $this->load->model('package_model');
+            $packages = $this->package_model->get_all_packages_price();
+            $data['packages'] = $packages;
+            $data['report_price'] = $packages['reports'];
+            $data['monthly_price'] = $packages['monthly'];
+
+            $this->load->view('admin/header',$data);
+            $this->load->view('packages/index',$data);
+            $this->load->view('admin/footer',$data);
+
+        } else {
+            redirect('admin/dashboard',$data);
+        }
+    }
+
+    public function update_package()
+    {
+        $package = $this->input->post('package');
+        $price = $this->input->post('price');
+        $is_admin = $this->role_lib->is_admin();
+        if ($is_admin) {
+            $this->load->model('package_model');
+            $adminId = $this->session->userdata('adminid');
+            $packages = $this->package_model->set_package_price($package, $price, $adminId);
+            echo json_encode(array('status' => 'success', 'message' => ucwords($package).' package price updated successfully.'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => 'Access Denied'));
+        }
+    }
+
 //    Class ends here
 }
 ?>

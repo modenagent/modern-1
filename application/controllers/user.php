@@ -160,7 +160,8 @@ class User extends CI_Controller
                                         'user_id_pk'=>$userId
                                   ));
               $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
-              
+              $this->load->model('package_model');
+              $data['report_price'] = $this->package_model->get_reports_price();
               $html = $this->load->view('user/dashboard_widget', $data, true);
               
 
@@ -219,6 +220,10 @@ class User extends CI_Controller
                                   'user_id_pk'=>$this->session->userdata('userid')
                             ));
         $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
+
+        $this->load->model('package_model');
+        $data['report_price'] = $this->package_model->get_reports_price();
+
         $this->load->helper('captcha');
         create_image();
         $this->load->view('user/header', $data);
