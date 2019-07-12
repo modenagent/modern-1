@@ -367,7 +367,7 @@ function isActive(){
     if($.active){
       setTimeout(function(){
         isActive();
-        consoe.log("searching");
+        console.log("searching");
       },100);
     }else{
         $(".search-result a").html("Choose");
