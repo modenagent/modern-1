@@ -18,3 +18,5 @@ INSERT INTO `lp_packages`
 VALUES 
 (NULL, 'reports', '3', '2019-07-12 00:00:00', CURRENT_TIMESTAMP, '70'), 
 (NULL, 'monthly', '10', '2019-07-12 00:00:00', CURRENT_TIMESTAMP, '70');
+
+INSERT INTO lp_role_func (`role_id_fk`, `func_id_fk`) VALUES ('1', 'packages');

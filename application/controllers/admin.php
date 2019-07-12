@@ -2390,6 +2390,7 @@ MSG;
     {
         $data['title'] = "Manage Packages";
         $data['admin_id'] = $this->session->userdata('adminid');
+        $_hasAccess = $this->_hasAccess('packages');
         $is_admin = $this->role_lib->is_admin();
         if ($is_admin) {
 
