@@ -454,7 +454,7 @@ switch ($title){
     });
 
     $('.alphanumeric').on('input', function (event) {
-        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+        this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
     });
 // document end here
 });

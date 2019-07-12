@@ -700,10 +700,16 @@ MSG;
 
                 $referralCode = '';
                 if (!empty($parentId)) {
-                    $parent_user_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$parentId], ['user_id_pk', 'role_id_fk']);
+                    $parent_user_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$parentId], ['user_id_pk', 'role_id_fk', 'company_name', 'company_add']);
                     if (!empty($parent_user_details)) {
                         if($this->role_lib->is_sales_rep($parent_user_details->role_id_fk) && $roleId == '4') {
                             $referralCode = (!empty($this->input->post('ref_code')))?$this->input->post('ref_code'):$this->user_model->setRefCode($uid);
+                        }
+
+                        //If Sales Reprensentative
+                        if ($roleId == '3') {
+                            $cname = $parent_user_details->company_name;
+                            $cadd = $parent_user_details->company_add;
                         }
                     }
                 }
@@ -748,7 +754,7 @@ MSG;
                 if(isset($parentId)) {
                     $data['parent_id'] = $parentId;
                 }
-                if(isset($referralCode)) {
+                if(isset($referralCode) && $referralCode!='') {
                     $data['ref_code'] = $referralCode;
                 }
                 $where = array(
