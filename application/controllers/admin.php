@@ -754,7 +754,7 @@ MSG;
                 if(isset($parentId)) {
                     $data['parent_id'] = $parentId;
                 }
-                if(isset($referralCode)) {
+                if(isset($referralCode) && $referralCode!='') {
                     $data['ref_code'] = $referralCode;
                 }
                 $where = array(
