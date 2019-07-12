@@ -123,6 +123,12 @@ echo $this->email->print_debugger();die;
             $data['bestFlyers2'] = $this->base_model->getNewFlyer3('lp_product_mst','4','4');
             $data['bestFlyers3'] = $this->base_model->getNewFlyer3('lp_product_mst','4','8');
             $data['body_class'] = "home-all"; 
+
+            $this->load->model('package_model');
+            $packages = $this->package_model->get_all_packages_price();
+            $data['report_price'] = $packages['reports'];
+            $data['monthly_price'] = $packages['monthly'];
+
             $this->load->view('frontend/header',$data);
             $this->load->view('frontend/index',$data);
             $this->load->view('frontend/footer',$data);
