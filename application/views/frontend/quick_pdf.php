@@ -309,7 +309,7 @@ $(document.body).on('submit', '#ref-form' ,function(){
                       phoneNumber = phoneNumber.replace(/ /g,"");
                       phoneNumber = phoneNumber.replace(/-/g,"");
                       $("#submit-phone").val(phoneNumber);
-                      if(object.method.indexOf("REF")===0){
+                      if((object.method) != null && object.method.indexOf("REF")===0){
                           $("#coupon_code").val(object.method);
                       }
                   } else {
