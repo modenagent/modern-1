@@ -351,6 +351,8 @@
                       <div class="alert alert-danger payment-errors" style="display:none"></div>
                       <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="<?php echo $report_price; ?>">
                       <input type="hidden" id="coupon-id" name="coupon_id">
+                      <input type="hidden" id="coupon-amount" name="coupon_amount">
+                      <input type="hidden" id="order-amount" name="order_amount" value="<?php echo $report_price; ?>">
                       <div class="form-group">
                         <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>
                         <div class="col-sm-9">

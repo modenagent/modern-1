@@ -415,6 +415,9 @@
             amount  =   Math.round(amount * 100) / 100;
              console.log(amount);
             $('#coupandiscount td:last').html('$'+resp.discount);
+            if ($('#coupon-amount').length) {
+              $('#coupon-amount').html(resp.discount);
+            }
             $('#invoice-amount').val(amount);
             $('#coupon-id').val(resp.coupon_id);
             $('#totalInvoiceAmount td:last').html('$'+amount);

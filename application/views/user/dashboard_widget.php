@@ -374,6 +374,8 @@
                                             <div class="alert alert-danger payment-errors" style="display:none"></div>
                                             <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="<?php echo $report_price; ?>">
                                             <input type="hidden" id="coupon-id" name="coupon_id">
+                                            <input type="hidden" id="coupon-amount" name="coupon_amount">
+                                            <input type="hidden" id="order-amount" name="order_amount" value="<?php echo $report_price; ?>">
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>
                                                 <div class="col-sm-9">
@@ -910,6 +912,9 @@
             amount  =   Math.round(amount * 100) / 100;
              console.log(amount);
             $('#coupandiscount td:last').html('$'+resp.discount);
+            if ($('#coupon-amount').length) {
+                $('#coupon-amount').html(resp.discount);
+            }
             $('#invoice-amount').val(amount);
             $('#coupon-id').val(resp.coupon_id);
             $('#totalInvoiceAmount td:last').html('$'+amount);

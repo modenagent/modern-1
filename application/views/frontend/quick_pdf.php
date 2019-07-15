@@ -120,6 +120,8 @@
                                         <div class="alert alert-danger payment-errors" style="display:none"></div>
                                         <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="0">
                                         <input type="hidden" id="coupon_id" name="coupon_id">
+                                        <input type="hidden" id="coupon-amount" name="coupon_amount" value="0">
+                                        <input type="hidden" id="order-amount" name="order_amount" value="0">
                                         <input type="hidden" id="user-id" name="user-id" value="">
                                         <input type="hidden" id="submit-phone" name="phone_number" value="">
                                         <div class="form-group">
