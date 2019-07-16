@@ -408,15 +408,11 @@
         success:function(resp){
           if(resp.status=='success'){
             var amount  = parseFloat($('#invoice-amount').val());
-            console.log(amount);
-            console.log(resp.discount);
-
             amount  =   amount-parseFloat(resp.discount);
             amount  =   Math.round(amount * 100) / 100;
-             console.log(amount);
             $('#coupandiscount td:last').html('$'+resp.discount);
             if ($('#coupon-amount').length) {
-              $('#coupon-amount').html(resp.discount);
+              $('#coupon-amount').val(resp.discount);
             }
             $('#invoice-amount').val(amount);
             $('#coupon-id').val(resp.coupon_id);

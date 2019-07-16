@@ -445,7 +445,13 @@ MSG;
                     $action .= ' <a title="Download Report" class="btn btn-success btn-xs admin-ml-5" href="'.base_url().$transaction['report_path'].'" target="_blank" data-toggle="tooltip" data-title="Download Report"><i class="fa fa-download"></i></a>';
                 }
                 if(!is_null($transaction['invoice_pdf'])) {
-                    $action .= ' <a title="Download Inovice" class="btn btn-success btn-xs admin-ml-5" href="'.base_url().$transaction['invoice_pdf'].'" target="_blank" data-toggle="tooltip" data-title="Download Inovice"><i class="fa fa-download"></i></a>';
+
+                    if (file_exists($transaction['invoice_pdf'])) {
+                        $action .= ' <a title="Download Inovice" class="btn btn-success btn-xs admin-ml-5" href="'.base_url().$transaction['invoice_pdf'].'" target="_blank" data-toggle="tooltip" data-title="Download Inovice"><i class="fa fa-download"></i></a>';
+                    } else {
+                        $invoice_generate_url = site_url().'/admin/download_invoice/'.$transaction['invoice_num'].'/'.$transaction['user_id_fk'];
+                        $action .= ' <a title="Download Inovice" class="btn btn-success btn-xs admin-ml-5" href="'.$invoice_generate_url.'" target="_blank" data-toggle="tooltip" data-title="Download Inovice"><i class="fa fa-download"></i></a>';
+                    }
                 }
                                     
                 $action .=' <a href="'.site_url().'?/admin/invoice/'.$transaction['invoice_num'].'" class="btn btn-info btn-xs admin-ml-5" data-toggle="tooltip" data-title="View detail"><i class="fa fa-eye"></i></a>';
@@ -2205,7 +2211,13 @@ MSG;
         if(is_null($userId)){
             $userId = $this->session->userdata('adminid');
         }
-        $referralCode = sprintf("REF%05d", $userId);
+        $referralCode = "";
+        if (strlen($userId) < 5) {
+            $referralCode = "REF".sprintf("%05d", $userId);
+        } else {
+            $referralCode = "REF0".$userId;
+        }
+
         $this->admin_model->add_referral_code($referralCode);
     }
     public function subscribe($userId){
@@ -2427,6 +2439,18 @@ MSG;
             echo json_encode(array('status' => 'success', 'message' => ucwords($package).' package price updated successfully.'));
         } else {
             echo json_encode(array('status' => 'error', 'message' => 'Access Denied'));
+        }
+    }
+
+    function download_invoice($invoiceNumber, $userId) 
+    {
+        $adminId = $this->session->userdata('adminid');
+        if(!empty($adminId) && !empty($invoiceNumber) && !empty($userId)) {
+            $this->load->library('invoice'); 
+            $this->invoice->_getInvoice($invoiceNumber, $userId);
+        } else {
+            echo "Invoice details are required.";
+            exit();
         }
     }
 

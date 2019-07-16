@@ -462,7 +462,7 @@ class Admin_model extends CI_Model
     public function get_invoice($invoice_number) 
     {
         $sql = "SELECT 
-            invoice.invoice_num, invoice.invoice_amount, invoice.invoice_date, invoice.invoice_to, invoice.invoice_addr, invoice.invoice_pdf, 
+            invoice.invoice_num, invoice.order_amount, invoice.coupon_amount, invoice.invoice_amount, invoice.invoice_date, invoice.invoice_to, invoice.invoice_addr, invoice.invoice_pdf, 
             cart.total_amount, cart.is_success,
             listing.project_name, listing.property_address, listing.report_type
         FROM lp_invoices invoice
