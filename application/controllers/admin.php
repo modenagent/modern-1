@@ -843,7 +843,12 @@ MSG;
                     $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Report" href="javascript:void(0)" data-toggle="tooltip" data-title="Download Report" onclick="alert(\'Not Available\')" ><i class="fa fa-download"></i></a>';
                 }
                 if (!empty($invoice['invoice_pdf'])) {
-                    $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="'.base_url($invoice['invoice_pdf']).'" target="_blank"  data-toggle="tooltip" data-title="Download Invoice"><i class="fa fa-download"></i></a>';
+                    if (file_exists($invoice['invoice_pdf'])) {
+                        $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="'.base_url($invoice['invoice_pdf']).'" target="_blank"  data-toggle="tooltip" data-title="Download Invoice"><i class="fa fa-download"></i></a>';
+                    } else {
+                        $invoice_generate_url = site_url().'/admin/download_invoice/'.$invoice['invoice_num'].'/'.$invoice['user_id_fk'];
+                        $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="'.$invoice_generate_url.'" target="_blank"  data-toggle="tooltip" data-title="Download Invoice"><i class="fa fa-download"></i></a>';
+                    }
                 } else {
                     $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="javascript:void(0)" data-toggle="tooltip" data-title="Download Invoice" onclick="alert(\'Not Available\')" ><i class="fa fa-download"></i></a>';
                 }
