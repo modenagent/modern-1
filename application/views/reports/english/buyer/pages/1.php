@@ -14,15 +14,17 @@
 		<div class="footer">
 			<div class="row">
                             <div class="footer-inner">
-                                <div class="left-footer pull-left col-xs-12">
+							<div class="col-xs-12">
+                                <div class="left-footer pull-left">
                                     <div class="row">
                                         <?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?>
                                         <div class="pull-left">
                                                 <img width="160px" height="160px" style="border-radius:100%; margin-top:25px; margin-left:-10px;" class="img-responsive" src="<?php echo base_url().$user['profile_image']; ?>"  >
                                         </div>
                                         <?php endif; ?>
-                                        <div class="pull-left">
-                                            <div>
+                                        <div class="col-xs-3"></div>
+                                        <?php endif; ?>
+										<div class="<?php echo ($user['profile_image'] != '' && $user['profile_image'] != 'no')?'col-xs-6':'col-xs-9'  ?>">
                                                 <h4 class="client-name"><?php echo $user['fullname']; ?></h4>
                                                 <p class="client-detail" ></p>
                                                 <p class="client-detail" ><?php echo $user['title']; ?></p>
@@ -39,7 +41,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                               </div>
+							</div>
                         </div>
 		</div>
     </div>
