@@ -1867,7 +1867,7 @@ a:hover {
 .page4 .textBlock-wrapper .textBlock {
     background-color: transparent !important;
     width: 65%;
-    margin-bottom: 55px
+    margin-bottom: 50px;
 }
 
 .page4 .textBlock-wrapper .textBlock h1 {
@@ -1900,7 +1900,7 @@ a:hover {
 
 .page5 .table-wrapper {
     position: relative;
-    margin-bottom: 60px
+    margin-bottom: 50px;
 }
 
 .page5 .table-wrapper h2 {
@@ -1918,7 +1918,7 @@ a:hover {
     font-family: GlacialIndifference;
     font-size: 22px;
     color: #333;
-    line-height: 50px
+    line-height: 40px;
 }
 
 .page5 .table-wrapper .table-row p.no-lineheight {
@@ -3550,7 +3550,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
     right: 0px;
     top: 17%;
     -ms-transform: translateY(-50%);
-    transform: translateY(-50%)
+    transform: translateY(-50%);
 }
 .page6 .page-content .features li img{
     margin-left:18%;
@@ -3581,7 +3581,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 .section .footer {
     padding: 50px 50px;
-    padding-bottom:82px;
+    padding-bottom:0px;
 margin-top:-55px;
     /*border: 1px solid red;*/
 /*    margin-top:-80px;*/
