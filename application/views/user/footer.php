@@ -410,14 +410,14 @@
             var amount  = parseFloat($('#invoice-amount').val());
             amount  =   amount-parseFloat(resp.discount);
             amount  =   Math.round(amount * 100) / 100;
-            $('#coupandiscount td:last').html('$'+resp.discount);
+            $('#coupandiscount td:last').html('$'+(parseFloat(resp.discount).toFixed(2)));
             if ($('#coupon-amount').length) {
               $('#coupon-amount').val(resp.discount);
             }
             $('#invoice-amount').val(amount);
             $('#coupon-id').val(resp.coupon_id);
-            $('#totalInvoiceAmount td:last').html('$'+amount);
-            $('#payment_total').html('$'+amount);
+            $('#totalInvoiceAmount td:last').html('$'+(amount.toFixed(2)));
+            $('#payment_total').html('$'+(amount.toFixed(2)));
             $('#coupandiscount').show();
             $('#apply-coupan-alert').html(resp.message).removeClass('alert-danger').addClass('alert-success').show();
             $('#apply_coupon').addClass('disabled');
