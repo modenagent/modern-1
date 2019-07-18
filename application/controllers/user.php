@@ -2572,6 +2572,7 @@ Thank you for your order. Below you can find the details of your order. If you o
           $amt = $_POST['amount'];
 
           $couponId = $this->input->post('coupon_id');
+          if (empty($couponId)) {$couponId = 0; }
           $couponAmount = $this->input->post('coupon_amount');
           $orderAmount = $this->input->post('order_amount');
           if (empty($couponAmount)) { $couponAmount = 0; }
