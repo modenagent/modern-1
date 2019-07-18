@@ -2491,13 +2491,13 @@ Thank you for your order. Below you can find the details of your order. If you o
           
           $lp_details = $this->base_model->get_record_result_array('lp_my_listing',array('project_id_pk'=>$cart[0]['project_id_fk']));
 
-          $this->load->model('package_model');
-          $report_price = $this->package_model->get_reports_price();
+          //$this->load->model('package_model');
+          //$report_price = $this->package_model->get_reports_price();
 		  
 		  $invoice_data['user_name'] = $user_name;
 		  $invoice_data['order_num'] = $order_num;
 		  $invoice_data['lp_details'] = $lp_details[0];
-		  $invoice_data['total_amount'] = $report_price;
+		  $invoice_data['total_amount'] = $invoice[0]['order_amount'];//$report_price;
 		  $invoice_data['discount_amount'] = $discount_amount;
 		  $invoice_data['tax_amount'] = $tax_amount;
 		  $invoice_data['total'] = $total_amount;
