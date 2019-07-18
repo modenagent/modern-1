@@ -905,12 +905,13 @@
         success:function(resp){
           if(resp.status=='success'){
             var amount  = parseFloat($('#invoice-amount').val());
-            console.log(amount);
-            console.log(resp.discount);
-
+            if (amount<parseFloat(resp.discount)) {
+              resp.discount = amount;
+            }
             amount  =   amount-parseFloat(resp.discount);
-            amount  =   Math.round(amount * 100) / 100;
-             console.log(amount);
+            if (amount<=0) {
+              amount = 0;
+            }
             $('#coupandiscount td:last').html('$'+(parseFloat(resp.discount).toFixed(2)));
             if ($('#coupon-amount').length) {
                 $('#coupon-amount').val(resp.discount);
