@@ -1042,6 +1042,9 @@
                   console.log(discount);
                   $('#coupandiscount td:last').html('$'+discount.toFixed(2));
                   $('#invoice-amount').val(amount);
+                  if ($('#order-amount').length) {
+                    $('#order-amount').val(amount);
+                  }
                   $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
                   $('#payment_total').html('$'+amount.toFixed(2));
                   $('#coupandiscount').show();
