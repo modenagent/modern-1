@@ -493,16 +493,20 @@ echo $this->email->print_debugger();die;
                     exit();
                 }
                 $canAvail = false;
-                $medthod = "";//suscription or coupon code of sales rep
+                $method = "";//suscription or coupon code of sales rep
                 if($user->parent_role==3){//User is under some sales rep
                     $canAvail = true;
-                    $method = "REF".sprintf("%05d", $user->parent_id);
+                    if (strlen($user->parent_id) < 5) {
+                        $method = "REF".sprintf("%05d", $user->parent_id);
+                    } else {
+                        $method = "REF0".$user->parent_id;
+                    }
                     
                 } else if($user->customer_id){
                     $res = $this->_cust_info_by_id($user->customer_id);
                     //if subscribed
                     if($res){
-                        $medthod = 'subscription';
+                        $method = 'subscription';
                         $canAvail = true;
                     }
                 }
@@ -519,12 +523,6 @@ echo $this->email->print_debugger();die;
     }
     private function _cust_info_by_id($customerId){
         $this->load->library('stripe');
-        $_conf['stripe_key_test_public']         = 'pk_test_JKTfWhEYh9KIUJhJiD1cI0fo';
-        $_conf['stripe_key_test_secret']         = 'sk_test_4Rut0MK1S0WKIHQGs0MTaVDL'; 
-        $_conf['stripe_key_live_public']         = 'pk_live_kWtXKplBdNqXQMeBWHuHYZDx';
-        $_conf['stripe_key_live_secret']         = 'sk_live_W0mSME3cKd2uzqdFv7WBr02p';
-        $_conf['stripe_test_mode']               = TRUE;
-        $_conf['stripe_verify_ssl']              = FALSE; 
         $stripe = new Stripe( NULL );
         try{
             $response = json_decode($stripe->customer_info($customerId));

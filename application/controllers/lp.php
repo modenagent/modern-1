@@ -93,11 +93,17 @@ class Lp extends CI_Controller{
                         "track_clicks" => true,
                         "auto_text" => true,
                     );
+                    $invoices_tobe_delete = [];
                     $i=1;
                     $attachments = json_decode($mail['attachments']);
                     if(is_array($attachments)){
                         foreach ($attachments as $attachment){
                             $attachment = file_get_contents($attachment);
+
+                            if (strpos($attachment, 'user_invoices') !== false) {
+                                $invoices_tobe_delete = $attachment;
+                            }
+
                             $attachment_encoded = base64_encode($attachment); 
                             $mailData['attachments'][] = array(
                                 'path' => base_url($attachment),
@@ -108,12 +114,23 @@ class Lp extends CI_Controller{
                         }
                     }
                     $res[$mail['mail_cron_id']] = $this->mandrill->messages_send($mailData);
+
+                    /**
+                     * Delete Invoice file after attachment send through mail
+                     */
+                    if (!empty($invoices_tobe_delete)) {
+                        foreach ($invoices_tobe_delete as $key => $delete_invoice) {
+                            if ($delete_invoice != '' && file_exists($delete_invoice)) {
+                                unlink($delete_invoice);
+                            }
+                        }
+                    }
                 }
                 foreach ($res as $mail_cron_id => $mail_response) {
                     $this->db->where('mail_cron_id',$mail_cron_id);
                     
                     if($mail_response[0]['status']=='queued'){
-                        $updatedData = array('status'=>'finished','delivered_at'=>date('Y-m-d G:i:s'));
+                        $updatedData = array('status'=>'finished','delivered_at'=>date('Y-m-d H:i:s'));
                     } else {
                         $updatedData = array('status'=>'failed');
                     }

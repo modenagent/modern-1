@@ -14,6 +14,8 @@
                             <?php
                             $invNo = $user_invoice['invoice_num'];
                             $invDate = date("F j, Y", strtotime($user_invoice['invoice_date']));
+                            $orderAmount = $user_invoice['order_amount'];
+                            $couponAmount = $user_invoice['coupon_amount'];
                             $invAmt = $user_invoice['invoice_amount'];
                             ?>
                                 <div class="invoice-title pull-right">
@@ -37,11 +39,11 @@
                                             <table class="border-none invoice-table">
                                                 <tr class="border-none">
                                                     <td class="text-left"><p>Sub Total</p></td>
-                                                    <td class="text-right"><p>$<?php echo number_format($invAmt,2); ?></p></td>
+                                                    <td class="text-right"><p>$<?php echo number_format($orderAmount,2); ?></p></td>
                                                 </tr>
                                                 <tr class="border-none">
                                                     <td class="text-left"><p>Discount</p></td>
-                                                    <td class="text-right"><p>$0.00</p></td>
+                                                    <td class="text-right"><p>$<?php echo number_format($couponAmount,2); ?></p></td>
                                                 </tr>
                                                 <tr class="border-none">
                                                     <td colspan="2" class="text-center"><hr class="invoice-amount-hr" /></td>
