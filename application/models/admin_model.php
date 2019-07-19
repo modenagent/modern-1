@@ -704,6 +704,19 @@ class Admin_model extends CI_Model
             return false;
         }
     }
+
+    function is_admin_exists($email)
+    {
+        $data = [];
+        $sql = "SELECT user_id_pk, email, is_active, first_name, last_name FROM lp_user_mst 
+        WHERE role_id_fk IN (1,2,3) 
+        AND email = ? ";
+        $result = $this->db->query($sql, [$email]);
+        if ($result->num_rows()>0) {
+            $data = $result->row_array();
+        }
+        return $data;
+    }
     
 // class ends here
 }

@@ -105,13 +105,23 @@ class Admin extends CI_Controller
     public function forget_password()
     {
         if ($_POST) {
-            $query = mysql_query('select * from lp_admin_mst where admin_email="' . $this->input->post('email') . '"');
-            $user_data = mysql_fetch_array($query);
-            $user_count = mysql_num_rows($query);
-            if (!empty($user_count)) {
-                $userId = $user_data['admin_id_pk'];
-                $userName = $user_data['user_name'];
-                $pemail = $user_data['admin_email'];
+            $email = $this->input->post('email');
+            $admin_details = $this->admin_model->is_admin_exists($email);
+
+            if (!empty($admin_details)) {
+                $isActive = $admin_details['is_active'];
+                if (strtoupper($isActive) == 'N') {
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Your account has been deactivated.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
+
+                $userId = $admin_details['user_id_pk'];
+                $userName = $admin_details['first_name'] . ' ' . $admin_details['last_name'];
+                $pemail = $admin_details['email'];
                 $random_password = $this->generateRandomString();
                 $table = "lp_admin_mst";
                 $data = array(
@@ -130,13 +140,13 @@ class Admin extends CI_Controller
                                          $random_password 
 
                              Regards,
-                             Farming Flyers
+                             ModernAgent
 MSG;
                     $config['mailtype'] = 'html';
                     $this->email->initialize($config);
-                    $this->email->from('noreply@ff.com', $name);
+                    $this->email->from('noreply@modernagent.io', $name);
                     $this->email->to($pemail);
-                    $this->email->subject('Farming Flyers Reset Password');
+                    $this->email->subject('ModernAgent Reset Password');
                     $this->email->message($message);
                     $send = $this->email->send();
                     

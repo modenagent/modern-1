@@ -33,6 +33,7 @@
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input type="text" placeholder="Username" class="form-control" name="aname" id="aname">
                           </div>
+                          <label id="error_aname" for="aname" generated="true" class="error" style="display:none;"></label>
 
                           <span class="help-block"></span>
 
@@ -40,6 +41,7 @@
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             <input type="password" placeholder="Password" class="form-control" name="apass" id="apass">
                           </div>
+                          <label id="error_apass" for="apass" generated="true" class="error" style="display:none;"></label>
                         </div>
                         </div>
                           <span class="help-block"></span>
@@ -73,7 +75,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title">Forget Password?</h4>
               </div>
               <form method="" autocomplete="off" action="" class="omb_loginForm" id="forgot-form">
               <div class="modal-body">
@@ -82,6 +84,7 @@
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
                       <input type="text" placeholder="email address" name="useremail" class="form-control" id="useremail">
                   </div>
+                  <label id="error_useremail" for="useremail" generated="true" class="error" style="display:none;"></label>
                   <span class="help-block"></span>                 
               
                 
@@ -110,24 +113,34 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/extra.js"></script>
       <script type="text/javascript">
       $(document).ready(function(){          
-          // Login form
-          // login form validate
-          $("#adminlogin-form").validate({
-              rules: {
-                  aname: "required",
-                  apass: "required"
-              },
-              messages: {
-                  aname: "",
-                  apass: ""
-              }
-          });
+          function validateAdminLogin()
+          {
+            var result = true;
+            var name = $.trim($("#aname").val());
+            var pass = $.trim($("#apass").val());
+            if (name == '') {
+              $('#error_aname').html('Please enter username.');
+              $('#error_aname').show();
+              result = false;
+            } else {
+              $('#error_aname').html('');
+              $('#error_aname').hide();
+            }
+            if (pass == '') {
+              $('#error_apass').html('Please enter password.');
+              $('#error_apass').show();
+              result = false;
+            } else {
+              $('#error_apass').html('');
+              $('#error_apass').hide();
+            }
+            return result;
+          }
           // login form submit
           $("#adminlogin-form").submit(function(){
-              if( !$(this).valid() ){
+              if( !validateAdminLogin() ){
                  return false;
               } else {
-                  // var postData = $(this).serialize();
                   var name = $("#aname").val();
                   var pass = $("#apass").val();
                   $.ajax({
@@ -150,22 +163,33 @@
                   return false;
               }
           });
-          // forgot password
-          // validate forgot password
-          $("#forgot-form").validate({
-            rules: {
-                useremail: {
-                  required:true,
-                  email:true
-                }              
-            },
-            messages: {
-                useremail: ""              
+
+          function validateEmail(email) {
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+          }
+
+          function validateForgetPassword()
+          {
+            var result = true;
+            var user_email = $.trim($("#useremail").val());
+            if (user_email == '') {
+              $('#error_useremail').html('Please enter email address.');
+              $('#error_useremail').show();
+              result = false;
+            } else if (!validateEmail(user_email)) {
+              $('#error_useremail').html('Please enter valid email address.');
+              $('#error_useremail').show();
+              result = false;
+            } else {
+              $('#error_useremail').html('');
+              $('#error_useremail').hide();
             }
-          });
+            return result;
+          }
           // forgot form submit
           $("#forgot-form").submit(function(){
-              if( !$(this).valid() ){
+              if( !validateForgetPassword() ){
                 $('#forgot_submit').attr('disabled',false);
                 return false;
               } else {
