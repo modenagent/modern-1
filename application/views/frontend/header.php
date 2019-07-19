@@ -47,7 +47,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/prettyphoto.css"/>
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-toastr/toastr.min.css">
 
-        <link href="<?php echo base_url(); ?>assets/css/lp-style.css" rel="stylesheet">
 
 
         <link href="<?php echo base_url(); ?>assets/image_popup/image-popup.css" rel="stylesheet">
@@ -55,6 +54,7 @@
         <link href="<?php echo base_url(); ?>assets/css/login/login.css" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
+        <link href="<?php echo base_url(); ?>assets/css/lp-style.css" rel="stylesheet">
 
 </head>
 
@@ -66,7 +66,7 @@
              <!-- mobile menu button content -->
              
              
-    <a href="#"><img id="header_logo" src="<?php echo base_url(); ?>assets/images-2/logo.png" class="img-responsive" ></a>
+    <a href="<?php echo site_url(); ?>"><img id="header_logo" src="<?php echo base_url(); ?>assets/images-2/logo.png" class="img-responsive" ></a>
 
     <nav class="nav">
         <div class="menu pull-right">
