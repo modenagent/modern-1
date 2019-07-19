@@ -2744,9 +2744,9 @@ button {
 
 .mybtn {
     border: 1px solid #000;
-        border-left-width: 1px;
-        border-left-style: solid;
-        border-left-color: rgb(0, 0, 0);
+        border-left-width: 1px !important;
+        border-left-style: solid !important;
+        border-left-color: rgb(0, 0, 0) !important;
     color: #000;
     background-color: #fff;
     padding-left: 15px;
@@ -2906,4 +2906,8 @@ header .header_content p {
     .nav {
         display: none;
     }
+}
+
+.register-alert-danger {
+    color: #ffffff!important;
 }

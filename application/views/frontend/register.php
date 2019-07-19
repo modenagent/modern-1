@@ -7,7 +7,7 @@
                     <a href="#"><img id="header_logo" class="" width="170px" src="<?php echo base_url(); ?>assets/images-2/logo.png" class="img-responsive" ></a>
                 </div>
                 <div class="sign-in-container">
-                    <form action="#" class="login-wrapper" method="post" id="register-form" >
+                    <form action="" class="login-wrapper" method="post" id="register-form" >
                         <div class="header">
                             <div class="row">
                                 <div class="col-md-12 col-lg-12">
@@ -18,27 +18,27 @@
                         <div class="content">
                             <div class="form-group">
                                 <label for="userName">First Name</label>
-                                <input type="text" class="form-control" name="fname"  id="fname" placeholder="First Name" value="<?= set_value('fname'); ?>">
-                                <span class="alert-danger"><?= form_error('fname'); ?></span>
+                                <input type="text" class="form-control alphanumeric" name="fname"  id="fname" placeholder="First Name" value="<?= set_value('fname'); ?>">
+                                <span class="register-alert-danger"><?= form_error('fname'); ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="userName">Last Name</label>
-                                <input type="text" class="form-control" name="lname"  id="lname" placeholder="Last Name" value="<?= set_value('lname'); ?>">
-                                <span class="alert-danger"><?= form_error('lname'); ?></span>
+                                <input type="text" class="form-control alphanumeric" name="lname"  id="lname" placeholder="Last Name" value="<?= set_value('lname'); ?>">
+                                <span class="register-alert-danger"><?= form_error('lname'); ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="userName">Email Address</label>
                                 <input type="text" class="form-control"  name="uemail" id="uemail" placeholder="Email" value="<?= set_value('uemail'); ?>">
-                                <span class="alert-danger"><?= form_error('uemail'); ?></span>
+                                <span class="register-alert-danger"><?= form_error('uemail'); ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="userName">Referral Code</label>
                                 <input type="text" class="form-control"  name="ref_code" id="ref_code" placeholder="Referral Code" value="<?= set_value('ref_code'); ?>">
-                                <span class="alert-danger"><?= form_error('ref_code'); ?></span>
+                                <span class="register-alert-danger"><?= form_error('ref_code'); ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="userName">Company Name</label>
-                                <input type="text" class="form-control"   name="cname" id="cname"  placeholder="Company Name" value="<?= set_value('cname'); ?>">
+                                <input type="text" class="form-control alphanumeric"   name="cname" id="cname"  placeholder="Company Name" value="<?= set_value('cname'); ?>">
                             </div>
                             <div class="form-group">
                                 <label for="userName">Company Street Address</label>
@@ -46,22 +46,22 @@
                             </div>
                             <div class="form-group">
                                 <label for="userName">Company City</label>
-                                <input type="text" class="form-control" name="ccity" id="ccity" placeholder="Company City" value="<?= set_value('ccity'); ?>">
+                                <input type="text" class="form-control alphanumeric" name="ccity" id="ccity" placeholder="Company City" value="<?= set_value('ccity'); ?>">
                             </div>
                             <div class="form-group">
                                 <label for="userName">Company Zipcode</label>
-                                <input type="text" class="form-control" name="czipcode" id="czipcode" placeholder="Company Zipcode" value="<?= set_value('czipcode'); ?>">
+                                <input type="text" class="form-control numeric" maxlength="6" name="czipcode" id="czipcode" placeholder="Company Zipcode" value="<?= set_value('czipcode'); ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="Password1">Password</label>
                                 <input type="password" class="form-control" name="user_pass" id="user_pass" placeholder="Password">
-                                <span class="alert-danger"><?= form_error('user_pass'); ?></span>
+                                <span class="register-alert-danger"><?= form_error('user_pass'); ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="Password1">Confirm Password</label>
-                                <input type="password" class="form-control" name="cpassword" id="user_pass" placeholder="Confirm Password">
-                                <span class="alert-danger"><?= form_error('cpassword'); ?></span>
+                                <input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Confirm Password">
+                                <span class="register-alert-danger"><?= form_error('cpassword'); ?></span>
                             </div>
                             <div class="form-group">
                                 <input type="checkbox" class="col-sm-1" name="do_subscribe" style="height:25px; width:25px; margin-bottom:10px; margin-top:0px; border: 2px solid #ffffff;" value="1" >
@@ -101,5 +101,63 @@
             </div>
         </div>
 </div>
-	
-  
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
+<script type="text/javascript">
+$(document).ready(function() {
+    var base_url = '<?php echo base_url(); ?>';
+    $("#register-form").validate({
+        rules:{
+            fname:{
+                required:true
+            },
+            lname:{
+                required: true
+            },
+            uemail:{
+                required: true
+            },
+            user_pass:{
+                required: true
+            },
+            cpassword:{
+                required: true,
+                equalTo:'#user_pass'
+            }
+        },
+        messages:{
+            fname: {
+                required: "Please enter first name",
+            },
+            lname: {
+                required: "Please enter last name",
+            },
+            uemail: {
+                required: "Please enter email address",
+            },
+            user_pass: {
+                required: "Please enter password",
+            },
+            cpassword: {
+                required: "Please enter password again",
+                equalTo: "Confirm password should be same as password"
+            }
+        }
+    });
+
+    $('#register-form').submit(function() {
+        if ( !$(this).valid() ) {
+            return false;
+        } else {
+            $(this).submit();
+        }
+    });
+
+    $('.numeric').on('input', function (event) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+
+    $('.alphanumeric').on('input', function (event) {
+        this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
+    });
+});
+</script>
