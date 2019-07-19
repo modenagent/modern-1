@@ -246,7 +246,7 @@
             <div class="row">
                 <div class="section-title">
                     <div class="col-md-12">
-                        <h1 id="">WIDGETS</h1>
+                        <h1 id="widgets">WIDGETS</h1>
                     </div>
                 </div>
 				<div class="section-content">

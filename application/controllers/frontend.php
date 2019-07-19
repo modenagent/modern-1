@@ -214,6 +214,7 @@ echo $this->email->print_debugger();die;
             $this->form_validation->set_rules('lname', 'Last Name', 'trim|required'); 
             $this->form_validation->set_rules('user_pass', 'Password', 'required');
             $this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|matches[user_pass]');
+            $this->form_validation->set_error_delimiters('', '');
               
             if($this->form_validation->run()) { 
                 // set variables from the form

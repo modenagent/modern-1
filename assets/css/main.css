@@ -108,7 +108,7 @@ input[type=search] {
 }
 
 input {
-    -webkit-appearance: none
+    /*-webkit-appearance: none*/
 }
 
 input:focus {
@@ -3955,7 +3955,7 @@ footer .footer-lower #copyright-text {
     -moz-osx-font-smoothing: grayscale;
     font-size: 50px;
     color: #cc9964;
-    position: absolute;
+    /*position: absolute;*/
     top: 50%;
     left: 250px;
     -ms-transform: translateY(-50%);
@@ -5328,7 +5328,7 @@ header .mobile-mockup {
     width: 558px;
     height: 650px;
     position: absolute;
-    right: 45px;
+    right: 0px;
     bottom: -100px;
     background-image: url("../images/home/header_report.png");
     background-size: cover;
