@@ -49,6 +49,7 @@
 <!--toastr js-->
 <script src="<?php echo base_url(); ?>assets/js/jquery-toastr/toastr.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jquery-toastr/ui-toastr-notifications.js"></script> `
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
 <script type="text/javascript">
     // stopping form from submitting on enter key press
     $(document).ready(function() {
@@ -69,59 +70,113 @@
         $('#login-form').show();
         $('#forgot-form').hide();
     });
-    // forgot form submit
-    $("#forgot_submit").click(function() {
-         $('#forgot_submit').val('Processing Request...');
-         $('#forgot_submit').attr('disabled',true);
-
-         var postData = $('#forgot-form').serialize();
-         var user_email = $("#f_uemail").val();
-
-         $.ajax ( {url: "<?php echo site_url('auth/userforgotpass/format/json/'); ?>",method: 'post',data: {uemail: user_email}}).success(function(resp) {
-                 var obj = resp;var msg = obj.msg;
-                 if (obj.status == "success") {
-                     // submit button disable 
-                     $('#login-form').show();
-                     $('#forgot-form').hide();
-                     $('#forgot-form').trigger("reset");
-                     Notify('Password reset', msg, 'success');
-                 }
-                 if (obj.status == "error") {
-                    var msg = obj.msg;
-                    Notify('Error', msg, 'error');
-                 }
-                $('#forgot_submit').val('Recover Password');
-                $('#forgot_submit').attr('disabled',false);
-         });
-
-         return false;
-    });
     $(document).ready(function() {
-    // login form submit
-        $("#login-form").submit(function() {
-            var uname = $("#uemail").val();
-            var upass = $("#upass").val();
-            if ($.trim(uname) == '' || $.trim(upass) == '') {
+
+        $("#forgot-form").validate({
+            rules:{
+                f_uemail:{
+                    required:true,
+                    email: true
+                }
+            },
+            messages:{
+                f_uemail: {
+                    required: "Please enter email address",
+                    email: "Please enter valid email address"
+                }
+            }
+        });
+
+        // forgot form submit
+        $("#forgot_submit").click(function() {
+            if ( !$("#forgot-form").valid() ) {
+                return false;
+            } else { 
+                $('#forgot_submit').val('Processing Request...');
+                $('#forgot_submit').attr('disabled',true);
+
+                var postData = $('#forgot-form').serialize();
+                var user_email = $("#f_uemail").val();
+
+                $.ajax ({
+                    url: "<?php echo site_url('auth/userforgotpass/format/json/'); ?>",
+                    method: 'post',
+                    dataType: "json",
+                    data: {
+                        uemail: user_email
+                    }
+                })
+                .success(function(resp) {
+                    var obj = resp;var msg = obj.msg;
+                    if (obj.status == "success") {
+                        // submit button disable 
+                        $('#login-form').show();
+                        $('#forgot-form').hide();
+                        $('#forgot-form').trigger("reset");
+                        Notify('Password reset', msg, 'success');
+                    }
+                    if (obj.status == "error" || obj.status == "failed") {
+                        var msg = obj.msg;
+                        Notify('Error', msg, 'error');
+                    }
+                    $('#forgot_submit').val('Recover Password');
+                    $('#forgot_submit').attr('disabled',false);
+                });
+
                 return false;
             }
-            $.ajax({
-                url: '<?php echo site_url('auth/userlogin/format/json/'); ?>',
-                method: 'post',
-                data: {
-                    uemail: uname,
-                    upass: upass
+        });
+
+
+        $("#login-form").validate({
+            rules:{
+                uemail:{
+                    required:true,
+                    email: true
+                },
+                upass:{
+                    required: true
                 }
-            }).success(function(resp) {
-                var obj = resp;
-                if (obj.status == "success") {
-                    window.location = '<?php echo site_url('user/dashboard'); ?>';
+            },
+            messages:{
+                uemail: {
+                    required: "Please enter email address",
+                    email: "Please enter valid email address"
+                },
+                upass: {
+                    required: "Please enter password",
                 }
-                if (obj.status == "error") {
-                    var msg = obj.msg;
-                    Notify('Login Error', msg, 'error');
+            }
+        });
+        // login form submit
+        $("#login-form").submit(function() {
+            if ( !$(this).valid() ) {
+                return false;
+            } else {   
+                var uname = $("#uemail").val();
+                var upass = $("#upass").val();
+                if ($.trim(uname) == '' || $.trim(upass) == '') {
+                    return false;
                 }
-            });
-            return false;
+                $.ajax({
+                    url: '<?php echo site_url('auth/userlogin/format/json/'); ?>',
+                    method: 'post',
+                    data: {
+                        uemail: uname,
+                        upass: upass
+                    }
+                }).success(function(resp) {
+                    var obj = resp;
+                    if (obj.status == "success") {
+                        window.location = '<?php echo site_url('user/dashboard'); ?>';
+                    }
+                    if (obj.status == "error") {
+                        var msg = obj.msg;
+                        Notify('Login Error', msg, 'error');
+                    }
+                });
+                return false;
+            }
         });
         
     });

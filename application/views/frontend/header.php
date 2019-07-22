@@ -78,7 +78,7 @@
                 $api_link = '#api';
                 $leads_link = '#leads';
                 $pricing_link = '#pricing-list';
-                if (strpos($currentURL, 'login') !== false) {
+                if (strpos($currentURL, 'login') !== false || strpos($currentURL, 'register') !== false) {
                     $reports_link = base_url().'#feature';
                     $tools_link = base_url().'#detail';
                     $widget_link = base_url().'#widgets';

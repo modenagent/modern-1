@@ -41,7 +41,7 @@
                         <div class="content">
                             <div class="form-group">
                                 <label for="userName">Email</label>
-                                <input type="email" class="form-control" name="uemail" id="f_uemail" placeholder="Email">
+                                <input type="text" class="form-control" name="f_uemail" id="f_uemail" placeholder="Email">
                             </div>
                             <div class="form-group m-b-0">
                                 <input class="btn btn-lp" id="forgot_submit" name="forgot" type="button" value="Recover Password">

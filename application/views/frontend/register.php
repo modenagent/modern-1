@@ -27,9 +27,14 @@
                                 <span class="register-alert-danger"><?= form_error('lname'); ?></span>
                             </div>
                             <div class="form-group">
-                                <label for="userName">Email Address</label>
+                                <label for="uemail">Email Address</label>
                                 <input type="text" class="form-control"  name="uemail" id="uemail" placeholder="Email" value="<?= set_value('uemail'); ?>">
                                 <span class="register-alert-danger"><?= form_error('uemail'); ?></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="uphone">Phone</label>
+                                <input type="text" maxlength="12" class="form-control numeric"  name="uphone" id="uphone" placeholder="Phone no." value="<?= set_value('uphone'); ?>">
+                                <span class="register-alert-danger"><?= form_error('uphone'); ?></span>
                             </div>
                             <div class="form-group">
                                 <label for="userName">Referral Code</label>
@@ -113,8 +118,15 @@ $(document).ready(function() {
             lname:{
                 required: true
             },
+            uphone:{
+                required: true,
+                number:true,
+                minlength: 10,
+                maxlength: 12
+            },
             uemail:{
-                required: true
+                required: true,
+                email: true
             },
             user_pass:{
                 required: true
@@ -131,8 +143,12 @@ $(document).ready(function() {
             lname: {
                 required: "Please enter last name",
             },
+            uphone: {
+                required: "Please enter Phone No."
+            },
             uemail: {
                 required: "Please enter email address",
+                email: "Please enter valid email address"
             },
             user_pass: {
                 required: "Please enter password",
