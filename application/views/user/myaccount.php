@@ -33,7 +33,7 @@ text-overflow: ellipsis;
           </a>
         </li>
       </ul>
-<div class="loader1 hidden"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
+<div class="loader1 hidden lp-loader1-myaccount"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
 <div class="backwrap hidden"></div>
 <div id="tabs-4" style="z-index:20;">
   <div class="content-inner clearfix">

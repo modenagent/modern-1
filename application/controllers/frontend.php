@@ -210,6 +210,7 @@ echo $this->email->print_debugger();die;
             $this->form_validation->set_rules('caddress', 'Company Address', 'trim');
             $this->form_validation->set_rules('ccity', 'Company City', 'trim');
             $this->form_validation->set_rules('czipcode', 'Company Zipcode', 'trim');
+            $this->form_validation->set_rules('uphone', 'Phone no.', 'trim|required|numeric|min_length[10]|max_length[12]');
             $this->form_validation->set_rules('uemail', 'Email Address', 'trim|required|valid_email|is_unique[lp_user_mst.email]');
             $this->form_validation->set_rules('lname', 'Last Name', 'trim|required'); 
             $this->form_validation->set_rules('user_pass', 'Password', 'required');
@@ -230,6 +231,7 @@ echo $this->email->print_debugger();die;
                     'first_name' => $this->input->post('fname'),
                     'last_name' => $this->input->post('lname'),
                     'email'=>$this->input->post('uemail'),
+                    'phone' => $this->input->post('uphone'),
                     'parent_id' => $parentId,
                     'company_logo'=>  '',
                     'company_phone'=>  '',
