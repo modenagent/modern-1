@@ -23,7 +23,7 @@
                                 <input type="password" class="form-control" name="upass" id="upass" placeholder="Password">
                             </div>
                             <div class="form-group m-b-0">
-                                <input class="btn btn-lp" name="Login" type="submit" value="Login">
+                                <input id="login-form-submit-btn" class="btn btn-lp" name="Login" type="submit" value="Login">
                             </div>
                         </div>
                         <div class="actions">

@@ -425,20 +425,24 @@ function updateTally(tallies) {
 // format user submitted address
 function getAddress() {
     // event.preventDefault ? event.preventDefault() : event.returnValue = false;
-    $(this).parents("form").find(".search-result").removeClass("hidden");
-    
-    // $('.progress-bar').progressbar("option", "value", false);
-    $("#search-btn").parents("form").find("table").addClass("hidden");
-    $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
-    // $('.result-apn').text('');
-    // $('.result-address').text('');
-    // $('.result-city').text('');
-    // $('.js-run-pma-button').hide();
-     $('.pma-error').hide();
-
     isNewSearch=true;
     address = $('#searchbox').val();
     address = $.trim(address);
+
+    if (address == '') {
+        $('#error_searchbox').html('Please search any address.');
+        $('#error_searchbox').show();
+        return;
+    } else {
+        $('#error_searchbox').html('');
+        $('#error_searchbox').hide();
+    }
+
+    $('.pma-error').hide();
+    $(this).parents("form").find(".search-result").removeClass("hidden");
+    $("#search-btn").parents("form").find("table").addClass("hidden");
+    $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
+
     locale = $('#searchboxcity').val();
     locale = $.trim(locale);
     state = $('#state').val();

@@ -50,6 +50,7 @@
                                             <input name="utf8" type="hidden" value="✓">
                                             <div class="input-group2">
                                                 <input class="form-control" name="term" id="searchbox" placeholder="e.g. ‘123 Success Ave’" type="search">
+                                                <label id="error_searchbox" style="display:none;"></label>
                                                 <input type="text" id="searchboxcity" class="citynames2" placeholder="e.g. 'Los Angeles'">
                                                 <input type="hidden" id="neighbourhood">
                                                 <input type="hidden" id="state">
