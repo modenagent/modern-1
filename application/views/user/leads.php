@@ -28,61 +28,74 @@
     <?php endif; ?>
     <p>&nbsp;</p>
     <div class="table-responsive">
-      <table class="actions" id="table-dt">
+      <table class="actions" id="leads-table-dt">
         <thead>
           <tr>
             <th>DATE</th>
-            <th>Phone Number</th>
+            <th>PHONE NUMBER</th>
             <th>OWNER</th>
             <th>PROPERTY ADDRESS</th>
-            <th>Report Type</th>
+            <th>REPORT TYPE</th>
             <th>ACTIONS</th>
           </tr>
         </thead>
         <tbody>
-          
-          <?php 
-
-            // first line of PHP
-            $defaultTimeZone='UTC';
-
-            // somewhere in the code
-            function _date($format="r", $timestamp=false, $timezone=false)
-            {
-                $userTimezone = new DateTimeZone(!empty($timezone) ? $timezone : 'GMT');
-                $gmtTimezone = new DateTimeZone('GMT');
-                $myDateTime = new DateTime(($timestamp!=false?date("r",(int)$timestamp):date("r")), $gmtTimezone);
-                $offset = $userTimezone->getOffset($myDateTime);
-                return date($format, ($timestamp!=false?(int)$timestamp:$myDateTime->format('U')) + $offset);
-            }
-            function _formatPhone($_phoneNumber)
-            {//formats phone number like 1234567890 to 123-456-7890
-                if(strlen((string)$_phoneNumber)>6){
-                    $_phoneNumber = substr_replace(substr_replace($_phoneNumber, "-", 3, 0), "-", 7, 0);
-                }
-                return $_phoneNumber;
-            }
-            foreach ($leads as $key => $lead) {
-          ?>
-
-            <tr class="">
-            <td data-order="<?php echo _date("Ymd",strtotime($lead->project_date)); ?>"><?php echo _date("m-d-Y",strtotime($lead->created_at)); ?></td>
-            <td><?php echo _formatPhone($lead->phone_number); ?></td>
-            <td><?php echo $lead->project_id_pk."-".$lead->property_owner; ?></td>
-              <td><?php echo $lead->project_name; ?></td>
-              <td><?php echo ucfirst($lead->report_type); ?></td>
-              <td> 
-                  <a href="<?php echo base_url().$lead->report_path; ?>" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>
-              </td>
-            </tr>
-
-          <?php
-            }
-          ?>
         </tbody>
-
       </table>
     </div>
   </div>
+  <script type="text/javascript">
+$(document).ready(function(){
+  if ($('#leads-table-dt').length) {
+    $('#leads-table-dt').DataTable({
+        // Processing indicator
+        "processing": true,
+        // DataTables server-side processing mode
+        "serverSide": true,
+        // Initial no order.
+        "paging": true,
+        "searching": true,
+        "order": [
+          [0, "DESC"]
+        ],
+        // Load data from an Ajax source
+        "ajax": {
+            "url": "<?php echo base_url('/user/getLeadListing'); ?>",
+            "type": "POST"
+        },
+        "initComplete": function () {
+            var input = $('.dataTables_filter input').unbind(),
+                self = this.api(),
+                $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                .text('Search')
+                .click(function () {
+                    self.search(input.val()).draw();
+                }),
+                $clearButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                .text('Clear')
+                .click(function () {
+                    input.val('');
+                    $searchButton.click();
+                })
+            $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
+            $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+            $('.dataTables_filter').append($searchButton, $clearButton);
+        },
+        "language": {
+            "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
+            "emptyTable": "<div align='center'>Record(s) not found.</div>"
+        },
+        //Set column definition initialisation properties
+        "columnDefs": [{ 
+            "orderable": false,
+            "targets": "no-sort"
+        }],
+        "drawCallback": function( settings ) {
+          $("[data-toggle='tooltip']").tooltip();
+        }
+    });
+  }
+});
+</script>
 </section>
 <!-- Screenshots section -->

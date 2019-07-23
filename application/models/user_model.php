@@ -80,6 +80,60 @@ class User_model extends Base_model
         $leads = $query->result();
         return $leads;
     }
+
+    public function get_leads_count($userId, $postData)
+    {
+        $this->db->select('count(l.id) as count');
+        $this->db->join('lp_my_listing as proj','l.project_id_fk=proj.project_id_pk');
+        $this->db->where('l.user_id_fk',$userId);
+
+        if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
+            $value = trim($postData['search']['value']);
+            $value = $this->db->escape($value);
+            $value = trim($value,"'");
+            $this->db->where("(l.phone_number LIKE '%".$value."%' 
+                OR CONCAT(TRIM(proj.project_id_pk), '-', TRIM(proj.property_owner)) LIKE '%".$value."%'
+                OR proj.project_name LIKE '%".$value."%' 
+                OR proj.report_type LIKE '%".$value."%'
+                )", NULL, FALSE);
+        }
+
+        $query = $this->db->get('lp_leads as l');
+        $data = $query->row_array();
+        return $data['count'];
+    }
+
+    public function get_leads_data($userId, $columns, $postData)
+    {
+        $order = $columns[$postData['order'][0]['column']];
+        $dir = $postData['order'][0]['dir'];
+
+        $this->db->select("l.created_at, l.phone_number, proj.*");
+        $this->db->join('lp_my_listing as proj','l.project_id_fk=proj.project_id_pk');
+        $this->db->where('l.user_id_fk',$userId);
+
+        if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
+            $value = trim($postData['search']['value']);
+            $value = $this->db->escape($value);
+            $value = trim($value,"'");
+            $this->db->where("(l.phone_number LIKE '%".$value."%' 
+                OR CONCAT(TRIM(proj.project_id_pk), '-', TRIM(proj.property_owner)) LIKE '%".$value."%'
+                OR proj.project_name LIKE '%".$value."%'  
+                OR proj.report_type LIKE '%".$value."%'
+                )", NULL, FALSE);
+        }
+
+        if ($postData['length'] != -1) {
+            $this->db->limit($postData['length'], $postData['start']);
+        } else {
+            $this->db->limit(10, $postData['start']);
+        }
+        $this->db->order_by($order, $dir);
+
+        $query = $this->db->get('lp_leads as l');
+        return $query->result_array();
+    }
+
     function addMarketUpdateTemplatesInDatabase(){
         $templatesData = $this->db->select('report_templates_id_pk, template_icon')
                                 ->get('lp_report_templates')
@@ -146,6 +200,57 @@ class User_model extends Base_model
             $_res = $this->db->query($_checkSql);
         } while($_res->row()->count);
         return $refCode;
+    }
+
+    public function user_reports_count($userId, $postData)
+    {
+        $this->db->select("count(project_id_pk) as count");
+        $this->db->where('user_id_fk', $userId);
+        $this->db->where('is_active', 'Y');
+
+        if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
+            $value = trim($postData['search']['value']);
+            $value = $this->db->escape($value);
+            $value = trim($value,"'");
+            $this->db->where("( CONCAT(TRIM(project_id_pk), '-', TRIM(property_owner)) LIKE '%".$value."%'
+                OR project_name LIKE '%".$value."%' 
+                OR report_type LIKE '%".$value."%'
+                )", NULL, FALSE);
+        }
+
+        $query = $this->db->get('lp_my_listing');
+        $data = $query->row_array();
+        return $data['count'];
+    }
+
+    public function user_reports_data($userId, $columns, $postData)
+    {
+        $order = $columns[$postData['order'][0]['column']];
+        $dir = $postData['order'][0]['dir'];
+
+        $this->db->select("project_id_pk, property_owner, project_name, report_type, project_date, report_path");
+        $this->db->where('user_id_fk', $userId);
+        $this->db->where('is_active', 'Y');
+
+        if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
+            $value = trim($postData['search']['value']);
+            $value = $this->db->escape($value);
+            $value = trim($value,"'");
+            $this->db->where("( CONCAT(TRIM(project_id_pk), '-', TRIM(property_owner)) LIKE '%".$value."%'
+                OR project_name LIKE '%".$value."%' 
+                OR report_type LIKE '%".$value."%'
+                )", NULL, FALSE);
+        }
+
+        if ($postData['length'] != -1) {
+            $this->db->limit($postData['length'], $postData['start']);
+        } else {
+            $this->db->limit(10, $postData['start']);
+        }
+        $this->db->order_by($order, $dir);
+
+        $query = $this->db->get('lp_my_listing');
+        return $query->result_array();
     }
 }          
 ?>

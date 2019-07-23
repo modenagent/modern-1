@@ -6,47 +6,73 @@
     <p class="subhead">We have gathered all of your invoices here for your convenience. You can print and download anytime.</p>
     <p>&nbsp;</p>
       <div class="table-responsive">
-      <table  class="actions" id="table-dt">
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Property Address</th>
-            <th>Property-apn</th>
-            <th>Print</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <?php
-            // first line of PHP
-            $defaultTimeZone='UTC';
-
-            // somewhere in the code
-            function _date($format="r", $timestamp=false, $timezone=false)
-            {
-                $userTimezone = new DateTimeZone(!empty($timezone) ? $timezone : 'GMT');
-                $gmtTimezone = new DateTimeZone('GMT');
-                $myDateTime = new DateTime(($timestamp!=false?date("r",(int)$timestamp):date("r")), $gmtTimezone);
-                $offset = $userTimezone->getOffset($myDateTime);
-                return date($format, ($timestamp!=false?(int)$timestamp:$myDateTime->format('U')) + $offset);
-            }
-            foreach ($billings as $key => $bill) { ?>
-			 <tr>
-              <td data-order="<?php echo date("YmdHis",strtotime($bill->invoice_date)); ?>"><?php echo _date("m-d-Y H:i:s",strtotime($bill->invoice_date)); ?></td>
-              <td>$ <?php echo number_format($bill->invoice_amount, 2); ?></td>
-              <td><?php echo $bill->property_address.', CA 90601'; ?></td>
-              <td><?php echo $bill->property_apn; ?></td>
-              <td> 
-		  		<a href=" <?php echo base_url().$bill->invoice_pdf; ?>" class="btn btn-lp receipt" target="_blank">Print Receipt</a>
-              </td>
-            </tr>	
-         <?php }
-          ?>
-        </tbody>
-      </table>
-      
+        <table  class="actions" id="billing-table-dt">
+          <thead>
+            <tr>
+              <th>DATE</th>
+              <th>AMOUNT</th>
+              <th>PROPERTY ADDRESS</th>
+              <th>PROPERTY-APN</th>
+              <th class="no-sort">PRINT</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
     </div>
   </div>
 </div>
 <!-- Pricing section --> 
+<script type="text/javascript">
+$(document).ready(function(){
+  if ($('#billing-table-dt').length) {
+    $('#billing-table-dt').DataTable({
+        // Processing indicator
+        "processing": true,
+        // DataTables server-side processing mode
+        "serverSide": true,
+        // Initial no order.
+        "paging": true,
+        "searching": true,
+        "order": [
+          [0, "DESC"]
+        ],
+        // Load data from an Ajax source
+        "ajax": {
+            "url": "<?php echo base_url('/user/getBillingHistory'); ?>",
+            "type": "POST"
+        },
+        "initComplete": function () {
+            var input = $('.dataTables_filter input').unbind(),
+                self = this.api(),
+                $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                .text('Search')
+                .click(function () {
+                    self.search(input.val()).draw();
+                }),
+                $clearButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                .text('Clear')
+                .click(function () {
+                    input.val('');
+                    $searchButton.click();
+                })
+            $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
+            $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+            $('.dataTables_filter').append($searchButton, $clearButton);
+        },
+        "language": {
+            "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
+            "emptyTable": "<div align='center'>Record(s) not found.</div>"
+        },
+        //Set column definition initialisation properties
+        "columnDefs": [{ 
+            "orderable": false,
+            "targets": "no-sort"
+        }],
+        "drawCallback": function( settings ) {
+          $("[data-toggle='tooltip']").tooltip();
+        }
+    });
+  }
+});
+</script>
