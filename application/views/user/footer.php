@@ -1069,7 +1069,7 @@
       <?php if ($this->session->flashdata('error')) : ?>
       Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
       <?php endif; ?>
-      $("#btn-logout").click(function() {
+      $(".btn-user-logout-click").click(function() {
           $.ajax({
               url: '<?php echo site_url('auth/logout/format/json/'); ?>',
               method: 'get'

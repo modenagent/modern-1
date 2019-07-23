@@ -156,6 +156,14 @@
                 }
             }
         });
+
+        $('#login-form #uemail').keyup(function(e){
+            if(e.keyCode == 13) { $('#login-form').submit(); }
+        });
+        $('#login-form #upass').keyup(function(e){
+            if(e.keyCode == 13) { $('#login-form').submit(); }
+        });
+
         // login form submit
         $("#login-form").submit(function() {
             if ( !$(this).valid() ) {
@@ -166,6 +174,7 @@
                 if ($.trim(uname) == '' || $.trim(upass) == '') {
                     return false;
                 }
+                $('#login-form-submit-btn').val('Please wait...');
                 $.ajax({
                     url: '<?php echo site_url('auth/userlogin/format/json/'); ?>',
                     method: 'post',
@@ -174,6 +183,7 @@
                         upass: upass
                     }
                 }).success(function(resp) {
+                    $('#login-form-submit-btn').val('Login');
                     var obj = resp;
                     if (obj.status == "success") {
                         window.location = '<?php echo site_url('user/dashboard'); ?>';
