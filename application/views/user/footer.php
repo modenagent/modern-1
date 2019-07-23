@@ -1016,6 +1016,14 @@
   }
   $(document).ready(function() {
       $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+
+      $(window).on("scroll", function () {
+          if ($(window).scrollTop() > 50) {
+              $("header.overlapping").addClass("overlapping-down");
+          } else {
+              $("header.overlapping").removeClass("overlapping-down");
+          }
+      });
   });
   $("#forward-report").on("show.bs.modal", function(e) {
       var projectID = $(e.relatedTarget).data('id');

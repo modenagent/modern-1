@@ -59,6 +59,14 @@
               return false;
             }
         });
+
+        $(window).on("scroll", function () {
+            if ($(window).scrollTop() > 50) {
+                $("header.overlapping").addClass("overlapping-down");
+            } else {
+                $("header.overlapping").removeClass("overlapping-down");
+            }
+        });
     });
     // show the forgot password form
     $('.fp-link').click(function(){
