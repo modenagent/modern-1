@@ -547,6 +547,10 @@
         return true;
       }
     });
+    /** Tabs content was messedup for a second before smartTab initialization 
+     * So hide it initially and show it once smartTab initialized 
+     */
+    $('#tabs').show();
     
     $(".leftpic a").click(function() {    
         console.log("trigger");                                            

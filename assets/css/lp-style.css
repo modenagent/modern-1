@@ -3003,3 +3003,8 @@ header .header_content p {
     padding: 6px 6px;
     font-size: 14px;
 }
+
+.cancel-subscription-btn {
+    background: #cc9964;
+    color: #fff;
+}

@@ -426,7 +426,7 @@
                     </div>
                 </div>
 				<div class="section-content-bottom section-content-bottom-alternate">
-                <div class="col-md-7">
+                <div class="col-md-12">
                     <div class="clients-wrapper bg-white " >
                         <div class="section-title">
                             <h1 class="happy">HAPPY CLIENTS</h1>
@@ -480,6 +480,7 @@
                     </div>
                 </div>
 				</div>
+                <?php /* ?>
                 <div class="col-md-5">
                     <div class="tweets-wrapper bg-white " data-wow-delay="0.8s">
                         <div class="section-title">
@@ -508,6 +509,7 @@
                         </div>
                     </div>
                 </div>
+                <?php /** */ ?>
             </div>
         </div>
     </div>
