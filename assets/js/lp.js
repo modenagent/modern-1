@@ -317,9 +317,20 @@ function runPMA(agentPath, logoPath) {
             }
             if(!pdfGenerated){
                 $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
+                setTimeout(() => {
+                    //SET TIME OUT because its add static error message from footer.php SO update exact error message after 1 second.
+                    if (obj.msg != '') {
+                        $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
+                    }
+                }, 1000);
                 $('.btn-checkout').hide();
                 $('.btn-lp.pay').hide();
-                pmaRes =  {status:"failed",msg:errorMsg};
+                if (obj.msg != '') {
+                    // Error Message passed to CMA response.
+                    pmaRes =  {status:"failed",msg:obj.msg};
+                } else {
+                    pmaRes =  {status:"failed",msg:errorMsg};
+                }
             }
             // returnReport();
             activeRequest=false;

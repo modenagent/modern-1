@@ -352,13 +352,32 @@
         doSubmit();
       }
     }
-
+    /*
     function doSubmit(){
       if(activeRequest){
         setTimeout(function(){
           doSubmit();
         },1500);
       }else{
+        $form.get(0).submit();
+      }
+    }
+
+    FIX issue that order submitted even PDF not generated
+    By Below changes.
+    */
+    function doSubmit(){
+      if(activeRequest && !pdfGenerated){
+        setTimeout(function(){
+          doSubmit();
+        },1500);
+      } else if(! pdfGenerated){
+        $('.loader1').hide();
+        $('.backwrap').hide();
+        $('#apply-coupan-alert').html("We did not process your payment as PDF Generation failed. Our team is looking into the matter. Please try again in a bit.").removeClass('alert-success').addClass('alert-danger').show();
+        $('.loader1').hide();
+        $('.backwrap').hide();
+      }else {
         $form.get(0).submit();
       }
     }
