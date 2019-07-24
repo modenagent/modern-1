@@ -41,8 +41,9 @@ class Coupon extends CI_Controller {
                     $query = $this->db->query($sql);
                     $result = $query->row();
                     if($result){
-                            $this->load->library('session');
-                            $this->session->set_userdata('coupon_id',$result->coupon_id_pk);
+                            // DO NOT SET coupon_id TO SESSION
+                            //$this->load->library('session');
+                            //$this->session->set_userdata('coupon_id',$result->coupon_id_pk);
                             echo json_encode(array('status'=>'success', 'message'=>'Coupon code is validated','coupon_id'=>$result->coupon_id_pk, 'discount'=>$result->coupon_amt));
                     }else{
                             echo json_encode(array('status'=>'failed', 'message'=>'Please enter a valid coupon code'));	

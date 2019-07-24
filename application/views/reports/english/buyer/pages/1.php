@@ -14,15 +14,17 @@
 		<div class="footer">
 			<div class="row">
                             <div class="footer-inner">
-                                <div class="left-footer pull-left col-xs-12">
+							<div class="col-xs-12">
+                                <div class="left-footer pull-left">
                                     <div class="row">
                                         <?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?>
-                                        <div class="pull-left">
-                                                <img width="160px" height="160px" style="border-radius:100%; margin-top:25px; margin-left:-10px;" class="img-responsive" src="<?php echo base_url().$user['profile_image']; ?>"  >
+                                        <div class="col-xs-6">
+                                              <img width="130px" height="130px" style="border-radius:100%; margin-top:0px; margin-left:0px;" class="img-responsive" src="<?php echo base_url().$user['profile_image']; ?>" />
                                         </div>
+                                        <?php else: ?>
+                                        <div class="col-xs-3"></div>
                                         <?php endif; ?>
-                                        <div class="pull-left">
-                                            <div>
+										<div class="<?php echo ($user['profile_image'] != '' && $user['profile_image'] != 'no')?'col-xs-6':'col-xs-9'  ?>">
                                                 <h4 class="client-name"><?php echo $user['fullname']; ?></h4>
                                                 <p class="client-detail" ></p>
                                                 <p class="client-detail" ><?php echo $user['title']; ?></p>
@@ -34,12 +36,12 @@
                                                 <p class="client-detail" > <?php echo $user['city']; ?>, &nbsp; <?php echo $user['state'];  ?>&nbsp;<?php echo $user['zip']; ?></p>
                                             </div>
                                         </div>
-                                        <div class="right-footer pull-right">
-                                                <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:130px;max-width:300px;padding-bottom: 0px;"  alt="Logo Image"/><?php endif; ?>
-                                        </div>
                                     </div>
+                                    <div class="right-footer pull-right" style="padding-top:0px !important;">
+                                                <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:130px;max-width:300px;padding-bottom: 0px;"  alt="Logo Image"/><?php endif; ?>
                                 </div>
-                            </div>
+                               </div>
+							</div>
                         </div>
 		</div>
     </div>

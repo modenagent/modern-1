@@ -105,13 +105,23 @@ class Admin extends CI_Controller
     public function forget_password()
     {
         if ($_POST) {
-            $query = mysql_query('select * from lp_admin_mst where admin_email="' . $this->input->post('email') . '"');
-            $user_data = mysql_fetch_array($query);
-            $user_count = mysql_num_rows($query);
-            if (!empty($user_count)) {
-                $userId = $user_data['admin_id_pk'];
-                $userName = $user_data['user_name'];
-                $pemail = $user_data['admin_email'];
+            $email = $this->input->post('email');
+            $admin_details = $this->admin_model->is_admin_exists($email);
+
+            if (!empty($admin_details)) {
+                $isActive = $admin_details['is_active'];
+                if (strtoupper($isActive) == 'N') {
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Your account has been deactivated.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
+
+                $userId = $admin_details['user_id_pk'];
+                $userName = $admin_details['first_name'] . ' ' . $admin_details['last_name'];
+                $pemail = $admin_details['email'];
                 $random_password = $this->generateRandomString();
                 $table = "lp_admin_mst";
                 $data = array(
@@ -130,13 +140,13 @@ class Admin extends CI_Controller
                                          $random_password 
 
                              Regards,
-                             Farming Flyers
+                             ModernAgent
 MSG;
                     $config['mailtype'] = 'html';
                     $this->email->initialize($config);
-                    $this->email->from('noreply@ff.com', $name);
+                    $this->email->from('noreply@modernagent.io', $name);
                     $this->email->to($pemail);
-                    $this->email->subject('Farming Flyers Reset Password');
+                    $this->email->subject('ModernAgent Reset Password');
                     $this->email->message($message);
                     $send = $this->email->send();
                     
@@ -445,7 +455,13 @@ MSG;
                     $action .= ' <a title="Download Report" class="btn btn-success btn-xs admin-ml-5" href="'.base_url().$transaction['report_path'].'" target="_blank" data-toggle="tooltip" data-title="Download Report"><i class="fa fa-download"></i></a>';
                 }
                 if(!is_null($transaction['invoice_pdf'])) {
-                    $action .= ' <a title="Download Inovice" class="btn btn-success btn-xs admin-ml-5" href="'.base_url().$transaction['invoice_pdf'].'" target="_blank" data-toggle="tooltip" data-title="Download Inovice"><i class="fa fa-download"></i></a>';
+
+                    if (file_exists($transaction['invoice_pdf'])) {
+                        $action .= ' <a title="Download Inovice" class="btn btn-success btn-xs admin-ml-5" href="'.base_url().$transaction['invoice_pdf'].'" target="_blank" data-toggle="tooltip" data-title="Download Inovice"><i class="fa fa-download"></i></a>';
+                    } else {
+                        $invoice_generate_url = site_url().'/admin/download_invoice/'.$transaction['invoice_num'].'/'.$transaction['user_id_fk'];
+                        $action .= ' <a title="Download Inovice" class="btn btn-success btn-xs admin-ml-5" href="'.$invoice_generate_url.'" target="_blank" data-toggle="tooltip" data-title="Download Inovice"><i class="fa fa-download"></i></a>';
+                    }
                 }
                                     
                 $action .=' <a href="'.site_url().'?/admin/invoice/'.$transaction['invoice_num'].'" class="btn btn-info btn-xs admin-ml-5" data-toggle="tooltip" data-title="View detail"><i class="fa fa-eye"></i></a>';
@@ -700,10 +716,16 @@ MSG;
 
                 $referralCode = '';
                 if (!empty($parentId)) {
-                    $parent_user_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$parentId], ['user_id_pk', 'role_id_fk']);
+                    $parent_user_details = $this->base_model->get_record_by_id('lp_user_mst', ['user_id_pk'=>$parentId], ['user_id_pk', 'role_id_fk', 'company_name', 'company_add']);
                     if (!empty($parent_user_details)) {
                         if($this->role_lib->is_sales_rep($parent_user_details->role_id_fk) && $roleId == '4') {
                             $referralCode = (!empty($this->input->post('ref_code')))?$this->input->post('ref_code'):$this->user_model->setRefCode($uid);
+                        }
+
+                        //If Sales Reprensentative
+                        if ($roleId == '3') {
+                            $cname = $parent_user_details->company_name;
+                            $cadd = $parent_user_details->company_add;
                         }
                     }
                 }
@@ -748,7 +770,7 @@ MSG;
                 if(isset($parentId)) {
                     $data['parent_id'] = $parentId;
                 }
-                if(isset($referralCode)) {
+                if(isset($referralCode) && $referralCode!='') {
                     $data['ref_code'] = $referralCode;
                 }
                 $where = array(
@@ -831,7 +853,12 @@ MSG;
                     $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Report" href="javascript:void(0)" data-toggle="tooltip" data-title="Download Report" onclick="alert(\'Not Available\')" ><i class="fa fa-download"></i></a>';
                 }
                 if (!empty($invoice['invoice_pdf'])) {
-                    $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="'.base_url($invoice['invoice_pdf']).'" target="_blank"  data-toggle="tooltip" data-title="Download Invoice"><i class="fa fa-download"></i></a>';
+                    if (file_exists($invoice['invoice_pdf'])) {
+                        $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="'.base_url($invoice['invoice_pdf']).'" target="_blank"  data-toggle="tooltip" data-title="Download Invoice"><i class="fa fa-download"></i></a>';
+                    } else {
+                        $invoice_generate_url = site_url().'/admin/download_invoice/'.$invoice['invoice_num'].'/'.$invoice['user_id_fk'];
+                        $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="'.$invoice_generate_url.'" target="_blank"  data-toggle="tooltip" data-title="Download Invoice"><i class="fa fa-download"></i></a>';
+                    }
                 } else {
                     $action .='<a class="btn btn-success btn-xs admin-ml-5" title="Download Invoice" href="javascript:void(0)" data-toggle="tooltip" data-title="Download Invoice" onclick="alert(\'Not Available\')" ><i class="fa fa-download"></i></a>';
                 }
@@ -2199,7 +2226,13 @@ MSG;
         if(is_null($userId)){
             $userId = $this->session->userdata('adminid');
         }
-        $referralCode = sprintf("REF%05d", $userId);
+        $referralCode = "";
+        if (strlen($userId) < 5) {
+            $referralCode = "REF".sprintf("%05d", $userId);
+        } else {
+            $referralCode = "REF0".$userId;
+        }
+
         $this->admin_model->add_referral_code($referralCode);
     }
     public function subscribe($userId){
@@ -2383,6 +2416,56 @@ MSG;
             echo json_encode(array('status' => $status, 'msg' => $msg,'fileuri'=>$fileuri ) );
         }else{
             echo json_encode(array('status' => $status, 'msg' => $msg, 'message' =>'file not uploaded'));
+        }
+    }
+
+    public function packages()
+    {
+        $data['title'] = "Manage Packages";
+        $data['admin_id'] = $this->session->userdata('adminid');
+        $_hasAccess = $this->_hasAccess('packages');
+        $is_admin = $this->role_lib->is_admin();
+        if ($is_admin) {
+
+            $this->load->model('package_model');
+            $packages = $this->package_model->get_all_packages_price();
+            $data['packages'] = $packages;
+            $data['report_price'] = $packages['reports'];
+            $data['monthly_price'] = $packages['monthly'];
+
+            $this->load->view('admin/header',$data);
+            $this->load->view('packages/index',$data);
+            $this->load->view('admin/footer',$data);
+
+        } else {
+            redirect('admin/dashboard',$data);
+        }
+    }
+
+    public function update_package()
+    {
+        $package = $this->input->post('package');
+        $price = $this->input->post('price');
+        $is_admin = $this->role_lib->is_admin();
+        if ($is_admin) {
+            $this->load->model('package_model');
+            $adminId = $this->session->userdata('adminid');
+            $packages = $this->package_model->set_package_price($package, $price, $adminId);
+            echo json_encode(array('status' => 'success', 'message' => ucwords($package).' package price updated successfully.'));
+        } else {
+            echo json_encode(array('status' => 'error', 'message' => 'Access Denied'));
+        }
+    }
+
+    function download_invoice($invoiceNumber, $userId) 
+    {
+        $adminId = $this->session->userdata('adminid');
+        if(!empty($adminId) && !empty($invoiceNumber) && !empty($userId)) {
+            $this->load->library('invoice'); 
+            $this->invoice->_getInvoice($invoiceNumber, $userId);
+        } else {
+            echo "Invoice details are required.";
+            exit();
         }
     }
 

@@ -10,12 +10,6 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        
-                        <ul class="nav navbar-nav below_main pull-right">
-                            <li class="below"><a href="#">AFFILIATE</a></li>
-                            <li class="below"><a href="#">CONTACT</a></li>
-                            <li class="below"><a href="#">RELEASE NOTES</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -29,12 +23,13 @@
                         <p class="font">www.modernagent.io</p>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <div class="center">
-                        <p class="font fontc">&COPY; 2017. MODERN AGENT. ALL RIGHTS RESERVED.</p>
+                        <p class="font fontc">&COPY; <?php echo date('Y'); ?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
                     </div>
                 </div>
-                <div class="col-md-1 col-md-offset-1">
+                <div class="col-md-2"></div>
+                <div class="col-md-1 text-center">
                     <ul class="social-links">
                         <a href="#">
                             <li class="fb" aria-hidden="true"></li>
@@ -61,6 +56,14 @@
             if(event.keyCode == 13) {
               event.preventDefault();
               return false;
+            }
+        });
+
+        $(window).on("scroll", function () {
+            if ($(window).scrollTop() > 50) {
+                $("header.overlapping").addClass("overlapping-down");
+            } else {
+                $("header.overlapping").removeClass("overlapping-down");
             }
         });
     });

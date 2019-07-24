@@ -120,6 +120,8 @@
                                         <div class="alert alert-danger payment-errors" style="display:none"></div>
                                         <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="0">
                                         <input type="hidden" id="coupon_id" name="coupon_id">
+                                        <input type="hidden" id="coupon-amount" name="coupon_amount" value="0">
+                                        <input type="hidden" id="order-amount" name="order_amount" value="0">
                                         <input type="hidden" id="user-id" name="user-id" value="">
                                         <input type="hidden" id="submit-phone" name="phone_number" value="">
                                         <div class="form-group">
@@ -452,10 +454,13 @@ function check_subscription(){
             if(resp.status){
                 var discount = parseFloat($('#invoice-amount').val());
                 amount  =   0;
-                $('#coupandiscount td:last').html('$'+discount);
+                $('#coupandiscount td:last').html('$'+discount.toFixed(2));
                 $('#invoice-amount').val(amount);
-                $('#totalInvoiceAmount td:last').html('$'+amount);
-                $('#payment_total').html('$'+amount);
+                if ($('#order-amount').length) {
+                    $('#order-amount').val(amount);
+                }
+                $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
+                $('#payment_total').html('$'+amount.toFixed(2));
                 $('#coupandiscount').show();
                 $('#coupon_code').parent(".input-group ").hide();
                 var info = resp.data;

@@ -47,7 +47,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/prettyphoto.css"/>
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-toastr/toastr.min.css">
 
-        <link href="<?php echo base_url(); ?>assets/css/lp-style.css" rel="stylesheet">
 
 
         <link href="<?php echo base_url(); ?>assets/image_popup/image-popup.css" rel="stylesheet">
@@ -55,6 +54,7 @@
         <link href="<?php echo base_url(); ?>assets/css/login/login.css" rel="stylesheet">
 
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
+        <link href="<?php echo base_url(); ?>assets/css/lp-style.css" rel="stylesheet">
 
 </head>
 
@@ -66,18 +66,35 @@
              <!-- mobile menu button content -->
              
              
-    <a href="#"><img id="header_logo" src="<?php echo base_url(); ?>assets/images-2/logo.png" class="img-responsive" ></a>
+    <a href="<?php echo site_url(); ?>"><img id="header_logo" src="<?php echo base_url(); ?>assets/images-2/logo.png" class="img-responsive" ></a>
 
     <nav class="nav">
         <div class="menu pull-right">
+            <?php 
+                $currentURL = current_url(); 
+                $reports_link = '#feature';
+                $tools_link = '#detail';
+                $widget_link = '#widgets';
+                $api_link = '#api';
+                $leads_link = '#leads';
+                $pricing_link = '#pricing-list';
+                if (strpos($currentURL, 'login') !== false) {
+                    $reports_link = base_url().'#feature';
+                    $tools_link = base_url().'#detail';
+                    $widget_link = base_url().'#widgets';
+                    $api_link = base_url().'#api';
+                    $leads_link = base_url().'#leads';
+                    $pricing_link = base_url().'#pricing-list';
+                }
+            ?>
             <ul>
                 <li><a class="m" href="<?php echo site_url(); ?>">Home</a></li>
-                <li><a class="m playscroll" href="#detail">Tools</a></li>
-                <li><a class="m playscroll" href="#feature">Reports</a></li>
-				<li><a class="m playscroll" href="#leads">Lead Gen</a></li>
-				<li><a class="m playscroll" href="#widgets">Widgets</a></li>
-				<li><a class="m playscroll" href="#api">API</a></li>
-                <li><a class="m playscroll" href="#pricing-list">Pricing</a></li>
+                <li><a class="m playscroll" href="<?php echo $reports_link; ?>">Reports</a></li>
+                <li><a class="m playscroll" href="<?php echo $tools_link; ?>">Tools</a></li>
+				<li><a class="m playscroll" href="<?php echo $widget_link; ?>">Widgets</a></li>
+                <li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
+                <li><a class="m playscroll" href="<?php echo $leads_link; ?>">Lead Gen</a></li>
+                <li><a class="m playscroll" href="<?php echo $pricing_link; ?>">Pricing</a></li>
                 <li><a class="m playscroll" href="<?php echo site_url('frontend/login'); ?>">Log In <span></span></a></li>
             </ul>
         </div>
@@ -86,12 +103,12 @@
           <div class="mobile-nav">              
             <a class="mobile-nav-trigger" href="#"></a>
             <ul>
-                <li><a class="m playscroll" href="#detail">Tools</a></li>
-                <li><a class="m playscroll" href="#feature">Reports</a></li>
-				<li><a class="m playscroll" href="#leads">Lead Gen</a></li>
-				<li><a class="m playscroll" href="#widgets">Widgets</a></li>
-				<li><a class="m playscroll" href="#api">API</a></li>
-                <li><a class="m playscroll" href="#pricing-list">Pricing</a></li>
+                <li><a class="m playscroll" href="<?php echo $reports_link; ?>">Reports</a></li>
+                <li><a class="m playscroll" href="<?php echo $tools_link; ?>">Tools</a></li>
+				<li><a class="m playscroll" href="<?php echo $widget_link; ?>">Widgets</a></li>
+                <li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
+                <li><a class="m playscroll" href="<?php echo $leads_link; ?>">Lead Gen</a></li>
+                <li><a class="m playscroll" href="<?php echo $pricing_link; ?>">Pricing</a></li>
                 <li><a class="m playscroll" href="<?php echo site_url('frontend/login'); ?>">Log In <span></span></a></li>
             </ul>
         </div>

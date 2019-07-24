@@ -2744,9 +2744,9 @@ button {
 
 .mybtn {
     border: 1px solid #000;
-        border-left-width: 1px;
-        border-left-style: solid;
-        border-left-color: rgb(0, 0, 0);
+        border-left-width: 1px !important;
+        border-left-style: solid !important;
+        border-left-color: rgb(0, 0, 0) !important;
     color: #000;
     background-color: #fff;
     padding-left: 15px;
@@ -2774,13 +2774,14 @@ button {
 
 .navbar-wrapper #header_logo, .center-logo {
     position: absolute;
-left: 50px;
-top: 50%;
-transform: translateY(-50%);
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 .menu ul {
-    margin-right: 50px;
+    margin-right: 0;
+    margin-bottom: 0;
 }
 
 .menu ul li {
@@ -2808,10 +2809,22 @@ transform: translateY(-50%);
 
 header.overlapping {
     height: auto;
-    position: absolute;
-    top: 30px;
+    position: fixed;
+    top: 0;
     left: 0px;
     z-index: 999;
+    background: transparent;
+    padding: 20px;
+}
+
+header.overlapping-down {
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0px;
+    z-index: 999;
+    background: #000;
+    padding: 20px;
 }
 
 .below_main li a:hover {
@@ -2854,4 +2867,57 @@ header .header_content p {
     color:red;
     opacity: 0.5;
     text-decoration: none;
+}
+
+
+/* Media Queries */
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .menu ul li {
+        margin-right: 10px;
+    }
+    .menu ul li a {
+        font-size: 13px !important;
+    }
+}
+
+@media only screen and (max-width: 767px){
+    header.overlapping {
+        padding: 15px;
+    }
+
+    .navbar-wrapper #header_logo {
+        max-width: 120px;
+    }
+
+    .mobile-nav {
+        display: inline-block;
+    }
+
+    .mobile-nav .mobile-nav-trigger {
+        width: 40px;
+        height: 20px;
+        background-image: url(http://www.xn--12cl2bdbn8kwa7a1a3m8cku.com/mobile-nav-medium-icon.png);
+    }
+
+    .mobile-nav ul {
+        padding: 0;
+        top: 35px;
+    }
+
+    .mobile-nav ul li {
+        padding: 15px;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .mobile-nav ul li a {
+        font-size: 16px;
+    }
+    .nav {
+        display: none;
+    }
+}
+
+.register-alert-danger {
+    color: #ffffff!important;
 }

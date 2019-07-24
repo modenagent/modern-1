@@ -1867,26 +1867,26 @@ a:hover {
 .page4 .textBlock-wrapper .textBlock {
     background-color: transparent !important;
     width: 65%;
-    margin-bottom: 50px
+    margin-bottom: 50px;
 }
 
 .page4 .textBlock-wrapper .textBlock h1 {
     color: #fff;
     font-family: Montserrat !important;
-    font-size: 45px
+    font-size: 51px
 }
 
 .page4 .textBlock-wrapper .textBlock p {
     font-family: GlacialIndifference;
     color: #fff;
-    font-size: 30px;
-    line-height: 40px;
+    font-size: 34px;
+    line-height: 50px;
     font-weight: 400
 }
 
-.page4 .textBlock-wrapper .textBlock:last-child {
+/*.page4 .textBlock-wrapper .textBlock:last-child {
     margin-bottom: 0px
-}
+}*/
 
 .page5 {
     position: relative;
@@ -1895,17 +1895,17 @@ a:hover {
 
 .page5 header {
     padding: 0px;
-    margin-bottom: 50px
+    margin-bottom: 40px
 }
 
 .page5 .table-wrapper {
     position: relative;
-    margin-bottom: 50px
+    margin-bottom: 50px;
 }
 
 .page5 .table-wrapper h2 {
     text-transform: uppercase;
-    font-size: 22px;
+    font-size: 25px;
     font-family: GlacialIndifferenceBold;
     letter-spacing: 1px
 }
@@ -1916,9 +1916,9 @@ a:hover {
 
 .page5 .table-wrapper .table-row p {
     font-family: GlacialIndifference;
-    font-size: 18px;
+    font-size: 22px;
     color: #333;
-    line-height: 45px
+    line-height: 40px;
 }
 
 .page5 .table-wrapper .table-row p.no-lineheight {
@@ -2131,7 +2131,7 @@ a:hover {
 }
 
 .page7 .two-grid-wrapper {
-    margin-top: 30px;
+    margin-top: 50px;
 }
 
 .page7 .two-grid-wrapper .text-block-condensed {
@@ -3550,7 +3550,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
     right: 0px;
     top: 17%;
     -ms-transform: translateY(-50%);
-    transform: translateY(-50%)
+    transform: translateY(-50%);
 }
 .page6 .page-content .features li img{
     margin-left:18%;
@@ -3581,7 +3581,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 .section .footer {
     padding: 50px 50px;
-    padding-bottom:82px;
+    padding-bottom:0px;
 margin-top:-55px;
     /*border: 1px solid red;*/
 /*    margin-top:-80px;*/

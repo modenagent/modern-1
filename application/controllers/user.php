@@ -160,7 +160,8 @@ class User extends CI_Controller
                                         'user_id_pk'=>$userId
                                   ));
               $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
-              
+              $this->load->model('package_model');
+              $data['report_price'] = $this->package_model->get_reports_price();
               $html = $this->load->view('user/dashboard_widget', $data, true);
               
 
@@ -219,6 +220,10 @@ class User extends CI_Controller
                                   'user_id_pk'=>$this->session->userdata('userid')
                             ));
         $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
+
+        $this->load->model('package_model');
+        $data['report_price'] = $this->package_model->get_reports_price();
+
         $this->load->helper('captcha');
         create_image();
         $this->load->view('user/header', $data);
@@ -334,24 +339,18 @@ class User extends CI_Controller
                                                                     ));
           $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
           $this->load->library('stripe');
-          $_conf['stripe_key_test_public']         = 'pk_test_JKTfWhEYh9KIUJhJiD1cI0fo';
-        $_conf['stripe_key_test_secret']         = 'sk_test_4Rut0MK1S0WKIHQGs0MTaVDL'; 
-        $_conf['stripe_key_live_public']         = 'pk_live_kWtXKplBdNqXQMeBWHuHYZDx';
-        $_conf['stripe_key_live_secret']         = 'sk_live_W0mSME3cKd2uzqdFv7WBr02p';
-        $_conf['stripe_test_mode']               = TRUE;
-        $_conf['stripe_verify_ssl']              = FALSE; 
-            $stripe = new Stripe(null);
-            try{
-                $response = json_decode($stripe->plan_info('prem_lp_user'));
-            }catch(Exception $e){
-                print_r($e);
-            }
-            if(isset($response->id)){
-                $data['plan']['id'] = $response->id;
-                $data['plan']['name'] = $response->name;
-                $data['plan']['amount'] = $response->amount;
-                $data['plan']['interval'] = $response->interval;
-            }
+          $stripe = new Stripe(null);
+          try{
+              $response = json_decode($stripe->plan_info('prem_lp_user'));
+          }catch(Exception $e){
+              print_r($e);
+          }
+          if(isset($response->id)){
+              $data['plan']['id'] = $response->id;
+              $data['plan']['name'] = $response->name;
+              $data['plan']['amount'] = $response->amount;
+              $data['plan']['interval'] = $response->interval;
+          }
           // print_r($data['agentInfo']);
           $this->load->view('user/header', $data);
           $this->load->view('user/myaccount', $data);
@@ -363,12 +362,6 @@ class User extends CI_Controller
     public function pay_subscription(){
         $userId = $this->session->userdata('userid');
         $this->load->library('stripe');
-        $_conf['stripe_key_test_public']         = 'pk_test_JKTfWhEYh9KIUJhJiD1cI0fo';
-        $_conf['stripe_key_test_secret']         = 'sk_test_4Rut0MK1S0WKIHQGs0MTaVDL'; 
-        $_conf['stripe_key_live_public']         = 'pk_live_kWtXKplBdNqXQMeBWHuHYZDx';
-        $_conf['stripe_key_live_secret']         = 'sk_live_W0mSME3cKd2uzqdFv7WBr02p';
-        $_conf['stripe_test_mode']               = TRUE;
-        $_conf['stripe_verify_ssl']              = FALSE; 
         $stripe = new Stripe( null );
         $card = $this->input->post('stripeToken');
         $email = $this->input->post('email');
@@ -2481,7 +2474,7 @@ Thank you for your order. Below you can find the details of your order. If you o
      public function gen_invoice($inv,$cart_id){
       $userId = $data['user_id'] = $this->session->userdata('userid');
         if($userId){
-			$invoice_data = array();
+			    $invoice_data = array();
           // user data
           $user = $data['users'] = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
           $user_name = $user[0]['first_name'].' '.$user[0]['last_name'];
@@ -2491,39 +2484,42 @@ Thank you for your order. Below you can find the details of your order. If you o
           $order_num = $invoice[0]['invoice_num'];
           
           $cart = $this->base_model->get_record_result_array('lp_my_cart',array('cart_id_pk'=>$cart_id,'user_id_fk' => $userId));
-          $discount = $this->base_model->get_record_result_array('lp_coupon_mst',array('coupon_id_pk'=>$cart[0]['coupon_id_fk']));
           $total_amount = $cart[0]['total_amount'];
-          $discount_amount = $discount[0]['coupon_amt'];
-		  $tax_amount = 0;
+          //$discount = $this->base_model->get_record_result_array('lp_coupon_mst',array('coupon_id_pk'=>$cart[0]['coupon_id_fk']));
+          //$discount_amount = $discount[0]['coupon_amt'];
+		      $tax_amount = 0;
           
           $lp_details = $this->base_model->get_record_result_array('lp_my_listing',array('project_id_pk'=>$cart[0]['project_id_fk']));
+
+          //$this->load->model('package_model');
+          //$report_price = $this->package_model->get_reports_price();
 		  
-		  $invoice_data['user_name'] = $user_name;
-		  $invoice_data['order_num'] = $order_num;
-		  $invoice_data['lp_details'] = $lp_details[0];
-		  $invoice_data['total_amount'] = 3;
-		  $invoice_data['discount_amount'] = $discount_amount;
-		  $invoice_data['tax_amount'] = $tax_amount;
-		  $invoice_data['total'] = $total_amount;
+          $invoice_data['user_name'] = $user_name;
+          $invoice_data['order_num'] = $order_num;
+          $invoice_data['lp_details'] = $lp_details[0];
+          $invoice_data['total_amount'] = $invoice[0]['order_amount'];//$report_price;
+          $invoice_data['discount_amount'] = $invoice[0]['coupon_amount'];//$discount_amount;
+          $invoice_data['tax_amount'] = $tax_amount;
+          $invoice_data['total'] = $total_amount;
           // my flyer data
           $myflyers = $data['myflyers'] = $this->base_model->get_record_result_array('lp_my_listing', array('user_id_fk'=>$userId, 'project_id_pk'=>$this->session->userdata('project_id')));
           
-		  $pdf_file = 'assets/uploads/user_invoices/'.uniqid().'.pdf';
-		  
-		ob_start();
-		$this->load->view('invoice', $invoice_data);
-		$content = ob_get_contents();
-		ob_clean();
-		//echo $content;exit;		
-		$this->load->library('mpdf'); 
-	    $mpdf=new mPDF(); 
-		$mpdf=new mPDF('','A4','','',10,10,7);
-		$mpdf->WriteHTML($content);
-		$mpdf->Output($pdf_file);
+	    	  $pdf_file = 'assets/uploads/user_invoices/'.uniqid().'.pdf';
+            
+          ob_start();
+          $this->load->view('invoice', $invoice_data);
+          $content = ob_get_contents();
+          ob_clean();
+          //echo $content;exit;		
+          $this->load->library('mpdf'); 
+          $mpdf=new mPDF(); 
+          $mpdf=new mPDF('','A4','','',10,10,7);
+          $mpdf->WriteHTML($content);
+          $mpdf->Output($pdf_file);
 		  
           $updateData = array(            
             'invoice_pdf' => $pdf_file
-            );
+          );
           
           $myPdf=array();
           
@@ -2539,8 +2535,17 @@ Thank you for your order. Below you can find the details of your order. If you o
       }
     }
 
-
-
+    function download_invoice($invoiceNumber, $userId) 
+    {
+      $userId = $data['user_id'] = $this->session->userdata('userid');
+      if ($userId) {
+        $this->load->library('invoice'); 
+        $this->invoice->_getInvoice($invoiceNumber, $userId);
+      } else {
+        echo "Invoice details are required.";
+        exit();
+      }
+    }
 
     // cart payment
     public function generateInvoice() {
@@ -2565,6 +2570,14 @@ Thank you for your order. Below you can find the details of your order. If you o
           $stripe = new Stripe(null);
 
           $amt = $_POST['amount'];
+
+          $couponId = $this->input->post('coupon_id');
+          if (empty($couponId)) {$couponId = 0; }
+          $couponAmount = $this->input->post('coupon_amount');
+          $orderAmount = $this->input->post('order_amount');
+          if (empty($couponAmount)) { $couponAmount = 0; }
+          if (empty($orderAmount)) { $orderAmount = 0; }
+
           $byPassPayment = false;
           if($amt<=0){
             $byPassPayment = true;
@@ -2588,7 +2601,8 @@ Thank you for your order. Below you can find the details of your order. If you o
                         'txn_id' => isset($response->id)?$response->id:'',
                         'is_success' => 'Y',
                         'total_amount' => $amt,
-                        'coupon_id_fk' => $this->session->userdata('coupon_id'),
+                        //'coupon_id_fk' => $this->session->userdata('coupon_id'),
+                        'coupon_id_fk' => $couponId,
                         'project_id_fk' => $this->session->userdata('project_id')
                       );
 
@@ -2604,7 +2618,9 @@ Thank you for your order. Below you can find the details of your order. If you o
                   'user_id_fk' => $userId,
                   'invoice_amount' => $amt,
                   'invoice_to' => $users[0]['first_name'],
-                  'invoice_addr' => $users[0]['city']
+                  'invoice_addr' => $users[0]['city'],
+                  'order_amount' => $orderAmount,
+                  'coupon_amount' => $couponAmount
                   );
                 $result2 = $this->base_model->insert_one_row('lp_invoices',$data2);
 
@@ -2629,7 +2645,8 @@ Thank you for your order. Below you can find the details of your order. If you o
                         'txn_id' => isset($response->id)?$response->id:'',
                         'is_success' => 'Y',
                         'total_amount' => $amt,
-                        'coupon_id_fk' => $this->session->userdata('coupon_id'),
+                        //'coupon_id_fk' => $this->session->userdata('coupon_id'),
+                        'coupon_id_fk' => $couponId,
                         'project_id_fk' => $this->session->userdata('project_id')
                       );
 
@@ -2645,7 +2662,9 @@ Thank you for your order. Below you can find the details of your order. If you o
                   'user_id_fk' => $userId,
                   'invoice_amount' => $amt,
                   'invoice_to' => $users[0]['first_name'],
-                  'invoice_addr' => $users[0]['city']
+                  'invoice_addr' => $users[0]['city'],
+                  'order_amount' => $orderAmount,
+                  'coupon_amount' => $couponAmount
                   );
                 $result2 = $this->base_model->insert_one_row('lp_invoices',$data2);
 
@@ -3069,13 +3088,6 @@ Thank you for your order. Below you can find the details of your order. If you o
     private function _cust_info_by_email($email,$getustomerId = false){
         $userId = $this->session->userdata('userid');
         $this->load->library('stripe');
-        // Create the library object
-        $_conf['stripe_key_test_public']         = 'pk_test_JKTfWhEYh9KIUJhJiD1cI0fo';
-        $_conf['stripe_key_test_secret']         = 'sk_test_4Rut0MK1S0WKIHQGs0MTaVDL'; 
-        $_conf['stripe_key_live_public']         = 'pk_live_kWtXKplBdNqXQMeBWHuHYZDx';
-        $_conf['stripe_key_live_secret']         = 'sk_live_W0mSME3cKd2uzqdFv7WBr02p';
-        $_conf['stripe_test_mode']               = TRUE;
-        $_conf['stripe_verify_ssl']              = FALSE; 
         $stripe = new Stripe( null );
         try{
             $response = json_decode($stripe->customer_list());

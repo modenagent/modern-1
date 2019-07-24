@@ -47,7 +47,16 @@
         Referral Code
       </div>
         <div class="modal-body" >
-          Your referral code is REF<?php echo sprintf("%05d", $this->session->userdata('adminid')); ?>
+          Your referral code is REF<?php 
+          $temp_admin_id = $this->session->userdata('adminid');
+          $temp_admin_id_ref = "";
+          if (strlen($temp_admin_id) < 5) {
+              $temp_admin_id_ref = sprintf("%05d", $temp_admin_id);
+          } else {
+              $temp_admin_id_ref = "0".$temp_admin_id;
+          }
+          echo $temp_admin_id_ref;
+          ?>
           <br/> It can be used as coupon code up to 10 times by a user.
         </div>
         <div class="panel-footer">
@@ -454,7 +463,7 @@ switch ($title){
     });
 
     $('.alphanumeric').on('input', function (event) {
-        this.value = this.value.replace(/[^a-zA-Z0-9]/g, '');
+        this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
     });
 // document end here
 });

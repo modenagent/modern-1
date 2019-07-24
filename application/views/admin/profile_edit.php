@@ -86,14 +86,28 @@
             <td><input type="text" class="form-control" placeholder="Enter license no." name="license" id="license" value="<?php echo $user->license_no; ?>"></td>
             
           </tr>
-
-          <tr>
-            <td>Company Name</td>
-            <td><input type="text" placeholder="" class="form-control alphanumeric" placeholder="Company Name" name="cname" id="cname" value="<?php echo $user->company_name; ?>"></td>            
-          </tr>
+          <?php 
+            if ($user->role_id_fk != 3) { 
+          ?>
+            <tr>
+              <td>Company Name</td>
+              <td>
+                <input type="text" placeholder="" class="form-control alphanumeric" placeholder="Company Name" name="cname" id="cname" value="<?php echo $user->company_name; ?>">
+              </td>            
+            </tr>
+          <?php
+            }
+          ?>
           <tr>
             <td>Company Address</td>
-            <td><input type="text" placeholder="" class="form-control" placeholder="Company Address" name="cadd" id="cadd" value="<?php echo $user->company_add; ?>"></td>
+            <td>
+              <?php 
+                if ($user->role_id_fk == 3) { 
+                  echo $user->company_add; 
+                } else { ?>
+                  <input type="text" placeholder="" class="form-control" placeholder="Company Address" name="cadd" id="cadd" value="<?php echo $user->company_add; ?>">
+                <?php } ?>
+            </td>
           </tr>
           <?php $_isAdmin = $this->role_lib->is_admin(); ?>
               <?php if($_isAdmin): ?>
@@ -114,12 +128,12 @@
                 <tr>
                     <td><?php echo $parent_label; ?></td>
                     <td>
-                      <select class="form-control" placeholder="<?php echo $parent_label; ?>" name="parent_id" id="parent_id"">
+                      <select class="form-control" placeholder="<?php echo $parent_label; ?>" name="parent_id" id="parent_id">
                           <option <?php echo !$user->parent_id?'selected=""selected"':''; ?> value >-- Select one option--</option>
                           <?php foreach($parents as $parent): ?>
                               <option value="<?php echo $parent['user_id_pk']; ?>" <?php echo ($user->parent_id==$parent['user_id_pk'])?'selected':'' ?>>
                               <?php if($this->role_lib->is_sales_rep($user->role_id_fk)): ?>
-                              <?php echo $parent['company_name'] ." ". $parent['last_name']; ?>
+                              <?php echo $parent['company_name'];// ." ". $parent['last_name']; ?>
                               <?php else: ?>
                               <?php echo $parent['first_name'] ." ". $parent['last_name']; ?>
                             <?php endif; ?>

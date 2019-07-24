@@ -123,6 +123,12 @@ echo $this->email->print_debugger();die;
             $data['bestFlyers2'] = $this->base_model->getNewFlyer3('lp_product_mst','4','4');
             $data['bestFlyers3'] = $this->base_model->getNewFlyer3('lp_product_mst','4','8');
             $data['body_class'] = "home-all"; 
+
+            $this->load->model('package_model');
+            $packages = $this->package_model->get_all_packages_price();
+            $data['report_price'] = $packages['reports'];
+            $data['monthly_price'] = $packages['monthly'];
+
             $this->load->view('frontend/header',$data);
             $this->load->view('frontend/index',$data);
             $this->load->view('frontend/footer',$data);
@@ -208,6 +214,7 @@ echo $this->email->print_debugger();die;
             $this->form_validation->set_rules('lname', 'Last Name', 'trim|required'); 
             $this->form_validation->set_rules('user_pass', 'Password', 'required');
             $this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|matches[user_pass]');
+            $this->form_validation->set_error_delimiters('', '');
               
             if($this->form_validation->run()) { 
                 // set variables from the form
@@ -487,16 +494,20 @@ echo $this->email->print_debugger();die;
                     exit();
                 }
                 $canAvail = false;
-                $medthod = "";//suscription or coupon code of sales rep
+                $method = "";//suscription or coupon code of sales rep
                 if($user->parent_role==3){//User is under some sales rep
                     $canAvail = true;
-                    $method = "REF".sprintf("%05d", $user->parent_id);
+                    if (strlen($user->parent_id) < 5) {
+                        $method = "REF".sprintf("%05d", $user->parent_id);
+                    } else {
+                        $method = "REF0".$user->parent_id;
+                    }
                     
                 } else if($user->customer_id){
                     $res = $this->_cust_info_by_id($user->customer_id);
                     //if subscribed
                     if($res){
-                        $medthod = 'subscription';
+                        $method = 'subscription';
                         $canAvail = true;
                     }
                 }
@@ -513,12 +524,6 @@ echo $this->email->print_debugger();die;
     }
     private function _cust_info_by_id($customerId){
         $this->load->library('stripe');
-        $_conf['stripe_key_test_public']         = 'pk_test_JKTfWhEYh9KIUJhJiD1cI0fo';
-        $_conf['stripe_key_test_secret']         = 'sk_test_4Rut0MK1S0WKIHQGs0MTaVDL'; 
-        $_conf['stripe_key_live_public']         = 'pk_live_kWtXKplBdNqXQMeBWHuHYZDx';
-        $_conf['stripe_key_live_secret']         = 'sk_live_W0mSME3cKd2uzqdFv7WBr02p';
-        $_conf['stripe_test_mode']               = TRUE;
-        $_conf['stripe_verify_ssl']              = FALSE; 
         $stripe = new Stripe( NULL );
         try{
             $response = json_decode($stripe->customer_info($customerId));

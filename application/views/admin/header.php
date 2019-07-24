@@ -105,6 +105,9 @@
             case 'Manage Leads':
             $active10 = "active";
             break;
+            case 'Manage Packages':
+            $active11 = "active";
+            break;
             }
             ?>
             <div class="sidebar-left">
@@ -201,6 +204,16 @@
                         </li> 
                         <?php endif; ?>
                        
+                        <?php if($this->role_lib->is_admin()): ?>
+                        <li class="list-group-item <?php echo $active11; ?>">
+                            <a class="" href="<?php echo site_url('admin/packages'); ?>">
+                                <i class="fa fa-usd icon-sidebar"></i>  
+                                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                                <span class="isw-chat"></span><span class="text">Packages</span>
+                            </a>
+                        </li> 
+                        <?php endif; ?>
+
                         <?php /*
                        <!--  <li class="list-group-item <?php echo $active8; ?>">
                             <a href="<?php echo base_url(); ?>index.php?/admin/order_history"> 

@@ -334,7 +334,7 @@ class Admin_model extends CI_Model
         $order = $columns[$postData['order'][0]['column']];
         $dir = $postData['order'][0]['dir'];
 
-        $this->db->select("inv.invoice_date, inv.invoice_num, inv.invoice_to, inv.invoice_amount, inv.invoice_pdf, lp.report_path,lp.report_type,s.first_name as s_first_name, s.last_name as s_last_name, cart.is_success");
+        $this->db->select("inv.invoice_date, inv.invoice_num, inv.invoice_to, inv.invoice_amount, inv.invoice_pdf, lp.report_path,lp.report_type,s.first_name as s_first_name, s.last_name as s_last_name, cart.is_success, inv.user_id_fk");
         $this->db->join('lp_user_mst user', 'user.user_id_pk=inv.user_id_fk');
         $this->db->join('lp_my_cart cart', 'cart.cart_id_pk=inv.cart_id_fk', 'left');
         $this->db->join('lp_my_listing lp', 'cart.project_id_fk=lp.project_id_pk', 'left');
@@ -462,7 +462,7 @@ class Admin_model extends CI_Model
     public function get_invoice($invoice_number) 
     {
         $sql = "SELECT 
-            invoice.invoice_num, invoice.invoice_amount, invoice.invoice_date, invoice.invoice_to, invoice.invoice_addr, invoice.invoice_pdf, 
+            invoice.invoice_num, invoice.order_amount, invoice.coupon_amount, invoice.invoice_amount, invoice.invoice_date, invoice.invoice_to, invoice.invoice_addr, invoice.invoice_pdf, 
             cart.total_amount, cart.is_success,
             listing.project_name, listing.property_address, listing.report_type
         FROM lp_invoices invoice
@@ -703,6 +703,19 @@ class Admin_model extends CI_Model
         } else {
             return false;
         }
+    }
+
+    function is_admin_exists($email)
+    {
+        $data = [];
+        $sql = "SELECT user_id_pk, email, is_active, first_name, last_name FROM lp_user_mst 
+        WHERE role_id_fk IN (1,2,3) 
+        AND email = ? ";
+        $result = $this->db->query($sql, [$email]);
+        if ($result->num_rows()>0) {
+            $data = $result->row_array();
+        }
+        return $data;
     }
     
 // class ends here

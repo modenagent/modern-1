@@ -12,12 +12,6 @@
                         </div>
                     </div>
                     <div class="col-md-9">
-                        
-                        <ul class="nav navbar-nav below_main pull-right">
-                            <li class="below"><a href="#">AFFILIATE</a></li>
-                            <li class="below"><a href="#">CONTACT</a></li>
-                            <li class="below"><a href="#">RELEASE NOTES</a></li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -31,12 +25,13 @@
                         <p class="font">www.modernagent.io </p>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <div class="center">
-                        <p class="font fontc">&COPY; 2017. MODERN AGENT. ALL RIGHTS RESERVED.</p>
+                        <p class="font fontc">&COPY; <?php echo date('Y'); ?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
                     </div>
                 </div>
-                <div class="col-md-1 col-md-offset-1">
+                <div class="col-md-2"></div>
+                <div class="col-md-1 text-center">
                     <ul class="social-links">
                         <a href="#">
                             <li class="fb" aria-hidden="true"></li>
@@ -408,17 +403,21 @@
         success:function(resp){
           if(resp.status=='success'){
             var amount  = parseFloat($('#invoice-amount').val());
-            console.log(amount);
-            console.log(resp.discount);
-
+            if (amount<parseFloat(resp.discount)) {
+              resp.discount = amount;
+            }
             amount  =   amount-parseFloat(resp.discount);
-            amount  =   Math.round(amount * 100) / 100;
-             console.log(amount);
-            $('#coupandiscount td:last').html('$'+resp.discount);
+            if (amount<=0) {
+              amount = 0;
+            }
+            $('#coupandiscount td:last').html('$'+(parseFloat(resp.discount).toFixed(2)));
+            if ($('#coupon-amount').length) {
+              $('#coupon-amount').val(resp.discount);
+            }
             $('#invoice-amount').val(amount);
             $('#coupon-id').val(resp.coupon_id);
-            $('#totalInvoiceAmount td:last').html('$'+amount);
-            $('#payment_total').html('$'+amount);
+            $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
+            $('#payment_total').html('$'+amount.toFixed(2));
             $('#coupandiscount').show();
             $('#apply-coupan-alert').html(resp.message).removeClass('alert-danger').addClass('alert-success').show();
             $('#apply_coupon').addClass('disabled');
@@ -1036,10 +1035,13 @@
                   var discount = parseFloat($('#invoice-amount').val());
                   amount  =   0;
                   console.log(discount);
-                  $('#coupandiscount td:last').html('$'+discount);
+                  $('#coupandiscount td:last').html('$'+discount.toFixed(2));
                   $('#invoice-amount').val(amount);
-                  $('#totalInvoiceAmount td:last').html('$'+amount);
-                  $('#payment_total').html('$'+amount);
+                  if ($('#order-amount').length) {
+                    $('#order-amount').val(amount);
+                  }
+                  $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
+                  $('#payment_total').html('$'+amount.toFixed(2));
                   $('#coupandiscount').show();
                   $('#coupon_code').parent(".input-group ").hide();
                   var info = resp.data;

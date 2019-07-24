@@ -246,7 +246,7 @@
             <div class="row">
                 <div class="section-title">
                     <div class="col-md-12">
-                        <h1 id="">WIDGETS</h1>
+                        <h1 id="widgets">WIDGETS</h1>
                     </div>
                 </div>
 				<div class="section-content">
@@ -387,7 +387,7 @@
                         <div class="blue-content fadeIn" style="height: 208px;" >
                             <div class="content-content">
                                 <div class="pay-as-you-go"></div>
-                                <h3>$03</h3>
+                                <h3>$<?php echo $report_price; ?></h3>
                                 <p>pay-as-you-go</p>
 								<p>excludes lead gen cma</p>
                             </div>
@@ -397,7 +397,7 @@
                         <div class="blue-content fadeIn" style="height: 208px;">
                             <div class="content-content">
                                 <div class="per-month"></div>
-                                <h3>$10</h3>
+                                <h3>$<?php echo $monthly_price; ?></h3>
                                 <p>unlimited reports</p>
 								<p>includes lead gen cma</p>
                             </div>
