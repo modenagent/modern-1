@@ -91,7 +91,7 @@ $(document).ready(function(){
             "targets": "no-sort"
         }],
         "drawCallback": function( settings ) {
-          $("[data-toggle='tooltip']").tooltip();
+          $("[data-toggle='tooltip']").tooltip({placement:'left'});
         }
     });
   }

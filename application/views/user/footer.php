@@ -1050,7 +1050,7 @@
     }
   }
   $(document).ready(function() {
-      $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+      $("body").tooltip({ selector: '[data-toggle=tooltip]', placement:'left' });
 
       $(window).on("scroll", function () {
           if ($(window).scrollTop() > 50) {
