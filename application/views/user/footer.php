@@ -149,23 +149,35 @@
           selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
           selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
       });  
-      if(firstOpen)
+      if(firstOpen) {
           // If received list is not greater than min value than set our min value to received list length
-          if(_min>$('#pre-selected-options').val().length){
-              _min = $('#pre-selected-options').val().length;;
+          var pre_selected_options = $.trim($('#pre-selected-options').html());
+          if (pre_selected_options!='') {
+            if(_min>$('#pre-selected-options').val().length){
+                _min = $('#pre-selected-options').val().length;
+            }
           }
           firstOpen = false;
-          var last_valid_selection = $('#pre-selected-options').val();
-          $('#pre-selected-options').change(function(event) {
-            if ($(this).val().length > _max) {
-              //$(this).val(last_valid_selection);
-            } else {
-              //last_valid_selection = $(this).val();$(this).trigger('change');
-            }
+      }
+      /*
+      var last_valid_selection = $('#pre-selected-options').val();
+      $('#pre-selected-options').change(function(event) {
+        if ($(this).val().length > _max) {
+          //$(this).val(last_valid_selection);
+        } else {
+          //last_valid_selection = $(this).val();$(this).trigger('change');
+        }
       });
+      */
   });
   $('#select-comps').on('hide.bs.modal', function(event) {
-      if($('#pre-selected-options').val().length < _min){
+    var pre_selected_options = $.trim($('#pre-selected-options').html());
+    if (pre_selected_options!='') {
+      if ($('#pre-selected-options').val()==null) {
+          alert('Please select '+_min+' comparables');
+          event.stopPropagation();
+          return false;
+      } else if ($('#pre-selected-options').val().length < _min){
           alert('Please select '+_min+' comparables');
           event.stopPropagation();
           return false;
@@ -175,7 +187,7 @@
           event.stopPropagation();
           return false;
       }
-     
+    } 
   });
 </script>
 <script type="text/javascript">
