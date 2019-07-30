@@ -320,7 +320,9 @@ function runPMA(agentPath, logoPath) {
                 setTimeout(() => {
                     //SET TIME OUT because its add static error message from footer.php SO update exact error message after 1 second.
                     if (obj.msg != '') {
-                        $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
+                        if (typeof obj.showError !== 'undefined' && (obj.showError==true || obj.showError=='true')) { 
+                            $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
+                        }
                     }
                 }, 1000);
                 $('.btn-checkout').hide();

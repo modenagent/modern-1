@@ -142,7 +142,7 @@ use Knp\Snappy\Pdf;
             }
 
             if (empty($reportItems['comparable'])) {
-                return ["status"=>false, "msg"=>"Report can not be generated due to lack of comparable data."];
+                return ["status"=>false, "showError"=>true, "msg"=>"Report can not be generated due to lack of comparable data."];
             }
 
             $salesAnalysis = $this->sales_analysis($reportItems['comparable']);
