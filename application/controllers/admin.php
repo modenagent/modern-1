@@ -123,12 +123,12 @@ class Admin extends CI_Controller
                 $userName = $admin_details['first_name'] . ' ' . $admin_details['last_name'];
                 $pemail = $admin_details['email'];
                 $random_password = $this->generateRandomString();
-                $table = "lp_admin_mst";
+                $table = "lp_user_mst";
                 $data = array(
                     'password' => $random_password
                 );
                 $where = array(
-                    'admin_id_pk' => $userId
+                    'user_id_pk' => $userId
                 );
                 $result2 = $this->base_model->update_record_by_id($table,$data,$where);
                 if($result2){
