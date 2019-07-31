@@ -12,7 +12,7 @@ text-overflow: ellipsis;
     <h1 class="page-header">My Account</h1>
     <p class="subhead">Below you can update the following: Agent info, company info, set a default theme, and update your login info.</p>
     <p>&nbsp;</p>
-    <div id="tabs">
+    <div id="tabs" style="display:none;">
       <ul>
         <li><a href="#tabs-4">Login info<br />
           <p id="accountupdate">Update your info</p>
@@ -33,7 +33,7 @@ text-overflow: ellipsis;
           </a>
         </li>
       </ul>
-<div class="loader1 hidden"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
+<div class="loader1 hidden lp-loader1-myaccount"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
 <div class="backwrap hidden"></div>
 <div id="tabs-4" style="z-index:20;">
   <div class="content-inner clearfix">
@@ -249,8 +249,8 @@ text-overflow: ellipsis;
             <div class="col-sm-12"><label>Your are subscribed to the <span class="plan-title">info.plan_title</span> plan(<span class="plan-interval">info.interval</span>ly) and your current period ends on <span class="plan-ends">info.current_period_end</span>.</label></div>
             <div class="col-sm-12 recurring-billing" style="display:none;">
                 <label>You will be auto charged for next billing cycle on <span class="plan-ends"></span>.</label>
-                <div class="col-md-12 text-center" id="cancelBtnWrap">
-                    <a href="#" class="btn btn-lp" target="_blank" data-toggle="modal" data-target="#cancel-subscription">Cancel Subscription</a>
+                <div class="col-md-12 text-left" id="cancelBtnWrap">
+                    <a href="#" class="btn btn-lp cancel-subscription-btn" target="_blank" data-toggle="modal" data-target="#cancel-subscription">Cancel Subscription</a>
                 </div>
             </div>
         </div>
