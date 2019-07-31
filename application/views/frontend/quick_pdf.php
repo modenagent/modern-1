@@ -84,10 +84,20 @@
                                         <!-- Hidden user details -->
                                         <div class="row">
                                             <div class="col-md-2">
+                                                <?php
+                                                $marketPresentation = '';
+                                                $sellerPresentation = '';
+                                                $currentUrl = $this->uri->uri_string();
+                                                if (strpos(strtolower($currentUrl), 'market') !== false) {
+                                                    $marketPresentation = 'selected';
+                                                } else {
+                                                    $sellerPresentation = 'selected';
+                                                }
+                                                ?>
                                                 <select name="presentation" class="cma hide" style="color:black">
-                                                    <option value="seller" selected>Seller</option>
+                                                    <option value="marketUpdate" <?php echo $marketPresentation; ?> >Market Update</option>
+                                                    <option value="seller" <?php echo $sellerPresentation; ?>>Seller</option>
                                                     <option value="buyer">Buyer</option>
-                                                   
                                                 </select>
                                             </div>
                                          <div class="col-md-2">

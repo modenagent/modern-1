@@ -11,7 +11,7 @@ body {
 <div class="table-wrapper page-16-content" style="padding-top: 18px; padding-bottom: 5px;">
     <div class="table-row gray-color">
         <div class="row table-heading">
-            <div class="col-xs-4">
+            <div class="col-xs-5">
                 <p>Property Address</p>
             </div>
 
@@ -23,7 +23,7 @@ body {
                 <p>Sqft</p>
             </div>
 
-            <div class="col-xs-2">
+            <div class="col-xs-1">
                 <p>Beds</p>
             </div>
 
@@ -42,7 +42,7 @@ body {
             ?>
             <div class="table-row <?php if($i % 2 == 0)echo 'gray-color'; ?>">
                 <div class="row">
-                    <div class="col-xs-4">
+                    <div class="col-xs-5">
                         <p><?php echo $item['Address']; ?></p>
                     </div>
                     <div class="col-xs-2">
@@ -51,7 +51,7 @@ body {
                     <div class="col-xs-2">
                         <p><?php echo $item['SquareFeet']; ?></p>
                     </div>
-                    <div class="col-xs-2">
+                    <div class="col-xs-1">
                         <p><?php echo $item['Beds']; ?></p>
                     </div>
                     <div class="col-xs-2">
