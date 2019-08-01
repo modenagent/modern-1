@@ -243,7 +243,7 @@
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
-                            <div class="pull-right1 <?php echo ($_email=='developer.avtargaur@gmail.com')?'':'hide' ?>" style=""> Report Language: 
+                            <div class="pull-right1 <?php echo ($_email=='info@modernagent.io')?'':'hide' ?>" style=""> Report Language: 
                               <select name="report_lang" style="background-color:transparent; border:none;"><option value="english">English</option><option value="spanish">Spanish</option></select>
                             </div>
                             <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp

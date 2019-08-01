@@ -21,7 +21,7 @@ class Report extends REST_Controller{
 
     /*
      *  @name: propertyId_get
-     *  @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     *  @author: Avtar Gaur <info@modernagent.io>
      *  @created: Feb 13, 2019
      *  @description: Get Property APNs
     */
@@ -96,7 +96,7 @@ class Report extends REST_Controller{
 
     /*
      *  @name: generateReport_post
-     *  @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     *  @author: Avtar Gaur <info@modernagent.io>
      *  @created: Feb 14, 2019
      *  @description: Generate Property Report
     */
@@ -184,7 +184,7 @@ class Report extends REST_Controller{
                 if($callFromApi == 1)
                     $extraMessage = ' From API';
 
-                $this->base_model->queue_mail("developer.avtargaur@gmail.com",'Urgent! Error occured while generating PDF'.$extraMessage,$msg,null,'gerardoh@gmail.com');
+                $this->base_model->queue_mail("info@modernagent.io",'Urgent! Error occured while generating PDF'.$extraMessage,$msg,null,'info@modernagent.io');
                 $this->response(array('status'=>'error', 'message' => $msg), 417);
             }
         }else{

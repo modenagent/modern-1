@@ -2,7 +2,7 @@
 
 /**
  * validate all parameters
- * Avtr Gour <developer.avtargaur@gmail.com
+ * Avtr Gour <info@modernagent.io
  * Jan 26, 2019
  */
 function validate_my_params($params = array(), $is_post = 2){
