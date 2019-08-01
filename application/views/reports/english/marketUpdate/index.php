@@ -280,7 +280,7 @@
                                             "fullname"=>"ZOE HERNANDEZ",
                                             "title"=>"REALTOR",
                                             "phone"=>"1234567890",
-                                            "email"=>"DEVELOPER.AVTARGAUR@GMAIL.COM",
+                                            "email"=>"info@modernagent.io",
                                             "licenceno"=> "012354421",
                                             "company_logo"=>"assets/images/sign.png",
                                             "companyname"=> "LP",

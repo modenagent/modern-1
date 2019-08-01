@@ -1,7 +1,7 @@
 <?php
     /**
      * generate the token for a user and save it to the database
-     * Avtr Gour <developer.avtargaur@gmail.com
+     * Avtr Gour <info@modernagent.io
      * Jan 28, 2019
      */
     function generateToken($number){
@@ -32,7 +32,7 @@
 
     /**
      * generate a new token for a user and archive the already existing one's for this user
-     * Avtr Gour <developer.avtargaur@gmail.com
+     * Avtr Gour <info@modernagent.io
      * Jan 28, 2019
      */
     function regenerateToken($number){
@@ -66,7 +66,7 @@
      * Function: validateToken
      * Description: It validates the access token provided with the request
      *
-     * @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     * @author: Avtar Gaur <info@modernagent.io>
      * @updatedOn: Jan 28, 2019
      */
     function validateToken($token = '', $returnALL = false){
@@ -111,7 +111,7 @@
 
     /**
      * Get userId by token 
-     * Avtr Gour <developer.avtargaur@gmail.com
+     * Avtr Gour <info@modernagent.io
      * Feb 14, 2019
      */
     function getUserIdByToken($token = ''){
@@ -134,7 +134,7 @@
      * Function: checkUnique
      * Description: Common method to check the uniqueness of a value in a colum in a table and return valurs or bool
      *
-     * @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     * @author: Avtar Gaur <info@modernagent.io>
      * @created: Jan 28, 2019
      */
     function checkUnique($tableName, $columnName, $value, $returnKey = -1){
@@ -174,7 +174,7 @@
      * Function: apiCommonSuccess
      * Description: Common method for successful api request
      *
-     * @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     * @author: Avtar Gaur <info@modernagent.io>
      * @created: Jan 28, 2019
      */
     function apiCommonSuccess($data){
@@ -202,7 +202,7 @@
      * Function: apiCommonSuccess
      * Description: Common method for error api request
      *
-     * @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     * @author: Avtar Gaur <info@modernagent.io>
      * @created: Jan 28, 2019
      */
     function apiCommonErrorWithData($data){
@@ -228,7 +228,7 @@
      * Function: apiCommonSuccess
      * Description: Common method for error api request
      *
-     * @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     * @author: Avtar Gaur <info@modernagent.io>
      * @created: Jan 28, 2019
      */
     function apiCommonError($response_code = 200, $message = ''){

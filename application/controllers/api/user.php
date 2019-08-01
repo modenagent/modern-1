@@ -17,7 +17,7 @@ class User extends REST_Controller
 
     /*
      *  @name: login_post
-     *  @author: Avtar Gaur <developer.avtargaur@gmail.com>
+     *  @author: Avtar Gaur <info@modernagent.io>
      *  @created: Jan 27, 2019
      *  @description: Login with username and password to get the access_token
     */
