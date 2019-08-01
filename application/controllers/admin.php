@@ -2017,7 +2017,7 @@ MSG;
     }
     /**
      * Manage Companies
-     * @auther Avtar Gaur <developer.avtargaur@gmail.com>
+     * @auther Avtar Gaur <info@modernagent.io>
      */
     public function manage_sales_reps()
     {
@@ -2052,7 +2052,7 @@ MSG;
     }
     /**
      * Ajax method to get category tree for a product
-     * @auther Avtar Gaur <developer.avtargaur@gmail.com>
+     * @auther Avtar Gaur <info@modernagent.io>
      */
     public function get_product_categories(){
         if($this->input->is_ajax_request()){
@@ -2065,7 +2065,7 @@ MSG;
     /**
      * Check if user has acces to a path. Rediect to dashboard if does not.
      * @param string $path
-     * @auther Avtar Gaur <developer.avtargaur@gmail.com>
+     * @auther Avtar Gaur <info@modernagent.io>
      */
     private function _hasAccess($path) {
         $hasAccess = $this->role_lib->has_access($path);
@@ -2083,7 +2083,7 @@ MSG;
     * Check if user has created the record. Rediect to redirection path given if has not.
     * @param array/object $record
     * @param string $redirectionPath
-    * @auther Avtar Gaur <developer.avtargaur@gmail.com>
+    * @auther Avtar Gaur <info@modernagent.io>
     */
     private function _isCreator($record, $redirectionPath = 'admin/dashboard',$filterKey = 'created_by_fk') {
         $adminId = $this->session->userdata('adminid');
