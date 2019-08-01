@@ -44,6 +44,12 @@
                 border: 1px solid <?php echo $theme ?> !important;
                 background: <?php echo $theme ?> !important;
             }
+			.curious-about-heading {
+				color: <?php echo $theme ?> !important;
+			}
+			.section-article h3 {
+				color: <?php echo $theme ?> !important;
+			}
         </style>   
          <style type="text/css" media="print">
             div.container{

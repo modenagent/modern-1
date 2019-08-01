@@ -359,7 +359,7 @@ class Lp extends CI_Controller{
             exit;
         }
         public function report_progress(){
-            
+            $report = $this->input->post('report');
             $rows = file("temp/logs.csv");
             $last_row = array_pop($rows);
             $row = str_getcsv($last_row);
@@ -375,6 +375,10 @@ class Lp extends CI_Controller{
             } else if(strpos($data, "Page")!==false){
                 //Pages done
                 //e.g. Page 1 of 21
+                if ($report == 'market') {
+                    // Because market report having 1 page only
+                    $data = '1 of 1';
+                }
                 $data = trim(str_replace("Page","",$data));
                 $pagesArray = explode("of", $data);
                 echo json_encode(
