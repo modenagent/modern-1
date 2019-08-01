@@ -2,7 +2,7 @@
 
 /**
  * Role management model
- * @author 	 Avtar Gaur <developer.avtargaur@gmail.com>
+ * @author 	 Avtar Gaur <info@modernagent.io>
  */
 class Role_model extends CI_Model {
 

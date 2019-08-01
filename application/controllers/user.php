@@ -26,8 +26,8 @@ class User extends CI_Controller
 		echo 'calling herre ';
 		$this->load->library('phpmailer');
 		$from_name = 'noreply';
-		$from_mail = 'info@farmingflyers.com';
-		$replyto = 'vijay.jsr123@gmail.com';
+		$from_mail = 'info@modernagent.io';
+		$replyto = 'info@modernagent.io';
 		$message = 'This is dummy message here'; 
 		$subject = 'test email';
 		$filename = 'dummy.pdf';
@@ -35,7 +35,7 @@ class User extends CI_Controller
 		
 		$this->load->helper('sendemail');
 		
-		send_email('noreply@mylistingpitch.com','No Reply', $replyto, $subject, $message, array($file));
+		send_email('noreply@modernagent.io','No Reply', $replyto, $subject, $message, array($file));
 	}
 	
     public function upload_file($type){
@@ -1891,7 +1891,7 @@ Thank you for your order. Below you can find the details of your order. If you o
           // invoice pdf ends
           
           $this->load->helper('sendemail');
-          $send = send_email('info@farmingflyers.com',$name,$user_email,'Your Customize Flyer',$message,$myPdf);
+          $send = send_email('info@modernagent.io',$name,$user_email,'Your Customize Flyer',$message,$myPdf);
 
           $this->cart->destroy();
           
@@ -2206,7 +2206,7 @@ Thank you for your order. Below you can find the details of your order. If you o
           
           $this->load->helper('sendemail');
          
-          $send = send_email('info@farmingflyers.com',$name, $user_email,'Your Customize Flyer', $message, $myPdf);
+          $send = send_email('info@modernagent.io',$name, $user_email,'Your Customize Flyer', $message, $myPdf);
 
           $this->cart->destroy();
           
