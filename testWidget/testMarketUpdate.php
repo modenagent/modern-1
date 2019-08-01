@@ -285,7 +285,7 @@
                                             <p>Realtor</p>
                                             	<p>CA BRE#012354421</p>
                                             	<p>Direct: 1234567890</p>
-                                            	<p>developer.avtargaur@gmail.com</p>
+                                            	<p>info@modernagent.io</p>
                                            		<p>LP</p>
                                             	<p>LP,LP</p>
                                             	<p>CA 12345</p>

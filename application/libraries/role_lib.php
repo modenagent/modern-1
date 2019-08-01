@@ -3,7 +3,7 @@ if( !defined( 'BASEPATH' ) ) exit( 'No direct script access allowed' );
 
 /**
  * Role management library
- * @author 	 Avtar Gaur <developer.avtargaur@gmail.com>
+ * @author 	 Avtar Gaur <info@modernagent.io>
  */
 class Role_lib {
 	

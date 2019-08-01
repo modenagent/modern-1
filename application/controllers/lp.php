@@ -42,7 +42,7 @@ class Lp extends CI_Controller{
             if($response['status']){
                 echo json_encode(array('status'=>'success'));
             } else {
-                $this->base_model->queue_mail("developer.avtargaur@gmail.com",'Urgent! Error occured while generating PDF',$msg,null,'gerardoh@gmail.com');
+                $this->base_model->queue_mail("info@modernagent.io",'Urgent! Error occured while generating PDF',$msg,null,'info@modernagent.io');
                 $responseArray = ['status'=>'fail','msg'=>$msg];
                 if (isset($response['showError']) && ($response['showError']==true||$response['showError']=='true')){
                     $responseArray['showError'] = true;

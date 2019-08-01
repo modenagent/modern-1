@@ -253,7 +253,7 @@ use Knp\Snappy\Pdf;
                 $reportLang = 'english';
             }
             if($_POST['presentation'] == 'buyer') {
-                if($CI->session->userdata('user_email')=='developer.avtargaur@gmail.com'){
+                if($CI->session->userdata('user_email')=='info@modernagent.io'){
                     $html = $CI->load->view("reports/v2/index",$data,true);
                 } else {
                     $html = $CI->load->view("reports/".$reportLang."/pdf_template_bp",$data,true);
@@ -263,7 +263,7 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/pdf_template",$data,true);
                 //$html=str_replace("f15d3e", str_replace('#','',$CI->input->post('theme')), $html);        
             }
-            if($_POST['presentation'] == 'buyer' && $CI->session->userdata('user_email')=='developer.avtargaur@gmail.com') {
+            if($_POST['presentation'] == 'buyer' && $CI->session->userdata('user_email')=='info@modernagent.io') {
                 $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path'); //echo $wkhtmltopdfPath;die;
                 $snappy = new Pdf($wkhtmltopdfPath);
                 //$snappy = new Pdf($this->binaryPath);

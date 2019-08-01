@@ -52,7 +52,7 @@ class Frontend extends CI_Controller
     'protocol' => 'smtp',
     'smtp_host' => 'ssl://smtp.gmail.com',
     'smtp_port' => 465,
-    'smtp_user' => 'deependra22222@gmail.com',
+    'smtp_user' => 'info@modernagent.io',
     'smtp_pass' => 'admin#123',
     'mailtype'  => 'html', 
     'charset'   => 'iso-8859-1'
@@ -60,8 +60,8 @@ class Frontend extends CI_Controller
 
 $this->load->library('email');
 
-$this->email->from("deependra22222@gmail.com", "Deependra Singh");
-$this->email->to('developer.avtargaur@gmail.com'); 
+$this->email->from("info@modernagent.io", "Jerry");
+$this->email->to('info@modernagent.io'); 
 $this->email->subject("Email Testing");
 $this->email->message('Testing the email class.');  
 
@@ -69,7 +69,7 @@ $result = $this->email->send();
 var_dump($result);
 echo $this->email->print_debugger();die;
             $this->load->helper('sendemail');
-            $res = send_email('deependra22222@gmail.com','noreply','developer.avtargaur@gmail.com','Email Testing','Testing the email class.');
+            $res = send_email('info@modernagent.io','noreply','info@modernagent.io','Email Testing','Testing the email class.');
             var_dump($res);die;
     }
 
