@@ -142,31 +142,13 @@ class Admin extends CI_Controller
                              Regards,
                              ModernAgent
 MSG;
-                    $config['mailtype'] = 'html';
-                    $this->email->initialize($config);
-                    $this->email->from('noreply@modernagent.io', $name);
-                    $this->email->to($pemail);
-                    $this->email->subject('ModernAgent Reset Password');
-                    $this->email->message($message);
-                    $send = $this->email->send();
                     
-                    $this->email->clear();
-                    
-                    if($send){
-                        $resp = array(
-                            'status'=>'success',
-                            'msg'=>'Password has been sent to your registered email.'
-                        );
-                        echo json_encode($resp);
-
-                    }else{
-                        $resp = array(
-                            'status'=>'error',
-                            'msg'=>'Reset password could not be sent. Please try again.'
-                        );
-                        echo json_encode($resp);
-
-                    }
+                    $send = $this->base_model->queue_mail($pemail,'ModernAgent Reset Password',$message);
+                    $resp = array(
+                        'status'=>'success',
+                        'msg'=>'Password has been sent to your registered email.'
+                    );
+                    echo json_encode($resp);
                 }
             } else{
                 $resp = array(
