@@ -113,7 +113,9 @@
 }
 .cma-wraper .progress-label {
     position: absolute;
-    left: 50%;
+    /*left: 50%;*/
+    width:100%;
+    text-align: center;
     top: 4px;
     font-weight: bold;
     text-shadow: 1px 1px 0 #fff;

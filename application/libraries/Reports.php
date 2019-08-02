@@ -141,6 +141,10 @@ use Knp\Snappy\Pdf;
                 }
             }
 
+            if (empty($reportItems['comparable'])) {
+                return ["status"=>false, "showError"=>true, "msg"=>"Report can not be generated due to lack of comparable data."];
+            }
+
             $salesAnalysis = $this->sales_analysis($reportItems['comparable']);
             
             $reportItems['priceMinRange'] = round($salesAnalysis['minPrice']/1000,2);

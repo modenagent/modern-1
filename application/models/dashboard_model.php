@@ -7,7 +7,6 @@
 
     /****************************************/
     public function getBillingHistory($userid){
-
         $this->db->select('project_id_pk, project_id_pk as project_id, project_name, property_owner, property_address, report_path, property_apn, property_lat, property_lng, total_amount, paid_on,invoice_pdf, invoice_amount, invoice_date');
         $this->db->from('lp_my_listing');
         $this->db->join('lp_my_cart','lp_my_listing.project_id_pk=lp_my_cart.project_id_fk ', "INNER");
@@ -16,9 +15,63 @@
         $this->db->order_by('project_id_pk','desc');
         $this->db->limit('500');
         $query = $this->db->get();
-
         return $query->result();
 
+    }
+
+    public function get_billing_history_count($userId, $postData)
+    {
+        $this->db->select('count(listing.project_id_pk) as count');
+        $this->db->from('lp_my_listing listing');
+        $this->db->join('lp_my_cart','listing.project_id_pk=lp_my_cart.project_id_fk ', "INNER");
+        $this->db->join('lp_invoices','lp_my_cart.cart_id_pk=lp_invoices.cart_id_fk and lp_my_cart.user_id_fk=lp_invoices.user_id_fk', "INNER");
+        $this->db->where('lp_invoices.user_id_fk', $userId);
+        $this->db->where('listing.is_active', 'Y');
+
+        if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
+            $value = trim($postData['search']['value']);
+            $value = $this->db->escape($value);
+            $value = trim($value,"'");
+            $this->db->where("(listing.property_address LIKE '%".$value."%' 
+                OR listing.property_apn LIKE '%".$value."%'
+                )", NULL, FALSE);
+        }
+
+        $query = $this->db->get();
+        $data = $query->row_array();
+        return $data['count'];
+    }
+
+    public function get_billing_history_data($userId, $columns, $postData)
+    {
+        $order = $columns[$postData['order'][0]['column']];
+        $dir = $postData['order'][0]['dir'];
+
+        $this->db->select('listing.project_id_pk, listing.project_id_pk as project_id, listing.project_name, listing.property_owner, listing.property_address, listing.report_path, listing.property_apn, listing.property_lat, listing.property_lng, total_amount, paid_on,invoice_pdf, invoice_amount, invoice_date, lp_invoices.invoice_num, lp_invoices.user_id_fk');
+        $this->db->from('lp_my_listing listing');
+        $this->db->join('lp_my_cart','listing.project_id_pk=lp_my_cart.project_id_fk ', "INNER");
+        $this->db->join('lp_invoices','lp_my_cart.cart_id_pk=lp_invoices.cart_id_fk and lp_my_cart.user_id_fk=lp_invoices.user_id_fk', "INNER");
+        $this->db->where('lp_invoices.user_id_fk', $userId);
+        $this->db->where('listing.is_active', 'Y');
+
+        if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
+            $value = trim($postData['search']['value']);
+            $value = $this->db->escape($value);
+            $value = trim($value,"'");
+            $this->db->where("(listing.property_address LIKE '%".$value."%' 
+                OR listing.property_apn LIKE '%".$value."%'
+                )", NULL, FALSE);
+        }
+
+        if ($postData['length'] != -1) {
+            $this->db->limit($postData['length'], $postData['start']);
+        } else {
+            $this->db->limit(10, $postData['start']);
+        }
+        $this->db->order_by($order, $dir);
+
+        $query = $this->db->get();
+        return $query->result_array();
     }
 
 

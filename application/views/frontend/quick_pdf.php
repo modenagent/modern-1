@@ -16,7 +16,18 @@
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
             
-                                <h2 class="logh">Generate Your Complimentary C.M.A.</h2>
+                                <?php
+                                $currentUrl = $this->uri->uri_string();
+                                if (strpos(strtolower($currentUrl), 'market') !== false) {
+                                ?>
+                                    <h2 class="logh">Generate Your Complimentary Market Update</h2>
+                                <?php
+                                } else {
+                                ?>
+                                    <h2 class="logh">Generate Your Complimentary C.M.A.</h2>
+                                <?php
+                                }
+                                ?>
                                 <div class="col-md-12">
                                 <form class="login-wrapper" method="post" id="ref-form"  style="">
                                     <div class="content">
@@ -50,6 +61,7 @@
                                             <input name="utf8" type="hidden" value="✓">
                                             <div class="input-group2">
                                                 <input class="form-control" name="term" id="searchbox" placeholder="e.g. ‘123 Success Ave’" type="search">
+                                                <label id="error_searchbox" style="display:none;"></label>
                                                 <input type="text" id="searchboxcity" class="citynames2" placeholder="e.g. 'Los Angeles'">
                                                 <input type="hidden" id="neighbourhood">
                                                 <input type="hidden" id="state">
@@ -83,10 +95,20 @@
                                         <!-- Hidden user details -->
                                         <div class="row">
                                             <div class="col-md-2">
+                                                <?php
+                                                $marketPresentation = '';
+                                                $sellerPresentation = '';
+                                                $currentUrl = $this->uri->uri_string();
+                                                if (strpos(strtolower($currentUrl), 'market') !== false) {
+                                                    $marketPresentation = 'selected';
+                                                } else {
+                                                    $sellerPresentation = 'selected';
+                                                }
+                                                ?>
                                                 <select name="presentation" class="cma hide" style="color:black">
-                                                    <option value="seller" selected>Seller</option>
+                                                    <option value="marketUpdate" <?php echo $marketPresentation; ?> >Market Update</option>
+                                                    <option value="seller" <?php echo $sellerPresentation; ?>>Seller</option>
                                                     <option value="buyer">Buyer</option>
-                                                   
                                                 </select>
                                             </div>
                                          <div class="col-md-2">
@@ -378,13 +400,25 @@ function isActive(){
     }
 }
 function doSubmit(){
+
+    <?php
+    $report = '';
+    $currentUrl = $this->uri->uri_string();
+    if (strpos(strtolower($currentUrl), 'market') !== false) {
+        $report = 'market';
+    } 
+    ?>
+
     if(activeRequest){
       setTimeout(function(){
           $("#progress").modal('show');
           $.ajax({
             url:base_url + 'lp/report_progress',
-            method:'GET',
+            method:'POST',
             dataType:'json',
+            data: {
+                report: '<?php echo $report; ?>'
+            },
             success:function(resp){
                 if(resp.type=='content_percent'){
                     console.log(resp.percent);

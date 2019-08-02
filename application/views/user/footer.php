@@ -149,23 +149,35 @@
           selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
           selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
       });  
-      if(firstOpen)
+      if(firstOpen) {
           // If received list is not greater than min value than set our min value to received list length
-          if(_min>$('#pre-selected-options').val().length){
-              _min = $('#pre-selected-options').val().length;;
+          var pre_selected_options = $.trim($('#pre-selected-options').html());
+          if (pre_selected_options!='') {
+            if(_min>$('#pre-selected-options').val().length){
+                _min = $('#pre-selected-options').val().length;
+            }
           }
           firstOpen = false;
-          var last_valid_selection = $('#pre-selected-options').val();
-          $('#pre-selected-options').change(function(event) {
-            if ($(this).val().length > _max) {
-              //$(this).val(last_valid_selection);
-            } else {
-              //last_valid_selection = $(this).val();$(this).trigger('change');
-            }
+      }
+      /*
+      var last_valid_selection = $('#pre-selected-options').val();
+      $('#pre-selected-options').change(function(event) {
+        if ($(this).val().length > _max) {
+          //$(this).val(last_valid_selection);
+        } else {
+          //last_valid_selection = $(this).val();$(this).trigger('change');
+        }
       });
+      */
   });
   $('#select-comps').on('hide.bs.modal', function(event) {
-      if($('#pre-selected-options').val().length < _min){
+    var pre_selected_options = $.trim($('#pre-selected-options').html());
+    if (pre_selected_options!='') {
+      if ($('#pre-selected-options').val()==null) {
+          alert('Please select '+_min+' comparables');
+          event.stopPropagation();
+          return false;
+      } else if ($('#pre-selected-options').val().length < _min){
           alert('Please select '+_min+' comparables');
           event.stopPropagation();
           return false;
@@ -175,7 +187,7 @@
           event.stopPropagation();
           return false;
       }
-     
+    } 
   });
 </script>
 <script type="text/javascript">
@@ -352,13 +364,32 @@
         doSubmit();
       }
     }
-
+    /*
     function doSubmit(){
       if(activeRequest){
         setTimeout(function(){
           doSubmit();
         },1500);
       }else{
+        $form.get(0).submit();
+      }
+    }
+
+    FIX issue that order submitted even PDF not generated
+    By Below changes.
+    */
+    function doSubmit(){
+      if(activeRequest && !pdfGenerated){
+        setTimeout(function(){
+          doSubmit();
+        },1500);
+      } else if(! pdfGenerated){
+        $('.loader1').hide();
+        $('.backwrap').hide();
+        $('#apply-coupan-alert').html("We did not process your payment as PDF Generation failed. Our team is looking into the matter. Please try again in a bit.").removeClass('alert-success').addClass('alert-danger').show();
+        $('.loader1').hide();
+        $('.backwrap').hide();
+      }else {
         $form.get(0).submit();
       }
     }
@@ -547,6 +578,10 @@
         return true;
       }
     });
+    /** Tabs content was messedup for a second before smartTab initialization 
+     * So hide it initially and show it once smartTab initialized 
+     */
+    $('#tabs').show();
     
     $(".leftpic a").click(function() {    
         console.log("trigger");                                            
@@ -1015,7 +1050,15 @@
     }
   }
   $(document).ready(function() {
-      $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+      $("body").tooltip({ selector: '[data-toggle=tooltip]', placement:'left' });
+
+      $(window).on("scroll", function () {
+          if ($(window).scrollTop() > 50) {
+              $("header.overlapping").addClass("overlapping-down");
+          } else {
+              $("header.overlapping").removeClass("overlapping-down");
+          }
+      });
   });
   $("#forward-report").on("show.bs.modal", function(e) {
       var projectID = $(e.relatedTarget).data('id');
@@ -1061,7 +1104,7 @@
       <?php if ($this->session->flashdata('error')) : ?>
       Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
       <?php endif; ?>
-      $("#btn-logout").click(function() {
+      $(".btn-user-logout-click").click(function() {
           $.ajax({
               url: '<?php echo site_url('auth/logout/format/json/'); ?>',
               method: 'get'

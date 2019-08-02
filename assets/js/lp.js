@@ -317,9 +317,22 @@ function runPMA(agentPath, logoPath) {
             }
             if(!pdfGenerated){
                 $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
+                setTimeout(() => {
+                    //SET TIME OUT because its add static error message from footer.php SO update exact error message after 1 second.
+                    if (obj.msg != '') {
+                        if (typeof obj.showError !== 'undefined' && (obj.showError==true || obj.showError=='true')) { 
+                            $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
+                        }
+                    }
+                }, 1000);
                 $('.btn-checkout').hide();
                 $('.btn-lp.pay').hide();
-                pmaRes =  {status:"failed",msg:errorMsg};
+                if (obj.msg != '') {
+                    // Error Message passed to CMA response.
+                    pmaRes =  {status:"failed",msg:obj.msg};
+                } else {
+                    pmaRes =  {status:"failed",msg:errorMsg};
+                }
             }
             // returnReport();
             activeRequest=false;
@@ -425,20 +438,24 @@ function updateTally(tallies) {
 // format user submitted address
 function getAddress() {
     // event.preventDefault ? event.preventDefault() : event.returnValue = false;
-    $(this).parents("form").find(".search-result").removeClass("hidden");
-    
-    // $('.progress-bar').progressbar("option", "value", false);
-    $("#search-btn").parents("form").find("table").addClass("hidden");
-    $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
-    // $('.result-apn').text('');
-    // $('.result-address').text('');
-    // $('.result-city').text('');
-    // $('.js-run-pma-button').hide();
-     $('.pma-error').hide();
-
     isNewSearch=true;
     address = $('#searchbox').val();
     address = $.trim(address);
+
+    if (address == '') {
+        $('#error_searchbox').html('Please search any address.');
+        $('#error_searchbox').show();
+        return;
+    } else {
+        $('#error_searchbox').html('');
+        $('#error_searchbox').hide();
+    }
+
+    $('.pma-error').hide();
+    $(this).parents("form").find(".search-result").removeClass("hidden");
+    $("#search-btn").parents("form").find("table").addClass("hidden");
+    $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
+
     locale = $('#searchboxcity').val();
     locale = $.trim(locale);
     state = $('#state').val();

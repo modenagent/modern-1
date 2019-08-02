@@ -235,6 +235,59 @@ class User extends CI_Controller
       }
     }
 
+    public function getReportsListing()
+    {
+        $userId = $this->session->userdata('userid');
+        if ($userId) {
+            $columns = [
+                'project_date', 
+                'project_id_pk',
+                'project_name',
+                'report_type',
+                'action'                      
+            ];      
+            $this->load->model('user_model');
+            $recordsTotal = $this->user_model->user_reports_count($userId, $_POST);
+            $result = $this->user_model->user_reports_data($userId, $columns, $_POST);
+
+            $i = $_POST['start'];
+            $data = [];
+            foreach($result as $report) {
+                $i++;
+                $reportDate = date("m/d/Y", strtotime($report['project_date']));
+
+                $action = '';
+                $action .= ' <a href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>
+                <a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><i data-toggle="tooltip" title="Email" class="icon icon-share"  ></i></a>
+                <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+                
+                $data[] = [
+                    $reportDate, 
+                    $report['project_id_pk'] . '-' . $report['property_owner'], 
+                    $report['project_name'], 
+                    ucfirst($report['report_type']), 
+                    $action
+                ];
+            }
+            
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $recordsTotal,
+                "recordsFiltered" => $recordsTotal,
+                "data" => $data,
+            );    
+            echo json_encode($output);
+        } else {
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            );    
+            echo json_encode($output);
+        }
+    }
+
     public function getPartners(){
       
       if($this->session->userdata('userid')){
@@ -270,17 +323,7 @@ class User extends CI_Controller
         $data['current'] = "recentlp";
         $data['title'] = "Recent Lp's";
         $this->load->helper('captcha');
-        create_image();
-        
-  	  
-        $data['reports'] = $this->base_model->get_all_record_by_id('lp_my_listing', 
-                                                                    array(
-                                                                        'user_id_fk' => $this->session->userdata('userid'),
-                                                                        'is_active' => 'Y'
-                                                                    ),
-                                                                    'project_date','desc'
-                                                                  );
-        
+        create_image();  
         $this->load->view('user/header',$data);
         $this->load->view('user/all_listings',$data);
         $this->load->view('user/footer');
@@ -307,6 +350,60 @@ class User extends CI_Controller
         redirect('frontend/login');
       }
     }
+
+    public function getLeadListing()
+    {
+        $userId = $this->session->userdata('userid');
+        if ($userId) {
+            $columns = [
+                'created_at', 
+                'phone_number',
+                'project_id_pk',
+                'project_name',
+                'report_type',
+                'action'                      
+            ];      
+            $this->load->model('user_model');
+            $recordsTotal = $this->user_model->get_leads_count($userId, $_POST);
+            $result = $this->user_model->get_leads_data($userId, $columns, $_POST);
+
+            $i = $_POST['start'];
+            $data = [];
+            foreach($result as $lead) {
+                $i++;
+                $leadDate = date("m/d/Y", strtotime($lead['created_at']));
+
+                $action = '';
+                $action .= '<a href="'.base_url().$lead['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>';
+                
+                $data[] = [
+                    $leadDate, 
+                    $lead['phone_number'], 
+                    $lead['project_id_pk'] . '-' . $lead['property_owner'], 
+                    $lead['project_name'], 
+                    ucfirst($lead['report_type']), 
+                    $action
+                ];
+            }
+            
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $recordsTotal,
+                "recordsFiltered" => $recordsTotal,
+                "data" => $data,
+            );    
+            echo json_encode($output);
+        } else {
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            );    
+            echo json_encode($output);
+        }
+    }
+
     // all leads
     public function flyers(){
       // show only when the user is logged in
@@ -517,6 +614,63 @@ class User extends CI_Controller
       }
     }
 
+    public function getBillingHistory()
+    {
+        $userId = $this->session->userdata('userid');
+        if ($userId) {
+            $columns = [
+                'invoice_date', 
+                'invoice_amount',
+                'property_address',
+                'property_apn',
+                'action'                      
+            ];      
+            $this->load->model('dashboard_model');
+            $recordsTotal = $this->dashboard_model->get_billing_history_count($userId, $_POST);
+            $result = $this->dashboard_model->get_billing_history_data($userId, $columns, $_POST);
+
+            $i = $_POST['start'];
+            $data = [];
+            foreach($result as $bill) {
+                $i++;
+                $billDate = date("m/d/Y", strtotime($bill['invoice_date']));
+
+                $action = '';
+                if (!empty($bill['invoice_pdf'])) {
+                  if (file_exists($bill['invoice_pdf'])) {
+                    $action = '<a href="'.base_url().$bill['invoice_pdf'].'" class="btn btn-lp receipt" target="_blank">Print Receipt</a>';
+                  } else {
+                    $invoice_generate_url = site_url().'/user/download_invoice/'.$bill['invoice_num'].'/'.$bill['user_id_fk'];
+                    $action = '<a href="'.$invoice_generate_url.'" class="btn btn-lp receipt" target="_blank">Print Receipt</a>';
+                  }
+                } 
+
+                $data[] = [
+                    $billDate, 
+                    '$'.number_format($bill['invoice_amount'], 2),
+                    $bill['property_address'], 
+                    $bill['property_apn'], 
+                    $action
+                ];
+            }
+            
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $recordsTotal,
+                "recordsFiltered" => $recordsTotal,
+                "data" => $data,
+            );    
+            echo json_encode($output);
+        } else {
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            );    
+            echo json_encode($output);
+        }
+    }
 
     // User account view
     public function account()
@@ -2535,16 +2689,16 @@ Thank you for your order. Below you can find the details of your order. If you o
       }
     }
 
-    function download_invoice($invoiceNumber, $userId) 
+    function download_invoice($invoiceNumber) 
     {
-      $userId = $data['user_id'] = $this->session->userdata('userid');
+      $userId = $this->session->userdata('userid');
       if ($userId) {
         $this->load->library('invoice'); 
         $this->invoice->_getInvoice($invoiceNumber, $userId);
       } else {
-        echo "Invoice details are required.";
+        echo "Invoice details does not exits.";
         exit();
-      }
+      } 
     }
 
     // cart payment
