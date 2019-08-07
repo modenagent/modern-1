@@ -3428,7 +3428,7 @@ div#slider-range {
 }
 
 .market-content-top {
-    margin-top: 100px
+    margin-top: 50px;/*100px*/
 }
 
 .avg-box {
