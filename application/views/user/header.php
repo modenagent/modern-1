@@ -59,6 +59,7 @@
           <li class="<?php if($current=='billing'){echo 'current';} ?>"> <a href="<?php echo site_url('user/billing'); ?>" class="external m">Billing History</a> </li>
           <li class="<?php if($current=='leads'){echo 'current';} ?>"> <a href="<?php echo site_url('user/leads'); ?>" class="external m">My Leads</a> </li>
           <li class="<?php if($current=='myaccount'){echo 'current';} ?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="external m">My Account</a> </li>
+          <li class="<?php if($current=='customize'){echo 'current';} ?>"> <a href="<?php echo site_url('user/customize'); ?>" class="external m">Report Customization</a> </li>
           <li class=""> <a id="btn-logout" href="javascript:void(0);" class="external m btn-user-logout-click">Log Out</a> </li>
           </ul>
       </div>
@@ -71,6 +72,7 @@
         <li class="<?php if($current=='billing'){echo 'current';} ?>"> <a href="<?php echo site_url('user/billing'); ?>" class="external m">Billing History</a> </li>
         <li class="<?php if($current=='leads'){echo 'current';} ?>"> <a href="<?php echo site_url('user/leads'); ?>" class="external m">My Leads</a> </li>
         <li class="<?php if($current=='myaccount'){echo 'current';} ?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="external m">My Account</a> </li>
+        <li class="<?php if($current=='customize'){echo 'current';} ?>"> <a href="<?php echo site_url('user/customize'); ?>" class="external m">Report Customization</a> </li>
         <li class=""> <a id="btn-logout-m" href="javascript:void(0);" class="external m btn-user-logout-click">Log Out</a> </li>
         </ul>
     </div>          

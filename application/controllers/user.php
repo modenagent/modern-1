@@ -3426,6 +3426,170 @@ Thank you for your order. Below you can find the details of your order. If you o
         echo $ref_code;
     }
 
+    function preview($reportType='', $language='', $page=0) 
+    {
+        $reportType = strtolower($reportType);
+        if (!in_array($reportType, ['buyer','seller'])) {
+            echo "Valid report type is required";exit();
+        }
+        $language = strtolower($language);
+        if (!in_array($language, ['english','spanish'])) {
+            echo "Valid language is required";exit();
+        }
+        if (!is_numeric($page)) {
+            echo "Page no should be numeric";exit();
+        } else if ($page > 19 || $page < 9) {
+            echo "Page does not exits";exit();
+        }
+
+        $userId = $this->session->userdata('userid');
+        $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+
+        /* For preview default theme color it BLACK */
+        $data['theme'] = '#000'; 
+        $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data);
+        $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data);
+        $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data);
+    }
+
+    function customize($report = '', $page='')
+    {
+        if ($this->session->userdata('userid')) {
+            $data['title'] = "Report Customization";
+            $data['current'] = "customize";
+            $userId = $data['user_id'] = $this->session->userdata('userid');
+
+            $this->load->model('report_model');
+            $buyer_pages = $this->report_model->getReportPages('english', 'buyer');
+            $seller_pages = $this->report_model->getReportPages('english', 'seller');
+
+            $data['buyer_pages'] = $buyer_pages;
+            $data['seller_pages'] = $seller_pages;
+
+            $this->load->view('user/header', $data);
+            $this->load->view('user/report_customize', $data);
+            $this->load->view('user/footer');
+        } else {
+            redirect('frontend/index');
+        }
+    }
+
+    function get_user_report_data() 
+    {
+        if ($this->session->userdata('userid')) {
+            $reportType = $this->input->post('type');
+            $language = $this->input->post('language');
+            $page = $this->input->post('page');
+            $userId = $this->session->userdata('userid');
+
+            $finalData = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+            $result = ['result'=>'success', 'data'=>$finalData];
+            echo json_encode($result);
+            exit();
+        } else {
+            $result = ['result'=>'error', 'message'=>'You are logged out. Please login.', 'data'=>[]];
+            echo json_encode($result);
+            exit();   
+        }
+    }
+
+    private function prepare_user_report_data($userId, $reportType, $language, $page)
+    {
+        $this->load->model('report_model');
+        $default_data = $this->report_model->getReportPageData(0, $reportType, $language, $page);
+        $user_data = $this->report_model->getReportPageData($userId, $reportType, $language, $page);
+
+        $data = [];
+
+        if (empty($user_data)) {
+            $data = json_decode($default_data['data'], true);
+        } else {
+            $user_data_values = json_decode($user_data['data'], true);
+            $admin_data_values = json_decode($default_data['data'], true);
+
+            $data = $user_data_values;
+            foreach ($user_data_values as $key => $value) {
+                $data[$key]['limit'] = $admin_data_values[$key]['limit'];
+                $data[$key]['type'] = $admin_data_values[$key]['type'];
+            }
+        }
+
+        return $data;
+    }
+
+    public function save_user_report_data()
+    {
+        if ($this->session->userdata('userid')) {
+            $reportType = $this->input->post('type');
+            $language = $this->input->post('language');
+            $page = $this->input->post('page');
+            $userId = $this->session->userdata('userid');
+
+            if (empty($reportType) || !in_array($reportType, ['buyer', 'seller'])) {
+                $result = ['result'=>'error', 'message'=>'Valid report type is required.', 'data'=>[]];
+                echo json_encode($result);
+                exit();
+            }
+
+            if (empty($language) || !in_array($language, ['english', 'spanish'])) {
+                $result = ['result'=>'error', 'message'=>'Valid language is required.', 'data'=>[]];
+                echo json_encode($result);
+                exit();
+            }
+
+            if (empty($page)) {
+                $result = ['result'=>'error', 'message'=>'Valid page is required.', 'data'=>[]];
+                echo json_encode($result);
+                exit();
+            }
+
+            $postData = $_POST;
+            $reportPostData = [];
+            $isvalidated = true;
+            $missingValues = [];
+            foreach ($postData as $key => $value) {
+                if (strpos($key, 'cntrl_') !== false) {
+                    $tempKey = str_replace('cntrl_', '', $key);
+                    $reportPostData[$tempKey] = $value;
+                    if (trim($value) == '') {
+                        $isvalidated = false;
+                        $label = str_replace('_', ' ', $tempKey);
+                        $missingValues[] = ucwords($label);
+                    }
+                }
+            }
+
+            if ($isvalidated == false) {
+                $result = ['result'=>'error', 'message'=>'Values are missing for - '.implode(', ', $missingValues), 'data'=>[]];
+                echo json_encode($result);
+                exit();   
+            }
+
+            if (empty($reportPostData)) {
+                $result = ['result'=>'error', 'message'=>'No reports data to save.', 'data'=>[]];
+                echo json_encode($result);
+                exit();   
+            }
+
+            $reportDataToSave = [];
+            foreach ($reportPostData as $key => $value) {
+                $reportDataToSave[$key] = ['value'=>$value];
+            }
+
+            $this->load->model('report_model');
+            $this->report_model->saveReportPageData($userId, $reportType, $language, $page, $reportDataToSave);
+
+            $result = ['result'=>'success', 'message'=>'Data saved successfully. Please check preview.'];
+            echo json_encode($result);
+            exit();
+        } else {
+            $result = ['result'=>'error', 'message'=>'You are logged out. Please login.', 'data'=>[]];
+            echo json_encode($result);
+            exit();   
+        }
+
+    }
+
    // Class ends here
 }
 ?>
