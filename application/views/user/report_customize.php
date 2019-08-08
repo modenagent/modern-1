@@ -40,6 +40,8 @@
                     </div>
                     <div class="col-sm-9">
                         <iframe id="buyer_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
+                        <br/>
+                        <button type="button" class="btn btn-primary" onclick="preview_pdf('buyer')">Preview PDF</button>
                     </div>
                 </div>
             </div>
@@ -73,6 +75,8 @@
                     </div>
                     <div class="col-sm-9">
                         <iframe id="seller_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
+                        <br/>
+                        <button type="button" class="btn btn-primary" onclick="preview_pdf('seller')">Preview PDF</button>
                     </div>
                 </div>
             </div>
@@ -100,6 +104,28 @@ $( document ).ready(function() {
     load_iframe('buyer');
     load_iframe('seller');
 });
+
+function preview_pdf(type)
+{
+    var language = $('#'+type+'_language').val();
+    var page = $('#'+type+'_pages').val();
+    var final_report_link = '';
+
+    var buyer_preview_link = '<?php echo base_url(); ?>'+'user/show_pdf_preview/buyer/';
+    var seller_preview_link = '<?php echo base_url(); ?>'+'user/show_pdf_preview/seller/';
+
+    if ($.trim(language) == '' || $.trim(page) == '' || $.trim(type) == '') {
+        return false;
+    }
+
+    if (type=='buyer') {
+        final_report_link = buyer_preview_link+language+'/'+page;
+    } else {
+        final_report_link = seller_preview_link+language+'/'+page;
+    }
+
+     window.open(final_report_link, '_blank');
+}
 
 function load_iframe(type)
 {
@@ -158,11 +184,11 @@ function load_iframe(type)
                 label = toTitleCase(label);
                 var keyId = 'cntrl_'+index;
                 if ($.trim(value.type) == 'number') {
-                    form_content += '<div class="form-group"><label for="'+keyId+'">'+label+'</label><input value="'+value.value+'" maxlength="'+value.limit+'" type="text" class="form-control numeric" id="'+keyId+'" name="'+keyId+'" placeholder="'+label+'" onchange="countChar(this)" onkeyup="countChar(this)"><div id="'+keyId+'_charNum"></div></div>';
+                    form_content += '<div class="form-group"><label for="'+keyId+'">'+label+'</label><input autocomplete="off" value="'+value.value+'" maxlength="'+value.limit+'" type="text" class="form-control numeric" id="'+keyId+'" name="'+keyId+'" placeholder="'+label+'" onchange="countChar(this)" onkeyup="countChar(this)" onkeypress="countChar(this)"><div id="'+keyId+'_charNum"></div></div>';
                 } else if ($.trim(value.type) == 'text') {
-                    form_content += '<div class="form-group"><label for="'+keyId+'">'+label+'</label><input value="'+value.value+'" maxlength="'+value.limit+'" type="text" class="form-control" id="'+keyId+'" name="'+keyId+'" placeholder="'+label+'" onchange="countChar(this)" onkeyup="countChar(this)"><div id="'+keyId+'_charNum"></div></div>';
+                    form_content += '<div class="form-group"><label for="'+keyId+'">'+label+'</label><input autocomplete="off" value="'+value.value+'" maxlength="'+value.limit+'" type="text" class="form-control" id="'+keyId+'" name="'+keyId+'" placeholder="'+label+'" onchange="countChar(this)" onkeyup="countChar(this)" onkeypress="countChar(this)"><div id="'+keyId+'_charNum"></div></div>';
                 } else {
-                    form_content += '<div class="form-group"><label for="'+keyId+'">'+label+'</label><textarea maxlength="'+value.limit+'" class="form-control" id="'+keyId+'" name="'+keyId+'" rows="3" placeholder="'+label+'" onchange="countChar(this)" onkeyup="countChar(this)" >'+value.value+'</textarea><div id="'+keyId+'_charNum"></div></div>';
+                    form_content += '<div class="form-group"><label for="'+keyId+'">'+label+'</label><textarea autocomplete="off" maxlength="'+value.limit+'" class="form-control" id="'+keyId+'" name="'+keyId+'" rows="3" placeholder="'+label+'" onchange="countChar(this)" onkeyup="countChar(this)"  onkeypress="countChar(this)" >'+value.value+'</textarea><div id="'+keyId+'_charNum"></div></div>';
                 }
             });
 
@@ -268,11 +294,25 @@ function save_report_content_data(formId, reportType)
                 }
             }
 
+            trimAllInputValues(formId);
+
             var iframe = document.getElementById(reportType+'_iframe');
             iframe.src = final_report_link;
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {  
         }
+    });
+}
+
+function trimAllInputValues(formId)
+{
+    $('#'+formId).find('input').each(function(){
+        $(this).val( $.trim($(this).val()) );
+        countChar(this);
+    });
+    $('#'+formId).find('textarea').each(function(){
+        $(this).val( $.trim($(this).val()) );
+        countChar(this);
     });
 }
 
@@ -284,6 +324,7 @@ function toTitleCase(str) {
 
 function countChar(obj) 
 {
+    console.log('event triggers');
     var controlId = $(obj).attr('id');
     var maxLength = $(obj).attr('maxlength');
     var len = $(obj).val().length;
@@ -291,7 +332,7 @@ function countChar(obj)
 
     if (len > maxLength) {
         $(obj).val( $(obj).val().substring(0, maxLength) );
-        countChar(obj);
+        $('#'+charCounterId).html(maxLength+" out of "+maxLength);
     } else {
         $('#'+charCounterId).html(len+" out of "+maxLength);
     }

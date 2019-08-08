@@ -480,7 +480,8 @@ use Knp\Snappy\Pdf;
             }
             //@var $turboMode boolean If true than it uses pre stored static theme pages and using qpdf tool it merge these with dynamic content pdf being gnerated with wkhtmltopdf tool
             $turboMode = false;
-            if(($presentationType=="seller" || $presentationType=="buyer") && $reportLang=='english'){
+            //if(($presentationType=="seller" || $presentationType=="buyer") && $reportLang=='english'){
+            if($presentationType=="buyer" && $reportLang=='english'){
                 $themeMap = array(
                     //@todo: Set these indexes as unique color code in DB table
                     "coldwell_banker"=>rgb2hex("rgb(0,41,128)"),
@@ -511,6 +512,38 @@ use Knp\Snappy\Pdf;
                     $turboMode = true;
                 }
             }
+
+            /**
+             * Start Code to fetch customized text data of user
+             */
+            $data['user_id_for_report_customization'] = 0;
+            if ($data['user']['email'] != '') {
+                $CI->load->model('user_model');
+                $userInfo = $CI->user_model->getUserDetailsByEmail($data['user']['email'], ['user_id_pk', 'email', 'role_id_fk', 'customer_id', 'ref_code']);
+                $data['user_id_for_report_customization'] = $userInfo['user_id_pk'];
+            }
+
+            $customization_data = [];
+            if ($presentationType=="seller" && !empty($data['user_id_for_report_customization'])) {
+                $CI->load->model('report_model');
+                $customization_data['9']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 9);
+                $customization_data['10']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 10);
+                $customization_data['11']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 11);
+                $customization_data['12']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 12);
+                $customization_data['13']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 13);
+                $customization_data['14']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 14);
+                $customization_data['15']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 15);
+                $customization_data['16']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 16);
+                $customization_data['17']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 17);
+                $customization_data['18']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 18);
+                $customization_data['19']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 19);
+            }
+            $data['customization_pages_data'] = $customization_data;
+
+            /**
+             * END Code to fetch customized text data of user
+             */
+
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {

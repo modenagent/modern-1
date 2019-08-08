@@ -3452,6 +3452,67 @@ Thank you for your order. Below you can find the details of your order. If you o
         $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data);
     }
 
+    function show_pdf_preview($reportType='', $language='', $page=0)
+    {
+        $reportType = strtolower($reportType);
+        if (!in_array($reportType, ['buyer','seller'])) {
+            echo "Valid report type is required";exit();
+        }
+        $language = strtolower($language);
+        if (!in_array($language, ['english','spanish'])) {
+            echo "Valid language is required";exit();
+        }
+        if (!is_numeric($page)) {
+            echo "Page no should be numeric";exit();
+        } else if ($page > 19 || $page < 9) {
+            echo "Page does not exits";exit();
+        }
+
+        $userId = $this->session->userdata('userid');
+        $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+
+        /* For preview default theme color it BLACK */
+        $data['theme'] = '#000'; 
+
+        $html = '';
+
+        $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data, true);
+        $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data, true);
+        $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data, true);
+
+        $wkhtmltopdfPath =  $this->config->item('wkhtmltopdf_path');
+        //if($turboMode && $presentationType=='seller' && $reportLang=='english'){
+            $zoom =  $this->config->item('wkhtmltopdf_zoom_seller');    
+        //} else {
+        //    $zoom =  $this->config->item('wkhtmltopdf_zoom');
+        //}
+        $snappy = new Pdf($wkhtmltopdfPath);
+        $options = [
+            'margin-top'    => 0,
+            'margin-right'  => 0,
+            'margin-bottom' => 0,
+            'margin-left'   => 0,
+            'page-size' => 'Letter', 
+            'zoom'          => $zoom,
+            'load-error-handling'=>'ignore',
+            'load-media-error-handling'=>'ignore'
+        ];
+
+        header("Content-type:application/pdf");
+        // It will be called downloaded.pdf
+        //header("Content-Disposition:attachment;filename='downloaded.pdf'");
+
+        $output = $snappy->getOutputFromHtml($html, $options,
+                        200,
+                        array(
+                            'Content-Type'          => 'application/pdf',
+                            'Content-Disposition'   => 'attachment; filename="report.pdf"'
+                        ));
+        //$pdfFileDynamic = 'temp/ztest123.pdf';
+        //file_put_contents($pdfFileDynamic, $output);
+        echo $output;
+    }
+
     function customize($report = '', $page='')
     {
         if ($this->session->userdata('userid')) {
@@ -3496,24 +3557,7 @@ Thank you for your order. Below you can find the details of your order. If you o
     private function prepare_user_report_data($userId, $reportType, $language, $page)
     {
         $this->load->model('report_model');
-        $default_data = $this->report_model->getReportPageData(0, $reportType, $language, $page);
-        $user_data = $this->report_model->getReportPageData($userId, $reportType, $language, $page);
-
-        $data = [];
-
-        if (empty($user_data)) {
-            $data = json_decode($default_data['data'], true);
-        } else {
-            $user_data_values = json_decode($user_data['data'], true);
-            $admin_data_values = json_decode($default_data['data'], true);
-
-            $data = $user_data_values;
-            foreach ($user_data_values as $key => $value) {
-                $data[$key]['limit'] = $admin_data_values[$key]['limit'];
-                $data[$key]['type'] = $admin_data_values[$key]['type'];
-            }
-        }
-
+        $data = $this->report_model->prepare_user_report_data($userId, $reportType, $language, $page);
         return $data;
     }
 
@@ -3573,7 +3617,7 @@ Thank you for your order. Below you can find the details of your order. If you o
 
             $reportDataToSave = [];
             foreach ($reportPostData as $key => $value) {
-                $reportDataToSave[$key] = ['value'=>$value];
+                $reportDataToSave[$key] = ['value'=>trim($value)];
             }
 
             $this->load->model('report_model');

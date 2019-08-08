@@ -85,5 +85,28 @@ class Report_model extends CI_Model
 			$this->db->insert('lp_user_report_content', $data);
     	}	
     }
+
+    public function prepare_user_report_data($userId, $reportType, $language, $page)
+    {
+        $default_data = $this->getReportPageData(0, $reportType, $language, $page);
+        $user_data = $this->getReportPageData($userId, $reportType, $language, $page);
+
+        $data = [];
+
+        if (empty($user_data)) {
+            $data = json_decode($default_data['data'], true);
+        } else {
+            $user_data_values = json_decode($user_data['data'], true);
+            $admin_data_values = json_decode($default_data['data'], true);
+
+            $data = $user_data_values;
+            foreach ($user_data_values as $key => $value) {
+                $data[$key]['limit'] = $admin_data_values[$key]['limit'];
+                $data[$key]['type'] = $admin_data_values[$key]['type'];
+            }
+        }
+
+        return $data;
+    }
 }
 ?>
