@@ -67,7 +67,8 @@
 							</p>
 						</div>
 						<div class="text-block-condensed">
-							<h2><?php 
+							<h2>
+							<?php 
 							if (isset($report_content_data['paragraph_3_title']['value']) && !empty($report_content_data['paragraph_3_title']['value'])) {
 								echo $report_content_data['paragraph_3_title']['value'];
 							} else {

@@ -2,23 +2,39 @@
 	<div class="section page5">
 	
 		<header>
-			<h2 class="underline title-bold">Analizar y Optimizar</h2>
-			<p> Revisando el precio de venta </p>
+			<h2 class="underline title-bold">
+			<?php 
+			if (isset($report_content_data['title']['value']) && !empty($report_content_data['title']['value'])) {
+				echo $report_content_data['title']['value'];
+			} else {
+				echo 'Analizar y Optimizar';
+			}
+			?>
+			</h2>
+			<p>
+			<?php 
+			if (isset($report_content_data['sub_title']['value']) && !empty($report_content_data['sub_title']['value'])) {
+				echo $report_content_data['sub_title']['value'];
+			} else {
+				echo 'Revisando el precio de venta';
+			}
+			?>
+			</p>
 		</header>
 
         <div class="row">
 
           <div class="col-sm-12">
           
-          <p class="most-buyers2"> 
-           
-         Cuando tu propiedad aparece en el mercado, el público que se compone de los agentes inmobiliarios, los posibles compradores y vendedores, todos ven su anuncio. Todos ellos hacen un juicio rápido en cuanto a su precio, condición actual, y ubicación. La forma en que lo perciben primero determinará la actividad de visitas durante las próximas semanas. Si no recibimos visitas, inicialmente, nos enfrentamos a la posibilidad de que ese mercado en su conjunto está rechazando la propuesta de valor de tu anuncio. ¿Nuestra solución? Reducir el precio.
-
-         <br>
-         <br>
-         Reducir el precio de su propiedad nunca es una decisión fácil, pero a menudo es algo necesario con el fin de vender su casa. Muchos dueños de casa se sienten que están renunciando a la equidad que han conseguido con su trabajo duro. En realidad, una ligera reducción puede ayudar a evitar problemas. La pregunta es - ¿Cuándo es el mejor momento? Desde el momento en que la propiedad se publica en el mercado, la regla de oro es de 30-45 días.
-
-          </p>
+			<p class="most-buyers2"> 
+			<?php 
+			if (isset($report_content_data['content']['value']) && !empty($report_content_data['content']['value'])) {
+				echo nl2br($report_content_data['content']['value']);
+			} else {
+				echo "Cuando tu propiedad aparece en el mercado, el público que se compone de los agentes inmobiliarios, los posibles compradores y vendedores, todos ven su anuncio. Todos ellos hacen un juicio rápido en cuanto a su precio, condición actual, y ubicación. La forma en que lo perciben primero determinará la actividad de visitas durante las próximas semanas. Si no recibimos visitas, inicialmente, nos enfrentamos a la posibilidad de que ese mercado en su conjunto está rechazando la propuesta de valor de tu anuncio. ¿Nuestra solución? Reducir el precio.<br><br>Reducir el precio de su propiedad nunca es una decisión fácil, pero a menudo es algo necesario con el fin de vender su casa. Muchos dueños de casa se sienten que están renunciando a la equidad que han conseguido con su trabajo duro. En realidad, una ligera reducción puede ayudar a evitar problemas. La pregunta es - ¿Cuándo es el mejor momento? Desde el momento en que la propiedad se publica en el mercado, la regla de oro es de 30-45 días.";
+			}
+			?>
+			</p>
 
         </div>
 
@@ -32,9 +48,15 @@
     
      <div class="col-sm-12">
        
-     <h4 class="text-uppercase home">      
-      En el Momento de Colocación de Anuncio 
-      </h4>
+		<h4 class="text-uppercase home">  
+		<?php 
+		if (isset($report_content_data['table_1_title']['value']) && !empty($report_content_data['table_1_title']['value'])) {
+			echo $report_content_data['table_1_title']['value'];
+		} else {
+			echo 'En el Momento de Colocación de Anuncio';
+		}
+		?>
+		</h4>
       
       <table class="table">
         <tbody>
@@ -59,9 +81,15 @@
         </tbody>
       </table>
 
-      <h4 class="text-uppercase home">      
-      Después de la Reducción de Precio 
-      </h4>
+		<h4 class="text-uppercase home"> 
+		<?php 
+		if (isset($report_content_data['table_2_title']['value']) && !empty($report_content_data['table_2_title']['value'])) {
+			echo $report_content_data['table_2_title']['value'];
+		} else {
+			echo 'Después de la Reducción de Precio';
+		}
+		?>	  
+		</h4>
       
       <table class="table">
         <tbody>
@@ -113,7 +141,13 @@
    <div class="col-sm-12">
 
     <p class="joe-text"> 
-     Joe y Jane pasaron de tener un precio muy competitivo a ser la propiedad más alta de su rango de precios. Desde la perspectiva del comprador, su casa ofrece ahora la peor propuesta de valor en el mercado.
+	<?php 
+	if (isset($report_content_data['footer_content']['value']) && !empty($report_content_data['footer_content']['value'])) {
+		echo nl2br($report_content_data['footer_content']['value']);
+	} else {
+		echo "Joe y Jane pasaron de tener un precio muy competitivo a ser la propiedad más alta de su rango de precios. Desde la perspectiva del comprador, su casa ofrece ahora la peor propuesta de valor en el mercado.";
+	}
+	?>
     </p>
 
   </div>

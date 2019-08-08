@@ -3487,9 +3487,9 @@ Thank you for your order. Below you can find the details of your order. If you o
             echo json_encode($result);
             exit();
         } else {
-            $result = ['result'=>'error', 'data'=>[]];
+            $result = ['result'=>'error', 'message'=>'You are logged out. Please login.', 'data'=>[]];
             echo json_encode($result);
-            exit();
+            exit();   
         }
     }
 
