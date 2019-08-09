@@ -695,6 +695,7 @@ MSG;
                 $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
                 $parentId = (!empty($this->input->post('parent_id')))?$this->input->post('parent_id'):0;
+                $enterpriseFlag = (!empty($this->input->post('enterprise_flag')))?$this->input->post('enterprise_flag'):0;
 
                 $referralCode = '';
                 if (!empty($parentId)) {
@@ -722,6 +723,7 @@ MSG;
                     'license_no' => $license,
                     'company_name' => $cname,
                     'company_add' => $cadd,
+                    'is_enterprise_user' => $enterpriseFlag,
                 );
                 $resultCheck = false;
                 // USER NAME CAN NOT BE CHANGED ONCE CREATED
