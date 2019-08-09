@@ -3524,6 +3524,9 @@ Thank you for your order. Below you can find the details of your order. If you o
             // file_put_contents($pdfFileDynamic, $output);
 
             header("Content-type:application/pdf");
+            header('Content-Length: '.strlen( $output ));
+            // IF Download file then used below code
+            //header('Content-disposition: attachment; filename="sample'.$page.'.pdf"');
             echo $output;
         } else {
             redirect('frontend/index');
