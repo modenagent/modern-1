@@ -252,5 +252,22 @@ class User_model extends Base_model
         $query = $this->db->get('lp_my_listing');
         return $query->result_array();
     }
+
+    function getUserDetailsByEmail($emailAddress, $fields = [])
+    {
+        $columns = '*';
+        if (!empty($fields)) {
+            if (is_array($fields)) {
+                $columns = implode(',', $fields);
+            } else {
+                $columns = $fields;
+            }
+        }
+
+        $this->db->select($columns);
+        $this->db->where('email', $emailAddress);
+        $query = $this->db->get('lp_user_mst');
+        return $result = $query->row_array();
+    }
 }          
 ?>
