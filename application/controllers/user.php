@@ -3428,89 +3428,106 @@ Thank you for your order. Below you can find the details of your order. If you o
 
     function preview($reportType='', $language='', $page=0) 
     {
-        $reportType = strtolower($reportType);
-        if (!in_array($reportType, ['buyer','seller'])) {
-            echo "Valid report type is required";exit();
-        }
-        $language = strtolower($language);
-        if (!in_array($language, ['english','spanish'])) {
-            echo "Valid language is required";exit();
-        }
-        if (!is_numeric($page)) {
-            echo "Page no should be numeric";exit();
-        } else if ($page > 19 || $page < 9) {
-            echo "Page does not exits";exit();
-        }
+        if ($this->session->userdata('userid')) {
+            $reportType = strtolower($reportType);
+            if (!in_array($reportType, ['buyer','seller'])) {
+                echo "Valid report type is required";exit();
+            }
+            $language = strtolower($language);
+            if (!in_array($language, ['english','spanish'])) {
+                echo "Valid language is required";exit();
+            }
+            if (!is_numeric($page)) {
+                echo "Page no should be numeric";exit();
+            } else if ($page > 19 || $page < 9) {
+                echo "Page does not exits";exit();
+            }
 
-        $userId = $this->session->userdata('userid');
-        $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+            $userId = $this->session->userdata('userid');
+            $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+            $data['is_pdf_preview'] = false;
 
-        /* For preview default theme color it BLACK */
-        $data['theme'] = '#000'; 
-        $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data);
-        $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data);
-        $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data);
+            /* For preview default theme color it BLACK */
+            $data['theme'] = '#000'; 
+            $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data);
+            $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data);
+            $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data);
+        } else {
+            echo "You are logged out. Please login";
+            exit();
+        }
     }
 
     function show_pdf_preview($reportType='', $language='', $page=0)
     {
-        $reportType = strtolower($reportType);
-        if (!in_array($reportType, ['buyer','seller'])) {
-            echo "Valid report type is required";exit();
+        if ($this->session->userdata('userid')) {
+            $reportType = strtolower($reportType);
+            if (!in_array($reportType, ['buyer','seller'])) {
+                echo "Valid report type is required";exit();
+            }
+            $language = strtolower($language);
+            if (!in_array($language, ['english','spanish'])) {
+                echo "Valid language is required";exit();
+            }
+            if (!is_numeric($page)) {
+                echo "Page no should be numeric";exit();
+            } else if ($page > 19 || $page < 9) {
+                echo "Page does not exits";exit();
+            }
+
+            $userId = $this->session->userdata('userid');
+
+            $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+
+            // For preview default theme color it BLACK 
+            $data['theme'] = '#000'; 
+            $data['is_pdf_preview'] = true;
+
+            $html = '';
+            $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data, true);
+            $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data, true);
+            $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data, true);
+
+            // DEBUG PURPOSE
+            //file_put_contents("tmp1.html", $html);
+
+            $wkhtmltopdfPath =  $this->config->item('wkhtmltopdf_path');
+            $zoom = $this->config->item('wkhtmltopdf_zoom_seller');
+
+            // if($turboMode && $presentationType=='seller' && $reportLang=='english'){
+            //     $zoom =  $this->config->item('wkhtmltopdf_zoom_seller');
+            // } else {
+            //     $zoom =  $this->config->item('wkhtmltopdf_zoom');
+            // }
+
+            $snappy = new Pdf($wkhtmltopdfPath);
+            $options = [
+                'margin-top'    => 0,
+                'margin-right'  => 0,
+                'margin-bottom' => 0,
+                'margin-left'   => 0,
+                'page-size' => 'Letter', 
+                'zoom'          => $zoom,
+                'load-error-handling'=>'ignore',
+                'load-media-error-handling'=>'ignore'
+            ];
+
+            $output = $snappy->getOutputFromHtml($html, $options,
+                            200,
+                            array(
+                                'Content-Type'          => 'application/pdf',
+                                'Content-Disposition'   => 'attachment; filename="report.pdf"'
+                            ));
+
+            // DEBUG PURPOSE
+            // $pdfFileDynamic = 'temp/ztest123.pdf';
+            // file_put_contents($pdfFileDynamic, $output);
+
+            header("Content-type:application/pdf");
+            echo $output;
+        } else {
+            redirect('frontend/index');
         }
-        $language = strtolower($language);
-        if (!in_array($language, ['english','spanish'])) {
-            echo "Valid language is required";exit();
-        }
-        if (!is_numeric($page)) {
-            echo "Page no should be numeric";exit();
-        } else if ($page > 19 || $page < 9) {
-            echo "Page does not exits";exit();
-        }
-
-        $userId = $this->session->userdata('userid');
-        $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
-
-        /* For preview default theme color it BLACK */
-        $data['theme'] = '#000'; 
-
-        $html = '';
-
-        $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data, true);
-        $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data, true);
-        $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data, true);
-
-        $wkhtmltopdfPath =  $this->config->item('wkhtmltopdf_path');
-        //if($turboMode && $presentationType=='seller' && $reportLang=='english'){
-            $zoom =  $this->config->item('wkhtmltopdf_zoom_seller');    
-        //} else {
-        //    $zoom =  $this->config->item('wkhtmltopdf_zoom');
-        //}
-        $snappy = new Pdf($wkhtmltopdfPath);
-        $options = [
-            'margin-top'    => 0,
-            'margin-right'  => 0,
-            'margin-bottom' => 0,
-            'margin-left'   => 0,
-            'page-size' => 'Letter', 
-            'zoom'          => $zoom,
-            'load-error-handling'=>'ignore',
-            'load-media-error-handling'=>'ignore'
-        ];
-
-        header("Content-type:application/pdf");
-        // It will be called downloaded.pdf
-        //header("Content-Disposition:attachment;filename='downloaded.pdf'");
-
-        $output = $snappy->getOutputFromHtml($html, $options,
-                        200,
-                        array(
-                            'Content-Type'          => 'application/pdf',
-                            'Content-Disposition'   => 'attachment; filename="report.pdf"'
-                        ));
-        //$pdfFileDynamic = 'temp/ztest123.pdf';
-        //file_put_contents($pdfFileDynamic, $output);
-        echo $output;
     }
 
     function customize($report = '', $page='')

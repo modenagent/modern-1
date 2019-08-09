@@ -41,7 +41,7 @@
                     <div class="col-sm-9">
                         <iframe id="buyer_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
                         <br/>
-                        <button type="button" class="btn btn-primary" onclick="preview_pdf('buyer')">Preview PDF</button>
+                        <button id="buyer_pdf_preview_btn" style="display:none;" type="button" class="btn btn-primary" onclick="preview_pdf('buyer')">Preview PDF</button>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <div class="col-sm-9">
                         <iframe id="seller_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
                         <br/>
-                        <button type="button" class="btn btn-primary" onclick="preview_pdf('seller')">Preview PDF</button>
+                        <button id="seller_pdf_preview_btn" style="display:none;" type="button" class="btn btn-primary" onclick="preview_pdf('seller')">Preview PDF</button>
                     </div>
                 </div>
             </div>
@@ -147,6 +147,7 @@ function load_iframe(type)
 
     var get_report_data_url = base_url+'user/get_user_report_data';
     var report_type = type;
+    $('#'+report_type+'_pdf_preview_btn').hide();
     showLoader();
     $.ajax({
         url: get_report_data_url,
@@ -194,6 +195,7 @@ function load_iframe(type)
 
             if (form_content!='') {
                 form_content += '<button type="submit" class="btn btn-primary">Save & Preview</button>';
+                $('#'+report_type+'_pdf_preview_btn').show();
             }
             $('#'+type+'_form_div').append('<form id="'+form_id+'" name="'+form_id+'">'+form_content+'</form>');
 

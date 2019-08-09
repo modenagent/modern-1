@@ -3538,7 +3538,7 @@ div#slider-range {
 }
 
 .making {
-    line-height: 10px;
+    line-height: 20px;/*10px;*/
 	margin-bottom:25px;
 }
 
