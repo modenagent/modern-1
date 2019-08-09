@@ -3429,29 +3429,35 @@ Thank you for your order. Below you can find the details of your order. If you o
     function preview($reportType='', $language='', $page=0) 
     {
         if ($this->session->userdata('userid')) {
-            $reportType = strtolower($reportType);
-            if (!in_array($reportType, ['buyer','seller'])) {
-                echo "Valid report type is required";exit();
-            }
-            $language = strtolower($language);
-            if (!in_array($language, ['english','spanish'])) {
-                echo "Valid language is required";exit();
-            }
-            if (!is_numeric($page)) {
-                echo "Page no should be numeric";exit();
-            } else if ($page > 19 || $page < 9) {
-                echo "Page does not exits";exit();
-            }
+            $is_enterprise_user = is_enterprise_user();
+            if ($is_enterprise_user) {
+                $reportType = strtolower($reportType);
+                if (!in_array($reportType, ['buyer','seller'])) {
+                    echo "Valid report type is required";exit();
+                }
+                $language = strtolower($language);
+                if (!in_array($language, ['english','spanish'])) {
+                    echo "Valid language is required";exit();
+                }
+                if (!is_numeric($page)) {
+                    echo "Page no should be numeric";exit();
+                } else if ($page > 19 || $page < 9) {
+                    echo "Page does not exits";exit();
+                }
 
-            $userId = $this->session->userdata('userid');
-            $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
-            $data['is_pdf_preview'] = false;
+                $userId = $this->session->userdata('userid');
+                $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+                $data['is_pdf_preview'] = false;
 
-            /* For preview default theme color it BLACK */
-            $data['theme'] = '#000'; 
-            $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data);
-            $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data);
-            $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data);
+                /* For preview default theme color it BLACK */
+                $data['theme'] = '#000'; 
+                $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data);
+                $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data);
+                $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data);
+            } else {
+                echo "Permission Denied.";
+                exit();    
+            }
         } else {
             echo "You are logged out. Please login";
             exit();
@@ -3461,6 +3467,10 @@ Thank you for your order. Below you can find the details of your order. If you o
     function show_pdf_preview($reportType='', $language='', $page=0)
     {
         if ($this->session->userdata('userid')) {
+            $is_enterprise_user = is_enterprise_user();
+            if (!$is_enterprise_user) {
+                redirect('frontend/index');
+            }
             $reportType = strtolower($reportType);
             if (!in_array($reportType, ['buyer','seller'])) {
                 echo "Valid report type is required";exit();
@@ -3536,20 +3546,25 @@ Thank you for your order. Below you can find the details of your order. If you o
     function customize($report = '', $page='')
     {
         if ($this->session->userdata('userid')) {
-            $data['title'] = "Report Customization";
-            $data['current'] = "customize";
-            $userId = $data['user_id'] = $this->session->userdata('userid');
+          $is_enterprise_user = is_enterprise_user();
+          if ($is_enterprise_user) {
+              $data['title'] = "Report Customization";
+              $data['current'] = "customize";
+              $userId = $data['user_id'] = $this->session->userdata('userid');
 
-            $this->load->model('report_model');
-            $buyer_pages = $this->report_model->getReportPages('english', 'buyer');
-            $seller_pages = $this->report_model->getReportPages('english', 'seller');
+              $this->load->model('report_model');
+              $buyer_pages = $this->report_model->getReportPages('english', 'buyer');
+              $seller_pages = $this->report_model->getReportPages('english', 'seller');
 
-            $data['buyer_pages'] = $buyer_pages;
-            $data['seller_pages'] = $seller_pages;
+              $data['buyer_pages'] = $buyer_pages;
+              $data['seller_pages'] = $seller_pages;
 
-            $this->load->view('user/header', $data);
-            $this->load->view('user/report_customize', $data);
-            $this->load->view('user/footer');
+              $this->load->view('user/header', $data);
+              $this->load->view('user/report_customize', $data);
+              $this->load->view('user/footer');
+          } else {
+              redirect('frontend/index');
+          }
         } else {
             redirect('frontend/index');
         }
@@ -3558,15 +3573,22 @@ Thank you for your order. Below you can find the details of your order. If you o
     function get_user_report_data() 
     {
         if ($this->session->userdata('userid')) {
-            $reportType = $this->input->post('type');
-            $language = $this->input->post('language');
-            $page = $this->input->post('page');
-            $userId = $this->session->userdata('userid');
+            $is_enterprise_user = is_enterprise_user();
+            if ($is_enterprise_user) {
+                $reportType = $this->input->post('type');
+                $language = $this->input->post('language');
+                $page = $this->input->post('page');
+                $userId = $this->session->userdata('userid');
 
-            $finalData = $this->prepare_user_report_data($userId, $reportType, $language, $page);
-            $result = ['result'=>'success', 'data'=>$finalData];
-            echo json_encode($result);
-            exit();
+                $finalData = $this->prepare_user_report_data($userId, $reportType, $language, $page);
+                $result = ['result'=>'success', 'data'=>$finalData];
+                echo json_encode($result);
+                exit();
+            } else {
+                $result = ['result'=>'error', 'message'=>'Permission Denied', 'data'=>[]];
+                echo json_encode($result);
+                exit();       
+            }
         } else {
             $result = ['result'=>'error', 'message'=>'You are logged out. Please login.', 'data'=>[]];
             echo json_encode($result);
@@ -3584,6 +3606,14 @@ Thank you for your order. Below you can find the details of your order. If you o
     public function save_user_report_data()
     {
         if ($this->session->userdata('userid')) {
+
+            $is_enterprise_user = is_enterprise_user();
+            if (!$is_enterprise_user) {
+                $result = ['result'=>'error', 'message'=>'Permission Denied.', 'data'=>[]];
+                echo json_encode($result);
+                exit();   
+            }
+
             $reportType = $this->input->post('type');
             $language = $this->input->post('language');
             $page = $this->input->post('page');

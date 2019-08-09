@@ -84,3 +84,18 @@ if(! function_exists('clean_phone')){
         return strlen($phone)==10?$phone:false;
     }
 }
+
+if (! function_exists('is_enterprise_user')) {
+    function is_enterprise_user()
+    {
+        $ci = & get_instance(); 
+        $userId = $ci->session->userdata('userid');
+        $ci->load->model('user_model');
+        $result = $ci->user_model->getUserDetails($userId, ['user_id_pk', 'role_id_fk', 'is_enterprise_user']);
+        if (isset($result['is_enterprise_user']) && $result['is_enterprise_user'] == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
