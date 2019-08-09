@@ -3021,7 +3021,7 @@ header .header_content p {
 
  #report_customize .content {
     border: 0px solid #D4D4D4;
-    background-color: rgba(225, 225, 225, .6);
+    background-color: rgba(225, 225, 225, .35);
     color: #FFF;
     margin: 0px 0px 50px 0px;
     padding: 10px;

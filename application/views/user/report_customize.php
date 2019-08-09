@@ -41,7 +41,7 @@
                     <div class="col-sm-9">
                         <iframe id="buyer_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
                         <br/>
-                        <button id="buyer_pdf_preview_btn" style="display:none;" type="button" class="btn btn-primary" onclick="preview_pdf('buyer')">Preview PDF</button>
+                        <button id="buyer_pdf_preview_btn" style="display:none;" type="button" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5" onclick="preview_pdf('buyer')">Preview PDF</button>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <div class="col-sm-9">
                         <iframe id="seller_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
                         <br/>
-                        <button id="seller_pdf_preview_btn" style="display:none;" type="button" class="btn btn-primary" onclick="preview_pdf('seller')">Preview PDF</button>
+                        <button id="seller_pdf_preview_btn" style="display:none;" type="button" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5" onclick="preview_pdf('seller')">Preview PDF</button>
                     </div>
                 </div>
             </div>
@@ -194,7 +194,7 @@ function load_iframe(type)
             });
 
             if (form_content!='') {
-                form_content += '<button type="submit" class="btn btn-primary">Save & Preview</button>';
+                form_content += '<button type="submit" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">Save & Preview</button>';
                 $('#'+report_type+'_pdf_preview_btn').show();
             }
             $('#'+type+'_form_div').append('<form id="'+form_id+'" name="'+form_id+'">'+form_content+'</form>');
