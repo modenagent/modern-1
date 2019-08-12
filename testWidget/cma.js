@@ -61,7 +61,8 @@ function main() {
 //        });
 //        css_link.appendTo('head'); 
         /******* Load HTML *******/
-        var base_url = "https://modernagent.io/beta";
+        //var base_url = "https://modernagent.io/beta";
+        var base_url = "https://modernagent.localhost.com";
         var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/->ReplaceImage<-) no-repeat 0 0;background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
          //custom_css.appendTo('head');
         // $('head').append(custom_css);

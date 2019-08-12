@@ -15,8 +15,14 @@
 <!-- Custom CSS -->
 <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
+
 <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
+<?php /* <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script> */ ?>
+<?php
+echo "<script type='text/javascript'>";
+echo file_get_contents('assets/js/jquery.js');
+echo "</script>";
+?>
 <div id="loadingPlugin" style="color: #fff;">
     <div class="loading"></div>
     <div class="loadingText">Loading Widget</div>
