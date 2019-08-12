@@ -106,7 +106,7 @@
     } else {
         $this->load->view('reports/spanish/buyer/pages/1');
     }
-    $this->load->view('reports/spanish/buyer/pages/1');
+    //$this->load->view('reports/spanish/buyer/pages/1');
     $this->load->view('reports/spanish/buyer/pages/2');
     $this->load->view('reports/spanish/buyer/pages/3');
     $this->load->view('reports/spanish/buyer/pages/4');

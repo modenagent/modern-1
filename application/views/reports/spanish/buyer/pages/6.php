@@ -24,13 +24,13 @@
 							<div class="right-insight">
 								<div class="gender-block">
 									<p class="gender">FEMALE</p>
-									<h1 class="perc"><?php echo $female_ratio ?>%</h1>
+									<h1 class="perc"><?php echo $female_ratio ?></h1>
 								</div>
 							</div>
 							<div class="right-insight">
 								<div class="gender-block">
 									<p class="gender">MALE</p>
-									<h1 class="perc"><?php echo $male_ratio ?>%</h1>
+									<h1 class="perc"><?php echo $male_ratio ?></h1>
 								</div>
 							
 

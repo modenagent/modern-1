@@ -481,6 +481,7 @@ use Knp\Snappy\Pdf;
             //@var $turboMode boolean If true than it uses pre stored static theme pages and using qpdf tool it merge these with dynamic content pdf being gnerated with wkhtmltopdf tool
             $turboMode = false;
             //if(($presentationType=="seller" || $presentationType=="buyer") && $reportLang=='english'){
+            /*
             if($presentationType=="buyer" && $reportLang=='english'){
                 $themeMap = array(
                     //@todo: Set these indexes as unique color code in DB table
@@ -512,6 +513,7 @@ use Knp\Snappy\Pdf;
                     $turboMode = true;
                 }
             }
+            */
 
             /**
              * Start Code to fetch customized text data of user
@@ -550,7 +552,7 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/index",$data,true);
             
             }
-            //file_put_contents("tmp.html", $html);
+            file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
                 $zoom =  $CI->config->item('wkhtmltopdf_zoom_seller');    
