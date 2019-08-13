@@ -42,6 +42,7 @@
                         <iframe id="buyer_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
                         <br/>
                         <button id="buyer_pdf_preview_btn" style="display:none;" type="button" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5" onclick="preview_pdf('buyer')">Preview PDF</button>
+                        <button id="buyer_pdf_preview_all_btn" style="display:none;" type="button" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5" onclick="preview_pdf_all('buyer')">Preview PDF All Pages</button>
                     </div>
                 </div>
             </div>
@@ -77,6 +78,7 @@
                         <iframe id="seller_iframe" src="" style="width: 100%; height:1500px;"></iframe> 
                         <br/>
                         <button id="seller_pdf_preview_btn" style="display:none;" type="button" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5" onclick="preview_pdf('seller')">Preview PDF</button>
+                        <button id="seller_pdf_preview_all_btn" style="display:none;" type="button" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5" onclick="preview_pdf_all('seller')">Preview PDF All Pages</button>
                     </div>
                 </div>
             </div>
@@ -127,6 +129,27 @@ function preview_pdf(type)
      window.open(final_report_link, '_blank');
 }
 
+function preview_pdf_all(type)
+{
+    var language = $('#'+type+'_language').val();
+    var final_report_link = '';
+
+    var buyer_preview_link = '<?php echo base_url(); ?>'+'user/show_pdf_preview/buyer/';
+    var seller_preview_link = '<?php echo base_url(); ?>'+'user/show_pdf_preview/seller/';
+
+    if ($.trim(language) == '' || $.trim(type) == '') {
+        return false;
+    }
+
+    if (type=='buyer') {
+        final_report_link = buyer_preview_link+language+'/all';
+    } else {
+        final_report_link = seller_preview_link+language+'/all';
+    }
+
+     window.open(final_report_link, '_blank');
+}
+
 function load_iframe(type)
 {
     var language = $('#'+type+'_language').val();
@@ -148,6 +171,7 @@ function load_iframe(type)
     var get_report_data_url = base_url+'user/get_user_report_data';
     var report_type = type;
     $('#'+report_type+'_pdf_preview_btn').hide();
+    $('#'+report_type+'_pdf_preview_all_btn').hide();
     showLoader();
     $.ajax({
         url: get_report_data_url,
@@ -196,6 +220,7 @@ function load_iframe(type)
             if (form_content!='') {
                 form_content += '<button type="submit" class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">Save & Preview</button>';
                 $('#'+report_type+'_pdf_preview_btn').show();
+                $('#'+report_type+'_pdf_preview_all_btn').show();
             }
             $('#'+type+'_form_div').append('<form id="'+form_id+'" name="'+form_id+'">'+form_content+'</form>');
 

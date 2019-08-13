@@ -88,7 +88,7 @@
 									echo '- Manipulación del depósito de los compradores';
 								}
 								?>
-								</h4>  <br><br>
+								</h4>  <br>
 
                                 <p> 
                                 <?php 

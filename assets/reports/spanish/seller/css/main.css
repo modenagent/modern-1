@@ -1894,12 +1894,12 @@ a:hover {
 
 .page5 {
     position: relative;
-    padding: 10% 10%
+    padding: 8% 8%;/*10% 10%*/
 }
 
 .page5 header {
     padding: 0px;
-    margin-bottom: 54px
+    margin-bottom: 25px;/*54px*/
 }
 
 .page5 .table-wrapper {
@@ -3436,7 +3436,7 @@ div#slider-range {
 }
 
 .market-content-top {
-    margin-top: 50px;/*100px*/
+    margin-top: 30px;/*100px*/
 }
 
 .avg-box {
@@ -3466,13 +3466,15 @@ div#slider-range {
     -webkit-backface-visibility: hidden;
     transform: rotate(90deg);
     
-    padding-left: 129px
+    padding-left: 122px;
 }
 
 .thirty-five-text {
     font-size: 79px;
     font-family: Montserrat;
-    color: #fff
+    color: #fff;
+    word-break: normal !important;
+    word-wrap: normal !important;
 }
 .average-days .col-xs-8{
     padding-top:20px;
@@ -3509,7 +3511,7 @@ div#slider-range {
 }
 
 .market-content-top2 {
-    margin-top: 50px
+    margin-top: 30px;/*50px*/
 }
 
 .graph-content {
@@ -4478,7 +4480,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 .page2 header{padding-left:10%;}
 .inner-pichart,div.dollar{
-    margin:100px 0;
+    margin:60px 0;/*100px 0;*/
 }
 h4{
     font-size: 23px;
