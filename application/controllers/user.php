@@ -3479,24 +3479,34 @@ Thank you for your order. Below you can find the details of your order. If you o
             if (!in_array($language, ['english','spanish'])) {
                 echo "Valid language is required";exit();
             }
-            if (!is_numeric($page)) {
-                echo "Page no should be numeric";exit();
-            } else if ($page > 19 || $page < 9) {
-                echo "Page does not exits";exit();
+            if ($page!='all') {
+                if (!is_numeric($page)) {
+                    echo "Page no should be numeric";exit();
+                } else if ($page > 19 || $page < 9) {
+                    echo "Page does not exits";exit();
+                }
             }
-
+            
             $userId = $this->session->userdata('userid');
 
-            $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $page);
-
-            // For preview default theme color it BLACK 
-            $data['theme'] = '#000'; 
-            $data['is_pdf_preview'] = true;
+            $startPage = $endPage = $page;
+            if ($page == 'all') {
+                $startPage = 9;
+                $endPage = 19;
+            } 
 
             $html = '';
-            $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data, true);
-            $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$page, $data, true);
-            $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data, true);
+            for ($pageCounter=$startPage;$pageCounter<=$endPage;$pageCounter++) {
+                $data['report_content_data'] = $this->prepare_user_report_data($userId, $reportType, $language, $pageCounter);
+
+                // For preview default theme color it BLACK 
+                $data['theme'] = '#000'; 
+                $data['is_pdf_preview'] = true;
+
+                $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/header', $data, true);
+                $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/'.$pageCounter, $data, true);
+                $html .= $this->load->view('reports/'.$language.'/'.$reportType.'/previews/footer', $data, true);
+            }
 
             // DEBUG PURPOSE
             //file_put_contents("tmp1.html", $html);

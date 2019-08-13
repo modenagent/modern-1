@@ -89,7 +89,7 @@
 									echo '- Handling the buyers deposit';
 								}
 								?>
-								</h4>  <br><br>
+								</h4>  <br>
 
                                 <p> 
                                 <?php 
