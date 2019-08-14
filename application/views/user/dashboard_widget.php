@@ -557,11 +557,13 @@ echo "</script>";
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
   // This identifies your website in the createToken call below
-  Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
+  //Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
   // ...
 </script>
 
 <!-- Bootstrap Core JavaScript --> 
+<?php
+/*
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
@@ -577,7 +579,29 @@ echo "</script>";
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
-<script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
+<script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script> 
+*/ 
+?>
+<?php
+echo "<script type='text/javascript'>";
+echo file_get_contents('assets/js/bootstrap.min.js');
+echo file_get_contents('assets/js/data-tables/jquery.dataTables.min.js');
+echo file_get_contents('assets/js/jquery.localscroll-1.2.7-min.js');
+echo file_get_contents('assets/js/jquery.scrollTo.js');
+echo file_get_contents('assets/js/jquery.easing.1.3.js');
+echo file_get_contents('assets/js/jquery.flexslider.js');
+echo file_get_contents('assets/js/carousel.js');
+
+echo file_get_contents('assets/js/jquery.validate.min.js');
+echo file_get_contents('assets/js/additional-methods.min.js');
+echo file_get_contents('assets/js/jquery.nav.js');
+echo file_get_contents('assets/js/jquery.smartWizard-2.0.min.js');
+echo file_get_contents('assets/js/jquery.smartTab.js');
+echo file_get_contents('assets/js/icheck.min.js');
+echo file_get_contents('assets/js/custom.js');
+echo file_get_contents('assets/js/jquery.multi-select.js');
+echo "</script>";
+?>
 <script type="text/javascript">
   // run pre selected options
   var _max = 8;
@@ -690,7 +714,7 @@ echo "</script>";
     increaseArea: '20%' // optional
   });
   $(function() {
-    $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
+    //$("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
     $("#owl-example").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
@@ -1596,7 +1620,12 @@ echo "</script>";
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
+<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script> -->
+<?php
+echo "<script type='text/javascript'>";
+echo file_get_contents('assets/js/lp.js');
+echo "</script>";
+?>
 <script type="text/javascript">
     $(document).ready(function(){
         setTimeout(function(){

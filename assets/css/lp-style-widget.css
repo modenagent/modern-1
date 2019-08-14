@@ -207,13 +207,15 @@ body.login{display:table-cell; vertical-align:middle;}
     padding-top: 13px;
 }
 
+/*
 #cma-widget-container .nav>li {
     padding: 16px 10px;
 }
+*/
 
 #cma-widget-container .nav>li>a {
     line-height: 0;
-    padding: 10px 5px;
+    padding: 20px 20px;/*10px 5px;*/
 }
 
 #cma-widget-container .navbar-default .navbar-nav>li>a {
@@ -1411,6 +1413,7 @@ ul.pagination li.current a:focus {
 
 #cma-widget-container table a {
     color: #fff;
+    background: none;
 }
 
 #cma-widget-container table a:hover {

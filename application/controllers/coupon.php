@@ -9,6 +9,7 @@ class Coupon extends CI_Controller {
 	}
 
 	public function apply_coupon($userId = NULL){
+        header('Access-Control-Allow-Origin: *');  
         if($userId == NULL)
 		  $userId = $this->session->userdata('userid');
         

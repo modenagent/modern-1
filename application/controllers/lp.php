@@ -6,6 +6,7 @@ class Lp extends CI_Controller{
 	}
 
 	function getSearchResults(){
+        header('Access-Control-Allow-Origin: *');  
 		$request = $_GET['requrl'];        
 		$request .= '&key=' . '22C75EF7-5DBF-4B26-B2DB-998BE080F29C';
         
@@ -29,6 +30,7 @@ class Lp extends CI_Controller{
 
 	// generating pdf for the property
 	function getPropertyData(){
+            header('Access-Control-Allow-Origin: *');  
             $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
             try {
 		        $response = $this->reports->getPropertyData();
