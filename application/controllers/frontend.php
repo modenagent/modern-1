@@ -186,7 +186,9 @@ echo $this->email->print_debugger();die;
                 $this->load->view('frontend/header');
                 $this->load->view('frontend/login');
                 $this->load->view('frontend/footer');
-            } else { die("Depreicated. Post request is being handeled from auth controller");
+            } else { 
+                //die("Depreicated. Post request is being handeled from auth controller");
+                redirect(base_url().'user/dashboard');
             }
     }
 
