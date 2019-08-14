@@ -14,10 +14,10 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     script_map.setAttribute("type","text/javascript");
     script_map.setAttribute("src",
         "https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDQQthVgLzHIRTyLS1WGP2spIshpD28n8M");
-    var script_jui = document.createElement('script');
+    /*var script_jui = document.createElement('script');
     script_jui.setAttribute("type","text/javascript");
     script_jui.setAttribute("src",
-        "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js");
+        "https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js");*/
     if (script_tag.readyState) {
       script_tag.onreadystatechange = function () { // For old versions of IE
           if (this.readyState == 'complete' || this.readyState == 'loaded') {
@@ -30,7 +30,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     // Try to find the head, otherwise default to the documentElement
     (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_tag);
     (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_map);
-    (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_jui);
+    /*(document.getElementsByTagName("head")[0] || document.documentElement).appendChild(script_jui);*/
 } else {
     // The jQuery version on the window is the one we want to use
     jQuery = window.jQuery;

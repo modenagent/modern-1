@@ -291,6 +291,7 @@ class User extends CI_Controller
 
     public function getPartners(){
       
+      header('Access-Control-Allow-Origin: *');  
       if($this->session->userdata('userid')){
 
         $this->load->model('base_model');
@@ -2704,6 +2705,7 @@ Thank you for your order. Below you can find the details of your order. If you o
 
     // cart payment
     public function generateInvoice() {
+      header('Access-Control-Allow-Origin: *');  
 		  $invoice_no = $this->session->userdata('userid').'-'.time();
 		  return $invoice_no;
     }
@@ -3159,6 +3161,7 @@ Thank you for your order. Below you can find the details of your order. If you o
         exit;
     } 
     function is_subscribed($planId=null, $userId = NULL){
+        header('Access-Control-Allow-Origin: *');  
         if($userId == NULL)
           $userId = $this->session->userdata('userid');
 
