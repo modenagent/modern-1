@@ -2150,11 +2150,11 @@ a:hover {
 }
 
 .page7 .two-grid-wrapper {
-    margin-top: 50px
+    margin-top: 40px;/*50px*/
 }
 
 .page7 .two-grid-wrapper .text-block-condensed {
-    margin-bottom: 50px
+    margin-bottom: 45px;/*50px*/
 }
 
 .page7 .two-grid-wrapper .text-block-condensed h2 {
