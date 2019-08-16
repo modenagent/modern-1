@@ -1,7 +1,8 @@
 <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon" />
 
 <!-- Custom Fonts -->
-<link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<!-- <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
@@ -150,7 +151,7 @@ echo "</script>";
                                             <div class="col-md-3">
                                               <div class="leftpic"> <a href="javascript:;">
                                                 <?php
-                                                if(empty($users[0]['profile_image'])){
+                                                if(empty($users[0]['profile_image']) || !file_exists($users[0]['profile_image'])){
                                                 ?>
                                                 <i class="icon-camera"></i>
                                                 <br>
@@ -185,7 +186,7 @@ echo "</script>";
                                         <div class="col-md-3">
                                           <div class="rightpic"> <a href="javascript:;">
                                             <?php
-                                            if(empty($users[0]['company_logo'])){
+                                            if(empty($users[0]['company_logo']) || !file_exists($users[0]['company_logo'])){
                                             ?>
                                             <i class="icon-camera"></i>
                                             <br>
@@ -1152,7 +1153,7 @@ echo "</script>";
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)                           
       $.ajax({
-        url: '<?php echo base_url(); ?>index.php/user/upload_file', // point to server-side PHP script 
+        url: '<?php echo base_url(); ?>index.php/user/upload_file/profile-image', // point to server-side PHP script 
         dataType: 'text', // what to expect back from the PHP script, if anything
         cache: false,
         contentType: false,
@@ -1162,7 +1163,7 @@ echo "</script>";
         success: function(php_script_response) {
           console.log(JSON.parse(php_script_response));
           var object = JSON.parse(php_script_response);
-          if (object.status) {
+          if (object.status=='success') {
               $(ele).closest('.leftpic').find('a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
               if(object.status == 'success'){
                           $("#user_image").val(object.fileuri);
@@ -1181,7 +1182,7 @@ echo "</script>";
                 $('#agent_profile_image').attr('value',object.fileuri);
               }
           } else {
-
+                alert(object.msg);
           }
         }
       });
@@ -1192,7 +1193,7 @@ echo "</script>";
           var form_data = new FormData();
           form_data.append('fileToUpload', file_data)                    
           $.ajax({
-              url: '<?php echo base_url(); ?>index.php/user/upload_file', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php/user/upload_file/company-image', // point to server-side PHP script 
               dataType: 'text', // what to expect back from the PHP script, if anything
               cache: false,
               contentType: false,
@@ -1203,7 +1204,7 @@ echo "</script>";
                   
                   console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
-                  if (object.status) {
+                  if (object.status=='success') {
                       $('.rightpic a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
                       
             if(object.status == 'success'){
@@ -1219,7 +1220,7 @@ echo "</script>";
                       }
 
                   } else {
-
+                    alert(object.msg);
                   }
                   
               }

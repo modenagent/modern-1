@@ -39,6 +39,7 @@ class User extends CI_Controller
 	}
 	
     public function upload_file($type){
+       header('Access-Control-Allow-Origin: *');   
        $status = "";
        $msg = "";
        $fileuri='';
