@@ -2623,10 +2623,10 @@ margin-left: -12px!important;
 
 #cma-widget-container button {
     overflow: visible;
-    border: 0;
+    /*border: 0;*/
     font: inherit;
     letter-spacing: inherit;
-    background: none;
+    /*background: none;*/
     cursor: pointer;
     -webkit-font-smoothing: inherit;
 }
@@ -2858,4 +2858,8 @@ transform: translateY(-50%);
     color:red;
     opacity: 0.5;
     text-decoration: none;
+}
+
+.custom_error {
+    color: #fff;
 }

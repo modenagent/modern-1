@@ -63,7 +63,8 @@ function main() {
         /******* Load HTML *******/
         //var base_url = "https://modernagent.io/beta";
         var base_url = "https://modernagent.localhost.com";
-        var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/->ReplaceImage<-) no-repeat 0 0;background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
+        //var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/->ReplaceImage<-) no-repeat 0 0;background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
+        var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
          //custom_css.appendTo('head');
         // $('head').append(custom_css);
         var jsonp_url = base_url+"/user/dashboard_widget?callback=dashboard_widget&ac_id=82";
@@ -71,7 +72,11 @@ function main() {
             //console.log(data.html);
             //console.log("hello");
             console.log(data);
-          $('#cma-widget-container').html(custom_css+data.html);
+            $('#cma-widget-container').html(custom_css+data.html);
+            setTimeout(function(){ 
+                $('#cma-widget-container').show();
+                $('#widget-loader').hide();
+            }, 4000);
         });
     });
 }

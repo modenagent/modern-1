@@ -2712,11 +2712,17 @@ Thank you for your order. Below you can find the details of your order. If you o
     }
     // stripe post
     public function cart_payment(){
-      
+      header('Access-Control-Allow-Origin: *');  
       $userId = $data['user_id'] = $this->session->userdata('userid');
       if(true || $userId){
         if(!$userId){
           $userId = $this->input->post('user-id');
+        }
+
+        $is_from_widget = $this->input->post('is_from_widget');
+        $post_project_id = $this->input->post('project_id');
+        if ($is_from_widget == 1 && !empty($post_project_id)) {
+            $this->session->set_userdata('project_id', $post_project_id);
         }
 
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
