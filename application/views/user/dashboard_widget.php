@@ -383,22 +383,26 @@ echo "</script>";
                                             <input type="hidden" id="coupon-id" name="coupon_id">
                                             <input type="hidden" id="coupon-amount" name="coupon_amount">
                                             <input type="hidden" id="order-amount" name="order_amount" value="<?php echo $report_price; ?>">
+                                            <input type="hidden" id="project_id" name="project_id" value="">
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>
                                                 <div class="col-sm-9">
                                                     <input type="text" size="80" data-stripe="name" class="form-control" placeholder="Card Holder's Name" id="cardname">
+                                                    <span id="err_cardname" class="custom_error"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label" for="card-number">Card Number:</label>
                                                 <div class="col-sm-9">
-                                                    <input type="text" size="20" data-stripe="number" class="form-control" placeholder="Card Number." id="cardno">
+                                                    <input type="text" maxlength="16" size="20" data-stripe="number" class="form-control numeric" placeholder="Card Number." id="cardno">
+                                                    <span id="err_cardno" class="custom_error"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="col-sm-3 control-label" for="cvv">Card CVV:</label>
                                                 <div class="col-sm-2">
-                                                    <input type="text" size="4" data-stripe="cvc" class="form-control" placeholder="CVV" id="cardcvv">
+                                                    <input type="text" maxlength="4" size="4" data-stripe="cvc" class="form-control numeric" placeholder="CVV" id="cardcvv">
+                                                    <span id="err_cardcvv" class="custom_error"></span>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -406,10 +410,12 @@ echo "</script>";
                                                 <div class="col-sm-9">
                                                     <div class="row">
                                                         <div class="col-xs-6">
-                                                            <input type="text" size="2" data-stripe="exp-month" class="form-control" placeholder="Month" id="expmonth">
+                                                            <input type="text" maxlength="2" size="2" data-stripe="exp-month" class="form-control numeric" placeholder="Month" id="expmonth">
+                                                            <span id="err_expmonth" class="custom_error"></span>
                                                         </div>
                                                         <div class="col-xs-6">
-                                                            <input type="text" size="4" data-stripe="exp-year" class="form-control" placeholder="Year" id="expyear">
+                                                            <input type="text" maxlength="4" size="4" data-stripe="exp-year" class="form-control numeric" placeholder="Year" id="expyear">
+                                                            <span id="err_expyear" class="custom_error"></span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -559,6 +565,14 @@ echo "</script>";
 <script type="text/javascript">
   // This identifies your website in the createToken call below
   //Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
+  $(document).ready(function() {
+    setTimeout(function(){
+      Stripe.setPublishableKey("pk_test_JKTfWhEYh9KIUJhJiD1cI0fo");
+    },4000);
+    $('.numeric').on('input', function (event) {
+        this.value = this.value.replace(/[^0-9]/g, '');
+    });
+  });
   // ...
 </script>
 
@@ -604,6 +618,7 @@ echo file_get_contents('assets/js/jquery.multi-select.js');
 echo "</script>";
 ?>
 <script type="text/javascript">
+  var is_from_widget = 1;
   // run pre selected options
   var _max = 8;
   var _min = 4;
@@ -634,7 +649,13 @@ echo "</script>";
       });
   });
   $('#select-comps').on('hide.bs.modal', function(event) {
-      if($('#pre-selected-options').val().length < _min){
+    var pre_selected_options = $.trim($('#pre-selected-options').html());
+    if (pre_selected_options!='') {
+      if ($('#pre-selected-options').val()==null) {
+          alert('Please select '+_min+' comparables');
+          event.stopPropagation();
+          return false;
+      } else if ($('#pre-selected-options').val().length < _min){
           alert('Please select '+_min+' comparables');
           event.stopPropagation();
           return false;
@@ -644,7 +665,7 @@ echo "</script>";
           event.stopPropagation();
           return false;
       }
-     
+    } 
   });
 </script>
 <script type="text/javascript">
@@ -836,10 +857,18 @@ echo "</script>";
     // processing the form submission for creating the report
     function submitFormAndGetReport(){
         // getting the formData
+
+        var project_id = $("#project_id").val();
+        if ($.trim(project_id)=='' || $.trim(project_id) == 0 || $.trim(project_id) == '0') {
+            alert('Oops! Error Occurred while submitting the data.');
+            return false;
+        }
         var formData = $("#payment-form").serializeArray();
         formData.push(
                         {name: 'widgetType', value: 'user_dashboard'},
-                        {name: 'user-id', value: '<?php echo $user_id; ?>'}
+                        {name: 'user-id', value: '<?php echo $user_id; ?>'},
+                        {name: 'project_id', value: project_id},
+                        {name: 'is_from_widget', value: is_from_widget},
                      );
         // submitting the form using ajax
         $.ajax({
@@ -907,7 +936,77 @@ echo "</script>";
       }
     }
 
+    function validate_payment_details()
+    {
+        var isValid = true;
+        var cardName = $.trim($('#cardname').val());
+        if (cardName == '') {
+            isValid = false;
+            $('#err_cardname').html('Please enter name on card.');
+        } else {
+            $('#err_cardname').html('');
+        }
+
+        var cardNo = $.trim($('#cardno').val());
+        if (cardNo == '') {
+            isValid = false;
+            $('#err_cardno').html('Please enter card number.');
+        } else {
+            $('#err_cardno').html('');
+        }
+
+        var cardCvv = $.trim($('#cardcvv').val());
+        if (cardCvv == '') {
+            isValid = false;
+            $('#err_cardcvv').html('Please enter CVV.');
+        } else if (cardCvv != '' && (cardCvv.length < 3 || cardCvv.length > 4)) {
+            isValid = false;
+            $('#err_cardcvv').html('Please enter valid CVV.');
+        } else {
+            $('#err_cardcvv').html('');
+        }
+
+        var expMonth = $.trim($('#expmonth').val());
+        if (expMonth == '') {
+            isValid = false;
+            $('#err_expmonth').html('Please enter expiration month of card.');
+        } else if (expMonth != '' && (expMonth > 12 || expMonth < 1)) {
+            isValid = false;
+            $('#err_expmonth').html('Please enter valid expiration month of card between 1 to 12.');
+        } else {
+            $('#err_expmonth').html('');
+        }
+
+        var currentYear = new Date().getFullYear();
+        var expYear = $.trim($('#expyear').val());
+        if (expYear == '') {
+            isValid = false;
+            $('#err_expyear').html('Please enter expiration year of card.');
+        } else if (expYear != '' &&
+            ((parseInt(expYear)) < (parseInt(currentYear)) || (parseInt(expYear)) > (parseInt(currentYear) + 10))
+        ) {
+            isValid = false;
+            $('#err_expyear').html('Please enter valid expiration year of card between ' + currentYear + ' to ' + (parseInt(currentYear) + 10));
+        } else {
+            $('#err_expyear').html('');
+        }
+
+        return isValid;
+    }
+
     $('#payment-form').submit(function(event) {
+
+      var isValid = validate_payment_details();
+      if (!isValid) {
+
+        $('.loader1').hide();
+        $('.loader1').addClass('hidden');
+        $('.backwrap').hide();
+        $('.backwrap').addClass('hidden');
+
+        return false;
+      }
+
       //alert("hell ya");
       $("form#payment-form").find('.payment-errors').text("").hide();
       $(".backwrap").show(function(){

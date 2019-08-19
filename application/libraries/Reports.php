@@ -43,7 +43,7 @@ use Knp\Snappy\Pdf;
             $tmp_lot_size += $lotSize;
         }
         
-        function getPropertyData($callFromApi = 0, $reportData = array()){
+        function getPropertyData($callFromApi = 0, $reportData = array(), $isFromWidget=0){
             $CI = & get_instance();
             $errorMsg = "Unexpacted error occured while trying to create ".$_POST['report_lang']." ".$_POST['presentation']." Report PDF for user account ".$CI->session->userdata('user_email');
             // loading the required helper
@@ -296,10 +296,15 @@ use Knp\Snappy\Pdf;
                 $CI->session->set_userdata('project_id', $CI->base_model->get_last_insert_id());
 
                 // if call is from api then we directly send the report link
-                if($callFromApi == 1)
+                if($callFromApi == 1) {
                     return array("status"=>true, 'reportLink' => base_url($pdfFileName));
-                else
-                    return array("status"=>true);
+                } else {
+                    if ($isFromWidget == 1) {
+                        return array("status"=>true, "project_id"=>$CI->session->userdata('project_id'));
+                    } else {
+                        return array("status"=>true);
+                    }
+                }
             } else {
                 return array("status"=>false,"msg"=>$errorMsg);
             }

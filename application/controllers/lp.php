@@ -33,7 +33,13 @@ class Lp extends CI_Controller{
             header('Access-Control-Allow-Origin: *');  
             $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
             try {
-		        $response = $this->reports->getPropertyData();
+                $response = [];
+                $is_from_widget = $this->input->post('is_from_widget');
+                if ($is_from_widget == 1) {
+                    $response = $this->reports->getPropertyData(0, [], 1);    
+                } else {
+                    $response = $this->reports->getPropertyData();
+                }
                 if(isset($response['status']) && $response['status']===false){
                     $msg = $response['msg'];
                 }
@@ -42,7 +48,14 @@ class Lp extends CI_Controller{
                 $msg = $e->getMessage();
             }
             if($response['status']){
-                echo json_encode(array('status'=>'success'));
+                $return_data = ['status'=>'success'];
+                if (isset($response['project_id'])) {
+                    $return_data = [
+                        'status'=>'success', 
+                        'project_id' => $response['project_id']
+                    ];
+                }
+                echo json_encode($return_data);
             } else {
                 $this->base_model->queue_mail("info@modernagent.io",'Urgent! Error occured while generating PDF',$msg,null,'info@modernagent.io');
                 $responseArray = ['status'=>'fail','msg'=>$msg];

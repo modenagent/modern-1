@@ -291,6 +291,10 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     //console.log(query);
+
+    if(typeof(is_from_widget) != "undefined" && is_from_widget !== null && is_from_widget == 1) {
+        query += '&is_from_widget=1';
+    }
      
     if(activeRequest){
         activeRequest=false;
@@ -311,6 +315,12 @@ function runPMA(agentPath, logoPath) {
                 if(obj.status=='success'){
                     pdfGenerated = true;
                     pmaRes =  {status:"success"};
+                    if(typeof(is_from_widget) != "undefined" && is_from_widget !== null && is_from_widget == 1 
+                        && typeof(obj.project_id) != "undefined" && obj.project_id !== null) 
+                    {
+                        $('#project_id').val(obj.project_id);
+                    }
+
                 }
             } catch (e) {
                 //return false;
