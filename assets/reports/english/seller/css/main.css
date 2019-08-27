@@ -1595,6 +1595,24 @@ h6 {
     color: #000;
 	text-transform: uppercase;
 	letter-spacing: 3px;
+
+    /* START CSS STYLE TO BREAK LINE - WORD WRAP */
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    /* END CSS STYLE TO BREAK LINE - WORD WRAP */
 }
 
 p {
@@ -1886,12 +1904,12 @@ a:hover {
 
 .page5 {
     position: relative;
-    padding: 10% 10%
+    padding: 8% 8%;/*10% 10%*/
 }
 
 .page5 header {
     padding: 0px;
-    margin-bottom: 40px
+    margin-bottom: 25px;/*40px*/
 }
 
 .page5 .table-wrapper {
@@ -2142,11 +2160,11 @@ a:hover {
 }
 
 .page7 .two-grid-wrapper {
-    margin-top: 50px
+    margin-top: 40px;/*50px*/
 }
 
 .page7 .two-grid-wrapper .text-block-condensed {
-    margin-bottom: 50px
+    margin-bottom: 45px;/*50px*/
 }
 
 .page7 .two-grid-wrapper .text-block-condensed h2 {
@@ -3428,7 +3446,7 @@ div#slider-range {
 }
 
 .market-content-top {
-    margin-top: 100px
+    margin-top: 30px;/*100px*/
 }
 
 .avg-box {
@@ -3458,13 +3476,15 @@ div#slider-range {
     -webkit-backface-visibility: hidden;
     transform: rotate(90deg);
     
-    padding-left: 129px
+    padding-left: 122px;
 }
 
 .thirty-five-text {
     font-size: 79px;
     font-family: Montserrat;
-    color: #fff
+    color: #fff;
+    word-break: normal !important;
+    word-wrap: normal !important;
 }
 .average-days .col-xs-8{
     padding-top:20px;
@@ -3501,7 +3521,7 @@ div#slider-range {
 }
 
 .market-content-top2 {
-    margin-top: 50px
+    margin-top: 30px;/*50px*/
 }
 
 .graph-content {
@@ -3548,7 +3568,7 @@ div#slider-range {
 }
 
 .making {
-    line-height: 10px;
+    line-height: 20px;/*10px;*/
     margin-bottom: 25px;
     letter-spacing: 0px;
     font-size: 21px;
@@ -4472,7 +4492,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
 }
 .page2 header{padding-left:10%;}
 .inner-pichart,div.dollar{
-    margin:100px 0;
+    margin: 60px 0;/*100px 0;*/
 }
 h4{
     font-size: 23px;

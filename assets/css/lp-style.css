@@ -618,6 +618,10 @@ span.toptext2 {
     color: white!important;
 }
 
+.content .form-group .error {
+    color: #fb9595 !important;
+}
+
 span.toptext::after {
     border: none;
 }
@@ -839,7 +843,8 @@ span.toptext2 {
 
 #billing .page-header,
 #how-to .page-header,
-#myaccount .page-header {
+#myaccount .page-header,
+#report_customize .page-header {
     color: #fff;
     border-bottom: 1px solid #f25d3f;
     padding: 0 0 10px;
@@ -853,7 +858,8 @@ table.billinghistory {
 
 #myaccount .page-header,
 #how-to .page-header,
-#billing .page-header {
+#billing .page-header,
+#report_customize .page-header {
     border-color: #fff;
 }
 
@@ -3008,3 +3014,22 @@ header .header_content p {
     background: #cc9964;
     color: #fff;
 }
+
+/**
+ * Start Report customization style
+ */
+
+ #report_customize .content {
+    border: 0px solid #D4D4D4;
+    background-color: rgba(225, 225, 225, .35);
+    color: #FFF;
+    margin: 0px 0px 50px 0px;
+    padding: 10px;
+ }
+
+ #report_customize {
+    padding:40px;
+ }
+/**
+ * End
+ */

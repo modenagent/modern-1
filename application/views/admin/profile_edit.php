@@ -82,7 +82,7 @@
           </tr>
           
           <tr>
-            <td>License No.</td>
+            <td>License No. :</td>
             <td><input type="text" class="form-control" placeholder="Enter license no." name="license" id="license" value="<?php echo $user->license_no; ?>"></td>
             
           </tr>
@@ -90,7 +90,7 @@
             if ($user->role_id_fk != 3) { 
           ?>
             <tr>
-              <td>Company Name</td>
+              <td>Company Name :</td>
               <td>
                 <input type="text" placeholder="" class="form-control alphanumeric" placeholder="Company Name" name="cname" id="cname" value="<?php echo $user->company_name; ?>">
               </td>            
@@ -99,7 +99,7 @@
             }
           ?>
           <tr>
-            <td>Company Address</td>
+            <td>Company Address :</td>
             <td>
               <?php 
                 if ($user->role_id_fk == 3) { 
@@ -112,7 +112,7 @@
           <?php $_isAdmin = $this->role_lib->is_admin(); ?>
               <?php if($_isAdmin): ?>
               <tr>
-                  <td>User Role</td>
+                  <td>User Role :</td>
                   <td>
                     <select class="form-control" placeholder="User Role" name="role_id" id="user_role">
                         <option <?php echo !$user->role_id_fk?'selected=""selected"':''; ?> value>--Select User Role--</option>
@@ -126,7 +126,7 @@
               </tr>
                 <?php if(isset($parents)): ?>
                 <tr>
-                    <td><?php echo $parent_label; ?></td>
+                    <td><?php echo $parent_label; ?> :</td>
                     <td>
                       <select class="form-control" placeholder="<?php echo $parent_label; ?>" name="parent_id" id="parent_id">
                           <option <?php echo !$user->parent_id?'selected=""selected"':''; ?> value >-- Select one option--</option>
@@ -145,7 +145,7 @@
                 <?php endif; ?>
                 <?php if($user->role_id_fk == '4'): ?>
                 <tr>
-                  <td>Marketing Code</td>
+                  <td>Marketing Code :</td>
                   <td><input type="text" oninput="this.value = this.value.toUpperCase();" maxlength = "8" class="form-control alphanumeric" placeholder="Marketing Code" name="ref_code" id="ref_code" value="<?php echo $user->ref_code; ?>"></td>
                   <script type="text/javascript">
                     $('#ref_code').keypress(function(e){ 
@@ -155,6 +155,23 @@
                     });
                   </script>
                 </tr>
+
+                <tr>
+                  <td>Is Enterprise User?</td>
+                  <td>
+                    <?php 
+                    $enterprise_flag_checked = '';
+                    if ($user->is_enterprise_user == '1') {
+                      $enterprise_flag_checked = 'checked';
+                    }
+                    ?>
+                    <label class="chk_container">
+                      <input type="checkbox" id="enterprise_flag" name="enterprise_flag" value="1" <?php echo $enterprise_flag_checked; ?> />
+                      <span class="chk_checkmark"></span>
+                    </label>
+                  </td>
+                </tr>
+
                 <?php endif; ?>
               <?php endif; ?>
           <input type="hidden" name="userid" id="userid" value="<?php echo $user->user_id_pk; ?>">

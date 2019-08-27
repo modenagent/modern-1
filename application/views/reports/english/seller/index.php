@@ -115,19 +115,19 @@ $rangeOfSales['avaiProperty'] = 0;
     $this->load->view('reports/english/seller/pages/5b');
     $this->load->view('reports/english/seller/pages/5c');
     $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
-    $this->load->view('reports/english/seller/pages/5h');
-    $this->load->view('reports/english/seller/pages/5f');
-    $this->load->view('reports/english/seller/pages/5g');
+    $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
+    $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
+    $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
     
-    $this->load->view('reports/english/seller/pages/5k');
+    $this->load->view('reports/english/seller/pages/5k', $customization_pages_data['12']);
     $this->load->view('reports/english/seller/pages/6');
-    $this->load->view('reports/english/seller/pages/6c');
-    $this->load->view('reports/english/seller/pages/6d');
-    $this->load->view('reports/english/seller/pages/6e');
-    $this->load->view('reports/english/seller/pages/6f');
-    $this->load->view('reports/english/seller/pages/6g');
-    $this->load->view('reports/english/seller/pages/9d');
-    $this->load->view('reports/english/seller/pages/11b');
+    $this->load->view('reports/english/seller/pages/6c', $customization_pages_data['13']);
+    $this->load->view('reports/english/seller/pages/6d', $customization_pages_data['14']);
+    $this->load->view('reports/english/seller/pages/6e', $customization_pages_data['15']);
+    $this->load->view('reports/english/seller/pages/6f', $customization_pages_data['16']);
+    $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']);
+    $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
+    $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
     $this->load->view('reports/english/seller/pages/15');
     
     ?>

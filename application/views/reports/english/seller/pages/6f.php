@@ -2,23 +2,39 @@
 	<div class="section page5">
 	
 		<header>
-			<h2 class="underline title-bold">Analyze & Optimize</h2>
-			<p> Review selling price </p>
+			<h2 class="underline title-bold">
+			<?php 
+			if (isset($report_content_data['title']['value']) && !empty($report_content_data['title']['value'])) {
+				echo $report_content_data['title']['value'];
+			} else {
+				echo 'Analyze & Optimize';
+			}
+			?>
+			</h2>
+			<p>
+			<?php 
+			if (isset($report_content_data['sub_title']['value']) && !empty($report_content_data['sub_title']['value'])) {
+				echo $report_content_data['sub_title']['value'];
+			} else {
+				echo 'Review selling price';
+			}
+			?>
+			</p>
 		</header>
 
         <div class="row">
 
           <div class="col-sm-12">
           
-          <p class="most-buyers2"> 
-           
-         When your property first hits the market the entire audience which consists of realtors, prospective buyers, and sellers all place eyes on your listing. They all make rapid judgments as to it's price, current condition, and location. How they first perceive it will determine the viewing activity over the next few weeks. If we receive no viewings initially, we are facing the possibility that that market as a whole is rejecting the value proposition of your listing. Our solution? Reduce the price.
-
-         <br>
-         <br>
-         Reducing the price of your home is never an easy call but often times is a necessity one that might need to be made in order to get your home sold. Many homeowners feel that they are giving up hard earned equity that has been gained. In reality, a slight reduction can help avoid problems down the line. The question is, When is the best time? From the time the property is first placed on the market the rule of thumb is 30-45 days.
-
-          </p>
+			<p class="most-buyers2"> 
+			<?php 
+			if (isset($report_content_data['content']['value']) && !empty($report_content_data['content']['value'])) {
+				echo nl2br($report_content_data['content']['value']);
+			} else {
+				echo "When your property first hits the market the entire audience which consists of realtors, prospective buyers, and sellers all place eyes on your listing. They all make rapid judgments as to it's price, current condition, and location. How they first perceive it will determine the viewing activity over the next few weeks. If we receive no viewings initially, we are facing the possibility that that market as a whole is rejecting the value proposition of your listing. Our solution? Reduce the price.<br><br>Reducing the price of your home is never an easy call but often times is a necessity one that might need to be made in order to get your home sold. Many homeowners feel that they are giving up hard earned equity that has been gained. In reality, a slight reduction can help avoid problems down the line. The question is, When is the best time? From the time the property is first placed on the market the rule of thumb is 30-45 days.";
+			}
+			?>
+			</p>
 
         </div>
 
@@ -32,9 +48,15 @@
     
      <div class="col-sm-12">
        
-     <h4 class="text-uppercase home">      
-      At Listing Time 
-      </h4>
+		<h4 class="text-uppercase home">
+		<?php 
+		if (isset($report_content_data['table_1_title']['value']) && !empty($report_content_data['table_1_title']['value'])) {
+			echo $report_content_data['table_1_title']['value'];
+		} else {
+			echo 'At Listing Time';
+		}
+		?>
+		</h4>
       
       <table class="table">
         <tbody>
@@ -59,9 +81,15 @@
         </tbody>
       </table>
 
-      <h4 class="text-uppercase home">      
-      After Price Reduction 
-      </h4>
+		<h4 class="text-uppercase home">
+		<?php 
+		if (isset($report_content_data['table_2_title']['value']) && !empty($report_content_data['table_2_title']['value'])) {
+			echo $report_content_data['table_2_title']['value'];
+		} else {
+			echo 'After Price Reduction';
+		}
+		?>
+		</h4>
       
       <table class="table">
         <tbody>
@@ -113,7 +141,13 @@
    <div class="col-sm-12">
 
     <p class="joe-text"> 
-     Joe and Jane went from being very competitively priced to being the highest property in their price range. From a buyer's perspective, their home now offers the worst value proposition in the marketplace.
+	<?php 
+	if (isset($report_content_data['footer_content']['value']) && !empty($report_content_data['footer_content']['value'])) {
+		echo nl2br($report_content_data['footer_content']['value']);
+	} else {
+		echo "Joe and Jane went from being very competitively priced to being the highest property in their price range. From a buyer's perspective, their home now offers the worst value proposition in the marketplace.";
+	}
+	?>
     </p>
 
   </div>
