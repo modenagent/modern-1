@@ -1,0 +1,91 @@
+/*===========================================*/
+/*	DESKTOP LAYOUT 
+/*===========================================*/
+
+
+@media (min-width: 1200px) {
+	
+
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+	
+}
+
+@media (min-width: 992px) {
+		
+}
+
+/*===========================================*/
+/*	MOBILE & TABLET COMMON
+/*===========================================*/
+@media (min-width: 200px) and (max-width: 991px) {
+	
+}
+
+
+/*===========================================*/
+/*	TABLET
+/*===========================================*/
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+
+/*===========================================*/
+/*	MOBILE
+/*===========================================*/
+@media (min-width: 200px) and (max-width: 767px) {
+	
+}
+@media (min-width: 600px) and (max-width: 767px) {
+}
+@media (min-width: 480px) and (max-width: 599px) {
+
+}
+@media (min-width: 200px) and (max-width: 479px) {
+
+}
+
+span.iconwrp {
+	color:#cc9964;
+}
+footer.bg-color5{
+	background-color:#000000;
+}
+.bdr-color8{
+	border-color:#cc9964;
+}
+span.tag-text.bg-color8{
+	background-color:#cc9964;
+}
+h2.title.small.pd-10.txt-color8{
+	color:#cc9964;
+}
+span.sq70.inline-flex.flex-cc.mr-t-20.fs60.txt-color8{
+	color:#cc9964;
+}
+
+div.pd-30.bg-color8.rd-5.mr-b-40{
+	background-color:#cc9964;
+}
+p.btn.btn-primary.txt-upper{
+	border-color:#cc9964;
+}
+p.btn.btn-primary.txt-upper:hover{
+	border-color:#cc9964;
+	background-color:#cc9964;
+}
+div.pd-tb-small.pos-rel.z3.typo-light.align-c{
+	background: url(https://modernagent.io/assets/images-2/home/header3.jpg) no-repeat 0 0;
+    background-size: cover;
+    background-attachment: fixed;
+}
+a.btn.btn-primary.txt-upper{
+	border-color:#cc9964;
+	color:#fff;
+}
+a.btn.btn-primary.txt-upper:hover{
+	border-color:#cc9964;
+	background-color:#cc9964;
+	color:ffffff;
+}
