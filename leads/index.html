@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" data-demomenu="n">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ModernAgent - Daily Leads</title>
+
+	<!--pageMeta-->
+
+	<!-- Lib CSS -->
+	<link href="minify/rgen_min.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="https://modernagent.io/assets/images/favicon.ico" type="image/x-icon" />
+
+	<!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
+	<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+	<!--[if IE 9 ]><script src="js/ie-matchmedia.js"></script><![endif]-->
+	
+	<!-- Load Stripe.js on your website. -->
+    <script src="https://js.stripe.com/v3"></script>
+
+</head>
+<body>
+<div id="page" data-linkscroll='y'>
+
+	<!--
+	************************************************************
+	* Navigation
+	************************************************************ -->
+	<nav class="nav-wrp nav-1 light" data-glass="y" data-hide="y" data-sticky="y">
+		<div class="container pd-0 bdr-b flex-cc" data-rgen-sm="pd-lr-20 h-reset">
+			<div class="flex-row gt0 middle-md">
+				
+				<!--=================================
+				= Logo section
+				==================================-->
+				<div class="flex-col-md-3">
+					<div class="nav-header">
+						<a class="navbar-brand" href="#"><img src="https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/2d7580e1-3d54-4cd4-b921-6f3f52a62b75.png" alt="Brand logo"></a>
+						<a class="nav-handle" data-nav=".nav" data-navopen="pe-7s-more" data-navclose="pe-7s-close"><i class="pe-7s-more"></i></a>	
+					</div>
+				</div><!-- // END : Column //  -->
+				
+				<!--=================================
+				= Navigation links
+				==================================-->
+				<div class="flex-col-md-9 align-r">
+					<div class="nav">
+						
+						<ul class="nav-links sf-menu">
+							<li><a href="#features">Features</a></li>
+							<li><a href="#gallery">Sample</a></li>
+							<li><a href="#price">Pricing</a></li>
+						
+						</ul><!-- // END : Navigation links //  -->
+						
+						<div class="nav-social mr-lr-10" data-rgen-md="hide">
+							<a target="_blank" href="https://www.facebook.com/rgenesisart/"><i class="fa fa-facebook"></i></a>
+							<a target="_blank" href="https://twitter.com/rgenesisart"><i class="fa fa-twitter"></i></a>
+							<a target="_blank" href="https://plus.google.com/+RGenesis"><i class="fa fa-google-plus"></i></a>
+						</div><!-- // END : Social icons //  -->
+						
+						<div class="nav-other">
+							<a href="#popup-content" class="btn btn-default light mini set-popup"><i class="fa fa-envelope-o mr-r-5"></i> CONTACT US</a>
+						</div><!-- // END : Contact button //  -->
+						
+					</div><!-- // END : Nav //  -->
+
+				</div><!-- // END : Column //  -->
+
+			</div><!-- // END : row //  -->
+
+		</div><!-- // END : container //  -->
+	</nav>
+	<!-- ************** END : Navigation **************  -->
+
+
+	
+	<!--
+	************************************************************
+	* Intro section
+	************************************************************ -->
+	<section class="pd-tb-small vh100 flex-cc pos-rel typo-light" data-rgen-sm="h-reset">
+		<div class="container pos-rel z2 align-c">
+
+			<!--=================================
+			= Content
+			==================================-->
+			<div class="w75 mr-auto mr-b-60" data-rgen-sm="mr-b-20">
+				<a class="inline-block mr-b-30" href="#"><img src="https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/06a70d4b-2f3e-4109-88bb-7ea3cc20ba4b.png" alt="App logo"></a>
+				<h1 class="title large mr-0" data-rgen-sm="medium mr-b-10">Introducing Daily Leads</h1>
+				<h2 class="title small bold-n mr-b-40" data-rgen-sm="small">FSBO & Expired Listings</h2>
+				<p class="title-sub mr-0 small">We will prepare them and delivery them to you via email every morning. <br> It's that simple.</p>
+			</div>
+
+			<!--=================================
+			= Download button
+			==================================-->
+			<div class="flex-row mr-tb-60 align-c middle-md">
+				<div class="flex-col-md-4"><hr class="light bdr-op-2"></div>
+				<div class="flex-col-md-4">
+					<p> <a href="#price" class="btn btn-primary txt-upper">Checkout Easy Pricing</a></p>
+				</div>
+				<div class="flex-col-md-4"><hr class="light bdr-op-2"></div>
+			</div>
+
+			<ul class="logo-list gt-small size-medium reset op-06">
+				<li><img src="images/clients-1.png" alt="award"></li>
+				<li><img src="images/clients-2.png" alt="award"></li>
+				<li><img src="images/clients-6.png" alt="award"></li>
+				<li><img src="images/clients-4.png" alt="award"></li>
+				<li><img src="images/clients-5.png" alt="award"></li>
+			</ul>
+		</div><!-- // END : Container //  -->
+
+		<div class="full-wh">
+			<b class="full-wh z1"></b>
+			<div class="bgslider full-wh bg-cover" data-bgslider="https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/875ccb28-95c0-4477-9245-417b96e2355c.jpg"></div>	
+		</div>
+	</section>
+	<!-- ************** END : Intro section **************  -->
+
+
+	<!--
+	************************************************************
+	* Content section
+	************************************************************ -->
+	<section class="pos-rel pd-tb-small" data-rgen-sm="pd-tb-small" id="features">
+		<div class="container">
+			
+			<!--=========================================
+			=            Content section - 1            =
+			==========================================-->
+			<div class="w75 mr-auto align-c">
+				<h2 class="title">Sample Report</h2>
+				<p class="title-sub small">Below is an example of how the leads will look when they arrive in your inbox.</p>
+				<hr class="mr-tb-50">
+			</div>
+
+			<div class="flex-row middle-md mb20">
+				
+				<div class="flex-col-md-3">
+					<div class="info-obj img-t g10 mini align-c mr-b-20">
+						<div class="img txt-color4"><span class="iconwrp"><i class="pe-7s-photo"></i></span></div>
+						<div class="info">
+							<h3 class="title tiny bold-n">Contact Information</h3>
+							<p class="mr-0">You get the contact information of the owner who is selling the property.</p>
+						</div>
+					</div><!-- info box -->
+
+					<hr class="mr-t-30 mr-b-20">
+
+					<div class="info-obj img-t g10 mini align-c mr-b-20">
+						<div class="img txt-color4"><span class="iconwrp"><i class="pe-7s-light"></i></span></div>
+						<div class="info">
+							<h3 class="title tiny bold-n">Confidence Score</h3>
+							<p class="mr-0">A confidence score is calculated based on the information provided.</p>
+						</div>
+					</div><!-- info box -->
+
+					<hr class="mr-t-30 mr-b-20">
+					
+					<div class="info-obj img-t g10 mini align-c mr-b-20">
+						<div class="img txt-color5"><span class="iconwrp"><i class="pe-7s-map-2"></i></span></div>
+						<div class="info">
+							<h3 class="title tiny bold-n">Location</h3>
+							<p class="mr-0">You get all of the location information for the property that is being sold or expired.</p>
+						</div>
+					</div><!-- info box -->
+				</div><!-- column -->
+
+				<div class="flex-col-md-6 align-c">
+					<img src="https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/645a1ba8-ab1f-4477-ba3f-fffead7dee49.jpg" class="mr-auto" alt="image">
+				</div><!-- / column -->
+
+				<div class="flex-col-md-3">
+					<div class="info-obj img-t g10 mini align-c mr-b-20">
+						<div class="img txt-color4"><span class="iconwrp"><i class="pe-7s-chat"></i></span></div>
+						<div class="info">
+							<h3 class="title tiny bold-n">Property Information</h3>
+							<p class="mr-0">All property information including the notes that were made by the owner or agent.</p>
+						</div>
+					</div><!-- info box -->
+
+					<hr class="mr-t-30 mr-b-20">
+
+					<div class="info-obj img-t g10 mini align-c mr-b-20">
+						<div class="img txt-color4"><span class="iconwrp"><i class="pe-7s-compass"></i></span></div>
+						<div class="info">
+							<h3 class="title tiny bold-n">Listing Agent Info</h3>
+							<p class="mr-0">The contact information of the previous listing agent or current FSBO owner.</p>
+						</div>
+					</div><!-- info box -->
+
+					<hr class="mr-t-30 mr-b-20">
+					
+					<div class="info-obj img-t g10 mini align-c mr-b-20">
+						<div class="img txt-color4"><span class="iconwrp"><i class="pe-7s-add-user"></i></span></div>
+						<div class="info">
+							<h3 class="title tiny bold-n">Pricing Info</h3>
+							<p class="mr-0">All of the pricing details that were given when the property was placed for sale.</p>
+						</div>
+					</div><!-- info box -->
+				</div><!-- column -->
+
+			</div><!-- / row -->
+
+		</div><!-- / container -->
+	</section><!-- / Content section -->
+	<!-- ************** END : Content section **************  -->
+
+
+
+
+	
+
+			<!--=================================
+		= Features content
+		==================================-->
+		<div class="pd-tb-small pos-rel z3 typo-light align-c">
+			<div class="container">
+				<div class="w75 mr-auto">
+					<h1 class="title large" data-rgen-sm="fs30">Leads Made Easy.</h1>
+					<p class="title-sub mr-b-40" data-rgen-sm="fs18">We make the hard part easy.</p>
+					<a href="https://www.youtube.com/watch?v=dorZ3vag5PI" class="btn btn-white video-popup large" data-rgen-sm="medium">
+						<i class="fa fa-play btn-icon"></i> <span class="btn-txt">Watch Video</span>
+					</a>
+					<hr class="light mr-tb-50">
+				</div>
+
+				<div class="flex-row gt40 mb20">
+					<div class="flex-col-md-4">
+						<div class="info-obj img-t g20 mini align-c pos-rel">
+							<div class="img txt-white"><span class="iconwrp"><i class="icon-mobile"></i></span></div>
+							<div class="info">
+								<h3 class="title mini bold-2">Emailed Daily</h3>
+								<p>These arrive everyone morning in your inbox. It's <br> a running total for the month. </p>
+							</div>
+						</div>
+					</div><!-- column -->
+
+					<div class="flex-col-md-4">
+						<div class="info-obj img-t g20 mini align-c pos-rel">
+							<div class="img txt-white"><span class="iconwrp"><i class="icon-puzzle"></i></span></div>
+							<div class="info">
+								<h3 class="title mini bold-2">FSBO's & Expireds</h3>
+								<p>It's a combination of For Sale By Owner <br> and Expired Listings.</p>
+							</div>
+						</div>
+					</div><!-- column -->
+
+					<div class="flex-col-md-4">
+						<div class="info-obj img-t g20 mini align-c pos-rel">
+							<div class="img txt-white"><span class="iconwrp"><i class="icon-paintbrush"></i></span></div>
+							<div class="info">
+								<h3 class="title mini bold-2">All Available Info</h3>
+								<p>All of the available information is provided for <br> each of the lead types.</p>
+							</div>
+						</div>
+					</div><!-- column -->
+				</div><!-- row -->
+
+			</div><!-- / container -->
+		</div>
+	</section>
+	<!-- ************** END : Intro section **************  -->
+
+
+
+
+	
+
+
+	<!--
+	************************************************************
+	* Pricing section
+	************************************************************ -->
+	<section class="pd-tb-medium pos-rel" data-rgen-sm="pd-tb-small" id="price">
+		<div class="container pos-rel z1">
+			<div class="w75 mr-auto align-c">
+				<h2 class="title" data-rgen-sm="medium">Straightforward Pricing</h2>
+				<p class="title-sub" data-rgen-sm="small">We keep our pricing very easy and affordable.</p>
+			</div>
+
+			<!--=========================================
+			=  Pricing tables
+			=============================================-->
+			<div class="flex-row gt40 mr-b-50 mb20">
+				<div class="flex-col-md-4">
+					<!-- Price block -->
+					<div class="price-table-1 anim align-c pd-30 rd-5 h100">
+						<span class="sq70 inline-flex flex-cc mr-b-10 mr-t-20 fs60"><i class="pe-7s-user"></i></span>
+						<h2 class="title small pd-10">1 County</h2>
+						
+						<div class="pd-30 bg-gray2 rd-5 mr-b-40">
+							<h3 class="fs40 bold-n mr-0">$10</h3>
+							<p class="mr-0">Per Month</p>	
+						</div>
+						
+						<p>Via Email Every Day<br>at 6:00am</p>
+						<hr>
+
+						<p>1 County</p>
+						<p>Your Choice of<br> LA, OC, SB, RV, SD , OR VC </p>
+						
+						
+						<hr>
+
+						<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+						<button
+						  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+						  id="checkout-button-plan_GKXw9nWmITuBHf"
+						  role="link"
+						>
+						  Checkout
+						</button>
+
+						<div id="error-message"></div>
+					</div>
+					<!-- Price block -->
+				</div><!-- column -->
+
+				<div class="flex-col-md-4">
+					<!-- Price block -->
+					<div class="price-table-1 anim align-c bdr-1 bdr-color8 pd-30 rd-5 h100">
+						<span class="tag-text bg-color8">Most Popular</span>
+						<span class="sq70 inline-flex flex-cc mr-b-10 mr-t-20 fs60 txt-color8"><i class="pe-7s-users"></i></span>
+						<h2 class="title small pd-10 txt-color8">3 Counties</h2>
+
+						<div class="pd-30 bg-color8 rd-5 mr-b-40">
+							<h3 class="fs40 bold-n mr-0 txt-white">$15.00</h3>
+							<p class="txt-white mr-0">Per Month</p>
+						</div>
+
+						<p>Via Email Every Day<br>at 6:00am</p>
+						<hr>
+
+						<p>3 Counties</p>
+						<p>Your Choice of<br> LA, OC, SB, RV, SD , OR VC </p>
+						
+						
+						<hr>
+
+						<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+<button
+  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+  id="checkout-button-plan_GKXzY9rRxYncXS"
+  role="link"
+>
+  Checkout
+</button>
+
+<div id="error-message"></div>
+
+<script>
+(function() {
+  var stripe = Stripe('pk_live_kWtXKplBdNqXQMeBWHuHYZDx');
+
+  var checkoutButton = document.getElementById('checkout-button-plan_GKXzY9rRxYncXS');
+  checkoutButton.addEventListener('click', function () {
+    // When the customer clicks on the button, redirect
+    // them to Checkout.
+    stripe.redirectToCheckout({
+      items: [{plan: 'plan_GKXzY9rRxYncXS', quantity: 1}],
+
+      // Do not rely on the redirect to the successUrl for fulfilling
+      // purchases, customers may not always reach the success_url after
+      // a successful payment.
+      // Instead use one of the strategies described in
+      // https://stripe.com/docs/payments/checkout/fulfillment
+      successUrl: 'http://retech.company/success',
+      cancelUrl: 'http://retech.company/canceled',
+    })
+    .then(function (result) {
+      if (result.error) {
+        // If `redirectToCheckout` fails due to a browser or network
+        // error, display the localized error message to your customer.
+        var displayError = document.getElementById('error-message');
+        displayError.textContent = result.error.message;
+      }
+    });
+  });
+})();
+</script>
+					</div>
+					<!-- Price block -->
+				</div><!-- column -->
+
+				<div class="flex-col-md-4">
+					<!-- Price block -->
+					<div class="price-table-1 anim align-c pd-30 rd-5 h100">
+						<span class="sq70 inline-flex flex-cc mr-b-10 mr-t-20 fs60"><i class="pe-7s-id"></i></span>
+						<h2 class="title small pd-10">All Counties</h2>
+
+						<div class="pd-30 bg-gray2 rd-5 mr-b-40">
+							<h3 class="fs40 bold-n mr-0">$18.00</h3>
+							<p class="mr-0">Per Month</p>
+						</div>
+
+						<p>Via Email Every Day<br>at 6:00am</p>
+						<hr>
+
+						<p>All 6 Counties</p>
+						<p>Your Choice of<br> LA, OC, SB, RV, SD , OR VC </p>
+						
+						<hr>
+
+						<!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+							<button
+							  style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+							  id="checkout-button-plan_GOergjzbxWKEdC"
+							  role="link"
+							>
+							  Checkout
+							</button>
+
+							<div id="error-message"></div>
+
+							<script>
+							(function() {
+							  var stripe = Stripe('pk_live_kWtXKplBdNqXQMeBWHuHYZDx');
+
+							  var checkoutButton = document.getElementById('checkout-button-plan_GOergjzbxWKEdC');
+							  checkoutButton.addEventListener('click', function () {
+								// When the customer clicks on the button, redirect
+								// them to Checkout.
+								stripe.redirectToCheckout({
+								  items: [{plan: 'plan_GOergjzbxWKEdC', quantity: 1}],
+
+								  // Do not rely on the redirect to the successUrl for fulfilling
+								  // purchases, customers may not always reach the success_url after
+								  // a successful payment.
+								  // Instead use one of the strategies described in
+								  // https://stripe.com/docs/payments/checkout/fulfillment
+								  successUrl: 'http://retech.company/success',
+								  cancelUrl: 'http://retech.company/canceled',
+								})
+								.then(function (result) {
+								  if (result.error) {
+									// If `redirectToCheckout` fails due to a browser or network
+									// error, display the localized error message to your customer.
+									var displayError = document.getElementById('error-message');
+									displayError.textContent = result.error.message;
+								  }
+								});
+							  });
+							})();
+							</script>
+					</div>
+					<!-- Price block -->
+				</div><!-- column -->
+
+			</div><!-- row -->
+			<!-- ======= END : Pricing tables =======  -->
+			
+			<hr class="mr-tb-50">
+			
+			
+								<script>
+					(function() {
+					  var stripe = Stripe('pk_live_kWtXKplBdNqXQMeBWHuHYZDx');
+
+					  var checkoutButton = document.getElementById('checkout-button-plan_GKXw9nWmITuBHf');
+					  checkoutButton.addEventListener('click', function () {
+						// When the customer clicks on the button, redirect
+						// them to Checkout.
+						stripe.redirectToCheckout({
+						  items: [{plan: 'plan_GKXw9nWmITuBHf', quantity: 1}],
+
+						  // Do not rely on the redirect to the successUrl for fulfilling
+						  // purchases, customers may not always reach the success_url after
+						  // a successful payment.
+						  // Instead use one of the strategies described in
+						  // https://stripe.com/docs/payments/checkout/fulfillment
+						  successUrl: 'http://retech.company/success',
+						  cancelUrl: 'http://retech.company/canceled',
+						})
+						.then(function (result) {
+						  if (result.error) {
+							// If `redirectToCheckout` fails due to a browser or network
+							// error, display the localized error message to your customer.
+							var displayError = document.getElementById('error-message');
+							displayError.textContent = result.error.message;
+						  }
+						});
+					  });
+					})();
+</script>
+			
+			
+			
+			
+			<!--=================================
+			=            FAQ section            =
+			==================================-->
+			
+			<h2 class="title small mr-b-40" data-rgen-sm="medium">Frequently Asked Questions</h2>
+			
+			<div class="flex-row gt40 mb20">
+				<div class="flex-col-md-8">
+					<!-- accordion-widget -->
+					<div class="accordion-widget acc-style2" data-acc-handle="y" data-acc-openclass="ti-arrow-circle-down" data-acc-closeclass="ti-arrow-circle-up">
+						<div class="acc-block">
+							<div class="acc-hd"><h3 class="bold-1 mr-0 txt-upper fs14">What time to the leads arrive?</h3></div>
+							<div class="acc-content">
+								<p>The email that you receive will arrive at 6:00am every morning. It will be a running total of all of the leads for the month.</p>
+							</div><!-- / content -->
+						</div><!-- / acc-block -->
+
+						<div class="acc-block">
+							<div class="acc-hd"><h3 class="bold-1 mr-0 txt-upper fs14">Can I customize?</h3></div>
+							<div class="acc-content">
+								<p>There is no customization. What you see is what you get. That is how we are able to provide these at such a low price point.</p>
+							</div><!-- / content -->
+						</div><!-- / acc-block -->
+
+						<div class="acc-block">
+							<div class="acc-hd"><h3 class="bold-1 mr-0 txt-upper fs14">Are there any CSV or PDF's?</h3></div>
+							<div class="acc-content">
+								<p>Even though there is a link it will redirect you to our provider. There pricing is much higher than ours. We will email you a PDF and CSV of all the leads at the end of ever week. </p>
+							</div><!-- / content -->
+						</div><!-- / acc-block -->
+
+						<div class="acc-block">
+							<div class="acc-hd"><h3 class="bold-1 mr-0 txt-upper fs14">Can I login anywhere?</h3></div>
+							<div class="acc-content">
+								<p>There is no login area for this product line. You can login to you modernagent account to access our normal product line.</p>
+							</div><!-- / content -->
+						</div><!-- / acc-block -->
+
+						<div class="acc-block">
+							<div class="acc-hd"><h3 class="bold-1 mr-0 txt-upper fs14">How are the leads being provided?</h3></div>
+							<div class="acc-content">
+								<p>The information is being minded by many different sources that offer this information.</p>
+							</div><!-- / content -->
+						</div><!-- / acc-block -->
+
+						<div class="acc-block">
+							<div class="acc-hd"><h3 class="bold-1 mr-0 txt-upper fs14">How do I cancel?</h3></div>
+							<div class="acc-content">
+								<p>You can email leads@modernagent.io and we will confirm you cancellation.</p>
+							</div><!-- / content -->
+						</div><!-- / acc-block -->
+
+					</div><!-- / accordion-widget -->
+
+					
+				</div><!-- // END : column //  -->
+
+				<div class="flex-col-md-4">
+					<div class="info-obj img-t g10 medium align-c">
+						<div class="img"><span class="iconwrp txt-color3"><i class="pe-7s-comment"></i></span></div>
+						<div class="info">
+							<p class="title-sub mr-b-10">Can't find suitable answer?</p>
+							<p>Ask our support team</p>
+							<p><a href="" class="btn btn-default small bold-n">Email Us Below</a><br></p>
+							
+						</div>
+					</div><!-- // END : Info object //  -->
+
+				</div><!-- // END : column //  -->
+			</div><!-- // END : row //  -->
+			<!-- ======= END : FAQ section =======  -->
+
+		</div><!-- container -->
+	</section>
+	<!-- ************** END : Pricing section **************  -->
+
+	
+	
+	<!--
+	************************************************************
+	* Footer
+	************************************************************ -->
+	<footer class="pos-rel pd-tb-small bg-color5" data-rgen-sm="pd-tb-small">
+		<div class="container typo-light">
+			
+			<!--=========================================
+			=            Content information            =
+			==========================================-->
+			<div class="flex-row gt50 mb20">
+				
+			</div><!-- row -->
+
+			
+			<!--==================================
+			=            Contact form            =
+			===================================-->
+			<div class="flex-row gt50 middle-md mr-tb-50">
+				<div class="flex-col-md-4"><hr class="light"></div>
+				<div class="flex-col-md-4">
+					<a href="#popup-content" class="btn btn-block btn-white solid large round set-popup" data-rgen-sm="medium">DROP US LINE</a>
+				</div>
+				<div class="flex-col-md-4"><hr class="light"></div>
+			</div><!-- row -->
+
+			<!-- form : "mfp-hide" Add this class before using -->
+			<div id="popup-content" class="white-popup-block popup-content mfp-hide">
+				<div class="pop-header align-c" data-rgen-sm="pd-20">
+					<p class="sq90 inline-flex flex-cc fs80 mr-0 txt-color1"><i class="pe-7s-mail"></i></p>
+					<h2 class="title mr-0" data-rgen-sm="small">DROP US A LINE</h2>
+				</div>
+				<div class="pop-body" data-rgen-sm="pd-20">
+					<!-- form-block -->
+					<div class="form-block">
+						<form action="form-data/formdata.php" class="form-widget">
+							<div class="field-wrp">
+								<input type="hidden" name="to" value="r.genesis.art@gmail.com">
+								<div class="form-group">
+									<input class="form-control" data-label="Name" required data-msg="Please enter name." type="text" name="name" placeholder="Enter your name">
+								</div>
+								<div class="form-group">
+									<input class="form-control" data-label="Email" required data-msg="Please enter email." type="email" name="email" placeholder="Enter your email">
+								</div>
+								<div class="form-group">
+									<input class="form-control" required data-label="Phone" data-msg="Please phone number." type="text" name="phone" placeholder="Enter your phone number">
+								</div>
+								<div class="form-group">
+									<input class="form-control" data-label="Subject" required data-msg="Please enter subject." type="text" name="subject" placeholder="Enter subject">
+								</div>
+								<div class="form-group">
+									<textarea class="form-control" data-label="Message" required data-msg="Please enter your message." name="message" placeholder="Add your message" cols="30" rows="10"></textarea>
+								</div>
+							</div>
+							<button type="submit" class="btn solid btn-default block"><i class="fa fa-envelope-o"></i> SUBMIT</button>
+						</form><!-- / form -->
+					</div><!-- / form block -->
+				</div>
+			</div><!-- /#popup-content -->
+			
+
+			<!--=======================================
+			=            Social icon links            =
+			========================================-->
+			<div class="align-c mr-b-40">
+				<a href="http://goo.gl/2amaO1" target="_blank" class="sq80 fs30 rd inline-flex flex-cc btn-white"><i class="fa fa-facebook"></i></a>
+				<a href="http://goo.gl/2amaO1" target="_blank" class="sq80 fs30 rd inline-flex flex-cc btn-white"><i class="fa fa-twitter"></i></a>
+				<a href="http://goo.gl/2amaO1" target="_blank" class="sq80 fs30 rd inline-flex flex-cc btn-white"><i class="fa fa-google"></i></a>
+				<a href="http://goo.gl/2amaO1" target="_blank" class="sq80 fs30 rd inline-flex flex-cc btn-white"><i class="fa fa-youtube"></i></a>
+				<a href="http://goo.gl/2amaO1" target="_blank" class="sq80 fs30 rd inline-flex flex-cc btn-white"><i class="fa fa-tumblr"></i></a>
+			</div>
+
+			<p class="align-c"><a href="http://goo.gl/D6tuDk" target="_blank">ModernAgent.io</a> &copy; 2020</p>
+		</div>
+	</footer>
+	<!--
+	************************************************************
+	* Popup form block
+	************************************************************ -->
+	<!-- form : "mfp-hide" Add this class before using -->
+	<div id="popup-content" class="white-popup-block popup-content mfp-hide">
+		<div class="pop-header align-c sm-pd-30">
+			<p class="sq90 inline-flex flex-cc fs80 mr-0 txt-color1"><i class="pe-7s-mail"></i></p>
+			<h2 class="title fs40 mr-0 sm-fs20">DROP US A LINE</h2>
+		</div>
+		<div class="pop-body sm-pd-30">
+			<!-- form-block -->
+			<div class="form-block">
+				<form action="form-data/formdata.php" class="form-widget">
+					<div class="field-wrp">
+						<input type="hidden" name="to" value="r.genesis.art@gmail.com">
+						<div class="form-group">
+							<input class="form-control" data-label="Name" required data-msg="Please enter name." type="text" name="name" placeholder="Enter your name">
+						</div>
+						<div class="form-group">
+							<input class="form-control" data-label="Email" required data-msg="Please enter email." type="email" name="email" placeholder="Enter your email">
+						</div>
+						<div class="form-group">
+							<input class="form-control" required data-label="Phone" data-msg="Please phone number." type="text" name="phone" placeholder="Enter your phone number">
+						</div>
+						<div class="form-group">
+							<input class="form-control" data-label="Subject" required data-msg="Please enter subject." type="text" name="subject" placeholder="Enter subject">
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" data-label="Message" required data-msg="Please enter your message." name="message" placeholder="Add your message" cols="30" rows="10"></textarea>
+						</div>
+					</div>
+					<button type="submit" class="btn solid btn-default block"><i class="fa fa-envelope-o"></i> SUBMIT</button>
+				</form><!-- / form -->
+			</div><!-- / form block -->
+		</div>
+	</div><!-- /#popup-content -->
+	<!-- ************** END : Popup form block **************  -->
+	
+	<!-- ************** END : Footer section **************  -->
+
+
+</div>
+<!-- /#page --> 
+
+<!-- JavaScript --> 
+<script>
+/* Use fonts with class name in sequence => f-1, f-2, f-3 .... */
+var fgroup = [
+	'Open Sans:400,300,300italic,400italic,600,700,600italic,700italic,800,800italic',
+	'Montserrat:400,700'
+];
+</script>
+<script data-pace-options='{ "ajax": false }' src="lib/pace/pace.min.js"></script>
+<script src="minify/rgen_min.js"></script>
+<script async src="js/rgen.js"></script>
+
+</body>
+</html>

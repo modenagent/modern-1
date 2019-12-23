@@ -1,0 +1,254 @@
+
+<style type="text/css">
+.rgen-demo-wrp .handle {
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	top: 50%;
+	margin-top: -20px;
+	right: -40px;
+	background-color: #333;
+	font-size: 20px;
+	line-height: 40px;
+	text-align: center;
+	color: #fff;
+}
+.rgen-demo-wrp .wrp-outer {
+	position: relative;
+	height: 100%;
+}
+.rgen-demo-wrp ul:after,
+.rgen-demo-wrp .wrp-outer:after,
+.rgen-demo-wrp .wrp-inner:after{
+	content: '';
+	display: table;
+	clear: both;
+}
+.rgen-demo-wrp .wrp-inner {
+	position: relative;
+	height: 94%;
+}
+.rgen-demo-wrp .wrp-inner > div {
+	position: relative;
+	overflow: scroll;
+	height: 100%;
+	padding: 18px;
+	display: none;
+}
+.rgen-demo-wrp .wrp-inner > div:first-child {
+	display: block;
+}
+.rgen-demo-wrp {
+	position: fixed;
+	z-index: 99999;
+	left: 0px;
+	top: 0px;
+	height: 100%;
+	width: 300px;
+	box-shadow: 1px 0 30px 2px rgba(0,0,0,0.3);
+	background-color: #f2f2f2;
+}
+.rgen-demo-wrp ul {
+	list-style-type: none;
+	margin: 0 0 20px 0;
+	padding: 0px;
+}
+
+.rgen-demo-wrp ul li {
+	margin-bottom: 20px;
+}
+.rgen-demo-wrp ul li a {
+	display: block;
+	text-align: center;
+	color: #2D3345;
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,0.2);
+}
+.rgen-demo-wrp ul li a span {
+	display: block;
+	padding: 10px;
+	font-size: 12px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+.rgen-demo-wrp ul li a:hover {
+	background-color: #2D3345;
+	color: #fff;
+	opacity: 1;
+}
+.element-list a {
+	padding: 6px 10px;
+	background-color: #fff;
+}
+.rgen-demo-wrp .element-list li {
+	margin-bottom: 1px;
+}
+.rgen-demo-wrp .element-list li a {
+	text-align: left;
+	padding: 8px 15px;
+	font-size: 13px;
+}
+.rgen-demo-wrp .demo-tabs {
+	position: relative;
+	padding: 20px;
+	background-color: #000;
+}
+/* Select drop down
+------------------------*/
+.select-demos {
+	position: relative;
+	overflow: hidden;
+	vertical-align: middle;
+	box-shadow: inset 0 -2px 3px 0px rgba(0,0,0,0.05);
+	overflow: hidden;
+	padding: 0px;
+	border-radius: 4px;
+	background-color: #fff;
+}
+.select-demos:before {
+	content: '';
+	position: absolute;
+	right: 10px;
+	top: 13px;
+	border: 1px solid #a6a9ae;
+	border-width: 6px 5px 0 5px;
+	border-color:  #a6a9ae transparent #a6a9ae transparent;
+}
+.select-demos select {
+	position: relative;
+	margin: 0;
+	background: rgba(0, 0, 0, 0) !important;
+	border: 0;
+	line-height: 1.2;
+	padding: 7px 10px;
+	-webkit-appearance: none;
+	width: 110%;
+}
+.select-demos select:focus {
+	z-index: 3;
+	color: #000;
+	outline: none;
+	outline-offset: -2px;
+	border-radius: 3px;
+}
+.select-demos select option {
+	margin: 3px;
+	padding: 6px 7px;
+	text-shadow: none;
+	cursor: pointer;
+}
+</style>
+<div class="rgen-demo-wrp">
+	<div class="wrp-outer">
+		<div class="demo-tabs">
+			<span class="handle"><i class="fa fa-cog"></i></span>
+			<div class="select-demos">
+				<select>
+					<option value="demo-pn">Landing page demos</option>
+					<option value="extra-pn">Extra pages</option>
+					<option value="element-pn">Elements</option>
+				</select>
+			</div>
+		</div>
+		
+		<div class="wrp-inner">
+			<div id="demo-pn">
+				<ul>
+					<li><a href="index-01.html"><img class="b-lazy" data-src="demo-menu/images/demo-01.jpg"></a></li>
+					<li><a href="index-02.html"><img class="b-lazy" data-src="demo-menu/images/demo-02.jpg"></a></li>
+					<li><a href="index-03.html"><img class="b-lazy" data-src="demo-menu/images/demo-03.jpg"></a></li>
+					<li><a href="index-04.html"><img class="b-lazy" data-src="demo-menu/images/demo-04.jpg"></a></li>
+					<li><a href="index-05.html"><img class="b-lazy" data-src="demo-menu/images/demo-05.jpg"></a></li>
+					<li><a href="index-06.html"><img class="b-lazy" data-src="demo-menu/images/demo-06.jpg"></a></li>
+					<li><a href="index-07.html"><img class="b-lazy" data-src="demo-menu/images/demo-07.jpg"></a></li>
+					<li><a href="index-08.html"><img class="b-lazy" data-src="demo-menu/images/demo-08.jpg"></a></li>
+					<li><a href="index-09.html"><img class="b-lazy" data-src="demo-menu/images/demo-09.jpg"></a></li>
+					<li><a href="index-10.html"><img class="b-lazy" data-src="demo-menu/images/demo-10.jpg"></a></li>
+					<li><a href="index-11.html"><img class="b-lazy" data-src="demo-menu/images/demo-11.jpg"></a></li>
+					<li><a href="index-12.html"><img class="b-lazy" data-src="demo-menu/images/demo-12.jpg"></a></li>
+					<li><a href="index-13.html"><img class="b-lazy" data-src="demo-menu/images/demo-13.jpg"></a></li>
+					<li><a href="index-14.html"><img class="b-lazy" data-src="demo-menu/images/demo-14.jpg"></a></li>
+					<li><a href="index-15.html"><img class="b-lazy" data-src="demo-menu/images/demo-15.jpg"></a></li>
+					<li><a href="index-16.html"><img class="b-lazy" data-src="demo-menu/images/demo-16.jpg"></a></li>
+					<li><a href="index-17.html"><img class="b-lazy" data-src="demo-menu/images/demo-17.jpg"></a></li>
+					<li><a href="index-18.html"><img class="b-lazy" data-src="demo-menu/images/demo-18.jpg"></a></li>
+					<li><a href="index-19.html"><img class="b-lazy" data-src="demo-menu/images/demo-19.jpg"></a></li>
+					<li><a href="index-20.html"><img class="b-lazy" data-src="demo-menu/images/demo-20.jpg"></a></li>
+					<li><a href="index-21.html"><img class="b-lazy" data-src="demo-menu/images/demo-21.jpg"></a></li>
+					<li><a href="index-22.html"><img class="b-lazy" data-src="demo-menu/images/demo-22.jpg"></a></li>
+				</ul>
+			</div>
+			
+			<div id="extra-pn">
+				<ul>
+					<li><a href="page-aboutus.html"><img class="b-lazy" data-src="demo-menu/images/extra-01.jpg"></a></li>
+					<li><a href="page-contactus.html"><img class="b-lazy" data-src="demo-menu/images/extra-02.jpg"></a></li>
+					<li><a href="page-login-register.html"><img class="b-lazy" data-src="demo-menu/images/extra-03.jpg"></a></li>
+					<li><a href="page-thankyou.html"><img class="b-lazy" data-src="demo-menu/images/extra-04.jpg"></a></li>
+				</ul>
+			</div>
+			
+			<div id="element-pn">
+				<ul class="element-list">
+					<li><a href="elements-typography.html">Typography</a></li>
+					<li><a href="elements-headers.html">Page Headers</a></li>
+					<li><a href="elements-footers.html">Footers</a></li>
+					<li><a href="elements-buttons.html">Buttons</a></li>
+					<li><a href="elements-grids.html">Grids</a></li>
+					<li><a href="elements-intros.html">Intro Sections</a></li>
+					<li><a href="elements-image-infoboxes.html">Image Info Boxes</a></li>
+					<li><a href="elements-icon-infoboxes.html">Icon Info Boxes</a></li>
+					<li><a href="elements-hoverboxes.html">Hover Boxes</a></li>
+					<li><a href="elements-testimonials.html">Testimonials</a></li>
+					<li><a href="elements-portfolios.html">Portfolio</a></li>
+					<li><a href="elements-progressbars.html">Progress - Bars</a></li>
+					<li><a href="elements-forms.html">Forms - Elements</a></li>
+					<li><a href="elements-subscribe.html">Forms - Subscribe</a></li>
+					<li><a href="elements-sliders.html">Sliders</a></li>
+					<li><a href="elements-gallery.html">Gallery</a></li>
+					<li><a href="elements-parallax.html">Parallax</a></li>
+					<li><a href="elements-videobg.html">Video Background</a></li>
+					<li><a href="elements-accordions.html">Accordions</a></li>
+					<li><a href="elements-tabs.html">Tabs</a></li>
+					<li><a href="elements-filterable.html">Filterable</a></li>
+					<li><a href="elements-map.html">Maps</a></li>
+					<li><a href="elements-modals.html">Modals</a></li>
+					<li><a href="elements-twitter.html">Twitter Feeds</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		var demowrp = '.rgen-demo-wrp';
+		var w = $(demowrp).outerWidth();
+
+		$(demowrp).delay(500).animate({ left: -w }, 500, function() {});
+		
+
+		$(demowrp).find('.handle').on('mouseenter', function(){
+			$(demowrp).addClass('active');
+			$(this).closest(demowrp).stop().animate({'left' : '0px'});
+			var bLazy1 = new Blazy({
+				container: '.wrp-inner',
+				loadInvisible: true
+		    });
+		});
+
+		$(demowrp).on('mouseleave', function(){
+			$(this).stop().animate({'left' : -w}, function(){
+				$(this).removeClass('active');
+			});
+		});
+
+		$(".select-demos select").on('change', function(event) {
+			event.preventDefault();
+			/* Act on the event */
+			$(".rgen-demo-wrp .wrp-inner > div").hide();
+			$(".rgen-demo-wrp").find('#'+$(this).val()).show();
+
+		}).change();
+
+
+	});
+</script>
