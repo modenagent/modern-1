@@ -5320,6 +5320,14 @@ header .header_content p {
     font-size: 22px
 }
 
+header .header_content p.sub {
+    font-family: Roboto;
+    color: #fff;
+    font-size: 22px;
+    margin-top: 26px;
+	margin-bottom:20px;
+}
+
 header .header_content .button {
     margin-top: 30px
 }
