@@ -432,10 +432,7 @@
                 </div>
 				<div class="section-content-bottom section-content-bottom-alternate">
                 <div class="col-md-12">
-                    <div class="clients-wrapper bg-white " >
-                        <div class="section-title">
-                            <h1 class="happy">HAPPY CLIENTS</h1>
-                        </div>
+                    <div class="clients-wrapper">
                         <div class="testimonial-slick" id="testimonial-slick">
                             <div class="section-content">
                                 <p><small>The 9 point marketing it easy to explain to prospective sellers about what it's going to take to get their home sold.</small></p>
