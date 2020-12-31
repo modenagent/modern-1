@@ -3,14 +3,25 @@
         <div class="container">
             <div class="row">
                 <div class="upper-footer-wrapper">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="md_agent">
                             <h3 id="modern">MODERN AGENT</h3>
                             <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
                         </div>
                     </div>
-                    <div class="col-md-9">
+					 <div class="col-md-4">
+                        <div class="md_agent">
+                            <h3 id="modern">MODERN AGENT</h3>
+                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
+                        </div>
                     </div>
+					 <div class="col-md-4">
+                        <div class="md_agent">
+                            <h3 id="modern">MODERN AGENT</h3>
+                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>

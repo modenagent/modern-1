@@ -4442,7 +4442,7 @@ footer .footer-lower #copyright-text {
 
 .bottom-section .clients-wrapper {
     position: relative;
-    padding: 152px 0px
+    padding: 0px 0px 152px 0px ;
 }
 
 .bottom-section .clients-wrapper .section-title h1.happy {

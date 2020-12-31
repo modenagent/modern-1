@@ -433,52 +433,8 @@
 				<div class="section-content-bottom section-content-bottom-alternate">
                 <div class="col-md-12">
                     <div class="clients-wrapper">
-                        <div class="testimonial-slick" id="testimonial-slick">
-                            <div class="section-content">
-                                <p><small>The 9 point marketing it easy to explain to prospective sellers about what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 poplan really makes it easy to explain to prospe what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 point marketing plan e sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 point marketing plan really makes it easy to explain to prospective sellers about what it's going to take </small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 point marketing plan really ma about what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>prospective sellers about what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                        </div>
-                        <div class="logo-slick" id="logo-slick">
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/1.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/2.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/3.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/1.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/2.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/3.png" alt="">
-                            </div>
-                        </div>
+                       
+                        
                     </div>
                 </div>
 				</div>
@@ -520,6 +476,8 @@
     <script src="<?php echo base_url(); ?>assets/js/slick.min.js"></script>
    
     <script>
+	
+	/*
 
       $('#testimonial-slick').slick({
           slidesToShow: 1,
@@ -550,7 +508,7 @@
           centerMode: true,
           focusOnSelect: true,
           arrows: false
-      });
+      });  */
 
       var wow = new WOW(
         {
