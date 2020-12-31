@@ -91,8 +91,8 @@
                 <li><a class="m" href="<?php echo site_url(); ?>">Home</a></li>
                 <li><a class="m playscroll" href="<?php echo $reports_link; ?>">Reports</a></li>
                 <li><a class="m playscroll" href="<?php echo $tools_link; ?>">Tools</a></li>
+				<li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
 				<li><a class="m playscroll" href="<?php echo $widget_link; ?>">Widgets</a></li>
-                <li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
                 <li><a class="m playscroll" href="<?php echo $leads_link; ?>">Lead Gen</a></li>
                 <li><a class="m playscroll" href="<?php echo $pricing_link; ?>">Pricing</a></li>
                 <li><a class="m playscroll" href="<?php echo site_url('frontend/login'); ?>">Log In <span></span></a></li>
@@ -105,8 +105,8 @@
             <ul>
                 <li><a class="m playscroll" href="<?php echo $reports_link; ?>">Reports</a></li>
                 <li><a class="m playscroll" href="<?php echo $tools_link; ?>">Tools</a></li>
+				 <li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
 				<li><a class="m playscroll" href="<?php echo $widget_link; ?>">Widgets</a></li>
-                <li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
                 <li><a class="m playscroll" href="<?php echo $leads_link; ?>">Lead Gen</a></li>
                 <li><a class="m playscroll" href="<?php echo $pricing_link; ?>">Pricing</a></li>
                 <li><a class="m playscroll" href="<?php echo site_url('frontend/login'); ?>">Log In <span></span></a></li>

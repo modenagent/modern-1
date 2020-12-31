@@ -2,8 +2,8 @@
         <div class="navigation_wrapper"></div>
         </div>
         <div class="header_content">
-            <h1 id="home" class="wow fadeIn" data-wow-delay="0.5s">BUYERS & SELLERS</h1>
-			<h3 id="home" class="wow fadeIn" data-wow-delay="0.5s">PRESENTATIONS + MARKET UPDATES</h3>
+            <h1 id="home" class="wow fadeIn" data-wow-delay="0.5s">REAL ESTATE CMA'S</h1>
+			<h3 id="home" class="wow fadeIn" data-wow-delay="0.5s">MARKET UPDATES + LEAD GENERATION</h3>
             <p class="wow fadeIn" data-wow-delay="0.7s">Personalized buyers, sellers, and market update reports aimed at helping you make the perfect impression as a real estate agent.</p>
             <a class="button button-padding button-clear-white wow fadeIn" data-wow-delay="0.9s" href="<?php echo site_url('frontend/register'); ?>">Create Account</a>
             <a class="button button-padding button-clear-white wow fadeIn" style="margin-left:10px;" data-wow-delay="0.9s" href="<?php echo site_url('frontend/quick_pdf'); ?>">Generate CMA</a>
@@ -244,7 +244,62 @@
         </div>
     </div>
 	<div class="section section-widgets">
-        <div class="container">
+       
+		
+		 <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <div class="col-md-12">
+                        <h1 id="api">API</h1>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="col-md-12">
+                        <p>We have created various themes for you to choose from. Whether you are part of a larger franchise or work independently we have the right color scheme that fits you.</p>
+                    </div>
+                   </div>
+				<div class="section-content-bottom section-content-bottom-alternate">
+                    <div class="col-md-6">
+                        <div class="report"></div>
+                        <h3>Create Report Instantly</h3>
+                        <p>Our automated system helps you create buyers report & sellers report instantly.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="email"></div>
+                        <h3>Print Or Email</h3>
+                        <p>Every report that you create is generated in a print-ready-pdf. You can also email it directly from our system.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="data"></div>
+                        <h3>Intergrated Data</h3>
+                        <p>Each of our reports utilizes actual sale data, google maps, & neighborhood statistics.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pricing"></div>
+                        <h3>Easy Pricing. No Suprises</h3>
+                        <p>There are 2 basic plans. Pay as you go or Monthly Subscription.</p>
+                    </div>
+					
+					<div class="col-md-12">
+					<a class="button button-padding-widget button-clear-gold" href="#">VIEW DEMO</a>
+					</div>
+					
+                </div>
+            </div>
+        </div>
+		
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                   
+            </div>
+        </div>
+    </div>
+	</div>
+	<div class="section section-api">
+	
+	
+		 <div class="container">
             <div class="row">
                 <div class="section-title">
                     <div class="col-md-12">
@@ -286,56 +341,11 @@
 				
             </div>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                   
-            </div>
-        </div>
-    </div>
-	</div>
-	<div class="section section-api">
-        <div class="container">
-            <div class="row">
-                <div class="section-title">
-                    <div class="col-md-12">
-                        <h1 id="api">API</h1>
-                    </div>
-                </div>
-                <div class="section-content">
-                    <div class="col-md-12">
-                        <p>We have created various themes for you to choose from. Whether you are part of a larger franchise or work independently we have the right color scheme that fits you.</p>
-                    </div>
-                   </div>
-				<div class="section-content-bottom section-content-bottom-alternate">
-                    <div class="col-md-6">
-                        <div class="report"></div>
-                        <h3>Create Report Instantly</h3>
-                        <p>Our automated system helps you create buyers report & sellers report instantly.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="email"></div>
-                        <h3>Print Or Email</h3>
-                        <p>Every report that you create is generated in a print-ready-pdf. You can also email it directly from our system.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="data"></div>
-                        <h3>Intergrated Data</h3>
-                        <p>Each of our reports utilizes actual sale data, google maps, & neighborhood statistics.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="pricing"></div>
-                        <h3>Easy Pricing. No Suprises</h3>
-                        <p>There are 2 basic plans. Pay as you go or Monthly Subscription.</p>
-                    </div>
-					
-					<div class="col-md-12">
-					<a class="button button-padding-widget button-clear-gold" href="#">VIEW DEMO</a>
-					</div>
-					
-                </div>
-            </div>
-        </div>
+	
+	
+	
+	
+       
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
