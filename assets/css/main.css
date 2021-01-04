@@ -3616,13 +3616,12 @@ footer .footer-lower #copyright-text {
 }
 
 .section.section-report {
-    /**background-image: url(../images-2/report-bg.jpg);**/
+    background-image: url(../images-2/report-bg.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 	padding-top:140px;
 	padding-bottom: 140px;
-	background-color:purple;
 	
 }
 
