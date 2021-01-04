@@ -281,7 +281,7 @@
                     </div>
 					
 					<div class="col-md-12">
-					<a class="button button-padding-widget button-clear-gold" href="#">VIEW DEMO</a>
+					<a class="button button-padding-widget button-clear-white" href="#">VIEW DEMO</a>
 					</div>
 					
                 </div>
@@ -333,7 +333,7 @@
                         <p>Incorporate our lead generation CMA into your site to begin generating leads for your agents.</p>
                     </div>
 					<div class="col-md-12">
-					<a class="button button-padding-widget button-clear-white" href="#">VIEW DEMO</a>
+					<a class="button button-padding-widget button-clear-gold" href="#">VIEW DEMO</a>
 					</div>
 					
 					
@@ -435,19 +435,22 @@
     <div class="section section-feedback bottom-section">
         <div class="container">
             <div class="row">
-			<div class="section-title">
+			
+				 <div class="section-title">
                     <div class="col-md-12">
-                        <h1 id="pricing white-bg">WHAT OUR CLIENTS SAY</h1>
+                        <h1 id="leads" >Why Users Choose Us</h1>
                     </div>
                 </div>
-				<div class="section-content-bottom section-content-bottom-alternate">
-                <div class="col-md-12">
-                    <div class="clients-wrapper">
-                       
-                        
+                <div class="section-content">
+                    <div class="col-md-12">
+                        <p class="report-para">Below are a few of the main reasons why our users love us. All of these features are built with the agent in mind. To make their lead generation efforts more fruitful.</p>
                     </div>
                 </div>
-				</div>
+                <div class="section-content-bottom">
+                    <img src="assets/images-2/whyus.png">
+					
+                </div>
+				
                 <?php /* ?>
                 <div class="col-md-5">
                     <div class="tweets-wrapper bg-white " data-wow-delay="0.8s">

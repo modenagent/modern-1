@@ -3647,9 +3647,13 @@ footer .footer-lower #copyright-text {
 }
 
 .section.section-feedback {
-    background-color: darkgoldenrod;
-	padding-top: 140px;
-	padding-bottom:140px;
+
+	background-image: url(../images-2/header3.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+	padding-top:140px;
+	padding-bottom: 140px;
 }
 .section.section-why {
     color:#fff;
@@ -3853,6 +3857,18 @@ footer .footer-lower #copyright-text {
 }
 
 .section.section-widgets .section-content p {
+    color: #fff;
+    font-family: Roboto;
+    text-align: center;
+    width: 90%;
+    margin: auto;
+    display: table;
+    font-size: 19px;
+    line-height: 25px;
+    padding: 20px 0px
+}
+
+.section.section-feedback .section-content p {
     color: #fff;
     font-family: Roboto;
     text-align: center;
