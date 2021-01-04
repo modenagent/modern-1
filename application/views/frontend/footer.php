@@ -6,19 +6,24 @@
                     <div class="col-md-4">
                         <div class="md_agent">
                             <h3 id="modern">MODERN AGENT</h3>
-                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
+                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small><br><small>Beautiful design with accurate data we make our users look like rockstars.</small></p>
                         </div>
                     </div>
 					 <div class="col-md-4">
-                        <div class="md_agent">
-                            <h3 id="modern">MODERN AGENT</h3>
-                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
+                        <div class="md_agent-2">
+                            <h3 id="modern">INDUSTRY FRIENDS</h3>
+                            <p id="mod_para"><ul>
+												<li>Link-1</li>
+												<li>Link-1</li>
+												<li>Link-1</li>
+												<li>Link-1</li>
+												</ul></p>
                         </div>
                     </div>
 					 <div class="col-md-4">
-                        <div class="md_agent">
-                            <h3 id="modern">MODERN AGENT</h3>
-                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
+                        <div class="md_agent-3">
+                            <h3 id="modern">CONTACT US</h3>
+                            <p id="mod_para"><small>info@modernagent.io</small></p>
                         </div>
                     </div>
                     

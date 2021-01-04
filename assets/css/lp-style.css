@@ -2534,6 +2534,25 @@ form#payment-form {
     padding-bottom: 10px;
     font-family: MontserratBold;
     font-weight: bold;
+	font-size:19px;
+}
+
+.upper-footer .upper-footer-wrapper .md_agent-2 h3 {
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    font-family: MontserratBold;
+    font-weight: bold;
+	font-size:19px;
+}
+
+.upper-footer .upper-footer-wrapper .md_agent-3 h3 {
+    margin: 0px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+    font-family: MontserratBold;
+    font-weight: bold;
+	font-size:19px;
 }
 
 
@@ -2656,7 +2675,7 @@ button {
 
 .lower-footer {
     padding: 10px 0px;
-    padding-top: 35px;
+    padding-top: 0px;
     background-color: #F5F5F5;
 }
 
@@ -2730,6 +2749,15 @@ button {
 .lower-footer .social-links a:nth-child(1) li {
     margin-left: 0px;
 }
+
+.md_agent-2 {
+	text-align:center;
+}
+
+.md_agent-3 {
+	text-align:right;
+}
+
 
 .section {
    /** background-color: #fff; **/
