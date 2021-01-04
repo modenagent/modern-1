@@ -8,7 +8,7 @@
             <a class="button button-padding button-clear-white wow fadeIn" data-wow-delay="0.9s" href="<?php echo site_url('frontend/register'); ?>">Create Account</a>
             <a class="button button-padding button-clear-white wow fadeIn" style="margin-left:10px;" data-wow-delay="0.9s" href="<?php echo site_url('frontend/quick_pdf'); ?>">Generate CMA</a>
 			<p class="wow fadeIn sub" data-wow-delay="0.7s">We are excited to announce that you can now find us within the amazing & award winning Maxa platform.</p>
-			<a href="https://www.maxadesigns.com/" target="_blank"><img src="https://assets-global.website-files.com/5a3979c72d282c0001005fe6/5a3ada7a80b1bd0001a8e2ac_Final-Maxa-White.png" style="width: 234px;"></a>
+			<a data-wow-delay="0.7s" href="https://www.maxadesigns.com/" target="_blank"><img src="https://assets-global.website-files.com/5a3979c72d282c0001005fe6/5a3ada7a80b1bd0001a8e2ac_Final-Maxa-White.png" style="width: 234px;"></a>
         </div>
         <div style='background-image: url("<?php echo base_url(); ?>assets/images-2/home/header_report3.png");' class="mobile-mockup wow fadeIn" data-wow-delay="1.5s">
         </div>
@@ -232,6 +232,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="inner-content">
+							 <img src="<?php echo base_url(); ?>assets/images-2/mktrpt.png" class="img-size">
                                 <h3>Inform In Style</h3>
                                 <p>This report serves 2 purposes. To help you inform clients and also generate leads. Each of our market updates are generated with the 6 digit code that your clients need to generate their CMA on your behalf.</p>
                                 </div>
