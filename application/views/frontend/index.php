@@ -2,11 +2,13 @@
         <div class="navigation_wrapper"></div>
         </div>
         <div class="header_content">
-            <h1 id="home" class="wow fadeIn" data-wow-delay="0.5s">BUYERS & SELLERS</h1>
-			<h3 id="home" class="wow fadeIn" data-wow-delay="0.5s">PRESENTATIONS + MARKET UPDATES</h3>
+            <h1 id="home" class="wow fadeIn" data-wow-delay="0.5s">REAL ESTATE CMA'S</h1>
+			<h3 id="home" class="wow fadeIn" data-wow-delay="0.5s">MARKET UPDATES + LEAD GENERATION</h3>
             <p class="wow fadeIn" data-wow-delay="0.7s">Personalized buyers, sellers, and market update reports aimed at helping you make the perfect impression as a real estate agent.</p>
             <a class="button button-padding button-clear-white wow fadeIn" data-wow-delay="0.9s" href="<?php echo site_url('frontend/register'); ?>">Create Account</a>
             <a class="button button-padding button-clear-white wow fadeIn" style="margin-left:10px;" data-wow-delay="0.9s" href="<?php echo site_url('frontend/quick_pdf'); ?>">Generate CMA</a>
+			<p class="wow fadeIn sub" data-wow-delay="0.7s">We are excited to announce that you can now find us within the amazing & award winning Maxa platform.</p>
+			<a data-wow-delay="0.9s" href="https://www.maxadesigns.com/" target="_blank"><img data-wow-delay="0.9s" src="https://assets-global.website-files.com/5a3979c72d282c0001005fe6/5a3ada7a80b1bd0001a8e2ac_Final-Maxa-White.png" style="width: 234px;"></a>
         </div>
         <div style='background-image: url("<?php echo base_url(); ?>assets/images-2/home/header_report3.png");' class="mobile-mockup wow fadeIn" data-wow-delay="1.5s">
         </div>
@@ -230,6 +232,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="inner-content">
+							 <img style="padding-bottom:20px;" src="<?php echo base_url(); ?>assets/images-2/mktrpt.png" class="img-size">
                                 <h3>Inform In Style</h3>
                                 <p>This report serves 2 purposes. To help you inform clients and also generate leads. Each of our market updates are generated with the 6 digit code that your clients need to generate their CMA on your behalf.</p>
                                 </div>
@@ -242,58 +245,9 @@
         </div>
     </div>
 	<div class="section section-widgets">
-        <div class="container">
-            <div class="row">
-                <div class="section-title">
-                    <div class="col-md-12">
-                        <h1 id="widgets">WIDGETS</h1>
-                    </div>
-                </div>
-				<div class="section-content">
-                    <div class="col-md-12">
-                        <p>We have created various themes for you to choose from. Whether you are part of a larger franchise or work independently we have the right color scheme that fits you.</p>
-                    </div>
-                   </div>
-                <div class="section-content-bottom section-content-bottom-alternate">
-                    <div class="col-md-6">
-                        <div class="report"></div>
-                        <h3>Buyers Report</h3>
-                        <p>Let your agents create a buyers report directly on your site.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="email"></div>
-                        <h3>Sellers Report</h3>
-                        <p>Let your agents create a sellers report directly on your site.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="data"></div>
-                        <h3>Market Update</h3>
-                        <p>Allow your agents to create monthly market updates for their farm areas.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="pricing"></div>
-                        <h3>Lead Gen CMA</h3>
-                        <p>Incorporate our lead generation CMA into your site to begin generating leads for your agents.</p>
-                    </div>
-					<div class="col-md-12">
-					<a class="button button-padding-widget button-clear-white" href="#">VIEW DEMO</a>
-					</div>
-					
-					
-                </div>
-				
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                   
-            </div>
-        </div>
-    </div>
-	</div>
-	<div class="section section-api">
-        <div class="container">
+       
+		
+		 <div class="container">
             <div class="row">
                 <div class="section-title">
                     <div class="col-md-12">
@@ -328,12 +282,71 @@
                     </div>
 					
 					<div class="col-md-12">
-					<a class="button button-padding-widget button-clear-gold" href="#">VIEW DEMO</a>
+					<a class="button button-padding-widget button-clear-white" href="#">VIEW DEMO</a>
 					</div>
 					
                 </div>
             </div>
         </div>
+		
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                   
+            </div>
+        </div>
+    </div>
+	</div>
+	<div class="section section-api">
+	
+	
+		 <div class="container">
+            <div class="row">
+                <div class="section-title">
+                    <div class="col-md-12">
+                        <h1 id="widgets">WIDGETS</h1>
+                    </div>
+                </div>
+				<div class="section-content">
+                    <div class="col-md-12">
+                        <p>We have created various themes for you to choose from. Whether you are part of a larger franchise or work independently we have the right color scheme that fits you.</p>
+                    </div>
+                   </div>
+                <div class="section-content-bottom section-content-bottom-alternate">
+                    <div class="col-md-6">
+                        <div class="report"></div>
+                        <h3>Buyers Report</h3>
+                        <p>Let your agents create a buyers report directly on your site.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="email"></div>
+                        <h3>Sellers Report</h3>
+                        <p>Let your agents create a sellers report directly on your site.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="data"></div>
+                        <h3>Market Update</h3>
+                        <p>Allow your agents to create monthly market updates for their farm areas.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="pricing"></div>
+                        <h3>Lead Gen CMA</h3>
+                        <p>Incorporate our lead generation CMA into your site to begin generating leads for your agents.</p>
+                    </div>
+					<div class="col-md-12">
+					<a class="button button-padding-widget button-clear-gold" href="#">VIEW DEMO</a>
+					</div>
+					
+					
+                </div>
+				
+            </div>
+        </div>
+	
+	
+	
+	
+       
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -423,66 +436,22 @@
     <div class="section section-feedback bottom-section">
         <div class="container">
             <div class="row">
-			<div class="section-title">
+			
+				 <div class="section-title">
                     <div class="col-md-12">
-                        <h1 id="pricing white-bg">WHAT OUR CLIENTS SAY</h1>
+                        <h1 id="leads" >Why Users Choose Us</h1>
                     </div>
                 </div>
-				<div class="section-content-bottom section-content-bottom-alternate">
-                <div class="col-md-12">
-                    <div class="clients-wrapper bg-white " >
-                        <div class="section-title">
-                            <h1 class="happy">HAPPY CLIENTS</h1>
-                        </div>
-                        <div class="testimonial-slick" id="testimonial-slick">
-                            <div class="section-content">
-                                <p><small>The 9 point marketing it easy to explain to prospective sellers about what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 poplan really makes it easy to explain to prospe what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 point marketing plan e sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 point marketing plan really makes it easy to explain to prospective sellers about what it's going to take </small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>The 9 point marketing plan really ma about what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                            <div class="section-content">
-                                <p><small>prospective sellers about what it's going to take to get their home sold.</small></p>
-                                <span class="text-center"><small>Brena Pena-Relator</small></span>
-                            </div>
-                        </div>
-                        <div class="logo-slick" id="logo-slick">
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/1.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/2.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/3.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/1.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/2.png" alt="">
-                            </div>
-                            <div class="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/clients/3.png" alt="">
-                            </div>
-                        </div>
+                <div class="section-content">
+                    <div class="col-md-12">
+                        <p class="report-para">Below are a few of the main reasons why our users love us. All of these features are built with the agent in mind. To make their lead generation efforts more fruitful.</p>
                     </div>
                 </div>
-				</div>
+                <div class="section-content-bottom">
+                    <img src="assets/images-2/whyus.png">
+					
+                </div>
+				
                 <?php /* ?>
                 <div class="col-md-5">
                     <div class="tweets-wrapper bg-white " data-wow-delay="0.8s">
@@ -521,6 +490,8 @@
     <script src="<?php echo base_url(); ?>assets/js/slick.min.js"></script>
    
     <script>
+	
+	/*
 
       $('#testimonial-slick').slick({
           slidesToShow: 1,
@@ -551,7 +522,7 @@
           centerMode: true,
           focusOnSelect: true,
           arrows: false
-      });
+      });  */
 
       var wow = new WOW(
         {

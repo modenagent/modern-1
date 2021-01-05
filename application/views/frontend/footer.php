@@ -3,14 +3,30 @@
         <div class="container">
             <div class="row">
                 <div class="upper-footer-wrapper">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="md_agent">
                             <h3 id="modern">MODERN AGENT</h3>
-                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
+                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression. Beautiful design with accurate data we make our users look like rockstars.</small></p>
                         </div>
                     </div>
-                    <div class="col-md-9">
+					 <div class="col-md-4">
+                        <div class="md_agent-2">
+                            <h3 id="modern">INDUSTRY FRIENDS</h3>
+                            <p id="mod_para"><ul class="ctft">
+												<li>Flare Media</li>
+												<li>TextMyFarm.com</li>
+												<li>DeedPro</li>
+												<li>Maxa Designs</li>
+												</ul></p>
+                        </div>
                     </div>
+					 <div class="col-md-4">
+                        <div class="md_agent-3">
+                            <h3 id="modern">CONTACT US</h3>
+                            <p id="mod_para"><small>info@modernagent.io</small></p>
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </div>
