@@ -55,9 +55,3 @@
             </div>
         </div>
 </div>
-<script type="text/javascript">
-    $(document).ready(function(){
-        var img = "<?php echo base_url(); ?>"+ '/assets/images-2/home/header3.jpg';
-        $('body').css('background', 'url('+img+')');
-    });
-</script>
