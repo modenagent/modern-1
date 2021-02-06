@@ -8,7 +8,7 @@ class Role_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        error_reporting(E_ALL ^ E_NOTICE);
+        // error_reporting(E_ALL ^ E_NOTICE);
     }
     /**
      * Get array of access paths for a admin role id

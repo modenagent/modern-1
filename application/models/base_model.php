@@ -6,7 +6,7 @@ class Base_model extends CI_Model
     public function __construct()
     {
             parent::__construct();
-            error_reporting(E_ALL ^ E_NOTICE);
+            // error_reporting(E_ALL ^ E_NOTICE);
     }
     /* check data existence in tables */
     public function check_existent($table,$where)

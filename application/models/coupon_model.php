@@ -5,7 +5,7 @@ class Coupon_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        error_reporting(E_ALL ^ E_NOTICE);
+        // error_reporting(E_ALL ^ E_NOTICE);
     }
 
     public function get_coupon_count($postData)
