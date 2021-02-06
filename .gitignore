@@ -26,3 +26,5 @@ application/logs/
 
 development/
 beta/
+
+application/config/database.php

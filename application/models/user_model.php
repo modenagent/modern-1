@@ -5,7 +5,7 @@ class User_model extends Base_model
     public function __construct()
     {
             parent::__construct();
-            error_reporting(E_ALL ^ E_NOTICE);
+            // error_reporting(E_ALL ^ E_NOTICE);
     }   
     
     public function isExistingUser($email) {

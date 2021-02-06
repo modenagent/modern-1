@@ -5,7 +5,7 @@ class Admin_model extends CI_Model
     public function __construct()
     {
         parent::__construct();
-        error_reporting(E_ALL ^ E_NOTICE);
+        // error_reporting(E_ALL ^ E_NOTICE);
     }
     /* get admin*/
     public function get_admin_login_data($table,$login,$password)
