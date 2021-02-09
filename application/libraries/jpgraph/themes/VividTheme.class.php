@@ -1,35 +1,29 @@
 <?php
 
 /**
-* Ocean Theme class
+* Vivid Theme class
 */
-class OceanTheme extends Theme 
+class VividTheme extends Theme 
 {
-    protected $font_color       = '#0066FF';
-    private $background_color = '#DDEEFF';
-    private $axis_color       = '#0000CC';
-    private $grid_color       = '#3333CC';
+    private $font_color       = '#0044CC';
+    private $background_color = '#DDFFFF';
+    private $axis_color       = '#0066CC';
+    private $grid_color       = '#3366CC';
 
     function GetColorList() {
         return array(
-            '#0066FF',
-            '#CCCCFF',
-            '#0000FF',
-            '#3366FF',
-            '#33CCFF',
-            '#660088',
-            '#3300FF',
-            '#0099FF',
-            '#6633FF',
-            '#0055EE',
-            '#2277EE',
-            '#3300FF',
-            '#AA00EE',
-            '#778899',
-            '#114499',
-            '#7744EE',
-            '#002288',
-            '#6666FF',
+            '#FFFB11',
+            '#005EBC',
+            '#9AEB67',
+            '#FF4A26',
+            '#FDFF98',
+            '#6B7EFF',
+            '#BCE02E',
+            '#E0642E',
+            '#E0D62E',
+            '#2E97E0',
+            '#02927F',
+            '#FF005A',
         );
     }
 
@@ -90,12 +84,12 @@ class OceanTheme extends Theme
 
         // legend
         $graph->legend->SetFillColor('white');
-        /*
+
         $graph->legend->SetFrameWeight(0);
-        $graph->legend->Pos(0.5, 0.85, 'center', 'top');
+        $graph->legend->Pos(0.5, 0.80, 'center', 'top');
         $graph->legend->SetLayout(LEGEND_HOR);
-        $graph->legend->SetColumns(3);
-        */
+        $graph->legend->SetColumns(4);
+
         $graph->legend->SetShadow(false);
         $graph->legend->SetMarkAbsSize(5);
 
@@ -111,8 +105,12 @@ class OceanTheme extends Theme
     function PreStrokeApply($graph) {
         if ($graph->legend->HasItems()) {
             $img = $graph->img;
-            $height = $img->height;
-            $graph->SetMargin($img->left_margin, $img->right_margin, $img->top_margin, $height * 0.25);
+            $graph->SetMargin(
+                $img->raw_left_margin, 
+                $img->raw_right_margin, 
+                $img->raw_top_margin, 
+                is_numeric($img->raw_bottom_margin) ? $img->raw_bottom_margin : $img->height * 0.25
+            );
         }
     }
 
@@ -150,14 +148,15 @@ class OceanTheme extends Theme
             case 'LinePlot':
             {
                 $plot->Clear();
-
-                $plot->SetColor($this->GetNextColor());
+                $plot->SetColor($this->GetNextColor().'@0.4');
                 $plot->SetWeight(2);
+//                $plot->SetBarCenter();
                 break;
             }
 
             case 'PiePlot':
             {
+                $plot->SetCenter(0.5, 0.45);
                 $plot->ShowBorder(false);
                 $plot->SetSliceColors($this->GetThemeColors());
                 break;

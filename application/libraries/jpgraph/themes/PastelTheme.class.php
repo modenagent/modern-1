@@ -1,33 +1,29 @@
 <?php
 
 /**
-* Green Theme class
+* Pastel Theme class
 */
-class GreenTheme extends Theme 
+class PastelTheme extends Theme 
 {
-    private $font_color       = '#009900';
-    private $background_color = '#EEFFDD';
-    private $axis_color       = '#00CC00';
-    private $grid_color       = '#33CC33';
+    private $font_color       = '#0044CC';
+    private $background_color = '#DDFFFF';
+    private $axis_color       = '#0066CC';
+    private $grid_color       = '#3366CC';
 
     function GetColorList() {
         return array(
-            '#66CC00',
-            '#009900',
-            '#AAFF77',
-            '#559922',
-            '#00CC33',
-            '#99FF00',
-            '#009966',
-            '#00FF99',
-            '#99BB66',
-            '#33FF00',
-            '#DDFFBB',
-            '#669933',
-            '#BBDDCC',
-            '#77CCBB',
-            '#668833',
-            '#BBEE66',
+            '#FFAACC',
+            '#AAEECC',
+            '#AACCFF',
+            '#CCAAFF',
+            '#EEDDFF',
+            '#FFCCAA',
+            '#CCBBDD',
+            '#CCFFAA',
+            '#C7D7C2',
+            '#FFEEDD',
+            '#FFCCEE',
+            '#BFECFA',
         );
     }
 
@@ -88,12 +84,12 @@ class GreenTheme extends Theme
 
         // legend
         $graph->legend->SetFillColor('white');
-        /*
+
         $graph->legend->SetFrameWeight(0);
-        $graph->legend->Pos(0.5, 0.85, 'center', 'top');
+        $graph->legend->Pos(0.5, 0.80, 'center', 'top');
         $graph->legend->SetLayout(LEGEND_HOR);
-        $graph->legend->SetColumns(3);
-        */
+        $graph->legend->SetColumns(4);
+
         $graph->legend->SetShadow(false);
         $graph->legend->SetMarkAbsSize(5);
 
@@ -109,8 +105,12 @@ class GreenTheme extends Theme
     function PreStrokeApply($graph) {
         if ($graph->legend->HasItems()) {
             $img = $graph->img;
-            $height = $img->height;
-            $graph->SetMargin($img->left_margin, $img->right_margin, $img->top_margin, $height * 0.25);
+            $graph->SetMargin(
+                $img->raw_left_margin, 
+                $img->raw_right_margin, 
+                $img->raw_top_margin, 
+                is_numeric($img->raw_bottom_margin) ? $img->raw_bottom_margin : $img->height * 0.25
+            );
         }
     }
 
@@ -148,14 +148,15 @@ class GreenTheme extends Theme
             case 'LinePlot':
             {
                 $plot->Clear();
-
                 $plot->SetColor($this->GetNextColor().'@0.4');
                 $plot->SetWeight(2);
+//                $plot->SetBarCenter();
                 break;
             }
 
             case 'PiePlot':
             {
+                $plot->SetCenter(0.5, 0.45);
                 $plot->ShowBorder(false);
                 $plot->SetSliceColors($this->GetThemeColors());
                 break;

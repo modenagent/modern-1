@@ -1,29 +1,51 @@
 <?php
 
 /**
-* Vivid Theme class
+* Aqua Theme class
 */
-class VividTheme extends Theme 
+class AquaTheme extends Theme 
 {
-    private $font_color       = '#0044CC';
-    private $background_color = '#DDFFFF';
-    private $axis_color       = '#0066CC';
-    private $grid_color       = '#3366CC';
+    protected $font_color       = '#0044CC';
+    protected $background_color = '#DDFFFF';
+    protected $axis_color       = '#0066CC';
+    protected $grid_color       = '#3366CC';
 
     function GetColorList() {
         return array(
-            '#FFFB11',
-            '#005EBC',
-            '#9AEB67',
-            '#FF4A26',
-            '#FDFF98',
-            '#6B7EFF',
-            '#BCE02E',
-            '#E0642E',
-            '#E0D62E',
-            '#2E97E0',
-            '#02927F',
-            '#FF005A',
+            '#183152',
+            '#C4D7ED',
+            '#375D81',
+            '#ABC8E2',
+            '#E1E6FA',
+            '#9BBAB2',
+            '#3B4259',
+            '#0063BC',
+            '#1D5A73',
+            '#ABABFF',
+            '#27ADC5',
+            '#EDFFCC',
+
+/*
+
+            '#66FFFF',
+            '#00AABB',
+            '#00FFCC',
+            '#33CCFF',
+            '#008866',
+            '#99FFFF',
+            '#0099FF',
+            '#99FFCC',
+            '#3399FF',
+            '#2277FF',
+            '#445588',
+            '#003388',
+            '#338877',
+            '#55DDFF',
+            '#00FF99',
+            '#BBBBBB',
+            '#77AAFF',
+            '#00FFCC',
+*/
         );
     }
 
@@ -105,8 +127,12 @@ class VividTheme extends Theme
     function PreStrokeApply($graph) {
         if ($graph->legend->HasItems()) {
             $img = $graph->img;
-            $height = $img->height;
-            $graph->SetMargin($img->left_margin, $img->right_margin, $img->top_margin, $height * 0.25);
+            $graph->SetMargin(
+                $img->raw_left_margin, 
+                $img->raw_right_margin, 
+                $img->raw_top_margin, 
+                is_numeric($img->raw_bottom_margin) ? $img->raw_bottom_margin : $img->height * 0.25
+            );
         }
     }
 
@@ -137,14 +163,14 @@ class VividTheme extends Theme
                 $color = $this->GetNextColor();
                 $plot->SetColor($color);
                 $plot->SetFillColor($color);
-                $plot->SetShadow('red', 3, 4, false);
+                //$plot->SetShadow();
                 break;
             }
 
             case 'LinePlot':
             {
                 $plot->Clear();
-                $plot->SetColor($this->GetNextColor().'@0.4');
+                $plot->SetColor($this->GetNextColor());
                 $plot->SetWeight(2);
 //                $plot->SetBarCenter();
                 break;
