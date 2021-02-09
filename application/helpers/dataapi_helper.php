@@ -2,12 +2,12 @@
 
 
 require_once('library/SetaPDF/Autoload.php'); // library for filling in PDF text fields
-require_once('jpgraph/jpgraph.php'); // library for generating visuals
+require_once(APPPATH.'/libraries/jpgraph/jpgraph.php'); // library for generating visuals
 require_once('fpdf.php'); 
 require_once('fpdi.php'); 
-require_once('jpgraph/jpgraph_bar.php'); // library for creating charts
-require_once('jpgraph/jpgraph_line.php');
-require_once('jpgraph/jpgraph_pie.php');
+require_once(APPPATH.'/libraries/jpgraph/jpgraph_bar.php'); // library for creating charts
+require_once(APPPATH.'/libraries/jpgraph/jpgraph_line.php');
+require_once(APPPATH.'/libraries/jpgraph/jpgraph_pie.php');
 
 ini_set('memory_limit', '450M');
 
