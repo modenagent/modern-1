@@ -355,7 +355,7 @@ use Knp\Snappy\Pdf;
             //$reportItems['comparableTempSold'] = array();
             $date = new DateTime();
             $currentdate = $date->format('m/d/Y');
-            $months_diff  = monthsBetween(formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]),$currentdate); 
+            // $months_diff  = monthsBetween(formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]),$currentdate); 
             $minBuildArea = (floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea)*80/100);//-20%
             $maxBuildArea = (floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea)*120/100);//+20%
             $maxBedrooms = (int)$report187->PropertyProfile->PropertyCharacteristics->Bedrooms+1;//+1
@@ -508,7 +508,7 @@ use Knp\Snappy\Pdf;
                 //Finding if there are static pdf pages available for this theme. If found then set $turboMode true.
                 $tailFile = "temp/static/{$presentationType}/".$colorCode.'_tail.pdf';
                 $contentsFile = "temp/static/{$presentationType}/".$colorCode.'_contents.pdf';
-                if(filesize($tailFile)>1 && filesize($contentsFile)>1){
+                if(file_exists($tailFile) && filesize($tailFile)>1 && file_exists($contentsFile) && filesize($contentsFile)>1){
                     $turboMode = true;
                 }
             }
