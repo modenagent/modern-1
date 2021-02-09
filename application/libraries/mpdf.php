@@ -72,7 +72,7 @@ if (!defined('_MPDF_TTFONTPATH')) { define('_MPDF_TTFONTPATH',_MPDF_PATH.'ttfont
 if (!defined('_MPDF_TTFONTDATAPATH')) { define('_MPDF_TTFONTDATAPATH',_MPDF_PATH.'ttfontdata/'); }
 
 $errorlevel=error_reporting();
-$errorlevel=error_reporting($errorlevel & ~E_NOTICE);
+$errorlevel=error_reporting($errorlevel & ~E_NOTICE & ~E_WARNING);
 
 //error_reporting(E_ALL);
 
