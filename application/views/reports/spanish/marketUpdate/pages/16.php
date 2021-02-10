@@ -115,7 +115,7 @@ body {
                     </div>
                 </div>
                 <div class="right-footer pull-right page-16-ftrr-logo col-xs-4">
-                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:150px;" /><?php endif; ?>
+                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:" /><?php endif; ?>
                 </div>
             </div>
         </div>
