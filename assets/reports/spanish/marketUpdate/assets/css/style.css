@@ -25,7 +25,21 @@
     font-size: 26px;
     margin: 0;
     padding: 0;
+    padding-bottom: 22px !important;
+    position: relative;
 }
+
+.heading-zipcode:after{
+	content: "";
+	display: block;
+	position: absolute;
+	bottom: 0px;
+	left: 543px;
+	height: 7px;
+	width: 7%;
+	background-color: #ffca22;
+	}
+	
 .page-16-content{
 	background-color: #fff;
 	text-align: center;
