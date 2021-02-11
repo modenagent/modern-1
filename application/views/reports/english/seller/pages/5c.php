@@ -7,7 +7,7 @@ foreach ($areaSalesAnalysisChunk as $_key=>$_areaSalesAnalysis){
         break;
     }
     
-    $this->load->view('reports/english/seller/pages/5d',array('_comparables'=>$_areaSalesAnalysis));
+    // $this->load->view('reports/english/seller/pages/5d',array('_comparables'=>$_areaSalesAnalysis));
    
 }
 //die;
