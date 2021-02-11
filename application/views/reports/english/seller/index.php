@@ -113,8 +113,6 @@
     $this->load->view('reports/english/seller/pages/2');    
     $this->load->view('reports/english/seller/pages/4');
     $this->load->view('reports/english/seller/pages/5');
-    $this->load->view('reports/english/seller/pages/5b');
-    $this->load->view('reports/english/seller/pages/5c');
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
