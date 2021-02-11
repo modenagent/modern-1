@@ -143,6 +143,8 @@ class Module
          *'.php'-ending.
          */
         unset($_SERVER['PATH_INFO']);
+        echo $url;
+        var_dump($_SERVER);die;
 
         $modEnd = strpos($url, '/', 1);
         if ($modEnd === false) {
