@@ -108,6 +108,7 @@ class Module
     public static function isModuleEnabled($module)
     {
         $config = Configuration::getOptionalConfig();
+        var_dump($module);die;
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
     }
 
@@ -544,7 +545,6 @@ class Module
         $modules = self::getModules();
         $config = Configuration::getOptionalConfig()->getArray('module.enable', []);
         sort($modules);
-        var_dump($modules);die;
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {
                 continue;
