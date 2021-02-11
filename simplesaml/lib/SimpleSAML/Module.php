@@ -544,6 +544,7 @@ class Module
         $modules = self::getModules();
         $config = Configuration::getOptionalConfig()->getArray('module.enable', []);
         sort($modules);
+        var_dump($modules);die;
         foreach ($modules as $module) {
             if (!self::isModuleEnabledWithConf($module, $config)) {
                 continue;
