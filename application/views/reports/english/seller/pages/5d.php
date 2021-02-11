@@ -10,7 +10,7 @@
         <?php if(sizeof($_comparables)>0): ?>
             <?php $avaiProperty = 0; ?>
             <?php foreach ($_comparables as $key => $item): 
-                echo "<pre>"; print_r($item); exit;
+                
                 ?>
                 <?php 
                     if($key>8){
@@ -20,7 +20,7 @@
                 <?php if(($avaiProperty+1) % 2):?><!-- Start row div when odd number -->
                 <div class="row" >
                 <?php endif; ?>
-                    
+                    <?php echo "<pre>"; print_r("test"); ?>
                 <?php if((($avaiProperty) % 2) || ($avaiProperty+1) == count($_comparables['comparable']) || $key==8):?><!-- End row div when even number or it is last item -->
                 </div>
                 <?php endif; ?>
@@ -30,3 +30,4 @@
         </div>
     </div>
 </div>
+<?php exit; ?>
