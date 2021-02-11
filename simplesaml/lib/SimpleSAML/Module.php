@@ -136,8 +136,6 @@ class Module
         }
 
         $url = $request->server->get('PATH_INFO');
-        var_dump($_SERVER);
-        echo $url;die();
         assert(substr($url, 0, 1) === '/');
 
         /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
