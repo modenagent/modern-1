@@ -19,6 +19,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		var_export($_SERVER);
 		if(!empty($_SERVER['PATH_INFO'])) {
 			echo $_SERVER['PATH_INFO'];
 		}
