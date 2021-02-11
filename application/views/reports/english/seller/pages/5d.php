@@ -7,9 +7,7 @@
         </header>
 
         <div class="">
-            <?php 
-echo "<pre>"; print_r($_comparables); exit;
-            ?>
+            
         <?php if(sizeof($_comparables)>0): ?>
             <?php $avaiProperty = 0; ?>
             <?php foreach ($_comparables as $key => $item): 
