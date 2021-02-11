@@ -10,6 +10,12 @@
 |
 */
 
+$hook['pre_controller'] = array(
+                                'class'    => '',
+                                'function' => 'env',
+                                'filename' => 'Env.php',
+                                'filepath' => 'hooks',
+                                );
 
 
 /* End of file hooks.php */

@@ -1,4 +1,6 @@
+.env
 temp/
+vendor/*
 
 *.zip
 
@@ -27,4 +29,5 @@ application/logs/
 development/
 beta/
 
-application/config/database.php
+
+#application/config/database.php
