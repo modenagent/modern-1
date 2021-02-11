@@ -474,6 +474,10 @@ use Knp\Snappy\Pdf;
          * @return array Generation Status and filepath/error message
          */
         function preparePdf($reportLang,$data,$presentationType,$siteAddress){
+            echo "<pre>"; print_r($reportLang);
+            echo "<pre>"; print_r($data);
+            echo "<pre>"; print_r($presentationType);
+            echo "<pre>"; print_r($siteAddress); exit;
             $CI = & get_instance();
             if(!isset($reportLang)){
                 $reportLang = 'english';
