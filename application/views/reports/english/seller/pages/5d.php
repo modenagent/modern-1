@@ -24,7 +24,7 @@ echo "<pre>"; print_r($_comparables); exit;
                 <div class="row" >
                 <?php endif; ?>
                     <?php echo "<pre>"; print_r("test"); ?>
-                <?php if((($avaiProperty) % 2) || ($avaiProperty+1) == count($_comparables['comparable']) || $key==8):?><!-- End row div when even number or it is last item -->
+                <?php if((($avaiProperty) % 2) || ($avaiProperty+1) == count($_comparables) || $key==8):?><!-- End row div when even number or it is last item -->
                 </div>
                 <?php endif; ?>
                 <?php $avaiProperty++; ?>
