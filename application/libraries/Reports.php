@@ -550,6 +550,8 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/index",$data,true);
             
             }
+            echo "<pre>"; print_r($data);
+            echo "<pre>"; print_r($html); exit;
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
@@ -577,8 +579,6 @@ use Knp\Snappy\Pdf;
                         ));
             $pdfFileName = $pdfFileDynamic = 'temp/'.str_replace(" ", "_", $siteAddress).'_'.md5(time() . rand()).'.pdf';
             file_put_contents($pdfFileDynamic, $output);
-            echo "<pre>"; print_r($pdfFileName);
-            echo "<pre>"; print_r(filesize($pdfFileDynamic)); exit;
             if(filesize($pdfFileDynamic)<10000){// Output pdf should be atleast 100KB of size otherwise some error has occured
                 return array( 
                     'report_generated' => false,
