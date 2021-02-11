@@ -1,4 +1,8 @@
 <?php
+include 'vendor/autoload.php';
+
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
 return
 [
@@ -11,28 +15,28 @@ return
         'default_environment' => 'development',
         'production' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
-            'name' => 'production_db',
-            'user' => 'root',
-            'pass' => '',
+            'host' => $_ENV['DB_HOST'],
+            'name' => $_ENV['DB_DATABASE'],
+            'user' => $_ENV['DB_USER'],
+            'pass' => $_ENV['DB_PASSWORD'],
             'port' => '3306',
             'charset' => 'utf8',
         ],
         'development' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
-            'name' => 'development_db',
-            'user' => 'root',
-            'pass' => '',
+            'host' => $_ENV['DB_HOST'],
+            'name' => $_ENV['DB_DATABASE'],
+            'user' => $_ENV['DB_USER'],
+            'pass' => $_ENV['DB_PASSWORD'],
             'port' => '3306',
             'charset' => 'utf8',
         ],
         'testing' => [
             'adapter' => 'mysql',
-            'host' => 'localhost',
-            'name' => 'testing_db',
-            'user' => 'root',
-            'pass' => '',
+            'host' => $_ENV['DB_HOST'],
+            'name' => $_ENV['DB_DATABASE'],
+            'user' => $_ENV['DB_USER'],
+            'pass' => $_ENV['DB_PASSWORD'],
             'port' => '3306',
             'charset' => 'utf8',
         ]
