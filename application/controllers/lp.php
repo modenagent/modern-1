@@ -39,7 +39,6 @@ class Lp extends CI_Controller{
                 $response = false;
                 $msg = $e->getMessage();
             }
-            echo "<pre>"; print_r($response); exit;
             if($response['status']){
                 echo json_encode(array('status'=>'success'));
             } else {
