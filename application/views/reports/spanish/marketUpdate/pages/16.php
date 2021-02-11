@@ -85,7 +85,7 @@ body {
     </div>
     <h3 class="">VISITENOS ARRIBA PARA RECIBIR UN ANALISIS DE SU PROPIEDAD VIA MENSAJE DE TEXTO.</h3>
 </div>
-<div class="footer page-16-ftr" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/footer16-bg.jpg');?>);"> 
+<div class="footer page-16-ftr" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/footer.jpg');?>);"> 
     
     <div class="row">
         <div class="footer-inner">
@@ -115,7 +115,7 @@ body {
                     </div>
                 </div>
                 <div class="right-footer pull-right page-16-ftrr-logo col-xs-4">
-                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:150px;" /><?php endif; ?>
+                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:" /><?php endif; ?>
                 </div>
             </div>
         </div>

@@ -47,6 +47,12 @@
 			.curious-about-heading {
 				color: <?php echo $theme ?> !important;
 			}
+			
+			.heading-zipcode::after {
+				 background-color: <?php echo $theme ?>;
+			}
+			
+			
 			.section-article h3 {
 				color: <?php echo $theme ?> !important;
 			}
