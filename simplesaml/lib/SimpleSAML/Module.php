@@ -108,7 +108,6 @@ class Module
     public static function isModuleEnabled($module)
     {
         $config = Configuration::getOptionalConfig();
-        var_dump($module);die;
         return self::isModuleEnabledWithConf($module, $config->getArray('module.enable', []));
     }
 
@@ -142,8 +141,6 @@ class Module
         /* clear the PATH_INFO option, so that a script can detect whether it is called with anything following the
          *'.php'-ending.
          */
-        var_dump($_SERVER);die;
-        echo $url;
         unset($_SERVER['PATH_INFO']);
 
         $modEnd = strpos($url, '/', 1);
