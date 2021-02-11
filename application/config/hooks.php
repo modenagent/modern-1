@@ -10,7 +10,7 @@
 |
 */
 
-$hook['pre_controller'] = array(
+$hook['pre_system'] = array(
                                 'class'    => '',
                                 'function' => 'env',
                                 'filename' => 'Env.php',
