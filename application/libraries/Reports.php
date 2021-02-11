@@ -550,10 +550,10 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/index",$data,true);
             
             }
-            echo "<pre>"; print_r($html);
-            echo "<pre>"; print_r($turboMode); exit;
+            
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
+            echo "<pre>"; print_r($wkhtmltopdfPath); exit;
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
                 $zoom =  $CI->config->item('wkhtmltopdf_zoom_seller');    
             } else {
