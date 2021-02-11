@@ -5,11 +5,11 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = !empty($_ENV['DB_HOST'])?$_ENV['DB_HOST']:'localhost';
-$db['default']['username'] = !empty($_ENV['DB_USER'])?$_ENV['DB_USER']:'listingpitch';
-$db['default']['password'] = !empty($_ENV['DB_PASSWORD'])?$_ENV['DB_PASSWORD']:'listingpitch';
+$db['default']['username'] = $_ENV['DB_USER'];
+$db['default']['password'] = $_ENV['DB_PASSWORD'];
 
 
-$db['default']['database'] = !empty($_ENV['DB_DATABASE'])?$_ENV['DB_DATABASE']:'listingpitch';
+$db['default']['database'] = $_ENV['DB_DATABASE'];
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
