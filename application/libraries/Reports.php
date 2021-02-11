@@ -553,7 +553,6 @@ use Knp\Snappy\Pdf;
             
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
-            echo "<pre>test:"; print_r($wkhtmltopdfPath); exit;
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
                 $zoom =  $CI->config->item('wkhtmltopdf_zoom_seller');    
             } else {
@@ -571,6 +570,7 @@ use Knp\Snappy\Pdf;
                 'load-error-handling'=>'ignore',
                 'load-media-error-handling'=>'ignore'
             ];
+            echo "<pre>"; print_r($snappy); exit;
             $output = $snappy->getOutputFromHtml($html, $options,
                         200,
                         array(
