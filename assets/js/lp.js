@@ -306,6 +306,9 @@ function runPMA(agentPath, logoPath) {
         data: query
     })
         .done(function(response) {
+            console.log(response);
+            var obj = JSON.parse(response);
+            console.log(obj);
             try {
                 var obj = JSON.parse(response);
                 if(obj.status=='success'){

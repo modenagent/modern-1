@@ -8,57 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/main.css") ?>">
 </head>
 
-<body> 
-<?php      $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
-$rangeOfSales['avaiProperty'] = 0;
-                            $rangeOfSales['sQFootage']=0;
-                            $rangeOfSales['avgNoOfBeds'] = 0;
-                            $rangeOfSales['avgNoOfBaths'] = 0;
-                            $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-                            $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-                            foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
-                              if($key>8){
-                                break;
-                              }
-                              $rangeOfSales['avaiProperty']++;
-                              $rangeOfSales['sQFootage']+=$cpmrebl['BuildingArea'];
-                            $rangeOfSales['avgNoOfBeds']+=$cpmrebl['Beds'];
-                            $rangeOfSales['avgNoOfBaths'] +=$cpmrebl['Baths'];
-                              if($minRange> $cpmrebl['PriceRate']){
-                                $maxRange= $cpmrebl['PriceRate'];
-                              }
-
-                              if($maxRange< $cpmrebl['PriceRate']){
-                                $maxRange= $cpmrebl['PriceRate'];
-                              }
-                            }
-                            $rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage']/$rangeOfSales['avaiProperty'];
-                            $rangeOfSales['avgNoOfBeds'] = $rangeOfSales['avgNoOfBeds']/$rangeOfSales['avaiProperty'];
-                            $rangeOfSales['avgNoOfBaths'] = $rangeOfSales['avgNoOfBaths']/$rangeOfSales['avaiProperty'];
-                            
-
-
-    $no_of_pages =0 ;
-    
-    $no_of_pages =intval($availableCompareAble/3) ;
-    if(($no_of_pages*3)<$availableCompareAble){
-      $no_of_pages++;
-    }
-    if($no_of_pages>3){
-      $no_of_pages=3;
-    }else{
-
-    }  
-    $no_of_pages+=5;
-    
-    $_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
-    $_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
-    $rangeDiff= (int)$_priceMaxRange - (int)$_priceMinRange;
-    $_sliderStartPoint = (int)$_priceMinRange - round($rangeDiff/8);
-    $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
-
-
-  ?>
+<body>
 <style type="text/css">
     .theme-bg
     {
