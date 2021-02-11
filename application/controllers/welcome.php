@@ -21,6 +21,13 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('welcome_message');
 	}
+
+	public function check_env()
+	{
+		var_dump($_ENV);die;
+	}
+
+
 }
 
 /* End of file welcome.php */
