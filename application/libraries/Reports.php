@@ -474,10 +474,6 @@ use Knp\Snappy\Pdf;
          * @return array Generation Status and filepath/error message
          */
         function preparePdf($reportLang,$data,$presentationType,$siteAddress){
-            echo "<pre>"; print_r($reportLang);
-            echo "<pre>"; print_r($data);
-            echo "<pre>"; print_r($presentationType);
-            echo "<pre>"; print_r($siteAddress); exit;
             $CI = & get_instance();
             if(!isset($reportLang)){
                 $reportLang = 'english';
@@ -554,6 +550,8 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/index",$data,true);
             
             }
+            echo "<pre>"; print_r($html);
+            echo "<pre>"; print_r($turboMode); exit;
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
