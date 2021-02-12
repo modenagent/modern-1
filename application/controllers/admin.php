@@ -651,6 +651,9 @@ MSG;
     {
         $this->_hasAccess('edit_user_info');
         $data['title'] = "Profile Edit";
+        ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
             $data['user'] = $this->base_model->get_record_by_id('lp_user_mst',array('user_id_pk' => $uid));
@@ -694,6 +697,7 @@ MSG;
                 $data['parents'] = $this->role_model->get_sales_reps();    
                 $data['parent_label'] = 'Signed up under(Sales Rep)';
             }
+            die;
             $this->load->view('admin/header',$data);
             $this->load->view('admin/profile_edit',$data);
             $this->load->view('admin/footer',$data);
