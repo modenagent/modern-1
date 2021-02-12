@@ -254,7 +254,7 @@ echo "</script>";
                               <select name="report_lang" style="background-color:transparent; border:none;"><option value="english">English</option><option value="spanish">Spanish</option></select>
                             </div> -->
                             
-                            <a href="javascript:void(0);" id="btn-testimonial" class="pull-right1" style="" target="_blank" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
+                            <a href="javascript:void(0);" id="btn-testimonial" class="pull-right1" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
 
                             <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
                           </div>
