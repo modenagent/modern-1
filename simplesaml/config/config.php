@@ -498,7 +498,9 @@ $config = [
      'module.enable' => [
          'exampleauth' => false,
          'core' => true,
-         'saml' => true
+         'saml' => true,
+         'cron' => true,
+         'metarefresh'=>true
      ],
 
 
