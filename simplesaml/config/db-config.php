@@ -27,7 +27,7 @@ if ($result->num_rows > 0) {
 
     $dir_check = '../metadata/'.$row['unique_id'];
     if(!is_dir($dir_check)) {
-        mkdir($dir_check);
+        var_dump(mkdir($dir_check));die;
     }
   
     $unique_id=(string)$row['unique_id'];
