@@ -459,7 +459,7 @@ echo $this->email->print_debugger();die;
             $html=$this->load->view('frontend/quick_pdf',array('isWidget' => 1),true);
             $data['html'] = $html;
             header('Content-Type: text/javascript; charset=utf8');
-            header('Access-Control-Allow-Origin: http://localhost/mylistingpitch');
+            // header('Access-Control-Allow-Origin: http://localhost/mylistingpitch');
             header('Access-Control-Max-Age: 3628800');
             header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');
 

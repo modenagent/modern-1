@@ -250,9 +250,12 @@ echo "</script>";
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
-                            <div class="pull-right1 <?php echo ($_email=='info@modernagent.io')?'':'hide' ?>" style=""> Report Language: 
+                            <!-- <div class="pull-right1 <?php // echo ($_email=='info@modernagent.io')?'':'hide' ?>" style=""> Report Language: 
                               <select name="report_lang" style="background-color:transparent; border:none;"><option value="english">English</option><option value="spanish">Spanish</option></select>
-                            </div>
+                            </div> -->
+                            
+                            <a href="javascript:void(0);" id="btn-testimonial" class="pull-right1" style="" target="_blank" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
+
                             <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
                           </div>
                             </div>
@@ -477,6 +480,28 @@ echo "</script>";
         </div>
     </div>
     <!-- modal for selecting the comparables ends here -->
+
+    <!-- modal for testimonials -->
+    <div id="update-testimonial" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Select Minimum 4 and up to 8 Comparables</h4>
+                    <a href="#" class="hide" id="refresh">Refresh Selection</a>
+                </div>
+                <div class="modal-body">
+                    <select id='pre-selected-options' multiple='multiple'>
+                    </select>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal for testimonials -->
 </div>
 
 <script type="text/javascript">
