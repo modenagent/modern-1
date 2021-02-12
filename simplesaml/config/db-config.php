@@ -25,7 +25,7 @@ if ($result->num_rows > 0) {
 
   while($row = $result->fetch_assoc()) {
 
-    $dir_check = '../metadata/'.$row['unique_id'];
+    $dir_check = dirname(dirname(__FILE__)).'/metadata/'.$row['unique_id'];
     if(!is_dir($dir_check)) {
         mkdir($dir_check);
     }
