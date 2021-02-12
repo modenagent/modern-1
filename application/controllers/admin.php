@@ -657,6 +657,34 @@ MSG;
             $this->_isCreator($data['user'],'admin/manage_user','parent_id');
             $data['roles'] = $this->base_model->all_records('lp_role');
             $_isAdmin = $this->role_lib->is_admin();
+
+            if($data['user']->role_id_fk == 2) {
+
+                $get_sso_record = $this->base_model->get_all_record_by_in('lp_idps','company_id',$uid);
+                if($get_sso_record && is_array($get_sso_record) && count($get_sso_record)) {
+                    $get_sso_record = $get_sso_record[0];
+                }
+                else {
+                    //Insert record
+
+                    $data_ins = array();
+                    $unique_id = generate_sso_token($uid);
+                    $data_ins['unique_id'] = $unique_id;
+                    $data_ins['company_id'] = $uid;
+                    $data_ins['metadata_url'] = '';
+
+                    $result = $this->base_model->insert_one_row('lp_idps',$data_ins);
+
+                    $get_sso_record = $this->base_model->get_all_record_by_in('lp_idps','company_id',$uid);
+                    if($get_sso_record && is_array($get_sso_record) && count($get_sso_record)) {
+                        $get_sso_record = $get_sso_record[0];
+                    }
+
+                }
+                $data['sso_record'] = $get_sso_record;
+            }
+
+
             if($_isAdmin && $data['user']->role_id_fk == 3) {
                 $this->load->model('role_model');
                 $data['parents'] = $this->role_model->get_companies();    
@@ -770,6 +798,31 @@ MSG;
             }
         }else{
             redirect('admin/index');
+        }
+    }
+
+    public function sso_edit($id)
+    {
+        $data_update = array(); 
+        
+        $data_update['metadata_url'] = $this->input->post('metadata_url');
+        $company_id = $this->input->post('company_id');
+
+        $where = array(
+                'id' => $id
+            );
+
+        $result = $this->base_model->update_record_by_id('lp_idps',$data_update,$where);
+        if($result){
+
+            // Set flash data
+            $this->session->set_flashdata('success', 'Record updated');
+            redirect("admin/profile_edit/".$company_id);
+        
+            
+        }else{
+            $this->session->set_flashdata('error', 'Record not updated');
+            redirect("admin/profile_edit/".$company_id);
         }
     }
 
