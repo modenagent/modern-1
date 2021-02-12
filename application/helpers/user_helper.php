@@ -99,3 +99,22 @@ if (! function_exists('is_enterprise_user')) {
         }
     }
 }
+
+if (! function_exists('generate_sso_token')) {
+    function generate_sso_token($company_id)
+    {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        $randomString = (string)time();
+        for ($i = 0; $i < 4; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $randomString .= $company_id;
+        for ($i = 0; $i < 4; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
+    }
+}
