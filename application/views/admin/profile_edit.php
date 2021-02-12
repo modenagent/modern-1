@@ -248,21 +248,21 @@
               <tr>
                 <td>SP Metadata Entity:</td>
                 <td>
-                  <input type="text" class="form-control"   value="http://modernagent.localhost.com/simplesaml/www/module.php/saml/sp/metadata.php/<?=$unique_id?>" readonly="">
+                  <input type="text" class="form-control"   value="<?=base_url()?>/simplesaml/www/module.php/saml/sp/metadata.php/<?=$unique_id?>" readonly="">
                 </td>
                 
               </tr>
               <tr>
                 <td>SP Metadata AssertionConsumerService:</td>
                 <td>
-                  <input type="text" class="form-control"   value="http://modernagent.localhost.com/simplesaml/www/module.php/saml/sp/saml2-acs.php/<?=$unique_id?>" readonly="">
+                  <input type="text" class="form-control"   value="<?=base_url()?>/simplesaml/www/module.php/saml/sp/saml2-acs.php/<?=$unique_id?>" readonly="">
                 </td>
                 
               </tr>
               <tr>
                 <td>SP Metadata SingleLogoutService:</td>
                 <td>
-                  <input type="text" class="form-control"  value="http://xamlsp.localhost.com/simplesaml/module.php/saml/sp/saml2-logout.php/<?=$unique_id?>" readonly="">
+                  <input type="text" class="form-control"  value="<?=base_url()?>/simplesaml/module.php/saml/sp/saml2-logout.php/<?=$unique_id?>" readonly="">
                 </td>
               </tr>
 
