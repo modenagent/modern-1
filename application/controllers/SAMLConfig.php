@@ -23,7 +23,7 @@ class SAMLConfig extends CI_Controller {
         $auth = new \SimpleSAML\Auth\Simple($id);
         }
         else {
-            echo "Invalid request";die;
+            echo "Invalid request.";die;
         }
         
 
