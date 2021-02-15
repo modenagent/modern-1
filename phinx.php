@@ -3,6 +3,7 @@ include 'vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
+$default_environment = (!empty($_ENV['ENV_MODE'])) ? $_ENV['ENV_MODE'] :'development';
 
 return
 [
@@ -12,7 +13,7 @@ return
     ],
     'environments' => [
         'default_migration_table' => 'phinxlog',
-        'default_environment' => 'development',
+        'default_environment' => $default_environment,
         'production' => [
             'adapter' => 'mysql',
             'host' => $_ENV['DB_HOST'],
