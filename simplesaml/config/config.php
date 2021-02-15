@@ -1223,3 +1223,4 @@ foreach ($idps_config as $idp_config) {
         'directory'=>'metadata/'.$idp_config['unique_id'],
     ];
 }
+phpinfo();die;
