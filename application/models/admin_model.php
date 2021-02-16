@@ -11,9 +11,22 @@ class Admin_model extends CI_Model
     public function get_admin_login_data($table,$login,$password)
     {
         /* get data from user table */
-        $res = $this->db->query("SELECT * FROM $table WHERE user_name='".$login."' and password='".$password."' and role_id_fk != 4");
-        // echo $this->db->last_query(); die();
-        return $res->row();
+
+        /* get data from user table */
+        $where['user_name'] = $login;
+        $where['role_id_fk !='] = 4;
+        $row = $this->db->get_where($table,$where)->row();
+     
+
+        if($row) {
+            if(password_verify($password,$row->password)) {
+                return $row;
+            }
+            else {
+                return false;
+            }
+        }
+        return false;
 
     }
     // Market admin model

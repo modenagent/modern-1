@@ -125,7 +125,7 @@ class Admin extends CI_Controller
                 $random_password = $this->generateRandomString();
                 $table = "lp_user_mst";
                 $data = array(
-                    'password' => $random_password
+                    'password' => password_hash($random_password,PASSWORD_DEFAULT)
                 );
                 $where = array(
                     'user_id_pk' => $userId
@@ -295,14 +295,32 @@ MSG;
     public function update_password()
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
+
+
+
         if($adminId) {
-            $form_data = $_POST['pass'];
-            $result = $this->admin_model->update_password($form_data,$adminId);
-            if($result == true){
-                $resp = array('status' => 'success', 'msg' => 'Pasword updated successfully.' );
-                echo json_encode($resp);
+            $result = $this->base_model->get_record_by_id('lp_user_mst' , array('user_id_pk'=>$adminId));
+
+            $password = $_POST['old_password'];
+            if($_POST['new_password'] != $_POST['confirm_password']) {
+              $resp = array('status'=>'failed', 'message'=>'Confirm password should be same as new password!');
+            }
+            else {
+
+              if($result && password_verify($password,$result->password)){
+                $encrypted_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+                $this->base_model->update_record_by_id('lp_user_mst', array('password'=>$encrypted_password), array('user_id_pk'=>$result->user_id_pk));
+                $resp = array('status'=>'success', 'message'=>'Updated successfully');
+              }else{
+                $resp = array('status'=>'failed', 'message'=>'Your current password invalid please enter a valid password!');
+              }
             }
         }
+        else {
+             $resp = array('status'=>'failed', 'message'=>'Invalid Authentication!');
+        }
+
+        echo json_encode($resp);
 
     }
     // verify
@@ -2239,7 +2257,7 @@ MSG;
                 $table = "lp_user_mst";
                 $data = array(
                     //'password' => password_hash($this->input->post('pass'),PASSWORD_BCRYPT),
-                    'password' => $this->input->post('pass'),
+                    'password' => password_hash($this->input->post('pass'),PASSWORD_DEFAULT),
                 );
                 $where = array('user_id_pk'=> $this->input->post('userid'));
                 $result = $this->base_model->update_record_by_id($table,$data,$where);

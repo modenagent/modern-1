@@ -132,8 +132,20 @@ class Base_model extends CI_Model
     public function get_login_data($table,$login,$password)
     {
             /* get data from user table */
-            $res = $this->db->query("SELECT * FROM $table WHERE email=? and password=?", [$login, $password]);
-            return $res->row();
+            $where['email'] = $login;
+            $row = $this->db->get_where($table,$where)->row();
+            
+            // $row = $result->row();
+
+            if($row) {
+                if(password_verify($password,$row->password)) {
+                    return $row;
+                }
+                else {
+                    return false;
+                }
+            }
+            return false;
     }
      /* LOGIN WITH userId retruns only one row */
     public function get_login_data_from_id($table, $column, $userId)
@@ -192,7 +204,7 @@ class Base_model extends CI_Model
     {
             $this->db->update($table,$data,$where);
             return $this->db->affected_rows(); 
-    }	
+    }   
     /* count all rows from table */
     public function countrow($table)
     {
@@ -258,8 +270,8 @@ class Base_model extends CI_Model
                     join lp_user_mst as s on s.user_id_pk=main.parent_id
                     WHERE main.registered_date > DATE_SUB(NOW(), INTERVAL 30 DAY) and s.parent_id=".$adminId." and main.role_id_fk=4";
         }
-    	$countResult = $this->db->query($sql);
-    	return $countResult->row();
+        $countResult = $this->db->query($sql);
+        return $countResult->row();
     }
     
     public function count_online_users($roleId=null,$adminId=null){
@@ -717,6 +729,7 @@ class Base_model extends CI_Model
         
         $this->db->insert('lp_coupon_redeem_log_history',$data);
     }
+
 
 }
 ?>
