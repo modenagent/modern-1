@@ -910,13 +910,21 @@ class User extends CI_Controller
         $userId = $data['user_id'] = $this->session->userdata('userid'); 
         if($userId) {  
             
-            $result = $this->base_model->get_record_by_id('lp_user_mst' , array('email'=>$_POST['email'], 'password'=>$_POST['old_password']));
-            
-            if($result){
-              $this->base_model->update_record_by_id('lp_user_mst', array('password'=>$_POST['new_password']), array('user_id_pk'=>$result->user_id_pk));
-              $resp = array('status'=>'success', 'message'=>'Updated successfully');
-            }else{
-              $resp = array('status'=>'failed', 'message'=>'Your current password invalid please enter a valid password!');
+            $result = $this->base_model->get_record_by_id('lp_user_mst' , array('email'=>$_POST['email']));
+
+            $password = $_POST['old_password'];
+            if($_POST['new_password'] != $_POST['confirm_password']) {
+              $resp = array('status'=>'failed', 'message'=>'Confirm password should be same as new password!');
+            }
+            else {
+
+              if($result && password_verify($password,$result->password)){
+                $encrypted_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+                $this->base_model->update_record_by_id('lp_user_mst', array('password'=>$encrypted_password), array('user_id_pk'=>$result->user_id_pk));
+                $resp = array('status'=>'success', 'message'=>'Updated successfully');
+              }else{
+                $resp = array('status'=>'failed', 'message'=>'Your current password invalid please enter a valid password!');
+              }
             }
         }else{
           $resp = array('status'=>'failed', 'message'=>'unauthrized access!');
@@ -3693,6 +3701,7 @@ Thank you for your order. Below you can find the details of your order. If you o
         }
 
     }
+
 
    // Class ends here
 }

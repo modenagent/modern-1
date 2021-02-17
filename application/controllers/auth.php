@@ -124,8 +124,10 @@ class Auth extends REST_Controller
             } else {
                 $parentId = (int)$this->get('parent_id')?(int)$this->get('parent_id'):(int)$this->post('parent_id');
             }
+            $password = $this->post('user_pass')?$this->post('user_pass'):$this->post('upass');
+            $encrypted_password = password_hash($password,PASSWORD_DEFAULT);
             $user = array(
-                'password' => $this->post('user_pass')?$this->post('user_pass'):$this->post('upass'),
+                'password' => $encrypted_password,
                 'user_name' => $this->post('uname'),
                 'first_name' => $this->post('fname'),
                 'last_name' => $this->post('lname'),
@@ -233,7 +235,7 @@ class Auth extends REST_Controller
             $mobileNumber = clean_phone($result->phone);
             $random_password = $this->generateRandomString();
             $data = array(
-                'password' => $random_password
+                'password' => password_hash($random_password,PASSWORD_DEFAULT)
             );
             $where = array(
                 'user_id_pk' => $userId
