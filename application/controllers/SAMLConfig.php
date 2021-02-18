@@ -46,6 +46,9 @@ class SAMLConfig extends CI_Controller {
                     );
                     $sessionData = $this->session->set_userdata($newdata);
                 }
+                else {
+                    echo "Email not found";die;
+                }
             }
 
         }
