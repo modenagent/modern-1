@@ -821,6 +821,7 @@ function autoComplete() {
         new google.maps.LatLng(-42, 124.24)); // latitude and longitude ranges of California
     var options = {
         componentRestrictions: {
+            country: [],
             // country: 'us'
         },
         bounds: defaultBounds

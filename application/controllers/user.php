@@ -296,7 +296,7 @@ class User extends CI_Controller
         $user_partners = $this->base_model->get_all_record_by_condition('lp_partner_details',array('user_id_fk'=>$this->session->userdata('userid')));
         echo json_encode($user_partners);
       }else{
-        echo json_encode(array('status'=>'failed','message'=>'unauthrized access'));
+        echo json_encode(array('status'=>'failed','message'=>'unauthorized access'));
       }
     }
 

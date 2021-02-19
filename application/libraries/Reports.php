@@ -5,7 +5,7 @@
      *    
      * Date: Nov 30, 2016
      */
-require 'vendor/autoload.php';
+// require 'vendor/autoload.php';
 
 use Knp\Snappy\Pdf;
     class Reports {
