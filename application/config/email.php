@@ -13,11 +13,11 @@
 
 
     $config['protocol']     = 'smtp';
-    $config['smtp_host']    = 'smtp.mailtrap.io';
-    $config['smtp_port']    = '2525';
+    $config['smtp_host']    = $_ENV['MAIL_HOST'];
+    $config['smtp_port']    = $_ENV['MAIL_PORT'];
     $config['smtp_timeout'] = '60';
-    $config['smtp_user']    = 'e6e17dae48b5c5';
-    $config['smtp_pass']    = '04b308e5fd49a7';
+    $config['smtp_user']    = $_ENV['MAIL_USER'];
+    $config['smtp_pass']    = $_ENV['MAIL_PASSWORD'];
     $config['charset']      = 'utf-8';
     $config['newline']      = "\r\n";
     $config['mailtype']     = 'html'; // or html
