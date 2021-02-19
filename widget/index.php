@@ -1,6 +1,7 @@
 <?php
 require_once '../CI.php';
 $ci = get_instance();
+echo "<pre>"; print_r($ci); exit;
 $user_id = 82;
 ?>
 <!DOCTYPE html>
