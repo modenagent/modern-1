@@ -95,6 +95,7 @@ class Widget extends CI_Controller {
                 $this->load->model('package_model');
                 $data['report_price'] = $this->package_model->get_reports_price();
                 $html = $this->load->view('user/dashboard_widget', $data, true);
+                echo "<pre>"; print_r($html); exit;
                 $result['res'] = $html;
 
                 header('Content-Type: text/javascript; charset=utf8');

@@ -15,7 +15,8 @@ function loadWidget()
             user_id: user_id
         },
         dataType: "json",
-        success: function (response) {       
+        success: function (response) {
+        console.log(response);    
           $('#cma-widget-container').html(custom_css+response.res);
         },
         error: function(xhr, ajaxOptions, thrownError){
