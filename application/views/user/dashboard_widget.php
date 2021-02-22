@@ -247,6 +247,7 @@
                             <div class="carousel-container">
                           <div id="owl-example" class="owl-carousel">
                             <?php
+                            $reportTemplates = array();
                             if(isset($reportTemplates) && !empty($reportTemplates))
                             {
                               foreach ($reportTemplates as $key => $report) {
