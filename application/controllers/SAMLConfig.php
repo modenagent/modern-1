@@ -5,12 +5,20 @@ class SAMLConfig extends CI_Controller {
 
     public function __construct() { 
         parent::__construct();
+        $widget_url = $_ENV['WIDGET_DOMAIN'];
+        header("Access-Control-Allow-Origin: $widget_url");
 
+        require_once(FCPATH .'simplesaml/lib/_autoload.php');
+        $session = SimpleSAML_Session::getSessionFromRequest();
 
-        if(!($this->session->userdata('userid'))) {
-            
+        if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
+
+            $sessionData = $this->session->set_userdata($_SESSION['userdata']);
+
+        }
+        if(!($this->session->userdata('userid')) ) {
+            // die;
             $auth_id = $this->uri->segment(3, 0);
-            require_once(FCPATH .'simplesaml/lib/_autoload.php');
 
 
             if(!empty($auth_id)) {
