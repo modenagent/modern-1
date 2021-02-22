@@ -82,7 +82,14 @@ class Widget extends CI_Controller {
                 $data['title'] = "Widget";
                 $data['user_id'] = $user_id = $user_info['user_id_pk'];
                 $data['user_name'] = isset($user_info['user_name']) && !empty($user_info['user_name']) ? $user_info['user_name'] : '';
-
+                $data['salesRep'] = array();
+                if(isset($user_info['parent_id']) && !empty($user_info['parent_id']))
+                {
+                    $parent_id = $user_info['parent_id'];
+                    $sales_rep_info = $this->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
+                    $data['salesRep'] = (array) $sales_rep_info;
+                }
+                
                 $data['reports'] = $this->base_model->get_all_record_by_id ('lp_my_listing',  
                         array(
                                 'user_id_fk' => $user_id,
