@@ -43,6 +43,11 @@ $route['404_override'] = '';
 $route['cma'] = "frontend/quick_pdf";
 $route['market'] = "frontend/quick_pdf";
 
+/* start of frontend routes */
+/* end of frontend routes */
+
+/* start of backend routes */
+/* end of backend routes */
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

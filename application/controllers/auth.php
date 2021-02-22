@@ -242,31 +242,40 @@ class Auth extends REST_Controller
             );
 
             $result2 = $this->base_model->update_record_by_id($table,$data,$where);
-            
-            // send sms until we have the mail running 
-            // Your Account SID and Auth Token from twilio.com/console
-            $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
-            $token = 'd33346194bc839d2c495c6b35c2c5a64';
-            $client = new Client($sid, $token);
 
-            // Use the client to do fun stuff like send text messages!
-            $smsText = "Your New Password is: {$random_password}. \n Regards, \n Modern Agent Team";
-            try {
-            $smsRes = $client->messages->create(
-                // the number you'd like to send the message to
-                '+1'.$mobileNumber,
-                array(
-                    // A Twilio phone number you purchased at twilio.com/console
-                    'from' => '+14243519064',
-                    // the body of the text message you'd like to send
-                    'body' => $smsText
-                )
-            );
-            } catch (Exception $e){
-                // var_dump($e);
-                echo json_encode(array("status"=>"failed",'msg'=>'SMS could not be sent on this number.',"sms"=>$smsText));
-                exit();
+
+            $env_mode = 'devlopment'; //Set default value
+            if(!empty(!$_ENV['ENV_MODE'])) {
+                $env_mode = $_ENV['ENV_MODE'];
             }
+            if(strtolower($env_mode) == 'production') {
+                
+                // send sms until we have the mail running 
+                // Your Account SID and Auth Token from twilio.com/console
+                $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
+                $token = 'd33346194bc839d2c495c6b35c2c5a64';
+                $client = new Client($sid, $token);
+
+                // Use the client to do fun stuff like send text messages!
+                $smsText = "Your New Password is: {$random_password}. \n Regards, \n Modern Agent Team";
+                try {
+                $smsRes = $client->messages->create(
+                    // the number you'd like to send the message to
+                    '+1'.$mobileNumber,
+                    array(
+                        // A Twilio phone number you purchased at twilio.com/console
+                        'from' => '+14243519064',
+                        // the body of the text message you'd like to send
+                        'body' => $smsText
+                    )
+                );
+                } catch (Exception $e){
+                    // var_dump($e);
+                    echo json_encode(array("status"=>"failed",'msg'=>'SMS could not be sent on this number.',"sms"=>$smsText));
+                    exit();
+                }
+            }
+            
 
             if($result2){
                 $name = 'Administrator';
