@@ -170,12 +170,6 @@
                                             <input type="text" class="form-control"   name="user[email]"      id="" placeholder="Email"   value="<?php echo $user['email']; ?>"/>
                                             <input type="text" class="form-control"   name="user[licenceno]"  id="" placeholder="CA BRE#" value="<?php echo $user['license_no']; ?>"/>
                                             <input type="hidden" class="form-control"   name="presentation"  id="presentation" value=""/>
-                                            <input type="hidden" class="form-control"   name="company_image"      id="company_image" value=""    />
-                                        <input type="text" class="form-control"   name="user[companyname]"  id="" placeholder="Company Name"    value="<?php echo $user['company_name'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[street]"       id="" placeholder="Street Address"  value="<?php echo $user['company_add'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[city]"         id="" placeholder="City"            value="<?php echo $user['company_city'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[zip]"          id="" placeholder="ZIP"             value="<?php echo $user['comapny_zip'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[state]"        id="" placeholder="State"           value="<?php echo $user['company_state'] ?>"/>
                                           </div>
                                         </div>
                                       </div>
@@ -204,7 +198,12 @@
                                         </div>
                                       </div>
                                       <div class="col-md-9">
-                                        
+                                        <input type="hidden" class="form-control"   name="company_image"      id="company_image" value=""    />
+                                        <input type="text" class="form-control"   name="user[companyname]"  id="" placeholder="Company Name"    value="<?php echo $user['company_name'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[street]"       id="" placeholder="Street Address"  value="<?php echo $user['company_add'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[city]"         id="" placeholder="City"            value="<?php echo $user['company_city'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[zip]"          id="" placeholder="ZIP"             value="<?php echo $user['comapny_zip'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[state]"        id="" placeholder="State"           value="<?php echo $user['company_state'] ?>"/>
                                       </div>
                                     </div>
                                   </div>
@@ -248,6 +247,7 @@
                             <div class="carousel-container">
                           <div id="owl-example" class="owl-carousel">
                             <?php
+                            $reportTemplates = array();
                             if(isset($reportTemplates) && !empty($reportTemplates))
                             {
                               foreach ($reportTemplates as $key => $report) {
