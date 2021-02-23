@@ -43,6 +43,7 @@ else
     error_reporting(E_ALL);
 
 
+    $CI =& get_instance();
     ob_end_clean();
 ?>
 <div id="cma-widget-container">
@@ -54,7 +55,6 @@ else
 </script>
 <?php
 // var_dump($attributes);
-    $CI =& get_instance();
     die("IN");
 
     if(!empty($attributes['email']) && !empty($attributes['email'][0])) {
