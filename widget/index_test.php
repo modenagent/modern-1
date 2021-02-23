@@ -76,6 +76,6 @@ else
     var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/SAMLConfig/index/<?=$auth_id?>";
     console.log(app_main_url);
 </script>
-<script type="text/javascript" src="cma_test.js"></script>
+<!-- <script type="text/javascript" src="cma_test.js"></script> -->
 <?php }
 ?>
