@@ -824,6 +824,13 @@ MSG;
         $data_update = array(); 
         
         $data_update['metadata_url'] = $this->input->post('metadata_url');
+        $fields = $this->input->post('field');
+        $data_update['email'] = $fields['email']; 
+        $data_update['first_name'] = $fields['first_name']; 
+        $data_update['last_name'] = $fields['last_name']; 
+        $data_update['phone'] = $fields['phone']; 
+        $data_update['sales_rep'] = $fields['sales_rep']; 
+
         $company_id = $this->input->post('company_id');
 
         $where = array(
