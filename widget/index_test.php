@@ -36,6 +36,13 @@ else
     $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
     $root_dir = str_replace('\\', '/', $root_dir);
     define('FCPATH', $root_dir);
+    include('index_ci.php');
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+
 ?>
 <div id="cma-widget-container">
 	
@@ -45,14 +52,8 @@ else
     console.log(app_main_url);
 </script>
 <?php
+var_dump($attributes);
     die("IN");
-    include('index_ci.php');
-
-    ini_set('display_errors', 1);
-    ini_set('display_startup_errors', 1);
-    error_reporting(E_ALL);
-
-
     ob_end_clean();
     $CI =& get_instance();
 
