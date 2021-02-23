@@ -54,8 +54,8 @@ else
 </script>
 <?php
 // var_dump($attributes);
-//     die("IN");
     $CI =& get_instance();
+    die("IN");
 
     if(!empty($attributes['email']) && !empty($attributes['email'][0])) {
         $email = $attributes['email'][0];
