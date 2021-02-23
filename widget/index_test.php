@@ -1,10 +1,14 @@
 <?php
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
 }
-
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 $auth_id = $_GET['site_id'];
 
 if(!empty($auth_id)) {
@@ -33,6 +37,12 @@ else
     $root_dir = str_replace('\\', '/', $root_dir);
     define('FCPATH', $root_dir);
     include('index_ci.php');
+
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+
     ob_end_clean();
     $CI =& get_instance();
 
