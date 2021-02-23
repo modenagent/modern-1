@@ -36,6 +36,7 @@ else
     $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
     $root_dir = str_replace('\\', '/', $root_dir);
     define('FCPATH', $root_dir);
+    die("IN");
     include('index_ci.php');
 
     ini_set('display_errors', 1);
