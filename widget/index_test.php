@@ -53,8 +53,8 @@ else
     console.log(app_main_url);
 </script>
 <?php
-var_dump($attributes);
-    die("IN");
+// var_dump($attributes);
+//     die("IN");
     $CI =& get_instance();
 
     if(!empty($attributes['email']) && !empty($attributes['email'][0])) {
