@@ -38,7 +38,7 @@ class User extends CI_Controller
 		send_email('noreply@modernagent.io','No Reply', $replyto, $subject, $message, array($file));
 	}
 	
-    public function upload_file($type){
+    public function upload_file($type = ''){
        $status = "";
        $msg = "";
        $fileuri='';

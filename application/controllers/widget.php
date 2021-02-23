@@ -98,9 +98,12 @@ class Widget extends CI_Controller {
                             'project_date','desc'
                 );
 
-                $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
+                // $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
                 $this->load->model('package_model');
                 $data['report_price'] = $this->package_model->get_reports_price();
+
+                $data['reportTemplates'] = $this->base_model->all_records('lp_seller_report_templates');
+                
                 $html = $this->load->view('user/dashboard_widget', $data, true);
                 $result['res'] = $html;
 

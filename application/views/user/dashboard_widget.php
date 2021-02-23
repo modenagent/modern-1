@@ -177,9 +177,9 @@
                                       <h2><strong>Company:</strong> Upload Logo &amp; Enter Info</h2>
                                       <div class="row">
                                         <div class="col-md-3">
-                                          <div class="rightpic"> <a href="javascript:;">
+                                          <div class="rightpic"> <a href="javascript:void(0);">
                                             <?php
-                                            if(empty($user['company_logo'])){
+                                            if(empty($salesRep['company_logo'])){
                                             ?>
                                             <i class="icon-camera"></i>
                                             <br>
@@ -188,22 +188,22 @@
                                             }
                                             else{
                                             ?>
-                                            <img  src="<?php echo base_url().$user['company_logo']; ?>" width="100%" >
+                                            <img src="<?php echo base_url().$salesRep['company_logo']; ?>" width="100%" >
                                             <?php
                                             }
                                             ?>
                                           </a>
                                           <input type="file" class="file-type hidden">
-                                          <input type="text" class="hidden file-path" name="user[company_logo]" value="<?php echo $user['company_logo']; ?>" >
+                                          <input type="text" class="hidden file-path" name="user[company_logo]" value="<?php echo $salesRep['company_logo']; ?>" >
                                         </div>
                                       </div>
                                       <div class="col-md-9">
                                         <input type="hidden" class="form-control"   name="company_image"      id="company_image" value=""    />
-                                        <input type="text" class="form-control"   name="user[companyname]"  id="" placeholder="Company Name"    value="<?php echo $user['company_name'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[street]"       id="" placeholder="Street Address"  value="<?php echo $user['company_add'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[city]"         id="" placeholder="City"            value="<?php echo $user['company_city'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[zip]"          id="" placeholder="ZIP"             value="<?php echo $user['comapny_zip'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[state]"        id="" placeholder="State"           value="<?php echo $user['company_state'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[companyname]"  id="" placeholder="Company Name"    value="<?php echo $salesRep['company_name'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[street]"       id="" placeholder="Street Address"  value="<?php echo $salesRep['company_add'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[city]"         id="" placeholder="City"            value="<?php echo $salesRep['company_city'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[zip]"          id="" placeholder="ZIP"             value="<?php echo $salesRep['comapny_zip'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[state]"        id="" placeholder="State"           value="<?php echo $salesRep['company_state'] ?>"/>
                                       </div>
                                     </div>
                                   </div>
@@ -247,19 +247,15 @@
                             <div class="carousel-container">
                           <div id="owl-example" class="owl-carousel">
                             <?php
-                            $reportTemplates = array();
+                            // $reportTemplates = array();
                             if(isset($reportTemplates) && !empty($reportTemplates))
                             {
                               foreach ($reportTemplates as $key => $report) {
-                                if($report->template_color != ''){
+                                // if($report->template_color != ''){
                             ?>
                               <div class="item">
-                                <input type="radio"  
-                                <?php 
-                                  if($report->report_templates_id_pk==$user['default_template']){
-                                    echo 'checked';
-                                  }
-                                ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
+                                 
+                                
                                 <label class="user-heading alt gray-bg" for="pb">
                                   <div class="text-center"> 
                                     <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
@@ -269,7 +265,7 @@
                                 </label>
                               </div>
                             <?php 
-                                  }
+                                  // }
                                 }
                             }
                             ?>
@@ -369,7 +365,7 @@
                                         <h3 class="panel-title">Payment Information</h3>
                                     </div>
                                     <div class="panel-body">
-                                        <form action="<?php echo base_url(); ?>index.php/user/cart_payment" method="POST" id="payment-form" class="form-horizontal" role="form">
+                                        <form action="<?php echo base_url(); ?>user/cart_payment" method="POST" id="payment-form" class="form-horizontal" role="form">
                                             <div class="alert alert-danger payment-errors" style="display:none"></div>
                                             <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="<?php echo $report_price; ?>">
                                             <input type="hidden" id="coupon-id" name="coupon_id">
@@ -471,12 +467,39 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Select Minimum 4 and up to 8 Comparables</h4>
-                    <a href="#" class="hide" id="refresh">Refresh Selection</a>
+                    <h4 class="modal-title">Testimonials</h4>
                 </div>
                 <div class="modal-body">
-                    <select id='pre-selected-options' multiple='multiple'>
-                    </select>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="testimonial-1">
+Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.
+                            </textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="testimonial-2">
+As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.
+                            </textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="testimonial-3">
+Showed us a bunch of homes for months until we found the right one.
+Gave us a ton of contacts to help us throughout the process. And even
+now after the home has already been closed on he is still helping
+with any problems or questions we have. Extremely helpful and knowledgeable in any facet of home buying/owning.
+                            </textarea>
+                        </div>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="testimonial-4">
+They were a great team and extremely helpful with selling my
+house quickly. I was able to do everything online with them. They
+facilitated repairs and getting rid of things in the house. This was so helpful since I live out of the area.
+                            </textarea>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer text-center">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
@@ -583,7 +606,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
 <script type="text/javascript">
 var base_url = '<?php echo base_url(); ?>';
-
+var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
 jQuery(document).ready(function() {
     setTimeout(function(){
         // choosing the seller report type to create
@@ -595,7 +618,7 @@ jQuery(document).ready(function() {
     var _max = 8;
     var _min = 4;
     var firstOpen = true;
-    var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+     
 
     $('#refresh').on('click', function(){
         $('#pre-selected-options').multiSelect('refresh');
@@ -670,7 +693,7 @@ jQuery(document).ready(function() {
             if(obj.attr('rel')==4){
                 if($('.custom-checkbox:checked').val()){
                     $.ajax({
-                        url:base_url + 'index.php/user/generateInvoice',
+                        url:base_url + 'user/generateInvoice',
                         method:'GET'
                     })
                     .success(function(resp){
@@ -682,7 +705,8 @@ jQuery(document).ready(function() {
                 $('.backwrap').show();
                 $('.backwrap').removeClass('hidden');
                 check_subscription();
-            } 
+            }
+
             if(obj.attr('rel')!=4){
                 $(".actionBar").show("slow");
                 $(".btn-checkout").show("slow");
@@ -794,14 +818,14 @@ function hex(x) {
 function delete_lp(lp_id, from)
 {
     if(confirm('Sure to Delete?')){
-      window.location = base_url+'index.php/user/delete_lp/'+lp_id +'/' + from;
+      window.location = base_url+'user/delete_lp/'+lp_id +'/' + from;
     }
 }
 
 function check_subscription()
 {
     $.ajax({
-      url:base_url + 'index.php/user/is_subscribed/prem_lp_user/<?php echo $user_id; ?>',
+      url:base_url + 'user/is_subscribed/prem_lp_user/<?php echo $user_id; ?>',
       method:'GET',
       dataType: 'json',
       success:function(resp){
@@ -831,6 +855,18 @@ function check_subscription()
       }
     });
 }
+
+function hasActiveRequest(){
+      if(activeRequest){
+        setTimeout(function(){
+          return hasActiveRequest();
+        },500);
+      }else{
+        $('.loader1').addClass('hidden');
+        $('.backwrap').addClass('hidden');
+        return true;
+      }
+    }
 </script>
 
 <script type="text/javascript">
@@ -878,7 +914,7 @@ function check_subscription()
         // submitting the form using ajax
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>index.php/user/cart_payment",
+            url: "<?php echo base_url(); ?>user/cart_payment",
             data: formData,
             dataType: "json",
             success: function(data) {
@@ -929,17 +965,7 @@ function check_subscription()
             }
         });
     }
-    function hasActiveRequest(){
-      if(activeRequest){
-        setTimeout(function(){
-          return hasActiveRequest();
-        },500);
-      }else{
-        $('.loader1').addClass('hidden');
-        $('.backwrap').addClass('hidden');
-        return true;
-      }
-    }
+    
 
     $('#payment-form').submit(function(event) {
       //alert("hell ya");
@@ -964,7 +990,7 @@ function check_subscription()
       $('.backwrap').show();
       $('.backwrap').removeClass('hidden');
       $.ajax({
-        url:base_url + 'index.php/coupon/apply_coupon/<?php echo $user_id; ?>?&code='+$('#coupon_code').val(),
+        url:base_url + 'coupon/apply_coupon/<?php echo $user_id; ?>?&code='+$('#coupon_code').val(),
         method:'GET',
         dataType:'json',
         success:function(resp){
@@ -1029,7 +1055,7 @@ function check_subscription()
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)                           
       $.ajax({
-        url: '<?php echo base_url(); ?>index.php/user/upload_file', // point to server-side PHP script 
+        url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
         dataType: 'text', // what to expect back from the PHP script, if anything
         cache: false,
         contentType: false,
@@ -1069,7 +1095,7 @@ function check_subscription()
           var form_data = new FormData();
           form_data.append('fileToUpload', file_data)                    
           $.ajax({
-              url: '<?php echo base_url(); ?>index.php/user/upload_file', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
               dataType: 'text', // what to expect back from the PHP script, if anything
               cache: false,
               contentType: false,
