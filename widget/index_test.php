@@ -36,6 +36,15 @@ else
     $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
     $root_dir = str_replace('\\', '/', $root_dir);
     define('FCPATH', $root_dir);
+?>
+<div id="cma-widget-container">
+	
+</div>
+<script type="text/javascript">
+    var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/SAMLConfig/index/<?=$auth_id?>";
+    console.log(app_main_url);
+</script>
+<?php
     die("IN");
     include('index_ci.php');
 
@@ -70,13 +79,6 @@ else
 
 
 ?>
-<div id="cma-widget-container">
-	
-</div>
-<script type="text/javascript">
-    var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/SAMLConfig/index/<?=$auth_id?>";
-    console.log(app_main_url);
-</script>
 <!-- <script type="text/javascript" src="cma_test.js"></script> -->
 <?php }
 ?>
