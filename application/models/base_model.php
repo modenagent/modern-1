@@ -356,8 +356,8 @@ class Base_model extends CI_Model
     // get best buy flyers
     public function getNewFlyer3($table,$limit,$offset)
     {
-            $query = $this->db->get($table,$limit,$offset);
             $this->db->order_by("total_purchase", "desc");
+            $query = $this->db->get($table,$limit,$offset);
             return $query->result();
     }
     // get order inoive and cart detail
