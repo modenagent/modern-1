@@ -32,6 +32,7 @@ else
     $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
     $root_dir = str_replace('\\', '/', $root_dir);
     define('FCPATH', $root_dir);
+    define("CI_REQUEST", "external");
     include('index_ci.php');
     ob_end_clean();
     $CI =& get_instance();

@@ -101,6 +101,10 @@ echo $this->email->print_debugger();die;
    // frontend view
     public function index()
     {
+        if (defined('CI_REQUEST') && CI_REQUEST == 'external')
+        {
+            return;
+        }
             if($this->session->userdata('userid')){
                 redirect(base_url().'user/dashboard');
             }
