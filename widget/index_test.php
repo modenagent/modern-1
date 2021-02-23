@@ -43,7 +43,7 @@ else
     error_reporting(E_ALL);
 
 
-    $CI =& get_instance();
+    // $CI =& get_instance();
     ob_end_clean();
 ?>
 <div id="cma-widget-container">
