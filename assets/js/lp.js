@@ -279,7 +279,15 @@ function runPMA(agentPath, logoPath) {
     // recordFormData();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
-    query += '&' + formData;
+    query += '&' + formData;    
+
+    var testimonials = [];
+    testimonials.push($("#testimonial-1").val());
+    testimonials.push($("#testimonial-2").val());
+    testimonials.push($("#testimonial-3").val());
+    testimonials.push($("#testimonial-4").val());
+    // var testimonialString = JSON.stringify(testimonials);
+    query += '&testimonials=' + encodeURI(testimonials);
     query += '&' + 'pdfID=' + pdfID;
     query +="&showpartner="+$('input.add-partner:checked').val();
     if($('#addNewPartner').css('display')=='none'){
@@ -291,7 +299,6 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     //console.log(query);
-     
     if(activeRequest){
         activeRequest=false;
         xhr.abort();
