@@ -266,6 +266,57 @@
                 </td>
               </tr>
 
+              
+            </tbody>
+          </table>
+
+          <table class="table-condensed table-hover" style="margin-top: 15px;">
+           
+            <thead>
+              <tr>
+                <th colspan="2">Field Mapping</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              
+              <tr>
+                <td width="300px">Email :</td>
+                <td>
+                  <input type="text" class="form-control"  value="<?=$sso_record->email?>" name="field[email]">
+                </td>
+                
+              </tr>
+              <tr>
+                <td>First Name:</td>
+                <td>
+                  <input type="text" class="form-control"   value="<?=$sso_record->first_name?>" name="field[first_name]">
+                </td>
+                
+              </tr>
+              <tr>
+                <td>Last Name:</td>
+                <td>
+                  <input type="text" class="form-control"   value="<?=$sso_record->last_name?>" name="field[last_name]">
+                </td>
+                
+              </tr>
+              <tr>
+                <td>Phone:</td>
+                <td>
+                  <input type="text" class="form-control"   value="<?=$sso_record->phone?>" name="field[phone]">
+                </td>
+                
+              </tr>
+
+              <tr>
+                <td>Sales Representative:</td>
+                <td>
+                  <input type="text" class="form-control"   value="<?=$sso_record->sales_rep?>" name="field[sales_rep]">
+                </td>
+                
+              </tr>
+
               <tr>
                 <td></td>
                 <td>
