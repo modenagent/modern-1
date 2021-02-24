@@ -179,7 +179,7 @@
                                         <div class="col-md-3">
                                           <div class="rightpic"> <a href="javascript:void(0);">
                                             <?php
-                                            if(empty($salesRep['company_logo'])){
+                                            if(empty($company['company_logo'])){
                                             ?>
                                             <i class="icon-camera"></i>
                                             <br>
@@ -188,22 +188,22 @@
                                             }
                                             else{
                                             ?>
-                                            <img src="<?php echo base_url().$salesRep['company_logo']; ?>" width="100%" >
+                                            <img src="<?php echo base_url().$company['company_logo']; ?>" width="100%" >
                                             <?php
                                             }
                                             ?>
                                           </a>
                                           <input type="file" class="file-type hidden">
-                                          <input type="text" class="hidden file-path" name="user[company_logo]" value="<?php echo $salesRep['company_logo']; ?>" >
+                                          <input type="text" class="hidden file-path" name="user[company_logo]" value="<?php echo $company['company_logo']; ?>" >
                                         </div>
                                       </div>
                                       <div class="col-md-9">
                                         <input type="hidden" class="form-control"   name="company_image"      id="company_image" value=""    />
-                                        <input type="text" class="form-control"   name="user[companyname]"  id="" placeholder="Company Name"    value="<?php echo $salesRep['company_name'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[street]"       id="" placeholder="Street Address"  value="<?php echo $salesRep['company_add'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[city]"         id="" placeholder="City"            value="<?php echo $salesRep['company_city'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[zip]"          id="" placeholder="ZIP"             value="<?php echo $salesRep['comapny_zip'] ?>"/>
-                                        <input type="text" class="form-control"   name="user[state]"        id="" placeholder="State"           value="<?php echo $salesRep['company_state'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[companyname]"  id="" placeholder="Company Name"    value="<?php echo $company['company_name'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[street]"       id="" placeholder="Street Address"  value="<?php echo $company['company_add'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[city]"         id="" placeholder="City"            value="<?php echo $company['company_city'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[zip]"          id="" placeholder="ZIP"             value="<?php echo $company['comapny_zip'] ?>"/>
+                                        <input type="text" class="form-control"   name="user[state]"        id="" placeholder="State"           value="<?php echo $company['company_state'] ?>"/>
                                       </div>
                                     </div>
                                   </div>
