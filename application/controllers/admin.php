@@ -839,7 +839,8 @@ MSG;
 
         $result = $this->base_model->update_record_by_id('lp_idps',$data_update,$where);
         if($result){
-
+            //Call saml to configure record
+            file_get_contents(base_url('simplesaml/module.php/cron/cron.php?key=BaPwi12emND&tag=hourly'));
             // Set flash data
             $this->session->set_flashdata('success', 'Record updated');
             redirect("admin/profile_edit/".$company_id);
