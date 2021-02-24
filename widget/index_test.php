@@ -60,12 +60,9 @@ else
 
 
 ?>
-<div id="cma-widget-container">
-	
-</div>
+
 <script type="text/javascript">
-    var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/SAMLConfig/index/<?=$auth_id?>";
-    console.log(app_main_url);
+    var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/widget_test/getWidgetData";
 </script>
 <script type="text/javascript" src="cma_test.js"></script>
 <?php }
