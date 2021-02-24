@@ -687,8 +687,7 @@ jQuery(document).ready(function() {
         },
         onShowStep:function(obj){
             if(obj.attr('rel')==4){
-                runPMA('','');
-                /*if($('.custom-checkbox:checked').val()){
+                if($('.custom-checkbox:checked').val()){
                     $.ajax({
                         url:base_url + 'user/generateInvoice',
                         method:'GET'
@@ -701,7 +700,7 @@ jQuery(document).ready(function() {
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').show();
                 $('.backwrap').removeClass('hidden');
-                check_subscription();*/
+                check_subscription();
             }
 
             if(obj.attr('rel')!=4){
