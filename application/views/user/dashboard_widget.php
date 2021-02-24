@@ -691,672 +691,603 @@
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
       <script type="text/javascript">
-         var base_url = '<?php echo base_url(); ?>';
-         var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
-         
-         jQuery(document).ready(function() {
-         setTimeout(function(){
-             // choosing the seller report type to create
-             choose_presentation('seller');
-             $('#widgetContent').show();
-             $('#loadingPlugin').hide();        
-         }, 500);
-         // run pre selected options
-         var _max = 8;
-         var _min = 4;
-         var firstOpen = true;
-          
-         
-         <!-- Bootstrap Core JavaScript --> 
-         <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js">
-      </script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
-      <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
-      <script type="text/javascript">
-         var base_url = '<?php echo base_url(); ?>';
-         var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
-         jQuery(document).ready(function() {
-             setTimeout(function(){
-                 // choosing the seller report type to create
-                 choose_presentation('seller');
-                 $('#widgetContent').show();
-                 $('#loadingPlugin').hide();        
-             }, 500);
-             // run pre selected options
-             var _max = 8;
-             var _min = 4;
-             var firstOpen = true;
+var base_url = '<?php echo base_url(); ?>';
+var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+jQuery(document).ready(function() {
+    setTimeout(function(){
+        // choosing the seller report type to create
+        choose_presentation('seller');
+        $('#widgetContent').show();
+        $('#loadingPlugin').hide();        
+    }, 500);
+    // run pre selected options
+    var _max = 8;
+    var _min = 4;
+    var firstOpen = true;
+     
+
+    $('#refresh').on('click', function(){
+        $('#pre-selected-options').multiSelect('refresh');
+        return false;
+    });
+
+    $('#select-comps').on('shown.bs.modal', function() {
+        $('#pre-selected-options').multiSelect({
+        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+        });  
+        if(firstOpen)
+        // If received list is not greater than min value than set our min value to received list length
+        if(_min>$('#pre-selected-options').val().length){
+            _min = $('#pre-selected-options').val().length;;
+        }
+        firstOpen = false;
+        var last_valid_selection = $('#pre-selected-options').val();
+        $('#pre-selected-options').change(function(event) {
+            if ($(this).val().length > _max) {
+                //$(this).val(last_valid_selection);
+            } 
+            else {
+            //last_valid_selection = $(this).val();$(this).trigger('change');
+            }
+        });
+    });
+
+    $('#select-comps').on('hide.bs.modal', function(event) {
+        if($('#pre-selected-options').val().length < _min){
+            alert('Please select '+_min+' comparables');
+            event.stopPropagation();
+            return false;
+        }
+        if($('#pre-selected-options').val().length > _max){
+            alert('Please do not select more than '+_max+' comparables');
+            event.stopPropagation();
+            return false;
+        }             
+    });
+
+    //BEGIN CHECKBOX & RADIO
+    $('input[type="checkbox"], input[type="radio"]').iCheck({
+        checkboxClass: 'icheckbox_minimal-grey',
+        radioClass: 'icheckbox_minimal-grey',
+        increaseArea: '20%' // optional
+    });
+
+    // Smart Wizard   
+    $('#wizard').smartWizard({
+        //keyNavigation:false,
+        onLeaveStep:function(obj){
+            //console.log(obj.attr('rel'));
+            if(obj.attr('rel')==1){
+              setTimeout(function(){
+                $(document).scrollTop(50);
+              },500);
+              return true;
+            }
+            /*if(obj.attr('rel')==3){
+              var _theme = $('.custom-checkbox:checked').val();
+              console.log(_theme);
+              console.log(typeof _theme);
+              if(typeof _theme==='undefined'){
+                  alert("Please choose a theme");
+                  return false;
+              }
+            }*/
+            return true;
+        },
+        onShowStep:function(obj){
+            if(obj.attr('rel')==4){
+                runPMA('','');
+                /*if($('.custom-checkbox:checked').val()){
+                    $.ajax({
+                        url:base_url + 'user/generateInvoice',
+                        method:'GET'
+                    })
+                    .success(function(resp){
+                        runPMA('','');
+                    });
+                }
+                $('.loader1').show();
+                $('.loader1').removeClass('hidden');
+                $('.backwrap').show();
+                $('.backwrap').removeClass('hidden');
+                check_subscription();*/
+            }
+
+            if(obj.attr('rel')!=4){
+                $(".actionBar").show("slow");
+                $(".btn-checkout").show("slow");
+            }
+            if(obj.attr('rel')==3){
+                $('.loader1').removeClass('hidden');
+                $('.backwrap').removeClass('hidden');
+                return hasActiveRequest();
+            }
+            return true;
+        }
+    });
+
+    $("#owl-example").owlCarousel();
+
+    $('.nav li').localScroll();
+    $('.nav').onePageNav({filter: ':not(.external)'});
+    if($('#table-dt').length)
+    {
+        $('#table-dt').DataTable( {
+            "order": [[ 0, "desc" ]]
+        });
+    }
+
+    $(".btn-checkout").click(function(){
+        var isDirectDownload = parseInt($(this).data('download'));
+        if(isDirectDownload){
+            $('.loader1').show();
+            $('.loader1').removeClass('hidden');
+            $('.backwrap').show();
+            $('.backwrap').removeClass('hidden');
+            doSubmit();
+            return true;
+        }
+        console.log("Bypassed");
+        $(this).parents("#step-4").find('.order-detail').hide("slow");
+        $(this).parents("#step-4").find('.order-summary').show("slow");
+        $(".actionBar").hide("slow");
+        $(".btn-checkout").hide("slow");
+        $(".btn-pay").show("slow");
+        // window.location.href="#top";
+        setTimeout(function(){
+            $(document).scrollTop(0);
+        },500);
+    });
+    
+    $(".btn-review").click(function(){
+        $(this).parents("#step-4").find('.order-detail').show("slow");
+        $(this).parents("#step-4").find('.order-summary').hide("slow");
+        $(".actionBar").show("slow");
+        $(".btn-checkout").show("slow");
+        $(".btn-pay").hide("slow");
+    });
+
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+
+    $("#forward-report").on("show.bs.modal", function(e) {
+        var projectID = $(e.relatedTarget).data('id');
+        $(this).find("#project-id").val(projectID);
+    });
+
+    var selected_pdf_pages = [];
+
+    $('.custom-checkbox').on('ifChecked', function (event){
+        selected_pdf_pages.push($(this).val());
+        var pages = selected_pdf_pages.toString();
+        $('#pdf_pages').val(pages);        
+    });
+ 
+    $('.custom-checkbox').on('ifUnchecked', function (event){
+        var removeItem = $(this).val()
+        // selected_pdf_pages.pop($(this).val()); 
+        selected_pdf_pages = jQuery.grep(selected_pdf_pages, function(value) {
+          return value != removeItem;
+        });
+        var pages = selected_pdf_pages.toString();
+        $('#pdf_pages').val(pages);     
+    });
+
+    $('.custom-checkbox').iCheck('check');
+});
+
+function choose_presentation(presentation)
+{
+    if(presentation === 'buyer'){
+        $("#config-comps-btn").hide();
+        $("#presentation").val("buyer");
+        $('#wizard').smartWizard("buyer");
+        $('.seller_template').hide(function(){
+            $('.buyer_template').show();
+        });
+    }else if(presentation === 'marketUpdate'){
+        $("#presentation").val("marketUpdate");
+        $('#wizard').smartWizard("marketUpdate");
+        // adding class marketUpdate so that we can manipulate the visibility of different steps
+        $('#wizard').addClass('marketUpdate');
+
+        $('.buyer_template').hide(function(){
+            $('.seller_template').show();
+        });
+        $("#config-comps-btn").show();
+    }else {
+        $("#presentation").val("seller");
+        $('#wizard').smartWizard("seller");
+        $('.buyer_template').hide(function(){
+            $('.seller_template').show();
+        });
+        $("#config-comps-btn").show();
+    }
+    //Set classes
+    $("#search-btn").addClass(presentation);
+    $('#choose-presentation').hide(function(){
+        $('#wizard').show(function(){
+            $(".swMain ul.anchor li a").addClass(presentation);
+        });
+    });
+} 
+
+//Function to convert hex format to a rgb color
+function rgb2hex(rgb) {
+    rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+    return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+}
+
+function hex(x) {
+    return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
+}
+
+function delete_lp(lp_id, from)
+{
+    if(confirm('Sure to Delete?')){
+      window.location = base_url+'user/delete_lp/'+lp_id +'/' + from;
+    }
+}
+
+function check_subscription()
+{
+    $.ajax({
+      url:base_url + 'user/is_subscribed/prem_lp_user/<?php echo $user_id; ?>',
+      method:'GET',
+      dataType: 'json',
+      success:function(resp){
+          $(".backwrap").hide();
+          $(".backwrap").addClass('hidden');
+          $(".loader1").hide();
+          $(".loader1").addClass('hidden');
+          if(resp.status){
+              var discount = parseFloat($('#invoice-amount').val());
+              amount  =   0;
+              console.log(discount);
+              $('#coupandiscount td:last').html('$'+discount.toFixed(2));
+              $('#invoice-amount').val(amount);
+              if ($('#order-amount').length) {
+                $('#order-amount').val(amount);
+              }
+              $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
+              $('#payment_total').html('$'+amount.toFixed(2));
+              $('#coupandiscount').show();
+              $('#coupon_code').parent(".input-group ").hide();
+              var info = resp.data;
+              var msg = info.plan_title+" plan("+info.interval+"ly) membership subscription discount";
+              $('#apply-coupan-alert').html(msg).removeClass('alert-danger').addClass('alert-success').show();
+              $('.btn-checkout').html("Download");
+              $('.btn-checkout').data("download",1);
+          }
+      }
+    });
+}
+
+function hasActiveRequest(){
+      if(activeRequest){
+        setTimeout(function(){
+          return hasActiveRequest();
+        },500);
+      }else{
+        $('.loader1').addClass('hidden');
+        $('.backwrap').addClass('hidden');
+        return true;
+      }
+    }
+</script>
+
+<script type="text/javascript">
+  $(function() {
+    // stripe
+    var $form = $('#payment-form');
+    function stripeResponseHandler(status, response) {
+      if (response.error) {
+        // Show the errors on the form
+        console.log(response.error);
+        $form.find('.payment-errors').text(response.error.message).show();
+        $form.find('button').prop('disabled', false);
+        jQuery(".loader1").hide();
+        jQuery(".backwrap").hide();
+
+      } else {
+        // response contains id and card, which contains additional card details
+        var token = response.id;
+        // Insert the token into the form so it gets submitted to the server
+        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        // blank out the form
+        // and submit
+        doSubmit();
+      }
+    }
+
+    function doSubmit(){
+      if(activeRequest){
+        setTimeout(function(){
+          doSubmit();
+        },1500);
+      }else{
+        submitFormAndGetReport(); 
+      }
+    }
+
+    // processing the form submission for creating the report
+    function submitFormAndGetReport(){
+        // getting the formData
+        var formData = $("#payment-form").serializeArray();
+        formData.push(
+                        {name: 'widgetType', value: 'user_dashboard'},
+                        {name: 'user-id', value: '<?php echo $user_id; ?>'}
+                     );
+        // submitting the form using ajax
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>user/cart_payment",
+            data: formData,
+            dataType: "json",
+            success: function(data) {
+                var obj = data;                
+                var today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; //January is 0!
+                var yyyy = today.getFullYear();
+
+                if(dd<10) {
+                    dd = '0'+dd
+                } 
+
+                if(mm<10) {
+                    mm = '0'+mm
+                } 
+
+                today = mm + '/' + dd + '/' + yyyy;
+
+                var new_row = '<tr class="active"><td>'+today+'</td><td>'+obj.project_id_pk+' '+obj.property_owner+'</td><td>'+obj.project_name+'</td><td style="text-transform:capitalize;">'+obj.report_type+'</td><td><a id="downloadReport_'+obj.project_id_pk+'" href="<?php echo base_url(); ?>'+obj.report_path+'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a><a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'+obj.project_id_pk+'"><i data-toggle="tooltip" title="Email" class="icon icon-share"></i></a><a href="javascript:void(0);" onclick="delete_lp('+obj.project_id_pk+', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a></td></tr>';
+
+                // removing the active class from all rows
+                $('#recent-lp #table-dt tbody tr').each(function(){
+                    $(this).removeClass('active');
+                });
+
+                // prepending a new row in the table and switch to the the tab
+                // console.log(new_row);
+                $('#recent-lp #table-dt tbody').prepend(new_row);
+                
+                // making the report download now
+                window.open($('#downloadReport_'+obj.project_id_pk).attr('href'), '_blank');
+
+                // switching the tab to show the latest reports
+                $('#recentReportsTab').click();
+
+                var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
+                var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
+
+                $.getJSON(jsonp_url, function(data) {
+                    console.log(data);
+                  $('#cma-widget-container').html(custom_css+data.html);
+                });
+            },
+            error: function() {
+                // place error code here
+                alert('Oops! Error Occurred while submitting the data.');
+            }
+        });
+    }
+    
+
+    $('#payment-form').submit(function(event) {
+      //alert("hell ya");
+      $("form#payment-form").find('.payment-errors').text("").hide();
+      $(".backwrap").show(function(){
+          $(".loader1").show();
+      });
+      var $form = $(this);
+
+      // Disable the submit button to prevent repeated clicks
+      $form.find('button').prop('disabled', true);
+
+      Stripe.card.createToken($form, stripeResponseHandler);
+      
+      // Prevent the form from submitting with the default action
+      return false;
+    });
+    
+    $('#apply_coupon').click(function(){
+      $('.loader1').show();
+      $('.loader1').removeClass('hidden');
+      $('.backwrap').show();
+      $('.backwrap').removeClass('hidden');
+      $.ajax({
+        url:base_url + 'coupon/apply_coupon/<?php echo $user_id; ?>?&code='+$('#coupon_code').val(),
+        method:'GET',
+        dataType:'json',
+        success:function(resp){
+          if(resp.status=='success'){
+            var amount  = parseFloat($('#invoice-amount').val());
+            if (amount<parseFloat(resp.discount)) {
+              resp.discount = amount;
+            }
+            amount  =   amount-parseFloat(resp.discount);
+            if (amount<=0) {
+              amount = 0;
+            }
+            $('#coupandiscount td:last').html('$'+(parseFloat(resp.discount).toFixed(2)));
+            if ($('#coupon-amount').length) {
+                $('#coupon-amount').val(resp.discount);
+            }
+            $('#invoice-amount').val(amount);
+            $('#coupon-id').val(resp.coupon_id);
+            $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
+            $('#payment_total').html('$'+amount.toFixed(2));
+            $('#coupandiscount').show();
+            $('#apply-coupan-alert').html(resp.message).removeClass('alert-danger').addClass('alert-success').show();
+            $('#apply_coupon').addClass('disabled');
+            if(amount<=0){//No need to checkout payment if amount is less than or equal to 0
+                $('.btn-checkout').html("Download");
+                $('.btn-checkout').data("download",1);
+            }
+          }else{
+            console.log(resp);
+            $('#apply-coupan-alert').html(resp.message).removeClass('alert-success').addClass('alert-danger').show();
+          }
+          $('.loader1').hide();
+          $('.backwrap').hide();
+        }
+      }); 
+    });
+
+    
+
+    function onFinishCallback(){
+      $('#wizard').smartWizard('showMessage','Finish Clicked');
+    }     
+
+    
+    
+    
+
+   
+    
+    $(".leftpic a").click(function() {    
+        console.log("trigger");                                            
+          $(this).parents(".leftpic").find(".file-type").trigger("click");
+    });
+
+    $(".rightpic a").click(function() {                                                
+          $(this).parents(".rightpic").find(".file-type").trigger("click");
+    });
+    
+    $(".leftpic .file-type").change(function(){
+      var ele = this;
+      var file_data = $(this).prop('files')[0];
+      var form_data = new FormData();
+      form_data.append('fileToUpload', file_data)                           
+      $.ajax({
+        url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
+        dataType: 'text', // what to expect back from the PHP script, if anything
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function(php_script_response) {
+          console.log(JSON.parse(php_script_response));
+          var object = JSON.parse(php_script_response);
+          if (object.status) {
+              $(ele).closest('.leftpic').find('a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
+              if(object.status == 'success'){
+                          $("#user_image").val(object.fileuri);
+              }else{
+                $("#user_image").val('no');
+              }
+              /*
+                If user is at my account page will the values
+              */
+              var element = $(ele).closest('.leftpic' ).find('#fileimage');
+              console.log(element);
+              console.log(element[0]);
+              $(element[0]).val('<?php echo base_url(); ?>'+object.fileuri);
               
-         
-             $('#refresh').on('click', function(){
-                 $('#pre-selected-options').multiSelect('refresh');
-                 return false;
-             });
-         
-             $('#select-comps').on('shown.bs.modal', function() {
-                 $('#pre-selected-options').multiSelect({
-                 selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
-                 selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-                 });  
-                 if(firstOpen)
-                 // If received list is not greater than min value than set our min value to received list length
-                 if(_min>$('#pre-selected-options').val().length){
-                     _min = $('#pre-selected-options').val().length;;
-                 }
-                 firstOpen = false;
-                 var last_valid_selection = $('#pre-selected-options').val();
-                 $('#pre-selected-options').change(function(event) {
-                     if ($(this).val().length > _max) {
-                         //$(this).val(last_valid_selection);
-                     } 
-                     else {
-                     //last_valid_selection = $(this).val();$(this).trigger('change');
-                     }
-                 });
-             });
-         
-             $('#select-comps').on('hide.bs.modal', function(event) {
-                 if($('#pre-selected-options').val().length < _min){
-                     alert('Please select '+_min+' comparables');
-                     event.stopPropagation();
-                     return false;
-                 }
-                 if($('#pre-selected-options').val().length > _max){
-                     alert('Please do not select more than '+_max+' comparables');
-                     event.stopPropagation();
-                     return false;
-                 }             
-             });
-         
-             //BEGIN CHECKBOX & RADIO
-             $('input[type="checkbox"], input[type="radio"]').iCheck({
-                 checkboxClass: 'icheckbox_minimal-grey',
-                 radioClass: 'icheckbox_minimal-grey',
-                 increaseArea: '20%' // optional
-             });
-         
-             // Smart Wizard   
-             $('#wizard').smartWizard({
-                 //keyNavigation:false,
-                 onLeaveStep:function(obj){
-                     //console.log(obj.attr('rel'));
-                     if(obj.attr('rel')==1){
-                       setTimeout(function(){
-                         $(document).scrollTop(50);
-                       },500);
-                       return true;
-                     }
-                     if(obj.attr('rel')==3){
-                       var _theme = $('.custom-checkbox:checked').val();
-                       console.log(_theme);
-                       console.log(typeof _theme);
-                       if(typeof _theme==='undefined'){
-                           alert("Please choose a theme");
-                           return false;
-                       }
-                     }
-                     return true;
-                 },
-                 onShowStep:function(obj){
-                     if(obj.attr('rel')==4){
-                         if($('.custom-checkbox:checked').val()){
-                             $.ajax({
-                                 url:base_url + 'user/generateInvoice',
-                                 method:'GET'
-                             })
-                             .success(function(resp){
-                                 runPMA('','');
-                             });
-                         }
-                         $('.loader1').show();
-                         $('.loader1').removeClass('hidden');
-                         $('.backwrap').show();
-                         $('.backwrap').removeClass('hidden');
-                         check_subscription();
-                     }
-         
-                     if(obj.attr('rel')!=4){
-                         $(".actionBar").show("slow");
-                         $(".btn-checkout").show("slow");
-                     }
-                     if(obj.attr('rel')==3){
-                         $('.loader1').removeClass('hidden');
-                         $('.backwrap').removeClass('hidden');
-                         return hasActiveRequest();
-                     }
-                     return true;
-                 }
-                 /*if(obj.attr('rel')==3){
-                   var _theme = $('.custom-checkbox:checked').val();
-                   console.log(_theme);
-                   console.log(typeof _theme);
-                   if(typeof _theme==='undefined'){
-                       alert("Please choose a theme");
-                       return false;
-                   }
-                 }*/
-                 return true;
-             },
-             onShowStep:function(obj){
-                 if(obj.attr('rel')==4){
-                     runPMA('','');
-                     /*if($('.custom-checkbox:checked').val()){
-                         $.ajax({
-                             url:base_url + 'user/generateInvoice',
-                             method:'GET'
-                         })
-                         .success(function(resp){
-                             runPMA('','');
-                         });
-                     }
-                     $('.loader1').show();
-                     $('.loader1').removeClass('hidden');
-                     $('.backwrap').show();
-                     $('.backwrap').removeClass('hidden');
-                     check_subscription();*/
-                 }
-                 console.log("Bypassed");
-                 $(this).parents("#step-4").find('.order-detail').hide("slow");
-                 $(this).parents("#step-4").find('.order-summary').show("slow");
-                 $(".actionBar").hide("slow");
-                 $(".btn-checkout").hide("slow");
-                 $(".btn-pay").show("slow");
-                 // window.location.href="#top";
-                 setTimeout(function(){
-                     $(document).scrollTop(0);
-                 },500);
-             });
-             
-             $(".btn-review").click(function(){
-                 $(this).parents("#step-4").find('.order-detail').show("slow");
-                 $(this).parents("#step-4").find('.order-summary').hide("slow");
-                 $(".actionBar").show("slow");
-                 $(".btn-checkout").show("slow");
-                 $(".btn-pay").hide("slow");
-             });
-         
-             $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-         
-             $("#forward-report").on("show.bs.modal", function(e) {
-                 var projectID = $(e.relatedTarget).data('id');
-                 $(this).find("#project-id").val(projectID);
-             });
-         });
-         
-         function choose_presentation(presentation)
-         {
-             if(presentation === 'buyer'){
-                 $("#config-comps-btn").hide();
-                 $("#presentation").val("buyer");
-                 $('#wizard').smartWizard("buyer");
-                 $('.seller_template').hide(function(){
-                     $('.buyer_template').show();
-                 });
-             }else if(presentation === 'marketUpdate'){
-                 $("#presentation").val("marketUpdate");
-                 $('#wizard').smartWizard("marketUpdate");
-                 // adding class marketUpdate so that we can manipulate the visibility of different steps
-                 $('#wizard').addClass('marketUpdate');
-         
-                 $('.buyer_template').hide(function(){
-                     $('.seller_template').show();
-                 });
-                 $("#config-comps-btn").show();
-             }else {
-                 $("#presentation").val("seller");
-                 $('#wizard').smartWizard("seller");
-                 $('.buyer_template').hide(function(){
-                     $('.seller_template').show();
-                 });
-                 $("#config-comps-btn").show();
-             }
-             console.log("Bypassed");
-             $(this).parents("#step-4").find('.order-detail').hide("slow");
-             $(this).parents("#step-4").find('.order-summary').show("slow");
-             $(".actionBar").hide("slow");
-             $(".btn-checkout").hide("slow");
-             $(".btn-pay").show("slow");
-             // window.location.href="#top";
-             setTimeout(function(){
-                 $(document).scrollTop(0);
-             },500);
-         });
-         
-         $(".btn-review").click(function(){
-             $(this).parents("#step-4").find('.order-detail').show("slow");
-             $(this).parents("#step-4").find('.order-summary').hide("slow");
-             $(".actionBar").show("slow");
-             $(".btn-checkout").show("slow");
-             $(".btn-pay").hide("slow");
-         });
-         
-         $("body").tooltip({ selector: '[data-toggle=tooltip]' });
-         
-         $("#forward-report").on("show.bs.modal", function(e) {
-             var projectID = $(e.relatedTarget).data('id');
-             $(this).find("#project-id").val(projectID);
-         });
-         
-         var selected_pdf_pages = [];
-         
-         $('.custom-checkbox').on('ifChecked', function (event){
-             selected_pdf_pages.push($(this).val());
-             var pages = selected_pdf_pages.toString();
-             $('#pdf_pages').val(pages);        
-         });
-         
-         $('.custom-checkbox').on('ifUnchecked', function (event){
-             var removeItem = $(this).val()
-             // selected_pdf_pages.pop($(this).val()); 
-             selected_pdf_pages = jQuery.grep(selected_pdf_pages, function(value) {
-               return value != removeItem;
-             });
-             var pages = selected_pdf_pages.toString();
-             $('#pdf_pages').val(pages);     
-         });
-         
-         $('.custom-checkbox').iCheck('check');
-         });
-         
-         function choose_presentation(presentation)
-         {
-         if(presentation === 'buyer'){
-             $("#config-comps-btn").hide();
-             $("#presentation").val("buyer");
-             $('#wizard').smartWizard("buyer");
-             $('.seller_template').hide(function(){
-                 $('.buyer_template').show();
-             });
-         } 
-         
-         //Function to convert hex format to a rgb color
-         function rgb2hex(rgb) {
-             rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-             return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
-         }
-         
-         function hex(x) {
-             return isNaN(x) ? "00" : hexDigits[(x - x % 16) / 16] + hexDigits[x % 16];
-         }
-         
-         function delete_lp(lp_id, from)
-         {
-             if(confirm('Sure to Delete?')){
-               window.location = base_url+'user/delete_lp/'+lp_id +'/' + from;
-             }
-         }
-         
-         function check_subscription()
-         {
-             $.ajax({
-               url:base_url + 'user/is_subscribed/prem_lp_user/<?php echo $user_id; ?>',
-               method:'GET',
-               dataType: 'json',
-               success:function(resp){
-                   $(".backwrap").hide();
-                   $(".backwrap").addClass('hidden');
-                   $(".loader1").hide();
-                   $(".loader1").addClass('hidden');
-                   if(resp.status){
-                       var discount = parseFloat($('#invoice-amount').val());
-                       amount  =   0;
-                       console.log(discount);
-                       $('#coupandiscount td:last').html('$'+discount.toFixed(2));
-                       $('#invoice-amount').val(amount);
-                       if ($('#order-amount').length) {
-                         $('#order-amount').val(amount);
-                       }
-                       $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
-                       $('#payment_total').html('$'+amount.toFixed(2));
-                       $('#coupandiscount').show();
-                       $('#coupon_code').parent(".input-group ").hide();
-                       var info = resp.data;
-                       var msg = info.plan_title+" plan("+info.interval+"ly) membership subscription discount";
-                       $('#apply-coupan-alert').html(msg).removeClass('alert-danger').addClass('alert-success').show();
-                       $('.btn-checkout').html("Download");
-                       $('.btn-checkout').data("download",1);
-                   }
-               }
-             });
-         }
-         
-         function hasActiveRequest(){
-               if(activeRequest){
-                 setTimeout(function(){
-                   return hasActiveRequest();
-                 },500);
-               }else{
-                 $('.loader1').addClass('hidden');
-                 $('.backwrap').addClass('hidden');
-                 return true;
-               }
-             }
-      </script>
-      <script type="text/javascript">
-         $(function() {
-           // stripe
-           var $form = $('#payment-form');
-           function stripeResponseHandler(status, response) {
-             if (response.error) {
-               // Show the errors on the form
-               console.log(response.error);
-               $form.find('.payment-errors').text(response.error.message).show();
-               $form.find('button').prop('disabled', false);
-               jQuery(".loader1").hide();
-               jQuery(".backwrap").hide();
-         
-             } else {
-               // response contains id and card, which contains additional card details
-               var token = response.id;
-               // Insert the token into the form so it gets submitted to the server
-               $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-               // blank out the form
-               // and submit
-               doSubmit();
-             }
-           }
-         
-           function doSubmit(){
-             if(activeRequest){
-               setTimeout(function(){
-                 doSubmit();
-               },1500);
-             }else{
-               submitFormAndGetReport(); 
-             }
-           }
-         
-           // processing the form submission for creating the report
-           function submitFormAndGetReport(){
-               // getting the formData
-               var formData = $("#payment-form").serializeArray();
-               formData.push(
-                               {name: 'widgetType', value: 'user_dashboard'},
-                               {name: 'user-id', value: '<?php echo $user_id; ?>'}
-                            );
-               // submitting the form using ajax
-               $.ajax({
-                   type: "POST",
-                   url: "<?php echo base_url(); ?>user/cart_payment",
-                   data: formData,
-                   dataType: "json",
-                   success: function(data) {
-                       var obj = data;                
-                       var today = new Date();
-                       var dd = today.getDate();
-                       var mm = today.getMonth()+1; //January is 0!
-                       var yyyy = today.getFullYear();
-         
-                       if(dd<10) {
-                           dd = '0'+dd
-                       } 
-         
-                       if(mm<10) {
-                           mm = '0'+mm
-                       } 
-         
-                       today = mm + '/' + dd + '/' + yyyy;
-         
-                       var new_row = '<tr class="active"><td>'+today+'</td><td>'+obj.project_id_pk+' '+obj.property_owner+'</td><td>'+obj.project_name+'</td><td style="text-transform:capitalize;">'+obj.report_type+'</td><td><a id="downloadReport_'+obj.project_id_pk+'" href="<?php echo base_url(); ?>'+obj.report_path+'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a><a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'+obj.project_id_pk+'"><i data-toggle="tooltip" title="Email" class="icon icon-share"></i></a><a href="javascript:void(0);" onclick="delete_lp('+obj.project_id_pk+', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a></td></tr>';
-         
-                       // removing the active class from all rows
-                       $('#recent-lp #table-dt tbody tr').each(function(){
-                           $(this).removeClass('active');
-                       });
-         
-                       // prepending a new row in the table and switch to the the tab
-                       // console.log(new_row);
-                       $('#recent-lp #table-dt tbody').prepend(new_row);
-                       
-                       // making the report download now
-                       window.open($('#downloadReport_'+obj.project_id_pk).attr('href'), '_blank');
-         
-                       // switching the tab to show the latest reports
-                       $('#recentReportsTab').click();
-         
-                       var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
-                       var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
-         
-                       $.getJSON(jsonp_url, function(data) {
-                           console.log(data);
-                         $('#cma-widget-container').html(custom_css+data.html);
-                       });
-                   },
-                   error: function() {
-                       // place error code here
-                       alert('Oops! Error Occurred while submitting the data.');
-                   }
-               });
-           }
-           
-         
-           $('#payment-form').submit(function(event) {
-             //alert("hell ya");
-             $("form#payment-form").find('.payment-errors').text("").hide();
-             $(".backwrap").show(function(){
-                 $(".loader1").show();
-             });
-             var $form = $(this);
-         
-             // Disable the submit button to prevent repeated clicks
-             $form.find('button').prop('disabled', true);
-         
-             Stripe.card.createToken($form, stripeResponseHandler);
-             
-             // Prevent the form from submitting with the default action
-             return false;
-           });
-           
-           $('#apply_coupon').click(function(){
-             $('.loader1').show();
-             $('.loader1').removeClass('hidden');
-             $('.backwrap').show();
-             $('.backwrap').removeClass('hidden');
-             $.ajax({
-               url:base_url + 'coupon/apply_coupon/<?php echo $user_id; ?>?&code='+$('#coupon_code').val(),
-               method:'GET',
-               dataType:'json',
-               success:function(resp){
-                 if(resp.status=='success'){
-                   var amount  = parseFloat($('#invoice-amount').val());
-                   if (amount<parseFloat(resp.discount)) {
-                     resp.discount = amount;
-                   }
-                   amount  =   amount-parseFloat(resp.discount);
-                   if (amount<=0) {
-                     amount = 0;
-                   }
-                   $('#coupandiscount td:last').html('$'+(parseFloat(resp.discount).toFixed(2)));
-                   if ($('#coupon-amount').length) {
-                       $('#coupon-amount').val(resp.discount);
-                   }
-                   $('#invoice-amount').val(amount);
-                   $('#coupon-id').val(resp.coupon_id);
-                   $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
-                   $('#payment_total').html('$'+amount.toFixed(2));
-                   $('#coupandiscount').show();
-                   $('#apply-coupan-alert').html(resp.message).removeClass('alert-danger').addClass('alert-success').show();
-                   $('#apply_coupon').addClass('disabled');
-                   if(amount<=0){//No need to checkout payment if amount is less than or equal to 0
-                       $('.btn-checkout').html("Download");
-                       $('.btn-checkout').data("download",1);
-                   }
-                 }else{
-                   console.log(resp);
-                   $('#apply-coupan-alert').html(resp.message).removeClass('alert-success').addClass('alert-danger').show();
-                 }
-                 $('.loader1').hide();
-                 $('.backwrap').hide();
-               }
-             }); 
-           });
-         
-           
-         
-           function onFinishCallback(){
-             $('#wizard').smartWizard('showMessage','Finish Clicked');
-           }     
-         
-           
-           
-           
-         
-          
-           
-           $(".leftpic a").click(function() {    
-               console.log("trigger");                                            
-                 $(this).parents(".leftpic").find(".file-type").trigger("click");
-           });
-         
-           $(".rightpic a").click(function() {                                                
-                 $(this).parents(".rightpic").find(".file-type").trigger("click");
-           });
-           
-           $(".leftpic .file-type").change(function(){
-             var ele = this;
-             var file_data = $(this).prop('files')[0];
-             var form_data = new FormData();
-             form_data.append('fileToUpload', file_data)                           
-             $.ajax({
-               url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
-               dataType: 'text', // what to expect back from the PHP script, if anything
-               cache: false,
-               contentType: false,
-               processData: false,
-               data: form_data,
-               type: 'post',
-               success: function(php_script_response) {
-                 console.log(JSON.parse(php_script_response));
-                 var object = JSON.parse(php_script_response);
-                 if (object.status) {
-                     $(ele).closest('.leftpic').find('a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
-                     if(object.status == 'success'){
-                                 $("#user_image").val(object.fileuri);
-                     }else{
-                       $("#user_image").val('no');
-                     }
-                     /*
-                       If user is at my account page will the values
-                     */
-                     var element = $(ele).closest('.leftpic' ).find('#fileimage');
-                     console.log(element);
-                     console.log(element[0]);
-                     $(element[0]).val('<?php echo base_url(); ?>'+object.fileuri);
-                     
-                     if($('#agent_profile_image')){
-                       $('#agent_profile_image').attr('value',object.fileuri);
-                     }
-                 } else {
-         
-                 }
-               }
-             });
-           });
-         
-           $(".rightpic .file-type").change(function(){
-               var file_data = $(this).prop('files')[0];
-                 var form_data = new FormData();
-                 form_data.append('fileToUpload', file_data)                    
-                 $.ajax({
-                     url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
-                     dataType: 'text', // what to expect back from the PHP script, if anything
-                     cache: false,
-                     contentType: false,
-                     processData: false,
-                     data: form_data,
-                     type: 'post',
-                     success: function(php_script_response) {
-                         
-                         console.log(JSON.parse(php_script_response));
-                         var object = JSON.parse(php_script_response);
-                         if (object.status) {
-                             $('.rightpic a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
-                             
-                   if(object.status == 'success'){
-                               $("#company_image").val(object.fileuri);
-                   }else{
-                     $("#company_image").val('no');
-                   }
-                   /*
-                               If user is at my account page will the values
-                             */
-                             if($('#agent_company_logo')){
-                               $('#agent_company_logo').attr('value',object.fileuri);
-                             }
-         
-                         } else {
-         
-                         }
-                         
-                     }
-                 });
-           });
-         
-           var $subs_form = $('#subscriptionForm');
-           $('#pay_subscribe').click(function(){
-             jQuery(".loader1").show();
-             jQuery(".loader1").removeClass('hidden');
-             jQuery(".backwrap").show();
-             jQuery(".backwrap").removeClass('hidden');
-           
-             Stripe.card.createToken($subs_form, stripeResponseHandlerSubs);
-             // Prevent the form from submitting with the default action
-             return false;
-           });
-           function stripeResponseHandlerSubs(status, response) {
-             if (response.error) {
-               // Show the errors on the form
-               console.log(response.error);
-               $('#subscriptionForm .alert').html(response.error.message).show();
-               setTimeout(function(){
-                 $('#subscriptionForm .alert').fadeOut(1500);
-               },2000);
-               $subs_form.find('button').prop('disabled', false);
-               jQuery(".loader1").hide();
-               jQuery(".loader1").addClass('hidden');
-               jQuery(".backwrap").hide();
-               jQuery(".backwrap").addClass('hidden');
-             } else {
-               var token = response.id;
-               $subs_form.append($('<input type="hidden" name="stripeToken" />').val(token));
-               subscribeSubmit();
-             }
-           }
-          
-           
-           
-         });
-         
-         
-         
-         
-         
-         
-         
-         //Display Notification/Error/Success
-         $(document).ready(function(){
-             <?php if ($this->session->flashdata('success')): ?>
-             Notify('Success', '<?php echo $this->session->flashdata('success') ?>', 'success');
-             <?php endif; ?>
-             <?php if ($this->session->flashdata('error')) : ?>
-             Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
-             <?php endif; ?>
-            
-         });
-      </script>
-   </body>
+              if($('#agent_profile_image')){
+                $('#agent_profile_image').attr('value',object.fileuri);
+              }
+          } else {
+
+          }
+        }
+      });
+    });
+
+    $(".rightpic .file-type").change(function(){
+        var file_data = $(this).prop('files')[0];
+          var form_data = new FormData();
+          form_data.append('fileToUpload', file_data)                    
+          $.ajax({
+              url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
+              dataType: 'text', // what to expect back from the PHP script, if anything
+              cache: false,
+              contentType: false,
+              processData: false,
+              data: form_data,
+              type: 'post',
+              success: function(php_script_response) {
+                  
+                  console.log(JSON.parse(php_script_response));
+                  var object = JSON.parse(php_script_response);
+                  if (object.status) {
+                      $('.rightpic a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
+                      
+            if(object.status == 'success'){
+                        $("#company_image").val(object.fileuri);
+            }else{
+              $("#company_image").val('no');
+            }
+            /*
+                        If user is at my account page will the values
+                      */
+                      if($('#agent_company_logo')){
+                        $('#agent_company_logo').attr('value',object.fileuri);
+                      }
+
+                  } else {
+
+                  }
+                  
+              }
+          });
+    });
+
+    var $subs_form = $('#subscriptionForm');
+    $('#pay_subscribe').click(function(){
+      jQuery(".loader1").show();
+      jQuery(".loader1").removeClass('hidden');
+      jQuery(".backwrap").show();
+      jQuery(".backwrap").removeClass('hidden');
+    
+      Stripe.card.createToken($subs_form, stripeResponseHandlerSubs);
+      // Prevent the form from submitting with the default action
+      return false;
+    });
+    function stripeResponseHandlerSubs(status, response) {
+      if (response.error) {
+        // Show the errors on the form
+        console.log(response.error);
+        $('#subscriptionForm .alert').html(response.error.message).show();
+        setTimeout(function(){
+          $('#subscriptionForm .alert').fadeOut(1500);
+        },2000);
+        $subs_form.find('button').prop('disabled', false);
+        jQuery(".loader1").hide();
+        jQuery(".loader1").addClass('hidden');
+        jQuery(".backwrap").hide();
+        jQuery(".backwrap").addClass('hidden');
+      } else {
+        var token = response.id;
+        $subs_form.append($('<input type="hidden" name="stripeToken" />').val(token));
+        subscribeSubmit();
+      }
+    }
+   
+    
+    
+  });
+
+  
+
+  
+  
+  
+  
+  //Display Notification/Error/Success
+  $(document).ready(function(){
+      <?php if ($this->session->flashdata('success')): ?>
+      Notify('Success', '<?php echo $this->session->flashdata('success') ?>', 'success');
+      <?php endif; ?>
+      <?php if ($this->session->flashdata('error')) : ?>
+      Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
+      <?php endif; ?>
+     
+  });
+</script>
+</body>
 </html>
