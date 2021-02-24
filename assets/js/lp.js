@@ -289,13 +289,15 @@ function runPMA(agentPath, logoPath) {
     // var testimonialString = JSON.stringify(testimonials);
     query += '&testimonials=' + encodeURI(testimonials);
     query += '&' + 'pdfID=' + pdfID;
+    var pages = $('#pdf_pages').val();
+    query += '&' + 'pdfPages=' + pages;
     query +="&showpartner="+$('input.add-partner:checked').val();
     if($('#addNewPartner').css('display')=='none'){
         query += '&' + 'showpartner=off';
     }else{
         query += '&' + 'showpartner=on';
     }
-    query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());		//this line comment by vijay 
+   // query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());		//this line comment by vijay 
     query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     //console.log(query);

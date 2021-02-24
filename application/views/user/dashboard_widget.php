@@ -251,7 +251,25 @@
                                     <?php $_email = $this->session->userdata('user_email');?>
                                     <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
 
-                                    <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
+                            <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
+                          </div>
+                            </div>
+                            <div class="carousel-container">
+                          <div id="owl-example" class="owl-carousel">
+                            <?php
+                            // $reportTemplates = array();
+                            if(isset($reportTemplates) && !empty($reportTemplates))
+                            {
+                              foreach ($reportTemplates as $key => $report) {
+                                // if($report->template_color != ''){
+                            ?>
+                              <div class="item">
+                                <!-- <input type="checkbox" class="custom-checkbox" id="c21" value="" name="cover"> -->
+                                 <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $key+1; ?>">
+                                <label class="user-heading alt gray-bg" for="pb">
+                                  <div class="text-center"> 
+                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> 
                                   </div>
                                     </div>
                                     <div class="carousel-container">
@@ -272,14 +290,108 @@
                                             <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> 
                                           </div>
 
-                                        </label>
-                                      </div>
-                                    <?php 
-                                          // }
-                                        }
-                                    }
-                                    ?>
-                                  </div>
+                                </label>
+                              </div>
+                            <?php 
+                                  // }
+                                }
+                            }
+                            ?>
+                            <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
+                          </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- step 3 -->
+                        <div id="step-4" class="clearfix">
+                            <div class="loader1 hidden"><img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                                <p class="loader-text">Please wait</p>
+                            </div>
+                            <div class="backwrap hidden"></div>
+                            <div class="alert alert-success" id="apply-coupan-alert"  style="display:none"></div>
+                            <p class="clearfix">&nbsp;</p>
+                            <div class="panel panel-body order-detail">
+                                <section class="invoice ">
+                                    <header class="clearfix">
+                                        <div id="logo">
+                                          <img src="<?php echo base_url(); ?>assets/images-2/logo.png"/>
+                                        </div>
+                                        <div id="company">
+                                        </div>
+                                    </header>
+                                    <article>
+                                        <div id="details" class="clearfix">
+                                          <div id="client">
+                                            <div class="to">INVOICE TO:</div>
+                                            <h2 class="name"><?php  echo $user['first_name'].' '.$user['last_name']; ?></h2>
+                                            <div class="address"><?php echo $user['address_line_1'].' '.$user['state_code'].' '.$user['country_code']; ?></div>
+                                          </div>
+                                          <div id="invoice">
+                                            <div class="date invoice-date">Date of Invoice: <?php echo date("m-d-Y"); ?></div>
+                                          </div>
+                                        </div>
+                                        <table border="0" cellspacing="0" cellpadding="0" class="invoice-table" style="margin-bottom: 30px;">
+                                            <thead>
+                                                <tr>
+                                                  <th class="no">#</th>
+                                                  <th class="desc">DESCRIPTION</th>
+                                                  <th class="unit">UNIT PRICE</th>
+                                                  <th class="total">TOTAL</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="lp_invoice" >
+                                                <tr>
+                                                  <td class="no">01</td>
+                                                  <td class="desc"></td>
+                                                  <td class="unit" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                  <td class="total" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                </tr>
+                                            </tbody>
+                                            <tfoot>
+                                                <tr>
+                                                  <td colspan=""></td>
+                                                  <td colspan="2">SUBTOTAL</td>
+                                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                </tr>
+                                                <tr id="coupandiscount" style="display:none">
+                                                  <td colspan=""></td>
+                                                  <td colspan="2">Discount</td>
+                                                  <td>$0.00</td>
+                                                </tr>
+                                                <tr id="totalInvoiceAmount">
+                                                  <td colspan="" style="border-top:1px solid #fff;"></td>
+                                                  <td colspan="2">GRAND TOTAL</td>
+                                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                </tr>
+                                            </tfoot>
+                                        </table>
+                                        <div class="row">
+                                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+                                                <div class="input-group">
+                                                  <input class="from-field form-control" type="text" id="coupon_code" placeholder="Coupon Code" >
+                                                  <span class="input-group-btn">
+                                                  <a href="#javascript:;" class="btn btn-lp"  id="apply_coupon">Apply coupon</a>
+                                                  </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="clearfix"></div>
+                                    </article>
+                                </section>                            
+                            </div>
+                            <div class="order-summary panel panel-body" style="display:none;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr class="invoice-header">
+                                        <td width="45%" bgcolor="#fff"><img src="<?php echo base_url(); ?>assets/images/logo.png"/></td>
+                                        <td width="40%" bgcolor="#fff"  align="right" id="payment_total"><strong>Total: $<?php echo number_format($report_price,2,".",""); ?></strong></td>
+                                        <td width="15%" class="text-right" bgcolor="#fff"><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
+                                    </tr>
+                                </table>
+                                <p>&nbsp;</p>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Payment Information</h3>
                                     </div>
                                   </div>
                                 </div>
@@ -592,12 +704,40 @@
 
 
 
-    <!-- <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript">
-      // This identifies your website in the createToken call below
-      Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
-      // ...
-    </script> -->
+<!-- Bootstrap Core JavaScript --> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
+<script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
+<script type="text/javascript">
+var base_url = '<?php echo base_url(); ?>';
+var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
+
+jQuery(document).ready(function() {
+    setTimeout(function(){
+        // choosing the seller report type to create
+        choose_presentation('seller');
+        $('#widgetContent').show();
+        $('#loadingPlugin').hide();        
+    }, 500);
+    // run pre selected options
+    var _max = 8;
+    var _min = 4;
+    var firstOpen = true;
+     
 
     <!-- Bootstrap Core JavaScript --> 
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
@@ -731,28 +871,34 @@
                 }
                 return true;
             }
-        });
-
-        $("#owl-example").owlCarousel();
-
-        $('.nav li').localScroll();
-        $('.nav').onePageNav({filter: ':not(.external)'});
-        if($('#table-dt').length)
-        {
-            $('#table-dt').DataTable( {
-                "order": [[ 0, "desc" ]]
-            });
-        }
-
-        $(".btn-checkout").click(function(){
-            var isDirectDownload = parseInt($(this).data('download'));
-            if(isDirectDownload){
+            /*if(obj.attr('rel')==3){
+              var _theme = $('.custom-checkbox:checked').val();
+              console.log(_theme);
+              console.log(typeof _theme);
+              if(typeof _theme==='undefined'){
+                  alert("Please choose a theme");
+                  return false;
+              }
+            }*/
+            return true;
+        },
+        onShowStep:function(obj){
+            if(obj.attr('rel')==4){
+                runPMA('','');
+                /*if($('.custom-checkbox:checked').val()){
+                    $.ajax({
+                        url:base_url + 'user/generateInvoice',
+                        method:'GET'
+                    })
+                    .success(function(resp){
+                        runPMA('','');
+                    });
+                }
                 $('.loader1').show();
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').show();
                 $('.backwrap').removeClass('hidden');
-                doSubmit();
-                return true;
+                check_subscription();*/
             }
             console.log("Bypassed");
             $(this).parents("#step-4").find('.order-detail').hide("slow");
@@ -809,12 +955,62 @@
             });
             $("#config-comps-btn").show();
         }
-        //Set classes
-        $("#search-btn").addClass(presentation);
-        $('#choose-presentation').hide(function(){
-            $('#wizard').show(function(){
-                $(".swMain ul.anchor li a").addClass(presentation);
-            });
+        console.log("Bypassed");
+        $(this).parents("#step-4").find('.order-detail').hide("slow");
+        $(this).parents("#step-4").find('.order-summary').show("slow");
+        $(".actionBar").hide("slow");
+        $(".btn-checkout").hide("slow");
+        $(".btn-pay").show("slow");
+        // window.location.href="#top";
+        setTimeout(function(){
+            $(document).scrollTop(0);
+        },500);
+    });
+    
+    $(".btn-review").click(function(){
+        $(this).parents("#step-4").find('.order-detail').show("slow");
+        $(this).parents("#step-4").find('.order-summary').hide("slow");
+        $(".actionBar").show("slow");
+        $(".btn-checkout").show("slow");
+        $(".btn-pay").hide("slow");
+    });
+
+    $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+
+    $("#forward-report").on("show.bs.modal", function(e) {
+        var projectID = $(e.relatedTarget).data('id');
+        $(this).find("#project-id").val(projectID);
+    });
+
+    var selected_pdf_pages = [];
+
+    $('.custom-checkbox').on('ifChecked', function (event){
+        selected_pdf_pages.push($(this).val());
+        var pages = selected_pdf_pages.toString();
+        $('#pdf_pages').val(pages);        
+    });
+ 
+    $('.custom-checkbox').on('ifUnchecked', function (event){
+        var removeItem = $(this).val()
+        // selected_pdf_pages.pop($(this).val()); 
+        selected_pdf_pages = jQuery.grep(selected_pdf_pages, function(value) {
+          return value != removeItem;
+        });
+        var pages = selected_pdf_pages.toString();
+        $('#pdf_pages').val(pages);     
+    });
+
+    $('.custom-checkbox').iCheck('check');
+});
+
+function choose_presentation(presentation)
+{
+    if(presentation === 'buyer'){
+        $("#config-comps-btn").hide();
+        $("#presentation").val("buyer");
+        $('#wizard').smartWizard("buyer");
+        $('.seller_template').hide(function(){
+            $('.buyer_template').show();
         });
     } 
 
