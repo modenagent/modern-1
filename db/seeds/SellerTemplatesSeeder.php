@@ -17,83 +17,83 @@ class SellerTemplatesSeeder extends AbstractSeed
     {
         $data = [
             [
-                'template_icon'    => 'assets/images/report/seller/1.jpg',
+                'template_icon'    => 'assets/images/reports/seller/1.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/2.jpg',
+                'template_icon'    => 'assets/images/reports/seller/2.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/3.jpg',
+                'template_icon'    => 'assets/images/reports/seller/3.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/4.jpg',
+                'template_icon'    => 'assets/images/reports/seller/4.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/5.jpg',
+                'template_icon'    => 'assets/images/reports/seller/5.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/6.jpg',
+                'template_icon'    => 'assets/images/reports/seller/6.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/7.jpg',
+                'template_icon'    => 'assets/images/reports/seller/7.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/8.jpg',
+                'template_icon'    => 'assets/images/reports/seller/8.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/9.jpg',
+                'template_icon'    => 'assets/images/reports/seller/9.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/10.jpg',
+                'template_icon'    => 'assets/images/reports/seller/10.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/11.jpg',
+                'template_icon'    => 'assets/images/reports/seller/11.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/12.jpg',
+                'template_icon'    => 'assets/images/reports/seller/12.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/13.jpg',
+                'template_icon'    => 'assets/images/reports/seller/13.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/14.jpg',
+                'template_icon'    => 'assets/images/reports/seller/14.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/15.jpg',
+                'template_icon'    => 'assets/images/reports/seller/15.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/16.jpg',
+                'template_icon'    => 'assets/images/reports/seller/16.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/17.jpg',
+                'template_icon'    => 'assets/images/reports/seller/17.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/18.jpg',
+                'template_icon'    => 'assets/images/reports/seller/18.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/19.jpg',
+                'template_icon'    => 'assets/images/reports/seller/19.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
             [
-                'template_icon'    => 'assets/images/report/seller/20.jpg',
+                'template_icon'    => 'assets/images/reports/seller/20.jpg',
                 'created' => date('Y-m-d H:i:s'),
             ],
         ];
