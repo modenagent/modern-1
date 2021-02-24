@@ -1,20 +1,67 @@
 <?php
-require_once '../CI.php';
-$ci = get_instance();
-$user_id = 82;
+
+include('../simplesaml/lib/_autoload.php');
+if(empty($_GET['site_id'])) {
+    echo "Invalid request";die;
+}
+
+$auth_id = $_GET['site_id'];
+
+if(!empty($auth_id)) {
+
+    $auth = new \SimpleSAML\Auth\Simple($auth_id);
+}
+else {
+    echo "Invalid request.";die;
+}
+
+
+if (!$auth->isAuthenticated())
+{
+   $auth->requireAuth();
+}
+else
+{
+
+
+    $attributes = $auth->getAttributes();
+
+    ob_start();
+    $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
+    $root_dir = str_replace('\\', '/', $root_dir);
+    define('FCPATH', $root_dir);
+    define("CI_REQUEST", "external");
+    include('index_ci.php');
+    ob_end_clean();
+    $CI =& get_instance();
+
+    if(!empty($attributes['email']) && !empty($attributes['email'][0])) {
+        $email = $attributes['email'][0];
+        $get_where = array('email'=>$email);
+
+        $user = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+        $newdata = array(
+        'userid'    => $user->user_id_pk,
+        'username'  => ucfirst($user->first_name).' '.ucfirst($user->last_name),
+        'user_email' => $user->email,
+        'logged_in' => TRUE
+        );
+        // $session = SimpleSAML_Session::getSessionFromRequest();
+        // $session->cleanup();
+        $sessionData = $CI->session->set_userdata($newdata);
+        $_SESSION['userdata'] = $newdata;
+        
+    }
+    else {
+        echo "Email not found";die;
+    }
+
+
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDQQthVgLzHIRTyLS1WGP2spIshpD28n8M"></script>
-		<script type="text/javascript">
-	        var base_url = '<?php echo base_url(); ?>';
-	        var user_id = '<?php echo $user_id; ?>';
-	    </script>
-		<script type="text/javascript" src="cma.js"></script>
-	</head>
-	<body>
-		<div id="cma-widget-container" style="margin: 0 auto;max-width: 95%;"></div>
-	</body>
-</html>
+    <script type="text/javascript">
+        var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/widget/getWidgetData";
+    </script>
+    <script type="text/javascript" src="cma.js"></script>
+<?php 
+}
+?>

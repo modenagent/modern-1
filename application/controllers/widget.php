@@ -7,7 +7,28 @@ class Widget extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        $this->user_id = 82;          
+        // $this->user_id = 82;   
+        $widget_url = $_ENV['WIDGET_DOMAIN'];
+        // header("Access-Control-Allow-Origin: $widget_url");
+        header("Access-Control-Allow-Origin:*");
+
+
+        require_once(FCPATH .'simplesaml/lib/_autoload.php');
+        $session = SimpleSAML_Session::getSessionFromRequest();
+
+        if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
+
+            $sessionData = $this->session->set_userdata($_SESSION['userdata']);
+
+        }
+        if(!($this->session->userdata('userid')) ) {
+
+            echo "Access denied, you are not authorized to use this widget.";
+            return;
+        }
+        else {
+            $this->user_id = $this->session->userdata('userid');          
+        }       
     }
 
     public function index()
@@ -57,7 +78,7 @@ class Widget extends CI_Controller {
 
     public function getWidgetData()
     {
-        $user_id = $this->input->post('user_id');
+        $user_id = $this->user_id;
         if(isset($user_id) && !empty($user_id))
         {
             $tableName = "lp_user_mst";
@@ -109,22 +130,24 @@ class Widget extends CI_Controller {
 
                 $data['reportTemplates'] = $this->base_model->all_records('lp_seller_report_templates');
                 
-                $html = $this->load->view('user/dashboard_widget', $data, true);
-                $result['res'] = $html;
+                // $html = $this->load->view('user/dashboard_widget', $data, true);
+                $this->load->view('user/dashboard_widget', $data);
+                // $result['res'] = $html;
 
-                header('Content-Type: text/javascript; charset=utf8');
-                header('Access-Control-Allow-Origin: http://localhost/mylistingpitch');
-                header('Access-Control-Max-Age: 3628800');
-                header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');              
+                // header('Content-Type: text/javascript; charset=utf8');
+                // header('Access-Control-Allow-Origin: http://localhost/mylistingpitch');
+                // header('Access-Control-Max-Age: 3628800');
+                // header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');              
                 
             }
         }
         else
         {
-            header('Content-Type: application/json; charset=utf8');
-            $result['res'] = 'ERROR: Access denied, you are not authorized to use this widget.';
+            // header('Content-Type: application/json; charset=utf8');
+            // $result['res'] = 'ERROR: Access denied, you are not authorized to use this widget.';
+            echo 'ERROR: Access denied, you are not authorized to use this widget.';
             // echo json_encode($data);
         }
-        echo json_encode($result); exit;
+        // echo json_encode($result); exit;
     }
 }
