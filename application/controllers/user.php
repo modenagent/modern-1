@@ -2724,7 +2724,7 @@ Thank you for your order. Below you can find the details of your order. If you o
         }
 
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
-
+echo "<pre>"; print_r($_POST); exit;
         if($_POST){
           $this->load->library('stripe');
 

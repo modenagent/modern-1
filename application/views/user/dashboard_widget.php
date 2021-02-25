@@ -915,6 +915,7 @@ function submitFormAndGetReport()
         data: formData,
         dataType: "json",
         success: function(data) {
+            console.log(data);
             var obj = data;                
             var today = new Date();
             var dd = today.getDate();
