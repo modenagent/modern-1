@@ -559,7 +559,7 @@ $config = [
      * Example:
      *  'session.cookie.domain' => '.example.org',
      */
-    'session.cookie.domain' => null,
+    'session.cookie.domain' => '.modernagent.localhost.com',
 
     /*
      * Set the secure flag in the cookie.
@@ -568,7 +568,7 @@ $config = [
      * through https. If the user can access the service through
      * both http and https, this must be set to FALSE.
      */
-    'session.cookie.secure' => false,
+    'session.cookie.secure' => FALSE,
 
     /*
      * Set the SameSite attribute in the cookie.
@@ -580,7 +580,8 @@ $config = [
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
-    // 'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
+    'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
+    'session.cookie.samesite' => 'None',
 
     /*
      * Options to override the default settings for php sessions.
@@ -808,7 +809,8 @@ $config = [
     'language.cookie.secure' => false,
     'language.cookie.httponly' => false,
     'language.cookie.lifetime' => (60 * 60 * 24 * 900),
-    'language.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
+    // 'language.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
+    'language.cookie.samesite' => 'None',
 
     /**
      * Custom getLanguage function called from SimpleSAML\Locale\Language::getLanguage().
