@@ -314,6 +314,13 @@
                 
               </tr>
               <tr>
+                <td>Username:</td>
+                <td>
+                  <input type="text" class="form-control"   value="<?=$sso_record->username?>" name="field[username]">
+                </td>
+                
+              </tr>
+              <tr>
                 <td>First Name:</td>
                 <td>
                   <input type="text" class="form-control"   value="<?=$sso_record->first_name?>" name="field[first_name]">
