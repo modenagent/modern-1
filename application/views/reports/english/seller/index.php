@@ -80,7 +80,7 @@
         $this->load->view('reports/english/seller/pages/1');
     }
 
-    $this->load->view('reports/english/seller/pages/2');    
+    /*$this->load->view('reports/english/seller/pages/2');    
     $this->load->view('reports/english/seller/pages/4');
     $this->load->view('reports/english/seller/pages/5');
     $this->load->view('reports/english/seller/pages/5b');
@@ -99,13 +99,13 @@
     $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']);
     $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
     $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
-    $this->load->view('reports/english/seller/pages/15');
+    $this->load->view('reports/english/seller/pages/15');*/
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
  
-<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+<!-- <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css"> -->
 <script>
             
             function collision($div1, $div2) {
