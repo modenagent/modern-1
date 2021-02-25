@@ -478,6 +478,7 @@ use Knp\Snappy\Pdf;
             if(!isset($reportLang)){
                 $reportLang = 'english';
             }
+            echo "<pre>test:"; print_r($reportLang); exit;
             //@var $turboMode boolean If true than it uses pre stored static theme pages and using qpdf tool it merge these with dynamic content pdf being gnerated with wkhtmltopdf tool
             $turboMode = false;
             //if(($presentationType=="seller" || $presentationType=="buyer") && $reportLang=='english'){
