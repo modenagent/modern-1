@@ -56,7 +56,7 @@ use Knp\Snappy\Pdf;
             }
 
             $rep111 = $_POST['report111'];
-            $reportLang = strtolower($_POST['report_lang']);
+            $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
             $compKeys = json_decode(stripslashes($_POST['custom_comps']));
             $rep111 = urldecode($rep111);
             $report111 = @simplexml_load_file($rep111);
@@ -91,11 +91,16 @@ use Knp\Snappy\Pdf;
 
             $data['partner'] =  array();
             if($_POST['showpartner']=='on'){
-                foreach ($_POST['partner'] as $_key => $_partner){
-                    foreach ($_partner as $i => $_data){
-                       $data['partner'][$i][$_key] = $_data; 
+                if(isset($_POST['partner']) && !empty($_POST['partner']))
+                {
+                    foreach ($_POST['partner'] as $_key => $_partner)
+                    {
+                        foreach ($_partner as $i => $_data){
+                        $data['partner'][$i][$_key] = $_data; 
+                        }
                     }
                 }
+                
 
                 if(!empty($data['partner'])){
                     $data['user_id_fk'] = $CI->session->userdata('userid');
@@ -475,9 +480,11 @@ use Knp\Snappy\Pdf;
          */
         function preparePdf($reportLang,$data,$presentationType,$siteAddress){
             $CI = & get_instance();
-            if(!isset($reportLang)){
+            
+            if(isset($reportLang) && !empty($reportLang)){
                 $reportLang = 'english';
             }
+            
             //@var $turboMode boolean If true than it uses pre stored static theme pages and using qpdf tool it merge these with dynamic content pdf being gnerated with wkhtmltopdf tool
             $turboMode = false;
             //if(($presentationType=="seller" || $presentationType=="buyer") && $reportLang=='english'){
