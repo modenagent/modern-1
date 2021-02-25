@@ -843,6 +843,7 @@ MSG;
         $data_update['last_name'] = $fields['last_name']; 
         $data_update['phone'] = $fields['phone']; 
         $data_update['sales_rep'] = $fields['sales_rep']; 
+        $data_update['username'] = $fields['username']; 
 
         $company_id = $this->input->post('company_id');
 
