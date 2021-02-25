@@ -159,6 +159,8 @@ else
         $session = SimpleSAML_Session::getSessionFromRequest();
         $session->cleanup();
 
+        var_dump($newdata);die;
+
         $sessionData = $CI->session->set_userdata($newdata);
         $_SESSION['userdata'] = $newdata;
         
