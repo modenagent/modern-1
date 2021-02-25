@@ -56,7 +56,7 @@ use Knp\Snappy\Pdf;
             }
 
             $rep111 = $_POST['report111'];
-            $reportLang = strtolower($_POST['report_lang']);
+            $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
             $compKeys = json_decode(stripslashes($_POST['custom_comps']));
             $rep111 = urldecode($rep111);
             $report111 = @simplexml_load_file($rep111);
@@ -480,6 +480,7 @@ use Knp\Snappy\Pdf;
          */
         function preparePdf($reportLang,$data,$presentationType,$siteAddress){
             $CI = & get_instance();
+            echo "<pre>"; print_r($reportLang);
             if(!isset($reportLang)){
                 $reportLang = 'english';
             }
