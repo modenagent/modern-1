@@ -738,7 +738,15 @@ MSG;
                 $phone = mysqli_real_escape_string($this->dbConn, $postedArr['phone']);
                 $license = mysqli_real_escape_string($this->dbConn, $postedArr['license']);
                 $cname = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
+
                 $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
+                if(isset($postedArr['ccity']) && isset($postedArr['czip']) && isset($postedArr['cstate'])) {
+
+                $ccity = mysqli_real_escape_string($this->dbConn, $postedArr['ccity']);
+                $czip = mysqli_real_escape_string($this->dbConn, $postedArr['czip']);
+                $cstate = mysqli_real_escape_string($this->dbConn, $postedArr['cstate']);
+                }
+                
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
                 $parentId = (!empty($this->input->post('parent_id')))?$this->input->post('parent_id'):0;
                 $enterpriseFlag = (!empty($this->input->post('enterprise_flag')))?$this->input->post('enterprise_flag'):0;
@@ -754,7 +762,7 @@ MSG;
                         //If Sales Reprensentative
                         if ($roleId == '3') {
                             $cname = $parent_user_details->company_name;
-                            $cadd = $parent_user_details->company_add;
+                            // $cadd = $parent_user_details->company_add;
                         }
                     }
                 }
@@ -771,6 +779,11 @@ MSG;
                     'company_add' => $cadd,
                     'is_enterprise_user' => $enterpriseFlag,
                 );
+                if(isset($ccity) && isset($cstate) && isset($czip)) {
+                    $data['company_city'] = $ccity;
+                    $data['comapny_zip'] = $czip;
+                    $data['company_state'] = $cstate;
+                }
                 $resultCheck = false;
                 // USER NAME CAN NOT BE CHANGED ONCE CREATED
                 // if($username!='') {
@@ -839,7 +852,8 @@ MSG;
 
         $result = $this->base_model->update_record_by_id('lp_idps',$data_update,$where);
         if($result){
-
+            //Call saml to configure record
+            file_get_contents(base_url('simplesaml/module.php/cron/cron.php?key=BaPwi12emND&tag=hourly'));
             // Set flash data
             $this->session->set_flashdata('success', 'Record updated');
             redirect("admin/profile_edit/".$company_id);

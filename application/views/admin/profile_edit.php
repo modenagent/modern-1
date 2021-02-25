@@ -108,17 +108,43 @@
                 <td>Company Address :</td>
                 <td>
                   <?php
-                  if ($user->role_id_fk == 3)
+                  /* if ($user->role_id_fk == 3)
                   {
                       echo $user->company_add;
                   }
                   else
-                  { ?>
+                  { 
+                  ?>
                       <input type="text" placeholder="" class="form-control" placeholder="Company Address" name="cadd" id="cadd" value="<?php echo $user->company_add; ?>">
                     <?php
-                  } ?>
+                  } */
+
+
+                  ?>
+                  <input type="text" placeholder="" class="form-control" placeholder="Company Address" name="cadd" id="cadd" value="<?php echo $user->company_add; ?>">
+
                 </td>
               </tr>
+              <?php
+              if($user->role_id_fk == 3) :
+                ?>
+                <tr>
+                  <td>City</td>
+                  <td><input type="text" class="form-control" placeholder="City" name="ccity" id="ccity" value="<?php echo ($user->company_city == '0' ? '' : $user->company_city); ?>"></td>
+                </tr>
+
+                <tr>
+                  <td>Zip</td>
+                  <td><input type="text" class="form-control" placeholder="Zip" name="czip" id="czip" value="<?php echo $user->comapny_zip; ?>"></td>
+                </tr>
+
+                <tr>
+                  <td>State</td>
+                  <td><input type="text" class="form-control" placeholder="State" name="cstate" id="cstate" value="<?php echo $user->company_state; ?>"></td>
+                </tr>
+                <?php
+              endif;
+              ?>
               <?php $_isAdmin = $this->role_lib->is_admin(); ?>
               <?php if ($_isAdmin): ?>
               <tr>
