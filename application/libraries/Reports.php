@@ -481,10 +481,10 @@ use Knp\Snappy\Pdf;
         function preparePdf($reportLang,$data,$presentationType,$siteAddress){
             $CI = & get_instance();
             var_dump($reportLang);
-            if(isset($reportLang) && !empty($reportLang)){
+            if(empty($reportLang)){
                 $reportLang = 'english';
             }
-            var_dump($reportLang);
+            
             //@var $turboMode boolean If true than it uses pre stored static theme pages and using qpdf tool it merge these with dynamic content pdf being gnerated with wkhtmltopdf tool
             $turboMode = false;
             //if(($presentationType=="seller" || $presentationType=="buyer") && $reportLang=='english'){
@@ -554,7 +554,6 @@ use Knp\Snappy\Pdf;
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
-                echo "<pre>"; print_r($reportLang); exit;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/index",$data,true);
             
             }
