@@ -1,5 +1,5 @@
 <div class="container">
-    <page class="pdf1">
+    <div class="pdf1">
         <div class="header">
             <img src="<?php echo base_url().'assets/reports/english/seller/images/1/light-house.png';?>" alt="light-house" border="0">
             <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png';?>" alt="line" border="0">
@@ -32,5 +32,5 @@
             </div>
             
         </div>
-    </page>
+    </div>
 </div>
