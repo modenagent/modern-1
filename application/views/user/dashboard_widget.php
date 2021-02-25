@@ -674,7 +674,7 @@ jQuery(document).ready(function() {
               },500);
               return true;
             }
-            /*if(obj.attr('rel')==3){
+            if(obj.attr('rel')==3){
               var _theme = $('.custom-checkbox:checked').val();
               console.log(_theme);
               console.log(typeof _theme);
@@ -682,7 +682,7 @@ jQuery(document).ready(function() {
                   alert("Please choose a theme");
                   return false;
               }
-            }*/
+            }
             return true;
         },
         onShowStep:function(obj){
