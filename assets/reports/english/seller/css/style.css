@@ -5,10 +5,6 @@ body {
   font-size: 18px;
   color: #333;
 }
-html {
-  margin: 0;
-  padding: 0;
-}
 ::selection {
   color: #fff;
   background: #ffd758;
@@ -546,8 +542,8 @@ ul.home_list {
 }
 .pdf1 .header {
   margin: 0 auto;
-  height: 416px;
-  padding: 0 224px;
+  height: 26rem;
+  padding: 0 14rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
