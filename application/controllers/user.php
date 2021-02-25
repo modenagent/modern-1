@@ -2724,7 +2724,7 @@ Thank you for your order. Below you can find the details of your order. If you o
         }
 
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
-echo "<pre>"; print_r($_POST); exit;
+
         if($_POST){
           $this->load->library('stripe');
 
@@ -2797,7 +2797,9 @@ echo "<pre>"; print_r($_POST); exit;
                 $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $this->session->userdata('project_id')));
                 
                 $reportLink = base_url($_project->report_path);
+                echo "<pre>"; print_r($reportLink);
                 header('Content-Type: application/json; charset=utf8');
+                echo "<pre>"; print_r($_project); exit;
                 echo json_encode($_project);
               }
           }elseif($byPassPayment || $response->paid) {
