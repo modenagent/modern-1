@@ -2797,7 +2797,7 @@ Thank you for your order. Below you can find the details of your order. If you o
                 $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $this->session->userdata('project_id')));
                 
                 $reportLink = base_url($_project->report_path);
-                echo "<pre>"; print_r($reportLink);
+                
                 header('Content-Type: application/json; charset=utf8');
                 
                 echo json_encode($_project);
