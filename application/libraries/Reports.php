@@ -480,7 +480,7 @@ use Knp\Snappy\Pdf;
          */
         function preparePdf($reportLang,$data,$presentationType,$siteAddress){
             $CI = & get_instance();
-            var_dump($reportLang);
+            
             if(empty($reportLang)){
                 $reportLang = 'english';
             }

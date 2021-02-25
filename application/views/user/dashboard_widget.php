@@ -872,17 +872,96 @@ function check_subscription()
     });
 }
 
-function hasActiveRequest(){
-      if(activeRequest){
-        setTimeout(function(){
-          return hasActiveRequest();
-        },500);
-      }else{
-        $('.loader1').addClass('hidden');
-        $('.backwrap').addClass('hidden');
-        return true;
-      }
+function hasActiveRequest()
+{
+    if(activeRequest){
+    setTimeout(function(){
+      return hasActiveRequest();
+    },500);
+    }else{
+    $('.loader1').addClass('hidden');
+    $('.backwrap').addClass('hidden');
+    return true;
     }
+}
+
+function doSubmit()
+{
+    if(activeRequest)
+    {
+        setTimeout(function(){
+          doSubmit();
+        },1500);
+    }
+    else
+    {
+        submitFormAndGetReport(); 
+    }
+}
+
+// processing the form submission for creating the report
+function submitFormAndGetReport()
+{
+    // getting the formData
+    var formData = $("#payment-form").serializeArray();
+    formData.push(
+                    {name: 'widgetType', value: 'user_dashboard'},
+                    {name: 'user-id', value: '<?php echo $user_id; ?>'}
+                 );
+    // submitting the form using ajax
+    $.ajax({
+        type: "POST",
+        url: "<?php echo base_url(); ?>user/cart_payment",
+        data: formData,
+        dataType: "json",
+        success: function(data) {
+            var obj = data;                
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth()+1; //January is 0!
+            var yyyy = today.getFullYear();
+
+            if(dd<10) {
+                dd = '0'+dd
+            } 
+
+            if(mm<10) {
+                mm = '0'+mm
+            } 
+
+            today = mm + '/' + dd + '/' + yyyy;
+
+            var new_row = '<tr class="active"><td>'+today+'</td><td>'+obj.project_id_pk+' '+obj.property_owner+'</td><td>'+obj.project_name+'</td><td style="text-transform:capitalize;">'+obj.report_type+'</td><td><a id="downloadReport_'+obj.project_id_pk+'" href="<?php echo base_url(); ?>'+obj.report_path+'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a><a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'+obj.project_id_pk+'"><i data-toggle="tooltip" title="Email" class="icon icon-share"></i></a><a href="javascript:void(0);" onclick="delete_lp('+obj.project_id_pk+', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a></td></tr>';
+
+            // removing the active class from all rows
+            $('#recent-lp #table-dt tbody tr').each(function(){
+                $(this).removeClass('active');
+            });
+
+            // prepending a new row in the table and switch to the the tab
+            // console.log(new_row);
+            $('#recent-lp #table-dt tbody').prepend(new_row);
+            
+            // making the report download now
+            window.open($('#downloadReport_'+obj.project_id_pk).attr('href'), '_blank');
+
+            // switching the tab to show the latest reports
+            $('#recentReportsTab').click();
+
+            var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
+            var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
+
+            $.getJSON(jsonp_url, function(data) {
+                console.log(data);
+              $('#cma-widget-container').html(custom_css+data.html);
+            });
+        },
+        error: function() {
+            // place error code here
+            alert('Oops! Error Occurred while submitting the data.');
+        }
+    });
+}
 </script>
 
 <script type="text/javascript">
@@ -909,78 +988,9 @@ function hasActiveRequest(){
       }
     }
 
-    function doSubmit(){
-      if(activeRequest){
-        setTimeout(function(){
-          doSubmit();
-        },1500);
-      }else{
-        submitFormAndGetReport(); 
-      }
-    }
+    
 
-    // processing the form submission for creating the report
-    function submitFormAndGetReport(){
-        // getting the formData
-        var formData = $("#payment-form").serializeArray();
-        formData.push(
-                        {name: 'widgetType', value: 'user_dashboard'},
-                        {name: 'user-id', value: '<?php echo $user_id; ?>'}
-                     );
-        // submitting the form using ajax
-        $.ajax({
-            type: "POST",
-            url: "<?php echo base_url(); ?>user/cart_payment",
-            data: formData,
-            dataType: "json",
-            success: function(data) {
-                var obj = data;                
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth()+1; //January is 0!
-                var yyyy = today.getFullYear();
-
-                if(dd<10) {
-                    dd = '0'+dd
-                } 
-
-                if(mm<10) {
-                    mm = '0'+mm
-                } 
-
-                today = mm + '/' + dd + '/' + yyyy;
-
-                var new_row = '<tr class="active"><td>'+today+'</td><td>'+obj.project_id_pk+' '+obj.property_owner+'</td><td>'+obj.project_name+'</td><td style="text-transform:capitalize;">'+obj.report_type+'</td><td><a id="downloadReport_'+obj.project_id_pk+'" href="<?php echo base_url(); ?>'+obj.report_path+'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a><a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'+obj.project_id_pk+'"><i data-toggle="tooltip" title="Email" class="icon icon-share"></i></a><a href="javascript:void(0);" onclick="delete_lp('+obj.project_id_pk+', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a></td></tr>';
-
-                // removing the active class from all rows
-                $('#recent-lp #table-dt tbody tr').each(function(){
-                    $(this).removeClass('active');
-                });
-
-                // prepending a new row in the table and switch to the the tab
-                // console.log(new_row);
-                $('#recent-lp #table-dt tbody').prepend(new_row);
-                
-                // making the report download now
-                window.open($('#downloadReport_'+obj.project_id_pk).attr('href'), '_blank');
-
-                // switching the tab to show the latest reports
-                $('#recentReportsTab').click();
-
-                var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
-                var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
-
-                $.getJSON(jsonp_url, function(data) {
-                    console.log(data);
-                  $('#cma-widget-container').html(custom_css+data.html);
-                });
-            },
-            error: function() {
-                // place error code here
-                alert('Oops! Error Occurred while submitting the data.');
-            }
-        });
-    }
+    
     
 
     $('#payment-form').submit(function(event) {
