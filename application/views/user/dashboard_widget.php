@@ -908,6 +908,7 @@ function submitFormAndGetReport()
                     {name: 'widgetType', value: 'user_dashboard'},
                     {name: 'user-id', value: '<?php echo $user_id; ?>'}
                  );
+    alert("fun");
     // submitting the form using ajax
     $.ajax({
         type: "POST",
