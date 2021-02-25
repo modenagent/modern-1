@@ -198,6 +198,7 @@ else {
 	$config['cookie_path']		= "/";
 }
 $config['cookie_secure']	= FALSE;
+/*
 |
 | This determines which character set is used by default in various methods
 | that require a character set to be provided.
