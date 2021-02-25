@@ -1,49 +1,35 @@
 <div class="container">
-	<div class="section">
-		<div class="body">
-			<img width="100%" class="img-responsive" src="<?php echo base_url("assets/reports/english/seller/images/1/1_b3.jpg") ?>">	
-			<div class="section-content">
-				<p>Seller's Report</p>
-				<h1><?php echo $property->PropertyProfile->SiteAddress ; ?></h1>
-
-				<div class="line" style="background-color:<?php echo $theme ?>; "></div>
-
-				<p><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></p>
-			</div>
-		</div>
-		<div class="footer">
-            <div class="row">
-                <div class="footer-inner">
-                    <div class="col-xs-12">
-                        <div class="left-footer pull-left">
-                            <div class="row">
-                                <?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?>
-                                <div class="col-xs-6">
-                                        <img  class="img-cover" src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>"  />
-                                </div>
-                                <?php else: ?>
-                                <div class="col-xs-3"></div>
-                                <?php endif; ?>
-                                <div class="<?php echo ($user['profile_image'] != '' && $user['profile_image'] != 'no')?'col-xs-6':'col-xs-9'  ?>">
-                                    <h4 class="client-name"><?php echo $user['fullname']; ?></h4>
-                                    <p class="client-detail" >
-                                    <p class="client-detail" ><?php echo $user['title']; ?></p>
-                                    <p class="client-detail" >CA BRE#<?php echo $user['licenceno']; ?></p>
-                                    <p class="client-detail" > Direct: <?php echo $user['phone']; ?></p>
-                                    <p class="client-detail" > <?php echo $user['email']; ?></p>
-                                    <p class="client-detail" >  <?php echo $user['companyname']; ?></p>
-                                    <p class="client-detail" > <?php echo $user['street']; ?></p>
-                                    <p class="client-detail" > <?php echo $user['city']; ?>, &nbsp; <?php echo $user['state'];  ?>&nbsp;<?php echo $user['zip']; ?></p>
-                                    </p>		
-                                </div>
-                            </div>
+    <page class="pdf1">
+        <div class="header">
+            <img src="<?php echo base_url().'assets/reports/english/seller/images/1/light-house.png';?>" alt="light-house" border="0">
+            <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png';?>" alt="line" border="0">
+            <div class="text">
+                <h1>Sellers Report</h1>
+                <p><?php echo $property->PropertyProfile->SiteAddress ; ?>,</p>
+                <p><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></p>
+            </div>
+        </div>
+        <div class="body">
+            <img src="<?php echo base_url().'assets/reports/english/seller/images/1/architecture-modern-residence6.jpg';?>" alt="architecture-modern-residence6" class="img-fluid d-block"><div class="footer">
+                <div class="d-flex">
+                    <div class="signature horizontal_sign">
+                        <img src="https://i.ibb.co/qyHKv61/laura-chouette-nk-Wnc-W-GP8-unsplash.jpg"
+                            alt="laura-chouette-nk-Wnc-W-GP8-unsplash" class="profile_img">
+                        <div>
+                            <div class="profile_name">First Last</div>
+                            <div class="profile_title">Title</div>
+                            <a class="tel_number" href="tel:000.000.0000">O <span>000.000.0000</span></a>
+                            <a class="tel_number" href="tel:000.000.0000">M <span>000.000.0000</span></a>
+                            <a href="mailto:name@domain.com" class="contact_info">name@domain.com</a>
+                            <a href="https://domain.com" class="contact_info">domain.com</a>
                         </div>
-                        <div class="right-footer pull-right" style="">
-                            <?php if($user['company_logo'] != ''):?><img src="<?php if($callFromApi == 1) echo $user['company_logo']; else echo base_url().$user['company_logo']; ?>" style=""  alt="Logo Image"/><?php endif; ?>
-                        </div>
+                    </div>
+                    <div class="logo">
+                        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png';?>" alt="white-logo" border="0">
                     </div>
                 </div>
             </div>
-		</div>
-	</div>
+            
+        </div>
+    </page>
 </div>
