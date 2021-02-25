@@ -2799,7 +2799,7 @@ Thank you for your order. Below you can find the details of your order. If you o
                 $reportLink = base_url($_project->report_path);
                 echo "<pre>"; print_r($reportLink);
                 header('Content-Type: application/json; charset=utf8');
-                echo "<pre>"; print_r($_project); exit;
+                
                 echo json_encode($_project);
               }
           }elseif($byPassPayment || $response->paid) {
