@@ -559,7 +559,7 @@ $config = [
      * Example:
      *  'session.cookie.domain' => '.example.org',
      */
-    'session.cookie.domain' => '.modernagent.localhost.com',
+    'session.cookie.domain' => null,
 
     /*
      * Set the secure flag in the cookie.
@@ -580,8 +580,8 @@ $config = [
      * Example:
      *  'session.cookie.samesite' => 'None',
      */
-    'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
-    'session.cookie.samesite' => 'None',
+    // 'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
+    // 'session.cookie.samesite' => 'None',
 
     /*
      * Options to override the default settings for php sessions.

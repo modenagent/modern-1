@@ -99,6 +99,106 @@ $config['language']	= 'english';
 | Default Character Set
 |--------------------------------------------------------------------------
 |
+| For a live site you'll usually only enable Errors (1) to be logged otherwise
+| your log files will fill up very fast.
+|
+*/
+$config['log_threshold'] = 4;
+
+/*
+|--------------------------------------------------------------------------
+| Error Logging Directory Path
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| application/logs/ folder. Use a full server path with trailing slash.
+|
+*/
+$config['log_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Date Format for Logs
+|--------------------------------------------------------------------------
+|
+| Each item that is logged has an associated date. You can use PHP date
+| codes to set your own date formatting
+|
+*/
+$config['log_date_format'] = 'Y-m-d H:i:s';
+
+/*
+|--------------------------------------------------------------------------
+| Cache Directory Path
+|--------------------------------------------------------------------------
+|
+| Leave this BLANK unless you would like to set something other than the default
+| system/cache/ folder.  Use a full server path with trailing slash.
+|
+*/
+$config['cache_path'] = '';
+
+/*
+|--------------------------------------------------------------------------
+| Encryption Key
+|--------------------------------------------------------------------------
+|
+| If you use the Encryption class or the Session class you
+| MUST set an encryption key.  See the user guide for info.
+|
+*/
+$config['encryption_key'] = 'rC0qaRzZ7V5AqdeJGqZwOLjV6j4V7hOt';
+
+/*
+|--------------------------------------------------------------------------
+| Session Variables
+|--------------------------------------------------------------------------
+|
+| 'sess_cookie_name'		= the name you want for the cookie
+| 'sess_expiration'			= the number of SECONDS you want the session to last.
+|   by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
+| 'sess_expire_on_close'	= Whether to cause the session to expire automatically
+|   when the browser window is closed
+| 'sess_encrypt_cookie'		= Whether to encrypt the cookie
+| 'sess_use_database'		= Whether to save the session data to a database
+| 'sess_table_name'			= The name of the session database table
+| 'sess_match_ip'			= Whether to match the user's IP address when reading the session data
+| 'sess_match_useragent'	= Whether to match the User Agent when reading the session data
+| 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
+|
+*/
+$config['sess_cookie_name']		= 'ci_session';
+$config['sess_expiration']		= 7200;
+$config['sess_expire_on_close']	= FALSE;
+$config['sess_encrypt_cookie']	= FALSE;
+// $config['sess_use_database']	= TRUE;
+$config['sess_use_database']	= TRUE;
+$config['sess_table_name']		= 'ci_sessions';
+$config['sess_match_ip']		= TRUE;
+$config['sess_match_useragent']	= FALSE;
+$config['sess_time_to_update']	= 300;
+
+/*
+|--------------------------------------------------------------------------
+| Cookie Related Variables
+|--------------------------------------------------------------------------
+|
+| 'cookie_prefix' = Set a prefix if you need to avoid collisions
+| 'cookie_domain' = Set to .your-domain.com for site-wide cookies
+| 'cookie_path'   =  Typically will be a forward slash
+| 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
+|
+*/
+$config['cookie_prefix']	= "ma_";
+$config['cookie_domain']	= !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN']:"";
+if(defined('CI_REQUEST') && CI_REQUEST == 'external'){
+	$config['cookie_path']		= "/; SameSite=None";
+}
+else {
+	$config['cookie_path']		= "/";
+}
+$config['cookie_secure']	= FALSE;
+|
 | This determines which character set is used by default in various methods
 | that require a character set to be provided.
 |
@@ -198,107 +298,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 |	2 = Debug Messages
 |	3 = Informational Messages
 |	4 = All Messages
-|
-| For a live site you'll usually only enable Errors (1) to be logged otherwise
-| your log files will fill up very fast.
-|
-*/
-$config['log_threshold'] = 4;
-
-/*
-|--------------------------------------------------------------------------
-| Error Logging Directory Path
-|--------------------------------------------------------------------------
-|
-| Leave this BLANK unless you would like to set something other than the default
-| application/logs/ folder. Use a full server path with trailing slash.
-|
-*/
-$config['log_path'] = '';
-
-/*
-|--------------------------------------------------------------------------
-| Date Format for Logs
-|--------------------------------------------------------------------------
-|
-| Each item that is logged has an associated date. You can use PHP date
-| codes to set your own date formatting
-|
-*/
-$config['log_date_format'] = 'Y-m-d H:i:s';
-
-/*
-|--------------------------------------------------------------------------
-| Cache Directory Path
-|--------------------------------------------------------------------------
-|
-| Leave this BLANK unless you would like to set something other than the default
-| system/cache/ folder.  Use a full server path with trailing slash.
-|
-*/
-$config['cache_path'] = '';
-
-/*
-|--------------------------------------------------------------------------
-| Encryption Key
-|--------------------------------------------------------------------------
-|
-| If you use the Encryption class or the Session class you
-| MUST set an encryption key.  See the user guide for info.
-|
-*/
-$config['encryption_key'] = 'rC0qaRzZ7V5AqdeJGqZwOLjV6j4V7hOt';
-
-/*
-|--------------------------------------------------------------------------
-| Session Variables
-|--------------------------------------------------------------------------
-|
-| 'sess_cookie_name'		= the name you want for the cookie
-| 'sess_expiration'			= the number of SECONDS you want the session to last.
-|   by default sessions last 7200 seconds (two hours).  Set to zero for no expiration.
-| 'sess_expire_on_close'	= Whether to cause the session to expire automatically
-|   when the browser window is closed
-| 'sess_encrypt_cookie'		= Whether to encrypt the cookie
-| 'sess_use_database'		= Whether to save the session data to a database
-| 'sess_table_name'			= The name of the session database table
-| 'sess_match_ip'			= Whether to match the user's IP address when reading the session data
-| 'sess_match_useragent'	= Whether to match the User Agent when reading the session data
-| 'sess_time_to_update'		= how many seconds between CI refreshing Session Information
-|
-*/
-$config['sess_cookie_name']		= 'ci_session';
-$config['sess_expiration']		= 0;
-$config['sess_expire_on_close']	= TRUE;
-$config['sess_encrypt_cookie']	= FALSE;
-// $config['sess_use_database']	= TRUE;
-$config['sess_use_database']	= TRUE;
-$config['sess_table_name']		= 'ci_sessions';
-$config['sess_match_ip']		= TRUE;
-$config['sess_match_useragent']	= FALSE;
-$config['sess_time_to_update']	= 3000000000;
-
-/*
-|--------------------------------------------------------------------------
-| Cookie Related Variables
-|--------------------------------------------------------------------------
-|
-| 'cookie_prefix' = Set a prefix if you need to avoid collisions
-| 'cookie_domain' = Set to .your-domain.com for site-wide cookies
-| 'cookie_path'   =  Typically will be a forward slash
-| 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
-|
-*/
-$config['cookie_prefix']	= "ma_";
-$config['cookie_domain']	= !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN']:"";
-if(defined('CI_REQUEST') && CI_REQUEST == 'external'){
-	$config['cookie_path']		= "/";
-}
-else {
-	$config['cookie_path']		= "/";
-}
-$config['cookie_secure']	= FALSE;
-// $config['cookie_httponly']  = FALSE;
+$config['cookie_httponly']  = FALSE;
 
 /*
 |--------------------------------------------------------------------------
