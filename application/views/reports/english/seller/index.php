@@ -62,13 +62,13 @@
 
 ?>
   
- <style type="text/css" media="print">
+<!--  <style type="text/css" media="print">
     div.container
     {
         page-break-after: always;
         page-break-inside: avoid;
     }
-</style>   
+</style> -->   
 
 <?php 
     if($partner && count($partner)>1) {
