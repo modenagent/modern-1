@@ -79,7 +79,7 @@
                             <li id="step-3-link">
                                 <a href="#step-3"> 
                                     <span class="stepNumber">03</span> 
-                                    <span class="stepDesc marketUpdateHide"> Step 3<br /><small class="little">Branding & Options</small></span>
+                                    <span class="stepDesc marketUpdateHide"> Step 3<br /><small class="little">Review Pages</small></span>
                                     <span class="stepDesc marketUpdateShow"> Step 3<br /><small class="little">Branding</small></span>
                                 </a>
                             </li>
@@ -145,7 +145,7 @@
                                 <div class="col-md-12">
                                     <div class="row">
                                         <div class="col-xs-12 col-lg-6 col-md-6">
-                                          <h2><strong>Agent:</strong> Upload Pic &amp; Enter Info</h2>
+                                          <!-- <h2><strong>Agent:</strong> Upload Pic &amp; Enter Info</h2> -->
                                           <div class="row">
                                             <div class="col-md-3">
                                               <div class="leftpic"> <a href="javascript:;">
@@ -180,7 +180,7 @@
                                         </div>
                                       </div>
                                     <div class="col-xs-12 col-lg-6 col-md-6">
-                                      <h2><strong>Company:</strong> Upload Logo &amp; Enter Info</h2>
+                                      <!-- <h2><strong>Company:</strong> Upload Logo &amp; Enter Info</h2> -->
                                       <div class="row">
                                         <div class="col-md-3">
                                           <div class="rightpic"> <a href="javascript:void(0);">
@@ -241,7 +241,7 @@
                           <div class="col-md-12">
                             <div class="col-md-12">
                           <div class="col-md-6">
-                            <h2><strong>Choose Your Branding</strong></h2>
+                            <h2><strong>Review Pages</strong></h2>
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
@@ -908,7 +908,6 @@ function submitFormAndGetReport()
                     {name: 'widgetType', value: 'user_dashboard'},
                     {name: 'user-id', value: '<?php echo $user_id; ?>'}
                  );
-    alert("fun");
     // submitting the form using ajax
     $.ajax({
         type: "POST",
@@ -916,7 +915,6 @@ function submitFormAndGetReport()
         data: formData,
         dataType: "json",
         success: function(data) {
-            alert("here");
             console.log(data);
             var obj = data;                
             var today = new Date();
