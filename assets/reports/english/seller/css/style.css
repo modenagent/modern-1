@@ -546,8 +546,8 @@ ul.home_list {
 }
 .pdf1 .header {
   margin: 0 auto;
-  height: 26rem;
-  padding: 0 14rem;
+  height: 416px;
+  padding: 0 224px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
