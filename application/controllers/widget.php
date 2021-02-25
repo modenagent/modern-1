@@ -16,6 +16,8 @@ class Widget extends CI_Controller {
         require_once(FCPATH .'simplesaml/lib/_autoload.php');
         $session = SimpleSAML_Session::getSessionFromRequest();
 
+        var_dump($_SESSION);die;
+
         if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
 
             $sessionData = $this->session->set_userdata($_SESSION['userdata']);
