@@ -91,11 +91,16 @@ use Knp\Snappy\Pdf;
 
             $data['partner'] =  array();
             if($_POST['showpartner']=='on'){
-                foreach ($_POST['partner'] as $_key => $_partner){
-                    foreach ($_partner as $i => $_data){
-                       $data['partner'][$i][$_key] = $_data; 
+                if(isset($_POST['partner']) && !empty($_POST['partner']))
+                {
+                    foreach ($_POST['partner'] as $_key => $_partner)
+                    {
+                        foreach ($_partner as $i => $_data){
+                        $data['partner'][$i][$_key] = $_data; 
+                        }
                     }
                 }
+                
 
                 if(!empty($data['partner'])){
                     $data['user_id_fk'] = $CI->session->userdata('userid');
