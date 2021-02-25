@@ -554,7 +554,6 @@ use Knp\Snappy\Pdf;
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
-                echo "<pre>"; print_r("here"); exit;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/index",$data,true);
             
             }
