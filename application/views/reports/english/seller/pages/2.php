@@ -36,67 +36,58 @@
     </div>
 
     <div class="d-flex mt-60 pad">
-    	<?php 
-    		list($array1, $array2) = array_chunk($array, ceil(count($array) / 2));
-    	?>
-        <div class="col-50">
-            <div class="feedback">
-                <p> Excellent. They walked me through
-                    the entire home selling process.
-                    From the list of things to repair,
-                    the importance of staging and daily
-                    contact once the for sale sign went
-                    up.
-                </p>
-                <div class="username">First Last <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating"></div>
-            </div>
-            <div class="feedback">
-                <p> Showed us a bunch of homes for
-                months until we found the right one.
-                Gave us a ton of contacts to help us
-                throughout the process. And even
-                now after the home has already
-                been closed on he is still helping
-                with any problems or questions
-                we have. Extremely helpful and
-                knowledgeable in any facet of home
-                buying/owning.
-                </p>
-                <div class="username">First Last <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating"></div>
-            </div>
-        </div>
-        <div class="col-50">
-            <div class="feedback">
-                <p> As a fi rst time home buyer he was
-                very patient with all of our questions
-                and took time to explain the process
-                every step of the way. Always willing
-                to show us any property we were
-                interested at a time the worked
-                best for our schedules. Overall very
-                friendly and helpful. I am so glad
-                he was able to help us fi nd our fi rst
-                home with very little stress, I will
-                defi nitely be recommending him to
-                family and friends.
+    	<?php
+    		if(isset($testimonials) && !empty($testimonials))
+    		{
+    			list($upper_testimonial, $lower_testimonial) = array_chunk($testimonials, ceil(count($testimonials) / 2));
 
-                </p>
-                <div class="username">First Last <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating">
-                </div>
-            </div>
-            <div class="feedback">
-                <p> They were a great team and
-                extremely helpful with selling my
-                house quickly. I was able to do
-                everything online with them. They
-                facilitated repairs and getting rid
-                of things in the house. This was so
-                helpful since I live out of the area.
-                </p>
-                <div class="username">First Last <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating">
-                </div>
-            </div>            
-        </div>
+    			if(isset($upper_testimonial) && !empty($upper_testimonial))
+    			{
+    		?>
+    				<div class="col-50">
+    				<?php
+
+	    				foreach ($upper_testimonial as $key => $value) 
+	    				{
+	    			?>
+							<div class="feedback">
+				                <p> <?php echo $value; ?></p>
+				                <div class="username"><?php echo $user['fullname']; ?> <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating"></div>
+				            </div>
+	    			<?php
+	    				}
+	    			?>
+    				</div>
+    			<?php
+    			}
+
+    			if(isset($lower_testimonial) && !empty($lower_testimonial))
+    			{
+    		?>
+    				<div class="col-50">
+    				<?php
+
+	    				foreach ($lower_testimonial as $k => $v) 
+	    				{
+	    			?>
+							<div class="feedback">
+				                <p> <?php echo $v; ?></p>
+				                <div class="username"><?php echo $user['fullname']; ?> <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating"></div>
+				            </div>
+	    			<?php
+	    				}
+	    			?>
+    				</div>
+    			<?php
+    			}
+    		}
+    		else
+    		{
+    	?>
+    			<div class="username">No Testimonials Found.</div>
+    	<?php
+    		}
+    	?>
     </div>
 </page>
 </div>
