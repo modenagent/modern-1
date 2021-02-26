@@ -5,8 +5,8 @@
                 <img src="https://i.ibb.co/LRwvgXQ/line.png" alt="line" border="0">
                 <div class="text">
                     <h1>Sellers Report</h1>
-                    <p>1234 Main Street,</p>
-                    <p>City, State 00000</p>
+                    <p><?php echo $property->PropertyProfile->SiteAddress ; ?>,</p>
+                    <p><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></p>
                 </div>
             </div>
             <div class="body">
