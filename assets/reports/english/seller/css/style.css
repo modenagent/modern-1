@@ -382,7 +382,7 @@ page {
 }
 .footer {
   background: #0d294b;
-  padding: 45px 65px;
+  padding: 60px 65px;
   color: #fff;
 }
 .copy_right_text {
@@ -542,7 +542,7 @@ ul.home_list {
 }
 .pdf1 .header {
   margin: 0 auto;
-  height: 26rem;
+  height: 28rem;
   padding: 0 14rem;
   display: -webkit-box;
   display: -ms-flexbox;
