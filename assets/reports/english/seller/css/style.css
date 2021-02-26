@@ -383,7 +383,7 @@ page {
 }
 .footer {
   background: #0d294b;
-  padding: 60px 65px;
+  padding: 75px 65px;
   color: #fff;
 }
 .copy_right_text {
@@ -543,7 +543,7 @@ ul.home_list {
 }
 .pdf1 .header {
   margin: 0 auto;
-  height: 28rem;
+  height: 30rem;
   padding: 0 14rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -620,7 +620,8 @@ ul.home_list {
   padding: 5% 80px;
 }
 .pdf2 .profile_pic {
-  height: 355px;
+  /*height: 355px;*/
+  height: auto;
   object-fit: cover;
 }
 .vertical_sign {
