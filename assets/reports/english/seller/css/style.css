@@ -605,12 +605,14 @@ ul.home_list {
   flex: initial;
   position: absolute;
   right: 55px;
+  top: 45px;
 }
 .pdf1 .logo img {
   width: 190px;
 }
 .pdf1 .footer {
   margin-top: -5px;
+  position: relative;
 }
 /* pdf2 */
 .pdf2 {
