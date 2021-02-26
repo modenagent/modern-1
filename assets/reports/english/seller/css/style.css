@@ -5,6 +5,12 @@ body {
   font-size: 18px;
   color: #333;
 }
+
+html {
+  margin: 0;
+  padding: 0;
+} 
+
 ::selection {
   color: #fff;
   background: #ffd758;
