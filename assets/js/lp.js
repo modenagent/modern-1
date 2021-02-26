@@ -286,8 +286,9 @@ function runPMA(agentPath, logoPath) {
     testimonials.push($("#testimonial-2").val());
     testimonials.push($("#testimonial-3").val());
     testimonials.push($("#testimonial-4").val());
+    console.log(testimonials);
     // var testimonialString = JSON.stringify(testimonials);
-    query += '&testimonials=' + encodeURI(testimonials);
+    query += '&testimonials=' + testimonials;
     query += '&' + 'pdfID=' + pdfID;
     var pages = $('#pdf_pages').val();
     query += '&' + 'pdfPages=' + pages;

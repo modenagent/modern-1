@@ -44,7 +44,6 @@ use Knp\Snappy\Pdf;
         }
         
         function getPropertyData($callFromApi = 0, $reportData = array()){
-            echo "<pre>"; print_r($_POST); exit;
             $CI = & get_instance();
             $errorMsg = "Unexpacted error occured while trying to create ".$_POST['report_lang']." ".$_POST['presentation']." Report PDF for user account ".$CI->session->userdata('user_email');
             // loading the required helper
@@ -268,6 +267,10 @@ use Knp\Snappy\Pdf;
             $reportItems['totalMonthsReport'] = $totalMonthsReport;
             $data['areaSalesAnalysis'] = $reportItems;
             $data['theme'] = $CI->input->post('theme');
+
+            /* testimonials */
+            $data['testimonials'] = isset($_POST['testimonials']) && !empty($_POST['testimonials']) ? $_POST['testimonials'] : array();
+            /* testimonials */
             
             $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
