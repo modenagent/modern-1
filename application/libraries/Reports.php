@@ -44,6 +44,7 @@ use Knp\Snappy\Pdf;
         }
         
         function getPropertyData($callFromApi = 0, $reportData = array()){
+            echo "<pre>"; print_r($_POST); exit;
             $CI = & get_instance();
             $errorMsg = "Unexpacted error occured while trying to create ".$_POST['report_lang']." ".$_POST['presentation']." Report PDF for user account ".$CI->session->userdata('user_email');
             // loading the required helper
