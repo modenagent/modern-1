@@ -81,7 +81,8 @@
         $this->load->view('reports/english/seller/pages/1');
     }
 
-    $this->load->view('reports/english/seller/pages/2');    
+    $this->load->view('reports/english/seller/pages/2');
+    $this->load->view('reports/english/seller/pages/3');    
     /*$this->load->view('reports/english/seller/pages/4');
     $this->load->view('reports/english/seller/pages/5');
     $this->load->view('reports/english/seller/pages/5b');
