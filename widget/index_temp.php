@@ -1,6 +1,5 @@
 <?php
 
-include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
 }
@@ -25,6 +24,7 @@ if(!empty($auth_id)) {
     $idp_data = $CI->base_model->get_record_by_id('lp_idps',$get_where);
     // var_dump($idp_data);die;
     if($idp_data && !empty($idp_data)) {
+        include('../simplesaml/lib/_autoload.php');
 
     	$auth = new \SimpleSAML\Auth\Simple($auth_id);
     	
@@ -156,8 +156,8 @@ else
 
         }
 
-        $session = SimpleSAML_Session::getSessionFromRequest();
-        $session->cleanup();
+        // $session = SimpleSAML_Session::getSessionFromRequest();
+        // $session->cleanup();
 
         $sessionData = $CI->session->set_userdata($newdata);
         $_SESSION['userdata'] = $newdata;
