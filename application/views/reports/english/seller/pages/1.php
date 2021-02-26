@@ -10,11 +10,11 @@
                 </div>
             </div>
             <div class="body">
-                <img src="https://i.ibb.co/ZYtpFR1/architecture-modern-residence6.jpg" alt="architecture-modern-residence6" class="img-fluid d-block"><div class="footer">
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/1/architecture-modern-residence6.jpg' ?>" alt="architecture-modern-residence6" class="img-fluid d-block">
+                <div class="footer">
                     <div class="d-flex">
                         <div class="signature horizontal_sign">
-                            <img src="https://i.ibb.co/qyHKv61/laura-chouette-nk-Wnc-W-GP8-unsplash.jpg"
-                                alt="laura-chouette-nk-Wnc-W-GP8-unsplash" class="profile_img">
+                            <img src="https://i.ibb.co/qyHKv61/laura-chouette-nk-Wnc-W-GP8-unsplash.jpg" alt="laura-chouette-nk-Wnc-W-GP8-unsplash" class="profile_img">
                             <div>
                                 <div class="profile_name">First Last</div>
                                 <div class="profile_title">Title</div>
