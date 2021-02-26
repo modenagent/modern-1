@@ -33,22 +33,34 @@ h6 {
 
 .col-60 {
   max-width: 60%;
+  /*-webkit-box-flex: 0;
+  flex: 0 0 60%;*/
   -webkit-box-flex: 0;
-  flex: 0 0 60%;
+  -ms-flex: 0 0 60%;
+      flex: 0 0 60%;
 }
 .col-40 {
   max-width: 40%;
+  /*-webkit-box-flex: 0;
+  flex: 0 0 40%;*/
   -webkit-box-flex: 0;
-  flex: 0 0 40%;
+  -ms-flex: 0 0 40%;
+      flex: 0 0 40%;
 }
 .col-50 {
   max-width: 50%;
+  /*-webkit-box-flex: 0;
+  flex: 0 0 50%;*/
   -webkit-box-flex: 0;
-  flex: 0 0 50%;
+  -ms-flex: 0 0 50%;
+      flex: 0 0 50%;
 }
 .col-12 {
   max-width: 100%;
-  flex: 0 0 100%;
+  /*flex: 0 0 100%;*/
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 100%;
+      flex: 0 0 100%;
 }
 .space_between {
   justify-content: space-between;
@@ -383,7 +395,7 @@ page {
 }
 .footer {
   background: #0d294b;
-  padding: 75px 65px;
+  padding: 80px 65px;
   color: #fff;
 }
 .copy_right_text {
