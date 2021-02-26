@@ -1,8 +1,8 @@
 <div class="container">
         <page class="pdf1">
-            <div class="header">
-                <img src="https://i.ibb.co/6rwb4z9/light-house.png" alt="light-house" border="0">
-                <img src="https://i.ibb.co/LRwvgXQ/line.png" alt="line" border="0">
+            <div class="header">                
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/1/light-house.png' ?>" alt="light-house" border="0">
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png' ?>" alt="line" border="0">
                 <div class="text">
                     <h1>Sellers Report</h1>
                     <p><?php echo $property->PropertyProfile->SiteAddress ; ?>,</p>
@@ -25,11 +25,10 @@
                             </div>
                         </div>
                         <div class="logo">
-                            <img src="https://i.ibb.co/T89Qq0d/white-logo.png" alt="white-logo" border="0">
+                            <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png' ?>" alt="white-logo" border="0">
                         </div>
                     </div>
-                </div>
-                
+                </div>                
             </div>
         </page>
     </div>
