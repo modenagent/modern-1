@@ -1007,7 +1007,8 @@ ul.stats li:not(:last-child):after {
 }
 
 /* css added by MB */
-.pdf1 .footer .d-flex {
+.pdf1 .footer .d-flex,
+.pdf2 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
