@@ -2,10 +2,13 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/bootstrap.min.css") ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/main.css") ?>">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap">
+
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/style.css") ?>">
 </head>
 
 <body>
@@ -59,40 +62,8 @@
     $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
 
 
-?>
-<style type="text/css">
-    .theme-bg
-    {
-        background-color: <?php echo $theme ?>;
-    }
-    .theme-clr
-    {
-        color: <?php echo $theme ?>;
-    }
-    .underline::after,.page9a .payment-table .left-col .progress-bar, .page9a .payment-table .right-col .progress-bar,.top-banner-left,.page10 .agreement-col .points li::before{
-        background-color: <?php echo $theme ?>;   
-    }
-    .page6 .page-content .insights .right-insight .gender-block .perc, .page6 .page6-content .insights .right-insight .gender-block .perc,.page7 .two-grid-wrapper .text-block-condensed h2 span p,.page9a .payment-table .left-col .total-amount .dolla-sign, .page9a .payment-table .right-col .total-amount .dolla-sign{
-        color: <?php echo $theme ?>;   
-    }
-    .sales-table-top.table > thead > tr > th{
-        border-color: <?php echo $theme ?>;   
-    }
-    .monthly-table{
-        border-bottom-color:<?php echo $theme ?>;   
-    }
-    .monthly-table2{
-        border-top-color:<?php echo $theme ?>;   
-    }
-    .ui-slider-horizontal .ui-slider-range{
-        background: <?php echo $theme ?> !important;
-    }
-    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-slider-handle .ui-state-default .ui-corner-all{
-        border: 1px solid <?php echo $theme ?> !important;
-        background: <?php echo $theme ?> !important;
-    }
-</style>   
- <style type="text/css" media="print">
+?>   
+<style type="text/css" media="print">
     div.container
     {
         page-break-after: always;
@@ -110,7 +81,7 @@
         $this->load->view('reports/english/seller/pages/1');
     }
 
-    $this->load->view('reports/english/seller/pages/2');    
+    /*$this->load->view('reports/english/seller/pages/2');    
     $this->load->view('reports/english/seller/pages/4');
     $this->load->view('reports/english/seller/pages/5');
     $this->load->view('reports/english/seller/pages/5b');
@@ -129,9 +100,9 @@
     $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']);
     $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
     $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
-    $this->load->view('reports/english/seller/pages/15');
+    $this->load->view('reports/english/seller/pages/15');*/
 ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
  
@@ -152,9 +123,9 @@
     }
 $('#slider').slider({
     range: true,
-    min: <?php echo  $_sliderStartPoint ?>,
-    max: <?php echo $_sliderEndPoint ?>,
-    values: [ <?php echo $_priceMinRange; ?>, <?php echo $_priceMaxRange; ?> ],
+    min: <?php // echo  $_sliderStartPoint ?>,
+    max: <?php // echo $_sliderEndPoint ?>,
+    values: [ <?php // echo $_priceMinRange; ?>, <?php // echo $_priceMaxRange; ?> ],
     slide: function(event, ui) {
         
         $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[ 0 ]+'K');
@@ -199,7 +170,7 @@ $('.ui-slider-handle:eq(0)').append('<span class="price-range-min value">$' + _m
 
 $('.ui-slider-handle:eq(1)').append('<span class="price-range-max value">$' + _maxValue + '</span>');
 
-        </script>
+        </script> -->
 </body>
 
 </html>
