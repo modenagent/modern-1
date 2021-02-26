@@ -5,12 +5,6 @@ body {
   font-size: 18px;
   color: #333;
 }
-
-html {
-  margin: 0;
-  padding: 0;
-} 
-
 ::selection {
   color: #fff;
   background: #ffd758;
@@ -609,7 +603,7 @@ ul.home_list {
 .pdf1 .logo {
   width: auto;
   flex: initial;
-  /*position: absolute;*/
+  position: absolute;
   right: 55px;
 }
 .pdf1 .logo img {
