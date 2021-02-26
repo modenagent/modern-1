@@ -588,9 +588,11 @@ ul.home_list {
   height: auto;
 }
 .horizontal_sign.signature {
-  width: 300px;
+  width: 400px;
   text-align: left;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .horizontal_sign > img {
