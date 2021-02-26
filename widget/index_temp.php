@@ -60,6 +60,12 @@ else
 
 
 
+    $get_where = array('unique_id'=>$auth_id);
+
+    $idp_data = $CI->base_model->get_record_by_id('lp_idps',$get_where);
+
+
+
 	$attr_values = array();
 	foreach ($attributes as $key => $value) {
 		$attr_val = $value;
