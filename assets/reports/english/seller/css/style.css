@@ -26,12 +26,12 @@ h6 {
   width: 100%;
   margin: 0 auto;
 }
-/*.d-flex {
+.d-flex {
   display: flex;
   flex-direction: row;
-}*/
+}
 
-.d-flex {
+/*.d-flex {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,7 +39,7 @@ h6 {
   -webkit-box-direction: normal;
   -ms-flex-direction: row;
   flex-direction: row;
-}
+}*/
 .col-60 {
   max-width: 60%;
   -webkit-box-flex: 0;
@@ -1043,8 +1043,8 @@ ul.stats li:not(:last-child):after {
 }
 
 /* css added by MB */
-.pdf1 .footer .d-flex {
-  /*align-items: center;*/
+.pdf1 .footer .d-flex,
+.pdf2 .d-flex {
   display: -webkit-box !important;
   display: -ms-flexbox !important;
   display: flex !important;
