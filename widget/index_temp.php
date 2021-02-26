@@ -1,5 +1,6 @@
 <?php
 
+include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
 }
@@ -7,7 +8,7 @@ if(empty($_GET['site_id'])) {
 $auth_id = $_GET['site_id'];
 
 if(!empty($auth_id)) {
-
+/*
 
     ob_start();
     $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
@@ -21,18 +22,17 @@ if(!empty($auth_id)) {
 	//Check if id is exist in our DB
 	$get_where = array('unique_id'=>$auth_id);
 
-    $idp_data = $CI->base_model->get_record_by_id('lp_idps',$get_where);
+    $idp_data = $CI->base_model->get_record_by_id('lp_idps',$get_where);*/
     // var_dump($idp_data);die;
-    if($idp_data && !empty($idp_data)) {
-        include('../simplesaml/lib/_autoload.php');
+    // if($idp_data && !empty($idp_data)) {
 
     	$auth = new \SimpleSAML\Auth\Simple($auth_id);
     	
-    }
-    else {
-    	echo "Invalid ID.";die;
+    // }
+    // else {
+    // 	echo "Invalid ID.";die;
 
-    }
+    // }
 }
 else {
     echo "Invalid request.";die;
@@ -48,6 +48,16 @@ else
 
 
     $attributes = $auth->getAttributes();
+
+    ob_start();
+    $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
+    $root_dir = str_replace('\\', '/', $root_dir);
+    define('FCPATH', $root_dir);
+    define("CI_REQUEST", "external");
+    include('index_ci.php');
+    ob_end_clean();
+    $CI =& get_instance();
+
 
 
 	$attr_values = array();
