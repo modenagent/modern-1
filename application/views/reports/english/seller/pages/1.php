@@ -14,7 +14,6 @@
                 <div class="footer">
                     <div class="d-flex">
                         <div class="signature horizontal_sign">
-                            $user['profile_image'] != '' && $user['profile_image'] != 'no'
                             <?php 
                                 if($user['profile_image'] != '' && $user['profile_image'] != 'no')
                                 {
