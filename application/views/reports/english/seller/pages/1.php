@@ -33,7 +33,7 @@
                             </div>
                         </div>
                         <div class="logo">
-                            <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png' ?>" alt="white-logo" border="0">
+                            <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0">
                         </div>
                     </div>
                 </div>                

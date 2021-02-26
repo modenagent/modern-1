@@ -603,7 +603,7 @@ ul.home_list {
 .pdf1 .logo {
   width: auto;
   flex: initial;
-  position: absolute;
+  /*position: absolute;*/
   right: 55px;
 }
 .pdf1 .logo img {
