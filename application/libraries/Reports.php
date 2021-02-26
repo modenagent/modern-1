@@ -550,7 +550,7 @@ use Knp\Snappy\Pdf;
             /**
              * END Code to fetch customized text data of user
              */
-echo "<pre>"; print_r($data); exit;
+
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
