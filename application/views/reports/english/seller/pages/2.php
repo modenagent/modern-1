@@ -6,17 +6,23 @@
     <div class="d-flex mt-60">
         <div class="col-60">
             <div class="d-flex">
-                <img src="https://i.ibb.co/qyHKv61/laura-chouette-nk-Wnc-W-GP8-unsplash.jpg" alt="laura-chouette-nk-Wnc-W-GP8-unsplash"
-                    border="0" class="col-50 profile_pic">
+                <?php 
+                    if($user['profile_image'] != '' && $user['profile_image'] != 'no')
+                    {
+                ?>  
+                        <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>" border="0" class="col-50 profile_pic">
+                <?php
+                    }
+                ?>
+
                 <div class="signature vertical_sign col-40">
-                    <img src="https://i.ibb.co/LRwvgXQ/line.png" alt="line" class="img-fluid">
-                    <h2 class="profile_name">First<br>Last</h2>
-                    <p class="profile_title">Realtor®</p>
-                    <img src="https://i.ibb.co/LRwvgXQ/line.png" alt="line" class="img-fluid">
-                    <a class="tel_number  mt-30" href="tel:000.000.0000">O   &nbsp;<span>000.000.0000</span></a>
-                    <a class="tel_number" href="tel:000.000.0000">M <span>000.000.0000</span></a>
-                    <a href="mailto:name@domain.com" class="contact_info mt-20">name@domain.com</a>
-                    <a href="https://hometownerealestate.net" class="contact_info">hometownerealestate.net</a>
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png' ?>" alt="line" border="0" class="img-fluid">
+
+                    <h2 class="profile_name"><?php echo $user['fullname']; ?></h2>
+                    <p class="profile_title"><?php echo $user['title']; ?></p>
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png' ?>" alt="line" border="0" class="img-fluid">
+                    <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">M <span><?php echo $user['phone']; ?></span></a>
+                    <a href="mailto:<?php echo $user['email']; ?>" class="contact_info mt-20"><?php echo $user['email']; ?></a>
                 </div>
             </div>
         </div>
