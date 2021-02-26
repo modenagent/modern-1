@@ -605,14 +605,12 @@ ul.home_list {
   flex: initial;
   position: absolute;
   right: 55px;
-  top: 45px;
 }
 .pdf1 .logo img {
   width: 190px;
 }
 .pdf1 .footer {
   margin-top: -5px;
-  position: relative;
 }
 /* pdf2 */
 .pdf2 {
@@ -1004,3 +1002,9 @@ ul.stats li:not(:last-child):after {
 .mt-m-80 {
   margin-top: -80px;
 }
+
+/* css added by MB */
+.pdf1 .footer .d-flex {
+  align-items: center;
+}
+/* css added by MB */
