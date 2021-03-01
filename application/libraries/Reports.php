@@ -261,8 +261,10 @@ use Knp\Snappy\Pdf;
                 array_push($ChartArr, $tmp2);
             }
 
+            $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';
+            // $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
+            $tmp2['color'] = $chart_color;
             
-            $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
             $reportItems['chart']=$tmp2;
             $reportItems['totalMonthsReport'] = $totalMonthsReport;
             $data['areaSalesAnalysis'] = $reportItems;

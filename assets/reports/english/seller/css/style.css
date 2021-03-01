@@ -685,7 +685,7 @@ ul.home_list {
   position: absolute;
   left: 0;
   top: 0;
-  background: url(https://i.ibb.co/qYygY6q/qoute.png) no-repeat;
+  background: url(/assets/reports/english/seller/images/2/qoute.png) no-repeat;
   width: 50px;
   height: 50px;
 }
@@ -720,8 +720,14 @@ ul.home_list {
 /* pdf4 */
 .pdf4 {
   padding: 0;
-  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(https://i.ibb.co/LpLH6Yp/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
+  /*background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);*/
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
+    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
+   background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
+   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -763,8 +769,14 @@ ul.home_list {
 /* pdf6 */
 .pdf6 {
   padding: 0 0 100px;
+  /*background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);*/
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
+  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+  background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(https://i.ibb.co/n6DCLVr/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background-size: cover;
   background-position: center;
 }
