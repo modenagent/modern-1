@@ -388,6 +388,8 @@
 <!-- page end-->
 </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDQQthVgLzHIRTyLS1WGP2spIshpD28n8M"></script>
+
 <script type="text/javascript">
 $(".user-image a").click(function() {                                                
   $(".user-image").find(".file-type").trigger("click");
@@ -416,4 +418,47 @@ $(".user-image .file-type").change(function(){
       }
   });
 });
+$(document).ready(function(){
+  addressAutoComplete();
+});
+//Google search autocomplete
+function addressAutoComplete() {
+    var input = document.getElementById('cadd');
+    var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(-32.30, 114.8),
+        new google.maps.LatLng(-42, 124.24)); // latitude and longitude ranges of California
+    var options = {
+        componentRestrictions: {
+            country: [],
+            // country: 'us'
+        },
+        bounds: defaultBounds
+    };
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace(); // get address, without city and state
+        var latlng = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+
+
+        setTimeout(function() {
+            $('#cadd').val(place.formatted_address);
+        }, 25); // just display street address
+
+        for (var i = 0; i < place.address_components.length; i++) {
+           
+
+                if (place.address_components[i].types[0] === ("locality") && place.address_components[i].types.length>1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1
+                    var city = place.address_components[i].long_name;
+                    $('#ccity').val(city);
+                } else if (place.address_components[i].types[0] === ("administrative_area_level_1") && place.address_components[i].types.length>1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1
+                    var state = place.address_components[i].long_name;
+                    $('#cstate').val(state);
+                } else if (place.address_components[i].types[0] === "postal_code" ) { //administrative_area_level_1) {
+                    var zip_code = place.address_components[i].long_name;
+                    $('#czip').val(zip_code);
+                }
+           
+        }
+    });
+}
 </script>
