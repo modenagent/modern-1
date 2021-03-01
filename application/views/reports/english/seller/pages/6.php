@@ -1,75 +1,23 @@
-<div class="containers" style="height:0;width:0; padding:0;margin:0;">
-	<div class="section page6">
-	
-			<img width="100%" class="img-responsive" src="<?php echo base_url("assets/reports/english/seller/images/6/bg.jpg")?>" alt="">
-
-			<div class="page-content">
-				<header>
-                                    <h2 class="underline title-bold">Neighborhood Stats</h2>
-                                    <p>A Little Insight</p>
-				</header>
-		
-				<div class="row">
-					<div class="insights">
-						<div class="col-xs-6">
-							<div class="left-insight">
-								<img  class="img-responsive" src="<?php echo base_url("assets/reports/english/seller/images/6/gender.png")?>" alt="">
-								
-								<div class="text-content">
-									<h2>Male To Female Ratio</h2>
-									<p>These figures represent the male to female ratio in your neighborhood. The housing census is taken every 10 years so depending on the time of this report these figures can be slightly different.
-								</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-6">
-							<div class="right-insight">
-								<div class="gender-block">
-									<p class="gender">FEMALE</p>
-									<h1 class="perc">51.5%</h1>
-								</div>
-							</div>
-							<div class="right-insight">
-								<div class="gender-block">
-									<p class="gender">MALE</p>
-									<h1 class="perc">48.5%</h1>
-								</div>
-							
-
-								<div class="text-content">
-										<h2>Avg. Household Income</h2>
-										<p>
-											The figure to the right represents the average household income within your perspective neighborhood. This information is gathered from the household census that is taken every 10 years.
-
-										</p>
-								</div>
-							</div>   <!-- .right-insight --> 
-						</div> <!-- .col-xs-6 -->
-					</div> <!-- .insights -->
-				</div> <!-- .row -->
-			
-				
-				<ul class="features">
-					<li>
-						<span></span>
-						<p>Avg. Sale Price <br > $405000</p>
-					</li>
-					<li>
-						<span></span>
-						<p>Avg. Sqft <br >  852</p>
-					</li>
-					<li>
-						<span></span>
-						<p>Avg. Beds <br > 2 Beds</p>
-					</li>
-					<li>
-						<span></span>
-						<p>Avg. Baths <br > 1 Baths</p>
-					</li>
-				</ul>
-
-			</div> <!-- .page-content -->
-
-	</div> <!-- .page6 -->
-
+<div class="container">
+    <page class="pdf6">
+        <div class="map_content">
+            <h2>
+                Aerial View
+            </h2>
+            <p>
+                This is an aerial view of the neighborhood in which your
+                prospective property is located. This will give you the
+                opportunity to get a birds-eye-view of any local parks,
+                major streets and highways.
+            </p>
+            <h2>
+                Why a 5-Mile Radius
+            </h2>
+            <p>
+                A fi ve mile radius has proven to yield the best results
+                when it comes to properties that match yours.
+            </p>
+        </div>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?size=864x350&zoom=15&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg" alt="" class="img-fluid d-block">
+    </page>
 </div>

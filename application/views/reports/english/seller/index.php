@@ -9,6 +9,12 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap">
 
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/style.css") ?>">
+    <style type="text/css">
+        page[size="A4"] {  
+          width: 21cm;
+          height: 29.7cm; 
+        }
+    </style>
 </head>
 
 <body>
@@ -83,8 +89,8 @@
 
     $this->load->view('reports/english/seller/pages/2');
     $this->load->view('reports/english/seller/pages/3');    
-    /*$this->load->view('reports/english/seller/pages/4');
-    $this->load->view('reports/english/seller/pages/5');
+    $this->load->view('reports/english/seller/pages/4');
+    /*$this->load->view('reports/english/seller/pages/5');
     $this->load->view('reports/english/seller/pages/5b');
     $this->load->view('reports/english/seller/pages/5c');
     $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
