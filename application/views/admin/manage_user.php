@@ -146,8 +146,10 @@
 </div>
 </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDQQthVgLzHIRTyLS1WGP2spIshpD28n8M"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+  addressAutoComplete();
     $('#btnExExcel').click(function(){
         $.ajax({
                 url: '<?php echo site_url('admin/export_excel'); ?>',
@@ -299,6 +301,31 @@ function autofillCompany(user_id){
             $("#caddress").val(data.cadd);
             $("#cname").val(data.cname);
         }
+    });
+}
+
+//Google search autocomplete
+function addressAutoComplete() {
+    var input = document.getElementById('caddress');
+    var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(-32.30, 114.8),
+        new google.maps.LatLng(-42, 124.24)); // latitude and longitude ranges of California
+    var options = {
+        componentRestrictions: {
+            country: [],
+            // country: 'us'
+        },
+        bounds: defaultBounds
+    };
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace(); // get address, without city and state
+        var latlng = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+
+        setTimeout(function() {
+            $('#caddress').val(place.formatted_address);
+        }, 25); // just display street address
+
     });
 }
 </script>
