@@ -1,7 +1,7 @@
 <div class="container">
     <page class="pdf5">
         <h1 class="main_title top_title">Accolades</h1>
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png' ?>" alt="line" class="bordered_img">
+        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
 
         <div class="d-flex space_evenly mt-150">
             <div>
@@ -29,7 +29,7 @@
                 </div>
             </div>
             <div class="col-50 text-center">
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/3/maxresdefault.jpg' ?>" alt="maxresdefault" class="img_view">
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/3/maxresdefault.jpg'; ?>" alt="maxresdefault" class="img_view">
                 <h2  class="bigger_title">
                     $1.35 Billion
                 </h2>

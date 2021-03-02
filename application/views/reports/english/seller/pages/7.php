@@ -1,7 +1,7 @@
 <div class="container">
     <page class="pdf7">
         <h1 class="main_title top_title">Prospective Property</h1>
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png' ?>" alt="line" class="bordered_img">
+        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
         <div class="d-flex">
             <div class="col-12">
                 <h4 class="mt-0 sub_title">Overview of Your Property</h4>
