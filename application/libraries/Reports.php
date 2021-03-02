@@ -578,7 +578,7 @@ use Knp\Snappy\Pdf;
                 'margin-right'  => 0,
                 'margin-bottom' => 0,
                 'margin-left'   => 0,
-                'page-size' => 'A4', 
+                'page-size' => 'Letter', 
                 'zoom'          => $zoom,
                 'load-error-handling'=>'ignore',
                 'load-media-error-handling'=>'ignore'

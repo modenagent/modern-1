@@ -16,11 +16,11 @@
                 ?>
 
                 <div class="signature vertical_sign col-40">
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png' ?>" alt="line" border="0" class="img-fluid">
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0" class="img-fluid">
 
                     <h2 class="profile_name"><?php echo $user['fullname']; ?></h2>
                     <p class="profile_title"><?php echo $user['title']; ?></p>
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png' ?>" alt="line" border="0" class="img-fluid">
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0" class="img-fluid">
                     <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">M <span><?php echo $user['phone']; ?></span></a>
                     <a href="mailto:<?php echo $user['email']; ?>" class="contact_info mt-20"><?php echo $user['email']; ?></a>
                 </div>
@@ -58,7 +58,7 @@
 	    			?>
 							<div class="feedback">
 				                <p> <?php echo $value; ?></p>
-				                <div class="username"><?php echo $user['fullname']; ?> <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating"></div>
+				                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
 				            </div>
 	    			<?php
 	    				}
@@ -78,7 +78,7 @@
 	    			?>
 							<div class="feedback">
 				                <p> <?php echo $v; ?></p>
-				                <div class="username"><?php echo $user['fullname']; ?> <img src="https://i.ibb.co/v1ZVZjY/rating.png" alt="rating" class="rating"></div>
+				                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
 				            </div>
 	    			<?php
 	    				}
