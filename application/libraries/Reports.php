@@ -87,6 +87,15 @@ use Knp\Snappy\Pdf;
                                 ->row_array();
 
                 $data['user']['ref_code'] = $ref_code['ref_code'];
+
+                $user_info = $CI->db->select(array('mobile','website'))
+                                ->where('email', $data['user']['email'])
+                                ->get('lp_user_mst')
+                                ->row_array();
+
+                $data['user']['ref_code'] = $ref_code['ref_code'];
+                $data['user']['mobile'] = $user_info['mobile'];
+                $data['user']['website'] = $user_info['website'];
             }
 
             $data['partner'] =  array();
