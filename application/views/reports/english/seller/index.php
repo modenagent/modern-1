@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap">
 
     <!-- <link rel="stylesheet" type="text/css" href="<?php // echo base_url("assets/reports/english/seller/css/style.css") ?>"> -->
-    <style>
-      body {
+    <style type="text/css">
+        body {
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
@@ -1028,10 +1026,8 @@ ul.stats li:not(:last-child):after {
 .mt-m-80 {
   margin-top: -80px;
 }
-
     </style>
 </head>
-
 <body>
 <?php      
     $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
@@ -1083,21 +1079,7 @@ ul.stats li:not(:last-child):after {
     $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
 
 
-?>   
-<style type="text/css" media="print">
-    /*.container
-    {
-        page-break-after: always;
-        page-break-inside: avoid;
-    }*/
-
-    @media print {
-        page {
-            page-break-after: always;
-            page-break-inside: avoid;
-        }
-    }
-</style>   
+?> 
 
 <?php 
     if($partner && count($partner)>1) {
@@ -1112,25 +1094,10 @@ ul.stats li:not(:last-child):after {
     /*$this->load->view('reports/english/seller/pages/2');
     $this->load->view('reports/english/seller/pages/3');    
     $this->load->view('reports/english/seller/pages/4');
-    $this->load->view('reports/english/seller/pages/5');*/
-    /*$this->load->view('reports/english/seller/pages/5b');
-    $this->load->view('reports/english/seller/pages/5c');
-    $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
-    $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
-    $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
-    $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
-    
-    $this->load->view('reports/english/seller/pages/5k', $customization_pages_data['12']); */
-    // $this->load->view('reports/english/seller/pages/6');
-    
-    /*$this->load->view('reports/english/seller/pages/6c', $customization_pages_data['13']);
-    $this->load->view('reports/english/seller/pages/6d', $customization_pages_data['14']);
-    $this->load->view('reports/english/seller/pages/6e', $customization_pages_data['15']);
-    $this->load->view('reports/english/seller/pages/6f', $customization_pages_data['16']);
-    $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']); */
-    /*$this->load->view('reports/english/seller/pages/7');
-    $this->load->view('reports/english/seller/pages/8');
-    
+    $this->load->view('reports/english/seller/pages/5');
+    $this->load->view('reports/english/seller/pages/6');
+    $this->load->view('reports/english/seller/pages/7');
+    $this->load->view('reports/english/seller/pages/8');   
     
     $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
@@ -1146,83 +1113,82 @@ ul.stats li:not(:last-child):after {
                 {
                     break;
                 }
-                $this->load->view('reports/english/seller/pages/9',array('comparables'=>$_v));
+                $this->load->view('reports/english/seller/pages/9',array('comparables'=>$_v)); //10
             }
         }
-    }*/
-    /* $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
-    $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
-    $this->load->view('reports/english/seller/pages/15');*/
+    }
+
+    $this->load->view('reports/english/seller/pages/11',$rangeOfSales);
+    // echo "<pre>test:"; print_r($customization_pages_data['11']); exit;
+    $this->load->view('reports/english/seller/pages/12',$customization_pages_data['11']);*/
 ?>
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
  
 <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-<script>
+
+<script>            
+    function collision($div1, $div2) 
+    {
+        var x1 = $div1.offset().left;
+        var w1 = 40;
+        var r1 = x1 + w1;
+        var x2 = $div2.offset().left;
+        var w2 = 40;
+        var r2 = x2 + w2;
+
+        if (r1 < x2 || x1 > r2) return false;
+        return true;
+
+    }
+    $('#slider').slider({
+        range: true,
+        min: <?php echo  $_sliderStartPoint ?>,
+        max: <?php echo $_sliderEndPoint ?>,
+        values: [ <?php echo $_priceMinRange; ?>, <?php echo $_priceMaxRange; ?> ],
+
+        slide: function(event, ui) {            
+            $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[ 0 ]+'K');
+            $('.ui-slider-handle:eq(1) .price-range-max').html('$' + ui.values[ 1 ])+'K';
+            $('.price-range-both').html('<i>$' + ui.values[ 0 ] + ' - </i>$' + ui.values[ 1 ]+'K' );
+
+            if ( ui.values[0] == ui.values[1] ) {
+                $('.price-range-both i').css('display', 'none');
+            } else {
+                $('.price-range-both i').css('display', 'inline');
+            }
             
-            function collision($div1, $div2) {
-      var x1 = $div1.offset().left;
-      var w1 = 40;
-      var r1 = x1 + w1;
-      var x2 = $div2.offset().left;
-      var w2 = 40;
-      var r2 = x2 + w2;
-        
-      if (r1 < x2 || x1 > r2) return false;
-      return true;
-      
-    }
-$('#slider').slider({
-    range: true,
-    min: <?php // echo  $_sliderStartPoint ?>,
-    max: <?php // echo $_sliderEndPoint ?>,
-    values: [ <?php // echo $_priceMinRange; ?>, <?php // echo $_priceMaxRange; ?> ],
-    slide: function(event, ui) {
-        
-        $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[ 0 ]+'K');
-        $('.ui-slider-handle:eq(1) .price-range-max').html('$' + ui.values[ 1 ])+'K';
-        $('.price-range-both').html('<i>$' + ui.values[ 0 ] + ' - </i>$' + ui.values[ 1 ]+'K' );
-        
-        //
-        
-    if ( ui.values[0] == ui.values[1] ) {
-      $('.price-range-both i').css('display', 'none');
-    } else {
-      $('.price-range-both i').css('display', 'inline');
-    }
-        
-        //
-        
-        if (collision($('.price-range-min'), $('.price-range-max')) == true) {
-            $('.price-range-min, .price-range-max').css('opacity', '0');    
-            $('.price-range-both').css('display', 'block');     
-        } else {
-            $('.price-range-min, .price-range-max').css('opacity', '1');    
-            $('.price-range-both').css('display', 'none');      
+            if (collision($('.price-range-min'), $('.price-range-max')) == true) {
+                $('.price-range-min, .price-range-max').css('opacity', '0');    
+                $('.price-range-both').css('display', 'block');     
+            } 
+            else 
+            {
+                $('.price-range-min, .price-range-max').css('opacity', '1');    
+                $('.price-range-both').css('display', 'none');      
+            }            
         }
-        
+    });
+
+    var _minValue = $('#slider').slider('values', 0 );
+    var _maxValue = $('#slider').slider('values', 1 );
+
+    if(_maxValue>1000){
+        _maxValue = _maxValue/1000 + 'M';
+    } else {
+        _maxValue += 'K';
     }
-});
-var _minValue = $('#slider').slider('values', 0 );
-var _maxValue = $('#slider').slider('values', 1 );
-if(_maxValue>1000){
-    _maxValue = _maxValue/1000 + 'M';
-} else {
-    _maxValue += 'K';
-}
-if(_minValue>1000){
-    _minValue = _minValue/1000 + 'M';
-} else {
-    _minValue += 'K';
-}
-$('.ui-slider-range').append('<span class="price-range-both value"><i>$' + $('#slider').slider('values', 0 ) + ' - </i>' + $('#slider').slider('values', 1 ) +'k'+ '</span>');
+    if(_minValue>1000){
+        _minValue = _minValue/1000 + 'M';
+    } else {
+        _minValue += 'K';
+    }
+    $('.ui-slider-range').append('<span class="price-range-both value"><i>$' + $('#slider').slider('values', 0 ) + ' - </i>' + $('#slider').slider('values', 1 ) +'k'+ '</span>');
 
-$('.ui-slider-handle:eq(0)').append('<span class="price-range-min value">$' + _minValue + '</span>');
+    $('.ui-slider-handle:eq(0)').append('<span class="price-range-min value">$' + _minValue + '</span>');
 
-$('.ui-slider-handle:eq(1)').append('<span class="price-range-max value">$' + _maxValue + '</span>');
-
-        </script> -->
+    $('.ui-slider-handle:eq(1)').append('<span class="price-range-max value">$' + _maxValue + '</span>');
+</script>
 </body>
-
 </html>
