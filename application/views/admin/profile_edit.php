@@ -252,6 +252,7 @@
       <div class="col-sm-12 col-md-12">
         <?php
           $unique_id = $sso_record->unique_id;
+          $widget_url = $_ENV['WIDGET_DOMAIN'].'/';
         ?>
         <form method="post" role="form" id="sso_edit" action="<?=base_url().'admin/sso_edit/'.$sso_record->id;?>">
           <table class="table-condensed table-hover">
@@ -274,21 +275,21 @@
               <tr>
                 <td>SP Metadata Entity:</td>
                 <td>
-                  <input type="text" class="form-control"   value="<?=base_url()?>simplesaml/www/module.php/saml/sp/metadata.php/<?=$unique_id?>" readonly="">
+                  <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/metadata.php/<?=$unique_id?>" readonly="">
                 </td>
                 
               </tr>
               <tr>
                 <td>SP Metadata AssertionConsumerService:</td>
                 <td>
-                  <input type="text" class="form-control"   value="<?=base_url()?>simplesaml/www/module.php/saml/sp/saml2-acs.php/<?=$unique_id?>" readonly="">
+                  <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-acs.php/<?=$unique_id?>" readonly="">
                 </td>
                 
               </tr>
               <tr>
                 <td>SP Metadata SingleLogoutService:</td>
                 <td>
-                  <input type="text" class="form-control"  value="<?=base_url()?>simplesaml/module.php/saml/sp/saml2-logout.php/<?=$unique_id?>" readonly="">
+                  <input type="text" class="form-control"  value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-logout.php/<?=$unique_id?>" readonly="">
                 </td>
               </tr>
 
