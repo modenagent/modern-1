@@ -1,9 +1,10 @@
-<div class="container">
 <page class="pdf2">
     <div class="d-flex">
-        <h1 class="main_title top_title">Meet Your Agent</h1>
+        <div class="col-12">
+            <h1 class="main_title top_title">Meet Your Agent</h1>
+        </div>
     </div>
-    <div class="d-flex mt-60">
+    <div class="d-flex mt-30">
         <div class="col-60">
             <div class="d-flex">
                 <?php 
@@ -14,20 +15,82 @@
                 <?php
                     }
                 ?>
-
                 <div class="signature vertical_sign col-40">
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0" class="img-fluid">
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="img-fluid">
+                    
+                    <?php 
+                        if(isset($user['fullname']) && !empty($user['fullname']))
+                        {
+                    ?>
+                            <h2 class="profile_name">
+                                <?php echo $user['fullname']; ?>
+                            </h2>
+                    <?php
+                        }
+                    ?>
+                    
+                    <?php 
+                        if(isset($user['title']) && !empty($user['title']))
+                        {
+                    ?>
+                            <p class="profile_title">
+                                <?php echo $user['title']; ?>
+                            </p>
+                    <?php
+                        }
+                    ?>
 
-                    <h2 class="profile_name"><?php echo $user['fullname']; ?></h2>
-                    <p class="profile_title"><?php echo $user['title']; ?></p>
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0" class="img-fluid">
-                    <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">M <span><?php echo $user['phone']; ?></span></a>
-                    <a href="mailto:<?php echo $user['email']; ?>" class="contact_info mt-20"><?php echo $user['email']; ?></a>
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="img-fluid">
+                    <?php 
+                        if(isset($user['phone']) && !empty($user['phone']))
+                        {
+                    ?>
+                            <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">
+                                O <span><?php echo $user['phone']; ?></span>
+                            </a>
+                    <?php
+                        }
+                    ?>
+                    <?php 
+                        if(isset($user['mobile']) && !empty($user['mobile']))
+                        {
+                    ?>
+                            <a class="tel_number" href="tel:<?php echo $user['mobile']; ?>">
+                                M <span><?php echo $user['mobile']; ?></span>
+                            </a>
+                    <?php
+                        }
+                    ?>
+                    
+                    <?php 
+                        if(isset($user['email']) && !empty($user['email']))
+                        {
+                    ?>
+                            <a href="mailto:<?php echo $user['email']; ?>" class="contact_info mt-20">
+                                <?php echo $user['email']; ?>
+                            </a>
+                    <?php
+                        }
+                    ?>
+
+                    <?php 
+                        if(isset($user['website']) && !empty($user['website']))
+                        {
+                            $parsed_url  = parse_url($user['website']);
+
+                            $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
+                    ?>
+                            <a href="<?php echo $website; ?>" target="_blank"class="contact_info">
+                                <?php echo $user['website']; ?>
+                            </a>
+                    <?php
+                        }
+                    ?>
                 </div>
             </div>
         </div>
         <div class="col-40">
-            <p class="text-justify">Ad renatuasta, con vignonferor horum in
+            <p class="text-justify mt-0">Ad renatuasta, con vignonferor horum in
                 dem morunt. Scibull atiam. Uli, conlostil ta
                 iti, quod di sentem mum, sentesimis? </p>
             <p class="text-justify">Patis etili, quo aperfi nia viricii speriore
@@ -41,59 +104,58 @@
         </div>
     </div>
 
-    <div class="d-flex mt-60 pad">
-    	<?php
-    		if(isset($testimonials) && !empty($testimonials))
-    		{
-    			list($upper_testimonial, $lower_testimonial) = array_chunk($testimonials, ceil(count($testimonials) / 2));
+    <div class="d-flex mt-30 pad">
+        <?php
+            if(isset($testimonials) && !empty($testimonials))
+            {
+                list($upper_testimonial, $lower_testimonial) = array_chunk($testimonials, ceil(count($testimonials) / 2));
 
-    			if(isset($upper_testimonial) && !empty($upper_testimonial))
-    			{
-    		?>
-    				<div class="col-50">
-    				<?php
+                if(isset($upper_testimonial) && !empty($upper_testimonial))
+                {
+            ?>
+                    <div class="col-50">
+                    <?php
 
-	    				foreach ($upper_testimonial as $key => $value) 
-	    				{
-	    			?>
-							<div class="feedback">
-				                <p> <?php echo $value; ?></p>
-				                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
-				            </div>
-	    			<?php
-	    				}
-	    			?>
-    				</div>
-    			<?php
-    			}
+                        foreach ($upper_testimonial as $key => $value) 
+                        {
+                    ?>
+                            <div class="feedback">
+                                <p> <?php echo $value; ?></p>
+                                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
+                            </div>
+                    <?php
+                        }
+                    ?>
+                    </div>
+                <?php
+                }
 
-    			if(isset($lower_testimonial) && !empty($lower_testimonial))
-    			{
-    		?>
-    				<div class="col-50">
-    				<?php
+                if(isset($lower_testimonial) && !empty($lower_testimonial))
+                {
+            ?>
+                    <div class="col-50">
+                    <?php
 
-	    				foreach ($lower_testimonial as $k => $v) 
-	    				{
-	    			?>
-							<div class="feedback">
-				                <p> <?php echo $v; ?></p>
-				                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
-				            </div>
-	    			<?php
-	    				}
-	    			?>
-    				</div>
-    			<?php
-    			}
-    		}
-    		else
-    		{
-    	?>
-    			<div class="username">No Testimonials Found.</div>
-    	<?php
-    		}
-    	?>
+                        foreach ($lower_testimonial as $k => $v) 
+                        {
+                    ?>
+                            <div class="feedback">
+                                <p> <?php echo $v; ?></p>
+                                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
+                            </div>
+                    <?php
+                        }
+                    ?>
+                    </div>
+                <?php
+                }
+            }
+            else
+            {
+        ?>
+                <div class="username">No Testimonials Found.</div>
+        <?php
+            }
+        ?>
     </div>
 </page>
-</div>

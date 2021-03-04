@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   color: #333;
 }
 ::selection {
@@ -21,46 +21,38 @@ h5,
 h6 {
   font-weight: normal;
 }
-.container {
-  max-width: 1170px;
-  width: 100%;
-  margin: 0 auto;
-}
 .d-flex {
-  display: flex;
-  flex-direction: row;
+  /* display: flex;
+  flex-direction: row; */
 }
-
+.d-flex:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.d-flex > * {
+  float: left;
+}
 .col-60 {
   max-width: 60%;
-  /*-webkit-box-flex: 0;
-  flex: 0 0 60%;*/
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 60%;
-      flex: 0 0 60%;
+  flex: 0 0 60%;
 }
 .col-40 {
   max-width: 40%;
-  /*-webkit-box-flex: 0;
-  flex: 0 0 40%;*/
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 40%;
-      flex: 0 0 40%;
+  flex: 0 0 40%;
 }
 .col-50 {
   max-width: 50%;
-  /*-webkit-box-flex: 0;
-  flex: 0 0 50%;*/
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 50%;
-      flex: 0 0 50%;
+  flex: 0 0 50%;
 }
 .col-12 {
   max-width: 100%;
-  /*flex: 0 0 100%;*/
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 100%;
-      flex: 0 0 100%;
+  flex: 0 0 100%;
 }
 .space_between {
   justify-content: space-between;
@@ -104,7 +96,7 @@ ul.f14 {
   padding: 0;
   list-style: none;
   margin-top: 5px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 ul.f14 li {
   padding-left: 24px;
@@ -134,7 +126,7 @@ ul.f14 li:before {
   height: auto;
 }
 .main_title {
-  font-size: 42px;
+  font-size: 36px;
   line-height: 48px;
   font-family: "Crimson Text", serif;
   font-weight: 400;
@@ -167,19 +159,17 @@ page {
   display: block;
   overflow: hidden;
   box-shadow: 0 0 10px rgb(0 0 0 / 10%);
-  padding: 5% 65px;
+  padding: 45px 50px;
+  width: 816px;
+  height: 1056px;
+  margin: 0 auto;
 }
 .sub_title {
   font-size: 20px;
 }
 /* pdf 5 */
-.pdf5 {
-  padding: 5% 8% 15%;
-}
-.pdf5 .col-50 {
-  max-width: 38%;
-  -webkit-box-flex: 0;
-  flex: 0 0 38%;
+.float-right {
+  float: right;
 }
 .sold_count {
   padding: 20px 0 25px;
@@ -189,6 +179,9 @@ page {
 }
 .mt-150 {
   margin-top: 150px;
+}
+.mt-80 {
+  margin-top: 80px;
 }
 .number_round {
   background-color: #b9443d;
@@ -204,7 +197,7 @@ page {
 }
 .location_text {
   font-family: "Crimson Text", serif;
-  font-size: 30px;
+  font-size: 24px;
   letter-spacing: 1px;
   line-height: 38px;
 }
@@ -246,7 +239,7 @@ page {
 .pdf2 .col-60,
 .pdf2 .col-40,
 .pdf2 .col-12,
-.pdf2 .pad .col-50,
+.pdf2 .col-50,
 .pdf12 .col-50,
 .pdf13 .col-50 {
   padding: 0 20px;
@@ -324,13 +317,13 @@ page {
 }
 .w100 {
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
   object-fit: cover;
 }
 /* pdf 20 */
 
 .signature {
-  width: 300px;
+  width: 200px;
   text-align: center;
   position: relative;
 }
@@ -387,7 +380,7 @@ page {
 }
 .logo_here {
   position: absolute;
-  right: 100px;
+  right: 50px;
   top: 50%;
   transform: translate(0, -50%);
   max-width: 150px;
@@ -395,7 +388,7 @@ page {
 }
 .footer {
   background: #0d294b;
-  padding: 80px 65px;
+  padding: 45px 50px;
   color: #fff;
 }
 .copy_right_text {
@@ -406,13 +399,12 @@ page {
   height: auto;
 }
 .logo {
-  width: 43%;
-  flex: 0 0 34%;
+  width: 30%;
 }
 .copy_right_text {
   font-size: 12px;
-  flex: 0 0 66%;
   text-align: justify;
+  width: 68%;
 }
 .pdf20 .bordered_img {
   height: 50px;
@@ -426,14 +418,14 @@ page {
   padding: 0;
 }
 .pdf20 > .content {
-  padding: 45px 65px;
+  padding: 35px 30px;
   position: relative;
 }
 /* pdf18 */
 .table_title {
-  font-size: 28px;
+  font-size: 26px;
   font-family: "Crimson Text", serif;
-  margin: 0 0 15px;
+  margin: 0 0 10px;
 }
 .pdf18 table,
 .pdf7 table {
@@ -466,24 +458,23 @@ page {
   margin-top: 15px;
 }
 ul.home_list {
-  margin: 130px 0 0;
+  margin: 60px 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   justify-content: space-between;
 }
 .home_list li img {
-  width: 130px;
+  width: 90px;
 }
 /* pdf16 */
 .pdf16 {
   background: url(https://i.ibb.co/1zyx7F9/LeftIMG.jpg) no-repeat;
   background-size: cover;
   color: #fff;
-  padding: 5% 65px 20%;
 }
 .content_area {
-  width: 70%;
+  width: 90%;
 }
 .w80 {
   width: 80%;
@@ -504,15 +495,15 @@ ul.home_list {
   content: "";
   position: absolute;
   height: 1px;
-  width: 160px;
+  width: 120px;
   background: #d97871;
-  left: -160px;
+  left: -120px;
   top: 32px;
 }
 .msg_box:after {
   content: "";
   position: absolute;
-  left: -212px;
+  left: -165px;
   width: 30px;
   height: 30px;
   border: 1px solid #d98771;
@@ -528,7 +519,6 @@ ul.home_list {
 }
 /* pdf17 */
 .pdf17 {
-  padding: 10% 65px 5%;
   background: url(https://i.ibb.co/ssc1hnK/RightIMG.jpg) no-repeat;
   background-size: cover;
   color: #fff;
@@ -555,9 +545,9 @@ ul.home_list {
 }
 .pdf1 .header {
   margin: 0 auto;
-  height: 30rem;
-  padding: 0 14rem;
-  display: -webkit-box;
+  height: 16rem;
+  padding: 45px 65px;
+  /* display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
@@ -565,35 +555,40 @@ ul.home_list {
   align-items: center;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
-  justify-content: space-between;
+  justify-content: space-between; */
+}
+.header > * {
+  float: left;
 }
 .pdf1 .header img:nth-child(1) {
-  width: 240px;
+  width: 230px;
+  margin-right: 20px;
 }
 .pdf1 .header img:nth-child(2) {
   -webkit-transform: rotate(90deg);
   transform: rotate(90deg);
-  margin: 0 -3rem;
+  margin: 60px -3rem;
   width: 14rem;
 }
 .pdf1 .header .text {
-  width: 25rem;
+  width: 18rem;
   color: #0d294b;
+  margin-left: 20px;
 }
 .pdf1 .header h1 {
-  font-size: 32px;
+  font-size: 24px;
   margin-bottom: 4rem;
   margin-top: 0;
 }
 .pdf1 .header p:nth-child(2) {
   font-weight: 600;
-  font-size: 45px;
+  font-size: 40px;
   font-family: "Crimson Text", serif;
   margin: 0;
 }
 .pdf1 .header p:nth-child(3) {
   margin-top: -0.5rem;
-  font-size: 30px;
+  font-size: 24px;
   margin-bottom: 0;
 }
 .d-block {
@@ -601,12 +596,12 @@ ul.home_list {
   height: auto;
 }
 .horizontal_sign.signature {
-  width: 400px;
+  width: 300px;
   text-align: left;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+}
+.horizontal_sign.signature > * {
+  float: left;
 }
 .horizontal_sign > img {
   margin-right: 30px;
@@ -629,16 +624,15 @@ ul.home_list {
 }
 /* pdf2 */
 .pdf2 {
-  padding: 5% 80px;
+  padding: 30px 50px;
 }
 .pdf2 .profile_pic {
-  /*height: 355px;*/
-  height: auto;
+  height: 265px;
   object-fit: cover;
 }
 .vertical_sign {
   text-align: left;
-  padding-left: 30px !important;
+  padding-left: 0 !important;
 }
 .vertical_sign > img {
   margin-left: -18px;
@@ -646,8 +640,8 @@ ul.home_list {
   max-width: 104% !important;
 }
 .vertical_sign .profile_name {
-  font-size: 44px;
-  line-height: 46px;
+  font-size: 30px;
+  line-height: 34px;
 }
 .vertical_sign .profile_title {
   opacity: 1;
@@ -658,11 +652,11 @@ ul.home_list {
   margin: 5px 0;
 }
 .vertical_sign .tel_number {
-  font-size: 28px;
-  line-height: 32px;
+  font-size: 18px;
+  line-height: 24px;
 }
 .vertical_sign .contact_info {
-  font-size: 18px;
+  font-size: 14px;
 }
 .mt-30 {
   margin-top: 30px;
@@ -671,11 +665,12 @@ ul.home_list {
   text-align: justify;
 }
 .feedback {
-  padding-left: 100px;
+  padding-left: 50px;
   position: relative;
   text-align: justify;
-  padding-right: 50px;
-  margin-bottom: 80px;
+  padding-right: 0;
+  margin-bottom: 40px;
+  font-size: 16px;
 }
 .feedback p {
   margin-bottom: 30px;
@@ -685,13 +680,14 @@ ul.home_list {
   position: absolute;
   left: 0;
   top: 0;
-  background: url(/assets/reports/english/seller/images/2/qoute.png) no-repeat;
-  width: 50px;
-  height: 50px;
+  background: url(https://i.ibb.co/qYygY6q/qoute.png) no-repeat;
+  width: 30px;
+  height: 24px;
+  background-size: contain;
 }
 .username {
   font-family: "Crimson Text", serif;
-  font-size: 20px;
+  font-size: 18px;
 }
 .rating {
   float: right;
@@ -700,7 +696,6 @@ ul.home_list {
 /* pdf3 */
 .pdf3 {
   padding: 0;
-  height: 100rem;
 }
 .pdf3:before {
   content: "";
@@ -718,15 +713,21 @@ ul.home_list {
   object-position: 36%;
 }
 /* pdf4 */
+/*.pdf4 {
+  padding: 0;
+  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(https://i.ibb.co/LpLH6Yp/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+}*/
+
 .pdf4 {
   padding: 0;
-  /*background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);*/
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
     url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
-   background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+  background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
     url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
-   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
     url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
   background-size: cover;
   background-position: center;
@@ -734,8 +735,8 @@ ul.home_list {
 .pdf4 h1 {
   font-family: "Crimson Text", serif;
   font-weight: lighter;
-  padding: 8rem 0;
-  font-size: 3rem;
+  padding: 4rem 0;
+  font-size: 40px;
   text-align: center;
   color: #fff;
   margin: 0;
@@ -745,7 +746,7 @@ ul.home_list {
   position: relative;
   max-width: 580px;
   margin: 0 auto;
-  padding: 80px 70px 120px;
+  padding: 70px 70px 90px;
   text-align: center;
 }
 .pdf4 .whitebox h2 {
@@ -754,47 +755,58 @@ ul.home_list {
   margin: 0;
 }
 .whitebox p {
-  font-size: 20px;
+  font-size: 18px;
   text-align: justify;
   text-align-last: center;
-  line-height: 30px;
+  line-height: 29px;
 }
 .white_house {
   width: 75%;
   margin: -130px auto -230px;
   z-index: 99;
-  position: relative;
+  position: relative !important;
   display: block;
 }
 /* pdf6 */
+/*.pdf6 {
+  padding: 0 0 100px;
+  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+}*/
 .pdf6 {
   padding: 0 0 100px;
-  /*background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);*/
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
-  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-  url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background-size: cover;
   background-position: center;
 }
 .map_content {
-  padding: 5% 65px;
+  padding: 45px 50px;
   color: #fff;
   width: 65%;
   text-align: justify;
 }
+.map_image {
+  height: 400px;
+}
+.pricing_img {
+  height: 300px;
+}
 .map_content h2 {
   font-family: "Crimson Text", serif;
-  font-size: 3rem;
+  font-size: 34px;
   margin: 0 0 25px;
 }
 .map_content p {
-  font-size: 1.5rem;
+  font-size: 18px;
   margin: 0 0 30px;
-  line-height: 40px;
+  line-height: 34px;
 }
 .pdf7 tr:nth-of-type(even) {
   background: #e1e0df;
@@ -806,11 +818,9 @@ ul.home_list {
 .pdf7 table td {
   font-weight: normal;
   padding: 8px 15px;
+  font-size: 15px;
 }
 /* pdf8 */
-.pdf8 {
-  padding: 5% 65px 12%;
-}
 
 .pdf8 table {
   width: 100%;
@@ -830,7 +840,7 @@ ul.home_list {
 }
 .pdf8 table th,
 .pdf8 table td {
-  padding: 8px;
+  padding: 6px;
 }
 .pdf8 table tbody tr:not(:last-child) td {
   border-bottom: 1px solid #d2cbcb;
@@ -853,9 +863,7 @@ ul.home_list {
   padding-right: 30px;
 }
 /* pdf9 */
-.pdf9 {
-  padding: 5% 65px 10%;
-}
+
 .pdf9 .address {
   font-family: "Crimson Text", serif;
   font-size: 20px;
@@ -864,35 +872,36 @@ ul.home_list {
   margin-bottom: 10px;
 }
 .house_pricing img {
-  height: 280px;
+  height: 150px;
   width: 100%;
   object-fit: cover;
 }
 .pricing_buttons {
   padding: 0;
-  margin: 20px 0 25px;
+  margin: 15px 0 20px;
 }
 .pricing_buttons li {
   display: inline-block;
+  vertical-align: middle;
 }
 .pricing_buttons li a {
   text-decoration: none;
   display: block;
-  height: 45px;
-  line-height: 45px;
+  height: 40px;
+  line-height: 38px;
   text-align: center;
   margin-right: 3px;
 }
 .btn_sale {
   background: #0d294b;
   color: #fff;
-  width: 150px;
+  width: 130px;
 }
 .pricing_buttons li a.btn_price {
   background: #fff;
   color: #d97972;
   border: 2px solid;
-  width: 200px;
+  width: 160px;
   line-height: 41px;
 }
 .pdf9 table {
@@ -904,7 +913,7 @@ ul.home_list {
 }
 .pdf9 table td {
   font-size: 14px;
-  padding: 8px;
+  padding: 6px;
 }
 .pdf9 table tr:nth-of-type(odd) {
   background: #e1e0df;
@@ -957,12 +966,11 @@ ul.stats li:not(:last-child):after {
 }
 /* pdf12 */
 .pdf12 {
-  padding-bottom: 8%;
 }
 .pdf12 .steps h4,
 .pdf13 .steps h4 {
   font-family: "Crimson Text", serif;
-  font-size: 30px;
+  font-size: 26px;
   text-transform: capitalize;
   margin: 0;
 }
@@ -973,8 +981,11 @@ ul.stats li:not(:last-child):after {
   margin-top: 0;
 }
 /* pdf13 */
-.pdf13 {
-  padding: 5% 65px 10%;
+.avg_text {
+  width: 60%;
+}
+.grey-chart {
+  height: 300px;
 }
 .avg_block {
   padding: 0 30px;
@@ -1030,15 +1041,3 @@ ul.stats li:not(:last-child):after {
 .mt-m-80 {
   margin-top: -80px;
 }
-
-/* css added by MB */
-.pdf1 .footer .d-flex,
-.pdf2 .d-flex {
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-}
-/* css added by MB */
