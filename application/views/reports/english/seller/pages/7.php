@@ -1,16 +1,15 @@
-<div class="container">
-    <page class="pdf7">
-        <h1 class="main_title top_title">Prospective Property</h1>
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
-        <div class="d-flex">
-            <div class="col-12">
-                <h4 class="mt-0 sub_title">Overview of Your Property</h4>
-            </div>
+<page class="pdf7">
+    <h1 class="main_title top_title">Prospective Property</h1>
+    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+    <div class="d-flex">
+        <div class="col-12">
+            <h4 class="mt-0 sub_title mb-10">Overview of Your Property</h4>
         </div>
-        <div class="d-flex mt-20">    
-            <div class="col-12">
-                <h4 class="table_title">Owner, Address & Legal Description</h4>
-                <table>
+    </div>
+    <!-- <div class="d-flex">    
+        <div class="col-12"> -->
+            <h4 class="table_title">Owner, Address & Legal Description</h4>
+            <table>
                     <tr>
                         <td colspan="2">Primary Owner: <?php echo isset($primary_owner) && !empty($primary_owner) ? $primary_owner : '-'; ?></td>
                     </tr>
@@ -46,8 +45,8 @@
                         <?php echo isset($property->PropertyProfile->LegalDescriptionInfo->LegalBriefDescription) && !empty($property->PropertyProfile->LegalDescriptionInfo->LegalBriefDescription) ? $property->PropertyProfile->LegalDescriptionInfo->LegalBriefDescription : '-'; ?></td>
                     </tr>
                 </table> 
-                <h4 class="table_title">Beds, Baths & Square Footage</h4>
-                <table>
+            <h4 class="table_title">Beds, Baths & Square Footage</h4>
+            <table>
                     <tr>
                         <td>Bedrooms: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->Bedrooms) && !empty($property->PropertyProfile->PropertyCharacteristics->Bedrooms) ? $property->PropertyProfile->PropertyCharacteristics->Bedrooms : '-'; ?></td>
                         <td>Year: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->YearBuilt) && !empty($property->PropertyProfile->PropertyCharacteristics->YearBuilt) ? $property->PropertyProfile->PropertyCharacteristics->YearBuilt : '-'; ?></td>
@@ -75,8 +74,8 @@
                         <td colspan="3">Use Code: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->UseCode) && !empty($property->PropertyProfile->PropertyCharacteristics->UseCode) ? $property->PropertyProfile->PropertyCharacteristics->UseCode : '-'; ?></td>
                     </tr>
                 </table>
-                <h4 class="table_title">Assessed Value & Tax Details</h4>
-                <table>
+            <h4 class="table_title">Assessed Value & Tax Details</h4>
+            <table>
                     <tr>
                         <td>Assessed Value: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->AssessedValue) && !empty($property->PropertyProfile->AssessmentTaxInfo->AssessedValue) ? '$'.$property->PropertyProfile->AssessmentTaxInfo->AssessedValue : '-'; ?></td>
                         <td>Tax Amount: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->TaxAmount) && !empty($property->PropertyProfile->AssessmentTaxInfo->TaxAmount) ? '$'.$property->PropertyProfile->AssessmentTaxInfo->TaxAmount : '-'; ?></td>
@@ -94,7 +93,6 @@
                         <td>Tax Year: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->TaxYear) && !empty($property->PropertyProfile->AssessmentTaxInfo->TaxYear) ? $property->PropertyProfile->AssessmentTaxInfo->TaxYear : '-'; ?></td>
                     </tr>
                 </table>
-            </div>
-        </div>
-    </page>
-</div>
+        <!-- </div>
+    </div> -->
+</page>
