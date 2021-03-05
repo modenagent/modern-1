@@ -78,6 +78,18 @@
     $this->load->view('reports/english/seller/pages/6');
     $this->load->view('reports/english/seller/pages/7');
     $this->load->view('reports/english/seller/pages/8');   
+    $this->load->view('reports/english/seller/pages/9');   
+    $this->load->view('reports/english/seller/pages/10');
+    $this->load->view('reports/english/seller/pages/11');
+    $this->load->view('reports/english/seller/pages/12');    
+    $this->load->view('reports/english/seller/pages/13');
+    $this->load->view('reports/english/seller/pages/14');
+    $this->load->view('reports/english/seller/pages/15');
+    $this->load->view('reports/english/seller/pages/16');
+    $this->load->view('reports/english/seller/pages/17');   
+    $this->load->view('reports/english/seller/pages/18');   
+    $this->load->view('reports/english/seller/pages/19');   
+    $this->load->view('reports/english/seller/pages/20');   
     
     /*$comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
