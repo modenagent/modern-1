@@ -51,7 +51,6 @@ h6 {
 }
 .col-12 {
   max-width: 100%;
-  -webkit-box-flex: 0;
   flex: 0 0 100%;
 }
 .space_between {
@@ -713,22 +712,10 @@ ul.home_list {
   object-position: 36%;
 }
 /* pdf4 */
-/*.pdf4 {
+.pdf4 {
   padding: 0;
   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
     url(https://i.ibb.co/LpLH6Yp/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
-  background-size: cover;
-  background-position: center;
-}*/
-
-.pdf4 {
-  padding: 0;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
-    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
-  background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
-  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -764,25 +751,14 @@ ul.home_list {
   width: 75%;
   margin: -130px auto -230px;
   z-index: 99;
-  position: relative !important;
+  position: relative;
   display: block;
 }
 /* pdf6 */
-/*.pdf6 {
-  padding: 0 0 100px;
-  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
-  background-size: cover;
-  background-position: center;
-}*/
 .pdf6 {
   padding: 0 0 100px;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
-    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
-  background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+    url(https://i.ibb.co/n6DCLVr/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background-size: cover;
   background-position: center;
 }

@@ -62,14 +62,14 @@
 ?> 
 
 <?php 
-    if($partner && count($partner)>1) {
+    /*if($partner && count($partner)>1) {
         $this->load->view('reports/english/seller/pages/1');
         $this->load->view('reports/english/seller/pages/1_multiagent');
     } else if($partner && count($partner)==1) {
         $this->load->view('reports/english/seller/pages/1_agent');
-    } else {
+    } else {*/
         $this->load->view('reports/english/seller/pages/1');
-    }
+    /*}*/
 
     $this->load->view('reports/english/seller/pages/2');
     $this->load->view('reports/english/seller/pages/3');    
