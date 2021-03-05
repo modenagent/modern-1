@@ -120,7 +120,7 @@
                         {
                     ?>
                             <div class="feedback">
-                                <p> <?php echo $value; ?></p>
+                                <p> <?php echo trim($value); ?></p>
                                 <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
                             </div>
                     <?php
@@ -140,7 +140,7 @@
                         {
                     ?>
                             <div class="feedback">
-                                <p> <?php echo $v; ?></p>
+                                <p> <?php echo trim($v); ?></p>
                                 <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
                             </div>
                     <?php
