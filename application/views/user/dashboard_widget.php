@@ -3,7 +3,7 @@
    <head>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
       <!-- <script type="text/javascript" src="<?php // echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script> -->
-      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDQQthVgLzHIRTyLS1WGP2spIshpD28n8M"></script>
+      <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey()?>"></script>
       <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon" />
       <!-- Custom Fonts -->
       <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
