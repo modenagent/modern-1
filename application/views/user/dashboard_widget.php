@@ -479,32 +479,19 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="testimonial-1">
-Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.
-                            </textarea>
+                            <textarea class="form-control" rows="5" id="testimonial-1">Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.</textarea>
                         </div>
                         <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="testimonial-2">
-As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.
-                            </textarea>
+                            <textarea class="form-control" rows="5" id="testimonial-2">As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.</textarea>
                         </div>
                     </div>
                     
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="testimonial-3">
-Showed us a bunch of homes for months until we found the right one.
-Gave us a ton of contacts to help us throughout the process. And even
-now after the home has already been closed on he is still helping
-with any problems or questions we have. Extremely helpful and knowledgeable in any facet of home buying/owning.
-                            </textarea>
+                            <textarea class="form-control" rows="5" id="testimonial-3">Showed us a bunch of homes for months until we found the right one. Gave us a ton of contacts to help us throughout the process. And even now after the home has already been closed on he is still helping with any problems or questions we have. Extremely helpful and knowledgeable in any facet of home buying/owning.</textarea>
                         </div>
                         <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="testimonial-4">
-They were a great team and extremely helpful with selling my
-house quickly. I was able to do everything online with them. They
-facilitated repairs and getting rid of things in the house. This was so helpful since I live out of the area.
-                            </textarea>
+                            <textarea class="form-control" rows="5" id="testimonial-4">They were a great team and extremely helpful with selling my house quickly. I was able to do everything online with them. They facilitated repairs and getting rid of things in the house. This was so helpful since I live out of the area.</textarea>
                         </div>
                     </div>
                 </div>
