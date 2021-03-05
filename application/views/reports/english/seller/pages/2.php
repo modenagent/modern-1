@@ -1,9 +1,9 @@
 <page class="pdf2">
-    <div class="d-flex">
-        <div class="col-12">
+    <!-- <div class="d-flex">
+        <div class="col-12"> -->
             <h1 class="main_title top_title">Meet Your Agent</h1>
-        </div>
-    </div>
+        <!-- </div>
+    </div> -->
     <div class="d-flex mt-30">
         <div class="col-60">
             <div class="d-flex">

@@ -77,9 +77,9 @@
     $this->load->view('reports/english/seller/pages/5');
     $this->load->view('reports/english/seller/pages/6');
     $this->load->view('reports/english/seller/pages/7');
-    /*$this->load->view('reports/english/seller/pages/8');   
+    $this->load->view('reports/english/seller/pages/8');   
     
-    $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+    /*$comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
     if(isset($comparable) && !empty($comparable))
     {
