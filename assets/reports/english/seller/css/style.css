@@ -51,6 +51,7 @@ h6 {
 }
 .col-12 {
   max-width: 100%;
+  -webkit-box-flex: 0;
   flex: 0 0 100%;
 }
 .space_between {
@@ -712,10 +713,22 @@ ul.home_list {
   object-position: 36%;
 }
 /* pdf4 */
-.pdf4 {
+/*.pdf4 {
   padding: 0;
   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
     url(https://i.ibb.co/LpLH6Yp/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+}*/
+
+.pdf4 {
+  padding: 0;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
+    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
+  background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
+  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -751,14 +764,25 @@ ul.home_list {
   width: 75%;
   margin: -130px auto -230px;
   z-index: 99;
-  position: relative;
+  position: relative !important;
   display: block;
 }
 /* pdf6 */
-.pdf6 {
+/*.pdf6 {
   padding: 0 0 100px;
   background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
-    url(https://i.ibb.co/n6DCLVr/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+  background-size: cover;
+  background-position: center;
+}*/
+.pdf6 {
+  padding: 0 0 100px;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(8, 33, 71, 0.801)), to(rgba(8, 33, 71, 0.801))),
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+  background: -o-linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
+  background: linear-gradient(rgba(8, 33, 71, 0.801), rgba(8, 33, 71, 0.801)),
+    url(/assets/reports/english/seller/images/6/chuttersnap-u-Zcl28p3m4-unsplash.jpg);
   background-size: cover;
   background-position: center;
 }
@@ -909,7 +933,7 @@ ul.home_list {
   line-height: 25px;
   text-align: justify;
 }
-.pdf11 .stats {
+/*.pdf11 .stats {
   display: flex;
   justify-content: space-evenly;
   list-style: none;
@@ -918,7 +942,25 @@ ul.home_list {
   text-align: center;
   padding: 0;
   margin: 0 0 50px;
+}*/
+
+.pdf11 .stats {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+  -ms-flex-pack: space-evenly;
+  justify-content: space-evenly;
+  list-style: none;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-family: "Crimson Text", serif;
+  text-align: center;
+  padding: 0;
+  margin: 0 0 50px;
 }
+
 ul.stats li {
   width: 25%;
   font-size: 22px;
@@ -967,7 +1009,7 @@ ul.stats li:not(:last-child):after {
   padding: 0 30px;
   position: relative;
 }
-.avg_block span {
+/*.avg_block span {
   position: absolute;
   left: 0;
   writing-mode: vertical-lr;
@@ -977,6 +1019,21 @@ ul.stats li:not(:last-child):after {
   transform: translate(0, -50%) rotate(180deg);
   height: 100%;
   text-align: center;
+}*/
+.avg_block span {
+  position: absolute;
+    left: 0;
+    -webkit-writing-mode: vertical-lr;
+        -ms-writing-mode: tb-lr;
+            writing-mode: vertical-lr;
+    font-size: 14px;
+    display: block;
+    top: 50%;
+    -webkit-transform: translate(0, -50%) rotate(180deg);
+    -ms-transform: translate(0, -50%) rotate(180deg);
+    transform: translate(0, -50%) rotate(180deg);
+    height: 100%;
+    text-align: center;
 }
 .avg_block .number {
   background: #0d294b;
@@ -1017,3 +1074,59 @@ ul.stats li:not(:last-child):after {
 .mt-m-80 {
   margin-top: -80px;
 }
+
+
+/* CSS added by MB */
+.value {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  margin: 0 0 0 -29px;
+  width: 40px;
+  text-align: center;
+  display: block;
+  color: #333;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 600;
+}
+
+.price-range-both.value {
+  width: 100px;
+  margin: 0 0 0 -50px;
+  top: 26px;
+}
+
+.price-range-both {
+  display: none;
+}
+.ui-slider .ui-slider-handle {
+  height: 13px;
+  width: 13px;
+  border-radius: 10px;
+  background: #ffca22;
+  border-color: #ffca22;
+  top: -2px;
+}
+
+.ui-slider-horizontal .ui-slider-range {
+  top: 2px !important;
+  height: 65% !important;
+  background: #ffca22 !important;
+}
+
+#slider {
+  background: #e0e0e0;
+  border: none;
+  height: 11px;
+}
+
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-slider-handle .ui-state-default .ui-corner-all {
+  border: 1px solid #ffca22 !important;
+  background: #ffca22 !important;
+  font-weight: normal;
+  color: #555555;
+}
+/* CSS added by MB */

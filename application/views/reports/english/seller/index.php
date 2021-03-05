@@ -5,8 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/style.css") ?>">
+    <style type="text/css">        
+        .ui-slider-horizontal .ui-slider-range{
+            background: #082147 !important;
+        }
+        .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default, .ui-slider-handle .ui-state-default .ui-corner-all{
+            border: 1px solid #082147 !important;
+            background: #082147 !important;
+        }
+    </style>
 </head>
 <body>
 <?php      
@@ -68,30 +77,18 @@
     } else if($partner && count($partner)==1) {
         $this->load->view('reports/english/seller/pages/1_agent');
     } else {*/
-        $this->load->view('reports/english/seller/pages/1');
+       // $this->load->view('reports/english/seller/pages/1');
     /*}*/
-
+    $this->load->view('reports/english/seller/pages/1');
     $this->load->view('reports/english/seller/pages/2');
     $this->load->view('reports/english/seller/pages/3');    
     $this->load->view('reports/english/seller/pages/4');
     $this->load->view('reports/english/seller/pages/5');
     $this->load->view('reports/english/seller/pages/6');
     $this->load->view('reports/english/seller/pages/7');
-    $this->load->view('reports/english/seller/pages/8');   
-    $this->load->view('reports/english/seller/pages/9');   
-    $this->load->view('reports/english/seller/pages/10');
-    $this->load->view('reports/english/seller/pages/11');
-    $this->load->view('reports/english/seller/pages/12');    
-    $this->load->view('reports/english/seller/pages/13');
-    $this->load->view('reports/english/seller/pages/14');
-    $this->load->view('reports/english/seller/pages/15');
-    $this->load->view('reports/english/seller/pages/16');
-    $this->load->view('reports/english/seller/pages/17');   
-    $this->load->view('reports/english/seller/pages/18');   
-    $this->load->view('reports/english/seller/pages/19');   
-    $this->load->view('reports/english/seller/pages/20');   
+    $this->load->view('reports/english/seller/pages/8');
     
-    /*$comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+    $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
     if(isset($comparable) && !empty($comparable))
     {
@@ -111,14 +108,20 @@
     }
 
     $this->load->view('reports/english/seller/pages/11',$rangeOfSales);
-    // echo "<pre>test:"; print_r($customization_pages_data['11']); exit;
-    $this->load->view('reports/english/seller/pages/12',$customization_pages_data['11']);*/
+    $this->load->view('reports/english/seller/pages/12',$customization_pages_data['11']);
+    $this->load->view('reports/english/seller/pages/13',$customization_pages_data['12']);
+    /* $this->load->view('reports/english/seller/pages/14');
+    $this->load->view('reports/english/seller/pages/15');
+    $this->load->view('reports/english/seller/pages/16');
+    $this->load->view('reports/english/seller/pages/17');   
+    $this->load->view('reports/english/seller/pages/18');   
+    $this->load->view('reports/english/seller/pages/19');   
+    $this->load->view('reports/english/seller/pages/20');  */
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
  
-<link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+
 
 <script>            
     function collision($div1, $div2) 
