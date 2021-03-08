@@ -35,7 +35,7 @@ class Stripe {
                 $this->_conf['stripe_key_test_secret']         = 'sk_test_4Rut0MK1S0WKIHQGs0MTaVDL'; 
                 $this->_conf['stripe_key_live_public']         = 'pk_live_kWtXKplBdNqXQMeBWHuHYZDx';
                 $this->_conf['stripe_key_live_secret']         = 'sk_live_W0mSME3cKd2uzqdFv7WBr02p';
-                $this->_conf['stripe_test_mode']               = !empty($_ENV['STRIPE_MODE']) && strtotime($_ENV['STRIPE_MODE']) == 'sandbox' ? TRUE : FALSE;
+                $this->_conf['stripe_test_mode']               = !empty($_ENV['STRIPE_MODE']) && strtolower($_ENV['STRIPE_MODE']) == 'sandbox' ? TRUE : FALSE;
                 $this->_conf['stripe_verify_ssl']              = FALSE; 
             } else {
 		$this->_conf = $params;
