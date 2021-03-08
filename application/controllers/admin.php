@@ -96,11 +96,7 @@ class Admin extends CI_Controller
         }
 
     }
-    // Random string
-    private function generateRandomString()
-    {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
-    }
+
     /* use for forget password */
     public function forget_password()
     {
@@ -122,7 +118,7 @@ class Admin extends CI_Controller
                 $userId = $admin_details['user_id_pk'];
                 $userName = $admin_details['first_name'] . ' ' . $admin_details['last_name'];
                 $pemail = $admin_details['email'];
-                $random_password = $this->generateRandomString();
+                $random_password = generateRandomString();
                 $table = "lp_user_mst";
                 $data = array(
                     'password' => password_hash($random_password,PASSWORD_DEFAULT)
@@ -180,20 +176,28 @@ MSG;
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $_hasAccess = $this->_hasAccess('user_count');
-            if($_hasAccess){
-                if(isset($_POST["user_role_id"])){
-                    
-                    $user_role_id = $_POST["user_role_id"];
-                    $roleId = $this->session->userdata('role_id');
-                    $user_count = $this->base_model->countusers('is_active','Y',$roleId,$adminId,$user_role_id);
-                    $resp = array('status' => 'success', 'active_user' => $user_count->count_user );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
-                    echo json_encode($resp);
-                }
+            // $_hasAccess = $this->_hasAccess('user_count');
+            if(!hasAccess('user_count')) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Access Denied!'
+                );
+                echo json_encode($resp);
+                exit();
             }
+
+            if(isset($_POST["user_role_id"])){
+                
+                $user_role_id = $_POST["user_role_id"];
+                $roleId = $this->session->userdata('role_id');
+                $user_count = $this->base_model->countusers('is_active','Y',$roleId,$adminId,$user_role_id);
+                $resp = array('status' => 'success', 'active_user' => $user_count->count_user );
+                echo json_encode($resp);
+            }else{
+                $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
+                echo json_encode($resp);
+            }
+
         }else{
             redirect('admin/index'); 
         }
@@ -203,16 +207,21 @@ MSG;
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $_hasAccess = $this->_hasAccess('flyer_count');
-            if($_hasAccess){
-                $roleId = $this->session->userdata('role_id');
-                $count = $this->base_model->countreports($roleId,$adminId);
-                $resp = array('status' => 'success', 'count' => $count->count_reports);
+            
+            if(!hasAccess('flyer_count')) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Access Denied!'
+                );
                 echo json_encode($resp);
-            }else{
-                $resp = array('status' => 'error', 'msg' => 'you do have access for this request' );
-                echo json_encode($resp);
+                exit();
             }
+            
+            $roleId = $this->session->userdata('role_id');
+            $count = $this->base_model->countreports($roleId,$adminId);
+            $resp = array('status' => 'success', 'count' => $count->count_reports);
+            echo json_encode($resp);
+            
         }else{
             $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
             echo json_encode($resp);
@@ -354,7 +363,8 @@ MSG;
     // manage user
     public function manage_user()
     {
-        $this->_hasAccess('view_all_user');
+        hasAccess('view_all_user');
+        // die;
         $data['title'] = "Manage Users";
         $data['add_title'] = "Create User";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
@@ -393,7 +403,7 @@ MSG;
     // transaction
     public function transaction()
     {
-        $this->_hasAccess('transaction');
+        hasAccess('transaction');
         $data['title'] = "Manage Transaction";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -667,7 +677,7 @@ MSG;
     // user profile edit view  
     public function profile_edit($uid)
     {
-        $this->_hasAccess('edit_user_info');
+        hasAccess('edit_user_info');
         $data['title'] = "Profile Edit";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -868,7 +878,7 @@ MSG;
 
     public function user_order_history($userId) 
     {
-        $this->_hasAccess('order_history');
+        hasAccess('order_history');
         $data['title'] = "Manage User Orders";
         $data['userId'] = $userId;
 
@@ -890,7 +900,15 @@ MSG;
     // order history list view
     public function user_order_history_list_view()
     {
-        $this->_hasAccess('order_history');
+        // $this->_hasAccess('order_history');
+        if(!hasAccess('order_history')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         $roleId = $this->session->userdata('role_id');
         $userId = $this->input->post('user_id');
@@ -976,7 +994,7 @@ MSG;
     // Order history page
     public function order_history()
     {
-        $this->_hasAccess('order_history');
+        hasAccess('order_history');
         $data['title'] = "Manage Orders";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -990,7 +1008,15 @@ MSG;
     // order history list view
     public function orderhistorylist_view()
     {
-        $this->_hasAccess('order_history');
+        // $this->_hasAccess('order_history');
+        if(!hasAccess('order_history')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         $roleId = $this->session->userdata('role_id');
 
@@ -1700,7 +1726,7 @@ MSG;
     // manage coupons
     public function manage_coupon()
     {
-        $this->_hasAccess('manage_coupon');
+        hasAccess('manage_coupon');
         $data['title'] = "Manage Coupons";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -1715,7 +1741,7 @@ MSG;
     // manage coupon edit
     public function manage_coupon_edit($cid)
     {
-        $this->_hasAccess('manage_coupon');
+        hasAccess('manage_coupon');
         $data['title'] = "Manage Coupons";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -1730,7 +1756,7 @@ MSG;
     // manage coupon edit
     public function manage_coupon_view($cid)
     {
-        $this->_hasAccess('manage_coupon');
+        hasAccess('manage_coupon');
         $data['title'] = "Manage Coupons";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -1745,7 +1771,14 @@ MSG;
     // coupon add
     public function coupon_add()
     {
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
             if($_POST){
@@ -1811,7 +1844,14 @@ MSG;
     // coupon edit
     public function coupon_edit()
     {
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
             if($_POST){
@@ -1867,7 +1907,14 @@ MSG;
     // couponlist view
     public function couponlist_view()
     {
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId && $_POST["type"] == "couponlist") {
 
@@ -1932,7 +1979,14 @@ MSG;
     }
     // delete coupon
     public function delete_coupon($id){
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
             // check if coupon is used
@@ -2076,7 +2130,7 @@ MSG;
     }
     public function manage_companies()
     {
-        $this->_hasAccess('manage_companies');
+        hasAccess('manage_companies');
         $data['title'] = "Manage Companies";
         $data['add_title'] = "Create Company";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
@@ -2098,7 +2152,7 @@ MSG;
      */
     public function manage_sales_reps()
     {
-        $this->_hasAccess('manage_sales_reps');
+        hasAccess('manage_sales_reps');
         $data['title'] = "Manage Sales Representatives";
         $data['add_title'] = "Create Sales Representative";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
@@ -2144,18 +2198,18 @@ MSG;
      * @param string $path
      * @auther Avtar Gaur <info@modernagent.io>
      */
-    private function _hasAccess($path) {
-        $hasAccess = $this->role_lib->has_access($path);
-        if($this->input->is_ajax_request()){
-            return $hasAccess;
-        }
-        if(!$hasAccess) {
-            $this->session->set_flashdata('error', 'Access denied');
-            redirect('admin/dashboard');
-            return;
-        }
-        return true;
-    }
+    // private function _hasAccess($path) {
+    //     $hasAccess = $this->role_lib->has_access($path);
+    //     if($this->input->is_ajax_request()){
+    //         return $hasAccess;
+    //     }
+    //     if(!$hasAccess) {
+    //         $this->session->set_flashdata('error', 'Access denied');
+    //         redirect('admin/dashboard');
+    //         return;
+    //     }
+    //     return true;
+    // }
     /**
     * Check if user has created the record. Rediect to redirection path given if has not.
     * @param array/object $record
@@ -2196,20 +2250,26 @@ MSG;
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $_hasAccess = $this->_hasAccess('deactive_user');
-            if($_hasAccess){
-                if($_POST["type"] == "deactive_user"){
-                    // countusers($table, $column, $userType)
-                    $user_role_id = $_POST["user_role_id"];
-                    $roleId = $this->session->userdata('role_id');
-                    $user_count = $this->base_model->countusers('is_active','N',$roleId,$adminId,$user_role_id);
-                    $resp = array('status' => 'success', 'deactive_user' => $user_count->count_user );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
-                    echo json_encode($resp);
-                }
+            if(!hasAccess('deactive_user')) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Access Denied!'
+                );
+                echo json_encode($resp);
+                exit();
             }
+            if($_POST["type"] == "deactive_user"){
+                // countusers($table, $column, $userType)
+                $user_role_id = $_POST["user_role_id"];
+                $roleId = $this->session->userdata('role_id');
+                $user_count = $this->base_model->countusers('is_active','N',$roleId,$adminId,$user_role_id);
+                $resp = array('status' => 'success', 'deactive_user' => $user_count->count_user );
+                echo json_encode($resp);
+            }else{
+                $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
+                echo json_encode($resp);
+            }
+
         }else{
             redirect('admin/index');
         }
@@ -2500,7 +2560,7 @@ MSG;
     {
         $data['title'] = "Manage Packages";
         $data['admin_id'] = $this->session->userdata('adminid');
-        $_hasAccess = $this->_hasAccess('packages');
+        hasAccess('packages');
         $is_admin = $this->role_lib->is_admin();
         if ($is_admin) {
 
