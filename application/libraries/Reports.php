@@ -548,9 +548,9 @@ use Knp\Snappy\Pdf;
             $customization_data = [];
             if ($presentationType=="seller" && !empty($data['user_id_for_report_customization'])) {
                 $CI->load->model('report_model');
-                $customization_data['9']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 9);
+               /* $customization_data['9']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 9);
                 $customization_data['10']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 10);
-                $customization_data['11']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 11);
+                $customization_data['11']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 11);*/
                 $customization_data['12']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 12);
                 $customization_data['13']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 13);
                 $customization_data['14']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 14);
@@ -560,6 +560,7 @@ use Knp\Snappy\Pdf;
                 $customization_data['18']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 18);
                 $customization_data['19']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 19);
             }
+            echo "<pre>test:"; print_r($customization_data); exit;
             $data['customization_pages_data'] = $customization_data;
 
             /**

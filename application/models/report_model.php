@@ -40,7 +40,8 @@ class Report_model extends CI_Model
     	WHERE user_id = ? 
     	AND report_type = ? 
     	AND language = ? 
-    	AND page_no = ? ';
+    	AND page_no = ? 
+        AND status = 1';
     	$result = $this->db->query($sql, [$userId, $type, $language, $page]);
     	if ($result->num_rows()) {
     		$data = $result->row_array();
