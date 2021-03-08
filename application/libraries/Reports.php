@@ -560,7 +560,6 @@ use Knp\Snappy\Pdf;
                 $customization_data['18']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 18);
                 $customization_data['19']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 19);
             }
-            echo "<pre>test:"; print_r($customization_data); exit;
             $data['customization_pages_data'] = $customization_data;
 
             /**
