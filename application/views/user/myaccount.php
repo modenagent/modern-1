@@ -266,7 +266,7 @@ text-overflow: ellipsis;
                 <input type="hidden"  data-stripe="email" name="email" value="<?php echo $agentInfo->email; ?>" /> 
                 <script
                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="pk_live_kWtXKplBdNqXQMeBWHuHYZDx"
+                  data-key="<?=getStripeKey()?>"
                   data-amount="<?php echo $plan['amount'] ?>"
                   data-name="modernagent.io"
                   data-description="<?php echo $plan['name']." (".ucwords($plan['interval'])."ly)" ?>"

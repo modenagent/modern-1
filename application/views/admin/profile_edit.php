@@ -389,7 +389,7 @@
 <!-- page end-->
 </div>
 </div>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDQQthVgLzHIRTyLS1WGP2spIshpD28n8M"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
 
 <script type="text/javascript">
 $(".user-image a").click(function() {                                                

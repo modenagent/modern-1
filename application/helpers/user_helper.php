@@ -118,3 +118,45 @@ if (! function_exists('generate_sso_token')) {
         return $randomString;
     }
 }
+
+//Stripe Key
+if ( ! function_exists('getStripeKey')){
+ function getStripeKey() {
+    $mode = 'live';
+    if(!empty($_ENV['STRIPE_MODE'])) {
+        $mode = $_ENV['STRIPE_MODE'];
+    }
+    if(strtolower($mode) == 'sandbox' && !empty($_ENV['STRIPE_KEY_SANDBOX'])) {
+        return $_ENV['STRIPE_KEY_SANDBOX'];
+    }
+    elseif(!empty($_ENV['STRIPE_KEY_LIVE'])) {
+        return $_ENV['STRIPE_KEY_LIVE'];
+    }
+    else {
+        return '';
+    }
+ }
+}
+//Sitex Key
+if ( ! function_exists('getSitexKey')){
+ function getSitexKey() {
+    if(!empty($_ENV['SITEX_API'])) {
+        return $_ENV['SITEX_API'];
+    }
+    else {
+        return '';
+    }    
+ }
+}
+
+//Google Map API key
+if ( ! function_exists('getGoogleMapKey')){
+ function getGoogleMapKey() {
+    if(!empty($_ENV['GOOGLE_MAP_KEY'])) {
+        return $_ENV['GOOGLE_MAP_KEY'];
+    }
+    else {
+        return '';
+    }    
+ }
+}
