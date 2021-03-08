@@ -160,3 +160,28 @@ if ( ! function_exists('getGoogleMapKey')){
     }    
  }
 }
+
+//Generate Random string
+if ( ! function_exists('generateRandomString')){
+ function generateRandomString() {
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
+ }
+}
+
+//Check access
+if ( ! function_exists('hasAccess')){
+ function hasAccess($path) {
+    $CI = & get_instance(); 
+    $CI->load->library('role_lib');
+    $hasAccess = $CI->role_lib->has_access($path);
+    if($CI->input->is_ajax_request()){
+        return $hasAccess;
+    }
+    if(!$hasAccess) {
+        $CI->session->set_flashdata('error', 'Access denied');
+        redirect('admin/dashboard');
+        return;
+    }
+    return true;
+ }
+}
