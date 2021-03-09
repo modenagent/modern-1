@@ -29,6 +29,7 @@ class Lp extends CI_Controller{
 
 	// generating pdf for the property
 	function getPropertyData(){
+        echo "<pre>"; print_r($_POST); exit;
             $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
             try {
 		        $response = $this->reports->getPropertyData();
