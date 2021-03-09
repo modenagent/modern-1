@@ -92,8 +92,8 @@
                 
               </tr>
               <?php
-              if ($user->role_id_fk != 3)
-              {
+              // if ($user->role_id_fk != 3)
+              // {
               ?>
               <tr>
                 <td>Company Name :</td>
@@ -102,7 +102,7 @@
                 </td>            
               </tr>
               <?php
-              }
+              // }
               ?>
               <tr>
                 <td>Company Address :</td>
