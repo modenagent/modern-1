@@ -770,10 +770,10 @@ MSG;
                         }
 
                         //If Sales Reprensentative
-                        if ($roleId == '3') {
-                            $cname = $parent_user_details->company_name;
-                            // $cadd = $parent_user_details->company_add;
-                        }
+                        // if ($roleId == '3') {
+                        //     // $cname = $parent_user_details->company_name;
+                        //     // $cadd = $parent_user_details->company_add;
+                        // }
                     }
                 }
                 
