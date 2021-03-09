@@ -1,116 +1,49 @@
-<?php 
-$site_address = $property->PropertyProfile->SiteAddress;
+<div class="container">
+	<div class="section">
+		<div class="body">
+			<img width="100%" class="img-responsive" src="<?php echo base_url("assets/reports/english/seller/images/1/1_b3.jpg") ?>">	
+			<div class="section-content">
+				<p>Seller's Report</p>
+				<h1><?php echo $property->PropertyProfile->SiteAddress ; ?></h1>
 
-$city = ucwords(strtolower($property->PropertyProfile->SiteCity));
-$state = strtoupper($property->PropertyProfile->SiteState);
-$zip = strtoupper($property->PropertyProfile->SiteZip);
+				<div class="line" style="background-color:<?php echo $theme ?>; "></div>
 
-?>
-<page class="pdf1">
-    <div class="header">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/light-house.png'; ?>" alt="light-house" border="0">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0">
-        <div class="text">
-            <h1>Sellers Report</h1>
-            <?php 
-                if(isset($site_address) && !empty($site_address))
-                {
-            ?>
-                    <p><?php echo ucwords(strtolower($site_address)).','; ?></p>    
-            <?php
-                }
-            ?>
-            
-            <p><?php echo $city.' ,'.$state.' '.$zip; ?></p>
-        </div>
-    </div>
-    <div class="body">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/architecture-modern-residence6.jpg'; ?>" alt="architecture-modern-residence6" class="img-fluid d-block"><div class="footer">
-            <div class="d-flex">
-                <div class="signature horizontal_sign">
-                    <?php 
-                        if($user['profile_image'] != '' && $user['profile_image'] != 'no')
-                        {
-                    ?>  
-                            <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>" class="profile_img">
-                    <?php
-                        }
-                    ?>
-                    <div>
-                        <?php 
-                            if(isset($user['fullname']) && !empty($user['fullname']))
-                            {
-                        ?>
-                                <div class="profile_name">
-                                    <?php echo $user['fullname']; ?>
+				<p><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></p>
+			</div>
+		</div>
+		<div class="footer">
+            <div class="row">
+                <div class="footer-inner">
+                    <div class="col-xs-12">
+                        <div class="left-footer pull-left">
+                            <div class="row">
+                                <?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?>
+                                <div class="col-xs-6">
+                                        <img  class="img-cover" src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>"  />
                                 </div>
-                        <?php
-                            }
-                        ?>
-
-                        <?php 
-                            if(isset($user['title']) && !empty($user['title']))
-                            {
-                        ?>
-                                <div class="profile_title">
-                                    <?php echo $user['title']; ?>
+                                <?php else: ?>
+                                <div class="col-xs-3"></div>
+                                <?php endif; ?>
+                                <div class="<?php echo ($user['profile_image'] != '' && $user['profile_image'] != 'no')?'col-xs-6':'col-xs-9'  ?>">
+                                    <h4 class="client-name"><?php echo $user['fullname']; ?></h4>
+                                    <p class="client-detail" >
+                                    <p class="client-detail" ><?php echo $user['title']; ?></p>
+                                    <p class="client-detail" >CA BRE#<?php echo $user['licenceno']; ?></p>
+                                    <p class="client-detail" > Direct: <?php echo $user['phone']; ?></p>
+                                    <p class="client-detail" > <?php echo $user['email']; ?></p>
+                                    <p class="client-detail" >  <?php echo $user['companyname']; ?></p>
+                                    <p class="client-detail" > <?php echo $user['street']; ?></p>
+                                    <p class="client-detail" > <?php echo $user['city']; ?>, &nbsp; <?php echo $user['state'];  ?>&nbsp;<?php echo $user['zip']; ?></p>
+                                    </p>		
                                 </div>
-                        <?php
-                            }
-                        ?>
-
-                        <?php 
-                            if(isset($user['phone']) && !empty($user['phone']))
-                            {
-                        ?>
-                                <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">
-                                    O <span><?php echo $user['phone']; ?></span>
-                                </a>
-                        <?php
-                            }
-                        ?>
-
-                        <?php 
-                            if(isset($user['mobile']) && !empty($user['mobile']))
-                            {
-                        ?>
-                                <a class="tel_number" href="tel:<?php echo $user['mobile']; ?>">
-                                    M <span><?php echo $user['mobile']; ?></span>
-                                </a>
-                        <?php
-                            }
-                        ?>
-
-                        <?php 
-                            if(isset($user['email']) && !empty($user['email']))
-                            {
-                        ?>
-                                <a href="mailto:<?php echo $user['email']; ?>" class="contact_info">
-                                    <?php echo $user['email']; ?>
-                                </a>
-                        <?php
-                            }
-                        ?>
-
-                        <?php 
-                            if(isset($user['website']) && !empty($user['website']))
-                            {
-                                $parsed_url  = parse_url($user['website']);
-
-                                $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
-                        ?>
-                                <a href="<?php echo $website; ?>" target="_blank"class="contact_info">
-                                    <?php echo $user['website']; ?>
-                                </a>
-                        <?php
-                            }
-                        ?>
+                            </div>
+                        </div>
+                        <div class="right-footer pull-right" style="">
+                            <?php if($user['company_logo'] != ''):?><img src="<?php if($callFromApi == 1) echo $user['company_logo']; else echo base_url().$user['company_logo']; ?>" style=""  alt="Logo Image"/><?php endif; ?>
+                        </div>
                     </div>
                 </div>
-                <div class="logo">
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0">
-                </div>
             </div>
-        </div>        
-    </div>
-</page>
+		</div>
+	</div>
+</div>
