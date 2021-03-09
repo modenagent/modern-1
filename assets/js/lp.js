@@ -310,6 +310,8 @@ function runPMA(agentPath, logoPath) {
     // return;
     activeRequest=true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
+
+    alert();
     xhr = $.ajax({
         url: base_url+'index.php?/lp/getPropertyData',
         type: 'POST',
