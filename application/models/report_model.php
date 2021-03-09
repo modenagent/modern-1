@@ -124,7 +124,7 @@ class Report_model extends CI_Model
     function getWidgetReportPageData($type, $language, $page)
     {
         $data = [];
-        $sql = 'SELECT id, page_no, page_title, page_path, data 
+        $sql = 'SELECT id, page_no, page_title, data 
         FROM lp_widget_report_content 
         WHERE report_type = ? 
         AND language = ? 
