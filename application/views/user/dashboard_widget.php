@@ -586,6 +586,16 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
+      
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript">
+  // This identifies your website in the createToken call below
+  // Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
+  Stripe.setPublishableKey("<?=getStripeKey()?>");
+
+  
+  // ...
+</script>
       <script type="text/javascript">
 var base_url = '<?php echo base_url(); ?>';
 var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
