@@ -130,6 +130,7 @@ class Report_model extends CI_Model
         AND language = ? 
         AND page_no = ?';
         $result = $this->db->query($sql, [$type, $language, $page]);
+        echo "<pre>"; print_r($this->db->last_query()); exit;
         if ($result->num_rows()) {
             $data = $result->row_array();
         }
