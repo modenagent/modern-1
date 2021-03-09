@@ -690,7 +690,7 @@ jQuery(document).ready(function() {
                         method:'GET'
                     })
                     .success(function(resp){
-                        runPMA('','');
+                        widgetRunPMA('','');
                     });
                 }
                 $('.loader1').show();
@@ -1056,12 +1056,7 @@ function submitFormAndGetReport()
 
     function onFinishCallback(){
       $('#wizard').smartWizard('showMessage','Finish Clicked');
-    }     
-
-    
-    
-    
-
+    }
    
     
     $(".leftpic a").click(function() {    

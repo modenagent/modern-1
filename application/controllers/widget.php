@@ -151,4 +151,28 @@ class Widget extends CI_Controller {
         }
         // echo json_encode($result); exit;
     }
+
+    public function getWidgetPropertyData()
+    {
+        $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
+        try {
+            $response = $this->reports->getPropertyDataForWidget();
+            if(isset($response['status']) && $response['status']===false){
+                $msg = $response['msg'];
+            }
+        } catch (Exception $e){
+            $response = false;
+            $msg = $e->getMessage();
+        }
+        if($response['status']){
+            echo json_encode(array('status'=>'success'));
+        } else {
+            $this->base_model->queue_mail("info@modernagent.io",'Urgent! Error occured while generating PDF',$msg,null,'info@modernagent.io');
+            $responseArray = ['status'=>'fail','msg'=>$msg];
+            if (isset($response['showError']) && ($response['showError']==true||$response['showError']=='true')){
+                $responseArray['showError'] = true;
+            }
+            echo json_encode($responseArray);
+        }
+    }
 }
