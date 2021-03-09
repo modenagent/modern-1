@@ -109,7 +109,7 @@ class Report_model extends CI_Model
         return $data;
     }
 
-    public function prepare_user_widget_report_data($value='')
+    public function prepare_user_widget_report_data($reportType, $language, $page)
     {
         $default_data = $this->getWidgetReportPageData($reportType, $language, $page);
         /*$user_data = $this->getReportPageData($userId, $reportType, $language, $page);*/
@@ -130,6 +130,7 @@ class Report_model extends CI_Model
         AND language = ? 
         AND page_no = ?';
         $result = $this->db->query($sql, [$type, $language, $page]);
+        echo "<pre>"; print_r($this->db->last_query());
         if ($result->num_rows()) {
             $data = $result->row_array();
         }
