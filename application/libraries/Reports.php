@@ -865,7 +865,7 @@ use Knp\Snappy\Pdf;
             $data['testimonials'] = isset($_POST['testimonials']) && !empty($_POST['testimonials']) ? json_decode($_POST['testimonials']) : array();            
             /* testimonials */
             
-            $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
+            $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
             $errorMsg = $PdfGenResponse['error_msg'];
