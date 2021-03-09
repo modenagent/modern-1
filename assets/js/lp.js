@@ -286,7 +286,7 @@ function runPMA(agentPath, logoPath) {
     testimonials.push($("#testimonial-2").val());
     testimonials.push($("#testimonial-3").val());
     testimonials.push($("#testimonial-4").val());
-    console.log(testimonials);
+    // console.log(testimonials);
     // var testimonialString = JSON.stringify(testimonials);
     query += '&testimonials=' + JSON.stringify(testimonials);
     query += '&' + 'pdfID=' + pdfID;
@@ -298,7 +298,7 @@ function runPMA(agentPath, logoPath) {
     }else{
         query += '&' + 'showpartner=on';
     }
-    query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());		//this line comment by vijay 
+   // query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());		//this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     //console.log(query);
