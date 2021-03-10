@@ -41,7 +41,7 @@
 	            ?>
 	            <li><?php echo $para_1_point_3_title; ?></li>
 	        </ul>
-	        <img src="<?php echo base_url().'assets/reports/english/seller/images/14/mockup-1.jpg'; ?>" alt="<?php echo $para_1_title; ?>" class="web_design"> 
+	        <img src="<?php echo base_url().'assets/reports/english/seller/images/14/mockup-1.jpg'; ?>" alt="<?php echo $para_1_title; ?>" class=""> 
 	    </div>
 	    <div class="col-50">
 	    	<?php
@@ -67,8 +67,7 @@
 	            ?>
 	            <li><?php echo $para_2_point_3_title; ?></li>
 	        </ul>
-	        <!-- <img src="<?php // echo base_url().'assets/reports/english/seller/images/14/mock-up-2.jpg'; ?>" alt="<?php // echo $para_2_title; ?>" class="w100"> -->
-	        <img src="<?php echo base_url().'assets/reports/english/seller/images/14/mockup-1.jpg'; ?>" alt="<?php echo $para_1_title; ?>" class="web_design"> 
+	        <img src="<?php echo base_url().'assets/reports/english/seller/images/14/mock-up-2.jpg'; ?>" alt="<?php echo $para_2_title; ?>" class="w100">
 	    </div>
 	</div>
 	</page>
