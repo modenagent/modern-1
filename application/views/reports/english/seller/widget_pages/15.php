@@ -31,20 +31,20 @@
                 <?php
                     $para_1_point_2_title = isset($report_content_data['paragraph_1_point_2']['value']) && !empty($report_content_data['paragraph_1_point_2']['value']) ? nl2br($report_content_data['paragraph_1_point_2']['value']) : '568,000 Link Clicks a Month';
                 ?>
-                <li><?php echo $para_1_point_2_title; ,?></li>
+                <li><?php echo $para_1_point_2_title; ?></li>
                 <?php
                     $para_1_point_3_title = isset($report_content_data['paragraph_1_point_3']['value']) && !empty($report_content_data['paragraph_1_point_3']['value']) ? nl2br($report_content_data['paragraph_1_point_3']['value']) : '212,000 Impressions Per Month';
                 ?>
-                <li><?php echo $para_1_point_3_title; ,?></li>
+                <li><?php echo $para_1_point_3_title; ?></li>
                 <?php
                     $para_1_point_4_title = isset($report_content_data['paragraph_1_point_4']['value']) && !empty($report_content_data['paragraph_1_point_4']['value']) ? nl2br($report_content_data['paragraph_1_point_4']['value']) : '323 Engaged Users Daily';
                 ?>
-                <li><?php echo $para_1_point_4_title; ,?></li>
+                <li><?php echo $para_1_point_4_title; ?></li>
 
                 <?php
                     $para_1_point_5_title = isset($report_content_data['paragraph_1_point_5']['value']) && !empty($report_content_data['paragraph_1_point_5']['value']) ? nl2br($report_content_data['paragraph_1_point_5']['value']) : '24 Post Interactions Per Day';
                 ?>
-                <li><?php echo $para_1_point_5_title; ,?></li>
+                <li><?php echo $para_1_point_5_title; ?></li>
             </ul>
             <img src="<?php echo base_url().'assets/reports/english/seller/images/15/ig.png'; ?>" alt="ig" class="insta_icon">
             <?php
@@ -59,7 +59,7 @@
                 <?php
                     $para_2_point_2_title = isset($report_content_data['paragraph_2_point_2']['value']) && !empty($report_content_data['paragraph_2_point_2']['value']) ? nl2br($report_content_data['paragraph_2_point_2']['value']) : '2,400 Impressions Per Month';
                 ?>
-                <li><?php echo $para_2_point_2_title; ,?></li>
+                <li><?php echo $para_2_point_2_title; ?></li>
                 <?php
                     $para_2_point_3_title = isset($report_content_data['paragraph_2_point_3']['value']) && !empty($report_content_data['paragraph_2_point_3']['value']) ? nl2br($report_content_data['paragraph_2_point_3']['value']) : '31% Engagement Rate';
                 ?>
@@ -67,12 +67,12 @@
                 <?php
                     $para_2_point_4_title = isset($report_content_data['paragraph_2_point_4']['value']) && !empty($report_content_data['paragraph_2_point_4']['value']) ? nl2br($report_content_data['paragraph_2_point_4']['value']) : '13 Post Interactions Per Day';
                 ?>
-                <li><?php echo $para_2_point_4_title; ,?></li>
+                <li><?php echo $para_2_point_4_title; ?></li>
 
                 <?php
                     $para_2_point_5_title = isset($report_content_data['paragraph_2_point_5']['value']) && !empty($report_content_data['paragraph_2_point_5']['value']) ? nl2br($report_content_data['paragraph_2_point_5']['value']) : 'Global Reach';
                 ?>
-                <li><?php echo $para_2_point_5_title; ,?></li>
+                <li><?php echo $para_2_point_5_title; ?></li>
             </ul>
             <?php
                 $para_3_title = isset($report_content_data['paragraph_3_title']['value']) && !empty($report_content_data['paragraph_3_title']['value']) ? $report_content_data['paragraph_3_title']['value'] : 'Online';
@@ -86,12 +86,12 @@
                 <?php
                     $para_3_point_2_title = isset($report_content_data['paragraph_3_point_2']['value']) && !empty($report_content_data['paragraph_3_point_2']['value']) ? nl2br($report_content_data['paragraph_3_point_2']['value']) : '7,193 Unique Quarterly Website Visitors';
                 ?>
-                <li><?php echo $para_3_point_2_title; ,?></li>
+                <li><?php echo $para_3_point_2_title; ?></li>
 
                 <?php
                     $para_3_point_3_title = isset($report_content_data['paragraph_3_point_3']['value']) && !empty($report_content_data['paragraph_3_point_3']['value']) ? nl2br($report_content_data['paragraph_3_point_3']['value']) : '3,400 Page Views a Month';
                 ?>
-                <li><?php echo $para_3_point_3_title; ,?></li>
+                <li><?php echo $para_3_point_3_title; ?></li>
             </ul> 
         </div>
         <div class="col-50">
