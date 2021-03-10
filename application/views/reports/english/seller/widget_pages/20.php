@@ -1,5 +1,5 @@
 <page class="pdf20">
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/63974827527999-2016-parade-of-homes-the-aerius-photo-by-dewils3.jpg'; ?>" alt="63974827527999-2016-parade-of-homes-the-aerius-photo-by-dewils3" class="w100">
+    <img src="<?php echo base_url().'assets/reports/english/seller/images/20/63974827527999-2016-parade-of-homes-the-aerius-photo-by-dewils3.jpg'; ?>" alt="63974827527999-2016-parade-of-homes-the-aerius-photo-by-dewils3" class="w100">
     <div class="content">
         <div class="d-flex">
             <div class="signature">
