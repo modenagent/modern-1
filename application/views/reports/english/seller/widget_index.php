@@ -100,10 +100,10 @@
     }
 
     $this->load->view('reports/english/seller/widget_pages/11',$rangeOfSales);
-    $this->load->view('reports/english/seller/widget_pages/12',$customization_pages_data['11']);
-    $this->load->view('reports/english/seller/widget_pages/13',$customization_pages_data['12']);
-    /* $this->load->view('reports/english/seller/pages/14');
-    $this->load->view('reports/english/seller/pages/15');
+    $this->load->view('reports/english/seller/widget_pages/12',$customization_pages_data['12']);
+    $this->load->view('reports/english/seller/widget_pages/13',$customization_pages_data['13']);
+    $this->load->view('reports/english/seller/pages/14',$customization_pages_data['14']);
+    /* $this->load->view('reports/english/seller/pages/15');
     $this->load->view('reports/english/seller/pages/16');
     $this->load->view('reports/english/seller/pages/17');   
     $this->load->view('reports/english/seller/pages/18');   
