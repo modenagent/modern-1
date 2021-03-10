@@ -107,8 +107,8 @@
     $this->load->view('reports/english/seller/widget_pages/16',$customization_pages_data['16']);
     $this->load->view('reports/english/seller/widget_pages/17',$customization_pages_data['17']);
     $this->load->view('reports/english/seller/widget_pages/18',$customization_pages_data['18']);   
-    /* $this->load->view('reports/english/seller/pages/19');   
-    $this->load->view('reports/english/seller/pages/20');  */
+    $this->load->view('reports/english/seller/widget_pages/19',$customization_pages_data['19']);   
+    $this->load->view('reports/english/seller/widget_pages/20');
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
