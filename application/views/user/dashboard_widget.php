@@ -253,6 +253,8 @@
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
+                            <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Bio
+                            </a> &nbsp | &nbsp
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
 
                             <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
@@ -510,6 +512,30 @@
         </div>
     </div>
     <!-- modal for testimonials -->
+
+    <!-- modal for bio -->
+    <div id="update-bio" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Bio</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea class="form-control" rows="5" id="agent-bio">Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.</textarea>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal for bio -->
 </div>
 </div>      
       <!-- footer js and other stuff starts here -->
@@ -552,7 +578,8 @@
          #widgetContent{
          /*display: none;*/
          }
-         #cma-widget-container a#btn-testimonial {
+         #cma-widget-container a#btn-testimonial,
+         #cma-widget-container a#btn-bio {
          padding: 9px 10px;
          background: none;
          border: 1px solid #fff;
