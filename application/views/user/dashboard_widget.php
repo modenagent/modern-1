@@ -86,8 +86,7 @@
                             <li id="step-4-link">
                                 <a href="#step-4"> 
                                     <span class="stepNumber">04</span> 
-                                    <span class="stepDesc marketUpdateHide"> Step 4<br /><small class="little">Checkout &amp; Download</small></span>
-                                    <span class="stepDesc marketUpdateShow"> Step 4<br /><small class="little">Download</small></span> 
+                                    <span class="stepDesc marketUpdateHide"> Step 4<br /><small class="little">Download</small></span>
                                 </a>
                             </li>
                         </ul>
@@ -302,7 +301,7 @@
                                           <div id="client">
                                             <div class="to">INVOICE TO:</div>
                                             <h2 class="name"><?php  echo $user['first_name'].' '.$user['last_name']; ?></h2>
-                                            <div class="address"><?php echo $user['address_line_1'].' '.$user['state_code'].' '.$user['country_code']; ?></div>
+                                            <!-- <div class="address"><?php // echo $user['address_line_1'].' '.$user['state_code'].' '.$user['country_code']; ?></div> -->
                                           </div>
                                           <div id="invoice">
                                             <div class="date invoice-date">Date of Invoice: <?php echo date("m-d-Y"); ?></div>
@@ -313,23 +312,23 @@
                                                 <tr>
                                                   <th class="no">#</th>
                                                   <th class="desc">DESCRIPTION</th>
-                                                  <th class="unit">UNIT PRICE</th>
-                                                  <th class="total">TOTAL</th>
+                                                  <!-- <th class="unit">UNIT PRICE</th> -->
+                                                  <!-- <th class="total">TOTAL</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody id="lp_invoice" >
                                                 <tr>
                                                   <td class="no">01</td>
                                                   <td class="desc"></td>
-                                                  <td class="unit" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
-                                                  <td class="total" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                  <!-- <td class="unit" style="text-align: right;">$<?php // echo number_format($report_price,2,".",""); ?></td> -->
+                                                  <!-- <td class="total" style="text-align: right;">$<?php // echo number_format($report_price,2,".",""); ?></td> -->
                                                 </tr>
                                             </tbody>
-                                            <tfoot>
+                                            <!-- <tfoot>
                                                 <tr>
                                                   <td colspan=""></td>
                                                   <td colspan="2">SUBTOTAL</td>
-                                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                  <td>$<?php // echo number_format($report_price,2,".",""); ?></td>
                                                 </tr>
                                                 <tr id="coupandiscount" style="display:none">
                                                   <td colspan=""></td>
@@ -339,9 +338,9 @@
                                                 <tr id="totalInvoiceAmount">
                                                   <td colspan="" style="border-top:1px solid #fff;"></td>
                                                   <td colspan="2">GRAND TOTAL</td>
-                                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                  <td>$<?php // echo number_format($report_price,2,".",""); ?></td>
                                                 </tr>
-                                            </tfoot>
+                                            </tfoot> -->
                                         </table>
                                         <div class="row">
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
@@ -358,7 +357,7 @@
                                     </article>
                                 </section>                            
                             </div>
-                            <div class="order-summary panel panel-body" style="display:none;">
+                            <!-- <div class="order-summary panel panel-body" style="display:none;">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr class="invoice-header">
                                         <td width="45%" bgcolor="#fff"><img src="<?php echo base_url(); ?>assets/images/logo.png"/></td>
@@ -417,10 +416,10 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="loaders" style="opacity:1!important;"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
-                            </div>
+                                <div class="loaders" style="opacity:1!important;"><img src="<?php // echo base_url(); ?>assets/images/gears.gif"></div>
+                            </div> -->
                             <div class=" clearfix text-right  ">
-                                <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
+                                <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Download</a>
                             </div>
                         </div>
                         <!-- step 4 -->
@@ -671,7 +670,7 @@ jQuery(document).ready(function() {
               },500);
               return true;
             }
-            if(obj.attr('rel')==3){
+            /*if(obj.attr('rel')==3){
               var _theme = $('.custom-checkbox:checked').val();
               console.log(_theme);
               console.log(typeof _theme);
@@ -679,25 +678,25 @@ jQuery(document).ready(function() {
                   alert("Please choose a theme");
                   return false;
               }
-            }
+            }*/
             return true;
         },
         onShowStep:function(obj){
             if(obj.attr('rel')==4){
-                if($('.custom-checkbox:checked').val()){
-                    $.ajax({
+                /*if($('.custom-checkbox:checked').val()){*/
+                    /*$.ajax({
                         url:base_url + 'user/generateInvoice',
                         method:'GET'
                     })
-                    .success(function(resp){
+                    .success(function(resp){*/
                         widgetRunPMA('','');
-                    });
-                }
+                   /* });*/
+                /*}*/
                 $('.loader1').show();
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').show();
                 $('.backwrap').removeClass('hidden');
-                check_subscription();
+                // check_subscription();
             }
 
             if(obj.attr('rel')!=4){
@@ -707,6 +706,7 @@ jQuery(document).ready(function() {
             if(obj.attr('rel')==3){
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
+                $('.btn-checkout').data("download",1);
                 return hasActiveRequest();
             }
             return true;
