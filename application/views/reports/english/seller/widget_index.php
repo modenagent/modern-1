@@ -70,16 +70,40 @@
 
 ?> 
 
-<?php 
-    $this->load->view('reports/english/seller/widget_pages/1');
-    $this->load->view('reports/english/seller/widget_pages/2');
-    $this->load->view('reports/english/seller/widget_pages/3');    
-    $this->load->view('reports/english/seller/widget_pages/4');
-    $this->load->view('reports/english/seller/widget_pages/5');
-    $this->load->view('reports/english/seller/widget_pages/6');
-    $this->load->view('reports/english/seller/widget_pages/7');
-    $this->load->view('reports/english/seller/widget_pages/8');
-    
+<?php
+    if(in_array('1', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/1');
+    }
+    if(in_array('2', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/2');
+    }
+    if(in_array('3', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/3');
+    }
+    if(in_array('4', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/4');
+    }
+    if(in_array('5', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/5');
+    }
+    if(in_array('6', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/6');
+    }
+    if(in_array('7', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/7');
+    }
+    if(in_array('8', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/8');
+    }
+
     $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
     if(isset($comparable) && !empty($comparable))
@@ -94,21 +118,62 @@
                 {
                     break;
                 }
-                $this->load->view('reports/english/seller/widget_pages/9',array('comparables'=>$_v)); //10
+                if(in_array('9', $pdfPages) || in_array('10', $pdfPages))
+                {
+                    $this->load->view('reports/english/seller/widget_pages/9',array('comparables'=>$_v)); //10
+                }                
             }
         }
     }
 
-    $this->load->view('reports/english/seller/widget_pages/11',$rangeOfSales);
-    $this->load->view('reports/english/seller/widget_pages/12',$customization_pages_data['12']);
-    $this->load->view('reports/english/seller/widget_pages/13',$customization_pages_data['13']);
-    $this->load->view('reports/english/seller/widget_pages/14',$customization_pages_data['14']);
-    $this->load->view('reports/english/seller/widget_pages/15',$customization_pages_data['15']);
-    $this->load->view('reports/english/seller/widget_pages/16',$customization_pages_data['16']);
-    $this->load->view('reports/english/seller/widget_pages/17',$customization_pages_data['17']);
-    $this->load->view('reports/english/seller/widget_pages/18',$customization_pages_data['18']);   
-    $this->load->view('reports/english/seller/widget_pages/19',$customization_pages_data['19']);   
-    $this->load->view('reports/english/seller/widget_pages/20');
+    if(in_array('11', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/11',$rangeOfSales);
+    }
+    if(in_array('12', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/12',$customization_pages_data['12']);
+    }
+    if(in_array('13', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/13',$customization_pages_data['13']);
+    }
+
+    if(in_array('14', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/14',$customization_pages_data['14']);
+    }
+
+    if(in_array('15', $pdfPages))
+    {        
+        $this->load->view('reports/english/seller/widget_pages/15',$customization_pages_data['15']);
+    }
+
+    if(in_array('16', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/16',$customization_pages_data['16']);
+    }
+
+    if(in_array('17', $pdfPages))
+    {        
+        $this->load->view('reports/english/seller/widget_pages/17',$customization_pages_data['17']); 
+    }
+
+    if(in_array('18', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/18',$customization_pages_data['18']);
+    }
+
+    if(in_array('19', $pdfPages))
+    {          
+        $this->load->view('reports/english/seller/widget_pages/19',$customization_pages_data['19']);    
+    }  
+    
+    if(in_array('20', $pdfPages))
+    {
+        $this->load->view('reports/english/seller/widget_pages/20');
+    }
+    
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
