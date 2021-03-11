@@ -952,6 +952,8 @@ function widgetRunPMA(agentPath, logoPath) {
             activeRequest=false;
             // $('#step-4 .loader1').addClass('hidden');
             // $('#step-4 .backwrap').addClass('hidden');
+            $('.loader1').hide();
+            $('.backwrap').hide();
         })
         .fail(function() {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
@@ -959,11 +961,12 @@ function widgetRunPMA(agentPath, logoPath) {
             $('.btn-lp.pay').hide();
             pmaRes =  {status:"failed",msg:errorMsg};
             //$('.pma-error').text('PDF Generation failed. Please try again.');
+            $('.loader1').hide();
+            $('.backwrap').hide();
         })
         .always(function() {
             activeRequest = false;
         });
-        $('.loader1').hide();
-        $('.backwrap').hide();
+        
 
 }
