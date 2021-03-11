@@ -626,6 +626,7 @@ use Knp\Snappy\Pdf;
         }
 
         function getPropertyDataForWidget($reportData = array()){
+            var_dump($_POST['pdfPages']); exit;
             $CI = & get_instance();
             $errorMsg = "Unexpacted error occured while trying to create ".$_POST['report_lang']." ".$_POST['presentation']." Report PDF for user account ".$CI->session->userdata('user_email');
             // loading the required helper
@@ -868,7 +869,9 @@ use Knp\Snappy\Pdf;
             /* testimonials */
             $data['testimonials'] = isset($_POST['testimonials']) && !empty($_POST['testimonials']) ? json_decode($_POST['testimonials']) : array();            
             /* testimonials */
-            
+
+
+            // $data['pages'] = ;
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
@@ -920,39 +923,6 @@ use Knp\Snappy\Pdf;
             
             //@var $turboMode boolean If true than it uses pre stored static theme pages and using qpdf tool it merge these with dynamic content pdf being gnerated with wkhtmltopdf tool
             $turboMode = false;
-            //if(($presentationType=="seller" || $presentationType=="buyer") && $reportLang=='english'){
-            /*if($presentationType=="buyer" && $reportLang=='english'){
-                $themeMap = array(
-                    //@todo: Set these indexes as unique color code in DB table
-                    "coldwell_banker"=>rgb2hex("rgb(0,41,128)"),
-                    "keller_williams_burgundy"=>rgb2hex("rgb(180,1,1)"),
-                    "dilbeck_green"=>rgb2hex("rgb(0,51,13)"),
-                    "modern_black"=>rgb2hex("rgb(15,15,15)"),
-                    "modern_gray"=>rgb2hex("rgb(149,165,166)"),
-                    "modern_orange"=>rgb2hex("rgb(255,92,57)"),
-                    "modern_teal"=>rgb2hex("rgb(27,188,155)"),
-                    "prudential_blue"=>rgb2hex("rgb(8,72,135)"),
-                    "purple_intero"=>rgb2hex("rgb(122,0,61)"),
-                    "realty_excutives_blie"=>rgb2hex("rgb(0,28,61)"),
-                    "realty_world_red"=>rgb2hex("rgb(239, 26, 44)"),
-                    "red_remax"=>rgb2hex("rgb(180,28,48)"),
-                    "sotheby_blue"=>rgb2hex("rgb(0, 35, 73)"),
-                    "teal_exit"=>rgb2hex("rgb(0,140,154)"),
-
-                );
-                foreach($themeMap as $index=>$_color){
-                    if(trim($data['theme'])==$_color){
-                        $colorCode = $index;
-                    }
-                }
-                //Finding if there are static pdf pages available for this theme. If found then set $turboMode true.
-                $tailFile = "temp/static/{$presentationType}/".$colorCode.'_tail.pdf';
-                $contentsFile = "temp/static/{$presentationType}/".$colorCode.'_contents.pdf';
-                if(file_exists($tailFile) && filesize($tailFile)>1 && file_exists($contentsFile) && filesize($contentsFile)>1){
-                    $turboMode = true;
-                }
-            }*/
-
             /**
              * Start Code to fetch customized text data of user
              */
@@ -988,7 +958,7 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/widget_index",$data,true);
             
             }
-            // echo "<pre>"; print_r($html); exit;
+            
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
