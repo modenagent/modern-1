@@ -806,7 +806,7 @@ jQuery(document).ready(function() {
     });
  
     $('.custom-checkbox').on('ifUnchecked', function (event){
-        var removeItem = $(this).val()
+        var removeItem = $(this).val();
         // selected_pdf_pages.pop($(this).val()); 
         selected_pdf_pages = jQuery.grep(selected_pdf_pages, function(value) {
           return value != removeItem;

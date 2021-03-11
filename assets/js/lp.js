@@ -282,8 +282,6 @@ function runPMA(agentPath, logoPath) {
     query += '&' + formData;    
 
     query += '&' + 'pdfID=' + pdfID;
-    var pages = $('#pdf_pages').val();
-    query += '&' + 'pdfPages=' + pages;
     query +="&showpartner="+$('input.add-partner:checked').val();
     if($('#addNewPartner').css('display')=='none'){
         query += '&' + 'showpartner=off';
@@ -893,6 +891,7 @@ function widgetRunPMA(agentPath, logoPath) {
     query += '&bio=' + bio;
     query += '&' + 'pdfID=' + pdfID;
     var pages = $('#pdf_pages').val();
+    alert(pages);
     query += '&' + 'pdfPages=' + pages;
     query +="&showpartner="+$('input.add-partner:checked').val();
     if($('#addNewPartner').css('display')=='none'){
