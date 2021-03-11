@@ -71,6 +71,7 @@
 ?> 
 
 <?php
+echo "<pre>"; print_r($pdfPages); exit;
     if(in_array('1', $pdfPages))
     {
         $this->load->view('reports/english/seller/widget_pages/1');
