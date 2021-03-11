@@ -89,19 +89,17 @@
                 </div>
             </div>
         </div>
-        <div class="col-40">
-            <p class="text-justify mt-0">Ad renatuasta, con vignonferor horum in
-                dem morunt. Scibull atiam. Uli, conlostil ta
-                iti, quod di sentem mum, sentesimis? </p>
-            <p class="text-justify">Patis etili, quo aperfi nia viricii speriore
-                noverem eretius cus, vis etemquem dent?
-                Ici ine audees parbemus, consulistra
-                consis. Aritra acre faciendius et? que furi
-                tum non. Tion cus periate ctatemolut laute
-                quam as ea coribearum quam, autate
-                si tem quiae porrundionet quas etur
-                sequatur moloreperum sequost.</p>
-        </div>
+        <?php 
+            if(isset($bio) && !empty($bio))
+            {
+        ?>
+                <div class="col-40">
+                    <p class="text-justify mt-0"><?php echo trim($bio); ?></p>
+                </div>
+        <?php
+            }
+        ?>
+        
     </div>
 
     <div class="d-flex mt-30 pad">
