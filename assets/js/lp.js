@@ -891,7 +891,6 @@ function widgetRunPMA(agentPath, logoPath) {
     query += '&bio=' + bio;
     query += '&' + 'pdfID=' + pdfID;
     var pages = $('#pdf_pages').val();
-    alert(pages);
     query += '&' + 'pdfPages=' + pages;
     query +="&showpartner="+$('input.add-partner:checked').val();
     if($('#addNewPartner').css('display')=='none'){
