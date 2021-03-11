@@ -20,6 +20,15 @@
       <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
       <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+
+      <style type="text/css">
+        #cma-widget-container .invoice .invoice-table tbody td {
+           text-align: center !important; 
+        }
+        #cma-widget-container .invoice .invoice-table tbody tr td:last-child {
+          text-align: left !important;
+        }
+      </style>
    </head>
    <body>
       <div id="cma-widget-container" style="margin: 0 auto;max-width: 95%;">
