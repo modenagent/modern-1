@@ -908,7 +908,8 @@ function submitFormAndGetReport()
     // submitting the form using ajax
     $.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>user/cart_payment",
+        // url: "<?php // echo base_url(); ?>user/cart_payment",
+        url: "<?php echo base_url(); ?>widget/getPDF",
         data: formData,
         dataType: "json",
         success: function(data) {
