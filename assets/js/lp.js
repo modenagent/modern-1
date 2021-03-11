@@ -963,6 +963,7 @@ function widgetRunPMA(agentPath, logoPath) {
         .always(function() {
             activeRequest = false;
         });
-
+        $('.loader1').hide();
+        $('.backwrap').hide();
 
 }
