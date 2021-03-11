@@ -861,10 +861,14 @@ use Knp\Snappy\Pdf;
             $data['areaSalesAnalysis'] = $reportItems;
             $data['theme'] = $CI->input->post('theme');
 
+            /* bio */
+            $data['bio'] = isset($_POST['bio']) && !empty($_POST['bio']) ? $_POST['bio'] : '';     
+            /* bio */ 
+
             /* testimonials */
             $data['testimonials'] = isset($_POST['testimonials']) && !empty($_POST['testimonials']) ? json_decode($_POST['testimonials']) : array();            
             /* testimonials */
-            
+            echo "<pre>"; print_r($data); exit;
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
