@@ -889,7 +889,7 @@ function widgetRunPMA(agentPath, logoPath) {
     testimonials.push($("#testimonial-4").val());
     
     query += '&testimonials=' + JSON.stringify(testimonials);
-    var bio = $("#btn-bio").val();
+    var bio = $("#agent-bio").val();
     query += '&bio=' + bio;
     query += '&' + 'pdfID=' + pdfID;
     var pages = $('#pdf_pages').val();

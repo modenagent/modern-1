@@ -626,6 +626,7 @@ use Knp\Snappy\Pdf;
         }
 
         function getPropertyDataForWidget($reportData = array()){
+            echo "<pre>"; print_r($_POST);
             $CI = & get_instance();
             $errorMsg = "Unexpacted error occured while trying to create ".$_POST['report_lang']." ".$_POST['presentation']." Report PDF for user account ".$CI->session->userdata('user_email');
             // loading the required helper
