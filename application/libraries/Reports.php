@@ -626,7 +626,6 @@ use Knp\Snappy\Pdf;
         }
 
         function getPropertyDataForWidget($reportData = array()){
-            echo "<pre>"; print_r($_POST);
             $CI = & get_instance();
             $errorMsg = "Unexpacted error occured while trying to create ".$_POST['report_lang']." ".$_POST['presentation']." Report PDF for user account ".$CI->session->userdata('user_email');
             // loading the required helper
@@ -869,7 +868,7 @@ use Knp\Snappy\Pdf;
             /* testimonials */
             $data['testimonials'] = isset($_POST['testimonials']) && !empty($_POST['testimonials']) ? json_decode($_POST['testimonials']) : array();            
             /* testimonials */
-            echo "<pre>"; print_r($data); exit;
+            
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
