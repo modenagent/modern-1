@@ -177,7 +177,6 @@ class Widget extends CI_Controller {
     }
 
     public function getPDF(){
-      echo "<pre>"; print_r($_POST); exit;
       $userId = $data['user_id'] = $this->session->userdata('userid');
       if(true || $userId){
         if(!$userId){
@@ -187,24 +186,26 @@ class Widget extends CI_Controller {
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
 
         if($_POST){
-          $this->load->library('stripe');
+          // $this->load->library('stripe');
 
           // Create the library object
-          $stripe = new Stripe(null);
+         // $stripe = new Stripe(null);
 
-          $amt = $_POST['amount'];
+          // $amt = $_POST['amount'];
 
           $couponId = $this->input->post('coupon_id');
           if (empty($couponId)) {$couponId = 0; }
           $couponAmount = $this->input->post('coupon_amount');
-          $orderAmount = $this->input->post('order_amount');
+        //  $orderAmount = $this->input->post('order_amount');
           if (empty($couponAmount)) { $couponAmount = 0; }
-          if (empty($orderAmount)) { $orderAmount = 0; }
+         // if (empty($orderAmount)) { $orderAmount = 0; }
 
           $byPassPayment = false;
+          echo "<pre>"; print_r($amt);
           if($amt<=0){
             $byPassPayment = true;
           }
+          echo "<pre>"; print_r($byPassPayment); exit;
           $amount = 100 * $amt;
 
           $card = $_POST['stripeToken'];
