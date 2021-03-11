@@ -201,22 +201,20 @@ class Widget extends CI_Controller {
          // if (empty($orderAmount)) { $orderAmount = 0; }
 
           $byPassPayment = false;
-          echo "<pre>"; print_r($amt);
           if($amt<=0){
             $byPassPayment = true;
           }
-          echo "<pre>"; print_r($byPassPayment); exit;
-          $amount = 100 * $amt;
+          // $amount = 100 * $amt;
 
-          $card = $_POST['stripeToken'];
+          // $card = $_POST['stripeToken'];
 
-          $desc = 'Modern Agent Paymemnt';
+          /*$desc = 'Modern Agent Paymemnt';
           if(!$byPassPayment) {
             try{
               $response = json_decode($stripe->charge_card($amount, $card, $desc));     
             }catch(Exception $e){
             }
-          }
+          }*/
           // if the request is coming from the widget then we directly get the file link
           if(isset($_POST['widgetType'])){
              $data = array(
@@ -235,7 +233,7 @@ class Widget extends CI_Controller {
               if($result){
                 $lastId = $this->base_model->get_last_insert_id();
       
-                $invoice_no = $this->generateInvoice(); 
+                /*$invoice_no = $this->generateInvoice(); 
                 $data2 = array(
                   'invoice_num' => 'INV'.$invoice_no,
                   'cart_id_fk' => $lastId,
@@ -246,9 +244,9 @@ class Widget extends CI_Controller {
                   'order_amount' => $orderAmount,
                   'coupon_amount' => $couponAmount
                   );
-                $result2 = $this->base_model->insert_one_row('lp_invoices',$data2);
+                $result2 = $this->base_model->insert_one_row('lp_invoices',$data2);*/
 
-                $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId);
+                // $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId);
 
                 $updateProject = array('is_active'=>'Y');
                 $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$this->session->userdata('project_id')));
