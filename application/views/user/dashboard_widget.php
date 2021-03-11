@@ -797,7 +797,12 @@ jQuery(document).ready(function() {
         $(this).find("#project-id").val(projectID);
     });
 
-    var selected_pdf_pages = [];
+    
+
+    $('.custom-checkbox').iCheck('check');
+});
+
+var selected_pdf_pages = [];
 
     $('.custom-checkbox').on('ifChecked', function (event){
         alert("checked");
@@ -816,10 +821,7 @@ jQuery(document).ready(function() {
         var pages = selected_pdf_pages.toString();
         $('#pdf_pages').val(pages);     
     });
-
-    $('.custom-checkbox').iCheck('check');
-});
-
+    
 function choose_presentation(presentation)
 {
     if(presentation === 'buyer'){
