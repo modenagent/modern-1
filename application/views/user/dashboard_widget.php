@@ -797,22 +797,15 @@ jQuery(document).ready(function() {
         $(this).find("#project-id").val(projectID);
     });
 
-    
-
-    $('.custom-checkbox').iCheck('check');
-});
-
-var selected_pdf_pages = [];
+    var selected_pdf_pages = [];
 
     $('.custom-checkbox').on('ifChecked', function (event){
-        alert("checked");
         selected_pdf_pages.push($(this).val());
         var pages = selected_pdf_pages.toString();
         $('#pdf_pages').val(pages);        
     });
  
     $('.custom-checkbox').on('ifUnchecked', function (event){
-        alert("unchecked");
         var removeItem = $(this).val();
         // selected_pdf_pages.pop($(this).val()); 
         selected_pdf_pages = jQuery.grep(selected_pdf_pages, function(value) {
@@ -821,7 +814,10 @@ var selected_pdf_pages = [];
         var pages = selected_pdf_pages.toString();
         $('#pdf_pages').val(pages);     
     });
-    
+
+    $('.custom-checkbox').iCheck('check');
+});
+
 function choose_presentation(presentation)
 {
     if(presentation === 'buyer'){
