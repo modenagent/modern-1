@@ -113,6 +113,7 @@ echo "<pre>"; print_r($pdfPages); exit;
 
         if(isset($comparable_chunk) && !empty($comparable_chunk))
         {
+            echo "<pre>"; print_r($comparable_chunk); exit;
             foreach ($comparable_chunk as $_k => $_v) 
             {
                 if($_k > 1)
