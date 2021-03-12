@@ -108,9 +108,21 @@
 
     if(isset($comparable) && !empty($comparable))
     {
-        $comparable_chunk = array_chunk($comparable, 4, true);
+       // $comparable_chunk = array_chunk($comparable, 4, true);
 
-        if(isset($comparable_chunk) && !empty($comparable_chunk))
+        list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
+
+        if(in_array('9', $pdfPages) && (isset($comparable_1) && !empty($comparable_1)))
+        {
+            $this->load->view('reports/english/seller/widget_pages/9',array('comparables'=>$comparable_1)); //10
+        }
+
+        if(in_array('10', $pdfPages) && (isset($comparable_2) && !empty($comparable_2)))
+        {
+            $this->load->view('reports/english/seller/widget_pages/9',array('comparables'=>$comparable_2)); //10
+        }
+
+        /*if(isset($comparable_chunk) && !empty($comparable_chunk))
         {
             echo "<pre>"; print_r($comparable_chunk); exit;
             foreach ($comparable_chunk as $_k => $_v) 
@@ -124,7 +136,7 @@
                     $this->load->view('reports/english/seller/widget_pages/9',array('comparables'=>$_v)); //10
                 }                
             }
-        }
+        }*/
     }
 
     if(in_array('11', $pdfPages))
