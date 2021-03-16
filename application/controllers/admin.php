@@ -690,7 +690,7 @@ MSG;
 
                 $get_sso_record = $this->base_model->get_all_record_by_in('lp_idps','company_id',$uid);
                 if($get_sso_record && is_array($get_sso_record) && count($get_sso_record)) {
-                    $get_sso_record = $get_sso_record[0];
+                    $get_sso_record = $get_sso_record;
                 }
                 else {
                     //Insert record
@@ -705,11 +705,11 @@ MSG;
 
                     $get_sso_record = $this->base_model->get_all_record_by_in('lp_idps','company_id',$uid);
                     if($get_sso_record && is_array($get_sso_record) && count($get_sso_record)) {
-                        $get_sso_record = $get_sso_record[0];
+                        $get_sso_record = $get_sso_record;
                     }
 
                 }
-                $data['sso_record'] = $get_sso_record;
+                $data['sso_records'] = $get_sso_record;
             }
 
 
@@ -842,26 +842,85 @@ MSG;
         }
     }
 
-    public function sso_edit($id)
+    public function get_unique_code()
     {
+        $uid = $this->input->post('uid');
+        $unique_id = generate_sso_token($uid);
+        $return_data['status'] = true;
+        $return_data['unique_id'] = $unique_id;
+        echo json_encode($return_data);
+        return;
+
+
+    }
+
+    public function sso_edit()
+    {
+        // echo "<pre>";
+        // print_r($this->input->post());die;
         $data_update = array(); 
         
-        $data_update['metadata_url'] = $this->input->post('metadata_url');
-        $fields = $this->input->post('field');
-        $data_update['email'] = $fields['email']; 
-        $data_update['first_name'] = $fields['first_name']; 
-        $data_update['last_name'] = $fields['last_name']; 
-        $data_update['phone'] = $fields['phone']; 
-        $data_update['sales_rep'] = $fields['sales_rep']; 
-        $data_update['username'] = $fields['username']; 
+        //get existing ids
+        $where_comp['company_id'] = $this->input->post('company_id');
+        $existing_reords = $this->base_model->get_all_record_by_id('lp_idps',$where_comp);
+        $existing_ids = array();
+
+        if($existing_reords && is_array($existing_reords) && count($existing_reords)) {
+            foreach ($existing_reords as $existing_reord) {
+                $existing_ids[$existing_reord->id] = $existing_reord->id;
+            }
+        }
+        // $data_update['metadata_url'] = $this->input->post('metadata_url');
+        $form_data = $this->input->post('data');
+
+        foreach ($form_data as $data) {
+
+            $sso = $data['sso'];
+
+            // $fields = $data['fields'];
+            $fields = $data['field'];
+
+            if(!empty($sso['metadata_url'])) {
+
+                
+                    $data_update['metadata_url'] = $sso['metadata_url'];
+                    $data_update['unique_id'] = $sso['unique_id'];
+                    $data_update['email'] = $fields['email']; 
+                    $data_update['first_name'] = $fields['first_name']; 
+                    $data_update['last_name'] = $fields['last_name']; 
+                    $data_update['phone'] = $fields['phone']; 
+                    $data_update['sales_rep'] = $fields['sales_rep']; 
+                    $data_update['username'] = $fields['username']; 
+
+                    if(!empty($sso['sso_id'])) { //Update
+                         $where = array(
+                            'id' => $sso['sso_id']
+                        );
+                         if(isset($existing_ids[$sso['sso_id']])) {
+                            unset($existing_ids[$sso['sso_id']]);
+                         }
+                        $result = $this->base_model->update_record_by_id('lp_idps',$data_update,$where);
+                    }
+                    else { //insert
+                        $data_update['company_id'] = $this->input->post('company_id');
+                        $result = $this->base_model->insert_one_row('lp_idps',$data_update);
+                    }
+                
+            }
+        }
+
+        //Remove additional data
+        if(count($existing_ids)) {
+            foreach ($existing_ids as $existing_id) {
+                $where_delete['id'] = $existing_id;
+                $result = $this->base_model->delete_record_by_id('lp_idps',$where_delete);
+            }
+        }
 
         $company_id = $this->input->post('company_id');
 
-        $where = array(
-                'id' => $id
-            );
+       
 
-        $result = $this->base_model->update_record_by_id('lp_idps',$data_update,$where);
         if($result){
             //Call saml to configure record
             file_get_contents(base_url('simplesaml/module.php/cron/cron.php?key=BaPwi12emND&tag=hourly'));
