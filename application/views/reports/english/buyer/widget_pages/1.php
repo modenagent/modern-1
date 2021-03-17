@@ -6,38 +6,32 @@ $state = strtoupper($property->PropertyProfile->SiteState);
 $zip = strtoupper($property->PropertyProfile->SiteZip);
 
 ?>
-<page class="pdf1">
+<page class="buyerpdf1">
+    <h1 class="main_title">Buyers Report</h1>
     <div class="header">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/light-house.png'; ?>" alt="light-house" border="0">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0">
-        <div class="text">
-            <h1>Sellers Report</h1>
-            <?php 
-                if(isset($site_address) && !empty($site_address))
-                {
-            ?>
-                    <p><?php echo ucwords(strtolower($site_address)).','; ?></p>    
-            <?php
-                }
-            ?>
-            
-            <p><?php echo $city.' ,'.$state.' '.$zip; ?></p>
+        <div class="d-flex">    
+            <div class="col-50">
+                <img src="https://i.ibb.co/ryKn1h5/img1.png" alt="24ad-Traditional" class="img-fluid">
+                <ul class="address_offer">
+                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
+                    <li>Oﬀered for<br> $0,000,000</li>
+                </ul>
+            </div>
+            <div class="col-50">
+                <img src="https://i.ibb.co/XL9ZTVV/img2.png" alt="24ad-Traditional" class="img-fluid">
+                <ul class="address_offer">
+                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
+                    <li>Oﬀered for<br> $0,000,000</li>
+                </ul>
+            </div>
         </div>
     </div>
-    <div class="body">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/architecture-modern-residence6.jpg'; ?>" alt="architecture-modern-residence6" class="img-fluid d-block"><div class="footer">
-            <div class="d-flex">
-                <div class="signature horizontal_sign">
+    <div class="footer">
+        <div class="d-flex">
+            <div class="signature horizontal_sign">
+                <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>" class="profile_img">
+                <div>
                     <?php 
-                        if($user['profile_image'] != '' && $user['profile_image'] != 'no')
-                        {
-                    ?>  
-                            <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>" class="profile_img">
-                    <?php
-                        }
-                    ?>
-                    <div>
-                        <?php 
                             if(isset($user['fullname']) && !empty($user['fullname']))
                             {
                         ?>
@@ -47,8 +41,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                         <?php
                             }
                         ?>
-
-                        <?php 
+                    <?php 
                             if(isset($user['title']) && !empty($user['title']))
                             {
                         ?>
@@ -59,7 +52,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                             }
                         ?>
 
-                        <?php 
+                    <?php 
                             if(isset($user['phone']) && !empty($user['phone']))
                             {
                         ?>
@@ -80,8 +73,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                         <?php
                             }
                         ?>
-
-                        <?php 
+                    <?php 
                             if(isset($user['email']) && !empty($user['email']))
                             {
                         ?>
@@ -105,12 +97,12 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                         <?php
                             }
                         ?>
-                    </div>
-                </div>
-                <div class="logo">
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0">
                 </div>
             </div>
-        </div>        
+            <div class="logo">
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0">
+            </div>
+        </div>
     </div>
+
 </page>
