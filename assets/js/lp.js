@@ -281,24 +281,14 @@ function runPMA(agentPath, logoPath) {
     var formData = $('#run-pma-form').serialize();
     query += '&' + formData;    
 
-    var testimonials = [];
-    testimonials.push($("#testimonial-1").val());
-    testimonials.push($("#testimonial-2").val());
-    testimonials.push($("#testimonial-3").val());
-    testimonials.push($("#testimonial-4").val());
-    console.log(testimonials);
-    // var testimonialString = JSON.stringify(testimonials);
-    query += '&testimonials=' + JSON.stringify(testimonials);
     query += '&' + 'pdfID=' + pdfID;
-    var pages = $('#pdf_pages').val();
-    query += '&' + 'pdfPages=' + pages;
     query +="&showpartner="+$('input.add-partner:checked').val();
     if($('#addNewPartner').css('display')=='none'){
         query += '&' + 'showpartner=off';
     }else{
         query += '&' + 'showpartner=on';
     }
-   // query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());		//this line comment by vijay 
+    query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());		//this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     //console.log(query);
@@ -310,6 +300,7 @@ function runPMA(agentPath, logoPath) {
     // return;
     activeRequest=true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
+
     xhr = $.ajax({
         url: base_url+'index.php?/lp/getPropertyData',
         type: 'POST',
@@ -870,4 +861,111 @@ function autoComplete() {
             //}
         }
     });
+}
+
+function widgetRunPMA(agentPath, logoPath) {
+    firstModal = false;
+    // $('#run-pma-dialog').dialog('close');
+    // $('.progress-bar').progressbar("option", "value", false);
+    // $('.progress-bar').show();
+    // reportData.rep = $('#lp-rep-name option:selected').val();
+    if (agentPath) {
+        reportData.agentPath = agentPath;
+    }
+    if (logoPath) {
+        reportData.logoPath = logoPath;
+    }
+    // recordFormData();
+    var query = $.param(reportData);
+    var formData = $('#run-pma-form').serialize();
+    query += '&' + formData;    
+
+    var testimonials = [];
+    testimonials.push($("#testimonial-1").val());
+    testimonials.push($("#testimonial-2").val());
+    testimonials.push($("#testimonial-3").val());
+    testimonials.push($("#testimonial-4").val());
+    
+    query += '&testimonials=' + JSON.stringify(testimonials);
+    var bio = $("#agent-bio").val();
+    query += '&bio=' + bio;
+    query += '&' + 'pdfID=' + pdfID;
+    var pages = $('#pdf_pages').val();
+    query += '&' + 'pdfPages=' + pages;
+    query +="&showpartner="+$('input.add-partner:checked').val();
+    if($('#addNewPartner').css('display')=='none'){
+        query += '&' + 'showpartner=off';
+    }else{
+        query += '&' + 'showpartner=on';
+    }
+   
+    query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    //console.log(query);
+    if(activeRequest){
+        activeRequest=false;
+        xhr.abort();
+    }
+    console.log(query); 
+    // return;
+    activeRequest=true;
+    var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
+
+    xhr = $.ajax({
+        url: base_url+'/widget/getWidgetPropertyData',
+        type: 'POST',
+        data: query
+    })
+        .done(function(response) {
+            console.log(response);
+            var obj = JSON.parse(response);
+            console.log(obj);
+            try {
+                var obj = JSON.parse(response);
+                if(obj.status=='success'){
+                    pdfGenerated = true;
+                    pmaRes =  {status:"success"};
+                }
+            } catch (e) {
+                //return false;
+            }
+            if(!pdfGenerated){
+                $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
+                setTimeout(() => {
+                    //SET TIME OUT because its add static error message from footer.php SO update exact error message after 1 second.
+                    if (obj.msg != '') {
+                        if (typeof obj.showError !== 'undefined' && (obj.showError==true || obj.showError=='true')) { 
+                            $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
+                        }
+                    }
+                }, 1000);
+                $('.btn-checkout').hide();
+                $('.btn-lp.pay').hide();
+                if (obj.msg != '') {
+                    // Error Message passed to CMA response.
+                    pmaRes =  {status:"failed",msg:obj.msg};
+                } else {
+                    pmaRes =  {status:"failed",msg:errorMsg};
+                }
+            }
+            // returnReport();
+            activeRequest=false;
+            // $('#step-4 .loader1').addClass('hidden');
+            // $('#step-4 .backwrap').addClass('hidden');
+            $('.loader1').hide();
+            $('.backwrap').hide();
+        })
+        .fail(function() {
+            $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
+            $('.btn-checkout').hide();
+            $('.btn-lp.pay').hide();
+            pmaRes =  {status:"failed",msg:errorMsg};
+            //$('.pma-error').text('PDF Generation failed. Please try again.');
+            $('.loader1').hide();
+            $('.backwrap').hide();
+        })
+        .always(function() {
+            activeRequest = false;
+        });
+        
+
 }

@@ -251,132 +251,160 @@
     <div class="row">
       <div class="col-sm-12 col-md-12">
         <?php
-          $unique_id = $sso_record->unique_id;
           $widget_url = $_ENV['WIDGET_DOMAIN'].'/';
         ?>
-        <form method="post" role="form" id="sso_edit" action="<?=base_url().'admin/sso_edit/'.$sso_record->id;?>">
-          <table class="table-condensed table-hover">
-           
-            <tbody>
-              <tr>
-                <td width="300px">Unique Id :</td>
-                <td>
-                  <input type="text" class="form-control alphanumeric"   id="unique_id" readonly="" value="<?=$unique_id?>">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>idp Metadata Url :</td>
-                <td>
-                  <input type="text" class="form-control " placeholder="Enter idp meta data Url" name="metadata_url" id="metadata_url" value="<?=$sso_record->metadata_url?>">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>SP Metadata Entity:</td>
-                <td>
-                  <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/metadata.php/<?=$unique_id?>" readonly="">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>SP Metadata AssertionConsumerService:</td>
-                <td>
-                  <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-acs.php/<?=$unique_id?>" readonly="">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>SP Metadata SingleLogoutService:</td>
-                <td>
-                  <input type="text" class="form-control"  value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-logout.php/<?=$unique_id?>" readonly="">
-                </td>
-              </tr>
+        <form method="post" role="form" id="sso_edit" action="<?=base_url().'admin/sso_edit/'?>">
+          <div class="idps-contents">
+            <?php
+              foreach ($sso_records as $key => $sso_record) :
+              $unique_id = $sso_record->unique_id;
+            ?>
+            <div class="panel panel-info idp-container idp-parent-<?php echo $key;?>">
+              <div class="panel-heading">
+                <div class="row"> 
+                  <div class="col-sm-6">
+                    
+                  <h4 class="panel-title">IDP setting - <?php echo $key+1; ?></h4>
+                  </div>
 
-              
-            </tbody>
-          </table>
+                  <div class="col-sm-6"><button type="button" class="close delete-idp"  data-parent="<?php echo $key;?>" >×</button></div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table-condensed table-hover">
+                 
+                  <tbody>
+                    <tr>
+                      <td width="300px">Unique Id :</td>
+                      <td>
+                        <input type="text" class="form-control alphanumeric"   id="unique_id" name="data[<?php echo $key ; ?>][sso][unique_id]" readonly="" value="<?=$unique_id?>">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>idp Metadata Url :</td>
+                      <td>
+                        <input type="text" class="form-control " placeholder="Enter idp meta data Url" name="data[<?php echo $key; ?>][sso][metadata_url]"  value="<?=$sso_record->metadata_url?>">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>SP Metadata Entity:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/metadata.php/<?=$unique_id?>" readonly="">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>SP Metadata AssertionConsumerService:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-acs.php/<?=$unique_id?>" readonly="">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>SP Metadata SingleLogoutService:</td>
+                      <td>
+                        <input type="text" class="form-control"  value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-logout.php/<?=$unique_id?>" readonly="">
+                        <input type="hidden" name="data[<?php echo $key; ?>][sso][sso_id]" value="<?php echo $sso_record->id;?>">
+                      </td>
+                    </tr>
 
-          <table class="table-condensed table-hover" style="margin-top: 15px;">
-           
-            <thead>
-              <tr>
-                <th colspan="2">Field Mapping</th>
-              </tr>
-            </thead>
-            <tbody>
-              
-              
-              <tr>
-                <td width="300px">Email :</td>
-                <td>
-                  <input type="text" class="form-control"  value="<?=$sso_record->email?>" name="field[email]">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>Username:</td>
-                <td>
-                  <input type="text" class="form-control"   value="<?=$sso_record->username?>" name="field[username]">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>First Name:</td>
-                <td>
-                  <input type="text" class="form-control"   value="<?=$sso_record->first_name?>" name="field[first_name]">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>Last Name:</td>
-                <td>
-                  <input type="text" class="form-control"   value="<?=$sso_record->last_name?>" name="field[last_name]">
-                </td>
-                
-              </tr>
-              <tr>
-                <td>Phone:</td>
-                <td>
-                  <input type="text" class="form-control"   value="<?=$sso_record->phone?>" name="field[phone]">
-                </td>
-                
-              </tr>
+                    
+                  </tbody>
+                </table>
 
-              <tr>
-                <td>Sales Representative:</td>
-                <td>
-                  <input type="text" class="form-control"   value="<?=$sso_record->sales_rep?>" name="field[sales_rep]">
-                </td>
-                
-              </tr>
+                <table class="table-condensed table-hover" style="margin-top: 15px;">
+                 
+                  <thead>
+                    <tr>
+                      <th colspan="2">Field Mapping</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    
+                    <tr>
+                      <td width="300px">Email :</td>
+                      <td>
+                        <input type="text" class="form-control"  value="<?=$sso_record->email?>" name="data[<?php echo $key; ?>][field][email]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Username:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$sso_record->username?>" name="data[<?php echo $key; ?>][field][username]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>First Name:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$sso_record->first_name?>" name="data[<?php echo $key; ?>][field][first_name]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Last Name:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$sso_record->last_name?>" name="data[<?php echo $key; ?>][field][last_name]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Phone:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$sso_record->phone?>" name="data[<?php echo $key; ?>][field][phone]">
+                      </td>
+                      
+                    </tr>
 
-              <tr>
-                <td></td>
-                <td>
-                  <button class="btn btn-primary">Update</button>
-                  <?php
-                  $back_url = '';
-                  switch ($user->role_id_fk)
-                  {
-                      case '2':
-                          $back_url = site_url() . '/admin/manage_companies';
-                      break;
-                      case '3':
-                          $back_url = site_url() . '/admin/manage_sales_reps';
-                      break;
-                      case '4':
-                          $back_url = site_url() . '/admin/manage_user';
-                      break;
-                  }
-                  ?>
-                  <a href="<?php echo $back_url; ?>" class="btn btn-default">Back</a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                    <tr>
+                      <td>Sales Representative:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$sso_record->sales_rep?>" name="data[<?php echo $key; ?>][field][sales_rep]">
+                      </td>
+                      
+                    </tr>
+
+                    <tr>
+                      <td></td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <?php
+              endforeach;
+            ?>
+          </div>
+
           <input type="hidden" name="userid" id="userid" value="<?php echo $user->user_id_pk; ?>">
           <input type="hidden" name="company_id"  value="<?php echo $user->user_id_pk; ?>">
+
+            <button class="btn btn-primary">Update</button>
+            <?php
+            $back_url = '';
+            switch ($user->role_id_fk)
+            {
+                case '2':
+                    $back_url = site_url() . '/admin/manage_companies';
+                break;
+                case '3':
+                    $back_url = site_url() . '/admin/manage_sales_reps';
+                break;
+                case '4':
+                    $back_url = site_url() . '/admin/manage_user';
+                break;
+            }
+            ?>
+            <a href="<?php echo $back_url; ?>" class="btn btn-default">Back</a>
+
+            <button type="button" class="btn btn-success" id="add_idp_btn">Add New IDP</button>
         </form>
       </div>
     </div>
@@ -462,4 +490,146 @@ function addressAutoComplete() {
         }
     });
 }
+var key_new = "<?php echo $key?>";
+$('#add_idp_btn').click(function(){
+key_new ++;
+$.ajax({
+      url: '<?php echo base_url(); ?>admin/get_unique_code',
+      dataType: 'json',
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: {uid:<?php echo $user->user_id_pk; ?>},
+      type: 'post',
+      success: function(res) {
+        console.log(res);
+        unique_id = res.unique_id;
+var new_idp_html = `<div class="panel panel-info idp-container idp-parent-`+key_new+`">
+              <div class="panel-heading">
+                <div class="row"> 
+                  <div class="col-sm-6">
+                    
+                  <h4 class="panel-title">IDP setting - `+ (key_new+1) +`</h4>
+                  </div>
+
+                  <div class="col-sm-6"><button type="button" class="close delete-idp"  data-parent="`+ key_new +`" >×</button></div>
+                </div>
+              </div>
+              <div class="panel-body">
+                <table class="table-condensed table-hover">
+                 
+                  <tbody>
+                    <tr>
+                      <td width="300px">Unique Id :</td>
+                      <td>
+                        <input type="text" class="form-control alphanumeric"   id="unique_id" name="data[`+ key_new +`][sso][unique_id]" readonly="" value="`+unique_id+`">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>idp Metadata Url :</td>
+                      <td>
+                        <input type="text" class="form-control " placeholder="Enter idp meta data Url" name="data[`+ key_new +`][sso][metadata_url]" required  value="">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>SP Metadata Entity:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/metadata.php/`+unique_id+`" readonly="">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>SP Metadata AssertionConsumerService:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-acs.php/`+unique_id+`" readonly="">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>SP Metadata SingleLogoutService:</td>
+                      <td>
+                        <input type="text" class="form-control"  value="<?=$widget_url?>simplesaml/module.php/saml/sp/saml2-logout.php/`+unique_id+`" readonly="">
+                      </td>
+                    </tr>
+
+                    
+                  </tbody>
+                </table>
+
+                <table class="table-condensed table-hover" style="margin-top: 15px;">
+                 
+                  <thead>
+                    <tr>
+                      <th colspan="2">Field Mapping</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    
+                    
+                    <tr>
+                      <td width="300px">Email :</td>
+                      <td>
+                        <input type="text" class="form-control"  value="" required name="data[`+ key_new +`][field][email]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Username:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][username]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>First Name:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][first_name]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Last Name:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][last_name]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Phone:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][phone]">
+                      </td>
+                      
+                    </tr>
+
+                    <tr>
+                      <td>Sales Representative:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][sales_rep]">
+                      </td>
+                      
+                    </tr>
+
+                    <tr>
+                      <td></td>
+                      <td>
+                        
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>`;
+  $('.idps-contents').append(new_idp_html);
+      }
+    })
+});
+
+$(document).on('click','.delete-idp',function(){
+
+  var parent_div_id = $(this).attr('data-parent');
+  $('.idp-parent-'+parent_div_id).remove();
+});
 </script>
