@@ -60,9 +60,9 @@
                                         <span class="input-group-btn">
                                             <button class="btn btn-lp" id="sellerPresentationButton" type="button" style="" onclick="choose_presentation('seller');"> Sellers Presentation </button>
                                         </span>
-                                        <span class="input-group-btn">
+                                        <!-- <span class="input-group-btn">
                                             <button class="btn btn-lp" type="button" id="marketUpdatePresentationButton" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
-                                        </span>
+                                        </span> -->
                                     </div>
                                 </div>
                             </div>
@@ -275,7 +275,8 @@
                                 <label class="user-heading alt gray-bg" for="pb">
                                   <div class="text-center"> 
                                     <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
-                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> 
+                                    <!-- <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> --> 
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
                                   </div>
 
                                 </label>
@@ -638,7 +639,7 @@ var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","
 jQuery(document).ready(function() {
     setTimeout(function(){
         // choosing the seller report type to create
-        choose_presentation('seller');
+        // choose_presentation('seller');
         $('#widgetContent').show();
         $('#loadingPlugin').hide();        
     }, 500);
