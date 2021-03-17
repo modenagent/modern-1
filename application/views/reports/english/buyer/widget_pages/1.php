@@ -8,24 +8,39 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
 ?>
 <page class="buyerpdf1">
     <h1 class="main_title">Buyers Report</h1>
-    <div class="header">
         <div class="d-flex">    
             <div class="col-50">
                 <img src="https://i.ibb.co/ryKn1h5/img1.png" alt="24ad-Traditional" class="img-fluid">
                 <ul class="address_offer">
                     <li><span>1234 Main Street,</span><br> City, State 00000</li>
-                    <li>Oﬀered for<br> $0,000,000</li>
+                    <li>Offered for<br> $0,000,000</li>
                 </ul>
             </div>
             <div class="col-50">
                 <img src="https://i.ibb.co/XL9ZTVV/img2.png" alt="24ad-Traditional" class="img-fluid">
                 <ul class="address_offer">
                     <li><span>1234 Main Street,</span><br> City, State 00000</li>
-                    <li>Oﬀered for<br> $0,000,000</li>
+                    <li>Offered for<br> $0,000,000</li>
                 </ul>
             </div>
         </div>
-    </div>
+        <div class="d-flex">
+            <div class="col-50">
+                <img src="https://i.ibb.co/2Mm8Dq6/img3.png" alt="24ad-Traditional" class="img-fluid">
+                <ul class="address_offer">
+                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
+                    <li>Offered for<br> $0,000,000</li>
+                </ul>
+            </div>
+            <div class="col-50">
+                <img src="https://i.ibb.co/F8SjSTp/img4.png" alt="24ad-Traditional" class="img-fluid">
+                <ul class="address_offer">
+                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
+                    <li>Offered for<br> $0,000,000</li>
+                </ul>
+            </div>
+        </div>
+    
     <div class="footer">
         <div class="d-flex">
             <div class="signature horizontal_sign">
