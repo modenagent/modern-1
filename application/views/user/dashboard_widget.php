@@ -20,6 +20,15 @@
       <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
       <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
+
+      <style type="text/css">
+        #cma-widget-container .invoice .invoice-table tbody td {
+           text-align: center !important; 
+        }
+        #cma-widget-container .invoice .invoice-table tbody tr td:last-child {
+          text-align: left !important;
+        }
+      </style>
    </head>
    <body>
       <div id="cma-widget-container" style="margin: 0 auto;max-width: 95%;">
@@ -51,9 +60,9 @@
                                         <span class="input-group-btn">
                                             <button class="btn btn-lp" id="sellerPresentationButton" type="button" style="" onclick="choose_presentation('seller');"> Sellers Presentation </button>
                                         </span>
-                                        <span class="input-group-btn">
+                                        <!-- <span class="input-group-btn">
                                             <button class="btn btn-lp" type="button" id="marketUpdatePresentationButton" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
-                                        </span>
+                                        </span> -->
                                     </div>
                                 </div>
                             </div>
@@ -86,8 +95,7 @@
                             <li id="step-4-link">
                                 <a href="#step-4"> 
                                     <span class="stepNumber">04</span> 
-                                    <span class="stepDesc marketUpdateHide"> Step 4<br /><small class="little">Checkout &amp; Download</small></span>
-                                    <span class="stepDesc marketUpdateShow"> Step 4<br /><small class="little">Download</small></span> 
+                                    <span class="stepDesc marketUpdateHide"> Step 4<br /><small class="little">Download</small></span>
                                 </a>
                             </li>
                         </ul>
@@ -245,6 +253,8 @@
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
+                            <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Bio
+                            </a> &nbsp | &nbsp
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
 
                             <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
@@ -265,7 +275,8 @@
                                 <label class="user-heading alt gray-bg" for="pb">
                                   <div class="text-center"> 
                                     <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
-                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> 
+                                    <!-- <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> --> 
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
                                   </div>
 
                                 </label>
@@ -302,7 +313,7 @@
                                           <div id="client">
                                             <div class="to">INVOICE TO:</div>
                                             <h2 class="name"><?php  echo $user['first_name'].' '.$user['last_name']; ?></h2>
-                                            <div class="address"><?php echo $user['address_line_1'].' '.$user['state_code'].' '.$user['country_code']; ?></div>
+                                            <!-- <div class="address"><?php // echo $user['address_line_1'].' '.$user['state_code'].' '.$user['country_code']; ?></div> -->
                                           </div>
                                           <div id="invoice">
                                             <div class="date invoice-date">Date of Invoice: <?php echo date("m-d-Y"); ?></div>
@@ -313,23 +324,23 @@
                                                 <tr>
                                                   <th class="no">#</th>
                                                   <th class="desc">DESCRIPTION</th>
-                                                  <th class="unit">UNIT PRICE</th>
-                                                  <th class="total">TOTAL</th>
+                                                  <!-- <th class="unit">UNIT PRICE</th> -->
+                                                  <!-- <th class="total">TOTAL</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody id="lp_invoice" >
                                                 <tr>
                                                   <td class="no">01</td>
                                                   <td class="desc"></td>
-                                                  <td class="unit" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
-                                                  <td class="total" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                  <!-- <td class="unit" style="text-align: right;">$<?php // echo number_format($report_price,2,".",""); ?></td> -->
+                                                  <!-- <td class="total" style="text-align: right;">$<?php // echo number_format($report_price,2,".",""); ?></td> -->
                                                 </tr>
                                             </tbody>
-                                            <tfoot>
+                                            <!-- <tfoot>
                                                 <tr>
                                                   <td colspan=""></td>
                                                   <td colspan="2">SUBTOTAL</td>
-                                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                  <td>$<?php // echo number_format($report_price,2,".",""); ?></td>
                                                 </tr>
                                                 <tr id="coupandiscount" style="display:none">
                                                   <td colspan=""></td>
@@ -339,9 +350,9 @@
                                                 <tr id="totalInvoiceAmount">
                                                   <td colspan="" style="border-top:1px solid #fff;"></td>
                                                   <td colspan="2">GRAND TOTAL</td>
-                                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                                  <td>$<?php // echo number_format($report_price,2,".",""); ?></td>
                                                 </tr>
-                                            </tfoot>
+                                            </tfoot> -->
                                         </table>
                                         <div class="row">
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
@@ -358,7 +369,7 @@
                                     </article>
                                 </section>                            
                             </div>
-                            <div class="order-summary panel panel-body" style="display:none;">
+                            <!-- <div class="order-summary panel panel-body" style="display:none;">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr class="invoice-header">
                                         <td width="45%" bgcolor="#fff"><img src="<?php echo base_url(); ?>assets/images/logo.png"/></td>
@@ -417,10 +428,10 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="loaders" style="opacity:1!important;"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
-                            </div>
+                                <div class="loaders" style="opacity:1!important;"><img src="<?php // echo base_url(); ?>assets/images/gears.gif"></div>
+                            </div> -->
                             <div class=" clearfix text-right  ">
-                                <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
+                                <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Download</a>
                             </div>
                         </div>
                         <!-- step 4 -->
@@ -502,6 +513,30 @@
         </div>
     </div>
     <!-- modal for testimonials -->
+
+    <!-- modal for bio -->
+    <div id="update-bio" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Bio</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea class="form-control" rows="5" id="agent-bio">Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.</textarea>
+                        </div>                        
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal for bio -->
 </div>
 </div>      
       <!-- footer js and other stuff starts here -->
@@ -544,7 +579,8 @@
          #widgetContent{
          /*display: none;*/
          }
-         #cma-widget-container a#btn-testimonial {
+         #cma-widget-container a#btn-testimonial,
+         #cma-widget-container a#btn-bio {
          padding: 9px 10px;
          background: none;
          border: 1px solid #fff;
@@ -603,7 +639,7 @@ var hexDigits = new Array ("0","1","2","3","4","5","6","7","8","9","a","b","c","
 jQuery(document).ready(function() {
     setTimeout(function(){
         // choosing the seller report type to create
-        choose_presentation('seller');
+        // choose_presentation('seller');
         $('#widgetContent').show();
         $('#loadingPlugin').hide();        
     }, 500);
@@ -671,7 +707,7 @@ jQuery(document).ready(function() {
               },500);
               return true;
             }
-            if(obj.attr('rel')==3){
+            /*if(obj.attr('rel')==3){
               var _theme = $('.custom-checkbox:checked').val();
               console.log(_theme);
               console.log(typeof _theme);
@@ -679,25 +715,25 @@ jQuery(document).ready(function() {
                   alert("Please choose a theme");
                   return false;
               }
-            }
+            }*/
             return true;
         },
         onShowStep:function(obj){
             if(obj.attr('rel')==4){
-                if($('.custom-checkbox:checked').val()){
-                    $.ajax({
+                /*if($('.custom-checkbox:checked').val()){*/
+                    /*$.ajax({
                         url:base_url + 'user/generateInvoice',
                         method:'GET'
                     })
-                    .success(function(resp){
-                        runPMA('','');
-                    });
-                }
+                    .success(function(resp){*/
+                        widgetRunPMA('','');
+                   /* });*/
+                /*}*/
                 $('.loader1').show();
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').show();
                 $('.backwrap').removeClass('hidden');
-                check_subscription();
+                // check_subscription();
             }
 
             if(obj.attr('rel')!=4){
@@ -707,6 +743,7 @@ jQuery(document).ready(function() {
             if(obj.attr('rel')==3){
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
+                $('.btn-checkout').data("download",1);
                 return hasActiveRequest();
             }
             return true;
@@ -763,20 +800,19 @@ jQuery(document).ready(function() {
 
     var selected_pdf_pages = [];
 
-    $('.custom-checkbox').on('ifChecked', function (event){
+    $(document).on('ifChecked', '.custom-checkbox', function(event) {
         selected_pdf_pages.push($(this).val());
         var pages = selected_pdf_pages.toString();
-        $('#pdf_pages').val(pages);        
+        $('#pdf_pages').val(pages); 
     });
- 
-    $('.custom-checkbox').on('ifUnchecked', function (event){
-        var removeItem = $(this).val()
-        // selected_pdf_pages.pop($(this).val()); 
+
+    $(document).on('ifUnchecked', '.custom-checkbox', function(event) {
+        var removeItem = $(this).val();
         selected_pdf_pages = jQuery.grep(selected_pdf_pages, function(value) {
           return value != removeItem;
         });
         var pages = selected_pdf_pages.toString();
-        $('#pdf_pages').val(pages);     
+        $('#pdf_pages').val(pages); 
     });
 
     $('.custom-checkbox').iCheck('check');
@@ -908,7 +944,8 @@ function submitFormAndGetReport()
     // submitting the form using ajax
     $.ajax({
         type: "POST",
-        url: "<?php echo base_url(); ?>user/cart_payment",
+        // url: "<?php // echo base_url(); ?>user/cart_payment",
+        url: "<?php echo base_url(); ?>widget/getPDF",
         data: formData,
         dataType: "json",
         success: function(data) {
@@ -1056,12 +1093,7 @@ function submitFormAndGetReport()
 
     function onFinishCallback(){
       $('#wizard').smartWizard('showMessage','Finish Clicked');
-    }     
-
-    
-    
-    
-
+    }
    
     
     $(".leftpic a").click(function() {    
