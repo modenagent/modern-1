@@ -1417,12 +1417,12 @@ ul.stats li:not(:last-child):after {
 }
 /* buyerpdf11 */
 .monthly_installation {
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
   -webkit-writing-mode: vertical-rl;
   -ms-writing-mode: tb-rl;
   writing-mode: vertical-rl;
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 .monthly_installation ul {
   display: -webkit-box;
