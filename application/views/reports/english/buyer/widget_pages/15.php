@@ -1,108 +1,96 @@
-<page class="pdf15">
-    <?php
-        $heading = isset($report_content_data['title']['value']) && !empty($report_content_data['title']['value']) ? $report_content_data['title']['value'] : 'Social Proof';
-    ?>
-    <h1 class="main_title top_title"><?php echo $heading; ?></h1>
+<page class="buyerpdf15">
+    <h1 class="main_title top_title">Loan Checklist</h1>
     <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
-    <?php
-        $sub_heading = isset($report_content_data['sub_title']['value']) && !empty($report_content_data['sub_title']['value']) ? $report_content_data['sub_title']['value'] : 'We Have the Technology and the Numbers';
-    ?>
-    <div class="d-flex">
-        <div class="col-12">
-            <h4 class="mt-0 sub_title"><?php echo $sub_heading; ?></h4>
-            <?php 
-                $content = isset($report_content_data['content']['value']) && !empty($report_content_data['content']['value']) ? nl2br($report_content_data['content']['value']) : 'We are able to connect instantly with a worldwide audience, with no worry of timezone or language barriers. It is estimated that there are around 3.48 billion people using social networks across the world in 2021.<br><br>We digitally market international, using social media to reach a list of countries that grows every day.';
-            ?>
-            <p class="f14"><?php echo $content; ?></p>
-        </div>
-    </div>
-    <div class="d-flex mt-50">    
+    <h4 class="mt-0 sub_title">What You Need to Know</h4>
+    <p class="small_text">
+        Below is some great information for you may expect when it comes time to apply for your home loan.
+    </p>
+    <div class="d-flex mt-60">
         <div class="col-50">
-            <img src="https://i.ibb.co/TPg7kms/facebook.png" alt="facebook" class="fb_icon">
-            <?php
-                $para_1_title = isset($report_content_data['paragraph_1_title']['value']) && !empty($report_content_data['paragraph_1_title']['value']) ? $report_content_data['paragraph_1_title']['value'] : '@hometownerealestate';
-            ?>
-            <h4 class="crimson"><?php echo $para_1_title; ?></h4>
-            <ul class="f14">
-                <?php
-                    $para_1_point_1_title = isset($report_content_data['paragraph_1_point_1']['value']) && !empty($report_content_data['paragraph_1_point_1']['value']) ? nl2br($report_content_data['paragraph_1_point_1']['value']) : '7,000+ Fans';
-                ?>
-                <li><?php echo $para_1_point_1_title; ?></li>
-                <?php
-                    $para_1_point_2_title = isset($report_content_data['paragraph_1_point_2']['value']) && !empty($report_content_data['paragraph_1_point_2']['value']) ? nl2br($report_content_data['paragraph_1_point_2']['value']) : '568,000 Link Clicks a Month';
-                ?>
-                <li><?php echo $para_1_point_2_title; ?></li>
-                <?php
-                    $para_1_point_3_title = isset($report_content_data['paragraph_1_point_3']['value']) && !empty($report_content_data['paragraph_1_point_3']['value']) ? nl2br($report_content_data['paragraph_1_point_3']['value']) : '212,000 Impressions Per Month';
-                ?>
-                <li><?php echo $para_1_point_3_title; ?></li>
-                <?php
-                    $para_1_point_4_title = isset($report_content_data['paragraph_1_point_4']['value']) && !empty($report_content_data['paragraph_1_point_4']['value']) ? nl2br($report_content_data['paragraph_1_point_4']['value']) : '323 Engaged Users Daily';
-                ?>
-                <li><?php echo $para_1_point_4_title; ?></li>
-
-                <?php
-                    $para_1_point_5_title = isset($report_content_data['paragraph_1_point_5']['value']) && !empty($report_content_data['paragraph_1_point_5']['value']) ? nl2br($report_content_data['paragraph_1_point_5']['value']) : '24 Post Interactions Per Day';
-                ?>
-                <li><?php echo $para_1_point_5_title; ?></li>
-            </ul>
-            <img src="<?php echo base_url().'assets/reports/english/seller/images/15/ig.png'; ?>" alt="ig" class="insta_icon">
-            <?php
-                $para_2_title = isset($report_content_data['paragraph_2_title']['value']) && !empty($report_content_data['paragraph_2_title']['value']) ? $report_content_data['paragraph_2_title']['value'] : '@hometownerealestate';
-            ?>
-            <h4 class="crimson"><?php echo $para_2_title; ?></h4>
-            <ul class="f14">
-                <?php
-                    $para_2_point_1_title = isset($report_content_data['paragraph_2_point_1']['value']) && !empty($report_content_data['paragraph_2_point_1']['value']) ? nl2br($report_content_data['paragraph_2_point_1']['value']) : '8,000+ Followers';
-                ?>
-                <li><?php echo $para_2_point_1_title; ?></li>
-                <?php
-                    $para_2_point_2_title = isset($report_content_data['paragraph_2_point_2']['value']) && !empty($report_content_data['paragraph_2_point_2']['value']) ? nl2br($report_content_data['paragraph_2_point_2']['value']) : '2,400 Impressions Per Month';
-                ?>
-                <li><?php echo $para_2_point_2_title; ?></li>
-                <?php
-                    $para_2_point_3_title = isset($report_content_data['paragraph_2_point_3']['value']) && !empty($report_content_data['paragraph_2_point_3']['value']) ? nl2br($report_content_data['paragraph_2_point_3']['value']) : '31% Engagement Rate';
-                ?>
-                <li><?php echo $para_2_point_3_title; ?></li>
-                <?php
-                    $para_2_point_4_title = isset($report_content_data['paragraph_2_point_4']['value']) && !empty($report_content_data['paragraph_2_point_4']['value']) ? nl2br($report_content_data['paragraph_2_point_4']['value']) : '13 Post Interactions Per Day';
-                ?>
-                <li><?php echo $para_2_point_4_title; ?></li>
-
-                <?php
-                    $para_2_point_5_title = isset($report_content_data['paragraph_2_point_5']['value']) && !empty($report_content_data['paragraph_2_point_5']['value']) ? nl2br($report_content_data['paragraph_2_point_5']['value']) : 'Global Reach';
-                ?>
-                <li><?php echo $para_2_point_5_title; ?></li>
-            </ul>
-            <?php
-                $para_3_title = isset($report_content_data['paragraph_3_title']['value']) && !empty($report_content_data['paragraph_3_title']['value']) ? $report_content_data['paragraph_3_title']['value'] : 'Online';
-            ?>
-            <h4 class="crimson"><?php echo $para_3_title; ?></h4>
-            <ul class="f14">
-                <?php
-                    $para_3_point_1_title = isset($report_content_data['paragraph_3_point_1']['value']) && !empty($report_content_data['paragraph_3_point_1']['value']) ? nl2br($report_content_data['paragraph_3_point_1']['value']) : '30,000 Searching Buyers';
-                ?>
-                <li><?php echo $para_3_point_1_title; ?></li>
-                <?php
-                    $para_3_point_2_title = isset($report_content_data['paragraph_3_point_2']['value']) && !empty($report_content_data['paragraph_3_point_2']['value']) ? nl2br($report_content_data['paragraph_3_point_2']['value']) : '7,193 Unique Quarterly Website Visitors';
-                ?>
-                <li><?php echo $para_3_point_2_title; ?></li>
-
-                <?php
-                    $para_3_point_3_title = isset($report_content_data['paragraph_3_point_3']['value']) && !empty($report_content_data['paragraph_3_point_3']['value']) ? nl2br($report_content_data['paragraph_3_point_3']['value']) : '3,400 Page Views a Month';
-                ?>
-                <li><?php echo $para_3_point_3_title; ?></li>
-            </ul> 
-        </div>
-        <div class="col-50">
-            <div class="we_reach">
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg'; ?>" alt="joel-vodell-8-Ogfqvw15-Rg-unsplash" class="w100">
-                <div class="caption">
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/15/wifi.png'; ?>" alt="wifi" class="wifi">
-                    <h5>We Reach Over</h5>
-                    <h3>1,994,500,000</h3>
-                    <h5>People Internationally</h5>
+            <div class="check_box">
+                <div class="checkbox">
+                    <input checked type="checkbox" id="Income">
+                    <label for="Income">Income</label>
                 </div>
+                <p><b>Proof of Income</b></p>
+                <p>
+                    All prospective borrowers will need to be prepared
+                    to provide the following documents:
+                </p>
+                <ul class="f14">
+                    <li>W2 tatements</li>
+                    <li>Past 2 Years Recent paystubs with YTD</li>
+                    <li>Proof of any additional income</li>
+                </ul>
+                <p><b>Tip</b></p>
+                <p class="mb-0">
+                    The more proof you have the stronger your
+                    application becomes.
+                </p>
+            </div>
+            <div class="check_box">
+                <div class="checkbox">
+                    <input checked type="checkbox" id="Credit">
+                    <label for="Credit">Credit</label>
+                </div>
+                <p><b>What You Need to Know</b></p>
+                <p>
+                    Most lenders today reserve the lowest rates for
+                    customers strong credit scores
+                </p>
+                <ul class="f14">
+                    <li>740 & Above considered strong</li>
+                    <li>Most Require 620 & Above</li>
+                    <li>Diff erent lenders can present options</li>
+                </ul>
+                <p><b>Tip</b></p>
+                <p class="mb-0">
+                    Even for customers with credit troubles have
+                    options.
+                </p>
+            </div>
+        </div>
+        <div class="col-50">
+            <div class="check_box">
+                <div class="checkbox">
+                    <input checked type="checkbox" id="Assets">
+                    <label for="Assets">Assets</label>
+                </div>
+                <p><b>Proof of Assets</b></p>
+                <p>
+                    You will need to present the following to show
+                    proof of your assets
+                </p>
+                <ul class="f14">
+                    <li>Bank Statements</li>
+                    <li>Investments Accounts Statements</li>
+                    <li>401k, Savings Bonds, Stocks, Bonds, IRA’s</li>
+                </ul>
+                <p><b>Tip</b></p>
+                <p class="mb-0">
+                    The goal is to show all of your available assets.
+                </p>
+            </div>
+            <div class="check_box">
+                <div class="checkbox">
+                    <input checked type="checkbox" id="Employment">
+                    <label for="Employment">Employment</label>
+                </div>
+                <p><b>Proof of Current Employment</b></p>
+                <p>
+                    Lenders will want to verify the employment that is
+                    listed by the perspective borrower.
+                </p>
+                <ul class="f14">
+                    <li>Current Employment Status T</li>
+                    <li>he listed wages</li>
+                    <li>Employment history</li>
+                </ul>
+                <p><b>Tip</b></p>
+                <p class="mb-0">
+                    The rule of thumb is at least 2 years at your
+                    current employer
+                </p>
             </div>
         </div>
     </div>

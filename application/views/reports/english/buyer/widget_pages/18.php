@@ -1,77 +1,129 @@
-<page class="pdf18">
-    <?php
-        $heading = isset($report_content_data['title']['value']) && !empty($report_content_data['title']['value']) ? $report_content_data['title']['value'] : 'Analyze & Optimize';
-    ?>
-    <h1 class="main_title top_title"><?php echo $heading; ?></h1>
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
-    <div class="d-flex">
-        <div class="col-12">
-            <?php
-                $sub_heading = isset($report_content_data['sub_title']['value']) && !empty($report_content_data['sub_title']['value']) ? $report_content_data['sub_title']['value'] : 'Review Selling Price';
+ <page class="pdf20">
+    <img src="<?php echo base_url().'assets/reports/english/buyer/images/18/img18.png';?>" alt="..." class="w100 img18">
+    <div class="content">
+        <div class="d-flex">
+            <div class="signature">
+                <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>"
+                    class="profile_img">
+                 <?php 
+                    if(isset($user['fullname']) && !empty($user['fullname']))
+                    {
+                ?>
+                        <div class="profile_name">
+                            <?php echo $user['fullname']; ?>
+                        </div>
+                <?php
+                    }
+                ?>
+                <?php 
+                    if(isset($user['title']) && !empty($user['title']))
+                    {
+                ?>
+                        <div class="profile_title">
+                            <?php echo $user['title']; ?>
+                        </div>
+                <?php
+                    }
+                ?>
+                <?php 
+                    if(isset($user['phone']) && !empty($user['phone']))
+                    {
+                ?>
+                        <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">
+                            O <span><?php echo $user['phone']; ?></span>
+                        </a>
+                <?php
+                    }
+                ?>
+
+                <?php 
+                    if(isset($user['mobile']) && !empty($user['mobile']))
+                    {
+                ?>
+                        <a class="tel_number" href="tel:<?php echo $user['mobile']; ?>">
+                            M <span><?php echo $user['mobile']; ?></span>
+                        </a>
+                <?php
+                    }
+                ?>
+                <?php 
+                    if(isset($user['email']) && !empty($user['email']))
+                    {
+                ?>
+                        <a href="mailto:<?php echo $user['email']; ?>" class="contact_info">
+                            <?php echo $user['email']; ?>
+                        </a>
+                <?php
+                    }
+                ?>
+                <?php 
+                    if(isset($user['website']) && !empty($user['website']))
+                    {
+                        $parsed_url  = parse_url($user['website']);
+
+                        $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
+                ?>
+                        <a href="<?php echo $website; ?>" target="_blank"class="contact_info">
+                            <?php echo $user['website']; ?>
+                        </a>
+                <?php
+                    }
+                ?>
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+            </div>
+            <div class="address">
+                <?php 
+                $site_address = $property->PropertyProfile->SiteAddress;
+
+                $city = ucwords(strtolower($property->PropertyProfile->SiteCity));
+                $state = strtoupper($property->PropertyProfile->SiteState);
+                $zip = strtoupper($property->PropertyProfile->SiteZip);
             ?>
-            <h4 class="mt-0 sub_title"><?php echo $sub_heading; ?></h4>
+        
             <?php 
-                $content = isset($report_content_data['content']['value']) && !empty($report_content_data['content']['value']) ? nl2br($report_content_data['content']['value']) : 'When your property first hits the market the entire audience which consists of realtors, prospective buyers, and sellers all place eyes on your listing. They all make rapid judgments as to it\'s price, current condition, and location. How they first perceive it will determine the viewing activity over the next few weeks. If we receive no viewings initially, we are facing the possibility that that market as a whole is rejecting the value proposition of your listing. Our solution? Reduce the price.\n\nReducing the price of your home is never an easy call but often times is a necessity one that might need to be made in order to get your home sold. Many homeowners feel that they are giving up hard earned equity that has been gained. In reality, a slight reduction can help avoid problems down the line. The question is, When is the best time? From the time the property is first placed on the market the rule of thumb is 30-45 days.';
+                if(isset($site_address) && !empty($site_address))
+                {
             ?>
-            <p class="f14"><?php echo $content; ?></p>
+                    <div class="first_line"><?php echo ucwords(strtolower($site_address)).','; ?></div>    
+            <?php
+                }
+            ?>
+                <p class="m-0"><?php echo $city.' ,'.$state.' '.$zip; ?></p>
+
+                <?php 
+                    if(isset($user['website']) && !empty($user['website']))
+                    {
+                        $parsed_url  = parse_url($user['website']);
+
+                        $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
+                ?>
+                        <div class="visit_us">
+                            Visit Us Online at<br>
+                            <a href="<?php echo $website; ?>"><?php echo $user['website']; ?></a>
+                        </div>
+                <?php
+                    }
+                ?>
+
+                
+            </div>
+            <img src="<?php echo base_url().'assets/reports/english/buyer/images/18//logo-here.png';?>" alt="logo-here" class="logo_here">
         </div>
     </div>
-    <div class="d-flex mt-20">    
-        <div class="col-12">
-            <?php
-                $table_1_title = isset($report_content_data['table_1_title']['value']) && !empty($report_content_data['table_1_title']['value']) ? $report_content_data['table_1_title']['value'] : 'At Listing Time';
-            ?>
-            <h4 class="table_title"><?php echo $table_1_title; ?></h4>
-            <table>
-                <tr>
-                    <td>Home A</td>
-                    <td>Home B</td>
-                    <td>Jane & Joe</td>
-                    <td>Home D</td>
-                    <td>Home E</td>
-                </tr>
-                <tr>
-                    <td>$368,000</td>
-                    <td>$349,000</td>
-                    <td>$345,000</td>
-                    <td>$341,000</td>
-                    <td>$333,000</td>
-                </tr>
-            </table>
-            <?php
-                $table_2_title = isset($report_content_data['table_2_title']['value']) && !empty($report_content_data['table_2_title']['value']) ? $report_content_data['table_2_title']['value'] : 'After Price Reduction';
-            ?> 
-            <h4 class="table_title"><?php echo $table_2_title; ?></h4>
-            <table>
-                <tr>
-                    <td>Home A</td>
-                    <td>Home B</td>
-                    <td>Jane & Joe</td>
-                    <td>Home D</td>
-                    <td>Home E</td>
-                    <td>Home F</td>
-                </tr>
-                <tr>
-                    <td>Expired</td>
-                    <td>$339,000<span>Reduced <br>& Sold</span></td>
-                    <td>$345,000</td>
-                    <td>$341,000<span>Sold</span></td>
-                    <td>$333,000<span>Sold</span></td>
-                    <td>$332,500<span>Just Added</span></td>
-                </tr>
-            </table>
-            <?php
-                $footer_content = isset($report_content_data['footer_content']['value']) && !empty($report_content_data['footer_content']['value']) ? $report_content_data['footer_content']['value'] : 'Joe and Jane went from being very competitively priced to being the highest property in their price range. From a buyer\'s perspective, their home now offers the worst value proposition in the marketplace.';
-            ?>
-            <p class="f14"><?php echo $footer_content; ?></p>
-            <ul class="home_list">
-                <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
-                <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
-                <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
-                <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
-                <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
-                <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
-            </ul>
+    <div class="footer">
+        <div class="d-flex">
+            <div class="logo">
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0">
+            </div>
+            <div class="copy_right_text">
+                This material is intended as informational only and not as a solicitation. All information contained has been provided
+                by the
+                Realtor and even where intended to be reliable is in no case a guarantee to accuracy of the information contained
+                including
+                but not limited to condition, lot size, square footage, or other features of the property. All of this information
+                should be
+                independently verifi ed by personal inspection and by hiring the appropriate professionals.
+            </div>
         </div>
     </div>
 </page>
