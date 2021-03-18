@@ -97,7 +97,7 @@
     }
     if(in_array('7', $pdfPages))
     {
-        $this->load->view('reports/english/buyer/widget_pages/7');
+        $this->load->view('reports/english/buyer/widget_pages/7',array("school"=>$school));
     }
     if(in_array('8', $pdfPages))
     {
@@ -128,30 +128,26 @@
         $this->load->view('reports/english/buyer/widget_pages/14');
     }
     
-    // if(in_array('14', $pdfPages))
-    // {
-    //     $this->load->view('reports/english/buyer/widget_pages/14',$customization_pages_data['14']);
-    // }
 
-    // if(in_array('15', $pdfPages))
-    // {        
-    //     $this->load->view('reports/english/buyer/widget_pages/15',$customization_pages_data['15']);
-    // }
+    if(in_array('15', $pdfPages))
+    {        
+        $this->load->view('reports/english/buyer/widget_pages/15');
+    }
 
-    // if(in_array('16', $pdfPages))
-    // {
-    //     $this->load->view('reports/english/buyer/widget_pages/16',$customization_pages_data['16']);
-    // }
+    if(in_array('16', $pdfPages))
+    {
+        $this->load->view('reports/english/buyer/widget_pages/16');
+    }
 
-    // if(in_array('17', $pdfPages))
-    // {        
-    //     $this->load->view('reports/english/buyer/widget_pages/17',$customization_pages_data['17']); 
-    // }
+    if(in_array('17', $pdfPages))
+    {        
+        $this->load->view('reports/english/buyer/widget_pages/17'); 
+    }
 
-    // if(in_array('18', $pdfPages))
-    // {
-    //     $this->load->view('reports/english/buyer/widget_pages/18',$customization_pages_data['18']);
-    // }
+    if(in_array('18', $pdfPages))
+    {
+        $this->load->view('reports/english/buyer/widget_pages/18');
+    }
 
     // if(in_array('19', $pdfPages))
     // {          
