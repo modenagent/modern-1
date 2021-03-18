@@ -1,21 +1,60 @@
-<page class="pdf6">
-    <div class="map_content">
-        <h2>
-            Aerial View
-        </h2>
-        <p>
-            This is an aerial view of the neighborhood in which your
-            prospective property is located. This will give you the
-            opportunity to get a birds-eye-view of any local parks,
-            major streets and highways.
-        </p>
-        <h2>
-            Why a 5-Mile Radius
-        </h2>
-        <p>
-            A fi ve mile radius has proven to yield the best results
-            when it comes to properties that match yours.
-        </p>
+<page class="buyerpdf6">
+    <h1 class="main_title top_title">Neighborhood Stats</h1>
+    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+    <div class="d-flex">
+        <div class="col-12">
+            <h4 class="mt-0 sub_title">A Little Insight</h4>
+        </div>
     </div>
-    <img src="https://maps.googleapis.com/maps/api/staticmap?size=864x350&zoom=15&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:0x082147|<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg" alt="map" class="img-fluid d-block">
-    </page>
+    <div class="d-flex row-30">    
+        <div class="col-50">
+            <h4 class="table_title">Female</h4>
+            <div class="percentage">
+                <?php echo $female_ratio ?>
+            </div>
+            <h4 class="table_title">Male</h4>
+            <div class="percentage">
+                <?php echo $male_ratio ?>
+            </div>
+            <h4 class="table_title">Male To Female Ratio</h4>
+            <p class="mt-0">
+                These figures represent the male to female
+                ratio in your neighborhood. The housing census
+                is taken every 10 years so depending on the
+                time of this report these figures can be slightly
+                different.
+            </p>
+        </div>
+        <div class="col-50">
+            <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img4.png'; ?>" alt="img4" class="img-fluid w100">
+            <h4 class="table_title mt-40">Avg. Household Income</h4>
+            <p class="mt-0">
+                The figure to the right represents the average
+                household income within your perspective
+                neighborhood. This information is gathered
+                from the household census that is taken every
+                10 years.
+            </p>
+        </div>
+    </div>
+    <div class="neighborhood_stats">
+        <ul class="stats">
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img7.png';?>" alt="img7">
+                Avg. Sale Price<br>$<?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianValue; ?>
+            </li>
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img8.png';?>" alt="img8">
+                Avg. Sqft<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianLivingArea; ?>
+            </li>
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img9.png';?>" alt="img9">
+                Avg. Beds<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianNumBeds; ?> Beds
+            </li>
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img10.pn';?>g" alt="img10">
+                Avg. Baths<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianNumBaths; ?> Baths
+            </li>
+        </ul>
+    </div>
+</page>

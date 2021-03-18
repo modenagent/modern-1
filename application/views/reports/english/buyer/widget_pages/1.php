@@ -10,14 +10,14 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
     <h1 class="main_title">Buyers Report</h1>
         <div class="d-flex">    
             <div class="col-50">
-                <img src="https://i.ibb.co/ryKn1h5/img1.png" alt="24ad-Traditional" class="img-fluid">
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img1.png'; ?>" alt="24ad-Traditional" class="img-fluid">
                 <ul class="address_offer">
                     <li><span>1234 Main Street,</span><br> City, State 00000</li>
                     <li>Offered for<br> $0,000,000</li>
                 </ul>
             </div>
             <div class="col-50">
-                <img src="https://i.ibb.co/XL9ZTVV/img2.png" alt="24ad-Traditional" class="img-fluid">
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img2.png'; ?>" alt="24ad-Traditional" class="img-fluid">
                 <ul class="address_offer">
                     <li><span>1234 Main Street,</span><br> City, State 00000</li>
                     <li>Offered for<br> $0,000,000</li>
@@ -26,14 +26,14 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
         </div>
         <div class="d-flex">
             <div class="col-50">
-                <img src="https://i.ibb.co/2Mm8Dq6/img3.png" alt="24ad-Traditional" class="img-fluid">
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img3.png'; ?>" alt="24ad-Traditional" class="img-fluid">
                 <ul class="address_offer">
                     <li><span>1234 Main Street,</span><br> City, State 00000</li>
                     <li>Offered for<br> $0,000,000</li>
                 </ul>
             </div>
             <div class="col-50">
-                <img src="https://i.ibb.co/F8SjSTp/img4.png" alt="24ad-Traditional" class="img-fluid">
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img4.png'; ?>" alt="24ad-Traditional" class="img-fluid">
                 <ul class="address_offer">
                     <li><span>1234 Main Street,</span><br> City, State 00000</li>
                     <li>Offered for<br> $0,000,000</li>
