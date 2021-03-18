@@ -1,97 +1,117 @@
-<div class="container no-padding">
-	<div class="section page10">
-	
-		<header>
-			<h2 class="underline title-bold">Who Pays What</h2>
-			<p>Payment & Financing Options</p>
-		</header>
-
-		<p class="page-tagline">The costs and charges of a Southern California real estate transaction are fully negotiable between the Buyer and Seller through their respective agents. The negotiated terms will be set forth accordingly in the Purchase Agreement.
-</p>
-
-		
-
-		<div class="row">
-			<div class="col-xs-5">
-			   <div class="agreement-col seller">
-				   
-				   <div class="row">
-						<div class="header">
-							<div class="col-xs-2">
-								<span class="icon"></span>
-							</div>
-							<div class="col-xs-10">
-								<p class="uppercase">The Seller</p>
-								<p>Can Generally Expect To Pay</p>
-							</div>
-						</div>
-				   </div>
-
-				   <ul class="points">
-				   		<li>Real Estate Broker's commission</li>
-				   		<li>Current Or past due Property Taxes</li>
-				   		<li>Prorated taxes, Interest, Rent, or HOA dues</li>
-				   		<li>Payoff of all loans, liens and judgments of
-record against the property</li>
-				   		<li>Loan fees required by Buyer's lender</li>
-				   		<li>Homeowners Association transfer fee,
-document fee and demand fee</li>
-				   		<li>Termite inspection reports and cost for repairs</li>
-				   		<li>Home warranty plan</li>
-				   		<li>Title insurance premium for Owner's Policy</li>
-				   		<li>Escrow fee (Seller's portion)</li>
-				   		<li>Document preparation fee for Grant Deed
-and other recordable document(s)</li>
-				   		<li>Notary Public fees</li>
-				   		<li>Documents recording charges</li>
-				   </ul>
-			   </div>
-			</div>
-			
-			<div class="col-xs-5 col-xs-offset-1">
-				
-				<div class="agreement-col buyer">
-				   
-				   <div class="row">
-						<div class="header">
-							<div class="col-xs-2">
-								<span class="icon"></span>
-							</div>
-							<div class="col-xs-10">
-								<p class="uppercase">The Buyer</p>
-								<p>Can Generally Expect To Pay</p>
-							</div>
-						</div>
-				   </div>
-
-				   <ul class="points">
-				   		<li>Real Estate Broker's commission</li>
-				   		<li>Current Or past due Property Taxes</li>
-				   		<li>Prorated taxes, Interest, Rent, or HOA dues</li>
-				   		<li>Payoff of all loans, liens and judgments of
-record against the property</li>
-				   		<li>Loan fees required by Buyer's lender</li>
-				   		<li>Homeowners Association transfer fee,
-document fee and demand fee</li>
-				   		<li>Termite inspection reports and cost for repairs</li>
-				   		<li>Home warranty plan</li>
-				   		<li>Title insurance premium for Owner's Policy</li>
-				   		<li>Escrow fee (Seller's portion)</li>
-				   		<li>Document preparation fee for Grant Deed
-and other recordable document(s)</li>
-				   		<li>Notary Public fees</li>
-				   		<li>Documents recording charges</li>
-				   </ul>
-			   </div>
-
-
-			</div>
-		</div>
-
-
-	</div>
-
-
-	<img src="<?php echo base_url("assets/reports/english/seller/images/10/bg.jpg")?>" class="img-responsive padding-top-small" width="100%" alt="">
-	
-</div>
+<page class="buyerpdf10">
+    <h1 class="main_title top_title">Payment Explained</h1>
+    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+    <h4 class="mt-0 sub_title">A Little Insight</h4>
+    <div class="d-flex row-30">
+        <div class="col-50">
+            <h4 class="table_title">Principle & Interest <span>$1,603</span></h4>
+            <p class="small_text">
+                This is the portion of your payment that goes to pay
+                down the balance that you borrowed. If you opt for
+                a fi xed-rate loan, your monthly payment will not
+                change over the loan term, but the makeup of your
+                payment will change. In the early years of your loan,
+                you mostly pay interest, but gradually you will begin
+                to pay more of the principal. The interest you pay is
+                the cost of borrowing money.
+            </p>
+            <h4 class="table_title">Insurance <span>$102</span></h4>
+            <p class="small_text">
+                You will pay one year of homeowner’s insurance
+                premiums at your home settlement as part of your
+                closing costs, and then your lender will collect onetwelfth of your annual insurance premium in this
+                account with each mortgage payment. While most
+                lenders require you to pay your homeowner’s
+                insurance this way.
+            </p>
+            <h4 class="table_title">Taxes <span>$364</span></h4>
+            <p class="small_text">
+                Your lender usually requires an escrow account and
+                will collect one-twelfth of your annual property tax
+                bill in this account with each mortgage payment.
+            </p>
+            <h4 class="table_title">PMI <span>$139</span></h4>
+            <p class="small_text">
+                Your lender usually requires an escrow account and
+                will collect one-twelfth of your annual property tax
+                bill in this account with each mortgage payment
+            </p>
+        </div>
+        <div class="col-50">
+            <div class="principle_text">
+                Principal. Interest.<br>
+                Taxes. Insurance.
+            </div>
+            <div class="loan_text">
+                Sample Loan: 30-year fixed, 4.54% APR
+            </div>
+            <div class="d-flex row-5">
+                <div class="col-50">
+                    <div class="blue_box">
+                        Home Price
+                        <span class="price">$350,000</span>
+                    </div>
+                </div>
+                <div class="col-50">
+                    <div class="blue_box">
+                        10% Down Payment
+                        <span class="price">$35,000</span>
+                    </div>
+                </div>
+                <div class="col-50">
+                    <div class="blue_box">
+                        Loan Amount
+                        <span class="price">$315,000</span>
+                    </div>
+                </div>
+                <div class="col-50">
+                    <div class="blue_box">
+                        Home Price
+                        <span class="price">$2,208</span>
+                    </div>
+                </div>
+            </div>
+            <div class="principle_text mt-40">
+                % Breakdown
+            </div>
+            <div class="breakdown_chart">
+                <div class="height70 chart_data">
+                    <div class="align_middle">
+                        <div class="percentage">+/-70%</div>
+                        <div class="brakdown_text">
+                            Goes towards your
+                            principal & interest
+                        </div>
+                    </div>
+                </div>
+                <div class="height16 chart_data">
+                    <div class="align_middle">
+                        <div class="percentage">+/-16%</div>
+                        <div class="brakdown_text">
+                            Goes towards your
+                            Property Taxes
+                        </div>
+                    </div>
+                </div>
+                <div class="height8 chart_data">
+                    <div class="align_middle">
+                        <div class="percentage">+/-08%</div>
+                        <div class="brakdown_text">
+                            Goes towards your
+                            P.M.I.
+                        </div>
+                    </div>
+                </div>
+                <div class="height6 chart_data">
+                    <div class="align_middle">
+                        <div class="percentage">+/-06%</div>
+                        <div class="brakdown_text">
+                            Goes towards your
+                            hazard insurance
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</page>

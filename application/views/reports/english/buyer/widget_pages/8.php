@@ -1,99 +1,84 @@
-<page class="pdf8">
-    <h1 class="main_title top_title">Area Sales Analysis</h1>
+<page class="pdf16">
+    <h1 class="main_title top_title">The Home Buying Process</h1>
     <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
-    <div class="d-flex">
-        <div class="col-12">
-            <h4 class="mt-0 sub_title">Sales in the Past 12 Months</h4>
+    <div class="content_area">
+        <div class="d-flex mt-60">
+            <div class="col-50">
+                <h4 class="crimson mt-0">Meet With a Real <br>Estate Professional</h4>
+                <p class="f14 w80">
+                    Discuss the type of home you’re
+                    looking for, including style, price
+                    and location.
+                </p>
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
+            </div>
+            <div class="col-50">
+                <div class="msg_box">
+                    <h4 class="crimson mt-0">The Buyer’s Advantage</h4>
+                    <p>
+                        As the home buyer, your agent’s
+                        commision is paid by the seller
+                        of the home in almost all
+                        circumstances. This means your
+                        representation costs you nothing!
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="col-50">
+                <h4 class="crimson mt-0">Get Pre-Approved</h4>
+                <p class="f14 w80">
+                    You will need pay stubs, w2s
+                    and bank statements. Knowing
+                    what you can afford is critical to
+                    a suuccessful home shopping
+                    experience.
+                </p>
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
+            </div>
+            <div class="col-50">
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/user.png'; ?>" alt="user" class="img-fluid icons">
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="col-50">
+                <h4 class="crimson mt-0">Search for Homes</h4>
+                <p class="f14 w80">
+                    The fun part! Your agent will
+                    schedule showings and help you
+                    find the perfect home.
+                </p>
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
+            </div>
+            <div class="col-50">
+                <div class="msg_box">
+                    <h4 class="crimson mt-0">Advance Search</h4>
+                    <p>
+                        Not all real estate websites are the
+                        same. Your real estate professional
+                        has tools and systems to ensure
+                        you see every available home that
+                        meets your criteria.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex">
+            <div class="col-50">
+                <h4 class="crimson mt-0">Make an Offer</h4>
+                <p class="f14 w80">
+                    Your agent will prepare the offer
+                    based on the price and terms you
+                    choose.
+                </p>
+            </div>
+            <div class="col-50">
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/msg.png'; ?>" alt="msg" border="0" class="img-fluid icons">
+            </div>
         </div>
     </div>
-    <!-- <div class="d-flex mt-20">    
-        <div class="col-12"> -->
-            <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="Area Sales Analysis" class="img-fluid mx-auto w90">
-            <table class="mt-60">
-                <thead>
-                    <tr>
-                        <th>Monthly Sales Overview</th>
-                        <th>PIQ</th>
-                        <th>Low</th>
-                        <th>Median</th>
-                        <th>High</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Distance</td>
-                        <td>0</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaMinRadius']) && !empty($areaSalesAnalysis['areaMinRadius']) ? $areaSalesAnalysis['areaMinRadius'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaMedianRadius']) && !empty($areaSalesAnalysis['areaMedianRadius']) ? $areaSalesAnalysis['areaMedianRadius'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaMaxRadius']) && !empty($areaSalesAnalysis['areaMaxRadius']) ? $areaSalesAnalysis['areaMaxRadius'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Living Area</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLivingArea']) && !empty($areaSalesAnalysis['areaLivingArea']) ? $areaSalesAnalysis['areaLivingArea'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLivingAreaLow']) && !empty($areaSalesAnalysis['areaLivingAreaLow']) ? $areaSalesAnalysis['areaLivingAreaLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLivingAreaMedian']) && !empty($areaSalesAnalysis['areaLivingAreaMedian']) ? $areaSalesAnalysis['areaLivingAreaMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLivingAreaHigh']) && !empty($areaSalesAnalysis['areaLivingAreaHigh']) ? $areaSalesAnalysis['areaLivingAreaHigh'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Price Per Soft</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFoot']) && !empty($areaSalesAnalysis['areaPriceFoot']) ? '$'.$areaSalesAnalysis['areaPriceFoot'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootLow']) && !empty($areaSalesAnalysis['areaPriceFootLow']) ? '$'.$areaSalesAnalysis['areaPriceFootLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootMedian']) && !empty($areaSalesAnalysis['areaPriceFootMedian']) ? '$'.$areaSalesAnalysis['areaPriceFootMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootHigh']) && !empty($areaSalesAnalysis['areaPriceFootHigh']) ? '$'.$areaSalesAnalysis['areaPriceFootHigh'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Year Built</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaYear']) && !empty($areaSalesAnalysis['areaYear']) ? $areaSalesAnalysis['areaYear'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaYearLow']) && !empty($areaSalesAnalysis['areaYearLow']) ? $areaSalesAnalysis['areaYearLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaYearMedian']) && !empty($areaSalesAnalysis['areaYearMedian']) ? $areaSalesAnalysis['areaYearMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaYearHigh']) && !empty($areaSalesAnalysis['areaYearHigh']) ? $areaSalesAnalysis['areaYearHigh'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Lot Size</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLotSize']) && !empty($areaSalesAnalysis['areaLotSize']) ? $areaSalesAnalysis['areaLotSize'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLotSizeLow']) && !empty($areaSalesAnalysis['areaLotSizeLow']) ? $areaSalesAnalysis['areaLotSizeLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLotSizeMedian']) && !empty($areaSalesAnalysis['areaLotSizeMedian']) ? $areaSalesAnalysis['areaLotSizeMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaLotSizeHigh']) && !empty($areaSalesAnalysis['areaLotSizeHigh']) ? $areaSalesAnalysis['areaLotSizeHigh'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Bedrooms</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBedrooms']) && !empty($areaSalesAnalysis['areaBedrooms']) ? $areaSalesAnalysis['areaBedrooms'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBedroomsLow']) && !empty($areaSalesAnalysis['areaBedroomsLow']) ? $areaSalesAnalysis['areaBedroomsLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBedroomsMedian']) && !empty($areaSalesAnalysis['areaBedroomsMedian']) ? $areaSalesAnalysis['areaBedroomsMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBedroomsHigh']) && !empty($areaSalesAnalysis['areaBedroomsHigh']) ? $areaSalesAnalysis['areaBedroomsHigh'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Baths</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBaths']) && !empty($areaSalesAnalysis['areaBaths']) ? $areaSalesAnalysis['areaBaths'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBathsLow']) && !empty($areaSalesAnalysis['areaBathsLow']) ? $areaSalesAnalysis['areaBathsLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBathsMedian']) && !empty($areaSalesAnalysis['areaBathsMedian']) ? $areaSalesAnalysis['areaBathsMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaBathsHigh']) && !empty($areaSalesAnalysis['areaBathsHigh']) ? $areaSalesAnalysis['areaBathsHigh'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Stories</td>
-                        <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                    </tr>
-                    <tr>
-                        <td>Pools</td>
-                        <td><?php echo isset($areaSalesAnalysis['propertyPool']) && !empty($areaSalesAnalysis['propertyPool']) ? $areaSalesAnalysis['propertyPool'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertyPoolLow']) && !empty($areaSalesAnalysis['propertyPoolLow']) ? $areaSalesAnalysis['propertyPoolLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertyPoolMedian']) && !empty($areaSalesAnalysis['propertyPoolMedian']) ? $areaSalesAnalysis['propertyPoolMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertyPoolHign']) && !empty($areaSalesAnalysis['propertyPoolHign']) ? $areaSalesAnalysis['propertyPoolHign'] : 0; ?></td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>Sales Price</td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePrice']) && !empty($areaSalesAnalysis['propertySalePrice']) ? '$'.$areaSalesAnalysis['propertySalePrice'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceLow']) && !empty($areaSalesAnalysis['propertySalePriceLow']) ? '$'.$areaSalesAnalysis['propertySalePriceLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceMedian']) && !empty($areaSalesAnalysis['propertySalePriceMedian']) ? '$'.$areaSalesAnalysis['propertySalePriceMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceLowHigh']) && !empty($areaSalesAnalysis['propertySalePriceLowHigh']) ? '$'.$areaSalesAnalysis['propertySalePriceLowHigh'] : 0; ?></td>
-                    </tr>
-                </tfoot>
-            </table> 
-        <!-- </div>
-    </div> -->
+
+    
 </page>
+
