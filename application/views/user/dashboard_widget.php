@@ -60,9 +60,9 @@
                                         <span class="input-group-btn">
                                             <button class="btn btn-lp" id="sellerPresentationButton" type="button" style="" onclick="choose_presentation('seller');"> Sellers Presentation </button>
                                         </span>
-                                        <!-- <span class="input-group-btn">
+                                        <span class="input-group-btn">
                                             <button class="btn btn-lp" type="button" id="marketUpdatePresentationButton" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
-                                        </span> -->
+                                        </span>
                                     </div>
                                 </div>
                             </div>
