@@ -41,7 +41,7 @@ h6 {
   width: 100% !important;
 }
 .mt-130 {
-  margin-top: 130px !important;
+  margin-top: 139px !important;
 }
 page {
   position: relative;
@@ -56,7 +56,7 @@ page {
 /* footer */
 .footer {
   background: #0d294b;
-  padding: 45px 50px;
+  padding: 40px 50px;
   color: #fff;
 }
 .logo img {
@@ -67,7 +67,7 @@ page {
   width: 30%;
 }
 .horizontal_sign.signature {
-  width: 300px;
+  width: 500px;
   text-align: left;
   position: relative;
 }
@@ -76,6 +76,7 @@ page {
 }
 .horizontal_sign > img {
   margin-right: 30px;
+  margin-top: 14px;
 }
 .horizontal_sign .tel_number,
 .horizontal_sign .contact_info {
@@ -88,12 +89,12 @@ page {
   right: 55px;
 }
 .signature + .logo img {
-  width: 190px;
+  width: 160px;
 }
 .profile_img {
-  width: 120px;
+  width: 110px;
   border-radius: 50%;
-  height: 120px;
+  height: 110px;
   object-fit: cover;
   object-position: top;
 }
@@ -130,7 +131,7 @@ page {
   padding: 0;
 }
 .market_update_hero {
-  background: url(/assets/reports/english/marketUpdate/images/Market-Update.png) no-repeat bottom;
+  background: url("https://i.ibb.co/RB7SFz0/Market-Update.png") no-repeat bottom;
   background-size: cover;
   color: #fff;
   padding: 50px 50px 25px;
