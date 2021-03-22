@@ -43,7 +43,7 @@
         <div class="col-50">
             <div class="position-relative mt-10">
                 <div class="monthly_installation">
-                    <h5>First Installment</h5>
+                    <!-- <h5>First Installment</h5>
                     <ul>
                         <li>Jan</li>
                         <li>Feb</li>
@@ -51,7 +51,8 @@
                         <li>Apr</li>
                         <li>May</li>
                         <li>Jun</li>
-                    </ul>
+                    </ul> -->
+                    <img src="https://i.ibb.co/31CHVMB/img22.png" alt="">
                 </div>
                 <div class="installment_text">
                     <p>
@@ -72,7 +73,7 @@
             </div>
             <div class="position-relative mt-20">
                 <div class="monthly_installation">
-                    <h5>Second Installment</h5>
+                    <!-- <h5>Second Installment</h5>
                     <ul>
                         <li>Jul</li>
                         <li>Aug</li>
@@ -80,7 +81,8 @@
                         <li>Oct</li>
                         <li>Nov</li>
                         <li>Dec</li>
-                    </ul>
+                    </ul> -->
+                    <img src="https://i.ibb.co/7pkq7nZ/img23.png" alt="">
                 </div>
                 <div class="installment_text">
                     <p>

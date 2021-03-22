@@ -355,9 +355,9 @@ page {
   position: relative;
 }
 .profile_img {
-  width: 120px;
+  width: 110px;
   border-radius: 50%;
-  height: 120px;
+  height: 110px;
   object-fit: cover;
   object-position: top;
 }
@@ -402,7 +402,7 @@ page {
   text-decoration: none;
 }
 .visit_us {
-  margin-top: 95px;
+  margin-top: 80px;
   font-size: 16px;
 }
 .logo_here {
@@ -415,7 +415,7 @@ page {
 }
 .footer {
   background: #0d294b;
-  padding: 45px 50px;
+  padding: 40px 50px;
   color: #fff;
 }
 .copy_right_text {
@@ -429,9 +429,11 @@ page {
   width: 30%;
 }
 .copy_right_text {
-  font-size: 12px;
+  font-size: 8px;
   text-align: justify;
-  width: 68%;
+  width: 65%;
+  margin-top: 15px; 
+  float: right;
 }
 .pdf20 .bordered_img {
   height: 50px;
@@ -625,7 +627,7 @@ ul.home_list {
   height: auto;
 }
 .horizontal_sign.signature {
-  width: 300px;
+  width: 500px;
   text-align: left;
   position: relative;
 }
@@ -634,6 +636,7 @@ ul.home_list {
 }
 .horizontal_sign > img {
   margin-right: 30px;
+  margin-top: 14px;
 }
 .horizontal_sign .tel_number,
 .horizontal_sign .contact_info {
@@ -646,7 +649,7 @@ ul.home_list {
   right: 55px;
 }
 .signature + .logo img {
-  width: 190px;
+  width: 160px;
 }
 .pdf1 .footer {
   margin-top: -5px;
@@ -790,7 +793,7 @@ ul.home_list {
   margin: 0;
 }
 .whitebox p {
-  font-size: 18px;
+  font-size: 20px;
   text-align: justify;
   text-align-last: center;
   line-height: 29px;
@@ -830,7 +833,7 @@ ul.home_list {
 .map_content {
   padding: 45px 50px;
   color: #fff;
-  width: 65%;
+  width: 76%;
   text-align: justify;
 }
 .map_image {
@@ -845,9 +848,9 @@ ul.home_list {
   margin: 0 0 25px;
 }
 .map_content p {
-  font-size: 18px;
+  font-size: 20px;
   margin: 0 0 30px;
-  line-height: 34px;
+  line-height: 30px;
 }
 .pdf7 tr:nth-of-type(even) {
   background: #e1e0df;
@@ -858,8 +861,8 @@ ul.home_list {
 }
 .pdf7 table td {
   font-weight: normal;
-  padding: 8px 15px;
-  font-size: 15px;
+  padding: 7px 15px;
+  font-size: 13px;
 }
 /* pdf8 */
 
@@ -1208,7 +1211,7 @@ ul.stats li:not(:last-child):after {
 /* buyerpdf2 */
 .buyerpdf2 .whitebox {
   max-width: 440px;
-  padding: 70px 60px 90px;
+  padding: 70px 47px 90px;
 }
 
 /* buyerpdf3 */
@@ -1219,8 +1222,8 @@ ul.stats li:not(:last-child):after {
 .buyerpdf3 .img1 {
   width: 100%;
   height: 500px;
-  object-fit: cover;
-  object-position: -120px;
+/*  object-fit: cover;
+  object-position: -120px;*/
   margin-bottom: 40px;
 }
 .buyerpdf3 .img2 {
@@ -1294,7 +1297,7 @@ ul.stats li:not(:last-child):after {
 /* buyerpdf7 */
 .buyerpdf7 table td {
   padding: 6px 15px;
-  font-size: 14px;
+  font-size: 13px;
 }
 /* buyerpdf9 */
 
@@ -1336,6 +1339,9 @@ ul.stats li:not(:last-child):after {
   font-family: "Crimson Text", serif;
   margin: 0 0 10px;
   line-height: 25px;
+}
+.buyerpdf10 p { 
+  font-size: 14px;  
 }
 .blue_box {
   background-color: #0d294b;
@@ -1417,12 +1423,12 @@ ul.stats li:not(:last-child):after {
 }
 /* buyerpdf11 */
 .monthly_installation {
-  -webkit-writing-mode: vertical-rl;
+/*  -webkit-writing-mode: vertical-rl;
   -ms-writing-mode: tb-rl;
   writing-mode: vertical-rl;
   -webkit-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
-  transform: rotate(180deg);
+  transform: rotate(180deg);*/
 }
 .monthly_installation ul {
   display: -webkit-box;
@@ -1462,14 +1468,14 @@ ul.stats li:not(:last-child):after {
 }
 .installment_text {
   position: absolute;
-  top: 0;
-  left: 70px;
+  top: 1px;
+  left: 64px;
   width: 78%;
 }
 .installment_text p {
   position: relative;
   padding-left: 40px;
-  top: -10px;
+  top: -24px;
   font-family: "Crimson Text", serif;
 }
 .installment_text p:before {
@@ -1481,8 +1487,11 @@ ul.stats li:not(:last-child):after {
   width: 35px;
   height: 2px;
 }
+.installment_text p.mt-80 { 
+  margin-top: 65px; 
+}
 .installment_text p.negative25 {
-  top: -25px;
+  top: -28px;
 }
 /* buyerpdf13 */
 .buyerpdf13 .table_title {
@@ -1631,6 +1640,13 @@ input[type="checkbox"] {
   display: block;
 }
 .img18 {
-  height: 544px;
+  height: 600px;
   object-fit: cover;
 }
+.pdf20 .logo img {  
+  width: 105px; 
+  height: auto; 
+} 
+.pdf20 .footer {  
+  padding: 30px 50px; 
+} 
