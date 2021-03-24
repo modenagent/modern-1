@@ -429,7 +429,8 @@ page {
 }
 .pdf20 .bordered_img {
   height: 50px;
-  transform: rotate(-90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
   display: block;
   position: absolute;
   right: -53%;
