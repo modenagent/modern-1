@@ -18,8 +18,10 @@
                     break;
                 }
     ?>
-                <?php if(($count+1) % 2):?>
+                <?php if($count==0):?>
                     <div class="d-flex mt-35 row-30">
+                <?php elseif($count==2):?>
+                    <div class="d-flex mt-20 row-30">
                 <?php endif; ?>
                 <div class="col-50">
                     <div class="house_pricing">
