@@ -880,7 +880,8 @@ use Knp\Snappy\Pdf;
                     }
                     $data['testimonials'][] = array('content'=>$value, 'name'=>$name);
                 }
-            }            
+            }
+            echo "<pre>"; print_r($data['testimonials']); exit;            
             /* testimonials */
 
             $data['pdfPages'] = isset($_POST['pdfPages']) && !empty($_POST['pdfPages']) ? explode(',', $_POST['pdfPages']): array(); 
