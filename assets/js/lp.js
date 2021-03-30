@@ -887,6 +887,14 @@ function widgetRunPMA(agentPath, logoPath) {
     testimonials.push($("#testimonial-4").val());
     
     query += '&testimonials=' + JSON.stringify(testimonials);
+
+    var testimonials_name = [];
+    testimonials_name.push($("#testimonial-name-1").val());
+    testimonials_name.push($("#testimonial-name-2").val());
+    testimonials_name.push($("#testimonial-name-3").val());
+    testimonials_name.push($("#testimonial-name-4").val());
+    
+    query += '&testimonials_name=' + JSON.stringify(testimonials_name);
     var bio = $("#agent-bio").val();
     query += '&bio=' + bio;
     query += '&' + 'pdfID=' + pdfID;
@@ -911,7 +919,7 @@ function widgetRunPMA(agentPath, logoPath) {
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
 
     xhr = $.ajax({
-        url: base_url+'/widget/getWidgetPropertyData',
+        url: base_url+'widget/getWidgetPropertyData',
         type: 'POST',
         data: query
     })
