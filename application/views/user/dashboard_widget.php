@@ -791,12 +791,12 @@ jQuery(document).ready(function() {
         });
     }
 
-    if($('#table-dt-leads').length)
+    /*if($('#table-dt-leads').length)
     {
         $('#table-dt-leads').DataTable( {
             "order": [[ 0, "desc" ]]
         });
-    }
+    }*/
 
     $(".btn-checkout").click(function(){
         var isDirectDownload = parseInt($(this).data('download'));

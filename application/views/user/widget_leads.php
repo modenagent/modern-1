@@ -82,3 +82,14 @@ div#table-dt-leads_filter input {
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        if($('#table-dt-leads').length)
+        {
+            $('#table-dt-leads').DataTable( {
+                "order": [[ 0, "desc" ]]
+            });
+        }
+    }
+    
+</script>

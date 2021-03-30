@@ -871,12 +871,12 @@ use Knp\Snappy\Pdf;
             
             if(isset($testimonials) && !empty($testimonials))
             {
-                foreach ($testimonials as $key => $value) 
+                foreach ($testimonials as $t_key => $t_value) 
                 {
-
-                    if(in_array($key, $testimonials_name))
+                    $name = '';
+                    if(array_key_exists($t_key, $testimonials_name))
                     {
-                        $name = $testimonials_name[$key];
+                        $name = $testimonials_name[$t_key];
                     }
                     $data['testimonials'][] = array('content'=>$value, 'name'=>$name);
                 }
