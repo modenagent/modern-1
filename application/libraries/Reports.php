@@ -866,7 +866,21 @@ use Knp\Snappy\Pdf;
             /* bio */ 
 
             /* testimonials */
-            $data['testimonials'] = isset($_POST['testimonials']) && !empty($_POST['testimonials']) ? json_decode($_POST['testimonials']) : array();            
+            $testimonials = isset($_POST['testimonials']) && !empty($_POST['testimonials']) ? json_decode($_POST['testimonials']) : array();
+            $testimonials_name = isset($_POST['testimonials_name']) && !empty($_POST['testimonials_name']) ? json_decode($_POST['testimonials_name']) : array();
+            
+            if(isset($testimonials) && !empty($testimonials))
+            {
+                foreach ($testimonials as $key => $value) 
+                {
+
+                    if(in_array($key, $testimonials_name))
+                    {
+                        $name = $testimonials_name[0];
+                    }
+                    $data['testimonials'][] = array('content'=>$value, 'name'=>$name);
+                }
+            }            
             /* testimonials */
 
             $data['pdfPages'] = isset($_POST['pdfPages']) && !empty($_POST['pdfPages']) ? explode(',', $_POST['pdfPages']): array(); 

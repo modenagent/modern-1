@@ -2,7 +2,6 @@
 <html>
    <head>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
-      <!-- <script type="text/javascript" src="<?php // echo base_url(); ?>assets/js/jquery-1.9.1.min.js"></script> -->
       <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey()?>"></script>
       <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon" />
       <!-- Custom Fonts -->
@@ -22,11 +21,22 @@
       <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
       <style type="text/css">
+        #cma-widget-container .invoice {
+          height: auto;
+        }
         #cma-widget-container .invoice .invoice-table tbody td {
            text-align: center !important; 
         }
         #cma-widget-container .invoice .invoice-table tbody tr td:last-child {
           text-align: left !important;
+        }
+        #cma-widget-container #my-leads .page-header {
+            font-weight: 700;
+            font-family: Montserrat;
+            color: #fff;
+            border-bottom: 1px solid #fff;
+            padding: 0 0 10px;
+            margin: 0;
         }
       </style>
    </head>
@@ -41,6 +51,7 @@
     <ul class="nav nav-tabs" id="mainTabMenu">
         <li class="active"><a data-toggle="tab" href="#stepsBox" id="createReportTab">Create Report</a></li>
         <li><a data-toggle="tab" href="#reports" id="recentReportsTab">Recent Reports</a></li>
+        <li><a data-toggle="tab" href="#myLeads" id="myLeadsTab">My Leads</a></li>
     </ul>
     <div class="tab-content">
         <div id="stepsBox" class="tab-pane fade in active">
@@ -301,13 +312,13 @@
                             <p class="clearfix">&nbsp;</p>
                             <div class="panel panel-body order-detail">
                                 <section class="invoice ">
-                                    <header class="clearfix">
+                                    <!-- <header class="clearfix">
                                         <div id="logo">
-                                          <img src="<?php echo base_url(); ?>assets/images-2/logo.png"/>
+                                          <img src="<?php // echo base_url(); ?>assets/images-2/logo.png"/>
                                         </div>
                                         <div id="company">
                                         </div>
-                                    </header>
+                                    </header> -->
                                     <article>
                                         <div id="details" class="clearfix">
                                           <div id="client">
@@ -354,7 +365,7 @@
                                                 </tr>
                                             </tfoot> -->
                                         </table>
-                                        <div class="row">
+                                        <div class="row" style="display: none;">
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
                                                 <div class="input-group">
                                                   <input class="from-field form-control" type="text" id="coupon_code" placeholder="Coupon Code" >
@@ -454,8 +465,23 @@
             </section>
             <!-- Screenshots section -->
         </div>
+
+        <!-- My leads listing -->
+        <div id="myLeads" class="tab-pane fade">
+            <section id="my-leads">
+                <div class="">
+                    <h1 class="page-header">Leads</h1>
+                    <!-- <p>We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p> -->
+                    <p>&nbsp;</p>
+                    <?php
+                        $this->load->view('user/widget_leads',array('leads'=>$leads)); 
+                    ?>
+                </div>
+            </section>
+        </div>
+        <!-- My leads listing -->
     </div>
-    <div style="color:white;clear:both;margin:10px;">Powered By <a href="<?php echo site_url(); ?>" target="_blank">ModernAgent.io</a></div>
+    <!-- <div style="color:white;clear:both;margin:10px;">Powered By <a href="<?php // echo site_url(); ?>" target="_blank">ModernAgent.io</a></div> -->
     <!-- modal for selecting the comparables starts here -->
     <div id="select-comps" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -491,18 +517,22 @@
                     <div class="row">
                         <div class="col-md-6">
                             <textarea class="form-control" rows="5" id="testimonial-1">Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.</textarea>
+                            <input type="text" name="testimonial_name_1" id="testimonial-name-1" style="margin-top: 5px;" placeholder="Enter Name" value="<?php echo $user['first_name'].' '.$user['last_name']; ?>">
                         </div>
                         <div class="col-md-6">
                             <textarea class="form-control" rows="5" id="testimonial-2">As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.</textarea>
+                            <input type="text" name="testimonial_name_2" id="testimonial-name-2" style="margin-top: 5px;" placeholder="Enter Name" value="<?php echo $user['first_name'].' '.$user['last_name']; ?>">
                         </div>
                     </div>
                     
                     <div class="row" style="margin-top: 10px;">
                         <div class="col-md-6">
                             <textarea class="form-control" rows="5" id="testimonial-3">Showed us a bunch of homes for months until we found the right one. Gave us a ton of contacts to help us throughout the process. And even now after the home has already been closed on he is still helping with any problems or questions we have. Extremely helpful and knowledgeable in any facet of home buying/owning.</textarea>
+                            <input type="text" name="testimonial_name_3" id="testimonial-name-3" style="margin-top: 5px;" placeholder="Enter Name" value="<?php echo $user['first_name'].' '.$user['last_name']; ?>">
                         </div>
                         <div class="col-md-6">
                             <textarea class="form-control" rows="5" id="testimonial-4">They were a great team and extremely helpful with selling my house quickly. I was able to do everything online with them. They facilitated repairs and getting rid of things in the house. This was so helpful since I live out of the area.</textarea>
+                            <input type="text" name="testimonial_name_4" id="testimonial-name-4" style="margin-top: 5px;" placeholder="Enter Name" value="<?php echo $user['first_name'].' '.$user['last_name']; ?>">
                         </div>
                     </div>
                 </div>
@@ -757,6 +787,13 @@ jQuery(document).ready(function() {
     if($('#table-dt').length)
     {
         $('#table-dt').DataTable( {
+            "order": [[ 0, "desc" ]]
+        });
+    }
+
+    if($('#table-dt-leads').length)
+    {
+        $('#table-dt-leads').DataTable( {
             "order": [[ 0, "desc" ]]
         });
     }

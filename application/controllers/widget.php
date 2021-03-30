@@ -130,6 +130,11 @@ class Widget extends CI_Controller {
                 $data['report_price'] = $this->package_model->get_reports_price();
 
                 $data['reportTemplates'] = $this->base_model->all_records('lp_seller_report_templates');
+
+                /* leads */
+                $this->load->model('user_model');
+                $data['leads'] =  $this->user_model->get_leads($user_id);
+                /* leads */
                 
                 // $html = $this->load->view('user/dashboard_widget', $data, true);
                 $this->load->view('user/dashboard_widget', $data);
@@ -154,6 +159,7 @@ class Widget extends CI_Controller {
 
     public function getWidgetPropertyData()
     {
+                    $response = $this->reports->getPropertyDataForWidget();
         $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
         try {
             $response = $this->reports->getPropertyDataForWidget();

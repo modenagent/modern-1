@@ -107,7 +107,7 @@
             if(isset($testimonials) && !empty($testimonials))
             {
                 list($upper_testimonial, $lower_testimonial) = array_chunk($testimonials, ceil(count($testimonials) / 2));
-
+echo "<pre>"; print_r(); exit;
                 if(isset($upper_testimonial) && !empty($upper_testimonial))
                 {
             ?>
@@ -118,8 +118,8 @@
                         {
                     ?>
                             <div class="feedback">
-                                <p> <?php echo trim($value); ?></p>
-                                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
+                                <p> <?php echo trim($value['content']); ?></p>
+                                <div class="username"><?php echo $value['name']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
                             </div>
                     <?php
                         }
@@ -138,8 +138,8 @@
                         {
                     ?>
                             <div class="feedback">
-                                <p> <?php echo trim($v); ?></p>
-                                <div class="username"><?php echo $user['fullname']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
+                                <p> <?php echo trim($v['content']); ?></p>
+                                <div class="username"><?php echo $v['name']; ?> <img src="<?php echo base_url().'assets/reports/english/seller/images/2/rating.png'; ?>" alt="rating" class="rating"></div>
                             </div>
                     <?php
                         }
