@@ -876,7 +876,7 @@ use Knp\Snappy\Pdf;
 
                     if(in_array($key, $testimonials_name))
                     {
-                        $name = $testimonials_name[0];
+                        $name = $testimonials_name[$key];
                     }
                     $data['testimonials'][] = array('content'=>$value, 'name'=>$name);
                 }
