@@ -214,6 +214,8 @@ body.login{display:table-cell; vertical-align:middle;}
 #cma-widget-container .nav>li>a {
     line-height: 0;
     padding: 10px 5px;
+	border:none;
+	background:none;
 }
 
 #cma-widget-container .navbar-default .navbar-nav>li>a {
@@ -230,7 +232,7 @@ body.login{display:table-cell; vertical-align:middle;}
 }
 
 #cma-widget-container .nav>li.current>a {
-    color: #55c9e0;
+    color: #ffffff;
 }
 
 #cma-widget-container .nav>li>a.btn {
@@ -1828,7 +1830,7 @@ ul.pagination li.current a:focus {
     background-color: #fff;
     border: 1px solid #fff;
     font-weight: 500;
-    color: #4db6cb;
+    color: #cc9964;
 	font: 11px Montserrat;
     text-transform: uppercase;
 }
