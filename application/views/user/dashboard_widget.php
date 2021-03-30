@@ -859,6 +859,8 @@ function choose_presentation(presentation)
 {
     if(presentation === 'buyer'){
         $("#config-comps-btn").hide();
+        $("#btn-bio").hide();
+        $("#btn-testimonial").hide();
         $("#presentation").val("buyer");
         $('#wizard').smartWizard("buyer");
         $('.seller_template').hide(function(){
@@ -874,6 +876,8 @@ function choose_presentation(presentation)
             $('.seller_template').show();
         });
         $("#config-comps-btn").show();
+        $("#btn-bio").hide();
+        $("#btn-testimonial").hide();
     }else {
         $("#presentation").val("seller");
         $('#wizard').smartWizard("seller");
@@ -881,6 +885,8 @@ function choose_presentation(presentation)
             $('.seller_template').show();
         });
         $("#config-comps-btn").show();
+        $("#btn-bio").show();
+        $("#btn-testimonial").show();
     }
     //Set classes
     $("#search-btn").addClass(presentation);

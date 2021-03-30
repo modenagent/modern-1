@@ -107,7 +107,7 @@
             if(isset($testimonials) && !empty($testimonials))
             {
                 list($upper_testimonial, $lower_testimonial) = array_chunk($testimonials, ceil(count($testimonials) / 2));
-echo "<pre>"; print_r(); exit;
+                
                 if(isset($upper_testimonial) && !empty($upper_testimonial))
                 {
             ?>
