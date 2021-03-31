@@ -1044,7 +1044,8 @@ function submitFormAndGetReport()
             // switching the tab to show the latest reports
             $('#recentReportsTab').click();
 
-            var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
+            // var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
+            var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>";
             var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
 
             $.getJSON(jsonp_url, function(data) {
