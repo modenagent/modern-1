@@ -59,7 +59,7 @@
             <section id="steps">
                 <!-- Smart Wizard -->
                 <div class="">                         
-                    <div id="choose-presentation"class="clearfix" style="">
+                    <div id="choose-presentation" class="clearfix" style="">
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="step-0-content clearfix">
@@ -264,11 +264,11 @@
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
-                            <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Bio
+                            <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Agent Bio
                             </a> &nbsp | &nbsp
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
 
-                            <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
+                            <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a> | &nbsp
                           </div>
                             </div>
                             <div class="carousel-container">
@@ -620,6 +620,9 @@
          text-decoration: none;
          font: 11px Montserrat;
          text-transform: uppercase;
+         }
+         #cma-widget-container a#btn-bio {
+          padding: 9px 20px;
          }
          #cma-widget-container a.pull-right {
          padding: 9px 10px;
@@ -1276,6 +1279,13 @@ function submitFormAndGetReport()
       <?php endif; ?>
      
   });
+
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $($.fn.dataTable.tables(true)).DataTable()
+           .columns.adjust();
+           // .responsive.recalc();
+    });  
 </script>
 
 </body>

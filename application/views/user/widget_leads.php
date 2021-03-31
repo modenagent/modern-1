@@ -34,6 +34,9 @@ div#table-dt-leads_filter input {
     background-color: #fff;
     color: #555;
 }
+#cma-widget-container #my-leads {
+    padding: 10px 0 10px;
+}
 </style>
 <div class="table-responsive">
     <table class="actions" id="table-dt-leads">
@@ -74,7 +77,7 @@ div#table-dt-leads_filter input {
                 {
             ?>
                     <tr>
-                        <td colspan="5">Leads not found.</td>
+                        <td colspan="6">Leads not found.</td>
                     </tr>
             <?php
                 } 
@@ -84,12 +87,12 @@ div#table-dt-leads_filter input {
 </div>
 <script type="text/javascript">
     jQuery(document).ready(function() {
-        if($('#table-dt-leads').length)
+        if($('#table-dt-leads tbody tr').length > 1)
         {
             $('#table-dt-leads').DataTable( {
                 "order": [[ 0, "desc" ]]
             });
         }
-    }
+    });
     
 </script>
