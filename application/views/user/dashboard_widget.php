@@ -1048,10 +1048,12 @@ function submitFormAndGetReport()
             var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>";
             var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
 
-            $.getJSON(jsonp_url, function(data) {
-                console.log(data);
-              $('#cma-widget-container').html(custom_css+data.html);
-            });
+            location.href  = jsonp_url;
+
+            // $.getJSON(jsonp_url, function(data) {
+            //     console.log(data);
+            //   $('#cma-widget-container').html(custom_css+data.html);
+            // });
         },
         error: function() {
             // place error code here
