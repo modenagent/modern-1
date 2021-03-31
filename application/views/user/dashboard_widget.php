@@ -272,22 +272,22 @@
                           </div>
                             </div>
                             <div class="carousel-container">
-                          <div id="owl-example" class="owl-carousel">
+                          <div id="owl-example" class="owl-carousel seller_template">
                             <?php
                             // $reportTemplates = array();
                             if(isset($reportTemplates) && !empty($reportTemplates))
                             {
+                              $buyer_i = 0;
                               foreach ($reportTemplates as $key => $report) {
+                                $buyer_i ++;
                                 // if($report->template_color != ''){
                             ?>
                               <div class="item">
-                                <!-- <input type="checkbox" class="custom-checkbox" id="c21" value="" name="cover"> -->
+
                                  <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $key+1; ?>">
                                 <label class="user-heading alt gray-bg" for="pb">
                                   <div class="text-center"> 
-                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
-                                    <!-- <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> --> 
-                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
+                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="">
                                   </div>
 
                                 </label>
@@ -295,10 +295,24 @@
                             <?php 
                                   // }
                                 }
-                            }
-                            ?>
-                            <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
+                            } ?>
                           </div>
+                          <div id="owl-example-buyer" class="owl-carousel buyer_template">
+                            <?php
+                            for ($buyer_i=1; $buyer_i <= 18 ; $buyer_i++) { ?>
+                              <div class="item ">
+                                <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $key+1; ?>">
+                                <label class="user-heading alt gray-bg" for="pb">
+                                  <div class="text-center">
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url('assets/reports/buyer/page_'.$buyer_i.'.png'); ?>" alt="">
+                                  </div>
+                                </label>
+                              </div>
+                            <?php
+                          }
+                            ?>
+                          </div>
+                            <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
                             </div>
                           </div>
                         </div>
@@ -784,6 +798,10 @@ jQuery(document).ready(function() {
     });
 
     $("#owl-example").owlCarousel();
+
+    //owl-example-buyer
+    $("#owl-example-buyer").owlCarousel();
+
 
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});

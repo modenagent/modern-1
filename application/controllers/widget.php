@@ -10,21 +10,25 @@ class Widget extends CI_Controller {
         // $this->user_id = 82;   
         $widget_url = $_ENV['WIDGET_DOMAIN'];
         // header("Access-Control-Allow-Origin: $widget_url");
-        header("Access-Control-Allow-Origin:*");
+        // header("Access-Control-Allow-Origin:*");
 
 
-        require_once(FCPATH .'simplesaml/lib/_autoload.php');
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        // require_once(FCPATH .'simplesaml/lib/_autoload.php');
+        // $session = SimpleSAML_Session::getSessionFromRequest();
 
-        if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
+        // if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
 
-            $sessionData = $this->session->set_userdata($_SESSION['userdata']);
+        //     $sessionData = $this->session->set_userdata($_SESSION['userdata']);
 
-        }
+        // }
         if(!($this->session->userdata('userid')) ) {
 
             echo "Access denied, you are not authorized to use this widget.";
-            return;
+            // if(!empty($_SERVER['HTTP_REFERER'])) {
+            //   header('Location: ' . $_SERVER['HTTP_REFERER']);
+            // }
+            // return;
+            exit();
         }
         else {
             $this->user_id = $this->session->userdata('userid');          
