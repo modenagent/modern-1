@@ -301,7 +301,7 @@
                             <?php
                             for ($buyer_i=1; $buyer_i <= 18 ; $buyer_i++) { ?>
                               <div class="item ">
-                                <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $key+1; ?>">
+                                <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_i; ?>">
                                 <label class="user-heading alt gray-bg" for="pb">
                                   <div class="text-center">
                                     <img class="buyer_template" style="display:none;" src="<?php echo base_url('assets/reports/buyer/page_'.$buyer_i.'.png'); ?>" alt="">
