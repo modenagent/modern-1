@@ -22,7 +22,7 @@ class Widget extends CI_Controller {
 
         // }
 
-        // var_dump($this->session->userdata);die;
+        var_dump($this->session->userdata);die;
         if(!($this->session->userdata('userid')) ) {
 
             echo "Access denied, you are not authorized to use this widget.";
