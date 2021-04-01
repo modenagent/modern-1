@@ -214,8 +214,8 @@ body.login{display:table-cell; vertical-align:middle;}
 #cma-widget-container .nav>li>a {
     line-height: 0;
     padding: 10px 5px;
-	border:none;
-	background:none;
+	border: none;
+	background: none;
 }
 
 #cma-widget-container .navbar-default .navbar-nav>li>a {
@@ -1412,7 +1412,7 @@ ul.pagination li.current a:focus {
 }
 
 #cma-widget-container table a {
-    color: #fff;
+    color:#cc9964;
 }
 
 #cma-widget-container table a:hover {
@@ -2178,6 +2178,7 @@ ul.pagination li.current a:focus {
 @media (min-width:1200px) {
     #cma-widget-container .container {
         width: 980px;
+		padding-top: 47px;
     }
 }
 
