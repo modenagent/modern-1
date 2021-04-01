@@ -10,25 +10,72 @@ class Widget extends CI_Controller {
         // $this->user_id = 82;   
         $widget_url = $_ENV['WIDGET_DOMAIN'];
         // header("Access-Control-Allow-Origin: $widget_url");
-        header("Access-Control-Allow-Origin:*");
+        // header("Access-Control-Allow-Origin:*");
 
 
-        require_once(FCPATH .'simplesaml/lib/_autoload.php');
-        $session = SimpleSAML_Session::getSessionFromRequest();
+        // require_once(FCPATH .'simplesaml/lib/_autoload.php');
+        // $session = SimpleSAML_Session::getSessionFromRequest();
 
-        if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
+        // if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
 
-            $sessionData = $this->session->set_userdata($_SESSION['userdata']);
+        //     $sessionData = $this->session->set_userdata($_SESSION['userdata']);
 
-        }
+        // }
+
+        // var_dump($this->session->userdata);die;
         if(!($this->session->userdata('userid')) ) {
-
-            echo "Access denied, you are not authorized to use this widget.";
-            return;
+          // echo $this->uri->uri_string();die;
+          if($this->uri->uri_string() != 'widget/setAuth'){
+            // echo "in";die;
+            redirect('widget/setAuth');
+            exit();
+          } 
+             // echo "Access denied, you are not authorized to use this widget.";
+            // if(!empty($_SERVER['HTTP_REFERER'])) {
+            //   header('Location: ' . $_SERVER['HTTP_REFERER']);
+            // }
+            // return;
+             // exit();
         }
         else {
             $this->user_id = $this->session->userdata('userid');          
         }       
+    }
+
+    public function setAuth()
+    {
+      $this->load->helper('cookie');
+      $sso_user_token = get_cookie('sso_user_token',true);
+      if(!empty($sso_user_token)) {
+          $user_id = getUserIdByToken($sso_user_token);
+          if($user_id) {
+            $user = $this->base_model->get_login_data_from_id( 'lp_user_mst','user_id_pk', $user_id);
+            $user_info = (array) $user;
+
+            if(isset($user_info) && !empty($user_info))
+            {
+                
+                  $user_data = array(
+                    'userid'    => $user_info['user_id_pk'],
+                    'username'    => ucfirst($user_info['first_name']).' '.ucfirst($user_info['last_name']),
+                    'user_email'    => $user_info['email'],
+                    'logged_in'    => TRUE,
+                  );
+
+                    $session_data = $this->session->set_userdata($user_data);
+                }
+
+
+              redirect('widget/getWidgetData');
+              exit;
+
+          }
+        // echo $url;die;
+
+
+      }
+      echo "Access denied, you are not authorized to use this widget.";
+      die;
     }
 
     public function index()

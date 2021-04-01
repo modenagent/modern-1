@@ -59,7 +59,7 @@
             <section id="steps">
                 <!-- Smart Wizard -->
                 <div class="">                         
-                    <div id="choose-presentation"class="clearfix" style="">
+                    <div id="choose-presentation" class="clearfix" style="">
                         <div class="row">
                             <div class="col-md-10">
                                 <div class="step-0-content clearfix">
@@ -264,30 +264,30 @@
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
-                            <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Bio
+                            <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Agent Bio
                             </a> &nbsp | &nbsp
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
 
-                            <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
+                            <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a> | &nbsp
                           </div>
                             </div>
                             <div class="carousel-container">
-                          <div id="owl-example" class="owl-carousel">
+                          <div id="owl-example" class="owl-carousel seller_template">
                             <?php
                             // $reportTemplates = array();
                             if(isset($reportTemplates) && !empty($reportTemplates))
                             {
+                              $buyer_i = 0;
                               foreach ($reportTemplates as $key => $report) {
+                                $buyer_i ++;
                                 // if($report->template_color != ''){
                             ?>
                               <div class="item">
-                                <!-- <input type="checkbox" class="custom-checkbox" id="c21" value="" name="cover"> -->
+
                                  <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $key+1; ?>">
                                 <label class="user-heading alt gray-bg" for="pb">
                                   <div class="text-center"> 
-                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
-                                    <!-- <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt=""> --> 
-                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon; ?>" alt=""> 
+                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="">
                                   </div>
 
                                 </label>
@@ -295,10 +295,24 @@
                             <?php 
                                   // }
                                 }
-                            }
-                            ?>
-                            <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
+                            } ?>
                           </div>
+                          <div id="owl-example-buyer" class="owl-carousel buyer_template">
+                            <?php
+                            for ($buyer_i=1; $buyer_i <= 18 ; $buyer_i++) { ?>
+                              <div class="item ">
+                                <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_i; ?>">
+                                <label class="user-heading alt gray-bg" for="pb">
+                                  <div class="text-center">
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url('assets/reports/buyer/page_'.$buyer_i.'.png'); ?>" alt="">
+                                  </div>
+                                </label>
+                              </div>
+                            <?php
+                          }
+                            ?>
+                          </div>
+                            <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
                             </div>
                           </div>
                         </div>
@@ -621,6 +635,9 @@
          font: 11px Montserrat;
          text-transform: uppercase;
          }
+         #cma-widget-container a#btn-bio {
+          padding: 9px 20px;
+         }
          #cma-widget-container a.pull-right {
          padding: 9px 10px;
          background: none;
@@ -781,6 +798,10 @@ jQuery(document).ready(function() {
     });
 
     $("#owl-example").owlCarousel();
+
+    //owl-example-buyer
+    $("#owl-example-buyer").owlCarousel();
+
 
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
@@ -1023,13 +1044,16 @@ function submitFormAndGetReport()
             // switching the tab to show the latest reports
             $('#recentReportsTab').click();
 
-            var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
+            // var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
+            var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>";
             var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
 
-            $.getJSON(jsonp_url, function(data) {
-                console.log(data);
-              $('#cma-widget-container').html(custom_css+data.html);
-            });
+            location.href  = jsonp_url;
+
+            // $.getJSON(jsonp_url, function(data) {
+            //     console.log(data);
+            //   $('#cma-widget-container').html(custom_css+data.html);
+            // });
         },
         error: function() {
             // place error code here
@@ -1276,6 +1300,13 @@ function submitFormAndGetReport()
       <?php endif; ?>
      
   });
+
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $($.fn.dataTable.tables(true)).DataTable()
+           .columns.adjust();
+           // .responsive.recalc();
+    });  
 </script>
 
 </body>
