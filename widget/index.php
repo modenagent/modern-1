@@ -145,6 +145,8 @@ else {
         else {
             echo "Email not found";die;
         }
+
+        var_dump($CI->session->userdata);die;
         ?>
         <script type="text/javascript">
             var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/widget/getWidgetData";
