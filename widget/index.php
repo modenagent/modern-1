@@ -140,13 +140,32 @@ else {
             }
             $sessionData = $CI->session->set_userdata($newdata);
             $_SESSION['userdata'] = $newdata;
+
+            
+            $token = generateToken($user->user_id_pk);
+
+            
+
+            $cookie= array(
+
+               'name'   => 'sso_user_token',
+               'value'  => $token,                            
+               'expire' => '86400',
+               'domain' => '.'.$_ENV['MAIN_DOMAIN'],
+               // 'secure' => TRUE
+
+           );
+
+            $CI->load->helper('cookie');
+
+
+            $CI->input->set_cookie($cookie);
+            // var_dump(get_cookie('sso_unique_id',true));die;
             
         }
         else {
             echo "Email not found";die;
         }
-
-        var_dump($CI->session->userdata);die;
         ?>
         <script type="text/javascript">
             var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/widget/getWidgetData";

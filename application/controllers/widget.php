@@ -22,19 +22,59 @@ class Widget extends CI_Controller {
 
         // }
 
-        var_dump($this->session->userdata);die;
+        // var_dump($this->session->userdata);die;
         if(!($this->session->userdata('userid')) ) {
-
-            echo "Access denied, you are not authorized to use this widget.";
+          // echo $this->uri->uri_string();die;
+          if($this->uri->uri_string() != 'widget/setAuth'){
+            echo "in";die;
+            redirect('widget/setAuth');
+            exit();
+          } 
+             // echo "Access denied, you are not authorized to use this widget.";
             // if(!empty($_SERVER['HTTP_REFERER'])) {
             //   header('Location: ' . $_SERVER['HTTP_REFERER']);
             // }
             // return;
-            exit();
+             // exit();
         }
         else {
             $this->user_id = $this->session->userdata('userid');          
         }       
+    }
+
+    public function setAuth()
+    {
+      $this->load->helper('cookie');
+      $sso_user_token = get_cookie('sso_user_token',true);
+      if(!empty($sso_user_token)) {
+          $user_id = getUserIdByToken($sso_user_token);
+          if($user_id) {
+            $user = $this->base_model->get_login_data_from_id( 'lp_user_mst','user_id_pk', $user_id);
+            $user_info = (array) $user;
+
+            if(isset($user_info) && !empty($user_info))
+            {
+                
+                  $user_data = array(
+                    'userid'    => $user_info['user_id_pk'],
+                    'username'    => ucfirst($user_info['first_name']).' '.ucfirst($user_info['last_name']),
+                    'user_email'    => $user_info['email'],
+                    'logged_in'    => TRUE,
+                  );
+
+                    $session_data = $this->session->set_userdata($user_data);
+                }
+
+
+              redirect('widget/getWidgetData');
+              exit;
+
+          }
+        // echo $url;die;
+
+
+      }
+      die;
     }
 
     public function index()
