@@ -26,7 +26,7 @@ class Widget extends CI_Controller {
         if(!($this->session->userdata('userid')) ) {
           // echo $this->uri->uri_string();die;
           if($this->uri->uri_string() != 'widget/setAuth'){
-            echo "in";die;
+            // echo "in";die;
             redirect('widget/setAuth');
             exit();
           } 
