@@ -74,6 +74,7 @@ class Widget extends CI_Controller {
 
 
       }
+      echo "Access denied, you are not authorized to use this widget.";
       die;
     }
 
