@@ -34,10 +34,13 @@
             font-weight: 700;
             font-family: Montserrat;
             color: #fff;
-            border-bottom: 1px solid #fff;
+            /*border-bottom: 1px solid #fff;*/
             padding: 0 0 10px;
             margin: 0;
         }
+		#cma-widget-container #my-leads .page-header p {
+			color:#ffffff;
+		}
       </style>
    </head>
    <body>
