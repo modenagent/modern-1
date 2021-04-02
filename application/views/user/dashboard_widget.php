@@ -41,7 +41,7 @@
       </style>
    </head>
    <body>
-      <div id="cma-widget-container" style="margin: 0 auto;max-width: 95%;">
+      <div id="cma-widget-container" style="margin: 0 auto;max-width: 95%; height:800px; background-size:cover; background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/7218d6f3-e7b7-4051-a604-9f43ceaaf4fc.jpg'); ">
       <div id="loadingPlugin" style="color: #fff;">
          <div class="loading"></div>
          <div class="loadingText">Loading Widget</div>
@@ -489,7 +489,7 @@
                       <span class="pull-right" style="font-size: 22px;margin: 5px;">Your unique referral code: <?php echo $ref_code ?></span>
                     <?php endif; ?>
                     </h1>
-                    <!-- <p>We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p> -->
+                    <p>We have stored all of your leads here so you can access them at anytime. </p>
                     <p>&nbsp;</p>
                     <?php
                         $this->load->view('user/widget_leads',array('leads'=>$leads)); 
