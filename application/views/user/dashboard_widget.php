@@ -484,7 +484,11 @@
         <div id="myLeads" class="tab-pane fade">
             <section id="my-leads">
                 <div class="">
-                    <h1 class="page-header">Leads</h1>
+                    <h1 class="page-header">Leads 
+                      <?php if($ref_code) : ?>
+                      <span class="pull-right" style="font-size: 22px;margin: 5px;">Your unique referral code: <?php echo $ref_code ?></span>
+                    <?php endif; ?>
+                    </h1>
                     <!-- <p>We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p> -->
                     <p>&nbsp;</p>
                     <?php
