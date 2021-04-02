@@ -964,7 +964,7 @@ use Knp\Snappy\Pdf;
             /**
              * END Code to fetch customized text data of user
              */
-            $data['pdfPages'] = 1;
+            $data['pdfPages'] = array(1);
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
