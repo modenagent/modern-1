@@ -25,6 +25,11 @@ class Welcome extends CI_Controller {
 		}
 		$this->load->view('welcome_message');
 	}
+
+	public function check_info_temp()
+	{
+		phpinfo();
+	}
 }
 
 /* End of file welcome.php */
