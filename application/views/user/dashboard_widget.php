@@ -1318,7 +1318,7 @@ function submitFormAndGetReport()
     setTimeout(function() {
      // alert("Hello");
      $('#recentReportsTab').trigger('click');
-    }, 3000);
+    }, 1500);
     });
      
 
