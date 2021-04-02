@@ -492,7 +492,7 @@
                       <span class="pull-right" style="font-size: 22px;margin: 5px;">Your unique referral code: <?php echo $ref_code ?></span>
                     <?php endif; ?>
                     </h1>
-                    <p>We have stored all of your leads here so you can access them at anytime. </p>
+                    <p style="color:#ffffff;">We have stored all of your leads here so you can access them at anytime. </p>
                     <p>&nbsp;</p>
                     <?php
                         $this->load->view('user/widget_leads',array('leads'=>$leads)); 
