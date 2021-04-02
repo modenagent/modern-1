@@ -206,7 +206,7 @@ class Widget extends CI_Controller {
 
     public function getWidgetPropertyData()
     {
-                    $response = $this->reports->getPropertyDataForWidget();
+                    // $response = $this->reports->getPropertyDataForWidget();
         $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
         try {
             $response = $this->reports->getPropertyDataForWidget();
