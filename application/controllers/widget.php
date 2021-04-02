@@ -181,6 +181,7 @@ class Widget extends CI_Controller {
                 /* leads */
                 $this->load->model('user_model');
                 $data['leads'] =  $this->user_model->get_leads($user_id);
+                $data['ref_code'] = $this->user_model->has_ref_code($user_id);
                 /* leads */
                 
                 // $html = $this->load->view('user/dashboard_widget', $data, true);

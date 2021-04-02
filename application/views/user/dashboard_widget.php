@@ -484,7 +484,11 @@
         <div id="myLeads" class="tab-pane fade">
             <section id="my-leads">
                 <div class="">
-                    <h1 class="page-header">Leads</h1>
+                    <h1 class="page-header">Leads 
+                      <?php if($ref_code) : ?>
+                      <span class="pull-right" style="font-size: 22px;margin: 5px;">Your unique referral code: <?php echo $ref_code ?></span>
+                    <?php endif; ?>
+                    </h1>
                     <!-- <p>We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p> -->
                     <p>&nbsp;</p>
                     <?php
@@ -1045,7 +1049,7 @@ function submitFormAndGetReport()
             $('#recentReportsTab').click();
 
             // var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
-            var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>";
+            var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>?tab=list";
             var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
 
             location.href  = jsonp_url;
@@ -1307,6 +1311,12 @@ function submitFormAndGetReport()
            .columns.adjust();
            // .responsive.recalc();
     });  
+
+  <?php
+  if(isset($_GET['tab']) && $_GET['tab'] == 'list') { ?>
+     $('#recentReportsTab').trigger('click');
+  <?php }
+  ?>
 </script>
 
 </body>
