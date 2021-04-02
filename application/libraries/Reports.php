@@ -964,7 +964,7 @@ use Knp\Snappy\Pdf;
             /**
              * END Code to fetch customized text data of user
              */
-            $data['pdfPages'] = 1;
+            $data['pdfPages'] = array(1);
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
@@ -997,7 +997,7 @@ use Knp\Snappy\Pdf;
                             'Content-Type'          => 'application/pdf',
                             'Content-Disposition'   => 'attachment; filename="report.pdf"'
                         ));
-            $pdfFileName = $pdfFileDynamic = 'temp/'.str_replace(" ", "_", $siteAddress).'_'.md5(time() . rand()).'.pdf';
+            $pdfFileName = $pdfFileDynamic = 'D:/Binita/pdfs/'.str_replace(" ", "_", $siteAddress).'_'.md5(time() . rand()).'.pdf';
             file_put_contents($pdfFileDynamic, $output);
             if(filesize($pdfFileDynamic)<10000){// Output pdf should be atleast 100KB of size otherwise some error has occured
                 return array( 
