@@ -971,11 +971,7 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/widget_index",$data,true);
             
             }
-
-
-            $html = str_ireplace( '<img', '<p',$html);
-            // str_ireplace(search, replace, subject)
-            // echo $html;die;
+            
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
