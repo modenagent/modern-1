@@ -1045,7 +1045,7 @@ function submitFormAndGetReport()
             $('#recentReportsTab').click();
 
             // var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
-            var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>";
+            var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>?tab=list";
             var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
 
             location.href  = jsonp_url;
@@ -1307,6 +1307,12 @@ function submitFormAndGetReport()
            .columns.adjust();
            // .responsive.recalc();
     });  
+
+  <?php
+  if(isset($_GET['tab']) && $_GET['tab'] == 'list') { ?>
+     $('#recentReportsTab').trigger('click');
+  <?php }
+  ?>
 </script>
 
 </body>
