@@ -1314,9 +1314,11 @@ function submitFormAndGetReport()
 
   <?php
   if(isset($_GET['tab']) && $_GET['tab'] == 'list') { ?>
+   $(document).ready(function(){
      $('#recentReportsTab').trigger('click');
-     $($.fn.dataTable.tables(true)).DataTable()
-           .columns.adjust();
+    });
+     
+
   <?php }
   ?>
 </script>
