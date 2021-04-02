@@ -1315,7 +1315,10 @@ function submitFormAndGetReport()
   <?php
   if(isset($_GET['tab']) && $_GET['tab'] == 'list') { ?>
    $(document).ready(function(){
+    setTimeout(function() {
+     // alert("Hello");
      $('#recentReportsTab').trigger('click');
+    }, 3000);
     });
      
 
