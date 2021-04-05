@@ -5,7 +5,12 @@ if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
 }
 
+if(empty($_GET['company'])) {
+    echo "Invalid request";die;
+}
+
 $auth_id = $_GET['site_id'];
+$company_url = $_GET['company'];
 
 if(!empty($auth_id)) {
     	$auth = new \SimpleSAML\Auth\Simple($auth_id);
@@ -58,9 +63,9 @@ else {
     		elseif($idp_data->phone == $key) { // Phone
     			$attr_values['phone'] = $attr_val;
     		}
-    		elseif($idp_data->sales_rep == $key) { // Phone	
-    			$attr_values['parent_id'] = $attr_val;		
-    		}
+    		// elseif($idp_data->sales_rep == $key) { // Phone	
+    		// 	$attr_values['parent_id'] = $attr_val;		
+    		// }
     	}
         if(!empty($attr_values['email'])) {
             $email = $attr_values['email'];
@@ -80,10 +85,10 @@ else {
 
             	//check email exist of sales rep
 
-            	$sales_rep_email = $attr_values['parent_id'];
+            	// $sales_rep_email = $attr_values['parent_id'];
             	$parent_id = '';
 
-            	$get_where = array('email'=>$sales_rep_email);
+            	$get_where = array('company_url'=>$company_url);
             	$sales_rep = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
             	if($sales_rep && !empty($sales_rep)) {
             		$parent_id = $sales_rep->user_id_pk;

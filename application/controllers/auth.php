@@ -80,6 +80,7 @@ class Auth extends REST_Controller
     // user register api
     public function userregister_post()
     {
+
         $table = "lp_user_mst";
         $email = $this->post('uemail');
         $where = array('email'=> $email);
@@ -148,6 +149,9 @@ class Auth extends REST_Controller
                 'registered_date' => date('Y-m-d H:i:s', time()),
                 'is_active' => 'Y',
             );
+            if(!empty($this->post('company_url'))) {
+                $user['company_url'] = $this->post('company_url');
+            }
             $resp = $this->base_model->insert_one_row('lp_user_mst', $user);
             if($resp){
                 if($this->get('backend')){
