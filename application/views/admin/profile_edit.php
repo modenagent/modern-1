@@ -142,6 +142,11 @@
                   <td>State</td>
                   <td><input type="text" class="form-control" placeholder="State" name="cstate" id="cstate" value="<?php echo $user->company_state; ?>"></td>
                 </tr>
+
+                <tr>
+                  <td>Company Url</td>
+                  <td><input type="text" class="form-control" placeholder="Company Url" name="curl" id="curl" value="<?php echo $user->company_url; ?>"></td>
+                </tr>
                 <?php
               endif;
               ?>
@@ -360,13 +365,13 @@
                       
                     </tr>
 
-                    <tr>
+                    <!-- <tr>
                       <td>Sales Representative:</td>
                       <td>
                         <input type="text" class="form-control"   value="<?=$sso_record->sales_rep?>" name="data[<?php echo $key; ?>][field][sales_rep]">
                       </td>
                       
-                    </tr>
+                    </tr> -->
 
                     <tr>
                       <td></td>
@@ -578,7 +583,7 @@ var new_idp_html = `<div class="panel panel-info idp-container idp-parent-`+key_
                     <tr>
                       <td>Username:</td>
                       <td>
-                        <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][username]">
+                        <input type="text" class="form-control"   value=""  name="data[`+ key_new +`][field][username]">
                       </td>
                       
                     </tr>
@@ -604,13 +609,6 @@ var new_idp_html = `<div class="panel panel-info idp-container idp-parent-`+key_
                       
                     </tr>
 
-                    <tr>
-                      <td>Sales Representative:</td>
-                      <td>
-                        <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][sales_rep]">
-                      </td>
-                      
-                    </tr>
 
                     <tr>
                       <td></td>

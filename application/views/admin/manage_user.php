@@ -85,6 +85,11 @@
                   </div> 
                   <input type="hidden" name="cname" id="cname">
               </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Company Url" name="company_url" class="form-control" id="company_url">
+                </div>
+              </div>
               <?php elseif ($add_form=='end_user'): ?>
               <div class="col-md-3">
                   <div class="form-group">
@@ -236,6 +241,7 @@ $(document).ready(function(){
             var caddress = $("#caddress").val();
             var parent_id = $("#parent_id").val();
             var role_id = $("#role_id").val();
+            var company_url = $("#company_url").val();
 
             var submit = $('#add_user_form').closest('form').find(':submit');
             submit.html('<i class="fa fa-spinner fa-spin"></i>');
@@ -256,6 +262,7 @@ $(document).ready(function(){
                     caddress: caddress,
                     role_id: role_id,
                     parent_id:parent_id,
+                    company_url:company_url,
                     backend:"1",
                 }
             }).success(function(resp) {

@@ -750,11 +750,12 @@ MSG;
                 $cname = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
 
                 $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
-                if(isset($postedArr['ccity']) && isset($postedArr['czip']) && isset($postedArr['cstate'])) {
+                if(isset($postedArr['ccity']) && isset($postedArr['czip']) && isset($postedArr['cstate']) && isset($postedArr['curl'])) {
 
                 $ccity = mysqli_real_escape_string($this->dbConn, $postedArr['ccity']);
                 $czip = mysqli_real_escape_string($this->dbConn, $postedArr['czip']);
                 $cstate = mysqli_real_escape_string($this->dbConn, $postedArr['cstate']);
+                $curl = mysqli_real_escape_string($this->dbConn, $postedArr['curl']);
                 }
                 
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
@@ -789,10 +790,11 @@ MSG;
                     'company_add' => $cadd,
                     'is_enterprise_user' => $enterpriseFlag,
                 );
-                if(isset($ccity) && isset($cstate) && isset($czip)) {
+                if(isset($ccity) && isset($cstate) && isset($czip) && isset($curl)) {
                     $data['company_city'] = $ccity;
                     $data['comapny_zip'] = $czip;
                     $data['company_state'] = $cstate;
+                    $data['company_url'] = $curl;
                 }
                 $resultCheck = false;
                 // USER NAME CAN NOT BE CHANGED ONCE CREATED
@@ -889,7 +891,7 @@ MSG;
                     $data_update['first_name'] = $fields['first_name']; 
                     $data_update['last_name'] = $fields['last_name']; 
                     $data_update['phone'] = $fields['phone']; 
-                    $data_update['sales_rep'] = $fields['sales_rep']; 
+                    // $data_update['sales_rep'] = $fields['sales_rep']; 
                     $data_update['username'] = $fields['username']; 
 
                     if(!empty($sso['sso_id'])) { //Update
