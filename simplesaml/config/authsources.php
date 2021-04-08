@@ -67,8 +67,8 @@ include 'db-config.php';
 foreach ($idps_config as $idp_config) {
     $config[$idp_config['unique_id']] = [
         'saml:SP',        
-        'entityID' => null,
-        'idp' => $idp_config['metadata_url'],        
+        'entityID' => $idp_config['metadata_url'],
+        'idp' => 'Maxa Designs',        
         'discoURL' => null,
     ];
 }
