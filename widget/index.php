@@ -173,7 +173,7 @@ else {
         }
         ?>
         <script type="text/javascript">
-            var app_main_url = "//<?=$_ENV['APP_DOMAIN']?>/widget/getWidgetData";
+            var app_main_url = "https://<?=$_ENV['APP_DOMAIN']?>/widget/getWidgetData";
         </script>
         <script type="text/javascript" src="cma.js"></script>
     <?php 
