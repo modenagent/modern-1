@@ -157,7 +157,7 @@ else {
                'value'  => $token,                            
                'expire' => '86400',
                'domain' => '.'.$_ENV['MAIN_DOMAIN'],
-               // 'secure' => TRUE
+               'secure' => TRUE
 
            );
 
