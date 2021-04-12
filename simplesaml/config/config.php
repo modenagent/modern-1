@@ -3,7 +3,18 @@
 /**
  * The configuration of SimpleSAMLphp
  */
-
+if(php_sapi_name() !== 'cli') {
+    if(isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT']==443){
+        $protocol = 'https://';
+    }else{
+        $protocol = 'http://';
+        // header('Location: '.$uri);
+    }
+} else{
+    $protocol = 'http://';
+}
+$create_url = $protocol.$_SERVER['HTTP_HOST'].'/';
+// echo $create_url;die;
 $config = [
 
     /*******************************
@@ -27,7 +38,7 @@ $config = [
      * external url, no matter where you come from (direct access or via the
      * reverse proxy).
      */
-    'baseurlpath' => 'simplesaml/',
+    'baseurlpath' => $create_url.'simplesaml/',
 
     /*
      * The 'application' configuration array groups a set configuration options
