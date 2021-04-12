@@ -13,6 +13,7 @@ if(php_sapi_name() !== 'cli') {
 } else{
     $protocol = 'http://';
 }
+$protocol = 'https://';
 $create_url = $protocol.$_SERVER['HTTP_HOST'].'/';
 // echo $create_url;die;
 $config = [
