@@ -38,7 +38,8 @@ if(php_sapi_name() !== 'cli') {
 //$config['base_url']	= $protocal.'beta.mylistingpitch.com/beta/';
 //$config['base_url']	= $protocal.'localhost/dev_listingpitch/';
 //$config['base_url']	= $protocal.'modernagent.io/';
-$config['base_url']     = '';
+// $config['base_url']     = '';
+$config['base_url']     = $protocal.$_SERVER['HTTP_HOST'].'/';
 /*
 |--------------------------------------------------------------------------
 | Index File
