@@ -19,7 +19,7 @@ else {
     echo "Invalid request.";die;
 }
 
-var_dump($_SERVER);die;
+// var_dump($_SERVER);die;
 if (!$auth->isAuthenticated()) {
    $auth->requireAuth();
 }

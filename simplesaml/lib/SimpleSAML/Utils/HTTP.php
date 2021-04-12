@@ -135,6 +135,11 @@ class HTTP
      */
     public static function getServerHTTPS()
     {
+        //BI add server port to check ssl
+        if(array_key_exists('SERVER_PORT', $_SERVER) && $_SERVER['SERVER_PORT']==443){
+            return true;
+        }
+        
         if (!array_key_exists('HTTPS', $_SERVER)) {
             // not an https-request
             return false;
