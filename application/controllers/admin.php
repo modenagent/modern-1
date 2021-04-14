@@ -25,13 +25,14 @@ class Admin extends CI_Controller
             redirect('admin/dashboard',$data);
         }else{
             $cookie_domain    = !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN']:"";
+            
             if($cookie_domain != "") {
 
                 $cookie = array(
                     'name'   => 'ci_session',
                     'value'  => '',
                     'expire' => time() - 100,
-                    'domain' => '.'.$cookie_domain ,
+                    'domain' => $cookie_domain ,
                     'prefix' => 'ma_'
                     );
                  
