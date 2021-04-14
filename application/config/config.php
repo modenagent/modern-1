@@ -192,12 +192,12 @@ $config['sess_time_to_update']	= 300;
 */
 $config['cookie_prefix']	= "ma_";
 $config['cookie_domain']	= !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN']:"";
-if(defined('CI_REQUEST') && CI_REQUEST == 'external'){
-	$config['cookie_path']		= "/; SameSite=None";
-}
-else {
-	$config['cookie_path']		= "/";
-}
+// if(defined('CI_REQUEST') && CI_REQUEST == 'external'){
+// }
+// else {
+// 	$config['cookie_path']		= "/";
+// }
+$config['cookie_path']		= "/; SameSite=None";
 $config['cookie_secure']	= TRUE;
 /*
 |
