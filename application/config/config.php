@@ -198,7 +198,7 @@ if(defined('CI_REQUEST') && CI_REQUEST == 'external'){
 else {
 	$config['cookie_path']		= "/";
 }
-$config['cookie_secure']	= FALSE;
+$config['cookie_secure']	= TRUE;
 /*
 |
 | This determines which character set is used by default in various methods
