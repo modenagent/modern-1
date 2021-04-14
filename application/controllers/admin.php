@@ -24,6 +24,19 @@ class Admin extends CI_Controller
         if($adminId){
             redirect('admin/dashboard',$data);
         }else{
+            $cookie_domain    = !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN']:"";
+            if($cookie_domain != "") {
+
+                $cookie = array(
+                    'name'   => 'ci_session',
+                    'value'  => '',
+                    'expire' => time() - 100,
+                    'domain' => '.modernagent.localhost.com',
+                    'prefix' => 'ma_'
+                    );
+                 
+                delete_cookie($cookie);
+            }
             $this->load->view('admin/index',$data);
         }
     }
