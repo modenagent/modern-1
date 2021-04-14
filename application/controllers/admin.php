@@ -31,7 +31,7 @@ class Admin extends CI_Controller
                     'name'   => 'ci_session',
                     'value'  => '',
                     'expire' => time() - 100,
-                    'domain' => '.modernagent.localhost.com',
+                    'domain' => '.'.$cookie_domain ,
                     'prefix' => 'ma_'
                     );
                  
