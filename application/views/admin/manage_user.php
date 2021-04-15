@@ -82,8 +82,14 @@
                           
                       <?php endforeach; ?>
                     </select>
+                    
                   </div> 
-                  <input type="hidden" name="cname" id="cname">
+                  <!-- <input type="hidden" id="cname"> -->
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" placeholder="Company Name" name="cname" class="form-control alphanumeric" id="cname">
+                  </div> 
               </div>
               <div class="col-md-3">
                 <div class="form-group">
@@ -114,9 +120,9 @@
                       </div> 
                   </div>
               <?php endif; ?>
-              <div class="col-md-6">
+              <div <?php if($add_form=='sales_rep'): ?> class="col-md-3" <?php else : ?> class="col-md-6" <?php endif;?> >
                   <div class="form-group">
-                    <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company')?'readonly="readonly"':''; ?>>
+                    <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company' && $add_form!=='sales_rep')?'readonly="readonly"':''; ?>>
                   </div> 
               </div>
             </div>
