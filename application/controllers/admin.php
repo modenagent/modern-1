@@ -2249,7 +2249,7 @@ MSG;
                 $data['choose'] = 'Choose Company';
             }
             $this->load->view('admin/header',$data);
-            $this->load->view('admin/manage_user',$data);
+            $this->load->view('admin/manage_sales_rep',$data);
             $this->load->view('admin/footer',$data);
         }else{
             redirect('admin/index');
