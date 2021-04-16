@@ -3,6 +3,11 @@ class Lp extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();
+        $origin = $_SERVER['HTTP_ORIGIN'];
+        $allowed_domains = array('https://'.$_ENV['WIDGET_DOMAIN'],'http://'.$_ENV['WIDGET_DOMAIN']);
+        if (in_array($origin, $allowed_domains)) {
+            header('Access-Control-Allow-Origin: ' . $origin);
+        }
 	}
 
 	function getSearchResults(){
