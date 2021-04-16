@@ -348,7 +348,7 @@ $(document.body).on('submit', '#ref-form' ,function(){
     }else{
       var form_data = $(this).serializeArray();
       $.ajax({
-              url: '<?php echo site_url("user/cart_payment") ?>', // point to server-side PHP script 
+              url: '<?php echo site_url("widgetcma/cart_payment") ?>', // point to server-side PHP script 
               data: form_data,
               method: 'post',
               success: function(php_script_response) {
