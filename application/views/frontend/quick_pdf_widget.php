@@ -192,27 +192,6 @@
 
 
 
-<!-- Bootstrap Core JavaScript --> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
-<script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-
- 
-    
-
 <script type="text/javascript">
     var percentbar,percentLabel, pagebar, pageLabel ; 
 $(document).ready(function(){
