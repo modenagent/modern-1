@@ -67,11 +67,15 @@ include 'db-config.php';
 foreach ($idps_config as $idp_config) {
     $config[$idp_config['unique_id']] = [
         'saml:SP',        
-        // 'entityID' => null,
-        // 'idp' => $idp_config['metadata_url'], 
-        'entityID' => 'https://storage.maxadesigns.com/users/saml_idp/auth',
+        'entityID' => null,
         'idp' => $idp_config['metadata_url'],        
         'discoURL' => null,
     ];
 }
+$config['testing-auth'] = [
+        'saml:SP',        
+        'idp' => null,
+        'entityID' => $idp_config['metadata_url'],        
+        'discoURL' => null,
+    ];
 // var_dump($config);die;
