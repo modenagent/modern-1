@@ -72,4 +72,10 @@ foreach ($idps_config as $idp_config) {
         'discoURL' => null,
     ];
 }
+$config['testing-auth'] = [
+        'saml:SP',        
+        'idp' => null,
+        'entityID' => $idp_config['metadata_url'],        
+        'discoURL' => null,
+    ];
 // var_dump($config);die;
