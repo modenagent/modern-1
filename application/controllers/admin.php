@@ -700,7 +700,7 @@ MSG;
             $data['roles'] = $this->base_model->all_records('lp_role');
             $_isAdmin = $this->role_lib->is_admin();
 
-            if($data['user']->role_id_fk == 2) {
+            if($data['user']->role_id_fk == 2 || $data['user']->role_id_fk == 3) {
 
                 $get_sso_record = $this->base_model->get_all_record_by_in('lp_idps','company_id',$uid);
                 if($get_sso_record && is_array($get_sso_record) && count($get_sso_record)) {
@@ -714,6 +714,7 @@ MSG;
                     $data_ins['unique_id'] = $unique_id;
                     $data_ins['company_id'] = $uid;
                     $data_ins['metadata_url'] = '';
+                    $data_ins['idp'] = '';
 
                     $result = $this->base_model->insert_one_row('lp_idps',$data_ins);
 
@@ -900,6 +901,7 @@ MSG;
 
                 
                     $data_update['metadata_url'] = $sso['metadata_url'];
+                    $data_update['idp'] = $sso['idp'];
                     $data_update['unique_id'] = $sso['unique_id'];
                     $data_update['email'] = $fields['email']; 
                     $data_update['first_name'] = $fields['first_name']; 

@@ -18,7 +18,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT unique_id, metadata_url FROM lp_idps WHERE metadata_url != ''";
+$sql = "SELECT unique_id, metadata_url, idp FROM lp_idps WHERE metadata_url != ''";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

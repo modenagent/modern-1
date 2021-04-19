@@ -65,10 +65,16 @@ $config = [
 
 include 'db-config.php';
 foreach ($idps_config as $idp_config) {
+    if(!empty($idp_config['idp'])) {
+        $idp = $idp_config['idp'];
+    }
+    else {
+        $idp = $idp_config['metadata_url'];
+    }
     $config[$idp_config['unique_id']] = [
         'saml:SP',        
         'entityID' => null,
-        'idp' => $idp_config['metadata_url'],        
+        'idp' => $idp,        
         'discoURL' => null,
     ];
 }
