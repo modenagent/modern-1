@@ -74,8 +74,8 @@ foreach ($idps_config as $idp_config) {
 }
 $config['testing-auth'] = [
         'saml:SP',        
-        'idp' => null,
-        'entityID' => $idp_config['metadata_url'],        
+        'entityID' => null,
+        'idp' => 'https://storage.maxadesigns.com/users/saml_idp/auth',        
         'discoURL' => null,
     ];
 // var_dump($config);die;
