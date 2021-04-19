@@ -50,7 +50,7 @@ $domain_url = 'https://'.$_ENV['APP_DOMAIN'].'/';
 <script type="text/javascript" src="<?php echo $domain_url; ?>assets/js/jquery.smartTab.js"></script> 
 <script type="text/javascript" src="<?php echo $domain_url; ?>assets/js/icheck.min.js"></script>
 <script type="text/javascript" src="<?php echo $domain_url; ?>assets/js/custom.js"></script> 
-<script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
+<script src="<?php echo $domain_url; ?>assets/js/jquery.multi-select.js"></script>
 
 
 
