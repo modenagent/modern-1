@@ -95,6 +95,10 @@ class WidgetCma extends CI_Controller {
 
     // stripe post
     public function cart_payment(){
+
+    	 ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
       
       $userId = $data['user_id'] = $this->session->userdata('userid');
       if(true || $userId){
