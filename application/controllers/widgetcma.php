@@ -96,9 +96,6 @@ class WidgetCma extends CI_Controller {
     // stripe post
     public function cart_payment(){
 
-    	 ini_set('display_errors', 1);
-		ini_set('display_startup_errors', 1);
-		error_reporting(E_ALL);
       
       $userId = $data['user_id'] = $this->session->userdata('userid');
       if(true || $userId){
@@ -306,6 +303,71 @@ class WidgetCma extends CI_Controller {
     public function generateInvoice() {
 		  $invoice_no = $this->session->userdata('userid').'-'.time();
 		  return $invoice_no;
+    }
+
+
+    public function gen_invoice($inv,$cart_id){
+      $userId = $data['user_id'] = $this->session->userdata('userid');
+        if($userId){
+			    $invoice_data = array();
+          // user data
+          $user = $data['users'] = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
+          $user_name = $user[0]['first_name'].' '.$user[0]['last_name'];
+          $user_email = $user[0]['email'];
+          // get invoice data
+          $invoice = $data['invoices'] = $this->base_model->get_record_result_array('lp_invoices',array('invoice_id_pk'=>$inv,'user_id_fk' => $userId));
+          $order_num = $invoice[0]['invoice_num'];
+          
+          $cart = $this->base_model->get_record_result_array('lp_my_cart',array('cart_id_pk'=>$cart_id,'user_id_fk' => $userId));
+          $total_amount = $cart[0]['total_amount'];
+          //$discount = $this->base_model->get_record_result_array('lp_coupon_mst',array('coupon_id_pk'=>$cart[0]['coupon_id_fk']));
+          //$discount_amount = $discount[0]['coupon_amt'];
+		      $tax_amount = 0;
+          
+          $lp_details = $this->base_model->get_record_result_array('lp_my_listing',array('project_id_pk'=>$cart[0]['project_id_fk']));
+
+          //$this->load->model('package_model');
+          //$report_price = $this->package_model->get_reports_price();
+		  
+          $invoice_data['user_name'] = $user_name;
+          $invoice_data['order_num'] = $order_num;
+          $invoice_data['lp_details'] = $lp_details[0];
+          $invoice_data['total_amount'] = $invoice[0]['order_amount'];//$report_price;
+          $invoice_data['discount_amount'] = $invoice[0]['coupon_amount'];//$discount_amount;
+          $invoice_data['tax_amount'] = $tax_amount;
+          $invoice_data['total'] = $total_amount;
+          // my flyer data
+          $myflyers = $data['myflyers'] = $this->base_model->get_record_result_array('lp_my_listing', array('user_id_fk'=>$userId, 'project_id_pk'=>$this->session->userdata('project_id')));
+          
+	    	  $pdf_file = 'assets/uploads/user_invoices/'.uniqid().'.pdf';
+            
+          ob_start();
+          $this->load->view('invoice', $invoice_data);
+          $content = ob_get_contents();
+          ob_clean();
+          //echo $content;exit;		
+          $this->load->library('mpdf'); 
+          $mpdf=new mPDF(); 
+          $mpdf=new mPDF('','A4','','',10,10,7);
+          $mpdf->WriteHTML($content);
+          $mpdf->Output($pdf_file);
+		  
+          $updateData = array(            
+            'invoice_pdf' => $pdf_file
+          );
+          
+          $myPdf=array();
+          
+          array_push($myPdf, $pdf_file);
+          array_push($myPdf, $myflyers[0]['report_path']);
+          $this->load->helper('sendemail');
+          
+          $this->base_model->queue_mail($user_email,'Report is ready',$content,$myPdf);
+      
+
+          $updateFlyerTable = $this->base_model->update_record_by_id('lp_invoices', $updateData,array('invoice_id_pk' => $inv)); 
+
+      }
     }
 
 }
