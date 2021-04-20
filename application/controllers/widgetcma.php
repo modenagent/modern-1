@@ -308,7 +308,7 @@ class WidgetCma extends CI_Controller {
 
     public function gen_invoice($inv,$cart_id,$userId){
       // $userId = $data['user_id'] = $this->session->userdata('userid');
-      var_dump($userId);die;
+      var_dump($this->session->userdata('userid'));die;
         if($userId){
 			    $invoice_data = array();
           // user data
