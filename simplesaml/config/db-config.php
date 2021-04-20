@@ -34,7 +34,8 @@ if ($result->num_rows > 0) {
 
     $idps_config[] = array(
       'unique_id' => $row['unique_id'],
-      'metadata_url' => $row['metadata_url']
+      'metadata_url' => $row['metadata_url'],
+      'idp' => $row['idp']
     );
     
   }
