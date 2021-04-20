@@ -5,13 +5,8 @@ if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
 }
 
-if(empty($_GET['company'])) {
-    echo "Invalid request";die;
-}
 
 $auth_id = $_GET['site_id'];
-$company_url = $_GET['company'];
-
 if(!empty($auth_id)) {
     	$auth = new \SimpleSAML\Auth\Simple($auth_id);
 }
@@ -88,17 +83,35 @@ else {
             	// $sales_rep_email = $attr_values['parent_id'];
             	$parent_id = '';
 
-            	$get_where = array('company_url'=>$company_url);
-            	$sales_rep = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
-            	if($sales_rep && !empty($sales_rep)) {
-            		$parent_id = $sales_rep->user_id_pk;
-            	}
-            	else {
-            		echo 'You are not authorize'; die;
-            	}
+            	
             	//Get company info
             	$get_where = array('user_id_pk'=>$idp_data->company_id);
             	$comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+                if($comp_info && !empty($comp_info)) {
+                    if($comp_info->role_id_fk == 3) {
+                        $parent_id = $comp_info->user_id_pk;
+                    }
+
+                    elseif(empty($_GET['company'])) {
+                        echo "Invalid request";die;
+                    }
+
+                    $company_url = $_GET['company'];
+
+                    $get_where = array('company_url'=>$company_url,'parent_id'=>$comp_info->user_id_pk);
+                    $comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+                    if($comp_info && !empty($comp_info)) {
+                        $parent_id = $comp_info->user_id_pk;
+                    }
+                    else {
+                        echo 'You are not authorize'; die;
+                    }
+                }
+                else {
+                    echo 'You are not authorize'; die;
+                }
+
+                
 
 
             	//Register user with field mapping
