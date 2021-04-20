@@ -73,6 +73,9 @@ $domain_url = 'https://'.$_ENV['APP_DOMAIN'].'/';
 	    jQuery.ajax({
 	        url: app_check_url,
 	        type: "GET",//type of posting the data
+	        xhrFields: { 
+        withCredentials: true 
+    },
 	        // dataType: "json",
 	        success: function (response) {
 	          // if(response.status == true) {

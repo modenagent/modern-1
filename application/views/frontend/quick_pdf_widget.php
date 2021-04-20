@@ -282,6 +282,9 @@ $(document.body).on('submit', '#ref-form' ,function(){
               url: '<?php echo base_url(); ?>widgetcma/get_user_by_ref', // point to server-side PHP script 
               data: form_data,
               method: 'post',
+              xhrFields: { 
+        withCredentials: true 
+    },
               success: function(php_script_response) {
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
@@ -330,6 +333,9 @@ $(document.body).on('submit', '#ref-form' ,function(){
               url: '<?php echo site_url("widgetcma/cart_payment") ?>', // point to server-side PHP script 
               data: form_data,
               method: 'post',
+              xhrFields: { 
+                    withCredentials: true 
+                },
               success: function(php_script_response) {
                   
                   console.log(JSON.parse(php_script_response));

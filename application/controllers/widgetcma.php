@@ -11,6 +11,8 @@ class WidgetCma extends CI_Controller {
         $allowed_domains = array('https://'.$_ENV['WIDGET_DOMAIN'],'http://'.$_ENV['WIDGET_DOMAIN']);
         if (in_array($origin, $allowed_domains)) {
 		    header('Access-Control-Allow-Origin: ' . $origin);
+		    header('Access-Control-Allow-Credentials: true');
+
 		}
         $this->load->model('user_model');
 
@@ -95,7 +97,7 @@ class WidgetCma extends CI_Controller {
 
     // stripe post
     public function cart_payment(){
-
+    	var_dump($this->session->userdata('userid'));
       
       $userId = $data['user_id'] = $this->session->userdata('userid');
       if(true || $userId){
