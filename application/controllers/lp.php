@@ -7,6 +7,8 @@ class Lp extends CI_Controller{
         $allowed_domains = array('https://'.$_ENV['WIDGET_DOMAIN'],'http://'.$_ENV['WIDGET_DOMAIN']);
         if (in_array($origin, $allowed_domains)) {
             header('Access-Control-Allow-Origin: ' . $origin);
+            header('Access-Control-Allow-Credentials: true');
+            
         }
 	}
 
