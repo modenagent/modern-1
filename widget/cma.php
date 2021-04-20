@@ -16,6 +16,19 @@ $domain_url = 'https://'.$_ENV['APP_DOMAIN'].'/';
 // echo base_url();die;
 // echo $_SERVER['HTTP_REFERER'];die;
 ?>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Modern Agent - CMA Generation</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Modern Agent - Real Estate Presentations</title>
+
+        <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
+        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+        <!-- <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon" /> -->
+</head>
 <div id="cma-widget-container">
 	
 </div>
