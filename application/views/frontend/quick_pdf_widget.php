@@ -187,7 +187,7 @@
     
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/lp_cma_widget.js") ?>"></script>
 
 
 
