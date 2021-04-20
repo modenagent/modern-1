@@ -166,7 +166,7 @@ class WidgetCma extends CI_Controller {
                   );
                 $result2 = $this->base_model->insert_one_row('lp_invoices',$data2);
 
-                $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId);
+                $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId,$userId);
 
                 $updateProject = array('is_active'=>'Y');
                 $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$this->session->userdata('project_id')));
@@ -212,7 +212,7 @@ class WidgetCma extends CI_Controller {
                   );
                 $result2 = $this->base_model->insert_one_row('lp_invoices',$data2);
 
-                $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId);
+                $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId,$userId);
 
                 $updateProject = array('is_active'=>'Y');
                 $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$this->session->userdata('project_id')));
@@ -306,8 +306,8 @@ class WidgetCma extends CI_Controller {
     }
 
 
-    public function gen_invoice($inv,$cart_id){
-      $userId = $data['user_id'] = $this->session->userdata('userid');
+    public function gen_invoice($inv,$cart_id,$userId){
+      // $userId = $data['user_id'] = $this->session->userdata('userid');
       var_dump($userId);die;
         if($userId){
 			    $invoice_data = array();

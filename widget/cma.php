@@ -1,4 +1,9 @@
 <?php
+$samlbasedir= dirname(dirname(__FILE__));
+include $samlbasedir.'/'.'vendor/autoload.php';
+$dotenv = Dotenv\Dotenv::createImmutable($samlbasedir);
+      
+$dotenv->load();
 ob_start();
 $root_dir = dirname(dirname(__FILE__)) . DIRECTORY_SEPARATOR ;
 $root_dir = str_replace('\\', '/', $root_dir);
@@ -56,7 +61,6 @@ $domain_url = 'https://'.$_ENV['APP_DOMAIN'].'/';
 
 <script type="text/javascript">
 	var app_check_url = "<?=$domain_url?>widgetcma";
- var app_main_url = "<?=$domain_url?>cma";
 	$(document).ready(function(){
 		loadWidget();
 	});
