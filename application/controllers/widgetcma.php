@@ -222,6 +222,7 @@ class WidgetCma extends CI_Controller {
                 if($couponId!='')
                   $this->base_model->add_coupon_redeem_log($couponId,$userId,$this->session->userdata('project_id'));
                 if($this->input->is_ajax_request()){
+                	die("IN");
                     //Save Data in leads
                     $phoneNumber = $this->input->post('phone_number');
                     $leadData = array(
@@ -282,6 +283,8 @@ class WidgetCma extends CI_Controller {
                     echo json_encode(array("status"=>"success","sms"=>$smsText));
                     exit();
                 }
+                	die("ELSE");
+
                 redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
               }
           } else {
