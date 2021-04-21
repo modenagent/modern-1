@@ -103,8 +103,14 @@
             </div>
           </div>
           <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <input type="text" placeholder="CMA Url" name="cma_url" class="form-control" id="cma_url">
+              </div>
+            </div>
            
-            <div class="col-sm-12">
+            <div class="col-sm-9">
                 <div class="form-group">
                   <select placeholder="Choose <?php echo $choose; ?>" name="parent_id" class="form-control choose_option" id="parent_id">
                     <option selected="selected" disabled=""> --Select Company Name-- </option>
@@ -239,6 +245,7 @@ $(document).ready(function(){
             var parent_id = $("#parent_id").val();
             var role_id = $("#role_id").val();
             var company_url = $("#company_url").val();
+            var cma_url = $("#cma_url").val();
             var ccity = $("#ccity").val();
             var czip = $("#czip").val();
 
@@ -264,6 +271,7 @@ $(document).ready(function(){
                     role_id: role_id,
                     parent_id:parent_id,
                     company_url:company_url,
+                    cma_url : cma_url,
                     backend:"1",
                 }
             }).success(function(resp) {

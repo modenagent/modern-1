@@ -765,12 +765,20 @@ MSG;
                 $cname = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
 
                 $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
-                if(isset($postedArr['ccity']) && isset($postedArr['czip']) && isset($postedArr['cstate']) && isset($postedArr['curl'])) {
-
-                $ccity = mysqli_real_escape_string($this->dbConn, $postedArr['ccity']);
-                $czip = mysqli_real_escape_string($this->dbConn, $postedArr['czip']);
-                $cstate = mysqli_real_escape_string($this->dbConn, $postedArr['cstate']);
-                $curl = mysqli_real_escape_string($this->dbConn, $postedArr['curl']);
+                if(isset($postedArr['ccity'])){
+                    $ccity = mysqli_real_escape_string($this->dbConn, $postedArr['ccity']);
+                }
+                if(isset($postedArr['czip'])){
+                    $czip = mysqli_real_escape_string($this->dbConn, $postedArr['czip']);
+                }
+                if(isset($postedArr['cstate'])){
+                    $cstate = mysqli_real_escape_string($this->dbConn, $postedArr['cstate']);
+                }
+                if(isset($postedArr['curl'])){
+                    $curl = mysqli_real_escape_string($this->dbConn, $postedArr['curl']);
+                }
+                if(isset($postedArr['cma_url'])){
+                    $cma_url = mysqli_real_escape_string($this->dbConn, $postedArr['cma_url']);
                 }
                 
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
@@ -805,11 +813,20 @@ MSG;
                     'company_add' => $cadd,
                     'is_enterprise_user' => $enterpriseFlag,
                 );
-                if(isset($ccity) && isset($cstate) && isset($czip) && isset($curl)) {
+                if(isset($ccity)){
                     $data['company_city'] = $ccity;
-                    $data['comapny_zip'] = $czip;
+                }
+                if(isset($cstate)){
                     $data['company_state'] = $cstate;
+                }
+                if(isset($czip)) {
+                    $data['comapny_zip'] = $czip;
+                }
+                if(isset($curl)) {
                     $data['company_url'] = $curl;
+                }
+                if(isset($cma_url)) {
+                    $data['cma_url'] = $cma_url;
                 }
                 $resultCheck = false;
                 // USER NAME CAN NOT BE CHANGED ONCE CREATED

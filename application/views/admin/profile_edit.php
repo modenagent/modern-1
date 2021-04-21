@@ -147,6 +147,11 @@
                   <td>Company Url</td>
                   <td><input type="text" class="form-control" placeholder="Company Url" name="curl" id="curl" value="<?php echo $user->company_url; ?>"></td>
                 </tr>
+                <tr>
+                  <td>CMA Url</td>
+                <td><input type="text" placeholder="CMA Url" name="cma_url" class="form-control" id="cma_url" value="<?php echo $user->cma_url; ?>"></td>
+              
+                </tr>
                 <?php
               endif;
               ?>
