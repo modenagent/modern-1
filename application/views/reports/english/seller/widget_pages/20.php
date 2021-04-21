@@ -101,7 +101,7 @@
                     <a href="https://hometownerealestate.net">hometownerealestate.net</a>
                 </div>
             </div>
-            <img src="https://i.ibb.co/H4g6bs3/logo-here.png" alt="logo-here" class="logo_here">
+            <!-- <img src="https://i.ibb.co/H4g6bs3/logo-here.png" alt="logo-here" class="logo_here"> -->
         </div>
     </div>
     <div class="footer">

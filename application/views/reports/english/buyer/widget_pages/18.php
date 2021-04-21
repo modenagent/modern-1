@@ -107,7 +107,7 @@
 
                 
             </div>
-            <img src="<?php echo base_url().'assets/reports/english/buyer/images/18//logo-here.png';?>" alt="logo-here" class="logo_here">
+            <!-- <img src="<?php echo base_url().'assets/reports/english/buyer/images/18//logo-here.png';?>" alt="logo-here" class="logo_here"> -->
         </div>
     </div>
     <div class="footer">

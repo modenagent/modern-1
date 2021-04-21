@@ -166,7 +166,7 @@
                             <form id="run-pma-form" >
                                 <div class="col-md-12">
                                     <div class="row">
-                                        <div class="col-xs-12 col-lg-6 col-md-6">
+                                        <div class="col-xs-12 col-lg-12 col-md-12">
                                           <!-- <h2><strong>Agent:</strong> Upload Pic &amp; Enter Info</h2> -->
                                           <div class="row">
                                             <div class="col-md-3">
@@ -201,7 +201,7 @@
                                           </div>
                                         </div>
                                       </div>
-                                    <div class="col-xs-12 col-lg-6 col-md-6">
+                                    <div class="col-xs-12 col-lg-6 col-md-6 hide">
                                       <!-- <h2><strong>Company:</strong> Upload Logo &amp; Enter Info</h2> -->
                                       <div class="row">
                                         <div class="col-md-3">
