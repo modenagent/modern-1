@@ -10,8 +10,13 @@
                     </div>
                     <div class="col-50">
                         <ul class="list-inline">
-                            <li><a href="https://modernagent.io/cma"><img src="<?php echo base_url('assets/reports/english/marketUpdate/images/world.png');?>" alt="WWW">modernagent.io</a></li>
-                            <li><a href="https://modernagent.io/cma"><img src="<?php echo base_url('assets/reports/english/marketUpdate/images/keyboard.png');?>" alt="Code">ENTER CODE:<span><?php echo $user['ref_code']; ?></span></a></li>
+                            <?php if(empty($cma_url)):
+                                $cma_url = "https://modernagent.io/cma";
+                            endif;
+                            $cma_url_display = preg_replace("(^https?://)", "", $cma_url );
+                             ?>
+                            <li><a href="<?php echo $cma_url; ?>"><img src="<?php echo base_url('assets/reports/english/marketUpdate/images/world.png');?>" alt="WWW"><?php echo $cma_url_display; ?></a></li>
+                            <li><a href="<?php echo $cma_url; ?>"><img src="<?php echo base_url('assets/reports/english/marketUpdate/images/keyboard.png');?>" alt="Code">ENTER CODE:<span><?php echo $user['ref_code']; ?></span></a></li>
                         </ul>
                         <p>
                             To receive your complimentary sales report via<br>

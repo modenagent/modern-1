@@ -883,6 +883,30 @@ use Knp\Snappy\Pdf;
             }            
             /* testimonials */
 
+            // if it is an api call then we get the user id from the token
+            if($callFromApi == 1){
+                $currentUserId = getUserIdByToken($reportData['token']);
+            }else{
+                $currentUserId = $CI->session->userdata('userid');   
+            }
+
+            if($currentUserId > 0) {
+
+                $tableName = "lp_user_mst";
+                $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
+                $data['cma_url'] = $user_details->cma_url;
+
+                if(!empty($user_details->parent_id))
+                {
+                    $parent_id = $user_details->parent_id;
+                    $sales_rep_info = $CI->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
+                    
+                    if(!empty($sales_rep_info->cma_url)) {
+                      $data['cma_url'] = $sales_rep_info->cma_url;
+                    }
+                }
+            }
+
             $data['pdfPages'] = isset($_POST['pdfPages']) && !empty($_POST['pdfPages']) ? explode(',', $_POST['pdfPages']): array(); 
             
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
@@ -890,12 +914,7 @@ use Knp\Snappy\Pdf;
             $reportGenerated = $PdfGenResponse['report_generated'];
             $errorMsg = $PdfGenResponse['error_msg'];
                 
-                // if it is an api call then we get the user id from the token
-                if($callFromApi == 1){
-                    $currentUserId = getUserIdByToken($reportData['token']);
-                }else{
-                    $currentUserId = $CI->session->userdata('userid');   
-                }
+
             if($reportGenerated) {
                 $insertPdfReport =  array(
                                             'project_name'=>$CI->db->escape_str($report187->PropertyProfile->SiteAddress),
