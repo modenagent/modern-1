@@ -1,4 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+require 'Twilio/autoload.php';
+use Twilio\Rest\Client;
 ob_start();
 class WidgetCma extends CI_Controller {
 
@@ -221,8 +223,8 @@ class WidgetCma extends CI_Controller {
                 $couponId = $this->input->post('coupon_id');
                 if($couponId!='')
                   $this->base_model->add_coupon_redeem_log($couponId,$userId,$this->session->userdata('project_id'));
-                if($this->input->is_ajax_request()){
-                	die("IN");
+                // if($this->input->is_ajax_request()){
+                	// die("IN");
                     //Save Data in leads
                     $phoneNumber = $this->input->post('phone_number');
                     $leadData = array(
@@ -282,10 +284,10 @@ class WidgetCma extends CI_Controller {
                       }
                     echo json_encode(array("status"=>"success","sms"=>$smsText));
                     exit();
-                }
-                	die("ELSE");
+                // }
+                	// die("ELSE");
 
-                redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
+                // redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
               }
           } else {
             if($this->input->is_ajax_request()){
