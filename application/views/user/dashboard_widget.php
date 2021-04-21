@@ -493,6 +493,9 @@
                     <?php endif; ?>
                     </h1>
                     <p style="color:#ffffff;">We have stored all of your leads here so you can access them at anytime. </p>
+                    <?php if(!empty($cma_url)): ?>
+                    <p style="color:#ffffff;">Offer your potential home sellers to get a free CMA with this link: <a target="_blank" href="<?php echo $cma_url; ?>"> <?php echo $cma_url; ?></a> - make sure they use your reference code.</p>
+                  <?php endif; ?>
                     <p>&nbsp;</p>
                     <?php
                         $this->load->view('user/widget_leads',array('leads'=>$leads)); 

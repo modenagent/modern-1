@@ -152,6 +152,9 @@ class Auth extends REST_Controller
             if(!empty($this->post('company_url'))) {
                 $user['company_url'] = $this->post('company_url');
             }
+            if(!empty($this->post('cma_url'))) {
+                $user['cma_url'] = $this->post('cma_url');
+            }
             $resp = $this->base_model->insert_one_row('lp_user_mst', $user);
             if($resp){
                 if($this->get('backend')){
