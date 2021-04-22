@@ -940,13 +940,13 @@ use Knp\Snappy\Pdf;
                 }
 
                 $CI->base_model->insert_one_row('lp_my_listing', $insertPdfReport);
-                $CI->session->set_userdata('project_id', $CI->base_model->get_last_insert_id());
+                $project_id = $CI->base_model->get_last_insert_id();
+                $CI->session->set_userdata('project_id', $project_id);
 
                 // if call is from api then we directly send the report link
-                if($callFromApi == 1)
-                    return array("status"=>true, 'reportLink' => base_url($pdfFileName));
-                else
-                    return array("status"=>true);
+                return array("status"=>true, 'reportLink' => base_url($pdfFileName,'project_id'=>$project_id);
+
+                
             } else {
                 return array("status"=>false,"msg"=>$errorMsg);
             }
