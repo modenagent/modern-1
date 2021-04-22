@@ -152,6 +152,18 @@
                 <td><input type="text" placeholder="CMA Url" name="cma_url" class="form-control" id="cma_url" value="<?php echo $user->cma_url; ?>"></td>
               
                 </tr>
+
+                <tr>
+                  <td>Use Rets API?</td>
+                <td><input style="width:30px" type="checkbox" name="use_rets_api" class="form-control" id="use_rets_api" <?php if($user->use_rets_api == 1): echo 'checked'; endif;?> value="1" /></td>
+              
+                </tr>
+
+                <tr>
+                  <td>Report Directory</td>
+                <td><input type="text" placeholder="Report Directory" name="report_dir_name" class="form-control" id="report_dir_name" value="<?php echo $user->report_dir_name; ?>"></td>
+              
+                </tr>
                 <?php
               endif;
               ?>
@@ -372,6 +384,13 @@
                       <td>Phone:</td>
                       <td>
                         <input type="text" class="form-control"   value="<?=$sso_record->phone?>" name="data[<?php echo $key; ?>][field][phone]">
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <td>Image:</td>
+                      <td>
+                        <input type="text" class="form-control"   value="<?=$sso_record->image?>" name="data[<?php echo $key; ?>][field][image]">
                       </td>
                       
                     </tr>
@@ -624,7 +643,15 @@ $('#add_idp_btn').click(function(){
                       <tr>
                         <td>Phone:</td>
                         <td>
-                          <input type="text" class="form-control"   value="" required name="data[`+ key_new +`][field][phone]">
+                          <input type="text" class="form-control"   value=""  name="data[`+ key_new +`][field][phone]">
+                        </td>
+                        
+                      </tr>
+
+                      <tr>
+                        <td>Image:</td>
+                        <td>
+                          <input type="text" class="form-control"   value=""  name="data[`+ key_new +`][field][image]">
                         </td>
                         
                       </tr>
