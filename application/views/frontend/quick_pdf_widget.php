@@ -363,7 +363,7 @@ $("#create-report").click(function(){
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
     $('.backwrap').removeClass('hidden');
-    pmaRes = runPMA('','');
+    pmaRes = widgetRunPMA('','');
     doSubmit();
     
 });
