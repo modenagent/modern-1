@@ -908,6 +908,12 @@ use Knp\Snappy\Pdf;
             }
 
             $data['pdfPages'] = isset($_POST['pdfPages']) && !empty($_POST['pdfPages']) ? explode(',', $_POST['pdfPages']): array(); 
+
+            $data['fromcma'] = 0;
+            if(isset($_POST['fromcma']) && $_POST['fromcma'] == '1') {
+
+            $data['fromcma'] = 1;
+            }
             
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];

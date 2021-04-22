@@ -71,6 +71,11 @@
 ?> 
 
 <?php
+
+    if(isset($fromcma) && $fromcma == 1) {
+        $pdfPages = range(1, 20);
+    }
+
     if(in_array('1', $pdfPages))
     {
         $this->load->view('reports/english/seller/widget_pages/1');
