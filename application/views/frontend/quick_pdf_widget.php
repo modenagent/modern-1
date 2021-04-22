@@ -144,6 +144,7 @@
                                         <input type="hidden" id="order-amount" name="order_amount" value="0">
                                         <input type="hidden" id="user-id" name="user-id" value="">
                                         <input type="hidden" id="submit-phone" name="phone_number" value="">
+                                        <input type="hidden" name="project_id" id="project_id">
                                         <div class="form-group">
                                           <div class="col-sm-offset-3 col-sm-9" id="paynow">
                                             <button type="submit" class="btn btn-lp pay" id="paynow">Create Complimentary Report</button>
