@@ -780,6 +780,12 @@ MSG;
                 if(isset($postedArr['cma_url'])){
                     $cma_url = mysqli_real_escape_string($this->dbConn, $postedArr['cma_url']);
                 }
+                if(isset($postedArr['use_rets_api'])){
+                    $use_rets_api = mysqli_real_escape_string($this->dbConn, $postedArr['use_rets_api']);
+                }
+                if(isset($postedArr['report_dir_name'])){
+                    $report_dir_name = mysqli_real_escape_string($this->dbConn, $postedArr['report_dir_name']);
+                }
                 
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
                 $parentId = (!empty($this->input->post('parent_id')))?$this->input->post('parent_id'):0;
@@ -827,6 +833,14 @@ MSG;
                 }
                 if(isset($cma_url)) {
                     $data['cma_url'] = $cma_url;
+                }
+                $data['use_rets_api'] = 0;
+                if(isset($use_rets_api) && $use_rets_api == 1) {
+                    $data['use_rets_api'] = 1;
+
+                }
+                if(isset($report_dir_name)) {
+                    $data['report_dir_name'] = $report_dir_name;
                 }
                 $resultCheck = false;
                 // USER NAME CAN NOT BE CHANGED ONCE CREATED
@@ -926,6 +940,7 @@ MSG;
                     $data_update['phone'] = $fields['phone']; 
                     // $data_update['sales_rep'] = $fields['sales_rep']; 
                     $data_update['username'] = $fields['username']; 
+                    $data_update['image'] = $fields['image']; 
 
                     if(!empty($sso['sso_id'])) { //Update
                          $where = array(
