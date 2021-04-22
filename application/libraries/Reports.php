@@ -944,7 +944,7 @@ use Knp\Snappy\Pdf;
                 $CI->session->set_userdata('project_id', $project_id);
 
                 // if call is from api then we directly send the report link
-                return array("status"=>true, 'reportLink' => base_url($pdfFileName,'project_id'=>$project_id);
+                return array("status"=>true, 'reportLink' => base_url($pdfFileName),'project_id'=>$project_id);
 
                 
             } else {
