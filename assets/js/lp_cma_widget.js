@@ -931,7 +931,7 @@ function widgetRunPMA(agentPath, logoPath) {
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
 
     xhr = $.ajax({
-        url: base_url+'widget/getWidgetPropertyData',
+        url: base_url+'widgetcma/getWidgetPropertyData',
         type: 'POST',
         data: query
     })

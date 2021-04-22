@@ -97,6 +97,31 @@ class WidgetCma extends CI_Controller {
         
     }
 
+    public function getWidgetPropertyData()
+    {
+                    // $response = $this->reports->getPropertyDataForWidget();
+        $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
+        try {
+            $response = $this->reports->getPropertyDataForWidget();
+            if(isset($response['status']) && $response['status']===false){
+                $msg = $response['msg'];
+            }
+        } catch (Exception $e){
+            $response = false;
+            $msg = $e->getMessage();
+        }
+        if($response['status']){
+            echo json_encode(array('status'=>'success'));
+        } else {
+            $this->base_model->queue_mail("info@modernagent.io",'Urgent! Error occured while generating PDF',$msg,null,'info@modernagent.io');
+            $responseArray = ['status'=>'fail','msg'=>$msg];
+            if (isset($response['showError']) && ($response['showError']==true||$response['showError']=='true')){
+                $responseArray['showError'] = true;
+            }
+            echo json_encode($responseArray);
+        }
+    }
+
     // stripe post
     public function cart_payment(){
     	// var_dump($this->session->userdata('userid'));
