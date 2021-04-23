@@ -169,6 +169,7 @@
                                         <div class="col-xs-12 col-lg-12 col-md-12">
                                           <!-- <h2><strong>Agent:</strong> Upload Pic &amp; Enter Info</h2> -->
                                           <div class="row">
+										  <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                               <div class="leftpic"> <a href="javascript:;">
                                                 <?php
@@ -190,7 +191,7 @@
                                               <input type="text" id="fileimage" class="hidden file-path" name="user[profile_image]" value="<?php echo $user['profile_image']; ?>" >
                                             </div>
                                           </div>
-                                          <div class="col-md-9">
+                                          <div class="col-md-6">
                                             <input type="hidden" class="form-control"   name="user_image"      id="user_image" value=""    />
                                             <input type="text" class="form-control"   name="user[fullname]"   id="" placeholder="Name"    value="<?php echo $user['first_name'].' '.$user['last_name']; ?>" />
                                             <input type="text" class="form-control"   name="user[title]"      id="" placeholder="Title"   value="<?php echo $user['title']; ?>"/>

@@ -1412,7 +1412,7 @@ ul.pagination li.current a:focus {
 }
 
 #cma-widget-container table a {
-    color:#cc9964;
+    color:#f29649;
 }
 
 #cma-widget-container table a:hover {
@@ -1791,14 +1791,14 @@ ul.pagination li.current a:focus {
 #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     color: #fff !important;
-    border: 1px solid #55c9e0;
-    background-color: #55c9e0;
+    border: 1px solid #f29649;
+    background-color: #f29649;
     border-radius: 0;
     font-weight: bold;
 }
 
 #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-    background-color: #55c9e0;
+    background-color: #f29649;
 }
 
 
