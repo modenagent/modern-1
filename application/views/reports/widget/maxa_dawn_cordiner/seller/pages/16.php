@@ -1,92 +1,66 @@
-<page class="pdf16">
-    <?php
-        $heading = isset($report_content_data['title']['value']) && !empty($report_content_data['title']['value']) ? $report_content_data['title']['value'] : 'The Sellers Road-map';
-    ?>
-    <h1 class="main_title top_title"><?php echo $heading; ?></h1>
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
-    <div class="content_area">
-        <div class="d-flex mt-60">
-            <div class="col-50">
-                <?php
-                    $sub_heading = isset($report_content_data['sub_title']['value']) && !empty($report_content_data['sub_title']['value']) ? $report_content_data['sub_title']['value'] : 'Meet With a Real\n\nEstate Professional';
-                ?>
-                <h4 class="crimson mt-0"><?php echo $sub_heading; ?></h4>
-                <?php 
-                    $content = isset($report_content_data['content']['value']) && !empty($report_content_data['content']['value']) ? nl2br($report_content_data['content']['value']) : 'There’s no commitment required on your part for the initial meeting. It will be educational and help you identify your next steps.';
-                ?>
-                <p class="f14 w80"><?php echo $content; ?></p>
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
-            </div>
-            <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/user.png'; ?>" alt="user" class="img-fluid icons">
-            </div>
+<page class="pdf18">
+    <h1 class="main_title top_title">Analyze & Optimize</h1>
+    <div class="d-flex mt-30">
+        <div class="col-12">
+            <p class="f14">
+                When your property first hits the market the entire audience which consists of realtors, prospective buyers,
+                and sellers all place eyes on your listing. They all make rapid judgments as to it's price, current condition,
+                and location. How they first perceive it will determine the viewing activity over the next few weeks. If we
+                receive no viewings initially, we are facing the possibility that that market as a whole is rejecting the value
+                proposition of your listing. Our solution? Reduce the price.
+            </p>
+            <p class="f14">
+                Reducing the price of your home is never an easy call but often times is a necessity one that might need to
+                be made in order to get your home sold. Many homeowners feel that they are giving up hard earned equity
+                that has been gained. In reality, a slight reduction can help avoid problems down the line. The question is,
+                When is the best time? From the time the property is first placed on the market the rule of thumb is 30-45
+                days.
+            </p>
         </div>
-        <div class="d-flex">
-            <div class="col-50">
-                <?php
-                    $para_1_title = isset($report_content_data['paragraph_1_title']['value']) && !empty($report_content_data['paragraph_1_title']['value']) ? $report_content_data['paragraph_1_title']['value'] : 'Establish a Price';
-                ?>
-                <h4 class="crimson mt-0"><?php echo $para_1_title; ?></h4>
-                <?php
-                    $para_1_content = isset($report_content_data['paragraph_1_content']['value']) && !empty($report_content_data['paragraph_1_content']['value']) ? $report_content_data['paragraph_1_content']['value'] : 'Your agent will provide a market analysis, which will help you set an asking price.';
-                ?>
-                <p class="f14 w80"><?php echo $para_1_content; ?></p>
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
-            </div>
-            <div class="col-50">
-                <div class="msg_box">
-                    <?php
-                        $para_2_title = isset($report_content_data['paragraph_2_title']['value']) && !empty($report_content_data['paragraph_2_title']['value']) ? $report_content_data['paragraph_2_title']['value'] : 'Strategic Pricing';
-                    ?>
-                    <h4 class="crimson mt-0"><?php echo $para_2_title; ?></h4>
-                    <?php
-                        $para_2_content = isset($report_content_data['paragraph_2_content']['value']) && !empty($report_content_data['paragraph_2_content']['value']) ? $report_content_data['paragraph_2_content']['value'] : 'As difficult as it may be, it’s important to review the market analysis and consider your home price objectively.';
-                    ?>
-                    <p>
-                        <?php echo $para_2_content; ?>
-                    </p>
-                </div>
-            </div>
+    </div>
+    <div class="d-flex">    
+        <div class="col-12">
+            <h4 class="table_title no_line">At Listing Time</h4>
+            <table class="reverse_bg">
+                <tr>
+                    <th>Home A</th>
+                    <th>Home B</th>
+                    <th>Jane & Joe</th>
+                    <th>Home D</th>
+                    <th>Home E</th>
+                </tr>
+                <tr>
+                    <td>$368,000</td>
+                    <td>$349,000</td>
+                    <td>$345,000</td>
+                    <td>$341,000</td>
+                    <td>$333,000</td>
+                </tr>
+            </table> 
+            <h4 class="table_title no_line">After Price Reduction</h4>
+            <table>
+                <tr>
+                    <th>Home A</th>
+                    <th>Home B</th>
+                    <th>Jane & Joe</th>
+                    <th>Home D</th>
+                    <th>Home E</th>
+                    <th>Home F</th>
+                </tr>
+                <tr>
+                    <td>Expired</td>
+                    <td>$339,000<span>Reduced <br>& Sold</span></td>
+                    <td>$345,000</td>
+                    <td>$341,000<span>Sold</span></td>
+                    <td>$333,000<span>Sold</span></td>
+                    <td>$332,500<span>Just Added</span></td>
+                </tr>
+            </table>
+            <p class="f14 mt-30">
+                Joe and Jane went from being very competitively priced to being the highest property in their price range.
+                From a buyer's perspective, their home now offers the worst value proposition in the marketplace.
+            </p>
+            <img src="https://i.ibb.co/WzcJbsk/bottom-image.png" alt="bottom-image" class="img-fluid d-block bottom_full_img">
         </div>
-        <div class="d-flex">
-            <div class="col-50">
-                <?php
-                    $para_3_title = isset($report_content_data['paragraph_3_title']['value']) && !empty($report_content_data['paragraph_3_title']['value']) ? $report_content_data['paragraph_3_title']['value'] : 'Prepare Your Home';
-                ?>
-                <h4 class="crimson mt-0"><?php echo $para_3_title; ?></h4>
-                <?php
-                    $para_3_content = isset($report_content_data['paragraph_3_content']['value']) && !empty($report_content_data['paragraph_3_content']['value']) ? $report_content_data['paragraph_3_content']['value'] : 'View your home through the eyes of the buyer and ask yourself what you’d expect. Your agent will off er some useful suggestions.';
-                ?>
-                <p class="f14 w80"><?php echo $para_3_content; ?></p>
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
-            </div>
-            <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/msg.png'; ?>" alt="msg" border="0" class="img-fluid icons">
-            </div>
-        </div>
-        <div class="d-flex">
-            <div class="col-50">
-                <?php
-                    $para_4_title = isset($report_content_data['paragraph_4_title']['value']) && !empty($report_content_data['paragraph_4_title']['value']) ? $report_content_data['paragraph_4_title']['value'] : 'List It For Sale';
-                ?>
-                <h4 class="crimson mt-0"><?php echo $para_4_title; ?></h4>
-                <?php
-                    $para_4_content = isset($report_content_data['paragraph_4_content']['value']) && !empty($report_content_data['paragraph_4_content']['value']) ? $report_content_data['paragraph_4_content']['value'] : 'When everything is in place your agent will put your home on the open market. It’s critical you make it as easy as possible for potential buyers to view your home.';
-                ?>
-                <p class="f14 w80"><?php echo $para_4_content; ?></p>
-            </div>
-            <div class="col-50">
-                <div class="msg_box">
-                    <?php
-                        $para_5_title = isset($report_content_data['paragraph_5_title']['value']) && !empty($report_content_data['paragraph_5_title']['value']) ? $report_content_data['paragraph_5_title']['value'] : 'Showings';
-                    ?>
-                    <h4 class="crimson mt-0"><?php echo $para_5_title; ?></h4>
-                    <?php
-                        $para_5_content = isset($report_content_data['paragraph_5_content']['value']) && !empty($report_content_data['paragraph_5_content']['value']) ? $report_content_data['paragraph_5_content']['value'] : 'Potential buyers may ask to see your home on short notice. It’s best if you can accommodate these requests, you never want to miss a potential sale.';
-                    ?>
-                    <p><?php echo $para_5_content; ?></p>
-                </div>
-            </div>
-        </div>
-    </div>   
+    </div>
 </page>
