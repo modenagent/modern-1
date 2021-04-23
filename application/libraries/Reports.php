@@ -895,6 +895,7 @@ use Knp\Snappy\Pdf;
                 $tableName = "lp_user_mst";
                 $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
                 $data['cma_url'] = $user_details->cma_url;
+                $data['report_dir_name'] = $user_details->report_dir_name;
 
                 if(!empty($user_details->parent_id))
                 {
@@ -903,6 +904,9 @@ use Knp\Snappy\Pdf;
                     
                     if(!empty($sales_rep_info->cma_url)) {
                       $data['cma_url'] = $sales_rep_info->cma_url;
+                    }
+                    if($sales_rep_info->role_id_fk == 3) {
+                        $data['report_dir_name'] = $sales_rep_info->report_dir_name;
                     }
                 }
             }
@@ -993,7 +997,16 @@ use Knp\Snappy\Pdf;
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
-                $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/widget_index",$data,true);
+                $load_view = 'reports/widget/'.$data['report_dir_name'].'/'.$presentationType.'/index';
+
+                if(!empty($data['report_dir_name']) && (is_file(APPPATH.'views/' . $load_view . EXT))) {
+                    $html = $CI->load->view($load_view,$data,true);
+
+                }
+                else {
+
+                    $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/widget_index",$data,true);
+                }
             
             }
             
