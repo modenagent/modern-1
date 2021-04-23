@@ -66,8 +66,8 @@
 ?> 
 
 <?php
-for ($i=1; $i <= 15 ; $i++) { 
-    if(in_array($i, $pdfPages))
+for ($i=1; $i <= 24 ; $i++) { 
+    if(in_array($i, $pdfPages) || true)
     {
         $report_id = $i;
 
@@ -99,6 +99,9 @@ for ($i=1; $i <= 15 ; $i++) {
         }
         elseif($i==8) {
             $data = $rangeOfSales;
+        }
+        if($i==22) {
+            continue;
         }
 
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/'.$report_id,$data);
