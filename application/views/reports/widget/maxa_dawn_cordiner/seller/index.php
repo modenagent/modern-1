@@ -104,7 +104,7 @@ for ($i=1; $i <= 15 ; $i++) {
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/'.$report_id,$data);
     }
 }
-die;
+// die;
     // if(in_array('1', $pdfPages))
     // {
     //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/1');
