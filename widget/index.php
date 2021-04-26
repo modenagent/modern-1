@@ -90,7 +90,7 @@ else {
             	//Get company info
             	$get_where = array('user_id_pk'=>$idp_data->company_id);
             	$comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
-                var_dump($comp_info);die;
+                // var_dump($comp_info);die;
                 if($comp_info && !empty($comp_info)) {
                     if($comp_info->role_id_fk == 3) {
                         $parent_id = $comp_info->user_id_pk;
@@ -99,17 +99,20 @@ else {
                     elseif(empty($_GET['company'])) {
                         echo "Invalid request";die;
                     }
-
-                    $company_url = $_GET['company'];
-
-                    $get_where = array('company_url'=>$company_url,'parent_id'=>$comp_info->user_id_pk);
-                    $comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
-                    if($comp_info && !empty($comp_info)) {
-                        $parent_id = $comp_info->user_id_pk;
-                    }
                     else {
-                        echo 'You are not authorize'; die;
+                        
+                        $company_url = $_GET['company'];
+
+                        $get_where = array('company_url'=>$company_url,'parent_id'=>$comp_info->user_id_pk);
+                        $comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+                        if($comp_info && !empty($comp_info)) {
+                            $parent_id = $comp_info->user_id_pk;
+                        }
+                        else {
+                            echo 'You are not authorize'; die;
+                        }
                     }
+
                 }
                 else {
                     echo 'You are not authorize'; die;
