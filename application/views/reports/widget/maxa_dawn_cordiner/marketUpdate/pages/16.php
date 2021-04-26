@@ -1,3 +1,6 @@
+<?php 
+echo "<pre>"; print_r($user); exit;
+?>
 <body>
     <page class="p-0 market_update">
         <div class="header">
