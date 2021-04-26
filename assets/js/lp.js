@@ -1010,3 +1010,36 @@ function widgetRunPMA(agentPath, logoPath) {
         
 
 }
+
+function getRetsApiComparables(address) 
+{
+    $.ajax({
+        url: base_url+'widget/getRetsApiComparablesData',
+        type: 'POST',
+        data: {address:address}
+    })
+        .done(function(response) {
+            console.log(response);
+            var data = JSON.parse(response);
+            $('#pre-selected-options').html('');
+            $.each(data, function(i, item) {
+                console.log(item);
+                $('#pre-selected-options').append($('<option>', {
+                    value: i,
+                    text: item.address +" ("+item.price+")"
+                }));
+            });
+            var data = JSON.parse(response);
+            $.each(data, function(i, item) {
+                $('#pre-selected-options').append($('<option>', {
+                    value: i,
+                    text: item.address +" ("+item.price+")",
+                    selected: 'selected'
+                }));
+            });           
+        })
+        .fail(function() {            
+        })
+        .always(function() {
+        });
+}
