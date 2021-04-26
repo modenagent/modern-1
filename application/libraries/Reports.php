@@ -969,6 +969,7 @@ use Knp\Snappy\Pdf;
              * Start Code to fetch customized text data of user
              */
             $data['user_id_for_report_customization'] = 0;
+            $data['presentation_type'] = $presentationType;
             if ($data['user']['email'] != '') {
                 $CI->load->model('user_model');
                 $userInfo = $CI->user_model->getUserDetailsByEmail($data['user']['email'], ['user_id_pk', 'email', 'role_id_fk', 'customer_id', 'ref_code']);

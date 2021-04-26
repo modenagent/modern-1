@@ -7,8 +7,8 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
 ?>
 <page>
     <h1 class="report_title">Sellers Report</h1>
-    <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/images/black_logo.png"); ?>' alt="black-logo" class="mx-auto z9">
-    <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/images/hero.png"); ?>' alt="hero" class="w100 hero_img">
+    <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/black_logo.png"); ?>' alt="black-logo" class="mx-auto z9">
+    <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/hero.png"); ?>' alt="hero" class="w100 hero_img">
     <div class="main_title">
         <?php if(!empty($site_address)) {echo $site_address.', ';} ?>
         <?php if(!empty($city)) {echo $city.', ';} ?>
@@ -63,12 +63,12 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
             </div>
             <div class="logo">
                 <div class="mr-90">
-                    <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/images/white_logo.png"); ?>' alt="white-logo" border="0">
+                    <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/white_logo.png"); ?>' alt="white-logo" border="0">
                     <div class="auth">AUTHENTICITY ABOVE ALL.</div>
                     <div class="info_policy">This is not intended to solicit currently listed properties.<br>
                         This information is deemed reliable, but not guaranteed.</div>
                 </div>
-                <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/images/soldera.png"); ?>' alt="soldera" class="smaller_img">
+                <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/soldera.png"); ?>' alt="soldera" class="smaller_img">
             </div>
         </div>
     </div>
