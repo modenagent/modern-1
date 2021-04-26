@@ -127,7 +127,7 @@ else {
                 $profile_image = '';
                 if(!empty($attr_values['image'])) {
                     $url=$attr_values['image'];
-                    $contents=file_get_contents($url);
+                    $contents=@file_get_contents($url);
                     if(!empty($contents)) {
 
                     $upload_path = dirname(dirname(__FILE__)).'/assets/images/';
