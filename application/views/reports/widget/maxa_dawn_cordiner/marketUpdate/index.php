@@ -68,7 +68,8 @@
                 $dataForReport['rangeOfSales'] = $rangeOfSales;
                 $dataForReport['partner'] = $partner;
                 
-                $this->load->view('reports/english/marketUpdate/widget_pages/16',$dataForReport);
+                // $this->load->view('reports/english/marketUpdate/widget_pages/16',$dataForReport);
+                $this->load->view('reports/widget/'.$report_dir_name.'/marketUpdate/pages/16',$dataForReport);
             else:
                 $_areaSalesAnalysis = array(
                                         "0" => array( 
