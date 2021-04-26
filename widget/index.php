@@ -58,6 +58,9 @@ else {
     		elseif($idp_data->phone == $key) { // Phone
     			$attr_values['phone'] = $attr_val;
     		}
+            elseif($idp_data->image == $key) { // Phone
+                $attr_values['image'] = $attr_val;
+            }
     		// elseif($idp_data->sales_rep == $key) { // Phone	
     		// 	$attr_values['parent_id'] = $attr_val;		
     		// }
@@ -87,6 +90,7 @@ else {
             	//Get company info
             	$get_where = array('user_id_pk'=>$idp_data->company_id);
             	$comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+                var_dump($comp_info);die;
                 if($comp_info && !empty($comp_info)) {
                     if($comp_info->role_id_fk == 3) {
                         $parent_id = $comp_info->user_id_pk;
@@ -117,6 +121,19 @@ else {
             	//Register user with field mapping
             	$random_password = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
             	$encrypted_password = password_hash($random_password,PASSWORD_DEFAULT);
+                $profile_image = '';
+                if(!empty($attr_values['image'])) {
+                    $url=$attr_values['image'];
+                    $contents=file_get_contents($url);
+                    if(!empty($contents)) {
+
+                    $upload_path = dirname(dirname(__FILE__)).'/assets/images/';
+                    $image_name = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
+                    $save_path=$upload_path.$image_name;
+                    file_put_contents($save_path,$contents);
+                    $profile_image = 'assets/images/'.$image_name;
+                    }
+                }
             	$user = array(
                     'password' => $encrypted_password,
                     'user_name' => null ,
@@ -138,6 +155,7 @@ else {
                     'user_credits' => '0',
                     'registered_date' => date('Y-m-d H:i:s', time()),
                     'is_active' => 'Y',
+                    'profile_image' => $profile_image,
                 );
 
                 $resp = $CI->base_model->insert_one_row('lp_user_mst', $user);
