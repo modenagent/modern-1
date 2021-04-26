@@ -45,7 +45,7 @@ else {
     		if($idp_data->email == $key) { //Email
     			$attr_values['email'] = $attr_val;
     		}
-    		elseif($idp_data->username == $key) { //Email
+    		elseif($idp_data->username == $key) { //UserName
     			$attr_values['username'] = $attr_val;
     		}
     		elseif ($idp_data->first_name == $key) { //First Name
@@ -58,7 +58,7 @@ else {
     		elseif($idp_data->phone == $key) { // Phone
     			$attr_values['phone'] = $attr_val;
     		}
-            elseif($idp_data->image == $key) { // Phone
+            elseif($idp_data->image == $key) { // Image
                 $attr_values['image'] = $attr_val;
             }
     		// elseif($idp_data->sales_rep == $key) { // Phone	
@@ -100,7 +100,7 @@ else {
                         echo "Invalid request";die;
                     }
                     else {
-                        
+
                         $company_url = $_GET['company'];
 
                         $get_where = array('company_url'=>$company_url,'parent_id'=>$comp_info->user_id_pk);
@@ -131,7 +131,7 @@ else {
                     if(!empty($contents)) {
 
                     $upload_path = dirname(dirname(__FILE__)).'/assets/images/';
-                    $image_name = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
+                    $image_name = 'widget_user_'.substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
                     $save_path=$upload_path.$image_name;
                     file_put_contents($save_path,$contents);
                     $profile_image = 'assets/images/'.$image_name;
