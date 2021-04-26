@@ -1,6 +1,3 @@
-<?php 
-echo "<pre>"; print_r($user); exit;
-?>
 <body>
     <page class="p-0 market_update">
         <div class="header">
@@ -128,21 +125,23 @@ echo "<pre>"; print_r($user); exit;
                 </div>
                 <div class="logo">
                     <div class="mr-90 text-right">
-                        <div class="visit_us">Visit us online at 
+                         
                         <?php 
-                            if(isset($user['website']) && !empty($user['website']))
+                            if(isset($user['company_url']) && !empty($user['company_url']))
                             {
-                                $parsed_url  = parse_url($user['website']);
+                                $parsed_url  = parse_url($user['company_url']);
 
-                                $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
+                                $company_url = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
                         ?>
-                                <a href="<?php echo $website; ?>" target="_blank"class="contact_info">
-                                    <?php echo $user['website']; ?>
+                            <div class="visit_us">Visit us online at
+                                <a href="<?php echo $company_url; ?>" target="_blank"class="contact_info">
+                                    <?php echo $user['company_url']; ?>
                                 </a>
+                            </div>
                         <?php
                             }
                         ?>
-                        </div>
+                        
                         <div class="address"><?php echo $user['company_add']; ?> <br><?php echo $user['company_city']; ?> <?php echo $user['company_state']; ?> <?php echo $user['company_zip']; ?></div>
                         <div class="licensed">Licensed in Oregon & Washington</div>
                     </div>
@@ -157,14 +156,14 @@ echo "<pre>"; print_r($user); exit;
         </div>
         <div class="orange_footer">
             <?php 
-                if(isset($user['website']) && !empty($user['website']))
+                if(isset($user['company_url']) && !empty($user['company_url']))
                 {
-                    $parsed_url  = parse_url($user['website']);
+                    $parsed_url  = parse_url($user['company_url']);
 
-                    $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
+                    $company_url = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
             ?>
-                    <a href="<?php echo $website; ?>" target="_blank">
-                        <?php echo $user['website']; ?>
+                    <a href="<?php echo $company_url; ?>" target="_blank">
+                        <?php echo $user['company_url']; ?>
                     </a>
             <?php
                 }
