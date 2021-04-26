@@ -153,7 +153,19 @@
             <p class="copyright">This is not intended to solicit currently listed properties. This information is deemed reliable, but not guaranteed.</p>
         </div>
         <div class="orange_footer">
-            <a href="<?php echo $website; ?>" target="_blank"><?php echo $user['website']; ?></a>
+            <?php 
+                if(isset($user['website']) && !empty($user['website']))
+                {
+                    $parsed_url  = parse_url($user['website']);
+
+                    $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
+            ?>
+                    <a href="<?php echo $website; ?>" target="_blank">
+                        <?php echo $user['website']; ?>
+                    </a>
+            <?php
+                }
+            ?>
             AUTHENTICITY ABOVE ALL.
         </div>
     </page>
