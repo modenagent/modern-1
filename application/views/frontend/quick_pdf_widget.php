@@ -187,6 +187,32 @@
     </div>
     
 </div>
+<div style="display: none!important">
+    <div class="row">
+        <div class="col-md-6">
+            <textarea class="form-control" rows="5" id="testimonial-1">Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.</textarea>
+            <input type="text" name="testimonial_name_1" id="testimonial-name-1" style="margin-top: 5px;" placeholder="Enter Name" value="">
+        </div>
+        <div class="col-md-6">
+            <textarea class="form-control" rows="5" id="testimonial-2">As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.</textarea>
+            <input type="text" name="testimonial_name_2" id="testimonial-name-2" style="margin-top: 5px;" placeholder="Enter Name" value="">
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-6">
+            <textarea class="form-control" rows="5" id="testimonial-3">Showed us a bunch of homes for months until we found the right one. Gave us a ton of contacts to help us throughout the process. And even now after the home has already been closed on he is still helping with any problems or questions we have. Extremely helpful and knowledgeable in any facet of home buying/owning.</textarea>
+            <input type="text" name="testimonial_name_3" id="testimonial-name-3" style="margin-top: 5px;" placeholder="Enter Name" value="">
+        </div>
+        <div class="col-md-6">
+            <textarea class="form-control" rows="5" id="testimonial-4">They were a great team and extremely helpful with selling my house quickly. I was able to do everything online with them. They facilitated repairs and getting rid of things in the house. This was so helpful since I live out of the area.</textarea>
+            <input type="text" name="testimonial_name_4" id="testimonial-name-4" style="margin-top: 5px;" placeholder="Enter Name" value="">
+        </div>
+    </div>
+
+    <textarea class="form-control" rows="5" id="agent-bio">Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.</textarea>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/lp_cma_widget.js") ?>"></script>
 
