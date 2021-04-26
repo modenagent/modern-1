@@ -17,8 +17,14 @@
                     </div>
                     <div class="col-40">
                         <ul class="list-inline">
+                            <?php 
+                            if(empty($cma_url)):
+                                $cma_url = "https://modernagent.io/cma";
+                            endif;
+                            $cma_url_display = preg_replace("(^https?://)", "", $cma_url );
+                             ?>
                             <li class="mb-2"><a href="https://modernagent.io/cma"><img src="https://i.ibb.co/5KWxJxL/world.png" alt="WWW">
-                                    modernagent.io/cma</a></li>
+                                    <?php echo $cma_url_display; ?></a></li>
                             <li><a href="https://modernagent.io/cma"><img src="https://i.ibb.co/jWYqWyd/keyboard.png" alt="Code"><p><span>ENTER CODE:</span><br><?php echo $user['ref_code']; ?></p></a></li>
                         </ul>
                     </div>
@@ -35,29 +41,34 @@
                     <th>BEDS</th>
                     <th>BATHS</th>
                 </tr>
-                <?php 
-                    if(isset($comparables) && !empty($comparables))
-                    {
-                        $count = 0;
-
-                        foreach ($comparables as $key => $value) 
-                        {
-                            if($key > 8)
-                            {
+                <?php if(sizeof($_comparables)>0): ?>
+                    <?php $avaiProperty = 0; $i = 1; ?>
+                    <?php foreach ($_comparables as $key => $item): ?>
+                        <?php 
+                            if($key>8){
                                 break;
                             }
-                ?>
+                        ?>
                             <tr>
-                                <td><?php echo $value['Address']; ?></td>
-                                <td><?php echo $value['Price']; ?></td>
-                                <td><?php echo $value['SquareFeet']; ?></td>
-                                <td><?php echo $value['Beds']; ?></td>
-                                <td><?php echo $value['Baths']; ?></td>
+                                <td>
+                                    <?php echo $item['Address']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $item['Price']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $item['SquareFeet']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $item['Beds']; ?>
+                                </td>
+                                <td>
+                                    <?php echo $item['Baths']; ?>
+                                </td>
                             </tr>
-                <?php
-                        }
-                    }
-                ?>
+                        <?php $avaiProperty++; $i++; ?>
+                    <?php endforeach;?>
+                <?php endif; ?>
             </table>
         </div>
 
@@ -65,21 +76,51 @@
             <div class="more_info">For more information, please contact me.</div>
             <div class="d-flex m-0">
                 <div class="signature horizontal_sign">
-                    <?php 
-                        if($user['profile_image'] != '' && $user['profile_image'] != 'no')
-                        {
-                    ?>
-                            <img src="<?php echo base_url().$user['profile_image']; ?>" alt="profile-pic" class="profile_img">
-                    <?php
-                        }
-                    ?>
                     
+                    <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>" class="profile_img">
                     <div>
-                        <div class="profile_name"><?php echo $user['fullname']; ?></div>
-                        <div class="profile_title"><?php echo $user['title']; ?></div>
+                        <?php 
+                            if(isset($user['fullname']) && !empty($user['fullname']))
+                            {
+                        ?>
+                                <div class="profile_name">
+                                    <?php echo $user['fullname']; ?>
+                                </div>
+                        <?php
+                            }
+                        ?>
+                        
+                        <?php 
+                            if(isset($user['title']) && !empty($user['title']))
+                            {
+                        ?>
+                                <div class="profile_title">
+                                    <?php echo $user['title']; ?>
+                                </div>
+                        <?php
+                            }
+                        ?>
                         <div class="profile_title">&nbsp;</div>
-                        <a class="contact_info mt-2" href="tel:<?php echo $user['phone']; ?>"><?php echo $user['phone']; ?></a>
-                        <a href="mailto:<?php echo $user['email']; ?>" class="contact_info"><?php echo $user['email']; ?></a>
+                        <?php 
+                            if(isset($user['phone']) && !empty($user['phone']))
+                            {
+                        ?>
+                                <a class="contact_info mt-2" href="tel:<?php echo $user['phone']; ?>"><?php echo $user['phone']; ?>
+                                </a>
+                        <?php
+                            }
+                        ?>
+
+                        <?php 
+                            if(isset($user['email']) && !empty($user['email']))
+                            {
+                        ?>
+                                <a href="mailto:<?php echo $user['email']; ?>" class="contact_info">
+                                    <?php echo $user['email']; ?>
+                                </a>
+                        <?php
+                            }
+                        ?>
                     </div>
                 </div>
                 <div class="logo">
