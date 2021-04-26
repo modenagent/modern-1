@@ -1,5 +1,9 @@
 <?php
-
+// echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";die;
+if (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" && strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) {
+    echo 'Your browser not support iframe. Please click here '.'<a target="_blank" href="'.'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'</a>'.' to open link in new window';
+    exit();
+}
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
