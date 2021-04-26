@@ -23,7 +23,7 @@
 
         <!-- <p class="mt-50">Your agent,</p>
 
-        <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/images/signature.png"); ?>' alt="signature" border="0"> -->
+        <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/signature.png"); ?>' alt="signature" border="0"> -->
     </div>
     <div class="text-center">
         <div class="welcome_text">WELCOME TO OUR FAMILY</div>
