@@ -1,121 +1,119 @@
-<style>
-body {
-        background-color:#ffffff;
-}
-</style>
-<header class="page-16-header" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/header-2021.jpg');?>);">
-    <h2 class="title-center heading-market">Market Update</h2>
-    <h2 class="title-center heading-zipcode">ZipCode: <?php echo $zipCode; ?></h2>
-</header><!-- /header -->
-<div class="table-wrapper page-16-content" style="padding-top: 18px; padding-bottom: 5px;">
-    <div class="table-row gray-color">
-        <div class="row table-heading">
-            <div class="col-xs-5">
-                <p>Property Address</p>
-            </div>
+<body>
+    <page class="p-0 market_update">
+        <div class="header">
+            <img src="https://i.ibb.co/4823bQX/logo.png" alt="logo" class="logo">
 
-            <div class="col-xs-2">
-                <p>Sale Price</p>
-            </div>
-
-            <div class="col-xs-2">
-                <p>Sqft</p>
-            </div>
-
-            <div class="col-xs-1">
-                <p>Beds</p>
-            </div>
-
-            <div class="col-xs-2">
-                <p>Baths</p>
-            </div>
+            <h1>MARKET UPDATE <span>ZIPCODE: <?php echo $zipCode; ?></span></h1>
         </div>
-    </div>
-    <?php if(sizeof($_comparables)>0): ?>
-        <?php $avaiProperty = 0; $i = 1; ?>
-        <?php foreach ($_comparables as $key => $item): ?>
-            <?php 
-                if($key>8){
-                    break;
-                }
-            ?>
-            <div class="table-row <?php if($i % 2 == 0)echo 'gray-color'; ?>">
-                <div class="row">
-                    <div class="col-xs-5">
-                        <p><?php echo $item['Address']; ?></p>
+
+        <div class="hero">
+            <div class="hero_caption">
+                <div class="d-flex">
+                    <div class="col-60">
+                        <p>
+                            To receive your complimentary sales report via
+                            text message, enter the Modern Agent code:
+                        </p>
                     </div>
-                    <div class="col-xs-2">
-                        <p class="sale-price-560"><?php echo $item['Price']; ?></p>
-                    </div>
-                    <div class="col-xs-2">
-                        <p><?php echo $item['SquareFeet']; ?></p>
-                    </div>
-                    <div class="col-xs-1">
-                        <p><?php echo $item['Beds']; ?></p>
-                    </div>
-                    <div class="col-xs-2">
-                        <p><?php echo $item['Baths']; ?></p>
+                    <div class="col-40">
+                        <ul class="list-inline">
+                            <li class="mb-2"><a href="https://modernagent.io/cma"><img src="https://i.ibb.co/5KWxJxL/world.png" alt="WWW">
+                                    modernagent.io/cma</a></li>
+                            <li><a href="https://modernagent.io/cma"><img src="https://i.ibb.co/jWYqWyd/keyboard.png" alt="Code"><p><span>ENTER CODE:</span><br><?php echo $user['ref_code']; ?></p></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <?php $avaiProperty++; $i++; ?>
-        <?php endforeach;?>
-    <?php endif; ?>
-</div>
-<div class="section-article">
-    <h1 class="curious-about-heading"><b>curious about what your home can sell for? <br >
-        find out now for free.</b>
-    </h1>
-    <div class="row">
-        <div class="col-xs-6">
-            <div class="article-1 gray-color">
-                <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/icon/01.png');?>">
-                <p style="text-transform: none;">www.modernagent.io/cma</p>
-            </div>
         </div>
-            <div class="title-bold" style="font-size: 40px;position: absolute; left: 48.5%; top: 48%;">&</div>
-        <div class="col-xs-6">
-            <div class="article-2 gray-color">
-                <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/icon/02.png');?>">
-                <p>enter code: <strong><?php echo $user['ref_code']; ?></strong></p>
-            </div>
+
+        <div class="p-50">
+            <table class="table_transparent">
+                <tr>
+                    <th>PROPERTY ADDRESS</th>
+                    <th>SALE PRICE</th>
+                    <th>SQFT</th>
+                    <th>BEDS</th>
+                    <th>BATHS</th>
+                </tr>
+                <?php 
+                    if(isset($comparables) && !empty($comparables))
+                    {
+                        $count = 0;
+
+                        foreach ($comparables as $key => $value) 
+                        {
+                            if($key > 8)
+                            {
+                                break;
+                            }
+                ?>
+                            <tr>
+                                <td><?php echo $value['Address']; ?></td>
+                                <td><?php echo $value['Price']; ?></td>
+                                <td><?php echo $value['SquareFeet']; ?></td>
+                                <td><?php echo $value['Beds']; ?></td>
+                                <td><?php echo $value['Baths']; ?></td>
+                            </tr>
+                <?php
+                        }
+                    }
+                ?>
+            </table>
         </div>
-    </div>
-    <h3 class="">to receive your complimentary sales report via text message.</h3>
-</div>
-<div class="footer page-16-ftr" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/footer.jpg');?>);"> 
-    <div class="row">
-        <div class="footer-inner">
-            <div class="col-xs-12">
-                <div class="left-footer pull-left col-xs-8">
-                    <div class="row">
-                        <?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?>
-                        <div class="page-16-ftr-agentpic col-xs-4">
-                            <img class="img-responsive page-16-ftr-img" src="<?php echo base_url().$user['profile_image']; ?>"  >
+
+        <div class="footer">
+            <div class="more_info">For more information, please contact me.</div>
+            <div class="d-flex m-0">
+                <div class="signature horizontal_sign">
+                    <?php 
+                        if($user['profile_image'] != '' && $user['profile_image'] != 'no')
+                        {
+                    ?>
+                            <img src="<?php echo base_url().$user['profile_image']; ?>" alt="profile-pic" class="profile_img">
+                    <?php
+                        }
+                    ?>
+                    
+                    <div>
+                        <div class="profile_name"><?php echo $user['fullname']; ?></div>
+                        <div class="profile_title"><?php echo $user['title']; ?></div>
+                        <div class="profile_title">&nbsp;</div>
+                        <a class="contact_info mt-2" href="tel:<?php echo $user['phone']; ?>"><?php echo $user['phone']; ?></a>
+                        <a href="mailto:<?php echo $user['email']; ?>" class="contact_info"><?php echo $user['email']; ?></a>
+                    </div>
+                </div>
+                <div class="logo">
+                    <div class="mr-90 text-right">
+                        <div class="visit_us">Visit us online at 
+                        <?php 
+                            if(isset($user['website']) && !empty($user['website']))
+                            {
+                                $parsed_url  = parse_url($user['website']);
+
+                                $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
+                        ?>
+                                <a href="<?php echo $website; ?>" target="_blank"class="contact_info">
+                                    <?php echo $user['website']; ?>
+                                </a>
+                        <?php
+                            }
+                        ?>
                         </div>
-                        <?php else: ?>
-                        <div class="col-xs-3"></div>
-                        <?php endif; ?>
-                        <div class="<?php echo ($user['profile_image'] != '' && $user['profile_image'] != 'no')?'col-xs-7':'col-xs-9'  ?>">
-                            <div class="page-16-ftr-address">
-                                <h4 class="client-name"><?php echo $user['fullname']; ?></h4>
-
-                                <p> <?php echo $user['title']; ?></p>
-                                <p> <?php echo $user['licenceno']; ?></p>
-                                <p>Direct: <?php echo $user['phone']; ?></p>
-                                <p><?php echo $user['email']; ?></p>
-                                <p><?php echo $user['companyname']; ?></p>
-                                <p><?php echo $user['street']; ?>,</p>
-                                <p>  <?php echo $user['city']; ?>, <?php echo $user['state']; ?> <?php echo $user['zip']; ?></p>
-                            </div>
-                        </div>
+                        <div class="address">Address <br>City STATE Zip</div>
+                        <div class="licensed">Licensed in Oregon & Washington</div>
                     </div>
-                </div>
-                <div class="right-footer pull-right page-16-ftrr-logo col-xs-4">
-                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:" /><?php endif; ?>
+                    <div class="smaller_img">
+                        <img src="https://i.ibb.co/yRKhwzj/Soldera-Gray-Txt-FINE-OUTLINE.png" alt="soldera">
+                        <p class="copyright">Soldera Properties, Inc</p>
+                    </div>
+                    <img src="https://i.ibb.co/VQSTyxQ/footer-icons.png" alt="footer-icons" class="mini_icon">
                 </div>
             </div>
+            <p class="copyright">This is not intended to solicit currently listed properties. This information is deemed reliable, but not guaranteed.</p>
         </div>
-    </div>
-<!-- </div> -->
-</div>
+        <div class="orange_footer">
+            <a href="http://dawncordiner.com">dawncordiner.com</a>
+            AUTHENTICITY ABOVE ALL.
+        </div>
+    </page>
+</body>
