@@ -140,7 +140,7 @@
                             }
                         ?>
                         </div>
-                        <div class="address">Address <br>City STATE Zip</div>
+                        <div class="address"><?php echo $user['company_add']; ?> <br><?php echo $user['company_city']; ?> <?php echo $user['company_state']; ?> <?php echo $user['company_zip']; ?></div>
                         <div class="licensed">Licensed in Oregon & Washington</div>
                     </div>
                     <div class="smaller_img">
@@ -153,7 +153,7 @@
             <p class="copyright">This is not intended to solicit currently listed properties. This information is deemed reliable, but not guaranteed.</p>
         </div>
         <div class="orange_footer">
-            <a href="http://dawncordiner.com">dawncordiner.com</a>
+            <a href="<?php echo $website; ?>" target="_blank"><?php echo $user['website']; ?></a>
             AUTHENTICITY ABOVE ALL.
         </div>
     </page>
