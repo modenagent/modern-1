@@ -1,7 +1,3 @@
-<?php 
-echo "<pre>test:"; print_r($presentation_type);
-echo "<pre>user:"; print_r($user); exit;
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

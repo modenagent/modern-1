@@ -346,3 +346,13 @@ page {
   letter-spacing: 0;
   text-decoration: none;
 }
+
+
+/* CSS changes added by MB */
+.hero {
+    background: url(https://i.ibb.co/qN6xW7z/hero.png) no-repeat;
+    background-size: cover;
+    position: relative;
+    height: 366px;
+}
+/* CSS changes added by MB */
