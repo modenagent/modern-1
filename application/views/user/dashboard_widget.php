@@ -322,21 +322,22 @@
                             </div>
                             <!-- Comparables Market update -->
                            <div class="row">
-                               <div class="col-md-12">
-                                   <table id="comparables-market-update">
+                               <div class="col-md-6">
+                                   <table id="available-comparables-market-update">
                                        <tr>
                                            <th>Available Comparables</th>
                                        </tr>
                                        <tbody></tbody>
                                    </table>
                                </div>
-                               <!-- <div class="col-md-6">
-                                   <table class="">
+                               <div class="col-md-6">
+                                   <table id="comparables-market-update">
                                        <tr>
                                            <th>Comparables</th>
                                        </tr>
+                                       <tbody></tbody>
                                    </table>
-                               </div> -->
+                               </div>
                            </div>
                            <!-- Comparables Market update -->
                           </div>
