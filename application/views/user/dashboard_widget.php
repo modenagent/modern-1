@@ -919,6 +919,7 @@ function choose_presentation(presentation)
             $('.buyer_template').show();
         });
         $("#comp-heading").hide();
+        $("#comparables-market-update").hide();
     }else if(presentation === 'marketUpdate'){
         $("#presentation").val("marketUpdate");
         $('#wizard').smartWizard("marketUpdate");
@@ -931,6 +932,7 @@ function choose_presentation(presentation)
         $("#config-comps-btn").show();
         $("#butcomp").hide();
         $("#comp-heading").show();
+        $("#comparables-market-update").show();
     }else {
         $("#presentation").val("seller");
         $('#wizard').smartWizard("seller");
@@ -940,6 +942,7 @@ function choose_presentation(presentation)
         $("#config-comps-btn").show();
         $("#butcomp").show();
         $("#comp-heading").hide();
+        $("#comparables-market-update").hide();
     }
     //Set classes
     $("#search-btn").addClass(presentation);
