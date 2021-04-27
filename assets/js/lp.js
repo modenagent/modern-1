@@ -593,7 +593,7 @@ function get187() {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
                     }));
-                    $('#comparables-market-update').append(item.Address+" ("+item.Price+")");
+                    $('#comparables-market-update').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
                 $.each(sorted_comp, function(i, item) {
                     $('#pre-selected-options').append($('<option>', {
