@@ -264,7 +264,8 @@
                           <div class="col-md-12">
                             <div class="col-md-12">
                           <div class="col-md-6">
-                            <h2><strong>Review Pages</strong></h2>
+                            <h2 class="marketUpdateHide"><strong>Review Pages</strong></h2>
+                            <h2 id="comp-heading"><strong>Comparables</strong></h2>
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
@@ -275,7 +276,7 @@
                             <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a> | &nbsp
                           </div>
                             </div>
-                            <div class="carousel-container">
+                            <div class="carousel-container marketUpdateHide">
                           <div id="owl-example" class="owl-carousel seller_template">
                             <?php
                             // $reportTemplates = array();
@@ -317,7 +318,27 @@
                             ?>
                           </div>
                             <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
+
                             </div>
+                            <!-- Comparables Market update -->
+                           <div class="row">
+                               <div class="col-md-12">
+                                   <table id="comparables-market-update">
+                                       <tr>
+                                           <th>Available Comparables</th>
+                                       </tr>
+                                       <tbody></tbody>
+                                   </table>
+                               </div>
+                               <!-- <div class="col-md-6">
+                                   <table class="">
+                                       <tr>
+                                           <th>Comparables</th>
+                                       </tr>
+                                   </table>
+                               </div> -->
+                           </div>
+                           <!-- Comparables Market update -->
                           </div>
                         </div>
                         <!-- step 3 -->
@@ -897,6 +918,7 @@ function choose_presentation(presentation)
         $('.seller_template').hide(function(){
             $('.buyer_template').show();
         });
+        $("#comp-heading").hide();
     }else if(presentation === 'marketUpdate'){
         $("#presentation").val("marketUpdate");
         $('#wizard').smartWizard("marketUpdate");
@@ -908,6 +930,7 @@ function choose_presentation(presentation)
         });
         $("#config-comps-btn").show();
         $("#butcomp").hide();
+        $("#comp-heading").show();
     }else {
         $("#presentation").val("seller");
         $('#wizard').smartWizard("seller");
@@ -916,6 +939,7 @@ function choose_presentation(presentation)
         });
         $("#config-comps-btn").show();
         $("#butcomp").show();
+        $("#comp-heading").hide();
     }
     //Set classes
     $("#search-btn").addClass(presentation);
