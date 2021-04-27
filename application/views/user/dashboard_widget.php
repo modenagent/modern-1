@@ -381,7 +381,7 @@
                             <!-- Comparables Market update -->
                            <div class="row">
                                <div class="col-md-6">
-                                   <table id="available-comparables-market-update">
+                                   <table id="available-comparables-market-update" class="comparables-market-update">
                                        <tr>
                                            <th>Available Comparables</th>
                                        </tr>
@@ -389,7 +389,7 @@
                                    </table>
                                </div>
                                <div class="col-md-6">
-                                   <table id="comparables-market-update">
+                                   <table id="comparables-market-update" class="comparables-market-update">
                                        <tr>
                                            <th>Comparables</th>
                                        </tr>
@@ -978,7 +978,7 @@ function choose_presentation(presentation)
             $('.buyer_template').show();
         });
         $("#comp-heading").hide();
-        $("#comparables-market-update").hide();
+        $(".comparables-market-update").hide();
     }else if(presentation === 'marketUpdate'){
         $("#presentation").val("marketUpdate");
         $('#wizard').smartWizard("marketUpdate");
@@ -991,7 +991,7 @@ function choose_presentation(presentation)
         $("#config-comps-btn").show();
         $("#butcomp").hide();
         $("#comp-heading").show();
-        $("#comparables-market-update").show();
+        $(".comparables-market-update").show();
     }else {
         $("#presentation").val("seller");
         $('#wizard').smartWizard("seller");
@@ -1001,7 +1001,7 @@ function choose_presentation(presentation)
         $("#config-comps-btn").show();
         $("#butcomp").show();
         $("#comp-heading").hide();
-        $("#comparables-market-update").hide();
+        $(".comparables-market-update").hide();
     }
     //Set classes
     $("#search-btn").addClass(presentation);
