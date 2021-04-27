@@ -111,7 +111,7 @@
             }
         }
 
-        for ($i=1; $i <= 24 ; $i++) 
+        for ($i=1; $i <= 20 ; $i++) 
         { 
             if(in_array($i, $pdfPages) || true)
             {
