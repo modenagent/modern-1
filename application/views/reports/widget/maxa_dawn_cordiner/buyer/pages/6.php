@@ -4,11 +4,11 @@
         <div class="col-50">
             <h4 class="table_title no_line">Female</h4>
             <div class="percentage">
-                <?php echo $female_ratio ?>%
+                <?php echo $female_ratio ?>
             </div>
             <h4 class="table_title no_line">Male</h4>
             <div class="percentage">
-                <?php echo $male_ratio ?>%
+                <?php echo $male_ratio ?>
             </div>
             <h4 class="table_title no_line">Male To Female Ratio</h4>
             <p class="mt-0 f14 text-justify">
