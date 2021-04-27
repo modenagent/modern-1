@@ -65,8 +65,8 @@
                             }
                         ?>
 
-                        <!-- <div class="profile_title"><small>Licensed in Oregon & Washington</small></div> -->
-                        <a class="contact_info mt-2" href="tel:000.000.0000">000.000.0000</a>
+                        <div class="profile_title"><small>Licensed in Oregon & Washington</small></div>
+                        
                         <?php 
                             if(isset($user['mobile']) && !empty($user['mobile']))
                             {
