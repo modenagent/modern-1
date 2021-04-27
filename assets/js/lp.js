@@ -588,21 +588,26 @@ function get187() {
                 all_comp = data.all;
                 sorted_comp = data.sorted;
                 $('#pre-selected-options').html('');
-                $.each(all_comp, function(i, item) {
+                $('#available-comparables-market-update tbody').html('');
+
+                $.each(all_comp, function(i, item) {                    
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
                     }));
-                    $('#available-comparables-market-update').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
+                    
+                    $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
+                
+                $('#comparables-market-update tbody').html('');
                 $.each(sorted_comp, function(i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")",
                         selected: 'selected'
                     }));
-
-                    $('#comparables-market-update').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
+                    
+                    $('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
                 activeRequest=false;
             },
