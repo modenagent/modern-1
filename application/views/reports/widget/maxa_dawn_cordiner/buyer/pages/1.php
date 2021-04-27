@@ -1,18 +1,18 @@
 <page class="p-0">
     <div class="map_content">
         <h1 class="report_title">BUYER’S REPORT</h1>
-        <img src="https://i.ibb.co/gvR0JTV/black-logo.png" alt="black-logo" class="mx-auto z9">
+        <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/black-logo.png"); ?>" alt="black-logo" class="mx-auto z9">
     </div>
     <div class="d-flex no_gutter mmt-90">    
         <div class="col-50">
-            <img src="https://i.ibb.co/GFW5Mn0/shutterstock-666248572.jpg" alt="24ad-Traditional" class="img-fluid cat_img">
+            <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/shutterstock-666248572.jpg"); ?>" alt="24ad-Traditional" class="img-fluid cat_img">
             <ul class="address_offer">
                 <li>1234 Main Street,<br> City, State 00000</li>
                 <li>Oﬀered for<br> $0,000,000</a></li>
             </ul>
         </div>
         <div class="col-50">
-            <img src="https://i.ibb.co/dtT1Yy5/webaliser-TPTXZd9m-Oo-unsplash.jpg" alt="24ad-Traditional" class="img-fluid cat_img">
+            <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/webaliser-TPTXZd9m-Oo-unsplash.jpg"); ?>" alt="24ad-Traditional" class="img-fluid cat_img">
             <ul class="address_offer">
                 <li>1234 Main Street,<br> City, State 00000</li>
                 <li>Oﬀered for<br> $0,000,000</a></li>
@@ -20,15 +20,15 @@
         </div>
     </div>
     <div class="d-flex no_gutter">
-        <div class="col-50">
-            <img src="https://i.ibb.co/Kw6TyW7/shutterstock-472326997.jpg" alt="24ad-Traditional" class="img-fluid cat_img">
+        <div class="col-50">            
+            <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/shutterstock-472326997.jpg"); ?>" alt="24ad-Traditional" class="img-fluid cat_img">
             <ul class="address_offer">
                 <li>1234 Main Street,<br> City, State 00000</li>
                 <li>Oﬀered for<br> $0,000,000</a></li>
             </ul>
         </div>
         <div class="col-50">
-            <img src="https://i.ibb.co/6PNWyBH/shutterstock-1116862508.jpg" alt="24ad-Traditional" class="img-fluid cat_img">
+            <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/shutterstock-1116862508.jpg"); ?>" alt="24ad-Traditional" class="img-fluid cat_img">
             <ul class="address_offer">
                 <li>1234 Main Street,<br> City, State 00000</li>
                 <li>Oﬀered for<br> $0,000,000</a></li>
@@ -105,12 +105,12 @@
                 </div>
                 <div class="logo">
                     <div class="mr-90">
-                        <img src="https://i.ibb.co/7n222qk/white-logo.png" alt="white-logo" border="0">
+                        <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/white-logo.png"); ?>" alt="white-logo" border="0">
                         <div class="auth">AUTHENTICITY ABOVE ALL.</div>
                         <div class="info_policy">This is not intended to solicit currently listed properties.<br>
                             This information is deemed reliable, but not guaranteed.</div>
                     </div>
-                    <img src="https://i.ibb.co/ccL7P0K/soldera.png" alt="soldera" class="smaller_img">
+                    <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/soldera.png"); ?>" alt="soldera" class="smaller_img">
                 </div>
             </div>
         </div>

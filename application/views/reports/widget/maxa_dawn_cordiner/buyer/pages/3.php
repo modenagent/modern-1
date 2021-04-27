@@ -19,7 +19,8 @@
             <p>
                 We look forward to the closing of your transaction.
             </p>
-            <img src="https://i.ibb.co/fQVX2bY/primera-signature.png" alt="signature" class="sign_img">
+            
+            <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/primera-signature.png"); ?>" alt="signature" class="sign_img">
         </div>
 
         <div class="welcome_text">WELCOME TO OUR FAMILY</div>

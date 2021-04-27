@@ -20,7 +20,7 @@
             </p>
         </div>
         <div class="col-50">
-            <img src="https://i.ibb.co/yh5QBqq/shutterstock-1395528875.jpg" alt="img4" class="img-fluid w100">
+            <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/shutterstock-1395528875.jpg"); ?>" alt="img4" class="img-fluid w100">
             <h4 class="table_title mt-50 no_line">Avg. Household Income</h4>
             <p class="mt-0 f14 text-justify">
                 The figure to the right represents the average
@@ -34,19 +34,19 @@
     <div class="neighborhood_stats">
         <ul class="stats">
             <li>
-                <img src="https://i.ibb.co/SJK8mk1/img7.png" alt="img7">
+                <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/img7.png"); ?>" alt="Avg. Sale Price">
                 Avg. Sale Price<br>$<?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianValue; ?>
             </li>
             <li>
-                <img src="https://i.ibb.co/q9Rv9vC/img8.png" alt="img8">
+                <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/img8.png"); ?>" alt="Avg. Soft">
                 Avg. Soft<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianLivingArea; ?>
             </li>
             <li>
-                <img src="https://i.ibb.co/7nhwx09/img9.png" alt="img9">
+                <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/img9.png"); ?>" alt="Avg. Beds">
                 Avg. Beds<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianNumBeds; ?> Beds
             </li>
             <li>
-                <img src="https://i.ibb.co/fCmbkvZ/img10.png" alt="img10">
+                <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/img10.png"); ?>" alt="Avg. Baths">
                 Avg. Baths<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianNumBaths; ?> Baths
             </li>
         </ul>
