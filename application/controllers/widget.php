@@ -152,6 +152,8 @@ class Widget extends CI_Controller {
                 $data['user_name'] = isset($user_info['user_name']) && !empty($user_info['user_name']) ? $user_info['user_name'] : '';
                 $data['salesRep'] = array();
                 $data['cma_url'] = $user_info['cma_url'];
+                $data['report_dir_name'] = $user_info['report_dir_name'];
+
                 if(isset($user_info['parent_id']) && !empty($user_info['parent_id']))
                 {
                     $parent_id = $user_info['parent_id'];
@@ -166,6 +168,10 @@ class Widget extends CI_Controller {
                     $data['company'] = (array) $sales_rep_info;
                     if(!empty($sales_rep_info->cma_url)) {
                       $data['cma_url'] = $sales_rep_info->cma_url;
+                    }
+
+                    if($sales_rep_info->role_id_fk == 3) {
+                        $data['report_dir_name'] = $sales_rep_info->report_dir_name;
                     }
                 }
                 

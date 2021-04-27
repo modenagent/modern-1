@@ -279,8 +279,39 @@
                             <div class="carousel-container marketUpdateHide">
                           <div id="owl-example" class="owl-carousel seller_template">
                             <?php
+                            // echo $report_dir_name;die;
+                            //check if seller preview images exist
+                            
+                              $check_dir = 'assets/reports/widget/'.$report_dir_name.'/preview/seller/';
+                              $load_dir = FCPATH.$check_dir;
+
+
+                              if(!empty($report_dir_name) && (is_dir($load_dir))) {
+                            // var_dump(FCPATH."$load_dir/" . $load_view);die;
+
+                                $images = glob($load_dir . "*.jpg");
+
+                                $count_imgs = count($images);
+                                for ($seller_images=1; $seller_images <= $count_imgs ; $seller_images++) { ?>
+
+                                  <div class="item">
+
+                                   <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $seller_images; ?>">
+                                  <label class="user-heading alt gray-bg" for="pb">
+                                    <div class="text-center"> 
+                                      <img class="seller_template" src="<?php echo base_url().$check_dir.$seller_images.'.jpg'; ?>" alt="">
+                                    </div>
+
+                                  </label>
+                                </div>
+
+                                  <?php
+                                }
+
+                              }
+                            
                             // $reportTemplates = array();
-                            if(isset($reportTemplates) && !empty($reportTemplates))
+                            elseif(isset($reportTemplates) && !empty($reportTemplates))
                             {
                               $buyer_i = 0;
                               foreach ($reportTemplates as $key => $report) {
@@ -304,6 +335,32 @@
                           </div>
                           <div id="owl-example-buyer" class="owl-carousel buyer_template">
                             <?php
+                            $check_dir = 'assets/reports/widget/'.$report_dir_name.'/preview/buyer/';
+                              $load_dir = FCPATH.$check_dir;
+
+
+                              if(!empty($report_dir_name) && (is_dir($load_dir))) {
+
+                                $images = glob($load_dir . "*.jpg");
+
+                                $count_imgs = count($images);
+                                for ($buyer_images=1; $buyer_images <= $count_imgs ; $buyer_images++) { ?>
+
+                                  <div class="item ">
+                                    <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_images; ?>">
+                                    <label class="user-heading alt gray-bg" for="pb">
+                                      <div class="text-center">
+                                        <img class="buyer_template" style="display:none;" src="<?php echo base_url().$check_dir.$buyer_images.'.jpg'; ?>" alt="">
+                                      </div>
+                                    </label>
+                                  </div>
+
+
+
+                              <?php }
+                            }
+                              else {
+
                             for ($buyer_i=1; $buyer_i <= 18 ; $buyer_i++) { ?>
                               <div class="item ">
                                 <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_i; ?>">
@@ -314,7 +371,8 @@
                                 </label>
                               </div>
                             <?php
-                          }
+                          } 
+                        }
                             ?>
                           </div>
                             <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
