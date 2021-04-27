@@ -593,7 +593,7 @@ function get187() {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
                     }));
-                    $('#available-comparables-market-update').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
+                    $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
                 $.each(sorted_comp, function(i, item) {
                     $('#pre-selected-options').append($('<option>', {
@@ -602,7 +602,7 @@ function get187() {
                         selected: 'selected'
                     }));
 
-                    $('#comparables-market-update').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
+                    $('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
                 activeRequest=false;
             },
