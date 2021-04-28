@@ -621,13 +621,13 @@ function get187() {
                     
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                /*if($('#comparable-pre-selected-options').length)
+                if($('#comparable-pre-selected-options').length)
                 {
                     $('#comparable-pre-selected-options').multiSelect({
                         selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
                         selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
                     });
-                }*/
+                }
                 activeRequest=false;
             },
             error: function() {

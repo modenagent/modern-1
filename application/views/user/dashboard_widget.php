@@ -917,13 +917,13 @@ jQuery(document).ready(function() {
             }
             if(obj.attr('rel')==3){
 
-                if($('#comparable-pre-selected-options').length)
+                /*if($('#comparable-pre-selected-options').length)
                 {
                     $('#comparable-pre-selected-options').multiSelect({
                         selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
                         selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
                     });
-                }
+                }*/
 
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
