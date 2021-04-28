@@ -1015,7 +1015,7 @@ use Knp\Snappy\Pdf;
                 }
             
             }
-            
+            echo "<pre>"; print_r($data); exit;
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
