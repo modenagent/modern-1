@@ -588,19 +588,46 @@ function get187() {
                 all_comp = data.all;
                 sorted_comp = data.sorted;
                 $('#pre-selected-options').html('');
-                $.each(all_comp, function(i, item) {
+                $('#comparable-pre-selected-options').html('');
+                // $('#available-comparables-market-update tbody').html('');
+
+                $.each(all_comp, function(i, item) {                    
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
                     }));
+
+                    $('#comparable-pre-selected-options').append($('<option>', {
+                        value: item.index,
+                        text: item.Address+" ("+item.Price+")"
+                    }));
+                    
+                    // $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
+                
+               // $('#comparables-market-update tbody').html('');
                 $.each(sorted_comp, function(i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")",
                         selected: 'selected'
                     }));
+
+                    $('#comparable-pre-selected-options').append($('<option>', {
+                        value: item.index,
+                        text: item.Address+" ("+item.Price+")",
+                        selected: 'selected'
+                    }));
+                    
+                    /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
+                if($('#comparable-pre-selected-options').length)
+                {
+                    $('#comparable-pre-selected-options').multiSelect({
+                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+                    });
+                }
                 activeRequest=false;
             },
             error: function() {
@@ -908,6 +935,12 @@ function widgetRunPMA(agentPath, logoPath) {
     }
    
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    
+    if($('#comparable-pre-selected-options').length)
+    {
+        query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
+    }
+    
     //console.log(query);
     if(activeRequest){
         activeRequest=false;

@@ -1,5 +1,9 @@
 <?php
-
+// echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";die;
+if (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" && strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) {
+    echo 'Your browser not support iframe. Please click here '.'<a target="_blank" href="'.'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'</a>'.' to open link in new window';
+    exit();
+}
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
@@ -45,7 +49,7 @@ else {
     		if($idp_data->email == $key) { //Email
     			$attr_values['email'] = $attr_val;
     		}
-    		elseif($idp_data->username == $key) { //Email
+    		elseif($idp_data->username == $key) { //UserName
     			$attr_values['username'] = $attr_val;
     		}
     		elseif ($idp_data->first_name == $key) { //First Name
@@ -58,6 +62,9 @@ else {
     		elseif($idp_data->phone == $key) { // Phone
     			$attr_values['phone'] = $attr_val;
     		}
+            elseif($idp_data->image == $key) { // Image
+                $attr_values['image'] = $attr_val;
+            }
     		// elseif($idp_data->sales_rep == $key) { // Phone	
     		// 	$attr_values['parent_id'] = $attr_val;		
     		// }
@@ -68,6 +75,79 @@ else {
             $get_where = array('email'=>$email);
             $user = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
             if($user && !empty($user)) {
+
+                //Update data
+
+                $update_data = array();
+                if(!empty($attr_values['first_name'])) {
+                    $update_data['first_name'] = $attr_values['first_name'];
+                }
+                if(!empty($attr_values['last_name'])) {
+                    $update_data['last_name'] = $attr_values['last_name'];
+                }
+                if(!empty($attr_values['email'])) {
+                    $update_data['email']=$attr_values['email'];
+                }
+                if(!empty($attr_values['phone'])) {
+                    $update_data['phone'] = $attr_values['phone'];
+                }
+
+                if(!empty($attr_values['image']) && empty($user->profile_image) || true) {
+                    $url=$attr_values['image'];
+                    $contents=@file_get_contents($url);
+                    
+                    // die("IN");
+                    if(!empty($contents)) {
+                        $process_upload = true;
+
+                        //check existing image
+                        if(!empty($user->profile_image)) {
+
+                            // $arrContextOptions=array(
+                            //     "ssl"=>array(
+                            //         "verify_peer"=>false,
+                            //         "verify_peer_name"=>false,
+                            //     ),
+                            // );
+
+                            // $content1=@file_get_contents('https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image,false,stream_context_create($arrContextOptions));
+                            $content1=@file_get_contents('https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image);
+                        
+                            if(!empty($content1) && md5($contents) != md5($content1)) {
+                                $process_upload = true;
+
+                                unlink($root_dir.$user->profile_image);
+                            }
+                            else {
+
+                                $process_upload = false;
+                            }
+
+                        }
+
+                        if($process_upload) {
+
+                            $upload_path = $root_dir.'assets/images/';
+                            $image_name = 'widget_user_'.substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
+                            $save_path=$upload_path.$image_name;
+                            file_put_contents($save_path,$contents);
+                            $profile_image = 'assets/images/'.$image_name;
+                            $update_data['profile_image'] = $profile_image;
+
+                        }
+                    }
+                }
+
+                if(count($update_data)) {
+
+                    $update_where = array(
+                        'user_id_pk' => $user->user_id_pk,
+                    );
+
+                    $CI->base_model->update_record_by_id('lp_user_mst',$update_data,$update_where);
+                }
+
+
 
     	        $newdata = array(
     	        'userid'    => $user->user_id_pk,
@@ -87,6 +167,7 @@ else {
             	//Get company info
             	$get_where = array('user_id_pk'=>$idp_data->company_id);
             	$comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+                // var_dump($comp_info);die;
                 if($comp_info && !empty($comp_info)) {
                     if($comp_info->role_id_fk == 3) {
                         $parent_id = $comp_info->user_id_pk;
@@ -95,17 +176,20 @@ else {
                     elseif(empty($_GET['company'])) {
                         echo "Invalid request";die;
                     }
-
-                    $company_url = $_GET['company'];
-
-                    $get_where = array('company_url'=>$company_url,'parent_id'=>$comp_info->user_id_pk);
-                    $comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
-                    if($comp_info && !empty($comp_info)) {
-                        $parent_id = $comp_info->user_id_pk;
-                    }
                     else {
-                        echo 'You are not authorize'; die;
+
+                        $company_url = $_GET['company'];
+
+                        $get_where = array('company_url'=>$company_url,'parent_id'=>$comp_info->user_id_pk);
+                        $comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+                        if($comp_info && !empty($comp_info)) {
+                            $parent_id = $comp_info->user_id_pk;
+                        }
+                        else {
+                            echo 'You are not authorize'; die;
+                        }
                     }
+
                 }
                 else {
                     echo 'You are not authorize'; die;
@@ -117,6 +201,19 @@ else {
             	//Register user with field mapping
             	$random_password = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
             	$encrypted_password = password_hash($random_password,PASSWORD_DEFAULT);
+                $profile_image = '';
+                if(!empty($attr_values['image'])) {
+                    $url=$attr_values['image'];
+                    $contents=@file_get_contents($url);
+                    if(!empty($contents)) {
+
+                    $upload_path = $root_dir.'assets/images/';
+                    $image_name = 'widget_user_'.substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
+                    $save_path=$upload_path.$image_name;
+                    file_put_contents($save_path,$contents);
+                    $profile_image = 'assets/images/'.$image_name;
+                    }
+                }
             	$user = array(
                     'password' => $encrypted_password,
                     'user_name' => null ,
@@ -138,6 +235,7 @@ else {
                     'user_credits' => '0',
                     'registered_date' => date('Y-m-d H:i:s', time()),
                     'is_active' => 'Y',
+                    'profile_image' => $profile_image,
                 );
 
                 $resp = $CI->base_model->insert_one_row('lp_user_mst', $user);

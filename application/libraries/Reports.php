@@ -636,10 +636,10 @@ use Knp\Snappy\Pdf;
                 $_POST = $reportData;
                 $data['callFromApi'] = $callFromApi;
             }*/
-
             $rep111 = $_POST['report111'];
             $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
             $compKeys = json_decode(stripslashes($_POST['custom_comps']));
+            
             $rep111 = urldecode($rep111);
             $report111 = @simplexml_load_file($rep111);
             
@@ -670,7 +670,7 @@ use Knp\Snappy\Pdf;
 
                 $data['user']['ref_code'] = $ref_code['ref_code'];
 
-                $user_info = $CI->db->select(array('mobile','website'))
+                $user_info = $CI->db->select(array('mobile','website','company_url','company_add','company_city','company_state','comapny_zip'))
                                 ->where('email', $data['user']['email'])
                                 ->get('lp_user_mst')
                                 ->row_array();
@@ -678,6 +678,11 @@ use Knp\Snappy\Pdf;
                 $data['user']['ref_code'] = $ref_code['ref_code'];
                 $data['user']['mobile'] = $user_info['mobile'];
                 $data['user']['website'] = $user_info['website'];
+                $data['user']['company_url'] = $user_info['company_url'];
+                $data['user']['company_add'] = $user_info['company_add'];
+                $data['user']['company_city'] = $user_info['company_city'];
+                $data['user']['company_state'] = $user_info['company_state'];
+                $data['user']['company_zip'] = $user_info['company_zip'];
             }
 
             $data['partner'] =  array();
@@ -723,18 +728,38 @@ use Knp\Snappy\Pdf;
             $data['primary_owner'] = $ownerNamePrimary;
             $data['secondary_owner'] = $ownerNameSecondary;
             $reportItems['comparable']=array();
-            if(true || $_POST['presentation'] == 'seller') {
+            if((true && $_POST['presentation'] == 'seller') || (true && $_POST['presentation'] == 'marketUpdate')) {
                 $comparableTemp = $this->get_all_properties($report187);
-                if(empty($compKeys)){
-                    $comparables = $this->sort_properties($report187, $comparableTemp);
-                    $reportItems['comparable'] = $comparables['sorted'];
-                } else {
-                    foreach($comparableTemp as $key => $_property){
-                        if(in_array($key, $compKeys)){
-                            array_push($reportItems['comparable'],$_property);
+
+                if(true && $_POST['presentation'] == 'seller')
+                {
+                   if(empty($compKeys)){
+                        $comparables = $this->sort_properties($report187, $comparableTemp);
+                        $reportItems['comparable'] = $comparables['sorted'];
+                    } else {
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
+                            }
                         }
-                    }
+                    } 
                 }
+
+                if(true && $_POST['presentation'] == 'marketUpdate')
+                {
+                    $compKeys = json_decode(stripslashes($_POST['comparable_custom_comps']));
+                   if(empty($compKeys)){
+                        $comparables = $this->sort_properties($report187, $comparableTemp);
+                        $reportItems['comparable'] = $comparables['sorted'];
+                    } else {
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
+                            }
+                        }
+                    } 
+                }
+                
             }
 
             if (empty($reportItems['comparable'])) {
@@ -969,6 +994,7 @@ use Knp\Snappy\Pdf;
              * Start Code to fetch customized text data of user
              */
             $data['user_id_for_report_customization'] = 0;
+            $data['presentation_type'] = $presentationType;
             if ($data['user']['email'] != '') {
                 $CI->load->model('user_model');
                 $userInfo = $CI->user_model->getUserDetailsByEmail($data['user']['email'], ['user_id_pk', 'email', 'role_id_fk', 'customer_id', 'ref_code']);

@@ -264,7 +264,8 @@
                           <div class="col-md-12">
                             <div class="col-md-12">
                           <div class="col-md-6">
-                            <h2><strong>Review Pages</strong></h2>
+                            <h2 class="marketUpdateHide"><strong>Review Pages</strong></h2>
+                            <h2 id="comp-heading"><strong>Comparables</strong></h2>
                           </div>
                           <div class="col-md-6 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
@@ -275,11 +276,42 @@
                             <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a> | &nbsp
                           </div>
                             </div>
-                            <div class="carousel-container">
+                            <div class="carousel-container marketUpdateHide">
                           <div id="owl-example" class="owl-carousel seller_template">
                             <?php
+                            // echo $report_dir_name;die;
+                            //check if seller preview images exist
+                            
+                              $check_dir = 'assets/reports/widget/'.$report_dir_name.'/preview/seller/';
+                              $load_dir = FCPATH.$check_dir;
+
+
+                              if(!empty($report_dir_name) && (is_dir($load_dir))) {
+                            // var_dump(FCPATH."$load_dir/" . $load_view);die;
+
+                                $images = glob($load_dir . "*.jpg");
+
+                                $count_imgs = count($images);
+                                for ($seller_images=1; $seller_images <= $count_imgs ; $seller_images++) { ?>
+
+                                  <div class="item">
+
+                                   <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $seller_images; ?>">
+                                  <label class="user-heading alt gray-bg" for="pb">
+                                    <div class="text-center"> 
+                                      <img class="seller_template" src="<?php echo base_url().$check_dir.$seller_images.'.jpg'; ?>" alt="">
+                                    </div>
+
+                                  </label>
+                                </div>
+
+                                  <?php
+                                }
+
+                              }
+                            
                             // $reportTemplates = array();
-                            if(isset($reportTemplates) && !empty($reportTemplates))
+                            elseif(isset($reportTemplates) && !empty($reportTemplates))
                             {
                               $buyer_i = 0;
                               foreach ($reportTemplates as $key => $report) {
@@ -303,6 +335,32 @@
                           </div>
                           <div id="owl-example-buyer" class="owl-carousel buyer_template">
                             <?php
+                            $check_dir = 'assets/reports/widget/'.$report_dir_name.'/preview/buyer/';
+                              $load_dir = FCPATH.$check_dir;
+
+
+                              if(!empty($report_dir_name) && (is_dir($load_dir))) {
+
+                                $images = glob($load_dir . "*.jpg");
+
+                                $count_imgs = count($images);
+                                for ($buyer_images=1; $buyer_images <= $count_imgs ; $buyer_images++) { ?>
+
+                                  <div class="item ">
+                                    <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_images; ?>">
+                                    <label class="user-heading alt gray-bg" for="pb">
+                                      <div class="text-center">
+                                        <img class="buyer_template" style="display:none;" src="<?php echo base_url().$check_dir.$buyer_images.'.jpg'; ?>" alt="">
+                                      </div>
+                                    </label>
+                                  </div>
+
+
+
+                              <?php }
+                            }
+                              else {
+
                             for ($buyer_i=1; $buyer_i <= 18 ; $buyer_i++) { ?>
                               <div class="item ">
                                 <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_i; ?>">
@@ -313,11 +371,46 @@
                                 </label>
                               </div>
                             <?php
-                          }
+                          } 
+                        }
                             ?>
                           </div>
                             <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
+
                             </div>
+                            <!-- Comparables Market update -->
+                           <!-- <div class="row">
+                               <div class="col-md-6">
+                                   <table id="available-comparables-market-update" class="comparables-market-update">
+                                       <thead>
+                                            <tr>
+                                               <th>Available Comparables</th>
+                                            </tr>
+                                       </thead>
+                                       <tbody></tbody>
+                                   </table>
+                               </div>
+                               <div class="col-md-6">
+                                   <table id="comparables-market-update" class="comparables-market-update">   
+                                       <thead>
+                                            <tr>
+                                               <th>Comparables</th>
+                                            </tr>
+                                       </thead>
+                                       <tbody></tbody>
+                                   </table>
+                               </div>
+                           </div> -->
+                           <div class="comparables-market-update">
+                                <div>
+                                    <select id='comparable-pre-selected-options' multiple='multiple'></select>
+                                </div>
+                               
+                                <!-- <div class="text-center">
+                                    <button type="button" class="btn btn-default">Save</button>
+                                </div> -->
+                           </div>
+                           <!-- Comparables Market update -->
                           </div>
                         </div>
                         <!-- step 3 -->
@@ -712,6 +805,8 @@ jQuery(document).ready(function() {
         return false;
     });
 
+        
+    
     $('#select-comps').on('shown.bs.modal', function() {
         $('#pre-selected-options').multiSelect({
         selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
@@ -765,15 +860,37 @@ jQuery(document).ready(function() {
               },500);
               return true;
             }
-            /*if(obj.attr('rel')==3){
-              var _theme = $('.custom-checkbox:checked').val();
-              console.log(_theme);
-              console.log(typeof _theme);
-              if(typeof _theme==='undefined'){
-                  alert("Please choose a theme");
-                  return false;
-              }
-            }*/
+            if(obj.attr('rel')==3){
+                var presentation = $("#presentation").val();
+                if(presentation == 'marketUpdate')
+                {
+                    if(_min>$('#comparable-pre-selected-options').val().length){
+                        _min = $('#comparable-pre-selected-options').val().length;
+                    }
+                    
+                    var last_valid_selection = $('#comparable-pre-selected-options').val();
+                    $('#comparable-pre-selected-options').change(function(event) {
+                        if ($(this).val().length > _max) {
+                            //$(this).val(last_valid_selection);
+                        } 
+                        else {
+                        //last_valid_selection = $(this).val();$(this).trigger('change');
+                        }
+                    });
+
+
+                    if($('#comparable-pre-selected-options').val().length < _min){
+                        alert('Please select '+_min+' comparables');
+                       // event.stopPropagation();
+                        return false;
+                    }
+                    if($('#comparable-pre-selected-options').val().length > _max){
+                        alert('Please do not select more than '+_max+' comparables');
+                       // event.stopPropagation();
+                        return false;
+                    }
+                }
+            }
             return true;
         },
         onShowStep:function(obj){
@@ -799,6 +916,15 @@ jQuery(document).ready(function() {
                 $(".btn-checkout").show("slow");
             }
             if(obj.attr('rel')==3){
+
+                /*if($('#comparable-pre-selected-options').length)
+                {
+                    $('#comparable-pre-selected-options').multiSelect({
+                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+                    });
+                }*/
+
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
                 $('.btn-checkout').data("download",1);
@@ -897,6 +1023,8 @@ function choose_presentation(presentation)
         $('.seller_template').hide(function(){
             $('.buyer_template').show();
         });
+        $("#comp-heading").hide();
+        $(".comparables-market-update").hide();
     }else if(presentation === 'marketUpdate'){
         $("#presentation").val("marketUpdate");
         $('#wizard').smartWizard("marketUpdate");
@@ -908,6 +1036,8 @@ function choose_presentation(presentation)
         });
         $("#config-comps-btn").show();
         $("#butcomp").hide();
+        $("#comp-heading").show();
+        $(".comparables-market-update").show();
     }else {
         $("#presentation").val("seller");
         $('#wizard').smartWizard("seller");
@@ -916,6 +1046,8 @@ function choose_presentation(presentation)
         });
         $("#config-comps-btn").show();
         $("#butcomp").show();
+        $("#comp-heading").hide();
+        $(".comparables-market-update").hide();
     }
     //Set classes
     $("#search-btn").addClass(presentation);
