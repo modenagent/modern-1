@@ -588,26 +588,38 @@ function get187() {
                 all_comp = data.all;
                 sorted_comp = data.sorted;
                 $('#pre-selected-options').html('');
-                $('#available-comparables-market-update tbody').html('');
+                $('#comparable-pre-selected-options').html('');
+                // $('#available-comparables-market-update tbody').html('');
 
                 $.each(all_comp, function(i, item) {                    
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
                     }));
+
+                    $('#comparable-pre-selected-options').append($('<option>', {
+                        value: item.index,
+                        text: item.Address+" ("+item.Price+")"
+                    }));
                     
-                    $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
+                    // $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
                 
-                $('#comparables-market-update tbody').html('');
+               // $('#comparables-market-update tbody').html('');
                 $.each(sorted_comp, function(i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")",
                         selected: 'selected'
                     }));
+
+                    $('#comparable-pre-selected-options').append($('<option>', {
+                        value: item.index,
+                        text: item.Address+" ("+item.Price+")",
+                        selected: 'selected'
+                    }));
                     
-                    $('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
+                    /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
                 activeRequest=false;
             },

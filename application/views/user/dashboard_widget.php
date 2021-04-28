@@ -379,23 +379,30 @@
 
                             </div>
                             <!-- Comparables Market update -->
-                           <div class="row">
+                           <!-- <div class="row">
                                <div class="col-md-6">
                                    <table id="available-comparables-market-update" class="comparables-market-update">
-                                       <tr>
-                                           <th>Available Comparables</th>
-                                       </tr>
+                                       <thead>
+                                            <tr>
+                                               <th>Available Comparables</th>
+                                            </tr>
+                                       </thead>
                                        <tbody></tbody>
                                    </table>
                                </div>
                                <div class="col-md-6">
-                                   <table id="comparables-market-update" class="comparables-market-update">
-                                       <tr>
-                                           <th>Comparables</th>
-                                       </tr>
+                                   <table id="comparables-market-update" class="comparables-market-update">   
+                                       <thead>
+                                            <tr>
+                                               <th>Comparables</th>
+                                            </tr>
+                                       </thead>
                                        <tbody></tbody>
                                    </table>
                                </div>
+                           </div> -->
+                           <div>
+                               <select id='comparable-pre-selected-options' multiple='multiple'></select>
                            </div>
                            <!-- Comparables Market update -->
                           </div>
