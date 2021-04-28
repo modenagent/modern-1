@@ -935,6 +935,12 @@ function widgetRunPMA(agentPath, logoPath) {
     }
    
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    
+    if($('#comparable-pre-selected-options').length)
+    {
+        query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
+    }
+    
     //console.log(query);
     if(activeRequest){
         activeRequest=false;
