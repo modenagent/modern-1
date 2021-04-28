@@ -76,6 +76,79 @@ else {
             $user = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
             if($user && !empty($user)) {
 
+                //Update data
+
+                $update_data = array();
+                if(!empty($attr_values['first_name'])) {
+                    $update_data['first_name'] = $attr_values['first_name'];
+                }
+                if(!empty($attr_values['last_name'])) {
+                    $update_data['last_name'] = $attr_values['last_name'];
+                }
+                if(!empty($attr_values['email'])) {
+                    $update_data['email']=$attr_values['email'];
+                }
+                if(!empty($attr_values['phone'])) {
+                    $update_data['phone'] = $attr_values['phone'];
+                }
+
+                if(!empty($attr_values['image']) && empty($user->profile_image) || true) {
+                    $url=$attr_values['image'];
+                    $contents=@file_get_contents($url);
+                    
+                    // die("IN");
+                    if(!empty($contents)) {
+                        $process_upload = true;
+
+                        //check existing image
+                        if(!empty($user->profile_image)) {
+
+                            // $arrContextOptions=array(
+                            //     "ssl"=>array(
+                            //         "verify_peer"=>false,
+                            //         "verify_peer_name"=>false,
+                            //     ),
+                            // );
+
+                            // $content1=@file_get_contents('https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image,false,stream_context_create($arrContextOptions));
+                            $content1=@file_get_contents('https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image);
+                        
+                            if(!empty($content1) && md5($contents) != md5($content1)) {
+                                $process_upload = true;
+
+                                unlink($root_dir.$user->profile_image);
+                            }
+                            else {
+
+                                $process_upload = false;
+                            }
+
+                        }
+
+                        if($process_upload) {
+
+                            $upload_path = $root_dir.'assets/images/';
+                            $image_name = 'widget_user_'.substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
+                            $save_path=$upload_path.$image_name;
+                            file_put_contents($save_path,$contents);
+                            $profile_image = 'assets/images/'.$image_name;
+                            $update_data['profile_image'] = $profile_image;
+
+                        }
+                    }
+                }
+
+                if(count($update_data)) {
+
+                    $update_where = array(
+                        'user_id_pk' => $user->user_id_pk,
+                    );
+
+                    $CI->base_model->update_record_by_id('lp_user_mst',$update_data,$update_where);
+                }
+
+
+
     	        $newdata = array(
     	        'userid'    => $user->user_id_pk,
     	        'username'  => ucfirst($user->first_name).' '.ucfirst($user->last_name),
@@ -134,7 +207,7 @@ else {
                     $contents=@file_get_contents($url);
                     if(!empty($contents)) {
 
-                    $upload_path = dirname(dirname(__FILE__)).'/assets/images/';
+                    $upload_path = $root_dir.'assets/images/';
                     $image_name = 'widget_user_'.substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
                     $save_path=$upload_path.$image_name;
                     file_put_contents($save_path,$contents);
