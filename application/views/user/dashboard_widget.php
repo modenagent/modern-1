@@ -401,7 +401,7 @@
                                    </table>
                                </div>
                            </div> -->
-                           <div>
+                           <div class="comparables-market-update">
                                <select id='comparable-pre-selected-options' multiple='multiple'></select>
                            </div>
                            <!-- Comparables Market update -->
@@ -799,13 +799,7 @@ jQuery(document).ready(function() {
         return false;
     });
 
-    if($('#comparable-pre-selected-options').length)
-    {
-        $('#comparable-pre-selected-options').multiSelect({
-            selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
-            selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-        });
-    }    
+        
     
     $('#select-comps').on('shown.bs.modal', function() {
         $('#pre-selected-options').multiSelect({
