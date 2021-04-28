@@ -734,30 +734,36 @@ use Knp\Snappy\Pdf;
 
                 if(true || $_POST['presentation'] == 'seller')
                 {
+                    echo "<pre>"; print_r($compKeys);
                    if(empty($compKeys)){
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
                     } else {
+                        echo "<pre>"; print_r($comparableTemp);
                         foreach($comparableTemp as $key => $_property){
                             if(in_array($key, $compKeys)){
                                 array_push($reportItems['comparable'],$_property);
                             }
                         }
+                        echo "<pre>"; print_r($reportItems['comparable']); exit;
                     } 
                 }
 
                 if(true || $_POST['presentation'] == 'marketUpdate')
                 {
                     $compKeys = json_decode(stripslashes($_POST['comparable_custom_comps']));
+                    echo "<pre>"; print_r($compKeys);
                    if(empty($compKeys)){
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
                     } else {
+                        echo "<pre>"; print_r($comparableTemp);
                         foreach($comparableTemp as $key => $_property){
                             if(in_array($key, $compKeys)){
                                 array_push($reportItems['comparable'],$_property);
                             }
                         }
+                        echo "<pre>"; print_r($reportItems['comparable']); exit;
                     } 
                 }
                 
