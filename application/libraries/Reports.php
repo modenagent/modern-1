@@ -636,7 +636,7 @@ use Knp\Snappy\Pdf;
                 $_POST = $reportData;
                 $data['callFromApi'] = $callFromApi;
             }*/
-
+echo "<pre>"; print_r($_POST);
             $rep111 = $_POST['report111'];
             $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
             $compKeys = json_decode(stripslashes($_POST['custom_comps']));
@@ -734,36 +734,36 @@ use Knp\Snappy\Pdf;
 
                 if(true || $_POST['presentation'] == 'seller')
                 {
-                    echo "<pre>"; print_r($compKeys);
+                    echo "<pre>seller:"; print_r($compKeys);
                    if(empty($compKeys)){
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
                     } else {
-                        echo "<pre>"; print_r($comparableTemp);
+                        echo "<pre>seller:"; print_r($comparableTemp);
                         foreach($comparableTemp as $key => $_property){
                             if(in_array($key, $compKeys)){
                                 array_push($reportItems['comparable'],$_property);
                             }
                         }
-                        echo "<pre>"; print_r($reportItems['comparable']); exit;
+                        echo "<pre>seller:"; print_r($reportItems['comparable']); exit;
                     } 
                 }
 
                 if(true || $_POST['presentation'] == 'marketUpdate')
                 {
                     $compKeys = json_decode(stripslashes($_POST['comparable_custom_comps']));
-                    echo "<pre>"; print_r($compKeys);
+                    echo "<pre>marketUpdate:"; print_r($compKeys);
                    if(empty($compKeys)){
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
                     } else {
-                        echo "<pre>"; print_r($comparableTemp);
+                        echo "<pre>marketUpdate:"; print_r($comparableTemp);
                         foreach($comparableTemp as $key => $_property){
                             if(in_array($key, $compKeys)){
                                 array_push($reportItems['comparable'],$_property);
                             }
                         }
-                        echo "<pre>"; print_r($reportItems['comparable']); exit;
+                        echo "<pre>marketUpdate:"; print_r($reportItems['comparable']); exit;
                     } 
                 }
                 
