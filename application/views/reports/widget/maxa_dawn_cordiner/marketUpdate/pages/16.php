@@ -45,7 +45,7 @@
                     <?php $avaiProperty = 0; $i = 1; ?>
                     <?php foreach ($_comparables as $key => $item): ?>
                         <?php 
-                            if($key>8){
+                            if($key>=8){
                                 break;
                             }
                         ?>
