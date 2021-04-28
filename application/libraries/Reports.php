@@ -640,6 +640,7 @@ use Knp\Snappy\Pdf;
             $rep111 = $_POST['report111'];
             $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
             $compKeys = json_decode(stripslashes($_POST['custom_comps']));
+            
             $rep111 = urldecode($rep111);
             $report111 = @simplexml_load_file($rep111);
             
@@ -728,15 +729,50 @@ use Knp\Snappy\Pdf;
             $data['primary_owner'] = $ownerNamePrimary;
             $data['secondary_owner'] = $ownerNameSecondary;
             $reportItems['comparable']=array();
-            if(true || $_POST['presentation'] == 'seller') {
+            if((true || $_POST['presentation'] == 'seller') || (true || $_POST['presentation'] == 'marketUpdate')) {
                 $comparableTemp = $this->get_all_properties($report187);
-                if(empty($compKeys)){
-                    $comparables = $this->sort_properties($report187, $comparableTemp);
-                    $reportItems['comparable'] = $comparables['sorted'];
+
+                if(true || $_POST['presentation'] == 'seller')
+                {
+                   if(empty($compKeys)){
+                        $comparables = $this->sort_properties($report187, $comparableTemp);
+                        $reportItems['comparable'] = $comparables['sorted'];
+                    } else {
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
+                            }
+                        }
+                    } 
+                }
+
+                if(true || $_POST['presentation'] == 'marketUpdate')
+                {
+                    $compKeys = json_decode(stripslashes($_POST['comparable_custom_comps']));
+                   if(empty($compKeys)){
+                        $comparables = $this->sort_properties($report187, $comparableTemp);
+                        $reportItems['comparable'] = $comparables['sorted'];
+                    } else {
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
+                            }
+                        }
+                    } 
+                }
+                
+            }
+
+            $reportItems['mu_comparable']=array();
+            if(true || $_POST['presentation'] == 'marketUpdate') {
+                $mu_comparableTemp = $this->get_all_properties($report187);
+                if(empty($mu_compKeys)){
+                    $mu_comparables = $this->sort_properties($report187, $mu_comparableTemp);
+                    $reportItems['mu_comparable'] = $comparables['sorted'];
                 } else {
-                    foreach($comparableTemp as $key => $_property){
-                        if(in_array($key, $compKeys)){
-                            array_push($reportItems['comparable'],$_property);
+                    foreach($mu_comparableTemp as $key => $_property){
+                        if(in_array($key, $mu_compKeys)){
+                            array_push($reportItems['mu_comparable'],$_property);
                         }
                     }
                 }
@@ -1015,7 +1051,7 @@ use Knp\Snappy\Pdf;
                 }
             
             }
-            echo "<pre>"; print_r($data); exit;
+            
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){
