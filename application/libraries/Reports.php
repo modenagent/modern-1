@@ -729,10 +729,10 @@ echo "<pre>"; print_r($_POST);
             $data['primary_owner'] = $ownerNamePrimary;
             $data['secondary_owner'] = $ownerNameSecondary;
             $reportItems['comparable']=array();
-            if((true || $_POST['presentation'] == 'seller') || (true || $_POST['presentation'] == 'marketUpdate')) {
+            if((true && $_POST['presentation'] == 'seller') || (true && $_POST['presentation'] == 'marketUpdate')) {
                 $comparableTemp = $this->get_all_properties($report187);
 
-                if(true || $_POST['presentation'] == 'seller')
+                if(true && $_POST['presentation'] == 'seller')
                 {
                     echo "<pre>seller:"; print_r($compKeys);
                    if(empty($compKeys)){
@@ -749,7 +749,7 @@ echo "<pre>"; print_r($_POST);
                     } 
                 }
 
-                if(true || $_POST['presentation'] == 'marketUpdate')
+                if(true && $_POST['presentation'] == 'marketUpdate')
                 {
                     $compKeys = json_decode(stripslashes($_POST['comparable_custom_comps']));
                     echo "<pre>marketUpdate:"; print_r($compKeys);
