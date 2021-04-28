@@ -763,21 +763,6 @@ use Knp\Snappy\Pdf;
                 
             }
 
-            $reportItems['mu_comparable']=array();
-            if(true || $_POST['presentation'] == 'marketUpdate') {
-                $mu_comparableTemp = $this->get_all_properties($report187);
-                if(empty($mu_compKeys)){
-                    $mu_comparables = $this->sort_properties($report187, $mu_comparableTemp);
-                    $reportItems['mu_comparable'] = $comparables['sorted'];
-                } else {
-                    foreach($mu_comparableTemp as $key => $_property){
-                        if(in_array($key, $mu_compKeys)){
-                            array_push($reportItems['mu_comparable'],$_property);
-                        }
-                    }
-                }
-            }
-
             if (empty($reportItems['comparable'])) {
                 return ["status"=>false, "showError"=>true, "msg"=>"Report can not be generated due to lack of comparable data."];
             }
