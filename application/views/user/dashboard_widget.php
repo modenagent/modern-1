@@ -402,7 +402,13 @@
                                </div>
                            </div> -->
                            <div class="comparables-market-update">
-                               <select id='comparable-pre-selected-options' multiple='multiple'></select>
+                                <div>
+                                    <select id='comparable-pre-selected-options' multiple='multiple'></select>
+                                </div>
+                               
+                                <!-- <div class="text-center">
+                                    <button type="button" class="btn btn-default">Save</button>
+                                </div> -->
                            </div>
                            <!-- Comparables Market update -->
                           </div>
@@ -854,15 +860,37 @@ jQuery(document).ready(function() {
               },500);
               return true;
             }
-            /*if(obj.attr('rel')==3){
-              var _theme = $('.custom-checkbox:checked').val();
-              console.log(_theme);
-              console.log(typeof _theme);
-              if(typeof _theme==='undefined'){
-                  alert("Please choose a theme");
-                  return false;
-              }
-            }*/
+            if(obj.attr('rel')==3){
+                var presentation = $("#presentation").val();
+                if(presentation == 'marketUpdate')
+                {
+                    if(_min>$('#comparable-pre-selected-options').val().length){
+                        _min = $('#comparable-pre-selected-options').val().length;
+                    }
+                    
+                    var last_valid_selection = $('#comparable-pre-selected-options').val();
+                    $('#comparable-pre-selected-options').change(function(event) {
+                        if ($(this).val().length > _max) {
+                            //$(this).val(last_valid_selection);
+                        } 
+                        else {
+                        //last_valid_selection = $(this).val();$(this).trigger('change');
+                        }
+                    });
+
+
+                    if($('#comparable-pre-selected-options').val().length < _min){
+                        alert('Please select '+_min+' comparables');
+                       // event.stopPropagation();
+                        return false;
+                    }
+                    if($('#comparable-pre-selected-options').val().length > _max){
+                        alert('Please do not select more than '+_max+' comparables');
+                       // event.stopPropagation();
+                        return false;
+                    }
+                }
+            }
             return true;
         },
         onShowStep:function(obj){
@@ -888,6 +916,15 @@ jQuery(document).ready(function() {
                 $(".btn-checkout").show("slow");
             }
             if(obj.attr('rel')==3){
+
+                if($('#comparable-pre-selected-options').length)
+                {
+                    $('#comparable-pre-selected-options').multiSelect({
+                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+                    });
+                }
+
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
                 $('.btn-checkout').data("download",1);
