@@ -940,13 +940,13 @@ function widgetRunPMA(agentPath, logoPath) {
     {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
-    query += '&' + 'use_rets_api=' + use_rets_api;
-    console.log(query);
     
+    //console.log(query);
     if(activeRequest){
         activeRequest=false;
         xhr.abort();
     }
+    console.log(query); 
     // return;
     activeRequest=true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
@@ -1019,18 +1019,18 @@ function getRetsApiComparables(address)
         data: {address:address}
     })
         .done(function(response) {
+            console.log(response);
             var data = JSON.parse(response);
-            all_comp = data.all;
-            sorted_comp = data.sorted;
             $('#pre-selected-options').html('');
-            $.each(all_comp, function(i, item) {
+            $.each(data, function(i, item) {
+                console.log(item);
                 $('#pre-selected-options').append($('<option>', {
                     value: i,
                     text: item.address +" ("+item.price+")"
                 }));
             });
-            
-            $.each(sorted_comp, function(i, item) {
+            var data = JSON.parse(response);
+            $.each(data, function(i, item) {
                 $('#pre-selected-options').append($('<option>', {
                     value: i,
                     text: item.address +" ("+item.price+")",

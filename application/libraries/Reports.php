@@ -636,28 +636,22 @@ use Knp\Snappy\Pdf;
                 $_POST = $reportData;
                 $data['callFromApi'] = $callFromApi;
             }*/
-            $use_rets_api = $_POST['use_rets_api'];
-echo "<pre>"; print_r($_POST); exit;
-            if(isset($use_rets_api) && $use_rets_api == 0)
-            {
-                $rep111 = $_POST['report111'];
-                $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
-                $compKeys = json_decode(stripslashes($_POST['custom_comps']));
-                
-                $rep111 = urldecode($rep111);
-                $report111 = @simplexml_load_file($rep111);
+            $rep111 = $_POST['report111'];
+            $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
+            $compKeys = json_decode(stripslashes($_POST['custom_comps']));
+            
+            $rep111 = urldecode($rep111);
+            $report111 = @simplexml_load_file($rep111);
+            
+            $rep187 = $_POST['report187'];
+            $rep187 = urldecode($rep187);
+            $report187 = simplexml_load_file($rep187);
+            // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
+            // $report187 = simplexml_load_file("sample.xml");
+            // changes for local version ends here
 
-                $rep187 = $_POST['report187'];
-                $rep187 = urldecode($rep187);
-                $report187 = simplexml_load_file($rep187);
-
-                // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
-                // $report187 = simplexml_load_file("sample.xml");
-                // changes for local version ends here
-
-                $data['mapinfo'] = $report111;
-                $data['property'] = $report187;
-            }
+            $data['mapinfo'] = $report111;
+            $data['property'] = $report187;
 
             $data['user'] = $_POST['user'];
             if($_POST['user_image'] != ''){
