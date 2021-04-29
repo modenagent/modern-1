@@ -10,32 +10,36 @@ class Widget extends CI_Controller {
         // $this->user_id = 82;   
         $widget_url = $_ENV['WIDGET_DOMAIN'];
         // header("Access-Control-Allow-Origin: $widget_url");
-        // header("Access-Control-Allow-Origin:*");
+        // header("Access-Control-Allow-Origin:*")
 
 
-        // require_once(FCPATH .'simplesaml/lib/_autoload.php');
-        // $session = SimpleSAML_Session::getSessionFromRequest();
-
-        // if(!empty($_SESSION['userdata']) && !($this->session->userdata('userid'))) {
-
-        //     $sessionData = $this->session->set_userdata($_SESSION['userdata']);
-
-        // }
 
         // var_dump($this->session->userdata);die;
         if(!($this->session->userdata('userid')) ) {
-          // echo $this->uri->uri_string();die;
+
           if($this->uri->uri_string() != 'widget/setAuth'){
-            // echo "in";die;
-            redirect('widget/setAuth');
-            exit();
+
+            // redirect('widget/setAuth');
+
+            $user_id = $this->setAuth();
+            if($user_id) {
+
+              $this->user_id = $user_id;
+
+              $user_data = array(
+                    'userid'    => $user_info['user_id_pk'],
+                    'logged_in'    => TRUE,
+                  );
+
+              $session_data = $this->session->set_userdata($user_data);
+            }
+            else {
+              echo "Access denied, you are not authorized to use this widget.";
+              die;
+            }
+            // exit();
           } 
-             // echo "Access denied, you are not authorized to use this widget.";
-            // if(!empty($_SERVER['HTTP_REFERER'])) {
-            //   header('Location: ' . $_SERVER['HTTP_REFERER']);
-            // }
-            // return;
-             // exit();
+             
         }
         else {
             $this->user_id = $this->session->userdata('userid');          
@@ -44,6 +48,7 @@ class Widget extends CI_Controller {
 
     public function setAuth()
     {
+      // echo "IN";die;
       $this->load->helper('cookie');
       $sso_user_token = get_cookie('sso_user_token',true);
       if(!empty($sso_user_token)) {
@@ -66,16 +71,18 @@ class Widget extends CI_Controller {
                 }
 
 
-              redirect('widget/getWidgetData');
-              exit;
+              // redirect('widget/getWidgetData');
+              // exit;
+                return $user_info['user_id_pk'];
 
           }
         // echo $url;die;
 
 
       }
-      echo "Access denied, you are not authorized to use this widget.";
-      die;
+      // echo "Access denied, you are not authorized to use this widget.";
+      return false;
+      // die;
     }
 
     public function index()
