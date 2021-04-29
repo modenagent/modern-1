@@ -741,24 +741,12 @@ use Knp\Snappy\Pdf;
                 if(true && $_POST['presentation'] == 'seller')
                 {
                    if(empty($compKeys)){
-                    echo "<pre>"; print_r('empty comps key'); exit;
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
-                    } else 
-                    {
-                        if($use_rets_api == 1)
-                        {
-                            echo "<pre>"; print_r("use_rets_api if");
-                            $comparables = $this->sort_properties($report187, $comparableTemp);
-                            $reportItems['comparable'] = $comparables['sorted'];
-                        }
-                        else
-                        {
-                            echo "<pre>"; print_r("else"); exit;
-                            foreach($comparableTemp as $key => $_property){
-                                if(in_array($key, $compKeys)){
-                                    array_push($reportItems['comparable'],$_property);
-                                }
+                    } else {
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
                             }
                         }
                     } 
@@ -1038,7 +1026,7 @@ use Knp\Snappy\Pdf;
             /**
              * END Code to fetch customized text data of user
              */
-echo "<pre>"; print_r($data); exit;
+
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
