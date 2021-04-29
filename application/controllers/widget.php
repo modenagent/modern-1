@@ -442,4 +442,68 @@ class Widget extends CI_Controller {
         }
       }
     }
+
+    public function getRetsApiComparablesData()
+    {
+        if(isset($_POST) && !empty($_POST))
+        {
+            $address = $this->input->post('address');
+            $query = array('q' => $address);
+            $endPoint = 'properties/'.$address;
+            $result = $this->make_request('GET', 'properties', json_encode($query));
+            $response = json_decode($result,TRUE);
+
+            if(isset($response) && !empty($response))
+            {
+                $properties = $sorted = $all = array();
+
+                foreach ($response as $key => $value) 
+                {
+                	if($key <= 7)
+                	{
+                		$sorted[$value['mlsId']] = array(
+	                        'address' => $value['address']['full'].' '.$value['address']['city'],
+	                        'price' => $value['listPrice']
+	                    );
+                	}
+                	else
+                	{
+                		$all[$value['mlsId']] = array(
+	                        'address' => $value['address']['full'].' '.$value['address']['city'],
+	                        'price' => $value['listPrice']
+	                    );
+                	}
+                    
+                    
+                }
+            }
+            $properties['all'] = $all;
+            $properties['sorted'] = $sorted;
+            
+            echo json_encode($properties);
+        }
+    }
+
+    public function make_request($http_method, $endpoint, $body_params='')
+    {
+        $login = $_ENV['RETS_API_USERNAME'];
+        $password = $_ENV['RETS_API_PASSWORD'];
+
+        
+        $ch = curl_init($_ENV['RETS_API_ENDPOINT'].$endpoint);                                    
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $http_method);                        
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body_params);                   
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "$login:$password");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+            'Content-Type: application/json',
+            'Content-Length: ' . strlen($body_params))
+        );
+        
+        $error_msg = curl_error($ch);
+        
+        $result = curl_exec($ch);
+        return $result;
+    }
 }

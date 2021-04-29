@@ -940,6 +940,9 @@ function widgetRunPMA(agentPath, logoPath) {
     {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
+
+    query += '&' + 'use_rets_api=' + use_rets_api;
+    console.log(query);
     
     //console.log(query);
     if(activeRequest){
@@ -1009,4 +1012,37 @@ function widgetRunPMA(agentPath, logoPath) {
         });
         
 
+}
+
+function getRetsApiComparables(address) 
+{
+    $.ajax({
+        url: base_url+'widget/getRetsApiComparablesData',
+        type: 'POST',
+        data: {address:address}
+    })
+        .done(function(response) {
+            var data = JSON.parse(response);
+            all_comp = data.all;
+            sorted_comp = data.sorted;
+            $('#pre-selected-options').html('');
+            $.each(all_comp, function(i, item) {
+                $('#pre-selected-options').append($('<option>', {
+                    value: i,
+                    text: item.address +" ("+item.price+")"
+                }));
+            });
+            
+            $.each(sorted_comp, function(i, item) {
+                $('#pre-selected-options').append($('<option>', {
+                    value: i,
+                    text: item.address +" ("+item.price+")",
+                    selected: 'selected'
+                }));
+            });           
+        })
+        .fail(function() {            
+        })
+        .always(function() {
+        });
 }
