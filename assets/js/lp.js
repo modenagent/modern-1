@@ -940,6 +940,9 @@ function widgetRunPMA(agentPath, logoPath) {
     {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
+
+    query += '&' + 'use_rets_api=' + use_rets_api;
+    console.log(query);
     
     //console.log(query);
     if(activeRequest){
@@ -1019,18 +1022,18 @@ function getRetsApiComparables(address)
         data: {address:address}
     })
         .done(function(response) {
-            console.log(response);
             var data = JSON.parse(response);
+            all_comp = data.all;
+            sorted_comp = data.sorted;
             $('#pre-selected-options').html('');
-            $.each(data, function(i, item) {
-                console.log(item);
+            $.each(all_comp, function(i, item) {
                 $('#pre-selected-options').append($('<option>', {
                     value: i,
                     text: item.address +" ("+item.price+")"
                 }));
             });
-            var data = JSON.parse(response);
-            $.each(data, function(i, item) {
+            
+            $.each(sorted_comp, function(i, item) {
                 $('#pre-selected-options').append($('<option>', {
                     value: i,
                     text: item.address +" ("+item.price+")",
