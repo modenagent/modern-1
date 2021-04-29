@@ -637,9 +637,9 @@ use Knp\Snappy\Pdf;
                 $data['callFromApi'] = $callFromApi;
             }*/
             $use_rets_api = $_POST['use_rets_api'];
-echo "<pre>"; print_r($_POST); exit;
-            if(isset($use_rets_api) && $use_rets_api == 0)
-            {
+
+            /*if(isset($use_rets_api) && $use_rets_api == 0)
+            {*/
                 $rep111 = $_POST['report111'];
                 $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
                 $compKeys = json_decode(stripslashes($_POST['custom_comps']));
@@ -657,7 +657,7 @@ echo "<pre>"; print_r($_POST); exit;
 
                 $data['mapinfo'] = $report111;
                 $data['property'] = $report187;
-            }
+            /*}*/
 
 
             $data['user'] = $_POST['user'];
@@ -1026,7 +1026,7 @@ echo "<pre>"; print_r($_POST); exit;
             /**
              * END Code to fetch customized text data of user
              */
-
+echo "<pre>"; print_r($data); exit;
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
