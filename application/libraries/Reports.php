@@ -144,29 +144,17 @@ use Knp\Snappy\Pdf;
             if(true || $_POST['presentation'] == 'seller') {
                 $comparableTemp = $this->get_all_properties($report187);
                 if(empty($compKeys)){
-                    echo "<pre>"; print_r("empty compkey");
                     $comparables = $this->sort_properties($report187, $comparableTemp);
                     $reportItems['comparable'] = $comparables['sorted'];
                 } else {
-                    if($use_rets_api == 1)
-                    {
-                        echo "<pre>"; print_r("use_rets_api if");
-                        $comparables = $this->sort_properties($report187, $comparableTemp);
-                        $reportItems['comparable'] = $comparables['sorted'];
-                    }
-                    else
-                    {
-                        echo "<pre>"; print_r("else");
-                        foreach($comparableTemp as $key => $_property){
-                            if(in_array($key, $compKeys)){
-                                array_push($reportItems['comparable'],$_property);
-                            }
+                    foreach($comparableTemp as $key => $_property){
+                        if(in_array($key, $compKeys)){
+                            array_push($reportItems['comparable'],$_property);
                         }
                     }
-                    
                 }
             }
-echo "<pre>"; print_r($reportItems['comparable']); exit;
+
             if (empty($reportItems['comparable'])) {
                 return ["status"=>false, "showError"=>true, "msg"=>"Report can not be generated due to lack of comparable data."];
             }
@@ -753,12 +741,24 @@ echo "<pre>"; print_r($reportItems['comparable']); exit;
                 if(true && $_POST['presentation'] == 'seller')
                 {
                    if(empty($compKeys)){
+                    echo "<pre>"; print_r('empty comps key'); exit;
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
-                    } else {
-                        foreach($comparableTemp as $key => $_property){
-                            if(in_array($key, $compKeys)){
-                                array_push($reportItems['comparable'],$_property);
+                    } else 
+                    {
+                        if($use_rets_api == 1)
+                        {
+                            echo "<pre>"; print_r("use_rets_api if");
+                            $comparables = $this->sort_properties($report187, $comparableTemp);
+                            $reportItems['comparable'] = $comparables['sorted'];
+                        }
+                        else
+                        {
+                            echo "<pre>"; print_r("else"); exit;
+                            foreach($comparableTemp as $key => $_property){
+                                if(in_array($key, $compKeys)){
+                                    array_push($reportItems['comparable'],$_property);
+                                }
                             }
                         }
                     } 
