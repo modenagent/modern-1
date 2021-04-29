@@ -36,7 +36,7 @@
                 <img src="<?php echo base_url();?>assets/reports/english/seller/images/down-arrow.png" alt="arrow" class="my-20">
             </div>
             <div class="col-50">
-                <img src="<?php echo base_url();?>assets/reports/english/seller/images/contract.svg" alt="" class="img-fluid icons">
+                <img src="<?php echo base_url();?>assets/reports/english/seller/images/contract.png" alt="" class="img-fluid icons">
             </div>
         </div>
         <div class="d-flex">
@@ -76,7 +76,7 @@
                 </p>
             </div>
             <div class="col-50">
-                <img src="<?php echo base_url();?>assets/reports/english/seller/images/secure.svg" alt="secure" class="img-fluid icons">
+                <img src="<?php echo base_url();?>assets/reports/english/seller/images/secure.png" alt="secure" class="img-fluid icons">
             </div>
         </div>
         <div class="table_title mt-30">Congratulations!</div>
