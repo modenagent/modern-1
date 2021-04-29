@@ -38,7 +38,7 @@
                     <img src="<?php echo base_url();?>assets/reports/english/buyer/images/down-arrow.png" alt="arrow" class="my-20">
                 </div>
                 <div class="col-50">
-                    <img src="<?php echo base_url();?>assets/reports/english/buyer/images/contract.svg" alt="" class="img-fluid icons mt-20">
+                    <img src="<?php echo base_url();?>assets/reports/english/buyer/images/contract.png" alt="" class="img-fluid icons mt-20">
                 </div>
             </div>
             <div class="d-flex">
@@ -84,7 +84,7 @@
                     <div class="success_text">You are a New Home Owner!</div>
                 </div>
                 <div class="col-50">
-                    <img src="<?php echo base_url();?>assets/reports/english/buyer/images/secure.svg" alt="secure" class="img-fluid icons">
+                    <img src="<?php echo base_url();?>assets/reports/english/buyer/images/secure.png" alt="secure" class="img-fluid icons">
                 </div>
             </div>
         </div>
