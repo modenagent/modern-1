@@ -38,9 +38,9 @@
             padding: 0 0 10px;
             margin: 0;
         }
-		#cma-widget-container #my-leads .page-header p {
-			color:#ffffff;
-		}
+        #cma-widget-container #my-leads .page-header p {
+            color:#ffffff;
+        }
       </style>
    </head>
    <body>
@@ -103,7 +103,7 @@
                                 <a href="#step-3"> 
                                     <span class="stepNumber">03</span> 
                                     <span class="stepDesc marketUpdateHide"> Step 3<br /><small class="little">Review Pages</small></span>
-                                    <span class="stepDesc marketUpdateShow"> Step 3<br /><small class="little">Branding</small></span>
+                                    <span class="stepDesc marketUpdateShow"> Step 3<br /><small class="little">Choose Your Comps</small></span>
                                 </a>
                             </li>
                             <li id="step-4-link">
@@ -169,7 +169,7 @@
                                         <div class="col-xs-12 col-lg-12 col-md-12">
                                           <!-- <h2><strong>Agent:</strong> Upload Pic &amp; Enter Info</h2> -->
                                           <div class="row">
-										  <div class="col-md-1"></div>
+                                          <div class="col-md-1"></div>
                                             <div class="col-md-3">
                                               <div class="leftpic"> <a href="javascript:;">
                                                 <?php
@@ -756,6 +756,9 @@
          }
       </style>
       <!-- Bootstrap Core JavaScript --> 
+      <script type="text/javascript">
+        var use_rets_api = "<?php echo $company['use_rets_api']; ?>";
+      </script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
@@ -916,15 +919,14 @@ jQuery(document).ready(function() {
                 $(".btn-checkout").show("slow");
             }
             if(obj.attr('rel')==3){
-
-                /*if($('#comparable-pre-selected-options').length)
+                var presentation = $("#presentation").val();
+                
+                if(use_rets_api == 1 && presentation == 'seller')
                 {
-                    $('#comparable-pre-selected-options').multiSelect({
-                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
-                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-                    });
-                }*/
-
+                    var property_address = $('#searchbox').val();
+                    property_address = $.trim(property_address);
+                    getRetsApiComparables(property_address);
+                }
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
                 $('.btn-checkout').data("download",1);
