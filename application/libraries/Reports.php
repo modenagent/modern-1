@@ -728,10 +728,10 @@ use Knp\Snappy\Pdf;
             $data['primary_owner'] = $ownerNamePrimary;
             $data['secondary_owner'] = $ownerNameSecondary;
             $reportItems['comparable']=array();
-            if((true && $_POST['presentation'] == 'seller') || (true && $_POST['presentation'] == 'marketUpdate')) {
+            if((true && $_POST['presentation'] == 'seller') || (true && $_POST['presentation'] == 'marketUpdate') || (true && $_POST['presentation'] == 'buyer')) {
                 $comparableTemp = $this->get_all_properties($report187);
 
-                if(true && $_POST['presentation'] == 'seller')
+                if(true && ($_POST['presentation'] == 'seller' || $_POST['presentation'] == 'buyer'))
                 {
                    if(empty($compKeys)){
                         $comparables = $this->sort_properties($report187, $comparableTemp);
