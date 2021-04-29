@@ -489,6 +489,7 @@ table {
 .map_content p {
   font-size: 19px;
   line-height: 27px;
+  margin-top: 50px;
 }
 .map_content h2 {
   font-size: 22px;
@@ -498,7 +499,7 @@ table {
   letter-spacing: 3px;
   padding-bottom: 12px;
   position: relative;
-  display: inline-block;
+  display: inline;
   padding-right: 25px;
 }
 .table_title {
@@ -529,6 +530,7 @@ table {
   margin-bottom: 0;
   margin-top: 20px;
   padding-right: 0;
+  display: block;
 }
 tr:nth-of-type(even) {
   background: #ececec;
