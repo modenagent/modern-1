@@ -4,43 +4,20 @@ $site_address = $property->PropertyProfile->SiteAddress;
 $city = ucwords(strtolower($property->PropertyProfile->SiteCity));
 $state = strtoupper($property->PropertyProfile->SiteState);
 $zip = strtoupper($property->PropertyProfile->SiteZip);
+// $site_address ='1234 Main Street';
 
+// $city = 'City';
+// $state = 'State';
+// $zip = '000000';
 ?>
 <page class="buyerpdf1">
     <h1 class="main_title">Buyers Report</h1>
-        <div class="d-flex">    
-            <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img1.png'; ?>" alt="24ad-Traditional" class="img-fluid">
-                <ul class="address_offer">
-                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
-                    <li>Offered for<br> $0,000,000</li>
-                </ul>
-            </div>
-            <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img2.png'; ?>" alt="24ad-Traditional" class="img-fluid">
-                <ul class="address_offer">
-                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
-                    <li>Offered for<br> $0,000,000</li>
-                </ul>
-            </div>
-        </div>
-        <div class="d-flex">
-            <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img3.png'; ?>" alt="24ad-Traditional" class="img-fluid">
-                <ul class="address_offer">
-                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
-                    <li>Offered for<br> $0,000,000</li>
-                </ul>
-            </div>
-            <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img4.png'; ?>" alt="24ad-Traditional" class="img-fluid">
-                <ul class="address_offer">
-                    <li><span>1234 Main Street,</span><br> City, State 00000</li>
-                    <li>Offered for<br> $0,000,000</li>
-                </ul>
-            </div>
-        </div>
-    
+    <img src="https://i.ibb.co/DLbCmth/buyers-report-hero.png" alt="">
+
+    <div class="address_box">
+        <b><?php if(!empty($site_address)) {echo $site_address.', ';} ?><?php if(!empty($city)) {echo $city.', ';} ?><?php if(!empty($state)) {echo $state.', ';} ?><?php if(!empty($zip)) {echo $zip.', ';} ?></b>
+        <!-- Offered for $0,000,000 -->
+    </div>
     <div class="footer">
         <div class="d-flex">
             <div class="signature horizontal_sign">
