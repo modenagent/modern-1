@@ -940,8 +940,10 @@ function widgetRunPMA(agentPath, logoPath) {
     {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
-
-    query += '&' + 'use_rets_api=' + use_rets_api;
+    if(presentation == 'seller')
+    {
+        query += '&' + 'use_rets_api=' + use_rets_api;
+    }
     console.log(query);
     
     //console.log(query);
