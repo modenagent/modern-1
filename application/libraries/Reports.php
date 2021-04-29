@@ -147,11 +147,20 @@ use Knp\Snappy\Pdf;
                     $comparables = $this->sort_properties($report187, $comparableTemp);
                     $reportItems['comparable'] = $comparables['sorted'];
                 } else {
-                    foreach($comparableTemp as $key => $_property){
-                        if(in_array($key, $compKeys)){
-                            array_push($reportItems['comparable'],$_property);
+                    if($use_rets_api == 1)
+                    {
+                        $comparables = $this->sort_properties($report187, $comparableTemp);
+                        $reportItems['comparable'] = $comparables['sorted'];
+                    }
+                    else
+                    {
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
+                            }
                         }
                     }
+                    
                 }
             }
 
