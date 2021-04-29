@@ -756,9 +756,6 @@
          }
       </style>
       <!-- Bootstrap Core JavaScript --> 
-      <script type="text/javascript">
-        var use_rets_api = "<?php echo $company['use_rets_api']; ?>";
-      </script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
@@ -919,14 +916,15 @@ jQuery(document).ready(function() {
                 $(".btn-checkout").show("slow");
             }
             if(obj.attr('rel')==3){
-                var presentation = $("#presentation").val();
-                
-                if(use_rets_api == 1 && presentation == 'seller')
+
+                /*if($('#comparable-pre-selected-options').length)
                 {
-                    var property_address = $('#searchbox').val();
-                    property_address = $.trim(property_address);
-                    getRetsApiComparables(property_address);
-                }
+                    $('#comparable-pre-selected-options').multiSelect({
+                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+                    });
+                }*/
+
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
                 $('.btn-checkout').data("download",1);
