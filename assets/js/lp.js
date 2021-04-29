@@ -935,8 +935,8 @@ function widgetRunPMA(agentPath, logoPath) {
     }
    
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
-    
-    if($('#comparable-pre-selected-options').length)
+    var presentation = $("#presentation").val();
+    if($('#comparable-pre-selected-options').length && presentation == 'marketUpdate')
     {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
