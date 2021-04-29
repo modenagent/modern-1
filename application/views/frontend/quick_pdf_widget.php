@@ -160,7 +160,8 @@
                                 </div>
                                 </div>
                                 </div>
-                                <br/><div style="color:white;clear:both;margin:10px;">Powered By <a href="<?php echo site_url(); ?>" target="_blank">ModernAgent.io</a></div>
+                                <!-- <br/>
+                                <div style="color:white;clear:both;margin:10px;">Powered By <a href="<?php echo site_url(); ?>" target="_blank">ModernAgent.io</a></div> -->
                             </div>
         
     </div>
