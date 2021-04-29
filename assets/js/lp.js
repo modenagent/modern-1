@@ -621,13 +621,13 @@ function get187() {
                     
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                if($('#comparable-pre-selected-options').length)
+                /*if($('#comparable-pre-selected-options').length)
                 {
                     $('#comparable-pre-selected-options').multiSelect({
                         selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
                         selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
                     });
-                }
+                }*/
                 activeRequest=false;
             },
             error: function() {
@@ -935,17 +935,11 @@ function widgetRunPMA(agentPath, logoPath) {
     }
    
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
-    var presentation = $("#presentation").val();
-    if($('#comparable-pre-selected-options').length && presentation == 'marketUpdate')
+    
+    if($('#comparable-pre-selected-options').length)
     {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
-    console.log(presentation);
-    if(presentation == 'seller')
-    {
-        query += '&' + 'use_rets_api=' + use_rets_api;
-    }
-    console.log(query);
     
     //console.log(query);
     if(activeRequest){
@@ -1015,37 +1009,4 @@ function widgetRunPMA(agentPath, logoPath) {
         });
         
 
-}
-
-function getRetsApiComparables(address) 
-{
-    $.ajax({
-        url: base_url+'widget/getRetsApiComparablesData',
-        type: 'POST',
-        data: {address:address}
-    })
-        .done(function(response) {
-            var data = JSON.parse(response);
-            all_comp = data.all;
-            sorted_comp = data.sorted;
-            $('#pre-selected-options').html('');
-            $.each(all_comp, function(i, item) {
-                $('#pre-selected-options').append($('<option>', {
-                    value: i,
-                    text: item.address +" ("+item.price+")"
-                }));
-            });
-            
-            $.each(sorted_comp, function(i, item) {
-                $('#pre-selected-options').append($('<option>', {
-                    value: i,
-                    text: item.address +" ("+item.price+")",
-                    selected: 'selected'
-                }));
-            });           
-        })
-        .fail(function() {            
-        })
-        .always(function() {
-        });
 }
