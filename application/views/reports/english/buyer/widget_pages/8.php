@@ -10,7 +10,7 @@
                     looking for, including style, price
                     and location.
                 </p>
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
+                <img src="<?php echo base_url();?>assets/reports/english/buyer/images/down-arrow.png" alt="arrow" class="my-20">
             </div>
             <div class="col-50">
                 <div class="msg_box">
@@ -31,14 +31,14 @@
                 <p class="f14 w80">
                     You will need pay stubs, w2s
                     and bank statements. Knowing
-                    what you can afford is critical to
+                    wbat gkh can aff ord is critical to
                     a suuccessful home shopping
                     experience.
                 </p>
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
+                <img src="<?php echo base_url();?>assets/reports/english/buyer/images/down-arrow.png" alt="arrow" class="my-20">
             </div>
             <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/user.png'; ?>" alt="user" class="img-fluid icons">
+                <img src="<?php echo base_url();?>assets/reports/english/buyer/images/proffesional.svg" alt="user" class="img-fluid icons">
             </div>
         </div>
         <div class="d-flex">
@@ -47,9 +47,9 @@
                 <p class="f14 w80">
                     The fun part! Your agent will
                     schedule showings and help you
-                    find the perfect home.
+                    fi nd the perfect home.
                 </p>
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/arrow.png'; ?>" alt="arrow" class="my-20">
+                <img src="<?php echo base_url();?>assets/reports/english/buyer/images/down-arrow.png" alt="arrow" class="my-20">
             </div>
             <div class="col-50">
                 <div class="msg_box">
@@ -68,13 +68,13 @@
             <div class="col-50">
                 <h4 class="crimson mt-0">Make an Offer</h4>
                 <p class="f14 w80">
-                    Your agent will prepare the offer
+                    Your agent will prepare the off er
                     based on the price and terms you
                     choose.
                 </p>
             </div>
             <div class="col-50">
-                <img src="<?php echo base_url().'assets/reports/english/seller/images/16/msg.png'; ?>" alt="msg" border="0" class="img-fluid icons">
+                <img src="<?php echo base_url();?>assets/reports/english/buyer/images/chat.svg" alt="msg" border="0" class="img-fluid icons">
             </div>
         </div>
     </div>
