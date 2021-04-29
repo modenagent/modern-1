@@ -636,29 +636,22 @@ use Knp\Snappy\Pdf;
                 $_POST = $reportData;
                 $data['callFromApi'] = $callFromApi;
             }*/
-            $use_rets_api = $_POST['use_rets_api'];
+            $rep111 = $_POST['report111'];
+            $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
+            $compKeys = json_decode(stripslashes($_POST['custom_comps']));
+            
+            $rep111 = urldecode($rep111);
+            $report111 = @simplexml_load_file($rep111);
+            
+            $rep187 = $_POST['report187'];
+            $rep187 = urldecode($rep187);
+            $report187 = simplexml_load_file($rep187);
+            // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
+            // $report187 = simplexml_load_file("sample.xml");
+            // changes for local version ends here
 
-            /*if(isset($use_rets_api) && $use_rets_api == 0)
-            {*/
-                $rep111 = $_POST['report111'];
-                $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
-                $compKeys = json_decode(stripslashes($_POST['custom_comps']));
-                
-                $rep111 = urldecode($rep111);
-                $report111 = @simplexml_load_file($rep111);
-
-                $rep187 = $_POST['report187'];
-                $rep187 = urldecode($rep187);
-                $report187 = simplexml_load_file($rep187);
-
-                // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
-                // $report187 = simplexml_load_file("sample.xml");
-                // changes for local version ends here
-
-                $data['mapinfo'] = $report111;
-                $data['property'] = $report187;
-            /*}*/
-
+            $data['mapinfo'] = $report111;
+            $data['property'] = $report187;
 
             $data['user'] = $_POST['user'];
             if($_POST['user_image'] != ''){
@@ -744,30 +737,9 @@ use Knp\Snappy\Pdf;
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
                     } else {
-                        if($use_rets_api == 1)
-                        {
-                            $comparables = $this->sort_properties($report187, $comparableTemp);
-                            $reportItems['comparable'] = $comparables['sorted'];
-
-                            $mls_comparables = array();
-
-                            $mls_ids = json_decode(stripslashes($_POST['custom_comps']), TRUE);
-
-                            if(isset($mls_ids) && !empty($mls_ids))
-                            {
-                                foreach ($mls_ids as $m_key => $m_value) 
-                                {
-                                    
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            foreach($comparableTemp as $key => $_property){
-                                if(in_array($key, $compKeys)){
-                                    array_push($reportItems['comparable'],$_property);
-                                }
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
                             }
                         }
                     } 
