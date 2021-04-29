@@ -751,7 +751,16 @@ use Knp\Snappy\Pdf;
 
                             $mls_comparables = array();
 
-                            // $mls_ids
+                            $mls_ids = json_decode(stripslashes($_POST['custom_comps']), TRUE);
+
+                            if(isset($mls_ids) && !empty($mls_ids))
+                            {
+                                foreach ($mls_ids as $m_key => $m_value) 
+                                {
+                                    
+                                }
+                            }
+
                         }
                         else
                         {
