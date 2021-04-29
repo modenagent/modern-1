@@ -197,8 +197,11 @@ $config['cookie_domain']	= !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN
 // else {
 // 	$config['cookie_path']		= "/";
 // }
-$config['cookie_path']		= "/; SameSite=None";
-$config['cookie_secure']	= TRUE;
+/*$config['cookie_path']		= "/; SameSite=None";
+$config['cookie_secure']	= TRUE;*/
+
+$config['cookie_path'] = "/";
+$config['cookie_secure']	= FALSE;
 /*
 |
 | This determines which character set is used by default in various methods

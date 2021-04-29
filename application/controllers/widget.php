@@ -455,17 +455,30 @@ class Widget extends CI_Controller {
 
             if(isset($response) && !empty($response))
             {
-                $properties= array();
+                $properties = $sorted = $all = array();
+
                 foreach ($response as $key => $value) 
                 {
-                    $properties[$value['mlsId']] = array(
-                        'address' => $value['address']['full'].' '.$value['address']['city'],
-                        'price' => $value['listPrice']
-                    );
+                	if($key <= 7)
+                	{
+                		$sorted[$value['mlsId']] = array(
+	                        'address' => $value['address']['full'].' '.$value['address']['city'],
+	                        'price' => $value['listPrice']
+	                    );
+                	}
+                	else
+                	{
+                		$all[$value['mlsId']] = array(
+	                        'address' => $value['address']['full'].' '.$value['address']['city'],
+	                        'price' => $value['listPrice']
+	                    );
+                	}
+                    
                     
                 }
             }
-            
+            $properties['all'] = $all;
+            $properties['sorted'] = $sorted;
             echo json_encode($properties);
         }
     }
