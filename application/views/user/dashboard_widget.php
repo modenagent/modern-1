@@ -919,7 +919,9 @@ jQuery(document).ready(function() {
                 $(".btn-checkout").show("slow");
             }
             if(obj.attr('rel')==3){
-                if(use_rets_api == 1)
+                var presentation = $("#presentation").val();
+                
+                if(use_rets_api == 1 && presentation == 'seller')
                 {
                     var property_address = $('#searchbox').val();
                     property_address = $.trim(property_address);
