@@ -1,6 +1,3 @@
-<?php 
-echo "<pre>"; print_r("here index"); exit;
-?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +6,7 @@ echo "<pre>"; print_r("here index"); exit;
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/style.css") ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/style.css") ?>">
     <style type="text/css">        
         .ui-slider-horizontal .ui-slider-range{
             background: #082147 !important;
@@ -74,9 +71,7 @@ echo "<pre>"; print_r("here index"); exit;
 ?> 
 
 <?php
-echo "<pre>"; print_r($fromcma);
-echo "<pre>"; print_r($report_dir_name);
-echo "<pre>"; print_r("here"); exit;
+
     if(isset($fromcma) && $fromcma == 1) {
         $pdfPages = range(1, 20);
     }
@@ -113,32 +108,23 @@ echo "<pre>"; print_r("here"); exit;
     {
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/8');
     }
-    echo "<pre>"; print_r("here"); exit;
-    
-    if($use_rets_api == 1)
-    {
-        $comparable = isset($mls_comparables) && !empty($mls_comparables) ? $mls_comparables : array();
-    }
-    else
-    {
-        $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
-    }
-    echo "<pre>"; print_r($comparable); exit;
+
+    $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
     if(isset($comparable) && !empty($comparable))
     {
        // $comparable_chunk = array_chunk($comparable, 4, true);
 
         list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
-echo "<pre>"; print_r(); exit;
+
         if(in_array('9', $pdfPages) && (isset($comparable_1) && !empty($comparable_1)))
         {
-            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_1,'use_rets_api'=$use_rets_api));
+            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_1));
         }
 
         if(in_array('10', $pdfPages) && (isset($comparable_2) && !empty($comparable_2)))
         {
-            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_2,'use_rets_api'=$use_rets_api)); //10
+            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_2)); //10
         }
     }
 

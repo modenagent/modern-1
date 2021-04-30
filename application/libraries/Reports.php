@@ -1072,7 +1072,6 @@ use Knp\Snappy\Pdf;
 
                 if(!empty($data['report_dir_name']) && (is_file(APPPATH.'views/' . $load_view . EXT))) {
                     $html = $CI->load->view($load_view,$data,true);
-                    echo "<pre>"; print_r($html); exit;
 
                 }
                 else {
