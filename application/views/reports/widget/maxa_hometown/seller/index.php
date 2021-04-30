@@ -76,7 +76,6 @@
     {
         $comparable = $areaSalesAnalysis['comparable'];
     }
-    echo "<pre>"; print_r($comparable); exit;
 
 ?> 
 
