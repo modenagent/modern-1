@@ -988,7 +988,7 @@ use Knp\Snappy\Pdf;
 
             $data['fromcma'] = 1;
             }
-            echo "<pre>"; print_r($prepareWidgetPdf); exit;
+            echo "<pre>"; print_r($data); exit;
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
