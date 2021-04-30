@@ -1,3 +1,6 @@
+<?php 
+echo "<pre>"; print_r("here index"); exit;
+?>
 <!DOCTYPE html>
 <html>
 <head>
