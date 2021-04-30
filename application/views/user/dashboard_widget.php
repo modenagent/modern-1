@@ -491,6 +491,12 @@
                                     </article>
                                 </section>                            
                             </div>
+                            <div style="display: none!important;">
+                            <form id="payment-form">
+                              <input type="hidden" name="project_id" id="project_id" value="">
+                            </form>
+                            </div>
+
                             <!-- <div class="order-summary panel panel-body" style="display:none;">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr class="invoice-header">
