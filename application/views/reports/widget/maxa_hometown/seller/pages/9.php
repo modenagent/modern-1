@@ -87,5 +87,15 @@
     <?php
             }
         }
+        else
+        {
+    ?>
+            <div class="d-flex">
+                <div class="col-12">
+                    <h4 class="m-0 sub_title">No Comparables Found.</h4>
+                </div>
+            </div>
+    <?php
+        }
     ?>
 </page>
