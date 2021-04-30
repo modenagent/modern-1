@@ -1067,14 +1067,16 @@ use Knp\Snappy\Pdf;
             if($turboMode){
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
+                echo "<pre>"; print_r('else');
                 $load_view = 'reports/widget/'.$data['report_dir_name'].'/'.$presentationType.'/index';
-
+echo "<pre>"; print_r($load_view); 
                 if(!empty($data['report_dir_name']) && (is_file(APPPATH.'views/' . $load_view . EXT))) {
+                    echo "<pre>"; print_r("if");
                     $html = $CI->load->view($load_view,$data,true);
 
                 }
                 else {
-
+echo "<pre>"; print_r("else2"); 
                     $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/widget_index",$data,true);
                 }
             
