@@ -1,0 +1,218 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  color: #333;
+}
+::selection {
+  color: #fff;
+  background: #ffd758;
+  text-shadow: none;
+}
+* {
+  box-sizing: border-box;
+}
+.text-left {
+  text-align: left !important;
+}
+.text-right {
+  text-align: right !important;
+}
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+}
+.d-flex:after {
+  content: "";
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.d-flex > * {
+  float: left;
+}
+.col-50 {
+  width: 50% !important;
+}
+.col-12 {
+  width: 100% !important;
+}
+.mt-130 {
+  margin-top: 139px !important;
+}
+page {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
+  padding: 45px 50px;
+  width: 816px;
+  height: 1056px;
+  margin: 0 auto;
+}
+/* footer */
+.footer {
+  background: #0d294b;
+  padding: 40px 50px;
+  color: #fff;
+}
+.logo img {
+  width: 120px;
+  height: auto;
+}
+.logo {
+  width: 30%;
+}
+.horizontal_sign.signature {
+  width: 500px;
+  text-align: left;
+  position: relative;
+}
+.horizontal_sign.signature > * {
+  float: left;
+}
+.horizontal_sign > img {
+  margin-right: 30px;
+  margin-top: 14px;
+}
+.horizontal_sign .tel_number,
+.horizontal_sign .contact_info {
+  color: #fff;
+}
+.signature + .logo {
+  width: auto;
+  flex: initial;
+  position: absolute;
+  right: 55px;
+}
+.signature + .logo img {
+  width: 160px;
+}
+.profile_img {
+  width: 110px;
+  border-radius: 50%;
+  height: 110px;
+  object-fit: cover;
+  object-position: top;
+}
+.profile_name {
+  font-family: "Crimson Text", serif;
+  font-size: 24px;
+  margin: 0;
+}
+.profile_title {
+  opacity: 0.6;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.tel_number {
+  display: block;
+  color: #000;
+  font-family: "Crimson Text", serif;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 20px;
+}
+.tel_number span {
+  opacity: 0.6;
+}
+.contact_info {
+  opacity: 0.6;
+  display: block;
+  color: #000;
+  text-decoration: none;
+  font-size: 12px;
+}
+/* Market Update */
+.market_update {
+  padding: 0;
+}
+.market_update_hero {
+  background: url("https://i.ibb.co/RB7SFz0/Market-Update.png") no-repeat bottom;
+  background-size: cover;
+  color: #fff;
+  padding: 50px 50px 25px;
+}
+.market_update_hero h1 {
+  font-size: 70px;
+  font-family: "Crimson Text", serif;
+  margin: 0;
+  line-height: 70px;
+  font-weight: 600;
+}
+.market_update_hero h1 span {
+  font-family: "Open Sans", sans-serif;
+  font-size: 24px;
+  float: right;
+  margin-top: 5px;
+  font-weight: normal;
+}
+.market_update_hero h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.list-inline {
+  padding: 0;
+}
+.list-inline li {
+  display: inline-block;
+}
+.market_update_hero .list-inline li {
+  padding-left: 40px;
+  vertical-align: middle;
+  margin-right: 20px;
+}
+.market_update_hero .list-inline li img {
+  width: 27px;
+  margin-left: -40px;
+  margin-right: 14px;
+  vertical-align: middle;
+}
+.market_update_hero .list-inline li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  line-height: 12px;
+  font-size: 14px;
+}
+.market_update_hero .list-inline li a span {
+  display: block;
+}
+.market_update_hero p {
+  font-family: "Crimson Text", serif;
+  font-size: 17px;
+}
+.market_update_hero ul {
+  margin-top: 25px;
+}
+.market_update_table {
+  padding: 37px 50px;
+}
+.market_update_table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.market_update_table th {
+  font-family: "Crimson Text", serif;
+}
+.market_update_table table th {
+  text-align: left;
+  padding: 10px 0;
+  border-bottom: 2px solid #000;
+}
+.market_update_table table td {
+  padding: 18px 0 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+.market_update_table table tr:nth-child(2) {
+  padding-top: 15px;
+}
+.market_update_table table th:not(:first-child),
+.market_update_table table td:not(:first-child) {
+  text-align: center;
+}

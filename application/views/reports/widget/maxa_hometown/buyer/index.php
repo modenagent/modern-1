@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+    
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/style.css") ?>">
     <style type="text/css">        
         .ui-slider-horizontal .ui-slider-range{
@@ -68,113 +69,148 @@
     $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
 
 
-?> 
-
-<?php
-
-    if(isset($fromcma) && $fromcma == 1) {
-        $pdfPages = range(1, 20);
+?>
+<?php 
+    //Nearby School Data
+    $school = array();
+    foreach($property->PublicSchoolsReport->Schools->School as $_school) {
+        if(!isset($school['elementary']) && (string)$_school->HighestGrade=="Grade 5") {
+           $type = 'elementary';
+        } else if(!isset($school['middle']) && (string)$_school->HighestGrade=="Grade 8") {
+            $type = 'middle';
+        } else if(!isset($school['high']) && (string)$_school->HighestGrade=="Grade 12") {
+            $type = 'high';
+        } else {
+            continue;
+        }
+        $school[$type]['name'] = (string)$_school->SchoolName;
+        $school[$type]['distance'] = (string)$_school->Distance;
+        $school[$type]['address'] = (string)$_school->SchoolAddress;
+        $school[$type]['city'] = (string)$_school->SchoolCity;
+        $school[$type]['lowest_grade'] = (string)$_school->LowestGrade;
+        $school[$type]['highest_grade'] = (string)$_school->HighestGrade;
+        $school[$type]['student_teacher_ratio'] = (string)$_school->StudentTeacherRatio;
+        $school[$type]['total_enrolled'] = (string)$_school->TotalEnrolled;
+    }
+    foreach($property->PrivateSchoolsReport->Schools->School as $_school) {
+        if(isset($school['private'])) break;
+        $school['private']['name'] = (string)$_school->SchoolName;
+        $school['private']['distance'] = (string)$_school->Distance;
+        $school['private']['address'] = (string)$_school->SchoolAddress;
+        $school['private']['city'] = (string)$_school->SchoolCity;
+        $school['private']['lowest_grade'] = (string)$_school->LowestGrade;
+        $school['private']['highest_grade'] = (string)$_school->HighestGrade;
+        $school['private']['student_teacher_ratio'] = (string)$_school->StudentTeacherRatio;
+        $school['private']['total_enrolled'] = (string)$_school->TotalEnrolled;
+        if(isset($_school->Affiliation)) $school['private']['affiliation'] = (string)$_school->Affiliation;
+        if(isset($_school->Gender)) $school['private']['gender'] = (string)$_school->Gender;
+        if(isset($_school->SchoolPhone)) $school['private']['phone'] = (string)$_school->SchoolPhone;
+        if(isset($_school->PreschoolMembership) && (int)$_school->PreschoolMembership==0) {
+            $school['private']['preschool'] = "Yes";
+        } else {
+            $school['private']['preschool'] = "No";
+        }
+    }
+    $neighbor = array();
+    foreach($property->NeighborhoodDemographics->MedianAge->DemographicsInfoItems->DemoInfoItem as $demoInfo) {
+        if((string)$demoInfo->Description=="Male Ratio") {
+           $neighbor['male_ratio'] = (string)$demoInfo->ZipTotal;
+        } else if((string)$demoInfo->Description=="Female Ratio") {
+           $neighbor['female_ratio'] = (string)$demoInfo->ZipTotal;
+        } else if(in_array((string)$demoInfo->Description, array(2000,2009,2014))) {
+           $neighbor['household_income'] = (string)$demoInfo->ZipTotal;
+        }
     }
 
+  ?>
+<?php
     if(in_array('1', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/1');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/1');
     }
     if(in_array('2', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/2');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/2');
     }
     if(in_array('3', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/3');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/3');
     }
     if(in_array('4', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/4');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/4');
     }
     if(in_array('5', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/5');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/5');
     }
     if(in_array('6', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/6');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/6');
     }
     if(in_array('7', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/7');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/7',array("school"=>$school));
     }
     if(in_array('8', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/8');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/8');
     }
-
-    $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
-
-    if(isset($comparable) && !empty($comparable))
+    if(in_array('9', $pdfPages))
     {
-       // $comparable_chunk = array_chunk($comparable, 4, true);
-
-        list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
-
-        if(in_array('9', $pdfPages) && (isset($comparable_1) && !empty($comparable_1)))
-        {
-            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_1));
-        }
-
-        if(in_array('10', $pdfPages) && (isset($comparable_2) && !empty($comparable_2)))
-        {
-            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_2)); //10
-        }
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/9');
     }
-
+    if(in_array('10', $pdfPages))
+    {
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/10');
+    }
     if(in_array('11', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/11',$rangeOfSales);
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/11');
     }
     if(in_array('12', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/12',$customization_pages_data['12']);
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/12');
     }
     if(in_array('13', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/13',$customization_pages_data['13']);
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/13');
     }
-
     if(in_array('14', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/14',$customization_pages_data['14']);
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/14');
     }
+    
 
     if(in_array('15', $pdfPages))
     {        
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/15',$customization_pages_data['15']);
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/15');
     }
 
     if(in_array('16', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/16',$customization_pages_data['16']);
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/16');
     }
 
     if(in_array('17', $pdfPages))
     {        
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/17',$customization_pages_data['17']); 
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/17'); 
     }
 
     if(in_array('18', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/18',$customization_pages_data['18']);
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/18');
     }
 
-    if(in_array('19', $pdfPages))
-    {          
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/19',$customization_pages_data['19']);    
-    }  
+    // if(in_array('19', $pdfPages))
+    // {          
+    //     $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/19',$customization_pages_data['19']);    
+    // }  
     
-    if(in_array('20', $pdfPages))
-    {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/20');
-    }
+    // if(in_array('20', $pdfPages))
+    // {
+    //     $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/20');
+    // }
     
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
