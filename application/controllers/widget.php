@@ -255,6 +255,11 @@ class Widget extends CI_Controller {
           $userId = $this->input->post('user-id');
         }
 
+        $project_id = $this->session->userdata('project_id');
+        if (!$project_id) {
+          die('Project id not found');
+        }
+
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
 
         if($_POST){
