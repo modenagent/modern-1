@@ -9,7 +9,7 @@
         href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap"
         rel="stylesheet">
     <!-- <link rel="stylesheet" href="style.css"> -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/marketUpdate/css/style.css") ?>">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/style.css") ?>">
 
 </head>
 
