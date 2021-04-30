@@ -71,7 +71,9 @@
 ?> 
 
 <?php
-
+echo "<pre>"; print_r($fromcma);
+echo "<pre>"; print_r($report_dir_name);
+echo "<pre>"; print_r("here"); exit;
     if(isset($fromcma) && $fromcma == 1) {
         $pdfPages = range(1, 20);
     }
@@ -108,7 +110,7 @@
     {
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/8');
     }
-    echo "<pre>"; print_r($use_rets_api);
+    echo "<pre>"; print_r("here"); exit;
     
     if($use_rets_api == 1)
     {
