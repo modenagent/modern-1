@@ -66,9 +66,17 @@
     $rangeDiff= (int)$_priceMaxRange - (int)$_priceMinRange;
     $_sliderStartPoint = (int)$_priceMinRange - round($rangeDiff/8);
     $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
-echo "<pre>"; print_r($use_rets_api);
-echo "<pre>"; print_r($mls_comparables); exit;
-    $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+
+    $comparable = array();
+    if($use_rets_api == 1)
+    {
+        $comparable = $mls_comparables;
+    }
+    else
+    {
+        $comparable = $areaSalesAnalysis['comparable'];
+    }
+    echo "<pre>"; print_r($comparable); exit;
 
 ?> 
 
