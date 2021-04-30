@@ -237,7 +237,7 @@ class Widget extends CI_Controller {
             $msg = $e->getMessage();
         }
         if($response['status']){
-            echo json_encode(array('status'=>'success'));
+            echo json_encode(array('status'=>'success','project_id'=>$response['project_id']));
         } else {
             $this->base_model->queue_mail("info@modernagent.io",'Urgent! Error occured while generating PDF',$msg,null,'info@modernagent.io');
             $responseArray = ['status'=>'fail','msg'=>$msg];
@@ -257,7 +257,8 @@ class Widget extends CI_Controller {
 
         $project_id = $this->session->userdata('project_id');
         if (!$project_id) {
-          die('Project id not found');
+          // die('Project id not found');
+          $project_id = $this->input->post('project_id');
         }
 
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
@@ -302,7 +303,7 @@ class Widget extends CI_Controller {
                         'total_amount' => $amt,
                         //'coupon_id_fk' => $this->session->userdata('coupon_id'),
                         'coupon_id_fk' => $couponId,
-                        'project_id_fk' => $this->session->userdata('project_id')
+                        'project_id_fk' => $project_id
                       );
 
               $result = $this->base_model->insert_one_row('lp_my_cart',$data);
@@ -326,12 +327,12 @@ class Widget extends CI_Controller {
                 // $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId);
 
                 $updateProject = array('is_active'=>'Y');
-                $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$this->session->userdata('project_id')));
+                $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$project_id));
                 $couponId = $this->input->post('coupon_id');
                 if($couponId!='')
-                  $this->base_model->add_coupon_redeem_log($couponId,$userId,$this->session->userdata('project_id'));
+                  $this->base_model->add_coupon_redeem_log($couponId,$userId,$project_id);
 
-                $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $this->session->userdata('project_id')));
+                $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $project_id));
                 
                 $reportLink = base_url($_project->report_path);
                 
@@ -348,7 +349,7 @@ class Widget extends CI_Controller {
                         'total_amount' => $amt,
                         //'coupon_id_fk' => $this->session->userdata('coupon_id'),
                         'coupon_id_fk' => $couponId,
-                        'project_id_fk' => $this->session->userdata('project_id')
+                        'project_id_fk' => $project_id
                       );
 
               $result = $this->base_model->insert_one_row('lp_my_cart',$data);
@@ -372,21 +373,21 @@ class Widget extends CI_Controller {
                 $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId);
 
                 $updateProject = array('is_active'=>'Y');
-                $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$this->session->userdata('project_id')));
+                $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$project_id));
                 $couponId = $this->input->post('coupon_id');
                 if($couponId!='')
-                  $this->base_model->add_coupon_redeem_log($couponId,$userId,$this->session->userdata('project_id'));
+                  $this->base_model->add_coupon_redeem_log($couponId,$userId,$project_id);
                 if($this->input->is_ajax_request()){
                     //Save Data in leads
                     $phoneNumber = $this->input->post('phone_number');
                     $leadData = array(
                         'phone_number'=>$phoneNumber,
                         'user_id_fk'=>$userId,
-                        'project_id_fk'=>$this->session->userdata('project_id')
+                        'project_id_fk'=>$project_id
                     );
                     $this->load->model('user_model');
                     $this->user_model->add_lead($leadData);
-                    $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $this->session->userdata('project_id')));
+                    $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $project_id));
                     
                     $reportLink = base_url($_project->report_path);
                     
@@ -437,7 +438,7 @@ class Widget extends CI_Controller {
                     echo json_encode(array("status"=>"success","sms"=>$smsText));
                     exit();
                 }
-                redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
+                redirect(base_url().'index.php?/user/recentlp?id='.$project_id);
               }
           } else {
             if($this->input->is_ajax_request()){

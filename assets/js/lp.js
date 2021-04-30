@@ -971,6 +971,9 @@ function widgetRunPMA(agentPath, logoPath) {
                 if(obj.status=='success'){
                     pdfGenerated = true;
                     pmaRes =  {status:"success"};
+                    if(obj.project_id) {
+                        $("#payment-form #project_id").val(obj.project_id);;
+                    } 
                 }
             } catch (e) {
                 //return false;
