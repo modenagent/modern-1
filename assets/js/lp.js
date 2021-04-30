@@ -1022,6 +1022,11 @@ function widgetRunPMA(agentPath, logoPath) {
 
 function getRetsApiComparables(address) 
 {
+    $('.loader1').show();
+    $('.loader1').removeClass('hidden');
+    $('.backwrap').show();
+    $('.backwrap').removeClass('hidden');
+
     $.ajax({
         url: base_url+'widget/getRetsApiComparablesData',
         type: 'POST',
@@ -1045,7 +1050,12 @@ function getRetsApiComparables(address)
                     text: item.address +" ("+item.price+")",
                     selected: 'selected'
                 }));
-            });           
+            });
+
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');           
         })
         .fail(function() {            
         })
