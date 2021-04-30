@@ -27,7 +27,7 @@ class Widget extends CI_Controller {
               $this->user_id = $user_id;
 
               $user_data = array(
-                    'userid'    => $user_info['user_id_pk'],
+                    'userid'    => $user_id,
                     'logged_in'    => TRUE,
                   );
 
