@@ -765,7 +765,7 @@ use Knp\Snappy\Pdf;
                                         $mls_comparables[$m_key]['img'] =  isset($response['photos'][0]) && !empty($response['photos'][0]) ? $response['photos'][0] : '';
                                         $mls_comparables[$m_key]['Address'] =  isset($response['address']['full']) && !empty($response['address']['full']) ? $response['address']['full'] : '';
                                         $mls_comparables[$m_key]['Price'] =  isset($response['listPrice']) && !empty($response['listPrice']) ? dollars(number_format((string)$response['listPrice'])) : '';
-                                        $mls_comparables[$m_key]['Date'] =  isset($response['listDate']) && !empty($response['listDate']) ? date('Y-m-d', strtotime($response['listDate'])) : '';
+                                        $mls_comparables[$m_key]['Date'] =  isset($response['listDate']) && !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
                                         $mls_comparables[$m_key]['Distance'] =  0;
                                         $mls_comparables[$m_key]['SquareFeet'] = isset($response['property']['area']) && !empty($response['property']['area']) ? number_format((string)$response['property']['area']) : '';
                                         $mls_comparables[$m_key]['PricePerSQFT'] = '';
@@ -988,7 +988,7 @@ use Knp\Snappy\Pdf;
 
             $data['fromcma'] = 1;
             }
-            echo "<pre>"; print_r($data); exit;
+            
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
