@@ -635,30 +635,27 @@ use Knp\Snappy\Pdf;
             /*if($callFromApi == 1){
                 $_POST = $reportData;
                 $data['callFromApi'] = $callFromApi;
-            }*/
+            }*/            
+            $rep111 = $_POST['report111'];
+            $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
+            $compKeys = json_decode(stripslashes($_POST['custom_comps']));
+            
+            $rep111 = urldecode($rep111);
+            $report111 = @simplexml_load_file($rep111);
 
-            /*if(isset($use_rets_api) && $use_rets_api == 0)
-            {*/
-                $rep111 = $_POST['report111'];
-                $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
-                $compKeys = json_decode(stripslashes($_POST['custom_comps']));
-                
-                $rep111 = urldecode($rep111);
-                $report111 = @simplexml_load_file($rep111);
+            $rep187 = $_POST['report187'];
+            $rep187 = urldecode($rep187);
+            $report187 = simplexml_load_file($rep187);
+            $use_rets_api = isset($_POST['use_rets_api']) && !empty($_POST['use_rets_api']) ? $_POST['use_rets_api'] : 0;
 
-                $rep187 = $_POST['report187'];
-                $rep187 = urldecode($rep187);
-                $report187 = simplexml_load_file($rep187);
+            // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
+            // $report187 = simplexml_load_file("sample.xml");
+            // changes for local version ends here
 
-                // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
-                // $report187 = simplexml_load_file("sample.xml");
-                // changes for local version ends here
+            $data['mapinfo'] = $report111;
+            $data['property'] = $report187;
 
-                $data['mapinfo'] = $report111;
-                $data['property'] = $report187;
-            /*}*/
-
-
+            $data['use_rets_api'] = $use_rets_api;
             $data['user'] = $_POST['user'];
             if($_POST['user_image'] != ''){
                 $data['user']['profile_image'] = $_POST['user_image'];
@@ -748,18 +745,39 @@ use Knp\Snappy\Pdf;
                             $comparables = $this->sort_properties($report187, $comparableTemp);
                             $reportItems['comparable'] = $comparables['sorted'];
 
-                           /* $mls_comparables = array();
+                            $mls_comparables = array();
 
                             $mls_ids = json_decode(stripslashes($_POST['custom_comps']), TRUE);
 
                             if(isset($mls_ids) && !empty($mls_ids))
                             {
                                 foreach ($mls_ids as $m_key => $m_value) 
-                                {
-                                    
-                                }
-                            }*/
+                                {                    
+                                    $mls_id = $m_value;
+                                    $query = array('q' => $address);
+                                    $endPoint = 'properties/'.$mls_id;
+                                    $result = $this->make_request('GET', $endPoint);
+                                    $response = json_decode($result,TRUE);
 
+                                    if(isset($response) && !empty($response))
+                                    {
+                                        $mls_comparables[$m_key]['mls_id'] =  isset($mls_id) && !empty($mls_id) ? $mls_id : '';
+                                        $mls_comparables[$m_key]['img'] =  isset($response['photos'][0]) && !empty($response['photos'][0]) ? $response['photos'][0] : '';
+                                        $mls_comparables[$m_key]['Address'] =  isset($response['address']['full']) && !empty($response['address']['full']) ? $response['address']['full'] : '';
+                                        $mls_comparables[$m_key]['Price'] =  isset($response['listPrice']) && !empty($response['listPrice']) ? dollars(number_format((string)$response['listPrice'])) : '';
+                                        $mls_comparables[$m_key]['Date'] =  isset($response['listDate']) && !empty($response['listDate']) ? date('Y-m-d', strtotime($response['listDate'])) : '';
+                                        $mls_comparables[$m_key]['Distance'] =  0;
+                                        $mls_comparables[$m_key]['SquareFeet'] = isset($response['property']['area']) && !empty($response['property']['area']) ? number_format((string)$response['property']['area']) : '';
+                                        $mls_comparables[$m_key]['PricePerSQFT'] = '';
+                                        $mls_comparables[$m_key]['Beds'] = isset($response['property']['bedrooms']) && !empty($response['property']['bedrooms']) ? number_format((string)$response['property']['bedrooms']) : '';
+                                        $mls_comparables[$m_key]['Baths'] = isset($response['property']['bathrooms']) && !empty($response['property']['bathrooms']) ? number_format((string)$response['property']['bathrooms']) : '';
+                                        $mls_comparables[$m_key]['Year'] = isset($response['property']['yearBuilt']) && !empty($response['property']['yearBuilt']) ? (string)$response['property']['yearBuilt'] : '';
+                                        $mls_comparables[$m_key]['LotSize'] = isset($response['property']['lotSize']) && !empty($response['property']['lotSize']) ? number_format((string)$response['property']['lotSize']) : '';
+                                        $mls_comparables[$m_key]['Pool'] = isset($response['property']['pool']) && !empty($response['property']['pool']) ? (string)$response['property']['pool'] : '';
+                                    }
+                                }
+                            }
+                            $data['mls_comparables'] = $mls_comparables;
                         }
                         else
                         {
@@ -1118,5 +1136,29 @@ use Knp\Snappy\Pdf;
                 'error_msg' => ''
             );
         }
+
+        public function make_request($http_method, $endpoint, $body_params='')
+        {
+            $login = $_ENV['RETS_API_USERNAME'];
+            $password = $_ENV['RETS_API_PASSWORD'];
+
+            
+            $ch = curl_init($_ENV['RETS_API_ENDPOINT'].$endpoint);                                    
+            curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $http_method);                        
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $body_params);                   
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_setopt($ch, CURLOPT_USERPWD, "$login:$password");
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($body_params))
+            );
+            
+            $error_msg = curl_error($ch);
+            
+            $result = curl_exec($ch);
+            return $result;
+        }
+
     }
 ?>

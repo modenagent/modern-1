@@ -108,8 +108,15 @@
     {
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/8');
     }
-
-    $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+    if($use_rets_api == 1)
+    {
+        $comparable = isset($mls_comparables) && !empty($mls_comparables) ? $mls_comparables : array();
+    }
+    else
+    {
+        $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+    }
+    
 
     if(isset($comparable) && !empty($comparable))
     {
@@ -119,12 +126,12 @@
 
         if(in_array('9', $pdfPages) && (isset($comparable_1) && !empty($comparable_1)))
         {
-            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_1));
+            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_1,'use_rets_api'=$use_rets_api));
         }
 
         if(in_array('10', $pdfPages) && (isset($comparable_2) && !empty($comparable_2)))
         {
-            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_2)); //10
+            $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/9',array('comparables'=>$comparable_2,'use_rets_api'=$use_rets_api)); //10
         }
     }
 

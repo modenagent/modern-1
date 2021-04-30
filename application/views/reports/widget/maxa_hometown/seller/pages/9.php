@@ -28,7 +28,21 @@
                         <div class="address">
                             <?php echo isset($value['Address']) && !empty($value['Address']) ? $value['Address'] : '-'; ?>                          
                         </div>
-                        <img src="https://i.ibb.co/Nxb33RM/24ad-Traditional.jpg" alt="24ad-Traditional" class="img-fluid">
+                        <?php
+                            if($use_rets_api == 1)
+                            {
+                        ?> 
+                                <img src="<?php echo $value['img']; ?>" alt="<?php echo $value['Address']; ?>" class="img-fluid">
+                        <?php
+                            }
+                            else
+                            {
+                        ?>
+                                <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=180x100&maptype=roadmap&markers=color:color:0xf2964a%7Clabel:S%7C<?php echo $value['Latitude'].','.$value['Longitude']; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg"  class="img-fluid">
+                        <?php
+                            }
+                        ?>
+                        
                         <ul class="pricing_buttons">
                             <li>
                                 <a class="btn_sale">Sale Price</a>
