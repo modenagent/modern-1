@@ -57,7 +57,7 @@
 
 
             	<?php
-            	if($count == 1 || $count == 3): ?>
+            	if($count == 1 || $count == 3 || count($comparables) == ($count+1) ): ?>
             	</div>
             	<?php endif;
 
