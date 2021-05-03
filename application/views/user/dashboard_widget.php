@@ -44,7 +44,7 @@
       </style>
    </head>
    <body>
-      <div id="cma-widget-container" style="margin: 0 auto;max-width: 95%; height:800px; background-size:cover; background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/36886177-1b99-4144-a2ce-f6f2e423e7a2.jpg'); ">
+      <div id="cma-widget-container" style="margin: 0 auto;max-width: 95%; height:800px; background-size:cover; background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/94551543-3be0-4822-94bc-5b918283ef4e.jpg'); ">
       <div id="loadingPlugin" style="color: #fff;">
          <div class="loading"></div>
          <div class="loadingText">Loading Widget</div>
