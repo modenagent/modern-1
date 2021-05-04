@@ -5,7 +5,7 @@
                 <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/big-c21.png" alt="logo" class="logo">
             </div>
 
-            <h1>MARKET UPDATE <span>ZIPCODE: <?php echo $zipCode; ?></span></h1>
+            <h1>MARKET UPDATE <span>ZIPCODE:<?php echo $zipCode; ?></span></h1>
         </div>
         <div class="hero">
             <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/hero.png" alt="hero" class="img_fluid">
@@ -28,7 +28,7 @@
                         <ul class="list-inline">
                             <li class="mb-2"><a href="<?php echo $cma_url;?>"  target="_blank"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/world.png" alt="WWW">
                                     <?php echo strtoupper($cma_url_display); ?></a></li>
-                            <li><a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/keyboard.png" alt="Code"><p><span>ENTER CODE:</span><br><?php echo $user['ref_code']; ?></p></a></li>
+                            <li><a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/keyboard.png" alt="Code"><span>ENTER CODE:</span><br><?php echo $user['ref_code']; ?></a></li>
                         </ul>
                     </div>
                 </div>
@@ -119,8 +119,14 @@
             <p class="copyright">This is not intended to solicit currently listed properties. This information is deemed reliable, but not guaranteed.</p>
         </div>
         <div class="orange_footer">
-            <a href="https://century21award.com/" target="_blank">century21award.com</a>
-            EXPERIENCE THE DIFFERENCE
+            <div class="d-flex">
+                <div class="col-65">
+                    <a href="https://century21award.com/" target="_blank">century21award.com</a>
+                </div>
+                <div class="col-35" >
+                    <span>EXPERIENCE THE DIFFERENCE</span>
+                </div>
+            </div>
         </div>
     </page>
 </body>

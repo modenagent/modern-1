@@ -39,11 +39,17 @@ h6 {
 .p-0 {
   padding: 0 !important;
 }
+.col-65 {
+  width: 65% !important;
+}
 .col-60 {
   width: 60% !important;
 }
 .col-40 {
   width: 40% !important;
+}
+.col-35 {
+  width: 35% !important;
 }
 .mt-2 {
   margin-top: 5px !important;
@@ -121,7 +127,9 @@ page {
   right: 0;
   margin: 0 auto;
   top: 50%;
-  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+      -ms-transform: translate(0, -50%);
+          transform: translate(0, -50%);
   width: 54%;
 }
 .img_fluid {
@@ -177,7 +185,7 @@ page {
   background: transparent !important;
 }
 .table_transparent td {
-  padding: 9px 0;
+  padding: 7px 0;
   color: #000;
   font-weight: 500;
   font-size: 13px;
@@ -351,8 +359,8 @@ page {
   background: #59585a;
   color: #fff;
   padding: 15px 50px;
-  display: flex;
-  justify-content: space-between;
+  /*display: flex;
+  justify-content: space-between;*/
   font-size: 11px;
   letter-spacing: 1px;
 }
