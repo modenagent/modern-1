@@ -39,6 +39,9 @@ div#slider {
     background-color: #beaf86;
     border-color: #beaf86;
 }
+.pdf19 a{
+    text-decoration: none;
+}
 </style>
 </head>
 <body>
@@ -96,9 +99,8 @@ div#slider {
 
 <?php
 $max = 32;
-$max = 16;
 for ($i=1; $i <= $max ; $i++) { 
-    if(in_array($i, $pdfPages) || true)
+    if(in_array($i, $pdfPages))
     {
         $report_id = $i;
 
