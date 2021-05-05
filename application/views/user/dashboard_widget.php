@@ -41,10 +41,20 @@
         #cma-widget-container #my-leads .page-header p {
             color:#ffffff;
         }
+        html , body {
+          height: 100%;
+        }
+        
+        body {
+          background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/94551543-3be0-4822-94bc-5b918283ef4e.jpg'); 
+          background-position: center;
+          background-repeat: no-repeat; 
+          background-size:cover;
+        }
       </style>
    </head>
-   <body>
-      <div id="cma-widget-container" style="margin: 0 auto;max-width: 95%; height:800px; background-size:cover; background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/94551543-3be0-4822-94bc-5b918283ef4e.jpg'); ">
+   <body  style="height: 100%">
+      <div id="cma-widget-container" >
       <div id="loadingPlugin" style="color: #fff;">
          <div class="loading"></div>
          <div class="loadingText">Loading Widget</div>
@@ -695,7 +705,7 @@
 </div>      
       <!-- footer js and other stuff starts here -->
       <style type="text/css">
-         #cma-widget-container {background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed;} 
+         #cma-widget-container {background-attachment: scroll;  background-size: auto auto;background-size: cover;background-attachment: fixed;} 
          input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
          background-color: none !importent;
          background-image: none;
