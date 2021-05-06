@@ -33,6 +33,10 @@ $site_address = $property->PropertyProfile->SiteAddress;
                     if(isset($user['mobile']) && !empty($user['mobile'])) {
                     ?>
                     P: <a href="tel:<?php echo $user['mobile']; ?>"><?php echo $user['mobile']; ?></a><br>
+                    <?php }
+                    elseif(isset($user['phone']) && !empty($user['phone'])) {
+                    ?>
+                    P: <a href="tel:<?php echo $user['phone']; ?>"><?php echo $user['phone']; ?></a><br>
                     <?php }?>
                     <?php 
                     if(isset($user['email']) && !empty($user['email'])) {
