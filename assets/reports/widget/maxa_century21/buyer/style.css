@@ -266,11 +266,12 @@ ul.f16 li:before {
 }
 .main_title {
   color: #fff;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 36px;
   margin: 0;
   line-height: 55px;
-  background: rgb(191 175 135 / 95%);
+  /*background: rgb(191 175 135 / 95%);*/
+  background: rgba(191,175,135,0.95);
   display: inline-block;
   padding: 3px 25px;
   margin-left: -15px;
@@ -569,7 +570,7 @@ page {
 
 .pdf6 .big_title,
 .pdf7 .big_title {
-  font-size: 66px;
+  font-size: 64px;
   line-height: 60px;
   font-weight: 600;
   color: #bfaf87;
@@ -610,7 +611,7 @@ page {
   font-weight: 300;
   line-height: 26px;
   font-family: 'Barlow-Regular';
-  opacity: 0.8;
+  /*opacity: 0.8;*/
 }
 .hashnumber {
   font-size: 150px;
@@ -763,13 +764,14 @@ img.covid_certi {
 }
 .image_hero img {
   float: right;
-  width: calc(100% - 30px);
+  /*width: calc(100% - 30px);*/
+  width: 686px;
   margin-top: 30px;
   object-fit: cover;
 }
 .image_hero h2 {
   color: #fff;
-  background: rgb(191 175 135 / 76%);
+  background: rgba(191,175,135,0.76);
   position: absolute;
   top: 0;
   left: 0;
@@ -938,7 +940,7 @@ img.covid_certi {
   border-radius: 50px;
   font-size: 24px;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   color: #bfaf87;
   height: 100px;
   vertical-align: middle;
@@ -950,7 +952,10 @@ img.covid_certi {
   left: 0;
   right: 0;
   top: 50%;
-  transform: translate(0, -50%);
+  /*transform: translate(0, -50%);*/
+  -webkit-transform: translate(0, -50%);
+        -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
   margin-left: 120px;
   margin-right: 36px;
 }
@@ -1001,6 +1006,7 @@ img.covid_certi {
   padding: 0;
   letter-spacing: 3px;
   width: auto;
+  white-space: nowrap;
 }
 .pdf16 .bg_gray {
   background-color: #e6e7e8;
