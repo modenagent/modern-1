@@ -3,11 +3,16 @@
     debugger;
     if (window.parent) {
         var error_page_1 = error_page+"?error_no=1";
+        console.log(error_page_1);
         
         try{
             if (localStorage === null) {
                 
                location.href = error_page_1; 
+            }
+            else {
+                console.log('All okay');
+
             }
             
         }
