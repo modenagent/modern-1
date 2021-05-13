@@ -593,7 +593,7 @@ $config = [
      *  'session.cookie.samesite' => 'None',
      */
     // 'session.cookie.samesite' => \SimpleSAML\Utils\HTTP::canSetSameSiteNone() ? 'None' : null,
-    'session.cookie.samesite' => null,
+    'session.cookie.samesite' => 'None',
 
     /*
      * Options to override the default settings for php sessions.
