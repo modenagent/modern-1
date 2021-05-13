@@ -1,6 +1,6 @@
 <script type="text/javascript">
     var error_page = "https://<?php echo $_SERVER['HTTP_HOST'];?>/error.php";
-    debugger;
+    console.log(error_page);
     if (window.parent) {
         var error_page_1 = error_page+"?error_no=1";
         console.log(error_page_1);
@@ -28,6 +28,7 @@
     }
 </script>
 <?php
+die;
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
