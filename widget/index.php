@@ -1,37 +1,43 @@
-<script type="text/javascript">
-    var error_page = "https://<?php echo $_SERVER['HTTP_HOST'];?>/error.php";
-    console.log(error_page);
-    if (window.parent) {
-        var error_page_1 = error_page+"?error_no=1";
-        console.log(error_page_1);
-        
-        try{
-            if (localStorage === null) {
-                
-               window.location.href = error_page_1; 
-               // return false;
-            }
-            else {
-                console.log('All okay');
-
-            }
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+        <script type="text/javascript">
+        var error_page = "https://<?php echo $_SERVER['HTTP_HOST'];?>/error.php";
+        console.log(error_page);
+        if (window.parent) {
+            var error_page_1 = error_page+"?error_no=1";
+            console.log(error_page_1);
             
+            try{
+                if (localStorage === null) {
+                    
+                   window.location.href = error_page_1; 
+                   // return false;
+                }
+                else {
+                    console.log('All okay');
+
+                }
+                
+            }
+            catch(err) {
+              window.location.href = error_page_1;
+              // return false;
+            }
         }
-        catch(err) {
-          window.location.href = error_page_1;
-          // return false;
+        if ( window.location !== window.parent.location ) {
+            var error_page_2 = error_page+"?error_no=2&url=<?php echo'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']?>";
+            <?php if(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) { ?>
+                    window.location.href = error_page_2;
+                    // return false;
+                <?php } ?>
         }
-    }
-    if ( window.location !== window.parent.location ) {
-        var error_page_2 = error_page+"?error_no=2&url=<?php echo'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']?>";
-        <?php if(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) { ?>
-                window.location.href = error_page_2;
-                // return false;
-            <?php } ?>
-    }
-</script>
+    </script>
+</head>
+<body>
 <?php
-sleep(5);
+// die;
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
@@ -319,3 +325,6 @@ else {
     }
 }
 ?>
+
+</body>
+</html>
