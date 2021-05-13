@@ -9,6 +9,7 @@
             if (localStorage === null) {
                 
                location.href = error_page_1; 
+               return false;
             }
             else {
                 console.log('All okay');
@@ -18,6 +19,7 @@
         }
         catch(err) {
           location.href = error_page_1;
+          return false;
         }
     }
     if ( window.location !== window.parent.location ) {
