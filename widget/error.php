@@ -2,6 +2,12 @@
 <html>
 <head>
 	<title>Error Page</title>
+	<style type="text/css">
+		body {
+			color: #FFFFFF;
+    		background-color: rgba(1,1,1,0.3);
+		}
+	</style>
 </head>
 <body>
 <?php
