@@ -1,9 +1,27 @@
+<script type="text/javascript">
+    var error_page = "https://<?php echo $_SERVER['HTTP_HOST'];?>/error.php"
+    if (window.parent) {
+        var error_page_1 = error_page+"?error_no=1";
+        
+        try{
+            if (localStorage === null) {
+                
+               location.href = error_page_1; 
+            }
+            
+        }
+        catch(err) {
+          location.href = error_page_1;
+        }
+    }
+    if ( window.location !== window.parent.location ) {
+        var error_page_2 = error_page+"?error_no=2&url=<?php echo'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']?>";
+        <?php if(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) { ?>
+                location.href = error_page_2;
+            <?php } ?>
+    }
+</script>
 <?php
-// echo "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";die;
-if (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] != "https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" && strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) {
-    echo 'Your browser not support iframe. Please click here '.'<a target="_blank" href="'.'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'">'.'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'].'</a>'.' to open link in new window';
-    exit();
-}
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
@@ -18,9 +36,9 @@ else {
     echo "Invalid request.";die;
 }
 
-// var_dump($_SERVER);die;
 if (!$auth->isAuthenticated()) {
    $auth->requireAuth();
+    // echo "Please login to use widget";die;
 }
 else {
 
