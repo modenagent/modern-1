@@ -28,7 +28,7 @@
     }
 </script>
 <?php
-die;
+// die;
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
     echo "Invalid request";die;
