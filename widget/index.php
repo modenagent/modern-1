@@ -8,7 +8,7 @@
         try{
             if (localStorage === null) {
                 
-               location.href = error_page_1; 
+               window.location.href = error_page_1; 
                return false;
             }
             else {
@@ -18,14 +18,15 @@
             
         }
         catch(err) {
-          location.href = error_page_1;
+          window.location.href = error_page_1;
           return false;
         }
     }
     if ( window.location !== window.parent.location ) {
         var error_page_2 = error_page+"?error_no=2&url=<?php echo'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']?>";
         <?php if(strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) { ?>
-                location.href = error_page_2;
+                window.location.href = error_page_2;
+                return false;
             <?php } ?>
     }
 </script>
