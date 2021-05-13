@@ -1,5 +1,6 @@
 <script type="text/javascript">
-    var error_page = "https://<?php echo $_SERVER['HTTP_HOST'];?>/error.php"
+    var error_page = "https://<?php echo $_SERVER['HTTP_HOST'];?>/error.php";
+    debugger;
     if (window.parent) {
         var error_page_1 = error_page+"?error_no=1";
         
