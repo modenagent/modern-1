@@ -288,6 +288,70 @@ class User extends CI_Controller
         }
     }
 
+    public function getGuestsListing($for_guest=0)
+    {
+        $userId = $this->session->userdata('userid');
+        if ($userId) {
+            $columns = [
+                'project_date', 
+                'project_id_pk',
+                'project_name',
+                'report_type',
+                'action'                      
+            ];      
+            $this->load->model('user_model');
+            $recordsTotal = $this->user_model->user_reports_count($userId, $_POST,1,$for_guest);
+            $result = $this->user_model->user_reports_data($userId, $columns, $_POST,1,$for_guest);
+
+            $i = $_POST['start'];
+            $data = [];
+            foreach($result as $report) {
+                $i++;
+                $reportDate = date("m/d/Y", strtotime($report['project_date']));
+
+                $action = '';
+                // $action .= ' <a href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>
+                // <a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><i data-toggle="tooltip" title="Email" class="icon icon-share"  ></i></a>
+                // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+                if($for_guest == 0) {
+
+                  $data[] = [
+                      $reportDate, 
+                      $report['project_name'], 
+                      base_url("registry/guest/{$report['unique_key']}") , 
+                      $action
+                  ];
+                }
+                else {
+                  $data[] = [
+                      $reportDate,
+                      $report['project_name'], 
+                      $report['guest_name'], 
+                      $report['guest_phone'], 
+                      $report['guest_email'], 
+                      $action
+                  ];
+                }
+            }
+            
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $recordsTotal,
+                "recordsFiltered" => $recordsTotal,
+                "data" => $data,
+            );    
+            echo json_encode($output);
+        } else {
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            );    
+            echo json_encode($output);
+        }
+    }
+
     public function getPartners(){
       
       if($this->session->userdata('userid')){
@@ -326,6 +390,22 @@ class User extends CI_Controller
         create_image();  
         $this->load->view('user/header',$data);
         $this->load->view('user/all_listings',$data);
+        $this->load->view('user/footer');
+      }else{
+        // else redirect to frontend login
+        redirect('frontend/login');
+      }
+    }
+    // all listings of registry
+    public function guests(){
+      // show only when the user is logged in
+      if($this->session->userdata('userid')){
+        $data['current'] = "guests";
+        $data['title'] = "Registry";
+        $this->load->helper('captcha');
+        create_image();  
+        $this->load->view('user/header',$data);
+        $this->load->view('user/guests/all_listings',$data);
         $this->load->view('user/footer');
       }else{
         // else redirect to frontend login

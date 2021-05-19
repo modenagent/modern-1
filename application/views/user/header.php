@@ -58,6 +58,7 @@
           <li class="<?php if($current=='recentlp'){echo 'current';} ?>"> <a href="<?php echo site_url('user/recentlp'); ?>" class="external m">Recent</a> </li>
           <li class="<?php if($current=='billing'){echo 'current';} ?>"> <a href="<?php echo site_url('user/billing'); ?>" class="external m">Billing History</a> </li>
           <li class="<?php if($current=='leads'){echo 'current';} ?>"> <a href="<?php echo site_url('user/leads'); ?>" class="external m">My Leads</a> </li>
+          <li class="<?php if($current=='guests'){echo 'current';} ?>"> <a href="<?php echo site_url('user/guests'); ?>" class="external m">My Guests</a> </li>
           <li class="<?php if($current=='myaccount'){echo 'current';} ?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="external m">My Account</a> </li>
           <?php 
           $is_enterprise_user = is_enterprise_user();
