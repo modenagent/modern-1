@@ -3,7 +3,7 @@
         <div class="container"> <!-- Smart Wizard -->
                 <div id="choose-presentation"class="clearfix" style="">
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-8 col-md-offset-2">
                             <div class="step-0-content clearfix">
                                 <h2>Create Your Presentation</h2>
                                 <div class="buttonholder">
@@ -15,6 +15,9 @@
                                     </span>
                                     <span class="input-group-btn">
                                         <button style="width:212px;" class="btn btn-lp" type="button" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button style="width:212px;" class="btn btn-lp" type="button" style="" onclick="choose_presentation('registry');"> Smart Registry </button>
                                     </span>
                                 </div>
                             </div>
@@ -501,7 +504,21 @@
                 $('.marketUpdate_template').show();
             });
             $("#config-comps-btn").show();
-        }else {
+        }
+        else if(presentation === 'registry') {
+            // $("#presentation").val("marketUpdate");
+            $("#presentation").val("registry");
+            $('#wizard').smartWizard("marketUpdate");
+            // adding class marketUpdate so that we can manipulate the visibility of different steps
+            $('#wizard').addClass('marketUpdate');
+
+            $('.buyer_template').hide(function(){
+                $('.seller_template').hide();
+                $('.marketUpdate_template').show();
+            });
+            $("#config-comps-btn").show();
+        }
+        else {
             $("#presentation").val("seller");
             $('#wizard').smartWizard("seller");
             $('.buyer_template').hide(function(){

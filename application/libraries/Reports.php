@@ -278,6 +278,10 @@ use Knp\Snappy\Pdf;
             $reportItems['totalMonthsReport'] = $totalMonthsReport;
             $data['areaSalesAnalysis'] = $reportItems;
             $data['theme'] = $CI->input->post('theme');
+
+            if($CI->input->post('presentation') == 'registry') {
+                $data['unique_key'] = time().substr(md5(rand()), 0, 10);
+            }
             
             $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
@@ -309,7 +313,19 @@ use Knp\Snappy\Pdf;
                 }
 
                 $CI->base_model->insert_one_row('lp_my_listing', $insertPdfReport);
-                $CI->session->set_userdata('project_id', $CI->base_model->get_last_insert_id());
+                $project_id = $CI->base_model->get_last_insert_id();
+                $CI->session->set_userdata('project_id', $project_id);
+
+                //Insert into registry table
+
+                if($CI->input->post('presentation') == 'registry' && $project_id > 0) {
+                    $registry_data = array();
+                    $registry_data['listing_id'] = $project_id;
+                    $registry_data['unique_key'] = $data['unique_key'];
+                    $CI->base_model->insert_one_row('lp_registry_master', $registry_data);
+
+                }
+
 
                 // if call is from api then we directly send the report link
                 if($callFromApi == 1)
@@ -1106,7 +1122,7 @@ use Knp\Snappy\Pdf;
                             'Content-Type'          => 'application/pdf',
                             'Content-Disposition'   => 'attachment; filename="report.pdf"'
                         ));
-            $pdfFileName = $pdfFileDynamic = 'temp/'.str_replace(" ", "_", $siteAddress).'_'.md5(time() . rand()).'.pdf';
+            $pdfFileName = $pdfFileDynamic = 'D:/Binita/temp/'.str_replace(" ", "_", $siteAddress).'_'.md5(time() . rand()).'.pdf';
             file_put_contents($pdfFileDynamic, $output);
             if(filesize($pdfFileDynamic)<10000){// Output pdf should be atleast 100KB of size otherwise some error has occured
                 return array( 
