@@ -11,12 +11,12 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
 // $zip = '000000';
 ?>
 <page class="buyerpdf1">
-    <h1 class="main_title">Buyers Report</h1>
+    <h1 class="main_title" style="padding-top:40px;">Buyers Report</h1>
     <img src="https://i.ibb.co/DLbCmth/buyers-report-hero.png" alt="">
 
     <div class="address_box">
         <b><?php if(!empty($site_address)) {echo $site_address.', ';} ?><?php if(!empty($city)) {echo $city.', ';} ?><?php if(!empty($state)) {echo $state.', ';} ?><?php if(!empty($zip)) {echo $zip.', ';} ?></b>
-        <!-- Offered for $0,000,000 -->
+    <?php echo isset($areaSalesAnalysis['propertySalePrice']) && !empty($areaSalesAnalysis['propertySalePrice']) ? 'Offered for $'.$areaSalesAnalysis['propertySalePrice'] : ''; ?>
     </div>
     <div class="footer">
         <div class="d-flex">

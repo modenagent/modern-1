@@ -146,7 +146,7 @@
     }
     if(in_array('6', $pdfPages))
     {
-        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/6');
+        $this->load->view('reports/widget/'.$report_dir_name.'/buyer/pages/6',$neighbor);
     }
     if(in_array('7', $pdfPages))
     {
