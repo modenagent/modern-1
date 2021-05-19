@@ -22,6 +22,7 @@ class Widget extends CI_Controller {
             // redirect('widget/setAuth');
 
             $user_id = $this->setAuth();
+            // $user_id = 1604;
             if($user_id) {
 
               $this->user_id = $user_id;
@@ -494,5 +495,38 @@ class Widget extends CI_Controller {
             
             echo json_encode($properties);
         }
-    }    
+    }  
+
+
+    public function checkpdf($value='')
+    {
+      $data['pdfPages'] = range(1,15);
+      $tableName = "lp_user_mst";
+      $user_id = $this->user_id;
+      $user = $this->base_model->get_login_data_from_id( $tableName,'user_id_pk', $user_id);
+
+      $data['user'] =  (array) $user;
+      $presentation_type = 'buyer';
+      $data['presentation_type'] = $presentation_type;
+      $data['report_dir_name'] = 'maxa_century21';
+      $this->load->view('reports/widget/'.$data['report_dir_name'].'/'.$presentation_type.'/index',$data);
+      // $this->load->view("reports/english/".$presentation_type."/widget_index",$data);
+
+
+      
+    }  
+
+
+    public function delete_lp($lpid = -1, $from){
+      if($lpid){
+        $data = array(  'is_active' =>'N'   );
+        $where = array('project_id_pk' => $lpid );
+        $this->base_model->update_record_by_id('lp_my_listing', $data, $where);
+        if($from == 0){
+          redirect('widget/getWidgetData');
+        }else if($from == 1){
+          redirect('widget/getWidgetData?tab=list');
+        }
+      } 
+    }
 }

@@ -1089,7 +1089,7 @@ function hex(x) {
 function delete_lp(lp_id, from)
 {
     if(confirm('Sure to Delete?')){
-      window.location = base_url+'user/delete_lp/'+lp_id +'/' + from;
+      window.location = base_url+'widget/delete_lp/'+lp_id +'/' + from;
     }
 }
 
