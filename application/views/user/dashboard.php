@@ -1,3 +1,18 @@
+<style type="text/css">
+
+#step-1 .input-group-btn .btn-lp.registry:hover {
+    background-color: rgba(225, 225, 225, .7);
+    border-color: #ffffff;
+}
+#step-1 .input-group-btn .btn-lp.registry {
+    background-color: transparent;
+    border-color: #fff;
+    border: 2px solid white;
+    border-radius: 0px;
+    height: 54px;
+    width: 138px;
+}
+</style>
 <!--Features section -->
 <section id="steps">
         <div class="container"> <!-- Smart Wizard -->
