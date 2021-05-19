@@ -315,6 +315,8 @@ class User extends CI_Controller
                 // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
                 if($for_guest == 0) {
 
+                  $action = ' <a href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>';
+
                   $data[] = [
                       $reportDate, 
                       $report['project_name'], 
