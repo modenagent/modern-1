@@ -207,7 +207,7 @@
                                             <input type="text" class="form-control"   name="user[title]"      id="" placeholder="Title"   value="<?php echo $user['title']; ?>"/>
                                             <input type="text" class="form-control"   name="user[phone]"      id="" placeholder="Phone"   value="<?php echo $user['phone']; ?>"/>
                                             <input type="text" class="form-control"   name="user[email]"      id="" placeholder="Email"   value="<?php echo $user['email']; ?>"/>
-                                            <input type="text" class="form-control"   name="user[licenceno]"  id="" placeholder="CA BRE#" value="<?php echo $user['license_no']; ?>"/>
+                                            <!-- <input type="text" class="form-control"   name="user[licenceno]"  id="" placeholder="CA BRE#" value="<?php echo $user['license_no']; ?>"/> -->
                                             <input type="hidden" class="form-control"   name="presentation"  id="presentation" value=""/>
                                           </div>
                                         </div>
@@ -443,12 +443,12 @@
                                     <article>
                                         <div id="details" class="clearfix">
                                           <div id="client">
-                                            <div class="to">INVOICE TO:</div>
-                                            <h2 class="name"><?php  echo $user['first_name'].' '.$user['last_name']; ?></h2>
+                                            <!-- <div class="to">INVOICE TO:</div>
+                                            <h2 class="name"><?php  echo $user['first_name'].' '.$user['last_name']; ?></h2> -->
                                             <!-- <div class="address"><?php // echo $user['address_line_1'].' '.$user['state_code'].' '.$user['country_code']; ?></div> -->
                                           </div>
                                           <div id="invoice">
-                                            <div class="date invoice-date">Date of Invoice: <?php echo date("m-d-Y"); ?></div>
+                                            <!-- <div class="date invoice-date">Date of Invoice: <?php echo date("m-d-Y"); ?></div> -->
                                           </div>
                                         </div>
                                         <table border="0" cellspacing="0" cellpadding="0" class="invoice-table" style="margin-bottom: 30px;">
