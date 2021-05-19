@@ -823,6 +823,22 @@ jQuery(document).ready(function() {
         $('#pre-selected-options').multiSelect('refresh');
         return false;
     });
+    $('#createReportTab').on('click', function(){
+      $('#wizard').hide(function(){
+          $('#choose-presentation').show(function(){
+              $(".swMain ul.anchor li a").removeClass(presentation);
+          });
+          $("#step-1-link a").trigger('click');
+          // wizardDiv = $('#wizard');
+          // numSteps = 4;
+          // wizardDiv.smartWizard('goToStep', 1);
+           // disable all the following steps
+          // for (var i = 2; i <= numSteps; i++) {
+          //    wizardDiv.smartWizard('disableStep', i);
+          // }
+      });
+    });
+
 
         
     
