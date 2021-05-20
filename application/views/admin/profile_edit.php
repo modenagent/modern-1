@@ -162,7 +162,10 @@
                 <tr>
                   <td>Report Directory</td>
                 <td><input type="text" placeholder="Report Directory" name="report_dir_name" class="form-control" id="report_dir_name" value="<?php echo $user->report_dir_name; ?>"></td>
-              
+                </tr>
+                <tr>
+                  <td>Widget Background Color</td>
+                <td><input type="text" placeholder="Widget Background Color" name="widget_bg_color" class="form-control" id="widget_bg_color" value="<?php echo $user->widget_bg_color; ?>"></td>
                 </tr>
                 <?php
               endif;

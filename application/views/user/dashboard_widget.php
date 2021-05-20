@@ -44,15 +44,27 @@
         html , body {
           height: 100%;
         }
+        #cma-widget-container a {
+          color: #FFFFFF;
+        }
         
-        body {
-          background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/94551543-3be0-4822-94bc-5b918283ef4e.jpg'); 
+        
+      </style>
+   </head>
+   <?php
+   if(empty($widget_bg_color)) {
+    $widget_bg_color = 'rgba(0,0,0,0.5)';
+   }
+   ?>
+   <style type="text/css">
+     body {
+          background: <?php echo $widget_bg_color ?>;
+          /*background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/94551543-3be0-4822-94bc-5b918283ef4e.jpg'); */
           background-position: center;
           background-repeat: no-repeat; 
           background-size:cover;
         }
-      </style>
-   </head>
+   </style>
    <body  style="height: 100%">
       <div id="cma-widget-container" >
       <div id="loadingPlugin" style="color: #fff;">
