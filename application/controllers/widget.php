@@ -161,6 +161,7 @@ class Widget extends CI_Controller {
                 $data['salesRep'] = array();
                 $data['cma_url'] = $user_info['cma_url'];
                 $data['report_dir_name'] = $user_info['report_dir_name'];
+                $data['widget_bg_color'] = $user_info['widget_bg_color'];
 
                 if(isset($user_info['parent_id']) && !empty($user_info['parent_id']))
                 {
@@ -180,6 +181,7 @@ class Widget extends CI_Controller {
 
                     if($sales_rep_info->role_id_fk == 3) {
                         $data['report_dir_name'] = $sales_rep_info->report_dir_name;
+                        $data['widget_bg_color'] = $sales_rep_info->widget_bg_color;
                     }
                 }
                 
