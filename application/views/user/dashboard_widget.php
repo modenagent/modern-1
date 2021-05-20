@@ -44,8 +44,11 @@
         html , body {
           height: 100%;
         }
-        #cma-widget-container a {
+        #cma-widget-container a,#cma-widget-container table a {
           color: #FFFFFF;
+        }
+        #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current, #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+          background-color: rgba(255, 255, 255, 0.4);
         }
         
         
