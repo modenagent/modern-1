@@ -6,7 +6,18 @@
             <h4 class="mt-0 sub_title">A Little Insight</h4>
         </div>
     </div>
-    <div class="d-flex row-30">    
+    <div class="d-flex row-30">
+        <div class="col-50">
+            <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img4.png'; ?>" alt="img4" class="img-fluid w100">
+            <h4 class="table_title mt-40">Avg. Household Income</h4>
+            <p class="mt-0">
+                The figure to the right represents the average
+                household income within your perspective
+                neighborhood. This information is gathered
+                from the household census that is taken every
+                10 years.
+            </p>
+        </div>    
         <div class="col-50">
             <h4 class="table_title">Female</h4>
             <div class="percentage">
@@ -25,17 +36,7 @@
                 different.
             </p>
         </div>
-        <div class="col-50">
-            <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img4.png'; ?>" alt="img4" class="img-fluid w100">
-            <h4 class="table_title mt-40">Avg. Household Income</h4>
-            <p class="mt-0">
-                The figure to the right represents the average
-                household income within your perspective
-                neighborhood. This information is gathered
-                from the household census that is taken every
-                10 years.
-            </p>
-        </div>
+        
     </div>
     <div class="neighborhood_stats">
         <ul class="stats">
