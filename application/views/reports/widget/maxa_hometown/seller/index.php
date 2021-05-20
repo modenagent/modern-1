@@ -15,6 +15,16 @@
             border: 1px solid #082147 !important;
             background: #082147 !important;
         }
+        .pdf1 .header p {
+            /*white-space: nowrap;
+            white-space: -webkit-nowrap;*/
+        }
+        .pdf1 .header .text {
+                width: 18rem;
+        }
+        .pdf1 .header h1 {
+                margin-bottom: 1rem;
+        }
     </style>
 </head>
 <body>
