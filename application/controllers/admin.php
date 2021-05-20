@@ -787,7 +787,7 @@ MSG;
                     $report_dir_name = mysqli_real_escape_string($this->dbConn, $postedArr['report_dir_name']);
                 }
                 if(isset($postedArr['widget_bg_color'])){
-                    $widget_bg_color = mysqli_real_escape_string($this->dbConn, $postedArr['widget_bg_color']);
+                    $widget_bg_color = $postedArr['widget_bg_color'];
                 }
                 
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
