@@ -53,7 +53,7 @@
    </head>
    <?php
    if(empty($widget_bg_color)) {
-    $widget_bg_color = 'rgba(0,0,0,0.5)';
+    $widget_bg_color = 'rgba(0,0,0,0.8)';
    }
    ?>
    <style type="text/css">
