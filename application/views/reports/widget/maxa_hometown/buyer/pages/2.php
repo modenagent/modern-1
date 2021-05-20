@@ -1,6 +1,6 @@
 <page class="buyerpdf2 pdf4">
     <h1>Deciding To Buy</h1>
-    <div class="whitebox">
+    <div class="whitebox" style="max-width: 445px;">
         <h2>The First Steps</h2>
         <p>We wanted to congratulate you
         on taking the fi rst steps towards
@@ -22,5 +22,6 @@
             your transaction.
         </p>
     </div>
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/4/lighthouse.png' ?>" alt="lighthouse" class="white_house">
+    <img src="<?php echo base_url().'assets/reports/english/seller/images/4/lighthouse_small.png' ?>" alt="lighthouse" class="white_house" style="width: 340px">
 </page>
+

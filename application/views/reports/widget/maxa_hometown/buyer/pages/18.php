@@ -1,5 +1,5 @@
  <page class="pdf20">
-    <img src="<?php echo base_url().'assets/reports/english/buyer/images/18/img18.png';?>" alt="..." class="w100 img18">
+    <img src="<?php echo base_url().'assets/reports/english/buyer/images/18/img18.png';?>" alt="..." class="w100 img18" style="height: 615px">
     <div class="content">
         <div class="d-flex">
             <div class="signature">
@@ -90,20 +90,12 @@
             ?>
                 <p class="m-0"><?php echo $city.' ,'.$state.' '.$zip; ?></p>
 
-                <?php 
-                    if(isset($user['website']) && !empty($user['website']))
-                    {
-                        $parsed_url  = parse_url($user['website']);
-
-                        $website = isset($parse_url['scheme']) && !empty($parse_url['scheme']) ? $parse_url['scheme'] : 'javascript:void(0);';
-                ?>
+                
                         <div class="visit_us">
                             Visit Us Online at<br>
-                            <a href="<?php echo $website; ?>"><?php echo $user['website']; ?></a>
+                            <a href="https://www.hometownerealestate.net">hometownerealestate.net</a>
                         </div>
-                <?php
-                    }
-                ?>
+                
 
                 
             </div>
