@@ -300,9 +300,9 @@ page {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: -webkit-gradient(linear,left bottom, left top,from(rgba(0, 0, 0, 1)),color-stop(65%, rgba(6, 32, 80, 0.81)));
-  background: -o-linear-gradient(bottom,rgba(0, 0, 0, 1) 0%,rgba(6, 32, 80, 0.81) 65%);
-  background: linear-gradient(0deg,rgba(0, 0, 0, 1) 0%,rgba(6, 32, 80, 0.81) 65%);
+  background: -webkit-gradient(linear,left bottom, left top,from(rgba(0, 0, 0, 1)),color-stop(0.65, rgba(6, 32, 80, 0.81)));
+  background: -o-linear-gradient(bottom,rgba(0, 0, 0, 1) 0%,rgba(6, 32, 80, 0.81) 0.65);
+  background: linear-gradient(0deg,rgba(0, 0, 0, 1) 0%,rgba(6, 32, 80, 0.81) 0.65);
 }
 .we_reach:after {
   content: "";
@@ -320,7 +320,9 @@ page {
 .caption {
   position: absolute;
   top: 50%;
-  transform: translate(0, -50%);
+  -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+            transform: translate(0, -50%);
   left: 0;
   right: 0;
   text-align: center;
@@ -338,7 +340,7 @@ page {
 }
 .w100 {
   width: 100%;
-  /* height: 100%; */
+   height: 660px; 
   object-fit: cover;
 }
 /* pdf 20 */
@@ -409,7 +411,7 @@ page {
 }
 .footer {
   background: #0d294b;
-  padding: 45px 50px;
+  padding: 50px 50px;
   color: #fff;
 }
 .copy_right_text {
@@ -632,7 +634,7 @@ ul.home_list {
   height: auto;
 }
 .horizontal_sign.signature {
-  width: 300px;
+  width: 500px;
   text-align: left;
   position: relative;
 }
