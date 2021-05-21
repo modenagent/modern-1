@@ -66,5 +66,6 @@
             <p><?php echo $para_3_content; ?></p>
         </div>
     </div>
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/13/gray-chart.png'; ?>" alt="gray-chart"  class="img-fluid d-block mt-m-80 grey-chart ">
+    <div style="background:url(<?php echo base_url().'assets/reports/english/seller/images/13/gray-chart.png'; ?>) no-repeat;background-size: contain;height: 340px;margin-top: -120px;"></div>
+    
 </page>

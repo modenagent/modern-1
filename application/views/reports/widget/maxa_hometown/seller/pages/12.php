@@ -12,7 +12,8 @@
         $content = isset($report_content_data['content']['value']) && !empty($report_content_data['content']['value']) ? $report_content_data['content']['value'] : 'At any given time, there are plenty of buyers in the market looking for newly listed properties. As your agent, I want to make sure to help you attract as many buyers as possible. One thing that can hinder this is setting the price too high. The key to getting your home sold as quickly as possible is to price it correctly from day 1. Many sellers have the tendency to want to list their home at a higher sales price than advised because they hope to increase their profit or they assume that buyers always make low off ers so it’s good to start high';
     ?>
     <p class="text-justify"><?php echo $content; ?></p>
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/12/pricing.png'; ?>" alt="pricing" class="img-fluid mt-60 d-block pricing_img">
+    <div class="mt-40" style="background: url(<?php echo base_url().'assets/reports/english/seller/images/12/pricing.png'; ?>) no-repeat; background-size: contain;height: 350px;"></div>
+    
     <div class="d-flex mt-30 steps">
         <div class="col-50">
             <?php

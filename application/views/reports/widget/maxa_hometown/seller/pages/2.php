@@ -11,7 +11,7 @@
                     if($user['profile_image'] != '' && $user['profile_image'] != 'no')
                     {
                 ?>  
-                        <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>" border="0" class="col-50 profile_pic">
+                        <div class="col-60 profile_pic" style="background:url(<?php echo base_url().$user['profile_image']; ?>) no-repeat;background-size: contain;background-position: 20px;"></div>
                 <?php
                     }
                 ?>
