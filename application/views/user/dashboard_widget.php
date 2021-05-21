@@ -89,7 +89,7 @@
                 <div class="">                         
                     <div id="choose-presentation" class="clearfix" style="">
                         <div class="row">
-                            <div class="col-md-10">
+                            <div class="col-md-12">
                                 <div class="step-0-content clearfix">
                                     <h2>Create Your Presentation</h2>
                                     <div class="buttonholder">
@@ -648,7 +648,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <?php if($company['use_rets_api'] ==1 ): ?>
                     <div class="search-mls-div" style="float: right;">
-                      <input type="text" placeholder="Mls #" name="mls_id" id="mls_id" />
+                      <input type="text" placeholder="Mls #" name="mls_id" id="mls_id" >
                       <button type="button" id="mls_search">Search</button>
                     </div>
                   <?php endif; ?>
