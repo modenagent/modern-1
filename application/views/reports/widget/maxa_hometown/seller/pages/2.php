@@ -8,12 +8,12 @@
         <div class="col-60">
             <div class="d-flex">
                 <?php 
-                    if($user['profile_image'] != '' && $user['profile_image'] != 'no')
-                    {
+                    // if($user['profile_image'] != '' && $user['profile_image'] != 'no')
+                    // {
                 ?>  
                         <div class="col-60 profile_pic" style="background:url(<?php echo base_url().$user['profile_image']; ?>) no-repeat;background-size: contain;background-position: 20px;"></div>
                 <?php
-                    }
+                    // }
                 ?>
                 <div class="signature vertical_sign col-40">
                     <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="img-fluid">
