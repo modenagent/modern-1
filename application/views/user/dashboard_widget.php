@@ -317,7 +317,8 @@
                                 $images = glob($load_dir . "*.jpg");
 
                                 $count_imgs = count($images);
-                                for ($seller_images=1; $seller_images <= $count_imgs ; $seller_images++) { ?>
+                                for ($seller_images=1; $seller_images <= $count_imgs ; $seller_images++) {
+                                  if(is_file($check_dir.$seller_images.'.jpg')) {?>
 
                                   <div class="item">
 
@@ -331,6 +332,13 @@
                                 </div>
 
                                   <?php
+                                  }
+                                  else {
+                                    if($count_imgs<100) {
+
+                                      $count_imgs++;
+                                    }
+                                  }
                                 }
 
                               }
