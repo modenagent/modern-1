@@ -103,10 +103,10 @@
     {
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/2');
     }
-    if(in_array('3', $pdfPages))
-    {
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/3');
-    }
+    // if(in_array('3', $pdfPages))
+    // {
+    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/3');
+    // }
     if(in_array('4', $pdfPages))
     {
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/4');
