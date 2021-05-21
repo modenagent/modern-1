@@ -497,6 +497,36 @@ class Widget extends CI_Controller {
             
             echo json_encode($properties);
         }
+    }
+
+    public function getRetsApiDataByMlsId($mlsId = 0)
+    {
+        if(!empty($mlsId) && $mlsId > 0)
+        {
+            // $mlsId = $mlsId;
+            $query = array();
+            $result = $this->reports->make_request('GET', 'properties/'.$mlsId);
+            $response = json_decode($result,TRUE);
+
+            
+            if(isset($response) && !empty($response))
+            {
+                $properties = $sorted = $all = array();
+
+                
+                  
+                $sorted[$response['mlsId']] = array(
+                      'address' => $response['address']['full'].' '.$response['address']['city'],
+                      'price' => $response['listPrice']
+                  );
+                  
+                
+            }
+            $properties['all'] = $all;
+            $properties['sorted'] = $sorted;
+            
+            echo json_encode($properties);
+        }
     }  
 
 

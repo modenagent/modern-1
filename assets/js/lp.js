@@ -1062,3 +1062,72 @@ function getRetsApiComparables(address)
         .always(function() {
         });
 }
+
+function getRetsApiDataByMlsId(mlsId) 
+{
+    if(mlsId == '') {
+        var msg = '<div class="alert alert-warning">Please enter mlsId</div>';
+        $("#select-comps .msg-container").html(msg);
+        return false;
+    }
+    if($("#pre-selected-options option[value='"+mlsId+"']").length > 0) {
+
+
+        var msg = '<div class="alert alert-warning">This property is already exist in the list</div>';
+        $("#select-comps .msg-container").html(msg);
+        
+        return false;
+    }
+    else {
+
+        $("#select-comps .msg-container").html('');
+
+
+        $('.loader1').show();
+        $('.loader1').removeClass('hidden');
+        $('.backwrap').show();
+        $('.backwrap').removeClass('hidden');
+
+        $.ajax({
+            url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId,
+            type: 'GET',
+        })
+            .done(function(response) {
+                var data = JSON.parse(response);
+                all_comp = data.all;
+                sorted_comp = data.sorted;
+                if($(sorted_comp).length > 0) {
+
+                    $.each(sorted_comp, function(i, item) {
+                        $('#pre-selected-options').append($('<option>', {
+                            value: i,
+                            text: item.address +" ("+item.price+")",
+                            selected: 'selected'
+                        }));
+                        // $("#pre-selected-options").multiSelect('destroy');
+                        $("#pre-selected-options").multiSelect('refresh');
+                        var msg = '<div class="alert alert-success">'+mlsId+' : '+item.address+' added in comparables list</div>';
+                        $("#select-comps .msg-container").html(msg);
+                    });
+                }
+                else {
+                    var msg = '<div class="alert alert-warning">No property found with mlsId : '+mlsId+' </div>';
+                    $("#select-comps .msg-container").html(msg);
+                    
+                }
+                
+
+                          
+            })
+            .fail(function() {            
+                alert("Something went wrong");
+            })
+            .always(function() {
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden'); 
+            });
+    }
+
+}
