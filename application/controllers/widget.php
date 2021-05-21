@@ -514,11 +514,13 @@ class Widget extends CI_Controller {
                 $properties = $sorted = $all = array();
 
                 
-                  
-                $sorted[$response['mlsId']] = array(
-                      'address' => $response['address']['full'].' '.$response['address']['city'],
-                      'price' => $response['listPrice']
-                  );
+                  if(!empty($response['mlsId'])) {
+
+                  $sorted[$response['mlsId']] = array(
+                        'address' => $response['address']['full'].' '.$response['address']['city'],
+                        'price' => $response['listPrice']
+                    );
+                  }
                   
                 
             }
