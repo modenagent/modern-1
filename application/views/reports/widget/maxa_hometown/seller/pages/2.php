@@ -11,7 +11,7 @@
                     if($user['profile_image'] != '' && $user['profile_image'] != 'no')
                     {
                 ?>  
-                        <div class="col-60 profile_pic" style="background:url(<?php echo base_url().$user['profile_image']; ?>) no-repeat;background-size: contain;background-position: 20px;"></div>
+                        <div class="col-60 profile_pic" style="background:url(<?php echo base_url().$user['profile_image']; ?>) no-repeat;background-size: contain;background-position: 20px;height: 230px;"></div>
                 <?php
                     }
                     else { ?>
