@@ -646,10 +646,17 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <?php if($company['use_rets_api'] ==1 ): ?>
+                    <div class="search-mls-div" style="float: right;">
+                      <input type="text" placeholder="Mls #" name="mls_id" id="mls_id" />
+                      <button type="button" id="mls_search">Search</button>
+                    </div>
+                  <?php endif; ?>
                     <h4 class="modal-title">Select Minimum 4 and up to 8 Comparables</h4>
                     <a href="#" class="hide" id="refresh">Refresh Selection</a>
                 </div>
                 <div class="modal-body">
+                    <div class="msg-container"></div>
                     <select id='pre-selected-options' multiple='multiple'>
                     </select>
                 </div>
@@ -814,7 +821,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.1"></script>
       
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -1507,6 +1514,11 @@ function submitFormAndGetReport()
            .columns.adjust();
            // .responsive.recalc();
     });  
+
+  $(document).on('click','#mls_search',function(){
+    var mlsId = $("#mls_id").val();
+    getRetsApiDataByMlsId(mlsId) 
+  });
 
   <?php
   if(isset($_GET['tab']) && $_GET['tab'] == 'list') { ?>
