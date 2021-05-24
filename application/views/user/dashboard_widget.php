@@ -16,7 +16,7 @@
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/smart_tab_vertical_widget.css"/>
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
       <!-- Custom CSS -->
-      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css?v=0.1" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
       <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
@@ -648,7 +648,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <?php if($company['use_rets_api'] ==1 ): ?>
                     <div class="search-mls-div" style="float: right;">
-                      <input type="text" placeholder="Mls #" name="mls_id" id="mls_id" >
+                      <input type="text" placeholder="Mls # or Address" name="mls_id" id="mls_id" >
                       <button type="button" id="mls_search">Search</button>
                     </div>
                   <?php endif; ?>
@@ -821,7 +821,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.1"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.2"></script>
       
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">

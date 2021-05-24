@@ -65,7 +65,9 @@ body.login{display:table-cell; vertical-align:middle;}
 /*body.login {
     padding-top: 0;
 }*/
-
+#cma-widget-container .search-mls-div ::-webkit-input-placeholder {
+    color: #ababab !important;
+}
 #cma-widget-container ::-webkit-input-placeholder {
     color: #fff!important;
 }
