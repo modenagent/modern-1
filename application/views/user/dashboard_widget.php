@@ -16,8 +16,8 @@
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/smart_tab_vertical_widget.css"/>
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
       <!-- Custom CSS -->
-      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css?v=0.1" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
+      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css?v=0.2" rel="stylesheet">
       <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
       <style type="text/css">
@@ -648,7 +648,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <?php if($company['use_rets_api'] ==1 ): ?>
                     <div class="search-mls-div" style="float: right;">
-                      <input type="text" placeholder="Mls # or Address" name="mls_id" id="mls_id" >
+                      <input type="text" placeholder="Enter Mls # or Address" name="mls_id" id="mls_id" >
                       <button type="button" id="mls_search">Search</button>
                     </div>
                   <?php endif; ?>
