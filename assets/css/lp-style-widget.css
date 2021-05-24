@@ -2861,3 +2861,29 @@ transform: translateY(-50%);
     opacity: 0.5;
     text-decoration: none;
 }
+#select-comps .modal-dialog {
+    width: 900px;
+}
+#select-comps .search-mls-div input {
+    border: 0;
+    border-bottom: 1px solid;
+    width: 300px;
+}
+#select-comps .ms-container {
+    width: 870px;
+}
+#select-comps .modal-footer button {
+    background: #bfaf87;
+    color: #fff;
+    padding: 6px 50px;
+}
+#select-comps .ms-selectable .ms-list {
+    border-color: #bfaf87;
+}
+#select-comps .ms-selection .ms-list {
+    border-color: rgba(82, 168, 236, 0.8);
+    -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(82 168 236 / 60%);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(82 168 236 / 60%);
+    outline: 0;
+}
