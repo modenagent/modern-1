@@ -1065,15 +1065,18 @@ function getRetsApiComparables(address)
 
 function getRetsApiDataByMlsId(mlsId) 
 {
+    var dismis_alert = `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>`;
     if(mlsId == '') {
-        var msg = '<div class="alert alert-warning">Please enter mlsId</div>';
+        var msg = '<div class="alert alert-warning">Please enter mlsId'+dismis_alert+'</div>';
         $("#select-comps .msg-container").html(msg);
         return false;
     }
     if($("#pre-selected-options option[value='"+mlsId+"']").length > 0) {
 
 
-        var msg = '<div class="alert alert-warning">This property is already exist in the list</div>';
+        var msg = '<div class="alert alert-warning">This property is already exist in the list'+dismis_alert+'</div>';
         $("#select-comps .msg-container").html(msg);
         
         return false;
@@ -1087,6 +1090,7 @@ function getRetsApiDataByMlsId(mlsId)
         $('.loader1').removeClass('hidden');
         $('.backwrap').show();
         $('.backwrap').removeClass('hidden');
+        $('#mls_search').prop('disabled', true);
 
         $.ajax({
             url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId,
@@ -1096,22 +1100,45 @@ function getRetsApiDataByMlsId(mlsId)
                 var data = JSON.parse(response);
                 all_comp = data.all;
                 sorted_comp = data.sorted;
+                $("#select-comps .msg-container").html('');
                 if($(sorted_comp).length > 0) {
 
+                    var exist_list = added_in_list = '';
+
                     $.each(sorted_comp, function(i, item) {
-                        $('#pre-selected-options').append($('<option>', {
-                            value: i,
-                            text: item.address +" ("+item.price+")",
-                            selected: 'selected'
-                        }));
-                        // $("#pre-selected-options").multiSelect('destroy');
-                        $("#pre-selected-options").multiSelect('refresh');
-                        var msg = '<div class="alert alert-success">'+mlsId+' : '+item.address+' added in comparables list</div>';
-                        $("#select-comps .msg-container").html(msg);
+
+
+
+                        if($("#pre-selected-options option[value='"+i+"']").length > 0) {
+                            exist_list += '<div>'+$("#pre-selected-options option[value='"+i+"']").text()+'</div>';
+                        }
+                        else {
+
+                            $('#pre-selected-options').append($('<option>', {
+                                value: i,
+                                text: item.address +" ("+item.price+")",
+                                selected: 'selected'
+                            }));
+                            added_in_list += '<div>'+item.address+'</div>';
+                            
+                        }
+
+                        
                     });
+                    if(added_in_list != '') {
+
+                        var msg = '<div class="alert alert-success"> Following property added in comparables list: '+dismis_alert+added_in_list+'</div>';
+                        $("#select-comps .msg-container").append(msg);
+                    }
+                    if(exist_list != '') {
+
+                        var msg = '<div class="alert alert-warning"> Following property already exist in the list: '+dismis_alert+exist_list+'</div>';
+                        $("#select-comps .msg-container").append(msg);
+                    }
+                    $("#pre-selected-options").multiSelect('refresh');
                 }
                 else {
-                    var msg = '<div class="alert alert-warning">No property found with mlsId : '+mlsId+' </div>';
+                    var msg = '<div class="alert alert-warning">No property found with Address Or Mls #  : '+mlsId+' '+dismis_alert+'</div>';
                     $("#select-comps .msg-container").html(msg);
                     
                 }
@@ -1127,6 +1154,8 @@ function getRetsApiDataByMlsId(mlsId)
                 $('.loader1').addClass('hidden');
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden'); 
+                $('#mls_search').prop('disabled', false);
+
             });
     }
 

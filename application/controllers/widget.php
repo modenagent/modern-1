@@ -7,6 +7,7 @@ class Widget extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
+        // var_dump($this->session->userdata('userid'));die;
         // $this->user_id = 82;   
         $widget_url = $_ENV['WIDGET_DOMAIN'];
         // header("Access-Control-Allow-Origin: $widget_url");
@@ -22,7 +23,7 @@ class Widget extends CI_Controller {
             // redirect('widget/setAuth');
 
             $user_id = $this->setAuth();
-            // $user_id = 1604;
+            // $user_id = 1602;
             if($user_id) {
 
               $this->user_id = $user_id;
@@ -499,9 +500,9 @@ class Widget extends CI_Controller {
         }
     }
 
-    public function getRetsApiDataByMlsId($mlsId = 0)
+    public function getRetsApiDataByMlsId($mlsId = null)
     {
-        if(!empty($mlsId) && $mlsId > 0)
+        if(!empty($mlsId))
         {
             // $mlsId = $mlsId;
             $query = array();
@@ -523,6 +524,37 @@ class Widget extends CI_Controller {
                   }
                   
                 
+            }
+            if(count($sorted) == 0) {
+              
+              // $query = array('q' => $mlsId);
+              $result = $this->reports->make_request('GET', 'properties?q='.$mlsId);
+              $response = json_decode($result,TRUE);
+
+              if(isset($response) && !empty($response))
+              {
+                  $properties = $sorted = $all = array();
+
+                  foreach ($response as $key => $value) 
+                  {
+                    if($key <= 7)
+                    {
+                      $sorted[$value['mlsId']] = array(
+                            'address' => $value['address']['full'].' '.$value['address']['city'],
+                            'price' => $value['listPrice']
+                        );
+                    }
+                    else
+                    {
+                      $all[$value['mlsId']] = array(
+                            'address' => $value['address']['full'].' '.$value['address']['city'],
+                            'price' => $value['listPrice']
+                        );
+                    }
+                      
+                      
+                  }
+              }
             }
             $properties['all'] = $all;
             $properties['sorted'] = $sorted;
