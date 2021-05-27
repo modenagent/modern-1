@@ -75,6 +75,15 @@ else {
 
                 //Update data
 
+                //check if user is associate with same company
+
+                $get_where = array('user_id_pk'=>$idp_data->company_id);
+                $comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
+                // var_dump($comp_info);die;
+                if($idp_data->company_id != $user->parent_id && $idp_data->unique_id != '1613127833MWAI1583MYPL' && $idp_data->unique_id != '1613123268USXC86GYBN') {
+                    die("You are already registered with other company.Please contact Administrator");
+                }
+
                 $update_data = array();
                 if(!empty($attr_values['first_name'])) {
                     $update_data['first_name'] = $attr_values['first_name'];
