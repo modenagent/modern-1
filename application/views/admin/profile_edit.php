@@ -167,6 +167,12 @@
                   <td>Widget Background Color</td>
                 <td><input type="text" placeholder="Widget Background Color" name="widget_bg_color" class="form-control" id="widget_bg_color" value="<?php echo $user->widget_bg_color; ?>"></td>
                 </tr>
+
+                <tr>
+                  <td>Use Featured Home?</td>
+                <td><input style="width:30px" type="checkbox" name="use_featured_home" class="form-control" id="use_featured_home" <?php if($user->use_featured_home == 1): echo 'checked'; endif;?> value="1" /></td>
+              
+                </tr>
                 <?php
               endif;
               ?>

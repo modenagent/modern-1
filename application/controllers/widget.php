@@ -23,7 +23,7 @@ class Widget extends CI_Controller {
             // redirect('widget/setAuth');
 
             $user_id = $this->setAuth();
-            // $user_id = 1602;
+            // $user_id = 1607;
             if($user_id) {
 
               $this->user_id = $user_id;
@@ -163,6 +163,7 @@ class Widget extends CI_Controller {
                 $data['cma_url'] = $user_info['cma_url'];
                 $data['report_dir_name'] = $user_info['report_dir_name'];
                 $data['widget_bg_color'] = $user_info['widget_bg_color'];
+                $data['featured_homes'] = array();
 
                 if(isset($user_info['parent_id']) && !empty($user_info['parent_id']))
                 {
@@ -183,6 +184,12 @@ class Widget extends CI_Controller {
                     if($sales_rep_info->role_id_fk == 3) {
                         $data['report_dir_name'] = $sales_rep_info->report_dir_name;
                         $data['widget_bg_color'] = $sales_rep_info->widget_bg_color;
+                        if($sales_rep_info->use_featured_home) {
+                          
+                          /*Featured section*/
+                          $data['featured_homes'] = $this->base_model->all_records('lp_featured_home');
+                          /*Featured section*/
+                        }
                     }
                 }
                 
@@ -206,14 +213,10 @@ class Widget extends CI_Controller {
                 $data['ref_code'] = $this->user_model->has_ref_code($user_id);
                 /* leads */
                 
-                // $html = $this->load->view('user/dashboard_widget', $data, true);
-                $this->load->view('user/dashboard_widget', $data);
-                // $result['res'] = $html;
+                
 
-                // header('Content-Type: text/javascript; charset=utf8');
-                // header('Access-Control-Allow-Origin: http://localhost/mylistingpitch');
-                // header('Access-Control-Max-Age: 3628800');
-                // header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE');              
+                $this->load->view('user/dashboard_widget', $data);
+                              
                 
             }
         }
@@ -594,5 +597,35 @@ class Widget extends CI_Controller {
           redirect('widget/getWidgetData?tab=list');
         }
       } 
+    }
+
+    public function upload_image($type='')
+    {
+      $data = array();
+      $data['status'] = true; 
+      $data['file'] = '';
+
+      $config['upload_path'] = './assets/reports/widget/images/featured/temp/';
+      $config['allowed_types'] = '*';
+      $config['max_size'] = '1024';
+      
+
+      $this->load->library('upload', $config);
+
+      if ( ! $this->upload->do_upload('file'))
+      {
+
+        $data['error'] = $this->upload->display_errors();
+
+        $data['status'] = false; 
+        
+      }
+      else
+      {
+        $uploaded_data = $this->upload->data();
+
+        $data['file'] = 'assets/reports/widget/images/featured/temp/'.$uploaded_data['file_name'];
+      }
+      echo json_encode($data);
     }
 }

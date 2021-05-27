@@ -17,7 +17,7 @@
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
       <!-- Custom CSS -->
       <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
-      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css?v=0.2" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css?v=0.3" rel="stylesheet">
       <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
       <style type="text/css">
@@ -50,7 +50,6 @@
         #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current, #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
           background-color: rgba(255, 255, 255, 0.4);
         }
-        
         
       </style>
    </head>
@@ -288,16 +287,19 @@
                           <div class="backwrap hidden"></div>
                           <div class="col-md-12">
                             <div class="col-md-12">
-                          <div class="col-md-6">
+                          <div class="col-md-4">
                             <h2 class="marketUpdateHide"><strong>Review Pages</strong></h2>
                             <h2 id="comp-heading"><strong>Comparables</strong></h2>
                           </div>
-                          <div class="col-md-6 marketUpdateHide" id="butcomp">
+                          <div class="col-md-8 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
                             <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Agent Bio
                             </a> &nbsp | &nbsp
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
-
+                            <?php if(count($featured_homes)) : ?>
+                            &nbsp | &nbsp
+                            <a id="btn-featured" class="" data-toggle="modal" data-target="#update-featured" title="Featured Homes" >Featured Homes</a>
+                            <?php endif; ?>
                             <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a> | &nbsp
                           </div>
                             </div>
@@ -731,6 +733,52 @@
         </div>
     </div>
     <!-- modal for bio -->
+
+    <!-- modal for Featured section -->
+    <div id="update-featured" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Featured List</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                      <?php 
+                      if(count($featured_homes)) {
+
+                      
+                      foreach ($featured_homes as $featured_i => $featured_home) { ?>
+                         
+                        <div class="col-md-6">
+                          <div class="featured-div">
+                            <label class="featured_img" for="featured_<?php echo $featured_i; ?>_image" style="background: url(<?php echo base_url($featured_home->image) ?>)">
+                              <div><span>Change Image</span></div>
+                              <input type="hidden" value="<?php echo $featured_home->image ?>" name="featured[<?php echo $featured_i ?>]['image_val']" id="featured_<?php echo $featured_i; ?>_image_val" class="featured_file" data-val="<?php echo $featured_i; ?>"/>
+                              <input class="form-control featured_file_input" accept="image/*" type="file" name="featured[<?php echo $featured_i ?>]['image']" id="featured_<?php echo $featured_i; ?>_image" />
+                            </label>
+                            <div class="featured_inputs">
+                            <input class="form-control" value="<?php echo $featured_home->price; ?>" placeholder="Price" type="text" name="featured[<?php echo $featured_i ?>]['price']" id="featured_<?php echo $featured_i; ?>_price" />
+                            <input class="form-control" value="<?php echo $featured_home->address; ?>" placeholder="Street address" type="text" name="featured[<?php echo $featured_i ?>]['address']" id="featured_<?php echo $featured_i; ?>_address" />
+                            <input class="form-control" value="<?php echo $featured_home->city; ?>" placeholder="City" type="text" name="featured[<?php echo $featured_i ?>]['city']" id="featured_<?php echo $featured_i; ?>_city" />
+                            </div>
+                          </div>
+                        </div>
+                      <?php } 
+                      }
+                      ?>
+                        
+                        
+                    </div>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal for Featured section -->
 </div>
 </div>      
       <!-- footer js and other stuff starts here -->
@@ -821,7 +869,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.2"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.3"></script>
       
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -1518,6 +1566,64 @@ function submitFormAndGetReport()
   $(document).on('click','#mls_search',function(){
     var mlsId = $("#mls_id").val();
     getRetsApiDataByMlsId(mlsId) 
+  });
+
+  $(document).on('change','.featured_file_input',function(){
+        var file = $(this).get(0).files[0];
+        var file_index = $(this).data('val');
+        var file_obj = $(this);
+
+        if(file) {
+          // var upload_img = $(this);
+          // console.log("File uplaoded for "+$(this).attr("id"));
+     
+          data = new FormData();
+          data.append('file', $(this)[0].files[0]);
+
+          var imgname  =  $(this).val();
+          var size  =  $(this)[0].files[0].size;
+
+          var ext =  imgname.substr( (imgname.lastIndexOf('.') +1) );
+          if(ext=='jpg' || ext=='jpeg' || ext=='png' || ext=='gif' || ext=='PNG' || ext=='JPG' || ext=='JPEG')
+          {
+           if(size<=1000000)
+           {
+              $.ajax({
+                url: "<?php echo base_url('widget/upload_image') ?>",
+                type: "POST",
+                data: data,
+                dataType: 'json',
+                enctype: 'multipart/form-data',
+                processData: false,  // tell jQuery not to process the data
+                contentType: false   // tell jQuery not to set contentType
+              }).done(function(data) {
+                 if(data && data.status == true)
+                 {
+
+                    file_obj.parent().css("background-image", "url(" + base_url+data.file + ")");
+
+                    file_obj.parent().children('.featured_file').val(data.file)
+                 }
+                 else
+                 {
+                   // imgclean.replaceWith( imgclean = imgclean.clone( true ) );
+                   alert(data.error);
+                 }
+
+              });
+            }//end size
+            else
+            {
+                // imgclean.replaceWith( imgclean = imgclean.clone( true ) );//Its for reset the value of file type
+                alert('Sorry File size exceeding from 1 Mb');
+            }
+          }//end FILETYPE
+          else
+          {
+             // imgclean.replaceWith( imgclean = imgclean.clone( true ) );
+            alert('Sorry Only you can uplaod JPEG|JPG|PNG|GIF file type ');
+          }
+        }
   });
 
   <?php
