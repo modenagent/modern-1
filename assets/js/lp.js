@@ -924,6 +924,20 @@ function widgetRunPMA(agentPath, logoPath) {
     query += '&testimonials_name=' + JSON.stringify(testimonials_name);
     var bio = $("#agent-bio").val();
     query += '&bio=' + bio;
+
+    var featured_homes = [];
+    if($("#update-featured").length > 0) {
+        for (var featured_i = 0; featured_i <= 3; featured_i++) {
+            featured_homes[featured_i] = {}
+            featured_homes[featured_i].image = $("#featured_"+featured_i+"_image_val").val();
+            featured_homes[featured_i].price = $("#featured_"+featured_i+"_price").val();
+            featured_homes[featured_i].address = $("#featured_"+featured_i+"_address").val();
+            featured_homes[featured_i].city = $("#featured_"+featured_i+"_city").val();
+        }
+
+        query += '&featured_homes='+JSON.stringify(featured_homes);
+    }
+
     query += '&' + 'pdfID=' + pdfID;
     var pages = $('#pdf_pages').val();
     query += '&' + 'pdfPages=' + pages;

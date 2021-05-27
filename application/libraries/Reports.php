@@ -1004,6 +1004,15 @@ use Knp\Snappy\Pdf;
 
             $data['fromcma'] = 1;
             }
+
+            /*Featured section*/
+            if(!empty($CI->input->post('featured_homes')) && json_decode($CI->input->post('featured_homes'))) {
+                $data['featured_homes'] = json_decode($CI->input->post('featured_homes'));
+            }
+            else {
+                $data['featured_homes'] = $this->base_model->all_records('lp_featured_home');
+            }
+            /*Featured section*/
             
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];

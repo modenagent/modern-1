@@ -842,6 +842,10 @@ MSG;
                     $data['use_rets_api'] = 1;
 
                 }
+                $data['use_featured_home'] = 0;
+                if($this->input->post('use_featured_home')){
+                    $data['use_featured_home'] = $this->input->post('use_featured_home');
+                }
                 if(isset($report_dir_name)) {
                     $data['report_dir_name'] = $report_dir_name;
                 }
