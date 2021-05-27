@@ -185,7 +185,7 @@ class Widget extends CI_Controller {
                         $data['report_dir_name'] = $sales_rep_info->report_dir_name;
                         $data['widget_bg_color'] = $sales_rep_info->widget_bg_color;
                         if($sales_rep_info->use_featured_home) {
-                          
+
                           /*Featured section*/
                           $data['featured_homes'] = $this->base_model->all_records('lp_featured_home');
                           /*Featured section*/
@@ -605,7 +605,13 @@ class Widget extends CI_Controller {
       $data['status'] = true; 
       $data['file'] = '';
 
-      $config['upload_path'] = './assets/reports/widget/images/featured/temp_imgs/';
+      $dir_to_upload = 'assets/reports/widget/images/featured/temp_imgs/';
+
+      if ( ! is_writable($dir_to_upload)) {
+        chmod($dir_to_upload, 0777);
+      }
+
+      $config['upload_path'] = './'.$dir_to_upload;
       $config['allowed_types'] = '*';
       $config['max_size'] = '1024';
       
@@ -624,7 +630,7 @@ class Widget extends CI_Controller {
       {
         $uploaded_data = $this->upload->data();
 
-        $data['file'] = 'assets/reports/widget/images/featured/temp_imgs/'.$uploaded_data['file_name'];
+        $data['file'] = $dir_to_upload.$uploaded_data['file_name'];
       }
       echo json_encode($data);
     }
