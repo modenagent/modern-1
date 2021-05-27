@@ -605,7 +605,7 @@ class Widget extends CI_Controller {
       $data['status'] = true; 
       $data['file'] = '';
 
-      $config['upload_path'] = './assets/reports/widget/images/featured/temp/';
+      $config['upload_path'] = './assets/reports/widget/images/featured/temp_imgs/';
       $config['allowed_types'] = '*';
       $config['max_size'] = '1024';
       
@@ -624,7 +624,7 @@ class Widget extends CI_Controller {
       {
         $uploaded_data = $this->upload->data();
 
-        $data['file'] = 'assets/reports/widget/images/featured/temp/'.$uploaded_data['file_name'];
+        $data['file'] = 'assets/reports/widget/images/featured/temp_imgs/'.$uploaded_data['file_name'];
       }
       echo json_encode($data);
     }
