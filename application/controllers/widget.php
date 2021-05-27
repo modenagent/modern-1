@@ -605,10 +605,10 @@ class Widget extends CI_Controller {
       $data['status'] = true; 
       $data['file'] = '';
 
-      $dir_to_upload = 'assets/reports/widget/images/featured/temp_imgs/';
+      $dir_to_upload = 'assets/reports/widget/images/featured/temp/';
 
-      if ( ! is_writable($dir_to_upload)) {
-        chmod($dir_to_upload, 0777);
+      if ( ! is_dir($dir_to_upload)) {
+        mkdir($dir_to_upload,0777);
       }
 
       $config['upload_path'] = './'.$dir_to_upload;
