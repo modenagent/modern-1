@@ -869,7 +869,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.3"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.4"></script>
       
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -1008,6 +1008,7 @@ jQuery(document).ready(function() {
         },
         onShowStep:function(obj){
             if(obj.attr('rel')==4){
+              $('#apply-coupan-alert').html('');
                 /*if($('.custom-checkbox:checked').val()){*/
                     /*$.ajax({
                         url:base_url + 'user/generateInvoice',

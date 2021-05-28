@@ -959,14 +959,14 @@ function widgetRunPMA(agentPath, logoPath) {
     {
         query += '&' + 'use_rets_api=' + use_rets_api;
     }
-    console.log(query);
+    // console.log(query);
     
     //console.log(query);
     if(activeRequest){
         activeRequest=false;
         xhr.abort();
     }
-    console.log(query); 
+    // console.log(query); 
     // return;
     activeRequest=true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
@@ -977,9 +977,9 @@ function widgetRunPMA(agentPath, logoPath) {
         data: query
     })
         .done(function(response) {
-            console.log(response);
+            // console.log(response);
             var obj = JSON.parse(response);
-            console.log(obj);
+            // console.log(obj);
             try {
                 var obj = JSON.parse(response);
                 if(obj.status=='success'){
