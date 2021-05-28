@@ -101,14 +101,14 @@ else {
                 if(!empty($attr_values['image']) && empty($user->profile_image) || true) {
                     $url=$attr_values['image'];
                     $contents=@file_get_contents($url);
-                    
+                    echo "If1";
                     // die("IN");
                     if(!empty($contents)) {
                         $process_upload = true;
-
+                        echo "If2";
                         //check existing image
                         if(!empty($user->profile_image)) {
-
+                            echo "If3";
                             // $arrContextOptions=array(
                             //     "ssl"=>array(
                             //         "verify_peer"=>false,
@@ -120,18 +120,20 @@ else {
                             $content1=@file_get_contents('https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image);
                         
                             if(!empty($content1) && md5($contents) != md5($content1)) {
+                                echo "If4";
                                 $process_upload = true;
 
                                 unlink($root_dir.$user->profile_image);
                             }
                             else {
-
+                                echo "else1";
                                 $process_upload = false;
                             }
 
                         }
 
                         if($process_upload) {
+                                echo "if last";
 
                             $upload_path = $root_dir.'assets/images/';
                             $image_name = 'widget_user_'.substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8).".jpg";
