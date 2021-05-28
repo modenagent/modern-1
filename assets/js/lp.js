@@ -978,6 +978,7 @@ function widgetRunPMA(agentPath, logoPath) {
     })
         .done(function(response) {
             // console.log(response);
+            pdfGenerated = false;
             var obj = JSON.parse(response);
             // console.log(obj);
             try {
