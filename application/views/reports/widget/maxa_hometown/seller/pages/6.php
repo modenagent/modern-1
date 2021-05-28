@@ -13,7 +13,7 @@
             Why a 5-Mile Radius
         </h2>
         <p>
-            A fi ve mile radius has proven to yield the best results
+            A five mile radius has proven to yield the best results
             when it comes to properties that match yours.
         </p>
     </div>
