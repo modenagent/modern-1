@@ -118,6 +118,10 @@ else {
 
                             // $content1=@file_get_contents('https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image,false,stream_context_create($arrContextOptions));
                             $content1=@file_get_contents('https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image);
+
+                            echo 'https://'.$_ENV['APP_DOMAIN'].'/'.$user->profile_image;
+                            echo "<br>";
+                            echo $url;
                         
                             if(!empty($content1) && md5($contents) != md5($content1)) {
                                 echo "If4";
