@@ -1008,7 +1008,8 @@ jQuery(document).ready(function() {
         },
         onShowStep:function(obj){
             if(obj.attr('rel')==4){
-              $('#apply-coupan-alert').html('');
+              // $('#apply-coupan-alert').html('');
+              $('#apply-coupan-alert').hide();
                 /*if($('.custom-checkbox:checked').val()){*/
                     /*$.ajax({
                         url:base_url + 'user/generateInvoice',
