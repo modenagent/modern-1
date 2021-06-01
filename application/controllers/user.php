@@ -315,7 +315,7 @@ class User extends CI_Controller
                 // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
                 if($for_guest == 0) {
 
-                  $action = ' <a href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>';
+                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>';
 
                   $data[] = [
                       $reportDate, 
@@ -2982,7 +2982,17 @@ Thank you for your order. Below you can find the details of your order. If you o
                     echo json_encode(array("status"=>"success","sms"=>$smsText));
                     exit();
                 }
-                redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
+
+                $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $this->session->userdata('project_id')));
+                if($_project && trim($_project->report_type) == 'registry') {
+                  $this->session->set_flashdata('project_id', $_project->project_id_pk);
+                  redirect(base_url('user/guests').'?id='.$this->session->userdata('project_id'));
+                }
+                else {
+
+                  redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
+                }
+
               }
           } else {
             if($this->input->is_ajax_request()){
@@ -3784,6 +3794,14 @@ Thank you for your order. Below you can find the details of your order. If you o
             exit();   
         }
 
+    }
+
+
+    public function generate_qr_code($uniqid)
+    {
+      $qr_link = base_url('registry/guest/'.$uniqid);
+      $this->load->library('phpqrcode/qrlib');
+      $image = QRcode::png($qr_link,false,QR_ECLEVEL_L,6,4);
     }
 
 

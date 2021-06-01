@@ -1,0 +1,288 @@
+%!Adobe-FontList 1.22
+%Locale:0x409
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Abuget
+FamilyName:Abuget
+StyleName:Regular
+MenuName:Abuget
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Abuget
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Abuget.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:62468
+FileModTime:593119698
+NameArray:0,Mac,4,Abuget
+NameArray:0,Win,1,Abuget
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Invalid
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/AdobeFnt22.lst
+FileLength:6282
+FileModTime:641233556
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Barlow-Bold
+FamilyName:Barlow
+StyleName:Bold
+MenuName:Barlow
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Barlow Bold
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Barlow-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:60820
+FileModTime:634524300
+NameArray:0,Mac,4,Barlow Bold
+NameArray:0,Win,1,Barlow
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Barlow-Regular
+FamilyName:Barlow
+StyleName:Regular
+MenuName:Barlow
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Barlow Regular
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Barlow-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:60904
+FileModTime:634524300
+NameArray:0,Mac,4,Barlow Regular
+NameArray:0,Win,1,Barlow
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MinionPro-Regular
+FamilyName:Minion Pro
+StyleName:Regular
+MenuName:Minion Pro
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Minion Pro
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/MinionPro-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:218640
+FileModTime:486517897
+DesignSize:110
+NameArray:0,Mac,4,Minion Pro
+NameArray:0,Win,1,Minion Pro
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Montserrat-Bold
+FamilyName:Montserrat
+StyleName:Bold
+MenuName:Montserrat
+StyleBits:2
+WeightClass:700
+WidthClass:5
+AngleClass:0
+FullName:Montserrat Bold
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Montserrat-Bold.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:45968
+FileModTime:488102156
+NameArray:0,Mac,4,Montserrat Bold
+NameArray:0,Win,1,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Montserrat-Light
+FamilyName:Montserrat
+StyleName:Light
+MenuName:Montserrat Light
+StyleBits:0
+WeightClass:300
+WidthClass:5
+AngleClass:0
+FullName:Montserrat Light
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Montserrat-Light.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:44792
+FileModTime:488102156
+NameArray:0,Mac,4,Montserrat Light
+NameArray:0,Win,1,Montserrat Light
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Montserrat-Medium
+FamilyName:Montserrat
+StyleName:Medium
+MenuName:Montserrat Medium
+StyleBits:0
+WeightClass:500
+WidthClass:5
+AngleClass:0
+FullName:Montserrat Medium
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Montserrat-Medium.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:52764
+FileModTime:513740018
+NameArray:0,Mac,4,Montserrat Medium
+NameArray:0,Win,1,Montserrat Medium
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Montserrat-Regular
+FamilyName:Montserrat
+StyleName:Regular
+MenuName:Montserrat
+StyleBits:0
+WeightClass:400
+WidthClass:5
+AngleClass:0
+FullName:Montserrat
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Montserrat-Regular.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:45360
+FileModTime:488102156
+NameArray:0,Mac,4,Montserrat
+NameArray:0,Win,1,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:Montserrat-UltraLight
+FamilyName:Montserrat
+StyleName:Ultra Light
+MenuName:Montserrat Ultra Light
+StyleBits:0
+WeightClass:200
+WidthClass:5
+AngleClass:0
+FullName:Montserrat Ultra Light
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/Montserrat-UltraLight.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:68300
+FileModTime:488102156
+NameArray:0,Mac,4,Montserrat Ultra Light
+NameArray:0,Win,1,Montserrat Ultra Light
+NameArray:0,Win,16,Montserrat
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Typold-Medium
+FamilyName:Typold
+StyleName:Medium
+MenuName:Typold Medium
+StyleBits:0
+WeightClass:500
+WidthClass:5
+AngleClass:0
+FullName:Typold Medium
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/The Northern Block Ltd - Typold Medium.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:197344
+FileModTime:634524300
+NameArray:0,Mac,4,Typold Medium
+NameArray:0,Win,1,Typold Medium
+NameArray:0,Win,16,Typold
+%EndFont
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:Type1
+FontName:MuseoSans-100
+FamilyName:Museo Sans
+StyleName:100
+MenuName:Museo Sans 100
+StyleBits:0
+WeightClass:250
+WidthClass:5
+AngleClass:0
+FullName:Museo Sans 100
+WritingScript:Roman
+OutlineFileName:/Users/madilainedavis/Desktop/C21 Award CMA/C21 Award CMA 2.0/Document fonts/exljbris - MuseoSans-100.otf
+DataFormat:sfntData
+UsesStandardEncoding:yes
+isCFF:yes
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:62420
+FileModTime:548400604
+NameArray:0,Mac,4,Museo Sans 100
+NameArray:0,Win,1,Museo Sans 100
+NameArray:0,Win,16,Museo Sans
+%EndFont
+

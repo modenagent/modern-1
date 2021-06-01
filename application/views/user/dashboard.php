@@ -18,9 +18,10 @@
         <div class="container"> <!-- Smart Wizard -->
                 <div id="choose-presentation"class="clearfix" style="">
                     <div class="row">
-                        <div class="col-md-8 col-md-offset-2">
+                        <div class="col-md-12">
                             <div class="step-0-content clearfix">
-                                <h2>Create Your Presentation</h2>
+                                <h2>How Can We Help You <br/>Make an Impression?</h2>
+                                
                                 <div class="buttonholder">
                                     <span class="input-group-btn">
                                         <button class="btn btn-lp" type="button" style="" onclick="choose_presentation('buyer');"> Buyers Presentation </button>
@@ -253,6 +254,7 @@
                                 <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
                                 <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
                                 <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                <img class="registry_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
                               </div>
 
                             </label>
@@ -507,6 +509,8 @@
             $('.seller_template').hide(function(){
                 $('.buyer_template').show();
                 $('.marketUpdate_template').hide();
+                $('.registry_template').hide();
+
             });
         }else if(presentation === 'marketUpdate'){
             $("#presentation").val("marketUpdate");
@@ -517,6 +521,8 @@
             $('.buyer_template').hide(function(){
                 $('.seller_template').hide();
                 $('.marketUpdate_template').show();
+                $('.registry_template').hide();
+
             });
             $("#config-comps-btn").show();
         }
@@ -529,9 +535,10 @@
 
             $('.buyer_template').hide(function(){
                 $('.seller_template').hide();
-                $('.marketUpdate_template').show();
+                $('.marketUpdate_template').hide();
+                $('.registry_template').show();
             });
-            $("#config-comps-btn").show();
+            $("#config-comps-btn").hide();
         }
         else {
             $("#presentation").val("seller");
@@ -539,6 +546,8 @@
             $('.buyer_template').hide(function(){
                 $('.seller_template').show();
                 $('.marketUpdate_template').hide();
+                $('.registry_template').hide();
+                
             });
             $("#config-comps-btn").show();
         }

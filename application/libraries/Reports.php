@@ -141,7 +141,7 @@ use Knp\Snappy\Pdf;
             $data['primary_owner'] = $ownerNamePrimary;
             $data['secondary_owner'] = $ownerNameSecondary;
             $reportItems['comparable']=array();
-            if(true || $_POST['presentation'] == 'seller') {
+            if($_POST['presentation'] != 'registry') {
                 $comparableTemp = $this->get_all_properties($report187);
                 if(empty($compKeys)){
                     $comparables = $this->sort_properties($report187, $comparableTemp);
@@ -153,121 +153,120 @@ use Knp\Snappy\Pdf;
                         }
                     }
                 }
-            }
-
-            if (empty($reportItems['comparable'])) {
-                return ["status"=>false, "showError"=>true, "msg"=>"Report can not be generated due to lack of comparable data."];
-            }
-
-            $salesAnalysis = $this->sales_analysis($reportItems['comparable']);
-            
-            $reportItems['priceMinRange'] = round($salesAnalysis['minPrice']/1000,2);
-            $reportItems['priceMaxRange'] = round($salesAnalysis['maxPrice']/1000,2);
- 
-            $propertyYear = (string)$report187->PropertyProfile->PropertyCharacteristics->YearBuilt[0];
-            $reportItems['areaYear'] = $propertyYear;
-            $reportItems['areaYearLow'] = minMaxArray('Year', 'min', $reportItems['comparable']);
-            $reportItems['areaYearMedian'] = minMaxArray('Year', 'median', $reportItems['comparable']);
-            $reportItems['areaYearHigh'] = minMaxArray('Year', 'max', $reportItems['comparable']);
-
-            $reportItems['areaBedrooms'] = (string)$report187->PropertyProfile->PropertyCharacteristics->Bedrooms[0];
-            $reportItems['areaBedroomsLow'] = minMaxArray('Beds', 'min', $reportItems['comparable']);
-            $reportItems['areaBedroomsMedian'] = minMaxArray('Beds', 'median', $reportItems['comparable']);
-            $reportItems['areaBedroomsHigh'] = minMaxArray('Beds', 'max', $reportItems['comparable']);
-
-            $reportItems['areaBaths'] = (string)$report187->PropertyProfile->PropertyCharacteristics->Baths[0];
-            $reportItems['areaBathsLow'] = minMaxArray('Baths', 'min', $reportItems['comparable']);
-            $reportItems['areaBathsMedian'] = minMaxArray('Baths', 'median', $reportItems['comparable']);
-            $reportItems['areaBathsHigh'] = minMaxArray('Baths', 'max', $reportItems['comparable']);
-            
-            $areaLotSize = number_format((string)$report187->PropertyProfile->PropertyCharacteristics->LotSize[0]);
-            $areaLotSizeLow = number_format($salesAnalysis['min_lot_size']);             //number_format(minMaxArray('LotSize', 'min', $reportItems['comparable']));
-            $areaLotSizeMedian = number_format($salesAnalysis['tmp_lot_size']/count($reportItems['comparable']));            //number_format(minMaxArray('LotSize', 'median', $reportItems['comparable']));
-            $areaLotSizeHigh = number_format($salesAnalysis['max_lot_size']);                // number_format(minMaxArray('LotSize', 'max', $reportItems['comparable']));
-
-
-            $reportItems['areaLotSize'] = $areaLotSize;
-            $reportItems['areaLotSizeLow'] = $areaLotSizeLow;
-            $reportItems['areaLotSizeMedian'] = $areaLotSizeMedian;
-            $reportItems['areaLotSizeHigh'] = $areaLotSizeHigh;
-
-
-            $areaLivingAreaLow = number_format(minMaxArray('BuildingArea', 'min', $reportItems['comparable']));
-            $areaLivingAreaMedian = number_format(minMaxArray('BuildingArea', 'median', $reportItems['comparable']));
-            $areaLivingAreaHigh = number_format(minMaxArray('BuildingArea', 'max', $reportItems['comparable']));
-
-            $reportItems['areaLivingArea']   = (string)$report187->PropertyProfile->PropertyCharacteristics->BuildingArea[0];
-            $reportItems['areaLivingAreaLow'] = $areaLivingAreaLow;
-            $reportItems['areaLivingAreaMedian'] = $areaLivingAreaMedian;
-            $reportItems['areaLivingAreaHigh'] = $areaLivingAreaHigh;
-
-            $areaSalePriceLow = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->PriceRangeMin);
-            $areaSalePriceMedian = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->MedianValue);
-            $areaSalePriceHigh = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->PriceRangeMax);
-
-            $reportItems['areaPriceFoot'] = number_format((string)$report187->PropertyProfile->SaleLoanInfo->PricePerSQFT[0]);
-            $reportItems['areaPriceFootLow'] = number_format(minMaxArray('PricePerSQFT', 'min', $reportItems['comparable']));
-            $reportItems['areaPriceFootMedian'] = number_format(minMaxArray('PricePerSQFT', 'median', $reportItems['comparable']));
-            $reportItems['areaPriceFootHigh'] = number_format(minMaxArray('PricePerSQFT', 'max', $reportItems['comparable']));
-
-            $reportItems['areaSalePriceLow'] = dollars($areaSalePriceLow);
-            $reportItems['areaSalePriceMedian'] = dollars($areaSalePriceMedian);
-            $reportItems['areaSalePriceHigh'] = dollars($areaSalePriceHigh);
-
-            $reportItems['areaTotalRoomsLow'] = minMaxArray('TotalRooms', 'min', $reportItems['comparable']);
-            $reportItems['areaTotalRoomsMedian'] = minMaxArray('TotalRooms', 'median', $reportItems['comparable']);
-            $reportItems['areaTotalRoomsHigh'] = minMaxArray('TotalRooms', 'max', $reportItems['comparable']);
-
-            $reportItems['stories'] = (string)$report187->PropertyProfile->PropertyCharacteristics->NoOfStories[0];
-            $propPool = $report187->PropertyProfile->PropertyCharacteristics->Pool[0];
-                if ($propPool != 'Yes') {
-                    $propPool = 'No';
+                if (empty($reportItems['comparable'])) {
+                    return ["status"=>false, "showError"=>true, "msg"=>"Report can not be generated due to lack of comparable data."];
                 }
-            $reportItems['propertyPool'] = number_format((double)$report187->PropertyProfile->PropertyCharacteristics->Pool[0]);
-            $reportItems['propertyPoolLow'] = number_format((double)minMaxArray('Pool', 'min', $reportItems['comparable']));
-            $reportItems['propertyPoolMedian'] = number_format((double)minMaxArray('Pool', 'median', $reportItems['comparable']));
-            $reportItems['propertyPoolHign'] = number_format((double)minMaxArray('Pool', 'max', $reportItems['comparable']));
+                
+                $salesAnalysis = $this->sales_analysis($reportItems['comparable']);
+                
+                $reportItems['priceMinRange'] = round($salesAnalysis['minPrice']/1000,2);
+                $reportItems['priceMaxRange'] = round($salesAnalysis['maxPrice']/1000,2);
+     
+                $propertyYear = (string)$report187->PropertyProfile->PropertyCharacteristics->YearBuilt[0];
+                $reportItems['areaYear'] = $propertyYear;
+                $reportItems['areaYearLow'] = minMaxArray('Year', 'min', $reportItems['comparable']);
+                $reportItems['areaYearMedian'] = minMaxArray('Year', 'median', $reportItems['comparable']);
+                $reportItems['areaYearHigh'] = minMaxArray('Year', 'max', $reportItems['comparable']);
 
-            $reportItems['propertySalePrice'] = number_format((double)$report187->PropertyProfile->SaleLoanInfo->SalesPrice);
-            $reportItems['propertySalePriceLow'] =  number_format($salesAnalysis['minPrice']);       //number_format(minMaxArray('PriceRate', 'min', $reportItems['comparable']));
-            $reportItems['propertySalePriceMedian'] =   number_format($salesAnalysis['tmp_property']/9); //number_format(minMaxArray('PriceRate', 'median', $reportItems['comparable']));
-            $reportItems['propertySalePriceLowHigh'] =  number_format($salesAnalysis['maxPrice']);   //number_format(minMaxArray('PriceRate', 'max', $reportItems['comparable']));
+                $reportItems['areaBedrooms'] = (string)$report187->PropertyProfile->PropertyCharacteristics->Bedrooms[0];
+                $reportItems['areaBedroomsLow'] = minMaxArray('Beds', 'min', $reportItems['comparable']);
+                $reportItems['areaBedroomsMedian'] = minMaxArray('Beds', 'median', $reportItems['comparable']);
+                $reportItems['areaBedroomsHigh'] = minMaxArray('Beds', 'max', $reportItems['comparable']);
 
-            $areaSalesChart['series']='';
-            $areaSalesChart['date']='';
+                $reportItems['areaBaths'] = (string)$report187->PropertyProfile->PropertyCharacteristics->Baths[0];
+                $reportItems['areaBathsLow'] = minMaxArray('Baths', 'min', $reportItems['comparable']);
+                $reportItems['areaBathsMedian'] = minMaxArray('Baths', 'median', $reportItems['comparable']);
+                $reportItems['areaBathsHigh'] = minMaxArray('Baths', 'max', $reportItems['comparable']);
+                
+                $areaLotSize = number_format((string)$report187->PropertyProfile->PropertyCharacteristics->LotSize[0]);
+                $areaLotSizeLow = number_format($salesAnalysis['min_lot_size']);             //number_format(minMaxArray('LotSize', 'min', $reportItems['comparable']));
+                $areaLotSizeMedian = number_format($salesAnalysis['tmp_lot_size']/count($reportItems['comparable']));            //number_format(minMaxArray('LotSize', 'median', $reportItems['comparable']));
+                $areaLotSizeHigh = number_format($salesAnalysis['max_lot_size']);                // number_format(minMaxArray('LotSize', 'max', $reportItems['comparable']));
 
-            $minRadius = minMaxArray('Distance', 'min', $reportItems['comparable']);
-            $medianRadius = minMaxArray('Distance', 'median', $reportItems['comparable']);
-            $maxRadius = minMaxArray('Distance', 'max', $reportItems['comparable']);
-            $reportItems['areaMinRadius'] = $minRadius;
-            $reportItems['areaMedianRadius'] = $medianRadius;
-            $reportItems['areaMaxRadius'] = $maxRadius;
+
+                $reportItems['areaLotSize'] = $areaLotSize;
+                $reportItems['areaLotSizeLow'] = $areaLotSizeLow;
+                $reportItems['areaLotSizeMedian'] = $areaLotSizeMedian;
+                $reportItems['areaLotSizeHigh'] = $areaLotSizeHigh;
 
 
-            $ChartArr = array();
-            $tmp2=array();
+                $areaLivingAreaLow = number_format(minMaxArray('BuildingArea', 'min', $reportItems['comparable']));
+                $areaLivingAreaMedian = number_format(minMaxArray('BuildingArea', 'median', $reportItems['comparable']));
+                $areaLivingAreaHigh = number_format(minMaxArray('BuildingArea', 'max', $reportItems['comparable']));
 
-            $totalMonthsReport=0;       
-            foreach ($reportItems['comparable'] as $key => $item) {
-                /*****************************************/
-                if($key > 8) break;
-                $date=date_create($item['Date']);
-                $tmepDate = date_format($date,"M'y");
-                $months[] = array('date'=>$tmepDate,'value'=>$item['PriceRate']);
-            }
+                $reportItems['areaLivingArea']   = (string)$report187->PropertyProfile->PropertyCharacteristics->BuildingArea[0];
+                $reportItems['areaLivingAreaLow'] = $areaLivingAreaLow;
+                $reportItems['areaLivingAreaMedian'] = $areaLivingAreaMedian;
+                $reportItems['areaLivingAreaHigh'] = $areaLivingAreaHigh;
 
-            foreach ($months as $key => $itemMonth) {
-                if($key<(sizeof($months)-1)){
-                    $tmp2['date'].=$itemMonth['date'].'|';
-                    $tmp2['series'].=$itemMonth['value'].',';
-                }else{
-                    $tmp2['date'].=$itemMonth['date'];
-                    $tmp2['series'].=$itemMonth['value'];
+                $areaSalePriceLow = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->PriceRangeMin);
+                $areaSalePriceMedian = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->MedianValue);
+                $areaSalePriceHigh = number_format((double)$report187->ComparableSalesReport->AreaSalesAnalysisInfo->PriceRangeMax);
+
+                $reportItems['areaPriceFoot'] = number_format((string)$report187->PropertyProfile->SaleLoanInfo->PricePerSQFT[0]);
+                $reportItems['areaPriceFootLow'] = number_format(minMaxArray('PricePerSQFT', 'min', $reportItems['comparable']));
+                $reportItems['areaPriceFootMedian'] = number_format(minMaxArray('PricePerSQFT', 'median', $reportItems['comparable']));
+                $reportItems['areaPriceFootHigh'] = number_format(minMaxArray('PricePerSQFT', 'max', $reportItems['comparable']));
+
+                $reportItems['areaSalePriceLow'] = dollars($areaSalePriceLow);
+                $reportItems['areaSalePriceMedian'] = dollars($areaSalePriceMedian);
+                $reportItems['areaSalePriceHigh'] = dollars($areaSalePriceHigh);
+
+                $reportItems['areaTotalRoomsLow'] = minMaxArray('TotalRooms', 'min', $reportItems['comparable']);
+                $reportItems['areaTotalRoomsMedian'] = minMaxArray('TotalRooms', 'median', $reportItems['comparable']);
+                $reportItems['areaTotalRoomsHigh'] = minMaxArray('TotalRooms', 'max', $reportItems['comparable']);
+
+                $reportItems['stories'] = (string)$report187->PropertyProfile->PropertyCharacteristics->NoOfStories[0];
+                $propPool = $report187->PropertyProfile->PropertyCharacteristics->Pool[0];
+                    if ($propPool != 'Yes') {
+                        $propPool = 'No';
+                    }
+                $reportItems['propertyPool'] = number_format((double)$report187->PropertyProfile->PropertyCharacteristics->Pool[0]);
+                $reportItems['propertyPoolLow'] = number_format((double)minMaxArray('Pool', 'min', $reportItems['comparable']));
+                $reportItems['propertyPoolMedian'] = number_format((double)minMaxArray('Pool', 'median', $reportItems['comparable']));
+                $reportItems['propertyPoolHign'] = number_format((double)minMaxArray('Pool', 'max', $reportItems['comparable']));
+
+                $reportItems['propertySalePrice'] = number_format((double)$report187->PropertyProfile->SaleLoanInfo->SalesPrice);
+                $reportItems['propertySalePriceLow'] =  number_format($salesAnalysis['minPrice']);       //number_format(minMaxArray('PriceRate', 'min', $reportItems['comparable']));
+                $reportItems['propertySalePriceMedian'] =   number_format($salesAnalysis['tmp_property']/9); //number_format(minMaxArray('PriceRate', 'median', $reportItems['comparable']));
+                $reportItems['propertySalePriceLowHigh'] =  number_format($salesAnalysis['maxPrice']);   //number_format(minMaxArray('PriceRate', 'max', $reportItems['comparable']));
+
+                $areaSalesChart['series']='';
+                $areaSalesChart['date']='';
+
+                $minRadius = minMaxArray('Distance', 'min', $reportItems['comparable']);
+                $medianRadius = minMaxArray('Distance', 'median', $reportItems['comparable']);
+                $maxRadius = minMaxArray('Distance', 'max', $reportItems['comparable']);
+                $reportItems['areaMinRadius'] = $minRadius;
+                $reportItems['areaMedianRadius'] = $medianRadius;
+                $reportItems['areaMaxRadius'] = $maxRadius;
+
+
+                $ChartArr = array();
+                $tmp2=array();
+
+                $totalMonthsReport=0;       
+                foreach ($reportItems['comparable'] as $key => $item) {
+                    /*****************************************/
+                    if($key > 8) break;
+                    $date=date_create($item['Date']);
+                    $tmepDate = date_format($date,"M'y");
+                    $months[] = array('date'=>$tmepDate,'value'=>$item['PriceRate']);
                 }
-                if($itemMonth['value']!='_'){
-                    $totalMonthsReport++;
+
+                foreach ($months as $key => $itemMonth) {
+                    if($key<(sizeof($months)-1)){
+                        $tmp2['date'].=$itemMonth['date'].'|';
+                        $tmp2['series'].=$itemMonth['value'].',';
+                    }else{
+                        $tmp2['date'].=$itemMonth['date'];
+                        $tmp2['series'].=$itemMonth['value'];
+                    }
+                    if($itemMonth['value']!='_'){
+                        $totalMonthsReport++;
+                    }
+                    array_push($ChartArr, $tmp2);
                 }
-                array_push($ChartArr, $tmp2);
             }
 
             $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';

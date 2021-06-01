@@ -1,6 +1,3 @@
- 
-
-
 <!-- Recent LP's section -->
 <section id="recent-lp2">
      
@@ -22,7 +19,7 @@
     <h1 class="page-header">My Smart Registries</h1>
     <p class="subhead">Below you will find your active registries.</p>
     <p>&nbsp;</p>
-      <div class="table-responsive">
+      <div class="table-responsive smart_register">
         <table id="user_transaction_table">
           <thead>
               <tr>
@@ -40,7 +37,7 @@
     <h1 class="page-header">My Guests</h1>
     <p class="subhead">Below you will find guests that signed in.</p>
     <p>&nbsp;</p>
-      <div class="table-responsive">
+      <div class="table-responsive smart_guest">
         <table id="guests_transaction_table">
           <thead>
               <tr>
@@ -79,7 +76,7 @@ $(document).ready(function(){
             "type": "POST"
         },
         "initComplete": function () {
-            var input = $('.dataTables_filter input').unbind(),
+            var input = $('.smart_register .dataTables_filter input').unbind(),
                 self = this.api(),
                 $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
                 .text('Search')
@@ -92,9 +89,9 @@ $(document).ready(function(){
                     input.val('');
                     $searchButton.click();
                 })
-            $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
-            $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
-            $('.dataTables_filter').append($searchButton, $clearButton);
+            $('.smart_register div.dataTables_filter input').addClass('lp-datatable-custom-search');
+            $('.smart_register div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+            $('.smart_register .dataTables_filter').append($searchButton, $clearButton);
         },
         "language": {
             "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
@@ -129,7 +126,7 @@ $(document).ready(function(){
             "type": "POST"
         },
         "initComplete": function () {
-            var input = $('.dataTables_filter input').unbind(),
+            var input = $('.smart_guest .dataTables_filter input').unbind(),
                 self = this.api(),
                 $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
                 .text('Search')
@@ -142,9 +139,9 @@ $(document).ready(function(){
                     input.val('');
                     $searchButton.click();
                 })
-            $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
-            $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
-            $('.dataTables_filter').append($searchButton, $clearButton);
+            $('.smart_guest div.dataTables_filter input').addClass('lp-datatable-custom-search');
+            $('.smart_guest div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+            $('.smart_guest .dataTables_filter').append($searchButton, $clearButton);
         },
         "language": {
             "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
