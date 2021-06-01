@@ -111,7 +111,7 @@
 
         for ($i=1; $i <= 23 ; $i++) 
         { 
-            if(in_array($i, $pdfPages) || true)
+            if(in_array($i, $pdfPages))
             {
                 $report_id = $i;
 

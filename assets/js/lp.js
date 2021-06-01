@@ -1035,17 +1035,18 @@ function widgetRunPMA(agentPath, logoPath) {
 
 }
 
-function getRetsApiComparables(address) 
+function getRetsApiComparables(address,is_simply_rets) 
 {
     $('.loader1').show();
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
     $('.backwrap').removeClass('hidden');
+    var search_city = $("#searchboxcity").val();
 
     $.ajax({
-        url: base_url+'widget/getRetsApiComparablesData',
+        url: base_url+'widget/getRetsApiComparablesData/'+is_simply_rets,
         type: 'POST',
-        data: {address:address}
+        data: {address:address,city:search_city}
     })
         .done(function(response) {
             var data = JSON.parse(response);
@@ -1078,7 +1079,7 @@ function getRetsApiComparables(address)
         });
 }
 
-function getRetsApiDataByMlsId(mlsId) 
+function getRetsApiDataByMlsId(mlsId,is_simply_rets) 
 {
     var dismis_alert = `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
@@ -1108,7 +1109,7 @@ function getRetsApiDataByMlsId(mlsId)
         $('#mls_search').prop('disabled', true);
 
         $.ajax({
-            url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId,
+            url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId+'/'+is_simply_rets,
             type: 'GET',
         })
             .done(function(response) {
