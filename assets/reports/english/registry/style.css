@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #252525;
+}
+@font-face {
+  src: url(fonts/Abuget.ttf);
+  font-family: 'Abuget';
+}
+@font-face {
+  src: url(fonts/Barlow-Regular.otf);
+  font-family: 'Barlow-Regular';
+}
+@font-face {
+  src: url(fonts/Barlow-Bold.otf);
+  font-family: 'Barlow-Bold';
+}
+@font-face {
+  src: url(fonts/NorthernBlock.ttf);
+  font-family: 'NorthernBlock';
+}
+::selection {
+  color: #252525;
+  background: #bfaf87;
+  text-shadow: none;
+}
+* {
+  box-sizing: border-box;
+}
+page {
+  position: relative;
+  display: block;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
+  width: 816px;
+  height: 1056px;
+  overflow: hidden;
+  padding: 40px;
+  margin: 0px auto;
+  background: url(img/BgSample.jpg) no-repeat;
+  background-size: contain;
+  background-color: rgb(255 255 255 / 20%);
+  background-blend-mode: overlay;
+}
+h1 {
+  color: #3ca661;
+  font-size: 99px;
+  line-height: 100px;
+  font-weight: 900;
+  letter-spacing: -8px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+h2 {
+  color: #231f20;
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 55px;
+  margin: 0 0 20px;
+}
+img {
+  max-width: 225px;
+}
+.address {
+  color: #3ca661;
+  font-size: 50px;
+  font-weight: 400;
+  line-height: 45px;
+  margin: 90px 0 20px;
+  text-align: right;
+}
+.address span {
+  display: block;
+  font-size: 40px;
+}
+p {
+  font-size: 22px;
+  color: #231f20;
+  line-height: 42px;
+  text-align: right;
+}

@@ -14,10 +14,10 @@ class Registry extends CI_Controller {
     		$record = $this->base_model->get_record_by_id($table,$where, $fields='id');
     		$table = 'lp_registry_users';
     		$where_check['registry_id'] = $record->id;
-    		$data_exist = $this->base_model->check_existent($table,$where_check);
-    		if($data_exist) {
-    			redirect("registry/registerd/$unique_key");
-    		}
+    		// $data_exist = $this->base_model->check_existent($table,$where_check);
+    		// if($data_exist) {
+    		// 	redirect("registry/registerd/$unique_key");
+    		// }
 
 
 
