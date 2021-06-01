@@ -6,7 +6,7 @@
                     <div class="col-50">
                         <h2>Curious about what<br>
                         your home can sell<br>
-                        for FREE.</h2>
+                        for FREE?</h2>
                     </div>
                     <div class="col-50">
                         <ul class="list-inline">
@@ -36,6 +36,13 @@
                         <th>BEDS</th>
                         <th>BATHS</th>
                     </tr>
+                    <?php
+                        // if($use_rets_api == 1)
+                        // {
+                        //     $_comparables = $mls_comparables;
+                        // }
+                        
+                    ?>
                     <?php if(sizeof($_comparables)>0): ?>
                         <?php $avaiProperty = 0; $i = 1; ?>
                         <?php foreach ($_comparables as $key => $item): ?>
