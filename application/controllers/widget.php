@@ -14,7 +14,7 @@ class Widget extends CI_Controller {
         // header("Access-Control-Allow-Origin:*")
 
 
-
+        // $this->session->unset_userdata('userid');die;
         // var_dump($this->session->userdata);die;
         if(!($this->session->userdata('userid')) ) {
 
@@ -463,9 +463,9 @@ class Widget extends CI_Controller {
       }
     }
 
-    public function getRetsApiComparablesData()
+    public function getRetsApiComparablesData($simply_rets=1)
     {
-        if(isset($_POST) && !empty($_POST))
+        if(isset($_POST) && !empty($_POST) && $simply_rets)
         {
             $address = $this->input->post('address');
             $query = array('q' => $address);
@@ -501,11 +501,46 @@ class Widget extends CI_Controller {
             
             echo json_encode($properties);
         }
+        elseif($simply_rets ==0 && !empty($this->input->post('city'))){
+
+          $this->load->library('rets');
+          $rets = new Rets();
+          $response = $rets->searchData($this->input->post('city'));
+
+          if(isset($response) && !empty($response))
+          {
+              $properties = $sorted = $all = array();
+
+              foreach ($response as $key => $value) 
+              {
+                if($key <= 7)
+                {
+                  $sorted[$value['mlsId']] = array(
+                        'address' => $value['address'].' '.$value['city'],
+                        'price' => $value['price']
+                    );
+                }
+                else
+                {
+                  $all[$value['mlsId']] = array(
+                        'address' => $value['address'].' '.$value['city'],
+                        'price' => $value['price']
+                    );
+                }
+                  
+                  
+              }
+          }
+          $properties['all'] = $all;
+          $properties['sorted'] = $sorted;
+          echo json_encode($properties);
+
+        }
     }
 
-    public function getRetsApiDataByMlsId($mlsId = null)
+    public function getRetsApiDataByMlsId($mlsId = null,$simply_rets=1)
     {
-        if(!empty($mlsId))
+        if(!empty($mlsId) && $simply_rets)
         {
             // $mlsId = $mlsId;
             $query = array();
@@ -564,27 +599,40 @@ class Widget extends CI_Controller {
             
             echo json_encode($properties);
         }
+        elseif(!empty($mlsId) && $simply_rets == 0){
+          $this->load->library('rets');
+          $rets = new Rets();
+          $response = $rets->searchData($mlsId,1);
+
+          if(isset($response) && !empty($response))
+          {
+              $properties = $sorted = $all = array();
+
+              foreach ($response as $key => $value) 
+              {
+                if($key <= 7)
+                {
+                  $sorted[$value['mlsId']] = array(
+                        'address' => $value['address'].' '.$value['city'],
+                        'price' => $value['price']
+                    );
+                }
+                else
+                {
+                  $all[$value['mlsId']] = array(
+                        'address' => $value['address'].' '.$value['city'],
+                        'price' => $value['price']
+                    );
+                }
+                  
+                  
+              }
+          }
+          $properties['all'] = $all;
+          $properties['sorted'] = $sorted;
+          echo json_encode($properties);
+        }
     }  
-
-
-    public function checkpdf($value='')
-    {
-      $data['pdfPages'] = range(1,15);
-      $tableName = "lp_user_mst";
-      $user_id = $this->user_id;
-      $user = $this->base_model->get_login_data_from_id( $tableName,'user_id_pk', $user_id);
-
-      $data['user'] =  (array) $user;
-      $presentation_type = 'buyer';
-      $data['presentation_type'] = $presentation_type;
-      $data['report_dir_name'] = 'maxa_century21';
-      $this->load->view('reports/widget/'.$data['report_dir_name'].'/'.$presentation_type.'/index',$data);
-      // $this->load->view("reports/english/".$presentation_type."/widget_index",$data);
-
-
-      
-    }  
-
 
     public function delete_lp($lpid = -1, $from){
       if($lpid){
@@ -634,4 +682,5 @@ class Widget extends CI_Controller {
       }
       echo json_encode($data);
     }
+
 }

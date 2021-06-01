@@ -45,9 +45,9 @@ div#slider {
 </style>
 </head>
 <body>
-<?php      
+<?php
     // $report_dir_name = 'maxa_dawn_cordiner';
-    $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
+    
     $rangeOfSales['avaiProperty'] = 0;
     $rangeOfSales['sQFootage']=0;
     $rangeOfSales['avgNoOfBeds'] = 0;
@@ -76,18 +76,7 @@ div#slider {
 
 
 
-    $no_of_pages =0 ;
-
-    $no_of_pages =intval($availableCompareAble/3) ;
-    if(($no_of_pages*3)<$availableCompareAble){
-    $no_of_pages++;
-    }
-    if($no_of_pages>3){
-    $no_of_pages=3;
-    }else{
-
-    }  
-    $no_of_pages+=5;
+    
 
     $_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
     $_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
@@ -108,7 +97,14 @@ for ($i=1; $i <= $max ; $i++) {
 
         if($i==8 || $i==9) {
 
-            $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+            if($use_rets_api == 1)
+            {
+                $comparable = $mls_comparables;
+            }
+            else
+            {
+                $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+            }
 
             if(isset($comparable) && !empty($comparable))
             {
@@ -138,7 +134,7 @@ for ($i=1; $i <= $max ; $i++) {
         $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/'.$report_id,$data);
     }
 }
-// die;
+
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
@@ -212,6 +208,3 @@ for ($i=1; $i <= $max ; $i++) {
 </script>
 </body>
 </html>
-<?php
-// die;
-?>

@@ -852,6 +852,7 @@
       <!-- Bootstrap Core JavaScript --> 
       <script type="text/javascript">
         var use_rets_api = "<?php echo $company['use_rets_api']; ?>";
+        var report_dir = "<?php echo $company['report_dir_name']; ?>";
       </script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
@@ -869,7 +870,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.4"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.5"></script>
       
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -1032,12 +1033,15 @@ jQuery(document).ready(function() {
             }
             if(obj.attr('rel')==3){
                 var presentation = $("#presentation").val();
-                
+                var is_simply_rets = 0;
+                if(report_dir == 'maxa_hometown') {
+                  is_simply_rets = 1;
+                }
                 if(use_rets_api == 1 && presentation == 'seller')
                 {
                     var property_address = $('#searchbox').val();
                     property_address = $.trim(property_address);
-                    getRetsApiComparables(property_address);
+                    getRetsApiComparables(property_address,is_simply_rets);
                 }
                 $('.loader1').removeClass('hidden');
                 $('.backwrap').removeClass('hidden');
@@ -1567,7 +1571,11 @@ function submitFormAndGetReport()
 
   $(document).on('click','#mls_search',function(){
     var mlsId = $("#mls_id").val();
-    getRetsApiDataByMlsId(mlsId) 
+    var is_simply_rets = 0;
+    if(report_dir == 'maxa_hometown') {
+      is_simply_rets = 1;
+    }
+    getRetsApiDataByMlsId(mlsId,is_simply_rets) 
   });
 
   $(document).on('change','.featured_file_input',function(){

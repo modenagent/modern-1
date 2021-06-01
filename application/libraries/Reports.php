@@ -746,6 +746,39 @@ use Knp\Snappy\Pdf;
             }
             $data['primary_owner'] = $ownerNamePrimary;
             $data['secondary_owner'] = $ownerNameSecondary;
+
+            // if it is an api call then we get the user id from the token
+            if($callFromApi == 1){
+                $currentUserId = getUserIdByToken($reportData['token']);
+            }else{
+                $currentUserId = $CI->session->userdata('userid');   
+            }
+
+            if($currentUserId > 0) {
+
+                $tableName = "lp_user_mst";
+                $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
+                $data['cma_url'] = $user_details->cma_url;
+                $data['report_dir_name'] = $user_details->report_dir_name;
+
+                if(!empty($user_details->parent_id))
+                {
+                    $parent_id = $user_details->parent_id;
+                    $sales_rep_info = $CI->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
+                    
+                    if(!empty($sales_rep_info->cma_url)) {
+                      $data['cma_url'] = $sales_rep_info->cma_url;
+                    }
+                    if($sales_rep_info->role_id_fk == 3) {
+                        $data['report_dir_name'] = $sales_rep_info->report_dir_name;
+                    }
+                }
+            }
+            $simply_rets = 0;
+            if($data['report_dir_name'] == 'maxa_hometown') {
+                $simply_rets=1;
+            }
+
             $reportItems['comparable']=array();
             if((true && $_POST['presentation'] == 'seller') || (true && $_POST['presentation'] == 'marketUpdate') || (true && $_POST['presentation'] == 'buyer')) {
                 $comparableTemp = $this->get_all_properties($report187);
@@ -764,8 +797,8 @@ use Knp\Snappy\Pdf;
                             $mls_comparables = array();
 
                             $mls_ids = json_decode(stripslashes($_POST['custom_comps']), TRUE);
-
-                            if(isset($mls_ids) && !empty($mls_ids))
+                            
+                            if(isset($mls_ids) && !empty($mls_ids) && $simply_rets)
                             {
                                 foreach ($mls_ids as $m_key => $m_value) 
                                 {                    
@@ -791,6 +824,28 @@ use Knp\Snappy\Pdf;
                                         $mls_comparables[$m_key]['LotSize'] = isset($response['property']['lotSize']) && !empty($response['property']['lotSize']) ? number_format((string)$response['property']['lotSize']) : '';
                                         $mls_comparables[$m_key]['Pool'] = isset($response['property']['pool']) && !empty($response['property']['pool']) ? (string)$response['property']['pool'] : '';
                                     }
+                                }
+                            }
+                            elseif(isset($mls_ids) && !empty($mls_ids) && $simply_rets==0) {
+                                $CI->load->library('rets');
+                                $rets = new Rets();
+                                $mlsId = implode(',', $mls_ids);
+                                $responses = $rets->getDataBymlsId($mlsId);
+                                $rets_images = $rets->getImages($mlsId);
+                                foreach ($responses as $m_key => $response) {
+                                    $mls_comparables[$m_key]['mls_id'] =  !empty($response['mlsId']) ? $response['mlsId'] : '';
+                                    $mls_comparables[$m_key]['img'] =  isset($rets_images[$response['mlsId']]) ? $rets_images[$response['mlsId']]:'';
+                                    $mls_comparables[$m_key]['Address'] = !empty($response['address']) ? $response['address'] : '';
+                                    $mls_comparables[$m_key]['Price'] =  !empty($response['price']) ? dollars(number_format((string)$response['price'])) : '';
+                                    $mls_comparables[$m_key]['Date'] = !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
+                                    $mls_comparables[$m_key]['Distance'] =  0;
+                                    $mls_comparables[$m_key]['SquareFeet'] = !empty($response['area']) ? number_format((string)$response['area']) : '';
+                                    $mls_comparables[$m_key]['PricePerSQFT'] = !empty($response['pricePerSQFT']) ? dollars(number_format((string)$response['pricePerSQFT'])) : '';
+                                    $mls_comparables[$m_key]['Beds'] = !empty($response['bedrooms']) ? number_format((string)$response['bedrooms']) : '';
+                                    $mls_comparables[$m_key]['Baths'] = !empty($response['bathrooms']) ? number_format((string)$response['bathrooms']) : '';
+                                    $mls_comparables[$m_key]['Year'] = !empty($response['yearBuilt']) ? (string)$response['yearBuilt'] : '';
+                                    $mls_comparables[$m_key]['LotSize'] = !empty($response['lotSize']) ? number_format((string)$response['lotSize']) : '';
+                                    $mls_comparables[$m_key]['Pool'] = (!empty($response['pool']) && trim($response['pool']) != 'N/K') ? (string)$response['pool'] : '';
                                 }
                             }
                             $data['mls_comparables'] = $mls_comparables;
@@ -969,33 +1024,7 @@ use Knp\Snappy\Pdf;
             }            
             /* testimonials */
 
-            // if it is an api call then we get the user id from the token
-            if($callFromApi == 1){
-                $currentUserId = getUserIdByToken($reportData['token']);
-            }else{
-                $currentUserId = $CI->session->userdata('userid');   
-            }
-
-            if($currentUserId > 0) {
-
-                $tableName = "lp_user_mst";
-                $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
-                $data['cma_url'] = $user_details->cma_url;
-                $data['report_dir_name'] = $user_details->report_dir_name;
-
-                if(!empty($user_details->parent_id))
-                {
-                    $parent_id = $user_details->parent_id;
-                    $sales_rep_info = $CI->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
-                    
-                    if(!empty($sales_rep_info->cma_url)) {
-                      $data['cma_url'] = $sales_rep_info->cma_url;
-                    }
-                    if($sales_rep_info->role_id_fk == 3) {
-                        $data['report_dir_name'] = $sales_rep_info->report_dir_name;
-                    }
-                }
-            }
+            
 
             $data['pdfPages'] = isset($_POST['pdfPages']) && !empty($_POST['pdfPages']) ? explode(',', $_POST['pdfPages']): array(); 
 
@@ -1010,7 +1039,7 @@ use Knp\Snappy\Pdf;
                 $data['featured_homes'] = json_decode($CI->input->post('featured_homes'));
             }
             else {
-                $data['featured_homes'] = $this->base_model->all_records('lp_featured_home');
+                $data['featured_homes'] = $CI->base_model->all_records('lp_featured_home');
             }
             /*Featured section*/
             
@@ -1094,7 +1123,7 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/dynamic",$data,true);
             } else {
                 $load_view = 'reports/widget/'.$data['report_dir_name'].'/'.$presentationType.'/index';
-
+                // die($load_view);
                 if(!empty($data['report_dir_name']) && (is_file(APPPATH.'views/' . $load_view . EXT))) {
                     $html = $CI->load->view($load_view,$data,true);
 
