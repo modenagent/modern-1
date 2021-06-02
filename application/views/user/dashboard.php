@@ -279,7 +279,7 @@
                                     ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
                                     <label class="user-heading alt gray-bg" for="pb">
                                       <div class="text-center">
-                                        <img class="registry_template1" src="<?php echo base_url("assets/images/works/registry/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/registry/preview/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
                                       </div>
 
                                     </label>
