@@ -1,4 +1,11 @@
-<!-- Recent LP's section -->
+<style type="text/css">
+  #user_transaction_table_filter, #guests_transaction_table_filter {
+    display: none
+  }
+  .leads_tbl {
+    margin-top: 75px; 
+  }
+</style>
 <section id="recent-lp2">
      
   <div class="container">
@@ -16,6 +23,7 @@
     <?php echo $this->session->flashdata('error') ?>
     </div>
     <?php endif; ?>
+
     <h1 class="page-header">My Smart Registries</h1>
     <p class="subhead">Below you will find your active registries.</p>
     <p>&nbsp;</p>
@@ -33,25 +41,27 @@
         </table>
       </div>
 
+      <div class="leads_tbl">
+        <h1 class="page-header">Registration Leads</h1>
+        <p class="subhead">Below you will find guests that signed in.</p>
+        <p>&nbsp;</p>
+        <div class="table-responsive smart_guest">
+          <table id="guests_transaction_table">
+            <thead>
+                <tr>
+                    <th>DATE</th>
+                    <th>PROPERTY ADDRESS</th>
+                    <th>NAME</th>
+                    <th>PHONE</th>
+                    <th>EMAIL</th>
+                    <th class="no-sort">ACTIONS</th>
+                </tr>
+            </thead>
 
-    <h1 class="page-header">My Guests</h1>
-    <p class="subhead">Below you will find guests that signed in.</p>
-    <p>&nbsp;</p>
-      <div class="table-responsive smart_guest">
-        <table id="guests_transaction_table">
-          <thead>
-              <tr>
-                  <th>DATE</th>
-                  <th>PROPERTY ADDRESS</th>
-                  <th>NAME</th>
-                  <th>PHONE</th>
-                  <th>EMAIL</th>
-                  <th class="no-sort">ACTIONS</th>
-              </tr>
-          </thead>
+          </table>
+        </div>
 
-        </table>
-      </div>
+    </div>
     
   </div>
 </section>
@@ -157,5 +167,20 @@ $(document).ready(function(){
         }
     });
   }
+});
+$(document).on('click','.copy_url',function(){
+  var copy_text = $(this).attr('data-url');
+  var $temp = $("<input>");
+  $("body").append($temp);
+  $temp.val(copy_text).select();
+  document.execCommand("copy");
+  $temp.remove();
+  console.log($(this).find('i').attr('class'));
+  $(this).find('i').attr('title',copy_text);
+  $(this).find('i')
+          .attr('title', 'Copied!')
+          .tooltip('fixTitle')
+          .tooltip('show');
+
 });
 </script>

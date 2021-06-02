@@ -132,7 +132,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js?v=0.1"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
@@ -263,6 +263,7 @@
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
     $("#owl-example").owlCarousel();
+    $("#owl-example-registry").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
 
@@ -1145,6 +1146,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.1"></script>
 </body>
 </html>

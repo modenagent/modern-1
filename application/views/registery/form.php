@@ -10,8 +10,44 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/registery/style.css') ?>">
 </head>
 <body>
+    <style type="text/css">
+        .agent-info {
+            text-align: center;
+            margin: 35px;
+            font-size: 18px;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+        }
+
+        .profile-info img.profile_img {
+            height: 120px;
+            width: 120px;
+            margin: auto;
+            border-radius: 50%;
+            padding: 1px;
+            background: #fff;
+        }
+
+    </style>
     <section class="banner">
         <form action="" method="POST">
+            <div class="agent-info">
+                <?php if($agent): ?>
+                <div class="profile-info">
+                    <?php if(!empty($agent->profile_image)) : ?>
+                    <img class="profile_img" src="<?php echo base_url($agent->profile_image);?>">
+                    <?php endif;?>
+                    <div><?php echo $agent->first_name.' '.$agent->last_name; ?></div>
+                    <div>Lic# <?php  echo $agent->license_no; ?></div>
+                </div>
+                <?php endif;?>
+                <div class="property-info">
+                    <div>Property Address:</div>
+                    <div><?php echo $property_address; ?></div>
+                </div>
+            </div>
             <div class="validation_error">
                 <?php echo validation_errors(); ?>
             </div>

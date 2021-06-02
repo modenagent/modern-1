@@ -290,6 +290,7 @@ function runPMA(agentPath, logoPath) {
     }
     query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());     //this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
+    query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     //console.log(query);
     if(activeRequest){

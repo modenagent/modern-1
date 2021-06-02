@@ -315,7 +315,7 @@ class User extends CI_Controller
                 // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
                 if($for_guest == 0) {
 
-                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>';
+                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a> <a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-toggle="tooltip" title="Copy URL"  class="icon icon-copy"></i></a>';
 
                   $data[] = [
                       $reportDate, 
