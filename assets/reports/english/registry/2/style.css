@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #231f20;
+}
+::selection {
+  color: #231f20;
+  background: #fff;
+  text-shadow: none;
+}
+* {
+  box-sizing: border-box;
+}
+page {
+  position: relative;
+  display: block;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
+  width: 816px;
+  height: 1056px;
+  overflow: hidden;
+  padding: 40px;
+  margin: 0px auto;
+}
+h1 {
+  color: #231f20;
+  font-size: 99px;
+  line-height: 100px;
+  font-weight: 300;
+  letter-spacing: -8px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+.qr_bg {
+  background: url(img/GuestRegistry-2.png) no-repeat;
+  background-position: center;
+  background-size: cover;
+  text-align: center;
+  padding: 50px 0 45px;
+  margin: 0 -40px;
+}
+img {
+  max-width: 60%;
+}
+.address {
+  color: #fff;
+  font-size: 60px;
+  font-weight: 300;
+  line-height: 45px;
+  margin: 40px 0 0;
+  text-align: center;
+}
+.address span {
+  display: block;
+  font-size: 30px;
+  font-weight: 100;
+}
+p {
+  font-size: 26px;
+  line-height: 36px;
+  margin: 0 0 40px;
+}

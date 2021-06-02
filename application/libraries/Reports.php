@@ -280,6 +280,7 @@ use Knp\Snappy\Pdf;
 
             if($CI->input->post('presentation') == 'registry') {
                 $data['unique_key'] = time().substr(md5(rand()), 0, 10);
+                $data['pdf_page'] = $CI->input->post('pdf_page');
             }
             
             $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);

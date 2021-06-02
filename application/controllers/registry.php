@@ -11,26 +11,20 @@ class Registry extends CI_Controller {
     	$where['unique_key'] = $unique_key;
     	$is_valid = $this->base_model->check_existent($table,$where);
     	if($is_valid) {
-    		$record = $this->base_model->get_record_by_id($table,$where, $fields='id');
-    		$table = 'lp_registry_users';
-    		$where_check['registry_id'] = $record->id;
-    		// $data_exist = $this->base_model->check_existent($table,$where_check);
-    		// if($data_exist) {
-    		// 	redirect("registry/registerd/$unique_key");
-    		// }
 
-
-
+	    	$record = $this->base_model->get_record_by_id($table,$where, $fields='id,listing_id');
 	    	if($this->input->post()) {
-	    		 $this->form_validation->set_rules('name', 'Name', 'trim|required');
-	    		 $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-	    		 $this->form_validation->set_rules('phone', 'Phone', 'trim|required');
+    			
+				$this->form_validation->set_rules('name', 'Name', 'trim|required');
+				$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+				$this->form_validation->set_rules('phone', 'Phone', 'trim|required');
 
-	    		 if ($this->form_validation->run() == FALSE){
+				if ($this->form_validation->run() == FALSE){
 
-	    		 }
-	    		 else {
+				}
+				else {
 
+					$table = 'lp_registry_users';
 		    		
 		    		$user_record = array();
 		    		$user_record['registry_id'] = $record->id;
@@ -44,9 +38,19 @@ class Registry extends CI_Controller {
 
 
 	    	}
+	    	$agent = null;
+	    	$property_address = null;
+	    	$property = $this->base_model->get_record_by_id('lp_my_listing',['project_id_pk'=>$record->listing_id],'user_id_fk,property_address');
+	    	if($property) {
+	    		$property_address = $property->property_address;
+	    		$agent = $this->base_model->get_record_by_id('lp_user_mst',['user_id_pk'=>$property->user_id_fk],'first_name,last_name,profile_image,license_no');
+	    	}
+
+	    	$data['property_address'] = $property_address;
+	    	$data['agent'] = $agent;
 
 	    	$data['unique_key'] = $unique_key;
-	    	$this->load->view('registery/form');
+	    	$this->load->view('registery/form',$data);
     	}
     	else {
     		redirect("/");

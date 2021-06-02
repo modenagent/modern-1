@@ -228,42 +228,68 @@
                       <div class="col-md-6">
                         <h2><strong>Choose Your Branding</strong></h2>
                       </div>
-                      <div class="col-md-6" id="butcomp">
+                      <div class="col-md-6 common_template" id="butcomp">
                         <?php $_email = $this->session->userdata('user_email');?>
                         <div class="pull-right1" style=""> Report Language: 
-                          <select name="report_lang" style="background-color:transparent; border:none;"><option  style="color:#000000;"" value="english">English</option><option style="color:#000000;" value="spanish">Spanish</option></select>
+                          <select name="report_lang" style="background-color:transparent; border:none;"><option  style="color:#000000;" value="english">English</option><option style="color:#000000;" value="spanish">Spanish</option></select>
                         </div>
                         <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
                       </div>
                         </div>
-                        <div class="carousel-container">
-                      <div id="owl-example" class="owl-carousel">
-                        <?php
-                          foreach ($reportTemplates as $key => $report) {
-                            if($report->template_color != ''){
-                        ?>
-                          <div class="item">
-                            <input type="radio"  
+                        <div class="carousel-container common_template">
+                          <div id="owl-example" class="owl-carousel">
+                            <?php
+                              foreach ($reportTemplates as $key => $report) {
+                                if($report->template_color != ''){
+                            ?>
+                              <div class="item">
+                                <input type="radio"  
+                                <?php 
+                                  if($report->report_templates_id_pk==$agentInfo->default_template){
+                                    echo 'checked';
+                                  }
+                                ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
+                                <label class="user-heading alt gray-bg" for="pb">
+                                  <div class="text-center"> 
+                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
+                                    <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                    <img class="registry_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                  </div>
+
+                                </label>
+                              </div>
                             <?php 
-                              if($report->report_templates_id_pk==$agentInfo->default_template){
-                                echo 'checked';
-                              }
-                            ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
-                            <label class="user-heading alt gray-bg" for="pb">
-                              <div class="text-center"> 
-                                <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
-                                <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
-                                <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
-                                <img class="registry_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                  }
+                                }
+                            ?>
+                          </div>
+                      </div>
+                          <div class="carousel-container registry_template" style="display: none">
+                              <div id="owl-example-registry" class="owl-carousel">
+                                <?php
+                                  for ($regsitry_i=1; $regsitry_i <3 ; $regsitry_i++) {
+                                ?>
+                                  <div class="item">
+                                    <input type="radio"  
+                                    <?php 
+                                      if($regsitry_i == 1){
+                                        echo 'checked';
+                                      }
+                                    ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
+                                    <label class="user-heading alt gray-bg" for="pb">
+                                      <div class="text-center">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/images/works/registry/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
+                                      </div>
+
+                                    </label>
+                                  </div>
+                                <?php 
+                                    }
+                                ?>
                               </div>
 
-                            </label>
-                          </div>
-                        <?php 
-                              }
-                            }
-                        ?>
-                      </div>
+                            
                         </div>
                       </div>
                     </div>
@@ -510,6 +536,7 @@
                 $('.buyer_template').show();
                 $('.marketUpdate_template').hide();
                 $('.registry_template').hide();
+                $('.common_template').show();
 
             });
         }else if(presentation === 'marketUpdate'){
@@ -522,6 +549,8 @@
                 $('.seller_template').hide();
                 $('.marketUpdate_template').show();
                 $('.registry_template').hide();
+                $('.common_template').show();
+
 
             });
             $("#config-comps-btn").show();
@@ -529,7 +558,7 @@
         else if(presentation === 'registry') {
             // $("#presentation").val("marketUpdate");
             $("#presentation").val("registry");
-            $('#wizard').smartWizard("marketUpdate");
+            $('#wizard').smartWizard("registry");
             // adding class marketUpdate so that we can manipulate the visibility of different steps
             $('#wizard').addClass('marketUpdate');
 
@@ -537,6 +566,8 @@
                 $('.seller_template').hide();
                 $('.marketUpdate_template').hide();
                 $('.registry_template').show();
+                $('.common_template').hide();
+
             });
             $("#config-comps-btn").hide();
         }
@@ -547,6 +578,8 @@
                 $('.seller_template').show();
                 $('.marketUpdate_template').hide();
                 $('.registry_template').hide();
+                $('.common_template').show();
+
                 
             });
             $("#config-comps-btn").show();
