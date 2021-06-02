@@ -3797,11 +3797,11 @@ Thank you for your order. Below you can find the details of your order. If you o
     }
 
 
-    public function generate_qr_code($uniqid)
+    public function generate_qr_code($uniqid,$size=6)
     {
       $qr_link = base_url('registry/guest/'.$uniqid);
       $this->load->library('phpqrcode/qrlib');
-      $image = QRcode::png($qr_link,false,QR_ECLEVEL_L,6,4);
+      $image = QRcode::png($qr_link,false,QR_ECLEVEL_L,$size,4);
     }
 
 

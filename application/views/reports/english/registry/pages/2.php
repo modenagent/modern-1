@@ -20,7 +20,7 @@
         </p>
         <div class="qr_bg">
             <?php
-            $image = base_url("user/generate_qr_code/$unique_key");
+            $image = base_url("user/generate_qr_code/$unique_key/9");
             ?>
             <img src="<?php echo $image; ?>" alt="QR Code" width="490" height="490">
             <h3 class="address"><?php echo $property->PropertyProfile->SiteAddress ; ?> <span><?php echo $property->PropertyProfile->SiteCity ; ?>, <?php echo $property->PropertyProfile->SiteState ; ?></span></h3>
