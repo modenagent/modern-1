@@ -388,13 +388,15 @@ page {
   color: #000;
   text-decoration: none;
   font-size: 12px;
+  word-break: break-all;
+
 }
 .first_line {
   font-family: 'Crimson Text', serif;
   font-size: 32px;
 }
 .address {
-  padding: 20px 0 20px 70px;
+  padding:40px 0 40px 70px;
   color: #0d294b;
 }
 .address a {
@@ -402,7 +404,7 @@ page {
   text-decoration: none;
 }
 .visit_us {
-  margin-top: 80px;
+  margin-top: 10px;
   font-size: 16px;
 }
 .logo_here {
@@ -440,15 +442,19 @@ page {
 }
 .pdf20 .bordered_img {
   height: 50px;
-  transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg);
+  transform: rotate(
+-90deg
+);
+  -webkit-transform: rotate(
+-90deg
+);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);
   display: block;
   position: absolute;
-  right: -73%;
-  top: 41%;
-  width: 130%;
+  right: -60%;
+  top: 48%;
+  width: 200px;
 }
 .pdf20 {
   padding: 0;
@@ -1122,13 +1128,13 @@ ul.stats li:not(:last-child):after {
   content: '';
   width: 30px;
   height: 30px;
-  background: #b9443d;
+  background: #acabba;
   display: block;
   position: absolute;
   left: 0;
 }
 .pdf13 li:last-child:before {
-  background: #0d294b;
+  background: #7b7c93;
 }
 .mb-10 {
   margin-bottom: 10px !important;
