@@ -7,20 +7,14 @@ class Widget extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-        // var_dump($this->session->userdata('userid'));die;
-        // $this->user_id = 82;   
+         
         $widget_url = $_ENV['WIDGET_DOMAIN'];
-        // header("Access-Control-Allow-Origin: $widget_url");
-        // header("Access-Control-Allow-Origin:*")
-
-
+        
         // $this->session->unset_userdata('userid');die;
-        // var_dump($this->session->userdata);die;
+        
         if(!($this->session->userdata('userid')) ) {
 
           if($this->uri->uri_string() != 'widget/setAuth'){
-
-            // redirect('widget/setAuth');
 
             $user_id = $this->setAuth();
             // $user_id = 1607;
@@ -50,7 +44,7 @@ class Widget extends CI_Controller {
 
     public function setAuth()
     {
-      // echo "IN";die;
+      
       $this->load->helper('cookie');
       $sso_user_token = get_cookie('sso_user_token',true);
       if(!empty($sso_user_token)) {
@@ -85,51 +79,6 @@ class Widget extends CI_Controller {
       // echo "Access denied, you are not authorized to use this widget.";
       return false;
       // die;
-    }
-
-    public function index()
-    {
-    	if(isset($this->user_id) && !empty($this->user_id))
-    	{
-    		// $userInfo = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $this->user_id));
-
-            $tableName = "lp_user_mst";
-            $user = $this->base_model->get_login_data_from_id( $tableName,'user_id_pk', $this->user_id);
-            $user_info = (array) $user; 
-            if(isset($user_info) && !empty($user_info))
-            {
-                if ($user_info['is_active'] == 'Y') 
-                {
-	              	$user_data = array(
-		              	'userid'    => $user_info['user_id_pk'],
-		              	'username'    => ucfirst($user_info['first_name']).' '.ucfirst($user_info['last_name']),
-		                'user_email'    => $user_info['email'],
-		              	'logged_in'    => TRUE,
-	              	);
-
-                  	$session_data = $this->session->set_userdata($user_data);
-                }
-
-                $data['title'] = "Widget";
-                $data['user_id'] = $user->user_id_pk;
-                $data['user_name'] = isset($user->user_name) && !empty($user->user_name) ? $user->user_name : '';
-                $data['users'] = (array) $user;
-                echo "<pre>ddd"; print_r($user); exit;
-              $data['topReports'] = $this->base_model->get_all_record_by_id('lp_my_listing', array('user_id_fk' => $userId),'project_date','desc');
-              $data['reports'] = $this->base_model->get_all_record_by_id('lp_my_listing', 
-                                              array(
-                                                  'user_id_fk' => $userId,
-                                                  'is_active' => 'Y'
-                                              ),
-                                              'project_date','desc'
-                                            );
-              }
-
-    	}
-    	else
-    	{
-
-    	}
     }
 
     public function getWidgetData()
@@ -232,7 +181,7 @@ class Widget extends CI_Controller {
 
     public function getWidgetPropertyData()
     {
-                    // $response = $this->reports->getPropertyDataForWidget();
+        
         $msg = "Unknown error while trying to generate report pdf for user account ".$this->session->userdata('user_email');
         try {
             $response = $this->reports->getPropertyDataForWidget();
@@ -682,5 +631,52 @@ class Widget extends CI_Controller {
       }
       echo json_encode($data);
     }
+
+
+    public function latest_report_html($report_type='buyer') {
+      //
+      $report_demo = base_url('assets/property/demo.xml');
+      $report_type = trim(strtolower($report_type));
+      if($report_type == 'seller') {
+        $report_type='seller';
+      }elseif($report_type == 'marketupdate') {
+        $report_type='marketUpdate';
+      }
+      else {
+        $report_type='buyer';
+      }
+
+      $user = $this->base_model->get_login_data_from_id( 'lp_user_mst','user_id_pk', $this->user_id);
+      // var_dump($user);die;
+
+
+      $_POST['report187']=$report_demo;
+      $_POST['user[profile_image]']=$user->profile_image;
+      $_POST['user_image']='';
+      $_POST['user[fullname]']=$user->first_name.' '.$user->last_name;
+      $_POST['user[title]']=$user->title;
+      $_POST['user[phone]']=$user->phone;
+      $_POST['user[email]']=$user->email;
+      $_POST['user[licenceno]']=$user->license_no;
+      $_POST['presentation']=$report_type;
+      $_POST['user[company_logo]']='';
+      $_POST['company_image']='';
+      $_POST['user[companyname]']=$user->company_name;
+      $_POST['user[street]']='1235 K St';
+      $_POST['user[city]']='San Diego';
+      $_POST['user[zip]']='92101';
+      $_POST['user[state]']='CA';
+      $_POST['testimonials']='["Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.","As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.","Showed us a bunch of homes for months until we found the right one. Gave us a ton of contacts to help us throughout the process. And even now after the home has already been closed on he is still helping with any problems or questions we have. Extremely helpful and knowledgeable in any facet of home buying/owning.","They were a great team and extremely helpful with selling my house quickly. I was able to do everything online with them. They facilitated repairs and getting rid of things in the house. This was so helpful since I live out of the area."]';
+      $_POST['testimonials_name']='["Richard & Susan","Lance & Amanda"," Allison & Eli","Mario & Courtney"]';
+      $_POST['bio']='Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.';
+      $_POST['pdfID']='';
+      $_POST['pdfPages']=implode(',', range(1,40)) ;
+      $_POST['showpartner']='undefined';
+      $_POST['showpartner']='on';
+      $_POST['custom_comps']='["0","1","2","6","7","8","9","10"]';
+      $_POST['use_rets_api']=0;
+      $_POST['print_html']=1;
+      $response = $this->reports->getPropertyDataForWidget();
+}
 
 }
