@@ -659,6 +659,13 @@ use Knp\Snappy\Pdf;
             $rep111 = urldecode($rep111);
             $report111 = @simplexml_load_file($rep111);
 
+            $context = stream_context_create(array('ssl'=>array(
+                'verify_peer' => false, 
+                "verify_peer_name"=>false
+                )));
+
+            libxml_set_streams_context($context);
+
             $rep187 = $_POST['report187'];
             $rep187 = urldecode($rep187);
             $report187 = simplexml_load_file($rep187);
@@ -1133,6 +1140,10 @@ use Knp\Snappy\Pdf;
                     $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/widget_index",$data,true);
                 }
             
+            }
+            if(isset($_POST['print_html']) && $_POST['print_html']==1) {
+                echo $html;
+                exit;
             }
             
             //file_put_contents("tmp.html", $html);
