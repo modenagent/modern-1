@@ -1,0 +1,3075 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XML187 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://api.sitexdata.com/GetReport">
+  <PropertyProfile>
+    <PrimaryOwnerName>LAU, BRIAN C</PrimaryOwnerName>
+    <SecondaryOwnerName />
+    <MailAddress>1836 8TH ST</MailAddress>
+    <MailUnit />
+    <MailUnitType />
+    <MailCity>MANHATTAN BEACH</MailCity>
+    <MailState>CA</MailState>
+    <MailZip>90266</MailZip>
+    <MailZip4>6323</MailZip4>
+    <OwnerPhoneNum />
+    <SiteAddress>112 HEDGE BLOOM</SiteAddress>
+    <SiteUnit>76</SiteUnit>
+    <SiteUnitType>#</SiteUnitType>
+    <SiteCity>IRVINE</SiteCity>
+    <SiteState>CA</SiteState>
+    <SiteZip>92618</SiteZip>
+    <SiteZip4>1517</SiteZip4>
+    <APN>934-747-18</APN>
+    <CensusTract>0524.18</CensusTract>
+    <HousingTract>16960</HousingTract>
+    <LotNumber>9</LotNumber>
+    <TBMPage />
+    <TBMGrid />
+    <LegalDescriptionInfo>
+      <LotCode>9      </LotCode>
+      <Block />
+      <Section />
+      <District />
+      <Subdivision>IVY PHASE 5 CONDOMINIUM</Subdivision>
+      <TractNumber>16960     </TractNumber>
+      <PhaseNumber />
+      <Unit />
+      <LandLot />
+      <MapRef />
+      <SecTwnshipRange />
+      <LegalBriefDescription>LOT:9       SUBD:IVY PHASE 5 CONDOMINIUM TR#:16960      TRACT 16960 LOT 9 OF PROJECT 934-74 LOCATED ON APN 580-121-73, TOGETHERWITH AN UND 1/18 INT IN LOTS 9 &amp; 10 </LegalBriefDescription>
+      <CityMuniTwp />
+    </LegalDescriptionInfo>
+    <PropertyCharacteristics>
+      <Bedrooms>3</Bedrooms>
+      <YearBuilt>2010</YearBuilt>
+      <BuildingArea>1493</BuildingArea>
+      <Baths>2</Baths>
+      <GarageType>Garage</GarageType>
+      <GarageNumCars>2</GarageNumCars>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <TotalRooms />
+      <Fireplace />
+      <NumUnits>0</NumUnits>
+      <Zoning />
+      <Pool />
+      <UseCode>Condominium Unit (Residential)</UseCode>
+      <Basement />
+      <Latitude>33.687355</Latitude>
+      <Longitude>-117.745059</Longitude>
+      <NoOfStories />
+      <BuildingStyle />
+    </PropertyCharacteristics>
+    <SaleLoanInfo>
+      <TransferDate>20190703</TransferDate>
+      <SellerName>DORNER, DAVID; DORNER, PAMELA</SellerName>
+      <SalesPrice>690000</SalesPrice>
+      <DocumentNumber>2019000237436</DocumentNumber>
+      <Book />
+      <Page />
+      <PricePerSQFT>462</PricePerSQFT>
+      <LoanAmount>484351</LoanAmount>
+      <LenderName>JPMORGAN CHASE BANK NA</LenderName>
+      <TitleCompany>LAWYERS TITLE OC</TitleCompany>
+    </SaleLoanInfo>
+    <AssessmentTaxInfo>
+      <AssessedValue>690000</AssessedValue>
+      <PercentImproved>0.3345</PercentImproved>
+      <HomeOwnerExemption />
+      <LandValue>459203</LandValue>
+      <TaxAmount>9749.28</TaxAmount>
+      <TaxRateArea>26-229</TaxRateArea>
+      <ImprovementValue>230797</ImprovementValue>
+      <TaxAccountID />
+      <TaxStatus>Current</TaxStatus>
+      <MarketImprovementValue>0</MarketImprovementValue>
+      <MarketLandValue>0</MarketLandValue>
+      <MarketValue>0</MarketValue>
+      <TaxYear>2020</TaxYear>
+    </AssessmentTaxInfo>
+  </PropertyProfile>
+  <Status>OK</Status>
+  <PropertyMapURL>https://sitexgis.sitexdata.com/DisplayMap/displaymapv2.aspx?mapstring=jZLBkoMgEER%2fZSzPSQkI6HFEEtlFsABNJd%2byxbevqd1r0Nscut50Tw%2bOmRAKkx7vGgbr%2fVyplE3YjNNVTFlh9VpyTwXpKouZsavoJOO8sj5fCJFX2fKG9z%2f45rQU9GLUR8JbJQgMwbuXBqvx9kFKmz%2bgFMdAds79W0oJKJOeEFPw1hZ3MyrgZn1AC9ujCO0k6E074%2b4QV1eEUkpBrTaZDZM%2bcNrCggFnv7pUVnIOM96dPpBJGMyXX4siyWBCa2cM38UcvYC4mxvQjZ9i%2fDfI250Ywn4cfBZXE8HgtpfynDCp6aDw9mQ1hIjTv0F6duaOooNRRx0SLK6cXUqYTYzGOxh04dvqKTPZ1I%2fMm6Z%2bZcJqpfIaa4W5qVeVSW3mfZr36Rc%3d</PropertyMapURL>
+  <ComparableSalesReport>
+    <ComparableSales>
+      <ComparableSale>
+        <Proximity>.32</Proximity>
+        <Latitude>33.6879</Latitude>
+        <Longitude>-117.7396</Longitude>
+        <SiteAddress>1142 EPIC</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>1799</SiteZip4>
+        <RecordingDate>20210519</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>753000</SalePrice>
+        <PricePerSQFT>483</PricePerSQFT>
+        <BuildingArea>1557</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2019</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-161-09</APN>
+        <DocumentNumber>2021000331465</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>41</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit />
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 17939</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 976 PG 16-35</MapRef>
+        <Buyer1FName>STUART IAN</Buyer1FName>
+        <Buyer1LName>ROBSON</Buyer1LName>
+        <Buyer2FName>KAORU TAKAI</Buyer2FName>
+        <Buyer2LName>ROBSON</Buyer2LName>
+        <Seller1FName>DANIEL WILLIAM</Seller1FName>
+        <Seller1LName>BELL</Seller1LName>
+        <Seller2FName>YUKO TANAKA</Seller2FName>
+        <Seller2LName>BELL</Seller2LName>
+        <LenderName>HSBC BANK USA</LenderName>
+        <Loan1Amount>579810</Loan1Amount>
+        <PID>3698794</PID>
+        <AssessmentValue>665990</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.74</Proximity>
+        <Latitude>33.681553</Latitude>
+        <Longitude>-117.755966</Longitude>
+        <SiteAddress>61 BRONZE LEAF</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92620</SiteZip>
+        <SiteZip4>3109</SiteZip4>
+        <RecordingDate>20210517</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>805000</SalePrice>
+        <PricePerSQFT>522</PricePerSQFT>
+        <BuildingArea>1541</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>3</Baths>
+        <YearBuilt>2014</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>931-319-06</APN>
+        <DocumentNumber>2021000324993</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>82</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17753</SubdivisionName>
+        <PhaseNumber>1</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 927 PG 18-23</MapRef>
+        <Buyer1FName>JACOB</Buyer1FName>
+        <Buyer1LName>BUCK</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>ALLAN</Seller1FName>
+        <Seller1LName>PHUA</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>CITIZENS BANK NA</LenderName>
+        <Loan1Amount>465000</Loan1Amount>
+        <PID>3697830</PID>
+        <AssessmentValue>595704</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.32</Proximity>
+        <Latitude>33.6879</Latitude>
+        <Longitude>-117.7396</Longitude>
+        <SiteAddress>1176 EPIC</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>1799</SiteZip4>
+        <RecordingDate>20210514</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>800000</SalePrice>
+        <PricePerSQFT>513</PricePerSQFT>
+        <BuildingArea>1557</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2019</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-161-43</APN>
+        <DocumentNumber>2021000322463</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>42</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>43</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 17939</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 976 PG 16-35</MapRef>
+        <Buyer1FName>TIMOTHY YUI KWONG</Buyer1FName>
+        <Buyer1LName>YUNG</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>YAPING</Seller1FName>
+        <Seller1LName>LOU</Seller1LName>
+        <Seller2FName>LINGJIE</Seller2FName>
+        <Seller2LName>HUANG</Seller2LName>
+        <LenderName>ONY GLO INC</LenderName>
+        <Loan1Amount>500000</Loan1Amount>
+        <PID>3696943</PID>
+        <AssessmentValue>699990</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>0</Proximity>
+        <Latitude>33.687355</Latitude>
+        <Longitude>-117.745059</Longitude>
+        <SiteAddress>32 HEDGE BLOOM</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>1516</SiteZip4>
+        <RecordingDate>20210514</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>685000</SalePrice>
+        <PricePerSQFT>567</PricePerSQFT>
+        <BuildingArea>1206</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2010</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>934-747-62</APN>
+        <DocumentNumber>2021000322681</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>2&amp;3</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>129</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 1690</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 886 PG 25-29</MapRef>
+        <Buyer1FName>HENRY JOSEPH</Buyer1FName>
+        <Buyer1LName>MAGEE JR</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>BIKRAN</Seller1FName>
+        <Seller1LName>SANDHU</Seller1LName>
+        <Seller2FName>KAMLESH</Seller2FName>
+        <Seller2LName>SANDHU</Seller2LName>
+        <LenderName>WELLS FARGO BANK NA</LenderName>
+        <Loan1Amount>385000</Loan1Amount>
+        <AddSellers>
+          <AddSeller>
+            <AdditionalInfo>
+              <FirstName>BIKRAN</FirstName>
+              <LastName>SANDHU</LastName>
+            </AdditionalInfo>
+          </AddSeller>
+        </AddSellers>
+        <PID>3696990</PID>
+        <AssessmentValue>529059</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.75</Proximity>
+        <Latitude>33.698118</Latitude>
+        <Longitude>-117.745865</Longitude>
+        <SiteAddress>21 CITY STROLL</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92620</SiteZip>
+        <SiteZip4>3883</SiteZip4>
+        <RecordingDate>20210513</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>989000</SalePrice>
+        <PricePerSQFT>731</PricePerSQFT>
+        <BuildingArea>1352</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2012</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>935-545-05</APN>
+        <DocumentNumber>2021000319573</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>1</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>30</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17349</SubdivisionName>
+        <PhaseNumber>9</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 900 PG 28-34</MapRef>
+        <Buyer1FName>ANN</Buyer1FName>
+        <Buyer1LName>LEM</Buyer1LName>
+        <Buyer2FName>KENNY</Buyer2FName>
+        <Buyer2LName>LIN</Buyer2LName>
+        <Seller1FName>ROBIN</Seller1FName>
+        <Seller1LName>LINDENBERG</Seller1LName>
+        <Seller2FName>BARRY</Seller2FName>
+        <Seller2LName>LINDENBERG</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <AddSellers>
+          <AddSeller>
+            <AdditionalInfo>
+              <FirstName />
+              <LastName>ROBIN LINDENBERG REVOCABLE TRUST</LastName>
+            </AdditionalInfo>
+          </AddSeller>
+        </AddSellers>
+        <PID>3695743</PID>
+        <AssessmentValue>663718</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.43</Proximity>
+        <Latitude>33.681191</Latitude>
+        <Longitude>-117.745125</Longitude>
+        <SiteAddress>326 FLORAL VW</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>0869</SiteZip4>
+        <RecordingDate>20210511</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>880000</SalePrice>
+        <PricePerSQFT>599</PricePerSQFT>
+        <BuildingArea>1469</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>4</Bedrooms>
+        <Baths>3</Baths>
+        <YearBuilt>2016</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>931-335-40</APN>
+        <DocumentNumber>2021000312559</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>5&amp;12</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>136</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17856</SubdivisionName>
+        <PhaseNumber>3</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 952 PG 32-36</MapRef>
+        <Buyer1FName>HUAN</Buyer1FName>
+        <Buyer1LName>ZHAO</Buyer1LName>
+        <Buyer2FName>JIE</Buyer2FName>
+        <Buyer2LName>ZHENG</Buyer2LName>
+        <Seller1FName>VENKATA</Seller1FName>
+        <Seller1LName>YARLAGADDA</Seller1LName>
+        <Seller2FName>RATNA</Seller2FName>
+        <Seller2LName>YARLAGADDA</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <AddBuyers>
+          <AddBuyer>
+            <AdditionalInfo>
+              <FirstName />
+              <LastName>THE ZHAO FAMILY TRUST</LastName>
+            </AdditionalInfo>
+          </AddBuyer>
+        </AddBuyers>
+        <PID>3695572</PID>
+        <AssessmentValue>745738</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.74</Proximity>
+        <Latitude>33.682942</Latitude>
+        <Longitude>-117.756772</Longitude>
+        <SiteAddress>87 EVENING SUN</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92620</SiteZip>
+        <SiteZip4>3108</SiteZip4>
+        <RecordingDate>20210426</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>800000</SalePrice>
+        <PricePerSQFT>519</PricePerSQFT>
+        <BuildingArea>1541</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>3</Baths>
+        <YearBuilt>2015</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>931-319-42</APN>
+        <DocumentNumber>2021000279496</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>15</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>98</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 17753</SubdivisionName>
+        <PhaseNumber>5</PhaseNumber>
+        <TractNumber>17753</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 927 PG 18-23</MapRef>
+        <Buyer1FName>QIONG</Buyer1FName>
+        <Buyer1LName>HUANG</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>ETHAN</Seller1FName>
+        <Seller1LName>BARBOUR</Seller1LName>
+        <Seller2FName>SHENGMAI</Seller2FName>
+        <Seller2LName>ZHANG</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <PID>3688192</PID>
+        <AssessmentValue>659125</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.59</Proximity>
+        <Latitude>33.69012</Latitude>
+        <Longitude>-117.735376</Longitude>
+        <SiteAddress>222 CULTIVATE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>1029</SiteZip4>
+        <RecordingDate>20210423</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>810000</SalePrice>
+        <PricePerSQFT>466</PricePerSQFT>
+        <BuildingArea>1738</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2017</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-172-02</APN>
+        <DocumentNumber>2021000276255</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>2</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>11</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 17735</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription>PORTION LOT2</LegalBriefDescription>
+        <SecTwpRngMer />
+        <MapRef>MB 930 PG 26-29</MapRef>
+        <Buyer1FName>HUNG SIN</Buyer1FName>
+        <Buyer1LName>KIM</Buyer1LName>
+        <Buyer2FName>JUNG A</Buyer2FName>
+        <Buyer2LName>KIM</Buyer2LName>
+        <Seller1FName>CHI</Seller1FName>
+        <Seller1LName>ZHANG</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>FIRST BANK</LenderName>
+        <Loan1Amount>460000</Loan1Amount>
+        <PID>3687746</PID>
+        <AssessmentValue>758226</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.32</Proximity>
+        <Latitude>33.687622</Latitude>
+        <Longitude>-117.739509</Longitude>
+        <SiteAddress>214 PARAMOUNT</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>0883</SiteZip4>
+        <RecordingDate>20210423</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>770000</SalePrice>
+        <PricePerSQFT>438</PricePerSQFT>
+        <BuildingArea>1756</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2017</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-211-10</APN>
+        <DocumentNumber>2021000275095</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>1</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>8</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 17983</SubdivisionName>
+        <PhaseNumber>2</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription>PORTION LOT1</LegalBriefDescription>
+        <SecTwpRngMer />
+        <MapRef>MB 952 PG 18-20</MapRef>
+        <Buyer1FName>JUSTIN DEK JIN</Buyer1FName>
+        <Buyer1LName>THIANG</Buyer1LName>
+        <Buyer2FName>THUY PHUONG</Buyer2FName>
+        <Buyer2LName>THIANG</Buyer2LName>
+        <Seller1FName>LIPING</Seller1FName>
+        <Seller1LName>CAI</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>CROSSCOUNTRY MORTGAGE LLC</LenderName>
+        <Loan1Amount>577500</Loan1Amount>
+        <PID>3687586</PID>
+        <AssessmentValue>686559</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.39</Proximity>
+        <Latitude>33.683546</Latitude>
+        <Longitude>-117.74</Longitude>
+        <SiteAddress>255 MAGNET</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>0879</SiteZip4>
+        <RecordingDate>20210422</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>717000</SalePrice>
+        <PricePerSQFT>530</PricePerSQFT>
+        <BuildingArea>1351</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2018</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-223-60</APN>
+        <DocumentNumber>2021000272893</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>1</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>23</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17877</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription>PORTION LOT1</LegalBriefDescription>
+        <SecTwpRngMer />
+        <MapRef>MB 950 PG 1-12</MapRef>
+        <Buyer1FName>YANG</Buyer1FName>
+        <Buyer1LName>XU</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>DAVID DONGWON</Seller1FName>
+        <Seller1LName>KIM</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>AAA CAPITAL INVESTMENT INC</LenderName>
+        <Loan1Amount>467000</Loan1Amount>
+        <PID>3687406</PID>
+        <AssessmentValue>631357</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.55</Proximity>
+        <Latitude>33.693978</Latitude>
+        <Longitude>-117.739875</Longitude>
+        <SiteAddress>27 BIJOU</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>1512</SiteZip4>
+        <RecordingDate>20210421</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>758000</SalePrice>
+        <PricePerSQFT>507</PricePerSQFT>
+        <BuildingArea>1493</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2011</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>934-755-50</APN>
+        <DocumentNumber>2021000269078</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>1A</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>11</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>LOT LINE ADJUSTMENT NO 492226 LL</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription>CONDO NAME: THE IVY PHASE 10 CONDOMINIUM</LegalBriefDescription>
+        <SecTwpRngMer />
+        <MapRef>DOC 2010000352570</MapRef>
+        <Buyer1FName>HSIAO FAN</Buyer1FName>
+        <Buyer1LName>SU</Buyer1LName>
+        <Buyer2FName>MING</Buyer2FName>
+        <Buyer2LName>ZHU</Buyer2LName>
+        <Seller1FName>AJAY</Seller1FName>
+        <Seller1LName>BHOJWANI</Seller1LName>
+        <Seller2FName>RIA</Seller2FName>
+        <Seller2LName>BHOJWANI</Seller2LName>
+        <LenderName>PMAC LENDING SERVICES INC</LenderName>
+        <Loan1Amount>492700</Loan1Amount>
+        <PID>3687114</PID>
+        <AssessmentValue>562868</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.60</Proximity>
+        <Latitude>33.695932</Latitude>
+        <Longitude>-117.746281</Longitude>
+        <SiteAddress>73 HALLMARK</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92620</SiteZip>
+        <SiteZip4>3447</SiteZip4>
+        <RecordingDate>20210420</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>950000</SalePrice>
+        <PricePerSQFT>667</PricePerSQFT>
+        <BuildingArea>1423</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2007</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>932-656-30</APN>
+        <DocumentNumber>2021000265717</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>14</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>23</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 16928</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 876 PG 37-44</MapRef>
+        <Buyer1FName>SHA</Buyer1FName>
+        <Buyer1LName>DUAN</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>MATHEW</Seller1FName>
+        <Seller1LName>MCCLEARY</Seller1LName>
+        <Seller2FName>MICHELLE</Seller2FName>
+        <Seller2LName>FREEMAN</Seller2LName>
+        <LenderName>EAST WEST BANK</LenderName>
+        <Loan1Amount>475000</Loan1Amount>
+        <PID>3685854</PID>
+        <AssessmentValue>763859</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.73</Proximity>
+        <Latitude>33.696286</Latitude>
+        <Longitude>-117.751936</Longitude>
+        <SiteAddress>96 SARABANDE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92620</SiteZip>
+        <SiteZip4>3412</SiteZip4>
+        <RecordingDate>20210419</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>735000</SalePrice>
+        <PricePerSQFT>538</PricePerSQFT>
+        <BuildingArea>1364</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2005</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>931-838-88</APN>
+        <DocumentNumber>2021000261149</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>3&amp;4</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>22</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 16543</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 861 PG 21-24</MapRef>
+        <Buyer1FName>MAHMOUD</Buyer1FName>
+        <Buyer1LName>KARIMIPOUR</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>KAREN HSIN SHUN</Seller1FName>
+        <Seller1LName>NOAH</Seller1LName>
+        <Seller2FName>HSIN SHUN</Seller2FName>
+        <Seller2LName>FENG</Seller2LName>
+        <LenderName>UNITED WHOLESALE MORTGAGE</LenderName>
+        <Loan1Amount>536250</Loan1Amount>
+        <PID>3684966</PID>
+        <AssessmentValue>480302</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.30</Proximity>
+        <Latitude>33.684773</Latitude>
+        <Longitude>-117.740882</Longitude>
+        <SiteAddress>154 HARRINGAY</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>0867</SiteZip4>
+        <RecordingDate>20210414</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>715000</SalePrice>
+        <PricePerSQFT>529</PricePerSQFT>
+        <BuildingArea>1351</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2017</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-223-09</APN>
+        <DocumentNumber>2021000252524</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>1</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>86</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT NO 17877</SubdivisionName>
+        <PhaseNumber>2</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription>PORTION LOT1</LegalBriefDescription>
+        <SecTwpRngMer />
+        <MapRef>MB 950 PG 1-12</MapRef>
+        <Buyer1FName>THOMAS</Buyer1FName>
+        <Buyer1LName>GHEORGHE</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>NICHOLAS C</Seller1FName>
+        <Seller1LName>WIDJAJA</Seller1LName>
+        <Seller2FName>DONNA Y</Seller2FName>
+        <Seller2LName>TJU</Seller2LName>
+        <LenderName>SCHOOLSFIRST FCU</LenderName>
+        <Loan1Amount>548000</Loan1Amount>
+        <PID>3684217</PID>
+        <AssessmentValue>626711</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.58</Proximity>
+        <Latitude>33.691224</Latitude>
+        <Longitude>-117.736165</Longitude>
+        <SiteAddress>163 FOLLYHATCH</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>1050</SiteZip4>
+        <RecordingDate>20210412</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>840000</SalePrice>
+        <PricePerSQFT>475</PricePerSQFT>
+        <BuildingArea>1765</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2017</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-175-31</APN>
+        <DocumentNumber>2021000246857</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>1&amp;2</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>25</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17736</SubdivisionName>
+        <PhaseNumber>1</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 930 PG 30-33</MapRef>
+        <Buyer1FName>ADAM JACUB</Buyer1FName>
+        <Buyer1LName>MIDOSE</Buyer1LName>
+        <Buyer2FName>MONIQUE IMARAH</Buyer2FName>
+        <Buyer2LName>MIDOSE</Buyer2LName>
+        <Seller1FName>JEANNA M</Seller1FName>
+        <Seller1LName>KWON</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>JC FINANCIAL SOLUTIONS INC</LenderName>
+        <Loan1Amount>859320</Loan1Amount>
+        <PID>3681715</PID>
+        <AssessmentValue>769375</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.42</Proximity>
+        <Latitude>33.681271</Latitude>
+        <Longitude>-117.745047</Longitude>
+        <SiteAddress>324 FLORAL VW</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>0869</SiteZip4>
+        <RecordingDate>20210409</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>650000</SalePrice>
+        <PricePerSQFT>526</PricePerSQFT>
+        <BuildingArea>1234</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2016</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>931-335-39</APN>
+        <DocumentNumber>2021000243526</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>5&amp;12</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>135</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17856</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 952 PG 32-36</MapRef>
+        <Buyer1FName>CAIXING</Buyer1FName>
+        <Buyer1LName>MA</Buyer1LName>
+        <Buyer2FName>MENGLING</Buyer2FName>
+        <Buyer2LName>WANG</Buyer2LName>
+        <Seller1FName>RONALD J</Seller1FName>
+        <Seller1LName>PRASAD</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>ACG FUNDING INC</LenderName>
+        <Loan1Amount>400000</Loan1Amount>
+        <PID>3681058</PID>
+        <AssessmentValue>574788</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>0</Proximity>
+        <Latitude>33.687355</Latitude>
+        <Longitude>-117.745059</Longitude>
+        <SiteAddress>116 HEDGE BLOOM</SiteAddress>
+        <SiteUnit>74</SiteUnit>
+        <SiteUnitType>#</SiteUnitType>
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>1517</SiteZip4>
+        <RecordingDate>20210408</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>663500</SalePrice>
+        <PricePerSQFT>550</PricePerSQFT>
+        <BuildingArea>1206</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2010</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>934-747-16</APN>
+        <DocumentNumber>2021000240456</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>9&amp;10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>74</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>THE IVY PHASE 5 CONDOMINIUM PLAN</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber>16960</TractNumber>
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>DOC 2010000298322</MapRef>
+        <Buyer1FName>MAJID</Buyer1FName>
+        <Buyer1LName>NAZARI</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>LISBETH</Seller1FName>
+        <Seller1LName>BURBAGE</Seller1LName>
+        <Seller2FName />
+        <Seller2LName />
+        <LenderName>LOANLEADERS OF AMERICA INC</LenderName>
+        <Loan1Amount>548250</Loan1Amount>
+        <PID>3682507</PID>
+        <AssessmentValue>484392</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.30</Proximity>
+        <Latitude>33.684773</Latitude>
+        <Longitude>-117.740882</Longitude>
+        <SiteAddress>193 MAGNET</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92618</SiteZip>
+        <SiteZip4>0880</SiteZip4>
+        <RecordingDate>20210401</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>765000</SalePrice>
+        <PricePerSQFT>427</PricePerSQFT>
+        <BuildingArea>1790</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>3</Baths>
+        <YearBuilt>2017</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>930-222-98</APN>
+        <DocumentNumber>2021000223466</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode>P</LotCode>
+        <LotNumber>1</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>63</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17877</SubdivisionName>
+        <PhaseNumber>1</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription>PORTION LOT1</LegalBriefDescription>
+        <SecTwpRngMer />
+        <MapRef>MB 950 PG 1-12</MapRef>
+        <Buyer1FName>SUNROOT</Buyer1FName>
+        <Buyer1LName>LIU</Buyer1LName>
+        <Buyer2FName>HSIAO YU</Buyer2FName>
+        <Buyer2LName>LIU</Buyer2LName>
+        <Seller1FName>ROBERT</Seller1FName>
+        <Seller1LName>ALVAREZ</Seller1LName>
+        <Seller2FName>GLORIA</Seller2FName>
+        <Seller2LName>ALVAREZ</Seller2LName>
+        <LenderName>JMAC LENDING INC</LenderName>
+        <Loan1Amount>548000</Loan1Amount>
+        <AddSellers>
+          <AddSeller>
+            <AdditionalInfo>
+              <FirstName>ROBERT</FirstName>
+              <LastName>ALVAREZ JR</LastName>
+            </AdditionalInfo>
+          </AddSeller>
+        </AddSellers>
+        <PID>3677991</PID>
+        <AssessmentValue>678354</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.56</Proximity>
+        <Latitude>33.683369</Latitude>
+        <Longitude>-117.753513</Longitude>
+        <SiteAddress>68 DESERT PNE</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92620</SiteZip>
+        <SiteZip4>3558</SiteZip4>
+        <RecordingDate>20210401</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>840000</SalePrice>
+        <PricePerSQFT>521</PricePerSQFT>
+        <BuildingArea>1611</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>3</Bedrooms>
+        <Baths>3</Baths>
+        <YearBuilt>2016</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>931-330-59</APN>
+        <DocumentNumber>2021000224197</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>10&amp;13</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>70</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17814</SubdivisionName>
+        <PhaseNumber>6</PhaseNumber>
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 937 PG 24-28</MapRef>
+        <Buyer1FName>LISA CAROL</Buyer1FName>
+        <Buyer1LName>BARRAGAN</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>DENNIS D</Seller1FName>
+        <Seller1LName>BYUN</Seller1LName>
+        <Seller2FName>HANNAH BACH</Seller2FName>
+        <Seller2LName>BYUN</Seller2LName>
+        <LenderName>JMJ FINANCIAL GROUP</LenderName>
+        <Loan1Amount>440000</Loan1Amount>
+        <PID>3678041</PID>
+        <AssessmentValue>770136</AssessmentValue>
+      </ComparableSale>
+      <ComparableSale>
+        <Proximity>.75</Proximity>
+        <Latitude>33.698118</Latitude>
+        <Longitude>-117.745865</Longitude>
+        <SiteAddress>77 MISSION BELL</SiteAddress>
+        <SiteUnit />
+        <SiteUnitType />
+        <SiteCity>IRVINE</SiteCity>
+        <SiteState>CA</SiteState>
+        <SiteZip>92620</SiteZip>
+        <SiteZip4>3875</SiteZip4>
+        <RecordingDate>20210330</RecordingDate>
+        <PriceCode>R</PriceCode>
+        <SalePrice>750000</SalePrice>
+        <PricePerSQFT>485</PricePerSQFT>
+        <BuildingArea>1545</BuildingArea>
+        <TotalRooms>0</TotalRooms>
+        <Bedrooms>2</Bedrooms>
+        <Baths>2</Baths>
+        <YearBuilt>2012</YearBuilt>
+        <LotSize>0</LotSize>
+        <Pool />
+        <APN>935-544-95</APN>
+        <DocumentNumber>2021000217962</DocumentNumber>
+        <DocumentType>Grant Deed</DocumentType>
+        <UseCodeDescription>Condominium Unit (Residential)</UseCodeDescription>
+        <LotCode />
+        <LotNumber>4</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <LandLot />
+        <Unit>80</Unit>
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+        <SubdivisionName>TRACT 17349</SubdivisionName>
+        <PhaseNumber />
+        <TractNumber />
+        <LegalBriefDescription />
+        <SecTwpRngMer />
+        <MapRef>MB 900 PG 28-34</MapRef>
+        <Buyer1FName />
+        <Buyer1LName>LAEE LLC</Buyer1LName>
+        <Buyer2FName />
+        <Buyer2LName />
+        <Seller1FName>GENE</Seller1FName>
+        <Seller1LName>PIAN</Seller1LName>
+        <Seller2FName>YA WEN TAI</Seller2FName>
+        <Seller2LName>TAI PIAN</Seller2LName>
+        <LenderName />
+        <Loan1Amount>0</Loan1Amount>
+        <PID>3675302</PID>
+        <AssessmentValue>540964</AssessmentValue>
+      </ComparableSale>
+    </ComparableSales>
+    <AreaSalesAnalysisInfo>
+      <TotalAreaSales>20</TotalAreaSales>
+      <MedianLotSize>0</MedianLotSize>
+      <MedianLivingArea>1517</MedianLivingArea>
+      <PriceRangeMin>650000</PriceRangeMin>
+      <PriceRangeMax>989000</PriceRangeMax>
+      <MedianValue>767500</MedianValue>
+      <MedianNumBeds>2</MedianNumBeds>
+      <MedianNumBaths>2</MedianNumBaths>
+      <MedianYearBuilt>2016</MedianYearBuilt>
+      <AgeRangeMin>2</AgeRangeMin>
+      <AgeRangeMax>16</AgeRangeMax>
+      <MedianAge>5</MedianAge>
+    </AreaSalesAnalysisInfo>
+    <SortFlag>2</SortFlag>
+  </ComparableSalesReport>
+  <TransferHistory>
+    <TransferWithDefault>
+      <Loan1Type />
+      <LegalDescriptionInfo>
+        <LotNumber />
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber />
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp />
+      </LegalDescriptionInfo>
+      <TypeCD>7</TypeCD>
+      <RecordingDate>20201116</RecordingDate>
+      <ContractDate />
+      <DocumentNumber>2020000659256</DocumentNumber>
+      <DocumentType>Full Release with Legal Description</DocumentType>
+      <DocumentTypeCode>FL</DocumentTypeCode>
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount />
+      <MortDoc />
+      <LenderName />
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>LAU,BRIAN C</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting />
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate>20190703</RecordingDate>
+        <RecorderDocumentNumber>2019000237437</RecorderDocumentNumber>
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName>JPMORGAN CHASE BANK NA</LenderName>
+      </OriginalLoans>
+      <CurrentLender>JPMORGAN CHASE BANK, N.A.</CurrentLender>
+      <EffectiveDate>20201113</EffectiveDate>
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount>484351</OriginalLoanAmount>
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>Conventional</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>9&amp;10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision>TRACT NO 16960</Subdivision>
+        <TractNumber />
+        <PhaseNumber>5</PhaseNumber>
+        <Unit>76</Unit>
+        <LandLot />
+        <MapRef>0</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20201029</RecordingDate>
+      <ContractDate>20201021</ContractDate>
+      <DocumentNumber>2020000614151</DocumentNumber>
+      <DocumentType>Conventional</DocumentType>
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount>475750</Loan1Amount>
+      <MortDoc />
+      <LenderName>VISION QUEST LENDING</LenderName>
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>LAU, BRIAN C</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting />
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate />
+        <RecorderDocumentNumber />
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName />
+      </OriginalLoans>
+      <CurrentLender />
+      <EffectiveDate />
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type />
+      <LegalDescriptionInfo>
+        <LotNumber />
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber />
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp />
+      </LegalDescriptionInfo>
+      <TypeCD>7</TypeCD>
+      <RecordingDate>20190719</RecordingDate>
+      <ContractDate />
+      <DocumentNumber>2019000261472</DocumentNumber>
+      <DocumentType>Full Release with Legal Description</DocumentType>
+      <DocumentTypeCode>FL</DocumentTypeCode>
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount />
+      <MortDoc />
+      <LenderName />
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>DORNER,DANIELLA;DORNER,DAVID;DORNER,PAMELA</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting />
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate>20121113</RecordingDate>
+        <RecorderDocumentNumber>2012000696892</RecorderDocumentNumber>
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName>STEARNS LENDING INC</LenderName>
+      </OriginalLoans>
+      <CurrentLender>FIRST AMERICAN TITLE INSURANCE COMPANY</CurrentLender>
+      <EffectiveDate>20190718</EffectiveDate>
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount>360000</OriginalLoanAmount>
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>Conventional</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>9&amp;10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>16960</TractNumber>
+        <PhaseNumber>5</PhaseNumber>
+        <Unit>76</Unit>
+        <LandLot />
+        <MapRef>MB 886 PG 25-29</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20190703</RecordingDate>
+      <ContractDate />
+      <DocumentNumber>2019000237437</DocumentNumber>
+      <DocumentType>Conventional</DocumentType>
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount>484351</Loan1Amount>
+      <MortDoc />
+      <LenderName>JPMORGAN CHASE BANK NA</LenderName>
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>LAU, BRIAN C</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting />
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate />
+        <RecorderDocumentNumber />
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName />
+      </OriginalLoans>
+      <CurrentLender />
+      <EffectiveDate />
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type />
+      <LegalDescriptionInfo>
+        <LotNumber>9&amp;10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber>16960</TractNumber>
+        <PhaseNumber>5</PhaseNumber>
+        <Unit>76</Unit>
+        <LandLot />
+        <MapRef>MB 886 PG 25-29</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>1</TypeCD>
+      <RecordingDate>20190703</RecordingDate>
+      <ContractDate>20190605</ContractDate>
+      <DocumentNumber>2019000237436</DocumentNumber>
+      <DocumentType>Grant Deed</DocumentType>
+      <DocumentTypeCode>GD</DocumentTypeCode>
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount />
+      <MortDoc>2019000237437</MortDoc>
+      <LenderName />
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>LAU, BRIAN C</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting />
+      <BuyerID />
+      <SellerName>DORNER, DAVID; DORNER, PAMELA</SellerName>
+      <SellerID />
+      <SalePrice>690000</SalePrice>
+      <SalePriceCode />
+      <SaleType>Sales Price Rounded from Tax</SaleType>
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate />
+        <RecorderDocumentNumber />
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName />
+      </OriginalLoans>
+      <CurrentLender />
+      <EffectiveDate />
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type />
+      <LegalDescriptionInfo>
+        <LotNumber />
+        <Block />
+        <Section />
+        <District />
+        <Subdivision />
+        <TractNumber />
+        <PhaseNumber />
+        <Unit />
+        <LandLot />
+        <MapRef />
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp />
+      </LegalDescriptionInfo>
+      <TypeCD>7</TypeCD>
+      <RecordingDate>20121129</RecordingDate>
+      <ContractDate />
+      <DocumentNumber>2012000737534</DocumentNumber>
+      <DocumentType>Substitution of Trustee and Full Reconveyance</DocumentType>
+      <DocumentTypeCode>SB</DocumentTypeCode>
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount />
+      <MortDoc />
+      <LenderName />
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>DANIELLA DORNER</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting />
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate>20100902</RecordingDate>
+        <RecorderDocumentNumber>2010000433864</RecorderDocumentNumber>
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName>WILLIAM LYON MORTGAGE</LenderName>
+      </OriginalLoans>
+      <CurrentLender>MERS, INC.</CurrentLender>
+      <EffectiveDate />
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount>386723</OriginalLoanAmount>
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>Conventional</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>9&amp;10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision>THE IVY</Subdivision>
+        <TractNumber>16960</TractNumber>
+        <PhaseNumber>5</PhaseNumber>
+        <Unit>76</Unit>
+        <LandLot />
+        <MapRef>0</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20121113</RecordingDate>
+      <ContractDate>20121031</ContractDate>
+      <DocumentNumber>2012000696892</DocumentNumber>
+      <DocumentType>Conventional</DocumentType>
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount>360000</Loan1Amount>
+      <MortDoc />
+      <LenderName>STEARNS LENDING LLC</LenderName>
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>DORNER, DANIELLA; DORNER, DAVID</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>TC</BuyerVesting>
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate />
+        <RecorderDocumentNumber />
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName />
+      </OriginalLoans>
+      <CurrentLender />
+      <EffectiveDate />
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type>Conventional</Loan1Type>
+      <LegalDescriptionInfo>
+        <LotNumber>9&amp;10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision>IVY PHASE 5 CONDOMINIUM</Subdivision>
+        <TractNumber>16960</TractNumber>
+        <PhaseNumber />
+        <Unit>76</Unit>
+        <LandLot />
+        <MapRef>MP886 PG25-29</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>0</TypeCD>
+      <RecordingDate>20100902</RecordingDate>
+      <ContractDate />
+      <DocumentNumber>2010000433864</DocumentNumber>
+      <DocumentType>Conventional</DocumentType>
+      <DocumentTypeCode />
+      <Book />
+      <Page />
+      <MultiAPN />
+      <Loan1DueDate />
+      <Loan1Amount>386723</Loan1Amount>
+      <MortDoc />
+      <LenderName>WILLIAM LYON MORTGAGE</LenderName>
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>DORNER, DANIELLA; DORNER, DAVID</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>TC</BuyerVesting>
+      <BuyerID />
+      <SellerName />
+      <SellerID />
+      <SalePrice />
+      <SalePriceCode />
+      <SaleType />
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate />
+        <RecorderDocumentNumber />
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName />
+      </OriginalLoans>
+      <CurrentLender />
+      <EffectiveDate />
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount />
+    </TransferWithDefault>
+    <TransferWithDefault>
+      <Loan1Type />
+      <LegalDescriptionInfo>
+        <LotNumber>9&amp;10</LotNumber>
+        <Block />
+        <Section />
+        <District />
+        <Subdivision>IVY PHASE 5 CONDOMINIUM</Subdivision>
+        <TractNumber>16960</TractNumber>
+        <PhaseNumber />
+        <Unit>76</Unit>
+        <LandLot />
+        <MapRef>MP886 PG25-29</MapRef>
+        <SecTwnshipRange />
+        <LegalBriefDescription />
+        <CityMuniTwp>IRVINE</CityMuniTwp>
+      </LegalDescriptionInfo>
+      <TypeCD>1</TypeCD>
+      <RecordingDate>20100902</RecordingDate>
+      <ContractDate>20100709</ContractDate>
+      <DocumentNumber>2010000433863</DocumentNumber>
+      <DocumentType>Grant Deed</DocumentType>
+      <DocumentTypeCode>GD</DocumentTypeCode>
+      <Book />
+      <Page />
+      <MultiAPN>2</MultiAPN>
+      <Loan1DueDate />
+      <Loan1Amount />
+      <MortDoc>2010000433864</MortDoc>
+      <LenderName />
+      <LenderType />
+      <TypeFinancing />
+      <Loan1Rate />
+      <Loan2Amount />
+      <BuyerName>DORNER, DANIELLA; DORNER, DAVID</BuyerName>
+      <BuyerMailCareOfName />
+      <BuyerMailUnit />
+      <BuyerMailUnitType />
+      <BuyerMailAddress />
+      <BuyerMailCity />
+      <BuyerMailState />
+      <BuyerMailZip />
+      <BuyerMailZip4 />
+      <BuyerVesting>TC</BuyerVesting>
+      <BuyerID />
+      <SellerName>WILLIAM LYON HOMES INC</SellerName>
+      <SellerID />
+      <SalePrice>483500</SalePrice>
+      <SalePriceCode />
+      <SaleType>Full-Computed from Transfer Tax</SaleType>
+      <TrustorName />
+      <TrusteeName />
+      <ContactName />
+      <ContactAttentionto />
+      <ContactAddress />
+      <ContactUnit />
+      <ContactCity />
+      <ContactState />
+      <ContactZip />
+      <ContactZip4 />
+      <CaseNumber />
+      <LoanAmount />
+      <LoanDoc />
+      <LoanDate />
+      <TrusteePhone />
+      <TrusteeSaleNumber />
+      <TrusteeAddress />
+      <TrusteeUnit />
+      <TrusteeCity />
+      <TrusteeState />
+      <TrusteeZip />
+      <TrusteeZip4 />
+      <AuctionDate />
+      <AuctionTime />
+      <AuctionLocation />
+      <AuctionCity />
+      <AuctionMinimumBidAmount />
+      <InterestRate />
+      <FixedStepRider />
+      <AdjRateIndex />
+      <ChangeIndex />
+      <RateChangeFrequency />
+      <FirstChangeDate />
+      <IntRateNotGreater />
+      <IntRateNotLess />
+      <InterestOnlyPeriod />
+      <PrepaymentPenaltyRider />
+      <PrepaymentPenaltyRiderTerm />
+      <OriginalLoans>
+        <ContractDate />
+        <RecordingDate />
+        <RecorderDocumentNumber />
+        <RecorderBookNumber />
+        <RecorderPageNumber />
+        <LenderName />
+      </OriginalLoans>
+      <CurrentLender />
+      <EffectiveDate />
+      <AssignorName />
+      <AssigneeName />
+      <OriginalLoanAmount />
+    </TransferWithDefault>
+  </TransferHistory>
+  <Neighborhood>
+    <Neighbor>
+      <OwnerName>LAU, BRIAN C</OwnerName>
+      <SiteAddress>112 HEDGE BLOOM</SiteAddress>
+      <SiteUnit>76</SiteUnit>
+      <SiteUnitType>#</SiteUnitType>
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-18</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>SHIH VINA W</OwnerName>
+      <SiteAddress>140 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-19</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>TAM KIN TUNG</OwnerName>
+      <SiteAddress>130 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-24</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>CHEN, XIAOLI; SUO, YING</OwnerName>
+      <SiteAddress>158 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-12</APN>
+      <Phone />
+      <BuildingArea>1390</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>DJC 88 LLC</OwnerName>
+      <SiteAddress>148 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-22</APN>
+      <Phone />
+      <BuildingArea>1390</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>ZHOU QINGLI CATHERINE</OwnerName>
+      <SiteAddress>38 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-59</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>OZGUR, HEATHER</OwnerName>
+      <SiteAddress>58 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-69</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>KIM JOON WOO; CHU, HYUN LEE</OwnerName>
+      <SiteAddress>66 ELYSIAN</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-03</APN>
+      <Phone />
+      <BuildingArea>1390</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>ABELITA JIM TR W &amp; J; ABELITA FAMILY REVOC LIVING TR</OwnerName>
+      <SiteAddress>62 ELYSIAN</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-01</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>BRODEUR, JAMES D; BRODEUR, ELAINE Y</OwnerName>
+      <SiteAddress>70 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-48</APN>
+      <Phone />
+      <BuildingArea>1206</BuildingArea>
+      <Bedrooms>2</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>CHAO I-MEEN &amp; GRACE H</OwnerName>
+      <SiteAddress>74 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-50</APN>
+      <Phone>9499320327</Phone>
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>LIAW STEVEN CHONG-BOON; ONG, GEOK LAY</OwnerName>
+      <SiteAddress>78 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-52</APN>
+      <Phone />
+      <BuildingArea>1390</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>CHICO, EDUVIGES JOLYNE SAGUN; CAAWAY, VALENTINO GADON</OwnerName>
+      <SiteAddress>92 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-43</APN>
+      <Phone />
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>AGORRILLA ALVIN &amp; CRYSTAL</OwnerName>
+      <SiteAddress>88 HEDGE BLOOM</SiteAddress>
+      <SiteUnit />
+      <SiteUnitType />
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-41</APN>
+      <Phone />
+      <BuildingArea>1390</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+    <Neighbor>
+      <OwnerName>TUNG SHU JEN; TSEN, YU PING</OwnerName>
+      <SiteAddress>120 HEDGE BLOOM</SiteAddress>
+      <SiteUnit>72</SiteUnit>
+      <SiteUnitType>#</SiteUnitType>
+      <SiteCity>IRVINE</SiteCity>
+      <SiteState>CA</SiteState>
+      <SiteZip>92618</SiteZip>
+      <APN>934-747-14</APN>
+      <Phone>9499106033</Phone>
+      <BuildingArea>1493</BuildingArea>
+      <Bedrooms>3</Bedrooms>
+      <Baths>2</Baths>
+      <YearBuilt>2010</YearBuilt>
+      <LotSize>0</LotSize>
+      <LotSizeUnits />
+      <GarageType>G</GarageType>
+    </Neighbor>
+  </Neighborhood>
+  <SubjectValueInfo>
+    <OwnerName>LAU BRIAN C</OwnerName>
+    <Unit>76</Unit>
+    <Address>112 HEDGE BLOOM</Address>
+    <City>IRVINE</City>
+    <State>CA</State>
+    <Zip>92618</Zip>
+    <Zip4>1517</Zip4>
+    <APN>934-747-18</APN>
+    <CountyName>ORANGE</CountyName>
+    <FIPS>06059</FIPS>
+  </SubjectValueInfo>
+  <NeighborhoodDemographics>
+    <Population>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2000</Description>
+          <ZipTotal>5,858</ZipTotal>
+          <NationalTotal>281,421,906</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>14,819</ZipTotal>
+          <NationalTotal>309,731,508</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2014</Description>
+          <ZipTotal>16,964</ZipTotal>
+          <NationalTotal>324,062,684</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Growth Rate</Description>
+          <ZipTotal>10.6 %</ZipTotal>
+          <NationalTotal>1.0 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Growth Centile</Description>
+          <ZipTotal>98.0 %</ZipTotal>
+          <NationalTotal />
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </Population>
+    <Household>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2000</Description>
+          <ZipTotal>2,322</ZipTotal>
+          <NationalTotal>105,480,101</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>5,741</ZipTotal>
+          <NationalTotal>116,523,156</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2014</Description>
+          <ZipTotal>6,613</ZipTotal>
+          <NationalTotal>122,109,448</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Household Growth Rate</Description>
+          <ZipTotal>10.3 %</ZipTotal>
+          <NationalTotal>1.1 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Average Household Size</Description>
+          <ZipTotal>2.4</ZipTotal>
+          <NationalTotal>2.6</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </Household>
+    <Family>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2000</Description>
+          <ZipTotal>1,204</ZipTotal>
+          <NationalTotal>71,787,347</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>3,307</ZipTotal>
+          <NationalTotal>77,956,117</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Family Growth Rate</Description>
+          <ZipTotal>11.5 %</ZipTotal>
+          <NationalTotal>0.9 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </Family>
+    <AgeDistribution>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>0-4</Description>
+          <ZipTotal>6.6 %</ZipTotal>
+          <NationalTotal>6.8 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>5-9</Description>
+          <ZipTotal>5.5 %</ZipTotal>
+          <NationalTotal>6.7 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>10-14</Description>
+          <ZipTotal>4.9 %</ZipTotal>
+          <NationalTotal>6.6 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>15-19</Description>
+          <ZipTotal>5.2 %</ZipTotal>
+          <NationalTotal>7.1 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>20-24</Description>
+          <ZipTotal>8.7 %</ZipTotal>
+          <NationalTotal>6.9 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>25-44</Description>
+          <ZipTotal>41.0 %</ZipTotal>
+          <NationalTotal>27.0 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>45-64</Description>
+          <ZipTotal>22.4 %</ZipTotal>
+          <NationalTotal>26.0 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>65-84</Description>
+          <ZipTotal>5.1 %</ZipTotal>
+          <NationalTotal>10.9 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>85+</Description>
+          <ZipTotal>0.5 %</ZipTotal>
+          <NationalTotal>1.9 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </AgeDistribution>
+    <MedianAge>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>33.5</ZipTotal>
+          <NationalTotal>36.9</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Male Ratio</Description>
+          <ZipTotal>52.4 %</ZipTotal>
+          <NationalTotal>49.2 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Female Ratio</Description>
+          <ZipTotal>47.6 %</ZipTotal>
+          <NationalTotal>50.8 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </MedianAge>
+    <HouseholdIncome>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>% &lt; $25K</Description>
+          <ZipTotal>20.5 %</ZipTotal>
+          <NationalTotal>20.9 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% $25K-50K</Description>
+          <ZipTotal>11.9 %</ZipTotal>
+          <NationalTotal>24.4 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% $50K-100K</Description>
+          <ZipTotal>38.2 %</ZipTotal>
+          <NationalTotal>35.3 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% $100K-150K</Description>
+          <ZipTotal>17.8 %</ZipTotal>
+          <NationalTotal>11.7 %</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>% &gt;$150K</Description>
+          <ZipTotal>11.6 %</ZipTotal>
+          <NationalTotal>7.6 %</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </HouseholdIncome>
+    <MedianHouseholdIncome>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>2009</Description>
+          <ZipTotal>$67,512.00</ZipTotal>
+          <NationalTotal>$54,719.00</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>2014</Description>
+          <ZipTotal>$73,079.00</ZipTotal>
+          <NationalTotal>$56,938.00</NationalTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>Per Capita Income</Description>
+          <ZipTotal>$34,488.00</ZipTotal>
+          <NationalTotal>$27,277.00</NationalTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </MedianHouseholdIncome>
+    <HouseholdIncomeCentile>
+      <DemographicsInfoItems>
+        <DemoInfoItem>
+          <Description>National</Description>
+          <ZipTotal>85.0 %</ZipTotal>
+        </DemoInfoItem>
+        <DemoInfoItem>
+          <Description>State</Description>
+          <ZipTotal>69.0 %</ZipTotal>
+        </DemoInfoItem>
+      </DemographicsInfoItems>
+      <SubjectZip>92618</SubjectZip>
+    </HouseholdIncomeCentile>
+  </NeighborhoodDemographics>
+  <PublicSchoolsReport>
+    <Schools>
+      <School>
+        <SchoolName>Northwood</SchoolName>
+        <Distance>1.87</Distance>
+        <SchoolAddress>28 Carson</SchoolAddress>
+        <SchoolCity>Irvine</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92620</SchoolZip>
+        <SchoolZip4>3313</SchoolZip4>
+        <SchoolPhone>949-936-5950</SchoolPhone>
+        <LowestGrade>Kindergarten</LowestGrade>
+        <HighestGrade>Grade 6</HighestGrade>
+        <StudentTeacherRatio>1:20.1</StudentTeacherRatio>
+        <Administrators>28</Administrators>
+        <KindergartenMembership>84</KindergartenMembership>
+        <Grade1Membership>87</Grade1Membership>
+        <Grade2Membership>75</Grade2Membership>
+        <Grade3Membership>87</Grade3Membership>
+        <Grade4Membership>81</Grade4Membership>
+        <Grade5Membership>64</Grade5Membership>
+        <Grade6Membership>68</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>546</TotalEnrolled>
+        <APIDecile>9</APIDecile>
+      </School>
+      <School>
+        <SchoolName>El Camino Real</SchoolName>
+        <Distance>2.00</Distance>
+        <SchoolAddress>4782 Karen Ann Ln.</SchoolAddress>
+        <SchoolCity>Irvine</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92604</SchoolZip>
+        <SchoolZip4>2439</SchoolZip4>
+        <SchoolPhone>949-936-5750</SchoolPhone>
+        <LowestGrade>Kindergarten</LowestGrade>
+        <HighestGrade>Grade 6</HighestGrade>
+        <StudentTeacherRatio>1:20.6</StudentTeacherRatio>
+        <Administrators>17</Administrators>
+        <KindergartenMembership>64</KindergartenMembership>
+        <Grade1Membership>47</Grade1Membership>
+        <Grade2Membership>44</Grade2Membership>
+        <Grade3Membership>51</Grade3Membership>
+        <Grade4Membership>47</Grade4Membership>
+        <Grade5Membership>43</Grade5Membership>
+        <Grade6Membership>47</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>343</TotalEnrolled>
+        <APIDecile>9</APIDecile>
+      </School>
+      <School>
+        <SchoolName>Venado Middle</SchoolName>
+        <Distance>2.19</Distance>
+        <SchoolAddress>Four Deerfield Ave.</SchoolAddress>
+        <SchoolCity>Irvine</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92604</SchoolZip>
+        <SchoolZip4>3048</SchoolZip4>
+        <SchoolPhone>949-936-6800</SchoolPhone>
+        <LowestGrade>Grade 7</LowestGrade>
+        <HighestGrade>Grade 8</HighestGrade>
+        <StudentTeacherRatio>1:28.3</StudentTeacherRatio>
+        <Administrators>34</Administrators>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>376</Grade7Membership>
+        <Grade8Membership>361</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>737</TotalEnrolled>
+        <APIDecile>10</APIDecile>
+      </School>
+      <School>
+        <SchoolName>Irvine High</SchoolName>
+        <Distance>2.44</Distance>
+        <SchoolAddress>4321 Walnut Ave.</SchoolAddress>
+        <SchoolCity>Irvine</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92604</SchoolZip>
+        <SchoolZip4>2239</SchoolZip4>
+        <SchoolPhone>949-936-7000</SchoolPhone>
+        <LowestGrade>Grade 9</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>1:26.5</StudentTeacherRatio>
+        <Administrators>87</Administrators>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>475</Grade9Membership>
+        <Grade10Membership>471</Grade10Membership>
+        <Grade11Membership>478</Grade11Membership>
+        <Grade12Membership>407</Grade12Membership>
+        <TotalEnrolled>1,831</TotalEnrolled>
+        <APIDecile>10</APIDecile>
+      </School>
+    </Schools>
+    <SchoolDistrict>
+      <DistrictName>IRVINE UNIFIED</DistrictName>
+      <DistrictAddress>5050 BARRANCA PKWY.</DistrictAddress>
+      <DistrictCity>IRVINE</DistrictCity>
+      <DistrictState>CA</DistrictState>
+      <DistrictZip>92604</DistrictZip>
+      <DistrictZip4>4652</DistrictZip4>
+      <DistrictPhone>949-936-5000</DistrictPhone>
+      <GradeSpan>KG-12</GradeSpan>
+      <StudentTeacherRatio>22.8:1</StudentTeacherRatio>
+      <TotalEnrollment>25,496</TotalEnrollment>
+      <NumOfGraduates>N/A</NumOfGraduates>
+      <NumOfTeachers>1118.3</NumOfTeachers>
+      <NumOfTeachersAids>233</NumOfTeachersAids>
+      <NumOfGuidanceCounselors>19.1</NumOfGuidanceCounselors>
+      <NumOfAdministrators>51.1</NumOfAdministrators>
+      <NumOfSchools>33</NumOfSchools>
+    </SchoolDistrict>
+  </PublicSchoolsReport>
+  <PrivateSchoolsReport>
+    <Schools>
+      <School>
+        <Affiliation>Christian (no specific denomination)</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>CHRISTIAN MONTESSORI ACADEMY</SchoolName>
+        <Distance>1.05</Distance>
+        <SchoolAddress>PO BOX 130</SchoolAddress>
+        <SchoolCity>EAST IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92650</SchoolZip>
+        <SchoolZip4>0130</SchoolZip4>
+        <SchoolPhone>949-653-1091</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Grade 2</HighestGrade>
+        <StudentTeacherRatio>1:9.8</StudentTeacherRatio>
+        <Administrators>4.5</Administrators>
+        <PreschoolMembership>120</PreschoolMembership>
+        <KindergartenMembership>28</KindergartenMembership>
+        <Grade1Membership>11</Grade1Membership>
+        <Grade2Membership>5</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>164</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Islamic</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>NEW HORIZON ELEM., IRVINE</SchoolName>
+        <Distance>1.37</Distance>
+        <SchoolAddress>1 TRUMAN STREET</SchoolAddress>
+        <SchoolCity>IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92620</SchoolZip>
+        <SchoolZip4>5742</SchoolZip4>
+        <SchoolPhone>949-552-5411</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Grade 6</HighestGrade>
+        <StudentTeacherRatio>1:6.0</StudentTeacherRatio>
+        <Administrators>23.3</Administrators>
+        <PreschoolMembership>38</PreschoolMembership>
+        <KindergartenMembership>31</KindergartenMembership>
+        <Grade1Membership>23</Grade1Membership>
+        <Grade2Membership>20</Grade2Membership>
+        <Grade3Membership>23</Grade3Membership>
+        <Grade4Membership>20</Grade4Membership>
+        <Grade5Membership>16</Grade5Membership>
+        <Grade6Membership>6</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>177</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>MARDAN SCHOOL</SchoolName>
+        <Distance>2.73</Distance>
+        <SchoolAddress>1 OSBORN STREET</SchoolAddress>
+        <SchoolCity>IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92604</SchoolZip>
+        <SchoolZip4>4695</SchoolZip4>
+        <SchoolPhone>949-733-1500</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Grade 12</HighestGrade>
+        <StudentTeacherRatio>1:4.7</StudentTeacherRatio>
+        <Administrators>15.5</Administrators>
+        <PreschoolMembership>6</PreschoolMembership>
+        <KindergartenMembership>5</KindergartenMembership>
+        <Grade1Membership>2</Grade1Membership>
+        <Grade2Membership>4</Grade2Membership>
+        <Grade3Membership>7</Grade3Membership>
+        <Grade4Membership>4</Grade4Membership>
+        <Grade5Membership>7</Grade5Membership>
+        <Grade6Membership>2</Grade6Membership>
+        <Grade7Membership>8</Grade7Membership>
+        <Grade8Membership>5</Grade8Membership>
+        <Grade9Membership>9</Grade9Membership>
+        <Grade10Membership>12</Grade10Membership>
+        <Grade11Membership>4</Grade11Membership>
+        <Grade12Membership>4</Grade12Membership>
+        <TotalEnrolled>79</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>MONTESSORI SCHOOLS OF IRVINE-NORTHWOOD MONTESSORI</SchoolName>
+        <Distance>2.82</Distance>
+        <SchoolAddress>12100 YALE COURT</SchoolAddress>
+        <SchoolCity>IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92620</SchoolZip>
+        <SchoolZip4>1278</SchoolZip4>
+        <SchoolPhone>714-508-0400</SchoolPhone>
+        <LowestGrade>Grade N/A</LowestGrade>
+        <HighestGrade>Grade N/A</HighestGrade>
+        <StudentTeacherRatio>N/A</StudentTeacherRatio>
+        <Administrators>4</Administrators>
+        <PreschoolMembership>0</PreschoolMembership>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>24</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>NORTHWOOD MONTESSORI SCHOOL OF IRVINE</SchoolName>
+        <Distance>2.82</Distance>
+        <SchoolAddress>12100 YALE COURT</SchoolAddress>
+        <SchoolCity>IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92620</SchoolZip>
+        <SchoolZip4>1278</SchoolZip4>
+        <SchoolPhone>714-508-0400</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Grade 1</HighestGrade>
+        <StudentTeacherRatio>1:11.5</StudentTeacherRatio>
+        <Administrators>4.8</Administrators>
+        <PreschoolMembership>162</PreschoolMembership>
+        <KindergartenMembership>51</KindergartenMembership>
+        <Grade1Membership>4</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>217</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>KINDERCARE LEARNING CENTER BEAR PAW</SchoolName>
+        <Distance>2.95</Distance>
+        <SchoolAddress>1 BEAR PAW</SchoolAddress>
+        <SchoolCity>IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92604</SchoolZip>
+        <SchoolZip4>3073</SchoolZip4>
+        <SchoolPhone>949-552-3222</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Kindergarten</HighestGrade>
+        <StudentTeacherRatio>N/A</StudentTeacherRatio>
+        <Administrators>N/A</Administrators>
+        <PreschoolMembership>43</PreschoolMembership>
+        <KindergartenMembership>12</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>76</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>TUTOR TIME</SchoolName>
+        <Distance>2.98</Distance>
+        <SchoolAddress>12860 CENTRAL PARK AVENUE</SchoolAddress>
+        <SchoolCity>IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92602</SchoolZip>
+        <SchoolZip4>1120</SchoolZip4>
+        <SchoolPhone>714-389-9999</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Kindergarten</HighestGrade>
+        <StudentTeacherRatio>1:9.5</StudentTeacherRatio>
+        <Administrators>1.9</Administrators>
+        <PreschoolMembership>212</PreschoolMembership>
+        <KindergartenMembership>18</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>230</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>LEPORT SCHOOLS</SchoolName>
+        <Distance>3.28</Distance>
+        <SchoolAddress>26 LAKE ROAD</SchoolAddress>
+        <SchoolCity>IRVINE</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92604</SchoolZip>
+        <SchoolZip4>4567</SchoolZip4>
+        <SchoolPhone>949-551-9020</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Kindergarten</HighestGrade>
+        <StudentTeacherRatio>1:6.3</StudentTeacherRatio>
+        <Administrators>4</Administrators>
+        <PreschoolMembership>85</PreschoolMembership>
+        <KindergartenMembership>25</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>0</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>0</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>0</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>110</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>MONTESSORI ON THE LAKE</SchoolName>
+        <Distance>3.77</Distance>
+        <SchoolAddress>23311 MUIRLANDS BLVD</SchoolAddress>
+        <SchoolCity>LAKE FOREST</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92630</SchoolZip>
+        <SchoolZip4>3687</SchoolZip4>
+        <SchoolPhone>949-855-5630</SchoolPhone>
+        <LowestGrade>Prekindergarten</LowestGrade>
+        <HighestGrade>Grade 8</HighestGrade>
+        <StudentTeacherRatio>1:9.3</StudentTeacherRatio>
+        <Administrators>21.5</Administrators>
+        <PreschoolMembership>180</PreschoolMembership>
+        <KindergartenMembership>45</KindergartenMembership>
+        <Grade1Membership>31</Grade1Membership>
+        <Grade2Membership>28</Grade2Membership>
+        <Grade3Membership>23</Grade3Membership>
+        <Grade4Membership>20</Grade4Membership>
+        <Grade5Membership>18</Grade5Membership>
+        <Grade6Membership>17</Grade6Membership>
+        <Grade7Membership>5</Grade7Membership>
+        <Grade8Membership>14</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>0</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>381</TotalEnrolled>
+      </School>
+      <School>
+        <Affiliation>Nonsectarian</Affiliation>
+        <Gender>Coed</Gender>
+        <SchoolName>DECASAS ACADEMY</SchoolName>
+        <Distance>4.07</Distance>
+        <SchoolAddress>22661 LAMBERT STREET STE 202</SchoolAddress>
+        <SchoolCity>LAKE FOREST</SchoolCity>
+        <SchoolState>CA</SchoolState>
+        <SchoolZip>92630</SchoolZip>
+        <SchoolZip4>1612</SchoolZip4>
+        <SchoolPhone>949-583-1486</SchoolPhone>
+        <LowestGrade>Grade 2</LowestGrade>
+        <HighestGrade>Grade 10</HighestGrade>
+        <StudentTeacherRatio>1:2.5</StudentTeacherRatio>
+        <Administrators>2</Administrators>
+        <PreschoolMembership>0</PreschoolMembership>
+        <KindergartenMembership>0</KindergartenMembership>
+        <Grade1Membership>0</Grade1Membership>
+        <Grade2Membership>1</Grade2Membership>
+        <Grade3Membership>0</Grade3Membership>
+        <Grade4Membership>0</Grade4Membership>
+        <Grade5Membership>2</Grade5Membership>
+        <Grade6Membership>0</Grade6Membership>
+        <Grade7Membership>0</Grade7Membership>
+        <Grade8Membership>1</Grade8Membership>
+        <Grade9Membership>0</Grade9Membership>
+        <Grade10Membership>1</Grade10Membership>
+        <Grade11Membership>0</Grade11Membership>
+        <Grade12Membership>0</Grade12Membership>
+        <TotalEnrolled>5</TotalEnrolled>
+      </School>
+    </Schools>
+  </PrivateSchoolsReport>
+</XML187>
