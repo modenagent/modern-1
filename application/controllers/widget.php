@@ -651,21 +651,21 @@ class Widget extends CI_Controller {
 
 
       $_POST['report187']=$report_demo;
-      $_POST['user[profile_image]']=$user->profile_image;
+      $_POST['user']['profile_image']=$user->profile_image;
       $_POST['user_image']='';
-      $_POST['user[fullname]']=$user->first_name.' '.$user->last_name;
-      $_POST['user[title]']=$user->title;
-      $_POST['user[phone]']=$user->phone;
-      $_POST['user[email]']=$user->email;
-      $_POST['user[licenceno]']=$user->license_no;
+      $_POST['user']['fullname']=$user->first_name.' '.$user->last_name;
+      $_POST['user']['title']=$user->title;
+      $_POST['user']['phone']=$user->phone;
+      $_POST['user']['email']=$user->email;
+      $_POST['user']['licenceno']=$user->license_no;
       $_POST['presentation']=$report_type;
-      $_POST['user[company_logo]']='';
+      $_POST['user']['company_logo']='';
       $_POST['company_image']='';
-      $_POST['user[companyname]']=$user->company_name;
-      $_POST['user[street]']='1235 K St';
-      $_POST['user[city]']='San Diego';
-      $_POST['user[zip]']='92101';
-      $_POST['user[state]']='CA';
+      $_POST['user']['companyname']=$user->company_name;
+      $_POST['user']['street']='1235 K St';
+      $_POST['user']['city']='San Diego';
+      $_POST['user']['zip']='92101';
+      $_POST['user']['state']='CA';
       $_POST['testimonials']='["Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.","As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.","Showed us a bunch of homes for months until we found the right one. Gave us a ton of contacts to help us throughout the process. And even now after the home has already been closed on he is still helping with any problems or questions we have. Extremely helpful and knowledgeable in any facet of home buying/owning.","They were a great team and extremely helpful with selling my house quickly. I was able to do everything online with them. They facilitated repairs and getting rid of things in the house. This was so helpful since I live out of the area."]';
       $_POST['testimonials_name']='["Richard & Susan","Lance & Amanda"," Allison & Eli","Mario & Courtney"]';
       $_POST['bio']='Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.';
