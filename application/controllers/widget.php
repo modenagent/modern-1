@@ -676,6 +676,9 @@ class Widget extends CI_Controller {
       $_POST['custom_comps']='["0","1","2","6","7","8","9","10"]';
       $_POST['use_rets_api']=0;
       $_POST['print_html']=1;
+      if(isset($_GET['action']) && $_GET['action']='pdf') {
+        $_POST['print_html']=0;
+      }
       $response = $this->reports->getPropertyDataForWidget();
 }
 

@@ -1,5 +1,5 @@
  <page class="pdf20">
-    <img src="<?php echo base_url().'assets/reports/english/buyer/images/18/img18.png';?>" alt="..." class="w100 img18" style="height: 615px">
+    <img src="<?php echo base_url().'assets/reports/english/buyer/images/18/img18.png';?>" alt="..." class="w100 img18" style="height: 650px">
     <div class="content">
         <div class="d-flex">
             <div class="signature">
