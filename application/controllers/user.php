@@ -315,7 +315,7 @@ class User extends CI_Controller
                 // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
                 if($for_guest == 0) {
 
-                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a> <a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-toggle="tooltip" title="Copy URL"  class="icon icon-copy"></i></a>';
+                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a> <a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-toggle="tooltip" title="Copy URL"  class="icon icon-copy"></i></a> <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'2\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
 
                   $data[] = [
                       $reportDate, 
@@ -3158,6 +3158,9 @@ Thank you for your order. Below you can find the details of your order. If you o
 			}else if($from == 1){
 				redirect(base_url().'index.php?/user/recentlp');
 			}
+      else if($from == 2) {
+        redirect(base_url('user/guests'));
+      }
 		}	
 	}
     public function formward_report(){
