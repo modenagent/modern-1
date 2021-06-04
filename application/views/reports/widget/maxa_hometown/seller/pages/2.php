@@ -7,49 +7,25 @@
     <div class="d-flex mt-30">
         <div class="col-60">
             <div class="d-flex">
-                <?php 
-                    if($user['profile_image'] != '' && $user['profile_image'] != 'no')
-                    {
-                ?>  
-                        <div class="col-60 profile_pic" style="background:url(<?php echo base_url().$user['profile_image']; ?>) no-repeat;background-size: contain;background-position: 20px;height: 230px;"></div>
-                <?php
-                    }
-                    else { ?>
-                        <div class="col-60 profile_pic" style="background-size: contain;background-position: 20px;"></div>
-                    <?php }
-                ?>
-                <div class="signature vertical_sign col-40">
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="img-fluid">
-                    
+                <div class="col-60">
                     <?php 
-                        if(isset($user['fullname']) && !empty($user['fullname']))
+                        if($user['profile_image'] != '' && $user['profile_image'] != 'no')
                         {
-                    ?>
-                            <h2 class="profile_name">
-                                <?php echo $user['fullname']; ?>
-                            </h2>
+                    ?>  
+                            <div class=" profile_pic" style="background:url(<?php echo base_url().$user['profile_image']; ?>) no-repeat;background-size: contain;height: 230px;"></div>
                     <?php
                         }
+                        else { ?>
+                            <div class=" profile_pic" style="background-size: contain;height: 230px"></div>
+                        <?php }
                     ?>
-                    
-                    <?php 
-                        if(isset($user['title']) && !empty($user['title']))
-                        {
-                    ?>
-                            <p class="profile_title">
-                                <?php echo $user['title']; ?>
-                            </p>
-                    <?php
-                        }
-                    ?>
-
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="img-fluid">
-                    <?php 
+                    <div style="margin-top: 10px;text-align: center;">
+                        <?php 
                         if(isset($user['phone']) && !empty($user['phone']))
                         {
                     ?>
                             <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">
-                                O <span><?php echo $user['phone']; ?></span>
+                                M <span><?php echo $user['phone']; ?></span>
                             </a>
                     <?php
                         }
@@ -89,6 +65,36 @@
                     <?php
                         }
                     ?>
+                    </div>
+                </div>
+                
+                <div class="signature vertical_sign col-40">
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="img-fluid">
+                    
+                    <?php 
+                        if(isset($user['fullname']) && !empty($user['fullname']))
+                        {
+                    ?>
+                            <h2 class="profile_name">
+                                <?php echo $user['fullname']; ?>
+                            </h2>
+                    <?php
+                        }
+                    ?>
+                    
+                    <?php 
+                        if(isset($user['title']) && !empty($user['title']))
+                        {
+                    ?>
+                            <p class="profile_title">
+                                <?php echo $user['title']; ?>
+                            </p>
+                    <?php
+                        }
+                    ?>
+
+                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="img-fluid">
+                    
                 </div>
             </div>
         </div>
