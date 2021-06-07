@@ -190,14 +190,22 @@
 </div>
 <div style="display: none!important">
     <div class="row">
-        <div class="col-md-6">
-            <textarea class="form-control" rows="5" id="testimonial-1">Excellent. They walked me through the entire home selling process. From the list of things to repair, the importance of staging and daily contact once the for sale sign went up.</textarea>
-            <input type="text" name="testimonial_name_1" id="testimonial-name-1" style="margin-top: 5px;" placeholder="Enter Name" value="">
-        </div>
-        <div class="col-md-6">
-            <textarea class="form-control" rows="5" id="testimonial-2">As a first time home buyer he was very patient with all of our questions and took time to explain the process every step of the way. Always willing to show us any property we were interested at a time the worked best for our schedules. Overall very friendly and helpful. I am so glad he was able to help us find our first home with very little stress, I will definitely be recommending him to family and friends.</textarea>
-            <input type="text" name="testimonial_name_2" id="testimonial-name-2" style="margin-top: 5px;" placeholder="Enter Name" value="">
-        </div>
+        <?php
+                    foreach ($testimonials as $testimonial_i => $testimonial) : 
+                      if($testimonial_i == 2) :
+                        echo '<div class="row" style="margin-top:10px;">';
+                      endif;
+                      ?>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="5" id="testimonial-<?=($testimonial_i+1)?>"><?=$testimonial->content?></textarea>
+                            <input type="text" class="form-control" name="testimonial_name_<?=($testimonial_i+1)?>" id="testimonial-name-<?=($testimonial_i+1)?>" style="margin-top: 5px;" placeholder="Enter Name" value="<?=$testimonial->name?>">
+                        </div>
+                    <?php 
+                      if($testimonial_i == 1) :
+                        echo '</div>';
+                      endif;
+                    endforeach;
+                  ?>
     </div>
 
     <div class="row" style="margin-top: 10px;">
@@ -215,7 +223,7 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
-<script type="text/javascript" src="<?php echo base_url("assets/js/lp_cma_widget.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/lp_cma_widget.js?v=0.1") ?>"></script>
 
 
 
