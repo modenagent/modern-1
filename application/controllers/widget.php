@@ -113,6 +113,9 @@ class Widget extends CI_Controller {
                 $data['report_dir_name'] = $user_info['report_dir_name'];
                 $data['widget_bg_color'] = $user_info['widget_bg_color'];
                 $data['featured_homes'] = array();
+                $data['testimonials'] = array();
+
+                $data['testimonials'] = $this->base_model->all_records('lp_testimonial');
 
                 if(isset($user_info['parent_id']) && !empty($user_info['parent_id']))
                 {
