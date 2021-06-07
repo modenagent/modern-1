@@ -57,7 +57,7 @@
                     if(isset($user['email']) && !empty($user['email']))
                     {
                 ?>
-                        <a href="mailto:<?php echo $user['email']; ?>" class="contact_info mt-20">
+                        <a href="mailto:<?php echo $user['email']; ?>" class="contact_info">
                             <?php echo $user['email']; ?>
                         </a>
                 <?php

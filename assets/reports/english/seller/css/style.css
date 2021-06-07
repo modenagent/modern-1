@@ -336,8 +336,11 @@ page {
 }
 .w100 {
   width: 100%;
-   height: 660px; 
+   height: 615px; 
   object-fit: cover;
+}
+.pdf15 .w100 {
+  height: 650px; 
 }
 /* pdf 20 */
 
@@ -347,9 +350,9 @@ page {
   position: relative;
 }
 .profile_img {
-  width: 120px;
+  width: 110px;
   border-radius: 50%;
-  height: 120px;
+  height: 110px;
   object-fit: cover;
   object-position: top;
 }
@@ -386,7 +389,7 @@ page {
   font-size: 32px;
 }
 .address {
-  padding: 20px 0 20px 70px;
+  padding: 40px 0 40px 70px;
   color: #0d294b;
 }
 .address a {
@@ -394,7 +397,7 @@ page {
   text-decoration: none;
 }
 .visit_us {
-  margin-top: 95px;
+  margin-top: 10px;
   font-size: 16px;
 }
 .logo_here {
@@ -407,7 +410,7 @@ page {
 }
 .footer {
   background: #0d294b;
-  padding: 50px 50px;
+  padding: 60px 50px;
   color: #fff;
 }
 .copy_right_text {
@@ -431,8 +434,9 @@ page {
   transform: rotate(90deg);
   display: block;
   position: absolute;
-  right: -53%;
-  top: 41%;
+  right: -60%;
+  top: 48%;
+  width: 200px;
 }
 .pdf20 {
   padding: 0;

@@ -36,7 +36,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                     <?php
                         }
                     ?>
-                    <div>
+                    <div style="padding: 10px;">
                         <?php 
                             if(isset($user['fullname']) && !empty($user['fullname']))
                             {
