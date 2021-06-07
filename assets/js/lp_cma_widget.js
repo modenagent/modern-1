@@ -898,7 +898,7 @@ function widgetRunPMA(agentPath, logoPath) {
     testimonials.push($("#testimonial-3").val());
     testimonials.push($("#testimonial-4").val());
     
-    query += '&testimonials=' + JSON.stringify(testimonials);
+    query += '&testimonials=' + encodeURIComponent(JSON.stringify(testimonials));
 
     var testimonials_name = [];
     testimonials_name.push($("#testimonial-name-1").val());
@@ -906,8 +906,8 @@ function widgetRunPMA(agentPath, logoPath) {
     testimonials_name.push($("#testimonial-name-3").val());
     testimonials_name.push($("#testimonial-name-4").val());
     
-    query += '&testimonials_name=' + JSON.stringify(testimonials_name);
-    var bio = $("#agent-bio").val();
+    query += '&testimonials_name=' + encodeURIComponent(JSON.stringify(testimonials_name));
+    var bio = encodeURIComponent($("#agent-bio").val());
     query += '&bio=' + bio;
     query += '&' + 'pdfID=' + pdfID;
     var pages = $('#pdf_pages').val();

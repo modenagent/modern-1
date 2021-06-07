@@ -40,6 +40,10 @@ class WidgetCma extends CI_Controller {
         
         $this->load->library('session');
 
+        $data['testimonials'] = array();
+
+                $data['testimonials'] = $this->base_model->all_records('lp_testimonial');
+
         // $this->load->view('frontend/header_cma',$data);
         $this->load->view('frontend/quick_pdf_widget',$data);
         // $this->load->view('frontend/footer_cma',$data);
