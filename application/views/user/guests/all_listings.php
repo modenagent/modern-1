@@ -1,9 +1,25 @@
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
 <style type="text/css">
   #user_transaction_table_filter, #guests_transaction_table_filter {
     display: none
   }
   .leads_tbl {
     margin-top: 75px; 
+  }
+  div.dt-buttons {
+    float: right;
+    margin-bottom: 10px;
+  }
+  .dt-buttons button.dt-button {
+    background: #fff;
+    padding: 0.5em 1.5em;
+    font-size: 1em;
+  }
+  .dt-buttons button.dt-button:hover {
+    color: #fff;
+    border-color: #fff;
+
+}
   }
 </style>
 <section id="recent-lp2">
@@ -66,6 +82,15 @@
   </div>
 </section>
 <!-- Screenshots section -->
+<?php
+$this->load->view('user/footer');
+?>
+<script src="
+https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function(){
   if ($('#user_transaction_table').length) {
@@ -121,6 +146,7 @@ $(document).ready(function(){
   if ($('#guests_transaction_table').length) {
     $('#guests_transaction_table').DataTable({
         // Processing indicator
+        "dom": 'Blfrtip',
         "processing": true,
         // DataTables server-side processing mode
         "serverSide": true,
@@ -164,7 +190,24 @@ $(document).ready(function(){
         }],
         "drawCallback": function( settings ) {
           $("[data-toggle='tooltip']").tooltip();
-        }
+        },
+        "buttons": [
+             {
+                 extend: 'csv',
+                 exportOptions: {
+                    columns: [0,1,2,3,4]
+                },
+                title: function () { return 'Registration Leads'; },
+                
+             } ,
+            {
+               extend: 'pdf',
+               exportOptions: {
+                    columns: [0,1,2,3,4]
+                },
+                title: function () { return 'Registration Leads'; },
+           }
+        ]
     });
   }
 });

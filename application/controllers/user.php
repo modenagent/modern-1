@@ -408,7 +408,7 @@ class User extends CI_Controller
         create_image();  
         $this->load->view('user/header',$data);
         $this->load->view('user/guests/all_listings',$data);
-        $this->load->view('user/footer');
+        // $this->load->view('user/footer');
       }else{
         // else redirect to frontend login
         redirect('frontend/login');
