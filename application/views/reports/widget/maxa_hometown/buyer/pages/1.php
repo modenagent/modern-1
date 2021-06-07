@@ -22,7 +22,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
         <div class="d-flex">
             <div class="signature horizontal_sign">
                 <img src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>" alt="<?php echo $user['fullname']; ?>" class="profile_img">
-                <div>
+                <div style="padding: 20px;">
                     <?php 
                             if(isset($user['fullname']) && !empty($user['fullname']))
                             {
