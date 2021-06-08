@@ -206,6 +206,9 @@ $(document).ready(function(){
                     columns: [0,1,2,3,4]
                 },
                 title: function () { return 'Registration Leads'; },
+                customize: function (doc) {
+                  doc.content[1].table.widths = ["12%","28%","20%","15%","25%"];
+                }
            }
         ]
     });
