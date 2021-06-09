@@ -289,8 +289,10 @@
                             <div class="row">
                             <div class="col-md-12">
                           <div class="col-md-12">
-                            <h2 class="marketUpdateHide"><strong>Review Pages</strong></h2>
                             <h2 id="comp-heading" class="text-center"><strong>Comparables</strong></h2>
+                          </div>
+                          <div class="col-md-4">
+                            <h2 class="marketUpdateHide"><strong>Review Pages</strong></h2>
                           </div>
                           <div class="col-md-8 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
