@@ -17,7 +17,7 @@
       <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
       <!-- Custom CSS -->
       <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
-      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css?v=0.3" rel="stylesheet">
+      <link href="<?php echo base_url(); ?>assets/css/lp-style-widget.css?v=0.4" rel="stylesheet">
       <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
       <style type="text/css">
@@ -286,10 +286,11 @@
                           </div>
                           <div class="backwrap hidden"></div>
                           <div class="col-md-12">
+                            <div class="row">
                             <div class="col-md-12">
-                          <div class="col-md-4">
+                          <div class="col-md-12">
                             <h2 class="marketUpdateHide"><strong>Review Pages</strong></h2>
-                            <h2 id="comp-heading"><strong>Comparables</strong></h2>
+                            <h2 id="comp-heading" class="text-center"><strong>Comparables</strong></h2>
                           </div>
                           <div class="col-md-8 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
@@ -303,6 +304,7 @@
                             <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a> | &nbsp
                           </div>
                             </div>
+                          </div>
                             <div class="carousel-container marketUpdateHide">
                           <div id="owl-example" class="owl-carousel seller_template">
                             <?php
