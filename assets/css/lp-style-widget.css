@@ -2947,3 +2947,31 @@ transform: translateY(-50%);
   color: #fff;
   padding: 10px 20px;
 }
+
+.comparables-market-update {
+    padding: 10px;
+    margin-top: 10px;
+    clear: both;
+}
+.comparables-market-update .ms-container {
+    width: auto;
+}
+.comparables-market-update .ms-container .ms-selectable, .comparables-market-update .ms-container .ms-selection {
+    background: none;
+    color: #fff;
+}
+.comparables-market-update .multiselect-header2, .comparables-market-update .multiselect-header {
+        text-align: center;
+        color: #fff;
+}
+.comparables-market-update .ms-container .ms-list {
+    border-color: #fff;
+}
+.comparables-market-update .ms-container .ms-selectable li.ms-elem-selectable, .comparables-market-update .ms-container .ms-selection li.ms-elem-selection {
+    color: #fff;
+    padding: 4px 10px;
+}
+
+.comparables-market-update .ms-container .ms-selectable li.ms-hover, .comparables-market-update .ms-container .ms-selection li.ms-hover {
+    color: #000;
+}
