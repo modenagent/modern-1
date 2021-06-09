@@ -133,7 +133,7 @@
                             <li id="step-4-link">
                                 <a href="#step-4"> 
                                     <span class="stepNumber">04</span> 
-                                    <span class="stepDesc marketUpdateHide"> Step 4<br /><small class="little">Download</small></span>
+                                    <span class="stepDesc"> Step 4<br /><small class="little">Download</small></span>
                                 </a>
                             </li>
                         </ul>
@@ -1139,6 +1139,8 @@ function choose_presentation(presentation)
         $("#butcomp").hide();
         $("#presentation").val("buyer");
         $('#wizard').smartWizard("buyer");
+        $('#wizard').removeClass('marketUpdate');
+
         $('.seller_template').hide(function(){
             $('.buyer_template').show();
         });
@@ -1160,6 +1162,8 @@ function choose_presentation(presentation)
     }else {
         $("#presentation").val("seller");
         $('#wizard').smartWizard("seller");
+        $('#wizard').removeClass('marketUpdate');
+        
         $('.buyer_template').hide(function(){
             $('.seller_template').show();
         });
