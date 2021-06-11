@@ -228,7 +228,7 @@ use Knp\Snappy\Pdf;
 
                 $reportItems['propertySalePrice'] = number_format((double)$report187->PropertyProfile->SaleLoanInfo->SalesPrice);
                 $reportItems['propertySalePriceLow'] =  number_format($salesAnalysis['minPrice']);       //number_format(minMaxArray('PriceRate', 'min', $reportItems['comparable']));
-                $reportItems['propertySalePriceMedian'] =   number_format($salesAnalysis['tmp_property']/9); //number_format(minMaxArray('PriceRate', 'median', $reportItems['comparable']));
+                $reportItems['propertySalePriceMedian'] =   number_format($salesAnalysis['median_price']); //number_format(minMaxArray('PriceRate', 'median', $reportItems['comparable']));
                 $reportItems['propertySalePriceLowHigh'] =  number_format($salesAnalysis['maxPrice']);   //number_format(minMaxArray('PriceRate', 'max', $reportItems['comparable']));
 
                 $areaSalesChart['series']='';
@@ -489,12 +489,28 @@ use Knp\Snappy\Pdf;
         function sales_analysis($sortedComps){
             $firstTime = true;
             $tmp_property = 0; $min_tmp_price = 0; $max_tmp_price = 0;
-            $tmp_lot_size = 0; $min_lot_size = 0; $max_lot_size = 0; $minPrice = $maxPrice = $count = 0;
+            $tmp_lot_size = 0; $min_lot_size = 0; $max_lot_size = 0; $minPrice = $maxPrice = $count = $medianPrice = 0;
+            // Median price calculation
+            $priceRate_array = array_column($sortedComps, 'PriceRate');
+            sort($priceRate_array);
+            $count_priceRate_array = count($priceRate_array);
+            $middleval = floor(($count_priceRate_array-1)/2);
+            if($count_priceRate_array % 2) {
+                $medianPrice = $priceRate_array[$middleval];
+            } else {
+                $low = $priceRate_array[$middleval];
+                $high = $priceRate_array[$middleval+1];
+                $medianPrice = (($low+$high)/2);
+            }
+
+
+            // Median price calculation
+            
             foreach ($sortedComps as $compareableProperty) {
                 $lotSize  = floatval(str_replace(",","",$compareableProperty['LotSize'])); 
                 $this->_prepareMinMaxComparable($compareableProperty['PriceRate'],$firstTime,$minPrice, $maxPrice,$tmp_property,$tmp_lot_size, $lotSize,$min_lot_size,$max_lot_size);
             }
-            $result = array('minPrice'=>$minPrice, 'maxPrice'=>$maxPrice,'tmp_property'=>$tmp_property,'min_lot_size'=>$min_lot_size,'max_lot_size'=>$max_lot_size,'tmp_lot_size'=>$tmp_lot_size);
+            $result = array('minPrice'=>$minPrice, 'maxPrice'=>$maxPrice,'tmp_property'=>$tmp_property,'min_lot_size'=>$min_lot_size,'max_lot_size'=>$max_lot_size,'tmp_lot_size'=>$tmp_lot_size,'median_price'=>$medianPrice);
             return $result;
         }
         /**
@@ -960,7 +976,7 @@ use Knp\Snappy\Pdf;
 
             $reportItems['propertySalePrice'] = number_format((double)$report187->PropertyProfile->SaleLoanInfo->SalesPrice);
             $reportItems['propertySalePriceLow'] =  number_format($salesAnalysis['minPrice']);       //number_format(minMaxArray('PriceRate', 'min', $reportItems['comparable']));
-            $reportItems['propertySalePriceMedian'] =   number_format($salesAnalysis['tmp_property']/9); //number_format(minMaxArray('PriceRate', 'median', $reportItems['comparable']));
+            $reportItems['propertySalePriceMedian'] =   number_format($salesAnalysis['median_price']); //number_format(minMaxArray('PriceRate', 'median', $reportItems['comparable']));
             $reportItems['propertySalePriceLowHigh'] =  number_format($salesAnalysis['maxPrice']);   //number_format(minMaxArray('PriceRate', 'max', $reportItems['comparable']));
 
             $areaSalesChart['series']='';
