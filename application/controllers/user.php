@@ -3800,10 +3800,19 @@ Thank you for your order. Below you can find the details of your order. If you o
     }
 
 
-    public function generate_qr_code($uniqid,$size=6)
+    public function generate_qr_code($uniqid,$size=6,$custom_bg_color=null,$custom_color = null)
     {
       $qr_link = base_url('registry/guest/'.$uniqid);
       $this->load->library('phpqrcode/qrlib');
+      $custom_bg_color = json_decode(urldecode($custom_bg_color));
+      $custom_color = json_decode(urldecode($custom_color));
+      // var_dump($custom_bg_color);die;
+      if(is_array($custom_bg_color) && count($custom_bg_color) == 3) {
+        QRimage::$custom_bg_color = $custom_bg_color;        
+      }
+      if(is_array($custom_color) && count($custom_color) == 3) {
+        QRimage::$custom_color = $custom_color;        
+      }
       $image = QRcode::png($qr_link,false,QR_ECLEVEL_L,$size,4);
     }
 

@@ -1,0 +1,82 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+@font-face {
+  font-family: "vulture";
+  src: url(fonts/vulture.otf);
+}
+* {
+  box-sizing: border-box;
+}
+page {
+  position: relative;
+  display: block;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
+  width: 816px;
+  height: 1056px;
+  overflow: hidden;
+  padding: 40px;
+  margin: 0px auto;
+  background: #273038;
+}
+h1 {
+  color: #00FFD9;
+  font-size: 99px;
+  line-height: 100px;
+  font-weight: 300;
+  letter-spacing: -8px;
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+.qr_bg {
+  padding: 20px 0 45px;
+  text-align: center;
+}
+.qr_img {
+  max-width: 60%;
+}
+.address {
+  font-size: 60px;
+  font-weight: 300;
+  line-height: 50px;
+  margin: 10px 0 5px;
+}
+.address span {
+  display: block;
+  font-size: 30px;
+  font-weight: 100;
+}
+p {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0 0 40px;
+  font-weight: 300;
+}
+.sign {
+  display: flex;
+  display: -webkit-box;
+  align-items: center;
+}
+.sign_name {
+  font-family: "vulture";
+  font-size: 80px;
+  margin-left: 20px;
+}
+.sign img{
+  width: 140px;
+}.flare_img {
+  position: absolute;
+  right: 50px;
+  bottom: 30px;
+  width: 100px;
+}
+.profile_img {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  background-size: cover;
+}

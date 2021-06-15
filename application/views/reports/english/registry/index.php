@@ -1,5 +1,5 @@
 <?php
-$valid_pages = range(1,2);
+$valid_pages = range(1,6);
 if(in_array($pdf_page, $valid_pages) === false) {
     $pdf_page = 1;
 }

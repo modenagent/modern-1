@@ -25,6 +25,9 @@
     define('QR_IMAGE', true);
 
     class QRimage {
+
+        public static $custom_bg_color = [255,255,255];
+        public static $custom_color = [0,0,0];
     
         //----------------------------------------------------------------------
         public static function png($frame, $filename = false, $pixelPerPoint = 4, $outerFrame = 4,$saveandprint=FALSE) 
@@ -73,8 +76,19 @@
             
             $base_image =ImageCreate($imgW, $imgH);
             
-            $col[0] = ImageColorAllocate($base_image,255,255,255);
-            $col[1] = ImageColorAllocate($base_image,0,0,0);
+            // $col[0] = ImageColorAllocate($base_image,255,255,255);
+            $bg_color = self::$custom_bg_color;
+            $color = self::$custom_color;
+            if(count($bg_color) != 3) {
+                $bg_color = [255,255,255];
+            }
+            if(count($color) != 3) {
+                $color = [0,0,0];
+            }
+            $col[0] = ImageColorAllocate($base_image,$bg_color[0],$bg_color[1],$bg_color[2]);
+
+            // $col[1] = ImageColorAllocate($base_image,0,0,0);
+            $col[1] = ImageColorAllocate($base_image,$color[0],$color[1],$color[2]);
 
             imagefill($base_image, 0, 0, $col[0]);
 
