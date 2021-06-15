@@ -268,7 +268,7 @@
                           <div class="carousel-container registry_template" style="display: none">
                               <div id="owl-example-registry" class="owl-carousel">
                                 <?php
-                                  for ($regsitry_i=1; $regsitry_i <6 ; $regsitry_i++) {
+                                  for ($regsitry_i=1; $regsitry_i <=6 ; $regsitry_i++) {
                                 ?>
                                   <div class="item">
                                     <input type="radio"  
