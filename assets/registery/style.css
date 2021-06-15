@@ -22,6 +22,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background: url(https://dev.modernagent.io/assets/images-2/home/header3.jpg) no-repeat 0 0;
+  background-size: cover;
+  background-attachment: fixed
 }
 form {
   width: 100%;
@@ -31,7 +34,7 @@ form {
 input {
   display: block;
   width: 100%;
-  background: rgb(255 255 255 / 3%);
+  background: rgb(255 255 255 / 50%);
   border: 0;
   outline: none;
   padding: 1.25rem 2rem;
@@ -63,5 +66,11 @@ label {
   width: 100%;
   cursor: pointer;
   outline: none;
-  margin-top: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.btn_submit:hover {
+  background:none; 
+  border: 1px solid #fff; 
+  color:#fff;
 }
