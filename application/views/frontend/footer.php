@@ -182,6 +182,7 @@
 
         // login form submit
         $("#login-form").submit(function() {
+            console.log("clicked");
             if ( !$(this).valid() ) {
                 return false;
             } else {   
