@@ -181,7 +181,8 @@
         });
 
         // login form submit
-        $("#login-form").submit(function() {
+        $("#login-form").submit(function(e) {
+            e.preventDefault(); 
             console.log("clicked");
             // if ( !$(this).valid() ) {
             //     return false;
