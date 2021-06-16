@@ -174,10 +174,10 @@
         });
 
         $('#login-form #uemail').keyup(function(e){
-            if(e.keyCode == 13) { $('#login-form').submit(); }
+            if(e.keyCode == 13) { $('#login-form-submit-btn').trigger('click'); }
         });
         $('#login-form #upass').keyup(function(e){
-            if(e.keyCode == 13) { $('#login-form').submit(); }
+            if(e.keyCode == 13) { $('#login-form-submit-btn').trigger('click'); }
         });
 
         // login form submit
