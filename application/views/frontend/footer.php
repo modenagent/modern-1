@@ -183,9 +183,9 @@
         // login form submit
         $("#login-form").submit(function() {
             console.log("clicked");
-            if ( !$(this).valid() ) {
-                return false;
-            } else {   
+            // if ( !$(this).valid() ) {
+            //     return false;
+            // } else {   
                 var uname = $("#uemail").val();
                 var upass = $("#upass").val();
                 if ($.trim(uname) == '' || $.trim(upass) == '') {
@@ -211,7 +211,7 @@
                     }
                 });
                 return false;
-            }
+            // }
         });
         
     });
