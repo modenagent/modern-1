@@ -197,12 +197,18 @@ $config['cookie_domain']	= !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN
 // else {
 // 	$config['cookie_path']		= "/";
 // }
+$useragent = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+$config['cookie_path']		= "/; SameSite=None";
+if (strpos($useragent, "Macintosh; Intel Mac OS X 10_14") !== false) {
+            // regular safari
+    if (strpos($useragent, "Version/") !== false && strpos($useragent, "Safari") !== false) {
+        $config['cookie_path']		= "/";
+    } elseif (preg_match('|AppleWebKit/[\.\d]+ \(KHTML, like Gecko\)$|', $useragent)) {
+        $config['cookie_path']		= "/";
+    }
+}
 if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) {
 	$config['cookie_domain'] = "";
-	$config['cookie_path']		= "/";
-}
-else {
-	$config['cookie_path']		= "/; SameSite=None";
 }
 $config['cookie_secure']	= TRUE;
 /*
