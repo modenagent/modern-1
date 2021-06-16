@@ -198,7 +198,7 @@ $config['cookie_domain']	= !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN
 // 	$config['cookie_path']		= "/";
 // }
 if(isset($_SERVER['HTTP_USER_AGENT']) && strpos($_SERVER['HTTP_USER_AGENT'], 'Safari') && !strpos($_SERVER['HTTP_USER_AGENT'], 'Chrome')) {
-	$config['cookie_domain'] = ""
+	$config['cookie_domain'] = "";
 	$config['cookie_path']		= "/";
 }
 else {
