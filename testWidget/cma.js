@@ -13,7 +13,7 @@ if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.4.2') {
     var script_map = document.createElement('script');
     script_map.setAttribute("type","text/javascript");
     script_map.setAttribute("src",
-        "https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyDQQthVgLzHIRTyLS1WGP2spIshpD28n8M");
+        "https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyBObeZlAuAAl86hjeiCUwHf4Crlo5_ISFI");
     var script_jui = document.createElement('script');
     script_jui.setAttribute("type","text/javascript");
     script_jui.setAttribute("src",
