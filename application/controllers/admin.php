@@ -2684,13 +2684,51 @@ MSG;
         if ($is_admin) {
 
             $this->load->model('package_model');
-            $packages = $this->package_model->get_all_packages_price();
+            $packages = $this->package_model->get_many_by('title !=', '');
+            // var_dump($packages);die;
             $data['packages'] = $packages;
-            $data['report_price'] = $packages['reports'];
-            $data['monthly_price'] = $packages['monthly'];
+            // $data['report_price'] = $packages['reports'];
+            // $data['monthly_price'] = $packages['monthly'];
 
             $this->load->view('admin/header',$data);
-            $this->load->view('packages/index',$data);
+            $this->load->view('packages/list',$data);
+            $this->load->view('admin/footer',$data);
+
+        } else {
+            redirect('admin/dashboard',$data);
+        }
+    }
+    public function edit_package($package_id)
+    {
+        $data['title'] = "Manage Packages";
+        $data['admin_id'] = $this->session->userdata('adminid');
+        hasAccess('packages');
+        $is_admin = $this->role_lib->is_admin();
+        if ($is_admin) {
+
+            $this->load->model('package_model');
+
+            if($this->input->post()) {
+                $package_update = array();
+                $package_update['title'] = $this->input->post('title');
+                $package_update['price'] = $this->input->post('price');
+                $package_update['price_per_month'] = $this->input->post('price_per_month');
+                $package_update['is_active'] = $this->input->post('is_active');
+                $this->package_model->update($package_id, $package_update);
+                $this->session->set_flashdata('success', 'Package updated successfully');
+                redirect('admin/edit_package/'.$package_id);
+                exit();
+
+            }
+
+            $package = $this->package_model->get($package_id);
+            // var_dump($packages);die;
+            $data['package'] = $package;
+            // $data['report_price'] = $packages['reports'];
+            // $data['monthly_price'] = $packages['monthly'];
+
+            $this->load->view('admin/header',$data);
+            $this->load->view('packages/edit',$data);
             $this->load->view('admin/footer',$data);
 
         } else {
@@ -2698,19 +2736,18 @@ MSG;
         }
     }
 
-    public function update_package()
+    public function update_package($package_id)
     {
-        $package = $this->input->post('package');
-        $price = $this->input->post('price');
-        $is_admin = $this->role_lib->is_admin();
-        if ($is_admin) {
-            $this->load->model('package_model');
-            $adminId = $this->session->userdata('adminid');
-            $packages = $this->package_model->set_package_price($package, $price, $adminId);
-            echo json_encode(array('status' => 'success', 'message' => ucwords($package).' package price updated successfully.'));
-        } else {
-            echo json_encode(array('status' => 'error', 'message' => 'Access Denied'));
-        }
+
+        // $is_admin = $this->role_lib->is_admin();
+        // if ($is_admin) {
+        //     $this->load->model('package_model');
+        //     $adminId = $this->session->userdata('adminid');
+        //     $packages = $this->package_model->set_package_price($package, $price, $adminId);
+        //     echo json_encode(array('status' => 'success', 'message' => ucwords($package).' package price updated successfully.'));
+        // } else {
+        //     echo json_encode(array('status' => 'error', 'message' => 'Access Denied'));
+        // }
     }
 
     function download_invoice($invoiceNumber, $userId) 
