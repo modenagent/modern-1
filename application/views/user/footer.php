@@ -303,7 +303,8 @@
           $('.loader1').removeClass('hidden');
           $('.backwrap').show();
           $('.backwrap').removeClass('hidden');
-          check_subscription();
+          // check_subscription();
+          // manage_checkout_btn();
         } 
         if(obj.attr('rel')!=4){
           $(".actionBar").show("slow");
@@ -1025,16 +1026,19 @@
         doSubmit();
         return true;
       }
-      console.log("Bypassed");
-      $(this).parents("#step-4").find('.order-detail').hide("slow");
-      $(this).parents("#step-4").find('.order-summary').show("slow");
-      $(".actionBar").hide("slow");
-      $(".btn-checkout").hide("slow");
-      $(".btn-pay").show("slow");
-      // window.location.href="#top";
-      setTimeout(function(){
-        $(document).scrollTop(0);
-      },500);
+      else {
+        $("#stripe_chk_btn").trigger("click");
+      }
+      // console.log("Bypassed");
+      // $(this).parents("#step-4").find('.order-detail').hide("slow");
+      // $(this).parents("#step-4").find('.order-summary').show("slow");
+      // $(".actionBar").hide("slow");
+      // $(".btn-checkout").hide("slow");
+      // $(".btn-pay").show("slow");
+      // // window.location.href="#top";
+      // setTimeout(function(){
+      //   $(document).scrollTop(0);
+      // },500);
     });
     
     $(".btn-review").click(function(){
@@ -1146,6 +1150,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.1"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.2"></script>
 </body>
 </html>

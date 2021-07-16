@@ -137,6 +137,25 @@ if ( ! function_exists('getStripeKey')){
     }
  }
 }
+
+//Stripe Key
+if ( ! function_exists('getStripeSecret')){
+ function getStripeSecret() {
+    $mode = 'live';
+    if(!empty($_ENV['STRIPE_MODE'])) {
+        $mode = $_ENV['STRIPE_MODE'];
+    }
+    if(strtolower($mode) == 'sandbox' && !empty($_ENV['STRIPE_KEY_SECRET_SANDBOX'])) {
+        return $_ENV['STRIPE_KEY_SECRET_SANDBOX'];
+    }
+    elseif(!empty($_ENV['STRIPE_KEY_SECRET_LIVE'])) {
+        return $_ENV['STRIPE_KEY_SECRET_LIVE'];
+    }
+    else {
+        return '';
+    }
+ }
+}
 //Sitex Key
 if ( ! function_exists('getSitexKey')){
  function getSitexKey() {

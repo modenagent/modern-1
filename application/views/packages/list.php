@@ -21,6 +21,7 @@
             <th>Price</th> 
             <th>Monthly price</th>  
             <th>Status</th>  
+            <th>Referral Status</th>  
             <th class="no-sort">Actions</th>
           </tr>
         </thead>
@@ -34,6 +35,14 @@
                     <td><?php echo '$'.number_format($package->price_per_month,2); ?></td>
                     <td><?php
                     if($package->is_active == 1):
+                        echo '<span class="label-primary badge">Active</span>';
+                    else:
+                        echo '<span class="label-danger badge">Inactive</span>';
+                    endif; 
+                    ?>
+                    </td>
+                    <td><?php
+                    if($package->refferral_status == 1):
                         echo '<span class="label-primary badge">Active</span>';
                     else:
                         echo '<span class="label-danger badge">Inactive</span>';

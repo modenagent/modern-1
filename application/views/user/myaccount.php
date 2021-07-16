@@ -242,7 +242,7 @@ text-overflow: ellipsis;
   </div>
 </div>
 <div id="tabs-5" style="z-index:20;">
-  <div class="content-inner clearfix" style="vertical-align:top;">
+  <!-- <div class="content-inner clearfix" style="vertical-align:top;">
     <div class="col-md-12">
         <h4 style="margin-bottom:10px; padding-top:25px;">Membership Plan</h4>
         <div id="subscribed-wrap" style="display:none;">
@@ -289,7 +289,8 @@ text-overflow: ellipsis;
             Your API Token: <span id="api-token-code"></span>
         </div>
     </div>
-  </div>
+  </div> -->
+  <?php $this->load->view('user/membership/index'); ?>
 </div>
 
 </div>
