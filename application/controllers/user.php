@@ -816,17 +816,22 @@ class User extends CI_Controller
             $this->load->model('user_package_subscription_model');
             $explode_ref = explode('_', $subscription->client_reference_id);
             if(count($explode_ref) > 1) {
+              $check_entry = $this->user_package_subscription_model->get_by('sub_id', $subscription->subscription);
+              if(!($check_entry)) {
 
-              $subscription_data = array(
-                'sub_id' => $subscription->subscription,
-                'user_id' => $explode_ref[0],
-                'package_id' => $explode_ref[1],
-                'amount' => floatval(($subscription->amount_total)/100),
-                'interval' => 'month',
-                'is_live' => $subscription->livemode,
+                $subscription_data = array(
+                  'sub_id' => $subscription->subscription,
+                  'user_id' => $explode_ref[0],
+                  'package_id' => $explode_ref[1],
+                  'amount' => floatval(($subscription->amount_total)/100),
+                  'interval' => 'month',
+                  'is_live' => $subscription->livemode,
 
-              );
-              $this->user_package_subscription_model->insert($subscription_data);
+                );
+                $this->user_package_subscription_model->insert($subscription_data);
+
+              }
+              
             }
           }
         }
@@ -834,7 +839,8 @@ class User extends CI_Controller
           $ref_id = $subscription->client_reference_id;
           if($ref_id) {
             $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $ref_id));
-            if($listing_obj) {
+            $check_entry = $this->base_model->get_record_by_id('lp_my_cart',array('txn_id' => $subscription->id));
+            if($listing_obj && !($check_entry)) {
               $lp_cart_data = array(
                         'user_id_fk' => $listing_obj->user_id_fk,
                         'paid_on' => date('Y-m-d'),
