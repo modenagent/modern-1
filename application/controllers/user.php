@@ -15,6 +15,9 @@ class User extends CI_Controller
     function __construct() {
         parent::__construct();        
  		$this->load->library('phpmailer');		
+    ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
    
     }
     //    ramdon string function
@@ -450,6 +453,26 @@ class User extends CI_Controller
         $data['title'] = "Recent Lp's";
         $this->load->helper('captcha');
         create_image();  
+        $userId = $this->session->userdata('userid');
+        if(!empty($_GET['id']) && !empty($_GET['status']) && $_GET['status']=='success') {
+          //check if payment webhook called or not
+          $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+          $wait_count = 0;
+
+          if($listing_obj && $listing_obj->is_active == 'N') {
+            do{
+              sleep(2);
+              $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+              if($listing_obj->is_active == 'Y' || $wait_count >= 5) {
+                break;
+              }
+              $wait_count ++;
+
+            }while(true);
+            
+          }
+
+        }
         $this->load->view('user/header',$data);
         $this->load->view('user/all_listings',$data);
         $this->load->view('user/footer');
@@ -466,6 +489,26 @@ class User extends CI_Controller
         $data['title'] = "Registry";
         $this->load->helper('captcha');
         create_image();  
+        $userId = $this->session->userdata('userid');
+        if(!empty($_GET['id']) && !empty($_GET['status']) && $_GET['status']=='success') {
+          //check if payment webhook called or not
+          $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+          $wait_count = 0;
+
+          if($listing_obj && $listing_obj->is_active == 'N') {
+            do{
+              sleep(2);
+              $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+              if($listing_obj->is_active == 'Y' || $wait_count >= 5) {
+                break;
+              }
+              $wait_count ++;
+
+            }while(true);
+            
+          }
+
+        }
         $this->load->view('user/header',$data);
         $this->load->view('user/guests/all_listings',$data);
         // $this->load->view('user/footer');
