@@ -172,8 +172,8 @@ class Stripe_lib
             'quantity' => 1,
           ]],
           'mode' => 'payment',
-          'success_url' => $url,
-          'cancel_url' => $url,
+          'success_url' => $url.'&status=success',
+          'cancel_url' => $url.'&status=fail',
           'client_reference_id' => $ref_id,
         ]);
        return $session;
