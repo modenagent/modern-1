@@ -15,9 +15,6 @@ class User extends CI_Controller
     function __construct() {
         parent::__construct();        
  		$this->load->library('phpmailer');		
-    ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
    
     }
     //    ramdon string function
