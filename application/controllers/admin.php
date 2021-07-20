@@ -2715,7 +2715,7 @@ MSG;
                 $package_update['price_per_month'] = $this->input->post('price_per_month');
                 $package_update['description'] = $this->input->post('description');
                 $package_update['is_active'] = $this->input->post('is_active');
-                $package_update['refferral_status'] = $this->input->post('is_active');
+                $package_update['refferral_status'] = $this->input->post('refferral_status');
                 $this->package_model->update($package_id, $package_update);
                 $this->session->set_flashdata('success', 'Package updated successfully');
                 redirect('admin/edit_package/'.$package_id);
