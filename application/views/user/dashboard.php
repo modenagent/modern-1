@@ -336,17 +336,17 @@
                               <tbody id="lp_invoice" >
                                 <tr>
                                   <td class="no">01</td>
-                                  <td class="desc"></td>
-                                  <td class="unit" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td class="desc"><h4 class="selected_pkg_title"></h4></td>
+                                  <td class="unit" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
 
-                                  <td class="total" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td class="total" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                 </tr>
                               </tbody>
                               <tfoot>
                                 <tr>
                                   <td colspan=""></td>
                                   <td colspan="2">SUBTOTAL</td>
-                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                 </tr>
 
                                 <tr id="coupandiscount" style="display:none">
@@ -358,11 +358,11 @@
                                 <tr id="totalInvoiceAmount">
                                   <td colspan="" style="border-top:1px solid #fff;"></td>
                                   <td colspan="2">GRAND TOTAL</td>
-                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                 </tr>
                               </tfoot>
                             </table>
-                            <div class="row">
+                            <div class="row coupon_div">
                               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
                                 <div class="input-group">
                                   <input class="from-field form-control" type="text" id="coupon_code" placeholder="Coupon Code" >
@@ -382,7 +382,7 @@
                   <table width="100%" border="0" style="background-color:transparent;" cellspacing="0" cellpadding="0">
                   <tr class="invoice-header">
                   <td width="45%" bgcolor=""><img src="<?php echo base_url(); ?>assets/images-2/logo.png"/></td>
-                    <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<?php echo number_format($report_price,2,".",""); ?></strong></td>
+                    <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></strong></td>
                     <td width="15%" style="color:#ffffff;" class="text-right" ><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
                   </tr>
                   </table>
@@ -395,10 +395,10 @@
 
                     <form action="<?php echo base_url(); ?>index.php?/user/cart_payment" method="POST" id="payment-form" class="form-horizontal" role="form">
                       <div class="alert alert-danger payment-errors" style="display:none"></div>
-                      <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="<?php echo $report_price; ?>">
+                      <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control selected_pkg_val" placeholder="Amount" value="<?php echo $report_price; ?>">
                       <input type="hidden" id="coupon-id" name="coupon_id">
                       <input type="hidden" id="coupon-amount" name="coupon_amount">
-                      <input type="hidden" id="order-amount" name="order_amount" value="<?php echo $report_price; ?>">
+                      <input type="hidden" id="order-amount" name="order_amount" class="selected_pkg_val" value="<?php echo $report_price; ?>">
                       <div class="form-group">
                         <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>
                         <div class="col-sm-9">
@@ -442,6 +442,7 @@
                   </div>
                                 <div class=" clearfix text-right  ">
                               <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
+                              <button type="button" style="display: none;!important;" id="stripe_chk_btn"></button>
                         </div> 
                   </div>
                 <!-- step 4 -->
@@ -475,6 +476,7 @@
         </div>
 </section>
 <!-- Screenshots section -->
+<script src="https://js.stripe.com/v3"></script>
 <script type="text/javascript">
     $(document).ready(function(){
       if ($('#user_transaction_table').length) {
@@ -527,7 +529,87 @@
         });
       }
     });
+    var pkg_prices_str = '<?php echo json_encode($packages)?>';
+    pkg_prices = JSON.parse(pkg_prices_str);
+    var stripe = Stripe('<?php echo getStripeKey(); ?>');
+    function manage_checkout_btn() {
+        var presentation_type = $("#presentation").val().toLowerCase();
+        $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
+        $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
+        // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
+        if(pkg_prices[presentation_type].referral_status == 1) {
+            $('.coupon_div').show();
+        }
+        else {
+            $('.coupon_div').hide();
+        }
+        if(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1) {
+            var discount = parseFloat($('#invoice-amount').val());
+            amount  =   0;
+            console.log(discount);
+            $('#coupandiscount td:last').html('$'+discount.toFixed(2));
+            $('#invoice-amount').val(amount);
+            if ($('#order-amount').length) {
+                $('#order-amount').val(amount);
+            }
+            $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
+            $('#payment_total').html('$'+amount.toFixed(2));
+            $('#coupandiscount').show();
+            $('#coupon_code').parent(".input-group ").hide();
+            // var info = resp.data;
+            var msg = pkg_prices[presentation_type].title+" plan(monthly) membership subscription";
+            if(pkg_prices['all'].active == 1) {
+                msg = 'All '+" plan(monthly) membership subscription";
+            }
+            $('#apply-coupan-alert').html(msg).removeClass('alert-danger').addClass('alert-success').show();
+            $('.btn-checkout').html("Download");
+            $('.btn-checkout').data("download",1);
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');
+        }
+        else {
+            $('.loader1').show();
+            $('.loader1').removeClass('hidden');
+            $('.backwrap').show();
+            $('.backwrap').removeClass('hidden');
+            data = {pkg_name:presentation_type}
+            $.ajax({
+              url:base_url + 'user/get_stripe_session',
+              method:'POST',
+              data : data,
+              dataType: 'json',
+              success:function(resp){
+                if (resp.session_id && resp.session_id !='') {
+                    var checkoutButton = document.querySelector('#stripe_chk_btn');
+                    checkoutButton.addEventListener('click', function () {
+                      stripe.redirectToCheckout({
+                       sessionId:resp.session_id
+                      });
+                    });
+                }
+              },
+              complete:function(){
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+              }
+
+          });
+            // Get session value
+
+            // var checkoutButton = document.querySelector('.btn-checkout');
+            // checkoutButton.addEventListener('click', function () {
+            //   stripe.redirectToCheckout({
+            //    sessionId:pkg_prices[presentation_type].price_id
+            //   });
+            // });
+        }
+    }
     function choose_presentation(presentation){
+        console.log(pkg_prices);
         if(presentation === 'buyer'){
             $("#config-comps-btn").hide();
             $("#presentation").val("buyer");
@@ -539,6 +621,8 @@
                 $('.common_template').show();
 
             });
+            
+
         }else if(presentation === 'marketUpdate'){
             $("#presentation").val("marketUpdate");
             $('#wizard').smartWizard("marketUpdate");
@@ -554,6 +638,8 @@
 
             });
             $("#config-comps-btn").show();
+            
+
         }
         else if(presentation === 'registry') {
             // $("#presentation").val("marketUpdate");
@@ -570,6 +656,9 @@
 
             });
             $("#config-comps-btn").hide();
+            
+
+
         }
         else {
             $("#presentation").val("seller");
@@ -582,7 +671,9 @@
 
                 
             });
-            $("#config-comps-btn").show();
+            
+
+
         }
         //Set classes
         $("#search-btn").addClass(presentation);

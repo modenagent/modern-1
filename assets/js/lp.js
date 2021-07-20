@@ -311,6 +311,7 @@ function runPMA(agentPath, logoPath) {
             console.log(response);
             var obj = JSON.parse(response);
             console.log(obj);
+            manage_checkout_btn();
             try {
                 var obj = JSON.parse(response);
                 if(obj.status=='success'){

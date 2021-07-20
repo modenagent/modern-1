@@ -92,12 +92,26 @@
                   <input type="text" class="form-control" required id="price_per_month" name="price_per_month" placeholder="Monthly subscription price" value="<?php echo $package->price_per_month; ?>">
                 
               </div>
-                  <div ><label for="package_active">Active ?</label>
-                 </div>
+              <div class="form-group">
+                <label for="">Description</label>
+                <textarea name="description" class="form-control"><?php echo $package->description; ?></textarea>
+                
+              </div>
+              <div ><label for="package_active">Active ?</label></div>
               <div class="row">
                   <div class="col-sm-2">
                     <label class="switch">
                       <input type="checkbox" class="form-control" id="package_active" name="is_active" <?php echo ($package->is_active == 1)?'checked':''; ?> value='1' style="height: 20px">
+                      <span class="slider round"></span>
+                    </label>
+                    
+                </div>
+              </div>
+              <div ><label for="referral_active">Refferal Status</label></div>
+              <div class="row">
+                  <div class="col-sm-2">
+                    <label class="switch">
+                      <input type="checkbox" class="form-control" id="referral_active" name="refferral_status" <?php echo ($package->refferral_status == 1)?'checked':''; ?> value='1' style="height: 20px">
                       <span class="slider round"></span>
                     </label>
                     

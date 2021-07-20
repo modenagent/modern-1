@@ -3,6 +3,7 @@
         "robmorgan/phinx": "^0.12.5",
         "knplabs/knp-snappy": "^1.2",
         "vlucas/phpdotenv": "^5.3",
-        "troydavisson/phrets": "^2.6"
+        "troydavisson/phrets": "^2.6",
+        "stripe/stripe-php": "^7.87"
     }
 }
