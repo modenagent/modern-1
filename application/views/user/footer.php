@@ -532,55 +532,55 @@
     // Smart Tab
     $('#tabs').smartTab({autoProgress: false,stopOnFocus:true,transitionEffect:'vSlide',
       onShowTab:function(obj){
-        var cusrrentTab = obj[0]
-        var id = $(cusrrentTab).attr('href')
-        if(id === "#tabs-5"){
-          $(".backwrap").show(function(){
-              $(".backwrap").removeClass('hidden');
-            $(".loader1").show(function(){
-                $(".loader1").removeClass('hidden');
-            });
-          });
-          var planId = $(cusrrentTab).data('planid');
-          $('#subscriptionForm-wraper').hide();
-          $.ajax({
-              url:base_url + 'index.php?/user/is_subscribed/'+planId,
-              method:'GET',
-              dataType: 'json',
-              success:function(data) {
-                  $(".backwrap").hide(function(){
-                      $(".backwrap").addClass('hidden');
-                    $(".loader1").hide(function(){
-                        $(".loader1").addClass('hidden');
-                    });
-                  });
-                  $('#api-token-code').html(data.token);
-                  $('#api-token-wrap').show();
-                  if(data.status==true){
-                      var info = data.data;
-                      $('.plan-title').html(info.plan_title);
-                      $('.plan-interval').html(info.interval);
-                      $('.plan-ends').html(info.current_period_end);
-                      $('#subscribed-wrap').show();
-                      $('#ref-code').html(data.ref_code);
-                      $('#ref-code-wrap').show();
-                      if(info.cancel_at_period_end==0)//check if recurring billing is On
-                          $('#subscribed-wrap .recurring-billing').show();
-                      //Do not show cancel button when it is compnay's subscription plan
-                      if(data.company_plan !== undefined && data.company_plan){
-                          $('#cancelBtnWrap').hide();
-                      }
+        // var cusrrentTab = obj[0]
+        // var id = $(cusrrentTab).attr('href')
+        // if(id === "#tabs-5"){
+        //   $(".backwrap").show(function(){
+        //       $(".backwrap").removeClass('hidden');
+        //     $(".loader1").show(function(){
+        //         $(".loader1").removeClass('hidden');
+        //     });
+        //   });
+        //   var planId = $(cusrrentTab).data('planid');
+        //   $('#subscriptionForm-wraper').hide();
+        //   $.ajax({
+        //       url:base_url + 'index.php?/user/is_subscribed/'+planId,
+        //       method:'GET',
+        //       dataType: 'json',
+        //       success:function(data) {
+        //           $(".backwrap").hide(function(){
+        //               $(".backwrap").addClass('hidden');
+        //             $(".loader1").hide(function(){
+        //                 $(".loader1").addClass('hidden');
+        //             });
+        //           });
+        //           $('#api-token-code').html(data.token);
+        //           $('#api-token-wrap').show();
+        //           if(data.status==true){
+        //               var info = data.data;
+        //               $('.plan-title').html(info.plan_title);
+        //               $('.plan-interval').html(info.interval);
+        //               $('.plan-ends').html(info.current_period_end);
+        //               $('#subscribed-wrap').show();
+        //               $('#ref-code').html(data.ref_code);
+        //               $('#ref-code-wrap').show();
+        //               if(info.cancel_at_period_end==0)//check if recurring billing is On
+        //                   $('#subscribed-wrap .recurring-billing').show();
+        //               //Do not show cancel button when it is compnay's subscription plan
+        //               if(data.company_plan !== undefined && data.company_plan){
+        //                   $('#cancelBtnWrap').hide();
+        //               }
                       
-                  } else {
-                      $('#subscriptionForm-wraper').show();
-                      if(data.message !== undefined){
-                          $('#plan-msg label').html(data.message);
-                      }
-                  }
-              }
-          });
-        }
-        return true;
+        //           } else {
+        //               $('#subscriptionForm-wraper').show();
+        //               if(data.message !== undefined){
+        //                   $('#plan-msg label').html(data.message);
+        //               }
+        //           }
+        //       }
+        //   });
+        // }
+        // return true;
       }
     });
     /** Tabs content was messedup for a second before smartTab initialization 
@@ -1074,7 +1074,7 @@
   });
   function check_subscription(){
       $.ajax({
-          url:base_url + 'index.php?/user/is_subscribed/prem_lp_user',
+          url:base_url + '/user/is_subscribed/prem_lp_user',
           method:'GET',
           dataType: 'json',
           success:function(resp){
