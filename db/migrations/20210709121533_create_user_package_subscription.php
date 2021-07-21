@@ -25,7 +25,7 @@ final class CreateUserPackageSubscription extends AbstractMigration
               ->addColumn('amount', 'decimal',['precision'=>8,'scale'=>2])
               ->addColumn('interval', 'string')
               ->addColumn('is_live', 'boolean')
-              ->addForeignKey('user_id', 'lp_registry_master', 'id',['delete'=> 'SET_NULL', 'update'=> 'CASCADE'])
+              ->addForeignKey('user_id', 'lp_user_mst', 'id',['delete'=> 'SET_NULL', 'update'=> 'CASCADE'])
               ->addForeignKey('package_id', 'lp_packages', 'id',['delete'=> 'SET_NULL', 'update'=> 'CASCADE'])
               ->addTimestamps()
               ->create();
