@@ -2707,7 +2707,7 @@ MSG;
         if ($is_admin) {
 
             $this->load->model('package_model');
-
+            $package = $this->package_model->get($package_id);
             if($this->input->post()) {
                 $package_update = array();
                 $package_update['title'] = $this->input->post('title');
@@ -2717,13 +2717,43 @@ MSG;
                 $package_update['is_active'] = $this->input->post('is_active');
                 $package_update['refferral_status'] = $this->input->post('refferral_status');
                 $this->package_model->update($package_id, $package_update);
+                // Check and update product description and price on stripe
+                $this->load->library('Stripe_lib');
+                $stripe = new Stripe_lib();
+                $price_created = false;
+                $product_id = '';
+                if(!empty($package->stripe_price_id)) {
+                    $price_obj = $stripe->getSubscriptionPrice($package->stripe_price_id);
+                      $product_obj = $stripe->getSubscriptionProduct($package->stripe_product_id);
+                      if($price_obj && $product_obj->active) {
+                        //check price object amount if not matched then update price
+                        if(floatval($package->price_per_month) != (floatval($price_obj->unit_amount_decimal)/100) || !($price_obj->active)) {
+                          $price_resp = $stripe->updateSubscriptionPrice($package->stripe_product_id,$package->price_per_month);
+                          $update_package['stripe_price_id'] = $price_resp['price_id'];
+                          $this->package_model->update($package->id,$update_package);
+                        }
+                        $price_created = true;
+                        $product_id = $package->stripe_product_id;
+                      }
+                    }
+
+                    if(!($price_created)) {
+                      $stripe_response = $stripe->createSubscriptionPrice($package->title,$package->price_per_month);
+                      $update_package = array();
+                      $update_package['stripe_product_id'] = $stripe_response['product_id'];
+                      $update_package['stripe_price_id'] = $stripe_response['price_id'];
+                      $this->package_model->update($package->id,$update_package);
+                      $product_id = $stripe_response['product_id'];
+                    }
+                    $stripe->updateSubscriptionProduct($product_id,$this->input->post('title'));
+                
                 $this->session->set_flashdata('success', 'Package updated successfully');
                 redirect('admin/edit_package/'.$package_id);
                 exit();
 
             }
 
-            $package = $this->package_model->get($package_id);
+            
             // var_dump($packages);die;
             $data['package'] = $package;
             // $data['report_price'] = $packages['reports'];

@@ -49,6 +49,23 @@ class Stripe_lib
     }
 
     /**
+     * Update Product Object for Subscription 
+     * 
+     * @param  string       Product Id
+     * @param  string       Product Name
+    */
+    public function updateSubscriptionProduct($productId,$productName)
+    {
+        
+        
+        $product = $this->stripe->products->update(
+            $productId,
+            ['name' => $productName]
+          );
+        return $product;
+    }
+
+    /**
      * Create Price Object for Subscription 
      * 
      * @param  string       Product title
