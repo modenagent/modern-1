@@ -26,6 +26,13 @@
                 <label for="">Coupon Code</label>                
                   <input type="text" class="form-control alphanumeric" id="coupon_code" name="coupon_code" placeholder="Coupon Code" value="<?php echo $coupon->coupon_code; ?>">                
               </div>
+
+              <div class="form-group">
+                <label for="">Overall Max Limit</label>                
+                  <input type="number" class="form-control alphanumeric" id="limit_all" name="limit_all" placeholder="Overall Max Limit" value="<?php echo $coupon->limit_all; ?>">                
+              </div>
+
+
               <div class="form-group">
                 <label for="">Coupon Start Date</label>
                  
@@ -45,8 +52,12 @@
                   <input type="text" class="form-control" id="coupon_des" name="coupon_des" placeholder="Coupon Description" value="<?php echo $coupon->coupon_descr; ?>">
                 
               </div>
-            </div>
-            <div class="col-md-6">
+
+              <div class="form-group">
+                <label for="">Max Limit / User</label>                
+                  <input type="number" class="form-control alphanumeric" id="limit_user" name="limit_user" placeholder="Max Limit / User" value="<?php echo $coupon->limit_user; ?>">                
+              </div>
+            
               <div class="form-group">
                 <label for="" >Coupon End Date</label>                
                   <input type="text" class="form-control" id="enddate" name="enddate" placeholder="End Date" value="" >
