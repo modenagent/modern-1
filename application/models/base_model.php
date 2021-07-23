@@ -696,23 +696,24 @@ class Base_model extends CI_Model
             'coupon_id_fk'=> $couponId,
             'user_id'=> $userId,
         );
-        $query = $this->db->where($data)->get('lp_coupon_redeem_log');
-        $logData = $query->row();
-        if(empty($logData)){
-           $data['redeem_count'] = 1;$data['created_at'] = date("Y-m-d H:m:s");
+        // $query = $this->db->where($data)->get('lp_coupon_redeem_log');
+        // $logData = $query->row();
+         $data['redeem_count'] = 1;$data['created_at'] = date("Y-m-d H:m:s");
            $this->db->insert('lp_coupon_redeem_log',$data);
            $_logId = $this->db->insert_id();
            if($_logId){
-              $this->add_coupon_redeem_log_history($_logId); 
+              $this->add_coupon_redeem_log_history($_logId,$projectId); 
            }
-        } else {
-           $this->db->set('redeem_count', '`redeem_count`+1', FALSE);
-           $this->db->where('id',$logData->id);
-           $res = $this->db->update('lp_coupon_redeem_log');
-           if($res){
-               $this->add_coupon_redeem_log_history($logData->id,$projectId);
-           }
-        }
+        // if(empty($logData)){
+          
+        // } else {
+        //    $this->db->set('redeem_count', '`redeem_count`+1', FALSE);
+        //    $this->db->where('id',$logData->id);
+        //    $res = $this->db->update('lp_coupon_redeem_log');
+        //    if($res){
+        //        $this->add_coupon_redeem_log_history($logData->id,$projectId);
+        //    }
+        // }
     }
     private function add_coupon_redeem_log_history($redeem_log_id,$projectId){
         $this->db->select('project_id_pk,report_type,project_name,property_address')->where('project_id_pk',$projectId);

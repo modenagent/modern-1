@@ -725,6 +725,39 @@ MSG;
 
                 }
                 $data['sso_records'] = $get_sso_record;
+                if($data['user']->role_id_fk == 3) {
+                    // Get referral code details
+                    $this->load->model('coupon_model');
+                    
+                    //Check referral code exist or not
+                    $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                    if(!$ref_code_obj) {
+                        $referral_code = 'REF'.str_pad($uid, 5, "0", STR_PAD_LEFT);
+                        $get_by_array=[
+                            'coupon_code'=>$referral_code,
+                            'sales_rep_id'=>null,
+                        ];
+                        $ref_code_obj = $this->coupon_model->get_by($get_by_array);
+                        if(!$ref_code_obj) {
+                            //Create
+                        
+                            $tmp_array['coupon_code'] = $referral_code;
+                            $tmp_array['coupon_name'] = $referral_code;
+                            $tmp_array['coupon_descr'] = 'Coupon for rererral program';
+                            $tmp_array['start_date'] = date('Y-m-d');
+                            $tmp_array['end_date'] = null;
+                            $tmp_array['uses_per_user'] = 10;
+                            $tmp_array['coupon_amt'] = 0;
+                            $tmp_array['sales_rep_id'] = $uid;
+                            $this->coupon_model->insert($tmp_array);
+
+                            $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                        }
+                        
+                    }
+
+                    $data['ref_code_obj']=$ref_code_obj;
+                }
             }
 
 
@@ -893,6 +926,36 @@ MSG;
                     "status" => "success",
                     "msg" => "Updated successfully."
                 );
+                //Update refferal code
+                if($roleId ==3 && !empty($this->input->post('ref_id'))) {
+                    $this->load->model('coupon_model');
+                    $referral_code = trim($this->input->post('coupon_code'));
+                    //Check duplication
+                    $check_array = [
+                        'coupon_code'=>$referral_code,
+                        'sales_rep_id !='=>$uid
+                    ];
+                    $check_ref = $this->coupon_model->get_by($check_array);
+                    if($check_ref && !empty($check_ref->sales_rep_id)) {
+                        $resp = array(
+                            "status" => "error",
+                            "msg" => "User data updated but can not update Refferal code due to duplication"
+                        );
+                    }
+                    else {
+                        $ref_id = $this->input->post('ref_id');
+                        $referral_data = [
+                            'coupon_code' =>$referral_code,
+                            'limit_all' => $this->input->post('limit_all'),
+                            'limit_user' => $this->input->post('limit_user'),
+                            'sales_rep_id' => $uid,
+                        ];
+
+                        $this->coupon_model->update($ref_id,$referral_data);
+                    }
+
+                }
+                
                 echo json_encode($resp);
             }
         }else{
@@ -1912,6 +1975,9 @@ MSG;
                 $s_date = date('Y-m-d', strtotime($startdate));
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
+                $limit_all = (int)$this->input->post('limit_all');
+                $limit_user = (int)$this->input->post('limit_user');
+
 
                 if ($e_date<$s_date) {
                     $resp = array(
@@ -1932,7 +1998,9 @@ MSG;
                         'coupon_descr' => $coupon_des,
                         'start_date' => $s_date,
                         'end_date' => $e_date,
-                        'coupon_amt' =>  $coupon_amt
+                        'coupon_amt' =>  $coupon_amt,
+                        'limit_all' => $limit_all,
+                        'limit_user' => $limit_user
                     );
                     $result = $this->base_model->insert_one_row($table,$data);
                     if($result){
@@ -1979,18 +2047,36 @@ MSG;
 
                 $coupon_id = mysqli_real_escape_string($this->dbConn, $postedArr['cid']);
                 $coupon_name = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_name']);
-                $coupon_code = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_code']);
+                $coupon_code = mysqli_real_escape_string($this->dbConn, trim($postedArr['coupon_code']));
                 $coupon_amt = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_amt']);
                 $coupon_des = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_des']);
                 $startdate = mysqli_real_escape_string($this->dbConn, $postedArr['startdate']);
                 $s_date = date('Y-m-d', strtotime($startdate));
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
+                $limit_all = (int)$this->input->post('limit_all');
+                $limit_user = (int)$this->input->post('limit_user');
 
                 if ($e_date<$s_date) {
                     $resp = array(
                         'status'=>'error',
                         'msg'=>'Coupon start date can not greater than end date.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
+
+                $check_array = [
+                    'coupon_code'=>$coupon_code,
+                    'coupon_id_pk !='=>$coupon_id
+                ];
+                $this->load->model('coupon_model');
+                $check_ref = $this->coupon_model->get_by($check_array);
+                if($check_ref){
+
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Coupon code already exist'
                     );
                     echo json_encode($resp);
                     exit();
@@ -2003,7 +2089,10 @@ MSG;
                     'coupon_descr' => $coupon_des,
                     'start_date' => $s_date,
                     'end_date' => $e_date,
-                    'coupon_amt' =>  $coupon_amt
+                    'coupon_amt' =>  $coupon_amt,
+                    'coupon_amt' =>  $coupon_amt,
+                    'limit_all' => $limit_all,
+                    'limit_user' => $limit_user
                 );
                 $where = array('coupon_id_pk'=> $coupon_id);
                 $result = $this->base_model->update_record_by_id($table,$data,$where);

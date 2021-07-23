@@ -142,7 +142,45 @@
                   <td>State</td>
                   <td><input type="text" class="form-control" placeholder="State" name="cstate" id="cstate" value="<?php echo $user->company_state; ?>"></td>
                 </tr>
-
+              </tbody>
+              <?php if($ref_code_obj): ?>
+              <thead>
+                <tr>
+                  <th colspan="3">Referral Information 
+                  
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <input type="hidden" name="ref_id" id="ref_id" value="<?php echo $ref_code_obj->coupon_id_pk; ?>">
+                  <td>Referral Code</td>
+                  <td>
+                    <input type="text" name="referral_code" class="form-control" placeholder="Referral Code" id="referral_code" value="<?php echo $ref_code_obj->coupon_code; ?>" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Overall Max Limit </td>
+                  <td>
+                    <input type="number" name="limit_all" class="form-control" placeholder="Overall Max Limit" id="limit_all" value="<?php echo $ref_code_obj->limit_all; ?>" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>Max Limit / User </td>
+                  <td>
+                    <input type="number" name="limit_user" class="form-control" placeholder="Max Limit / User" id="limit_user" value="<?php echo $ref_code_obj->limit_user; ?>" />
+                  </td>
+                </tr>
+              </tbody>
+            <?php endif; ?>
+              <thead>
+                <tr>
+                  <th colspan="3">Widget related Information 
+                  
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
                 <tr>
                   <td>Company Url</td>
                   <td><input type="text" class="form-control" placeholder="Company Url" name="curl" id="curl" value="<?php echo $user->company_url; ?>"></td>
