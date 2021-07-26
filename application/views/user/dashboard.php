@@ -568,45 +568,13 @@
             $('.loader1').addClass('hidden');
             $('.backwrap').hide();
             $('.backwrap').addClass('hidden');
+        } else {
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');
         }
-        else {
-            $('.loader1').show();
-            $('.loader1').removeClass('hidden');
-            $('.backwrap').show();
-            $('.backwrap').removeClass('hidden');
-            data = {pkg_name:presentation_type}
-            $.ajax({
-              url:base_url + 'user/get_stripe_session',
-              method:'POST',
-              data : data,
-              dataType: 'json',
-              success:function(resp){
-                if (resp.session_id && resp.session_id !='') {
-                    var checkoutButton = document.querySelector('#stripe_chk_btn');
-                    checkoutButton.addEventListener('click', function () {
-                      stripe.redirectToCheckout({
-                       sessionId:resp.session_id
-                      });
-                    });
-                }
-              },
-              complete:function(){
-                $('.loader1').hide();
-                $('.loader1').addClass('hidden');
-                $('.backwrap').hide();
-                $('.backwrap').addClass('hidden');
-              }
-
-          });
-            // Get session value
-
-            // var checkoutButton = document.querySelector('.btn-checkout');
-            // checkoutButton.addEventListener('click', function () {
-            //   stripe.redirectToCheckout({
-            //    sessionId:pkg_prices[presentation_type].price_id
-            //   });
-            // });
-        }
+        
     }
     function choose_presentation(presentation){
         console.log(pkg_prices);

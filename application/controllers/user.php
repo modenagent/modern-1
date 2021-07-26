@@ -258,6 +258,22 @@ class User extends CI_Controller
     }
     public function get_stripe_session() {
       $pkg_name = $this->input->post('pkg_name');
+      $coupon_id = $this->input->post('coupon_id');
+      $coupon_amount = 0;
+      if($coupon_id > 0) {
+        $this->load->model('coupon_model');
+        $coupon_obj = $this->coupon_model->get($coupon_id);
+        if($coupon_obj) {
+          $coupon_amount = (float)$coupon_obj->coupon_amt;
+        }
+        else {
+          $coupon_id = 0;
+        }
+
+      }
+      else {
+        $coupon_id = 0;
+      }
       $this->load->model('package_model');
       $packages_all_value = $this->package_model->get_by(['package'=>$pkg_name]);
       $return_response['session_id'] = '';
@@ -289,8 +305,15 @@ class User extends CI_Controller
             $url = base_url('user/guests').'?id='.$this->session->userdata('project_id');
           }
           // $url = base_url('');
+          //Modify Value
+          $payment_value = $packages_all_value->price;
+          $ref_id = $this->session->userdata('project_id').'_'.$coupon_id;
 
-          $stripeSession = $stripe->createSession($product_id,$packages_all_value->price,$this->session->userdata('project_id'),$url);
+          if($coupon_id > 0 && $coupon_amount > 0) {
+            $payment_value = $payment_value - $coupon_amount;
+          } 
+
+          $stripeSession = $stripe->createSession($product_id,$payment_value,$ref_id,$url);
           $return_response['session_id'] = $stripeSession->id;
         }
         echo json_encode($return_response);
@@ -836,19 +859,39 @@ class User extends CI_Controller
           }
         }
         else {
-          $ref_id = $subscription->client_reference_id;
-          if($ref_id) {
+          $ref_id_str = $subscription->client_reference_id;
+          if($ref_id_str) {
+            $ref_id_array = explode('_', $ref_id_str);
+            $ref_id = $ref_id_array[0];
+            $coupon_id = 0;
+            if(count($ref_id_array)>1) {
+
+              $coupon_id = $ref_id_array[1];
+
+            }
             $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $ref_id));
             $check_entry = $this->base_model->get_record_by_id('lp_my_cart',array('txn_id' => $subscription->id));
             if($listing_obj && !($check_entry)) {
+              $coupon_amount = 0;
+              if($coupon_id>0) {
+                $this->load->model('coupon_model');
+                $coupon_obj = $this->coupon_model->get($coupon_id);
+                if($coupon_obj) {
+                  $coupon_amount = (float)$coupon_obj->coupon_amt;
+                }
+                else {
+                  $coupon_id = 0;
+                }
+              }
+
               $lp_cart_data = array(
                         'user_id_fk' => $listing_obj->user_id_fk,
                         'paid_on' => date('Y-m-d'),
                         'txn_id' => $subscription->id,
                         'is_success' => 'Y',
-                        'total_amount' => ($subscription->amount_total)/100,
+                        'total_amount' => ((($subscription->amount_total)/100)+$coupon_amount),
                         
-                        'coupon_id_fk' => 0,
+                        'coupon_id_fk' => $coupon_id,
                         'project_id_fk' => $ref_id
                       );
               $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $listing_obj->user_id_fk));
@@ -857,15 +900,16 @@ class User extends CI_Controller
               if($result) {
                 $lastId = $this->base_model->get_last_insert_id();
                 $invoice_no = $this->generateInvoice($listing_obj->user_id_fk); 
+
                 $lp_invoice_data = array(
                   'invoice_num' => 'INV'.$invoice_no,
                   'cart_id_fk' => $lastId,
                   'user_id_fk' => $listing_obj->user_id_fk,
-                  'invoice_amount' => ($subscription->amount_total)/100,
+                  'invoice_amount' => ((($subscription->amount_total)/100)+$coupon_amount),
                   'invoice_to' => $users[0]['first_name'],
                   'invoice_addr' => $users[0]['city'],
                   'order_amount' => ($subscription->amount_total)/100,
-                  'coupon_amount' => 0,
+                  'coupon_amount' => $coupon_amount,
                   );
                 $result2 = $this->base_model->insert_one_row('lp_invoices',$lp_invoice_data);
 
@@ -873,6 +917,9 @@ class User extends CI_Controller
 
                 $updateProject = array('is_active'=>'Y');
                 $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$ref_id));
+                if($coupon_id>0) {
+                  $this->base_model->add_coupon_redeem_log($coupon_id,$listing_obj->user_id_fk,$ref_id);
+                }
               }
 
             }

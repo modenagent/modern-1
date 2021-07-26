@@ -1027,7 +1027,48 @@
         return true;
       }
       else {
-        $("#stripe_chk_btn").trigger("click");
+
+        //Call Session id
+        var presentation_type = $("#presentation").val().toLowerCase();
+        $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
+        $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
+        // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
+        
+        if(!(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1)) {
+
+            $('.loader1').show();
+            $('.loader1').removeClass('hidden');
+            $('.backwrap').show();
+            $('.backwrap').removeClass('hidden');
+            var coupon_id = $('#coupon-id').val();
+            data = {pkg_name:presentation_type,coupon_id:coupon_id}
+            $.ajax({
+              url:base_url + 'user/get_stripe_session',
+              method:'POST',
+              data : data,
+              dataType: 'json',
+              success:function(resp){
+                if (resp.session_id && resp.session_id !='') {
+                    var checkoutButton = document.querySelector('#stripe_chk_btn');
+                    checkoutButton.addEventListener('click', function () {
+                      stripe.redirectToCheckout({
+                       sessionId:resp.session_id
+                      });
+                    });
+                    $("#stripe_chk_btn").trigger("click");
+                }
+              },
+              complete:function(){
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+              }
+
+          });
+        }
+
+        //$("#stripe_chk_btn").trigger("click");
       }
       // console.log("Bypassed");
       // $(this).parents("#step-4").find('.order-detail').hide("slow");

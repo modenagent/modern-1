@@ -3,6 +3,7 @@
 class Coupon_model extends MY_Model
 {
     public $_table = 'lp_coupon_mst';
+    public $primary_key = 'coupon_id_pk';
     public function __construct()
     {
         parent::__construct();
