@@ -33,13 +33,13 @@ class Coupon extends CI_Controller {
                             }
                         }
                     }
-                    $sql = "SELECT c.*,log.redeem_count,count(c.coupon_code) from lp_coupon_mst as c 
+                    $sql = "SELECT c.*,log.redeem_count,count(c.coupon_id_pk) from lp_coupon_mst as c 
                             LEFT JOIN lp_coupon_redeem_log as log ON log.coupon_id_fk = c.coupon_id_pk AND log.user_id={$userId} AND year(log.created_at) = year(curdate()) AND month(log.created_at) = month(curdate())
                             WHERE c.coupon_code = '{$coupon_code}' 
                             GROUP BY c.coupon_code
                             HAVING (c.end_date >= '".date("Y-m-d")."' OR c.end_date IS NULL)
                             AND (c.limit_user = 0 OR log.redeem_count IS NULL OR c.limit_user > count(log.redeem_count)) ";
-                    $sql1 = "SELECT c.*,log.redeem_count,count(c.coupon_code) from lp_coupon_mst as c 
+                    $sql1 = "SELECT c.*,log.redeem_count,count(c.coupon_id_pk) from lp_coupon_mst as c 
                             LEFT JOIN lp_coupon_redeem_log as log ON log.coupon_id_fk = c.coupon_id_pk AND year(log.created_at) = year(curdate()) AND month(log.created_at) = month(curdate())
                             WHERE c.coupon_code = '{$coupon_code}' 
                             GROUP BY c.coupon_code
