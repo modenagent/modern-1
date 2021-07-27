@@ -76,23 +76,6 @@ button.stripe-button-el {
   </div>
   <div class="package-div">
     <div class="row">
-      <!-- <div class="col-md-3">
-        <div class="block-heading">Pay per go</div>
-          <div class="block-details">
-            <div class="block-description">
-              <ul>
-                <?php foreach ($packages as $package) {
-                  if($package->package == 'all') {continue;}
-                ?>
-                <li><?php echo $package->title; ?> : $<?php echo number_format($package->price,2); ?> / report</li>
-                <?php } ?>
-              </ul>
-          </div>
-        </div>
-        <div class="block-footer">
-          <button type="button" class="btn">Select</button>
-        </div>
-      </div> -->
       <script src="https://js.stripe.com/v3"></script>
       <div class="col-md-12">
         <div class="block-heading">Monthly Subscription</div>
@@ -120,29 +103,7 @@ button.stripe-button-el {
                       </form>
                       <?php endif; ?>
                     <?php else : ?>
-                    <!-- <form id="subscription_Form" action="<?php echo base_url('user/subscribe') ?>" method="post">
-                      <span class="payment-errors"></span>
-                      <span class="payment-success"></span>
-                        
-                      <input type="hidden"  data-stripe="plan_id" name="plan_id" value="<?php echo $package->id; ?>" /> 
-                      <input type="hidden"  data-stripe="email" name="email" value="<?php echo $agentInfo->email; ?>" /> 
-                      <script
-                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                        data-key="<?=getStripeKey()?>"
-                        data-amount="<?php echo ($package->price_per_month*100) ?>"
-                        data-name="modernagent.io"
-                        data-description="<?php echo $package->title; ?>:<?php echo $package->price_per_month ?>/Month"
-                        data-email="<?php echo $agentInfo->email; ?>"
-                        data-image=""
-                        data-locale="auto"
-                        data-zip-code="false" data-label="Select & Pay">
-                      </script>
-                      <div class="row">
-                        <div class="col-sm-12">
-                          <div class="alert alert-success" style="display:none"></div>
-                        </div>
-                    </div>
-                  </form> -->
+                    
                   <button type="button" class="btn btn-default" id="checkout-button-<?php echo $package->id;?>" <?php echo ($active_all)?'disabled':''; ?>>Subscribe</button>
                   <script type="text/javascript">
                     var stripe = Stripe('<?php echo getStripeKey(); ?>');

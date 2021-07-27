@@ -399,37 +399,7 @@
                       <input type="hidden" id="coupon-id" name="coupon_id">
                       <input type="hidden" id="coupon-amount" name="coupon_amount">
                       <input type="hidden" id="order-amount" name="order_amount" class="selected_pkg_val" value="<?php echo $report_price; ?>">
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>
-                        <div class="col-sm-9">
-                          <input type="text" size="80" data-stripe="name" class="form-control" placeholder="Card Holder's Name" id="cardname">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-number">Card Number:</label>
-                        <div class="col-sm-9">
-                          <input type="text" size="20" data-stripe="number" class="form-control" placeholder="Card Number." id="cardno">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="cvv">Card CVV:</label>
-                        <div class="col-sm-2">
-                          <input type="text" size="4" data-stripe="cvc" class="form-control" placeholder="CVV" id="cardcvv">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="expiry-month">Expiration Date:</label>
-                        <div class="col-sm-9">
-                          <div class="row">
-                            <div class="col-xs-6">
-                              <input type="text" size="2" data-stripe="exp-month" class="form-control" placeholder="Month" id="expmonth">
-                            </div>
-                            <div class="col-xs-6">
-                              <input type="text" size="4" data-stripe="exp-year" class="form-control" placeholder="Year" id="expyear">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9" id="paynow">
                           <button type="button" class="btn btn-lp pay" id="paynow">Checkout & Download</button>
