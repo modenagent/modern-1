@@ -26,7 +26,7 @@ class Coupon extends CI_Controller {
                             $validParentId = $this->base_model->check_existent("lp_user_mst",array('user_id_pk'=>$parentId,'role_id_fk'=>3));
                             if($validParentId){
                                 $this->load->model('admin_model');
-                                $this->admin_model->add_referral_code($coupon_code);
+                                $this->admin_model->add_referral_code($parentId);
                             } else {
                                echo json_encode(array('status'=>'failed', 'message'=>'Please enter a valid coupon code'));	
                                exit;
