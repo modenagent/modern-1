@@ -1750,11 +1750,14 @@ tr.invoice-header td {
 
 #choose-presentation .btn-lp {
     font-family: Roboto;
-    padding: 15px 24px;
+    padding: 22px 70px;
     background: none;
-    border: 2px solid #fff; //border-radius: 4px;
+    border: 2px solid #fff; 
+    border-radius: 4px;
     font-weight: 500;
-    font-size: 18px
+    font-size: 21px;
+    min-width: 330px;
+    width: 330px;
 }
 
 #choose-presentation .btn-lp {
@@ -1762,7 +1765,6 @@ tr.invoice-header td {
 }
 
 #choose-presentation .btn-lp:hover {
-    padding: 15px 24px;
     background-color: rgba(255, 255, 255, 0.3);
     border: 2px solid #fff;
     font-weight: 500;

@@ -22,7 +22,7 @@
                             <div class="step-0-content clearfix">
                                 <h2>How Can We Help You <br/>Make an Impression?</h2>
                                 
-                                <div class="buttonholder">
+                                <div class="buttonholder col-md-10 col-md-offset-1">
                                     <span class="input-group-btn">
                                         <button class="btn btn-lp" type="button" style="" onclick="choose_presentation('buyer');"> Buyers Presentation </button>
                                     </span>

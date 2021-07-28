@@ -7,15 +7,11 @@
   }
   .package-div {
     color: #fff;
-    background: rgba(0, 0, 0, .5);
   }
   .block-heading {
     padding: 15px;
     text-align: center;
-    font-size: 18px;
-    text-decoration: underline;
-    background: #fff;
-    color: #111;
+    font-size: 22px;
   }
 
   .block-description li {
@@ -25,9 +21,8 @@
 
   .block-sub-heading {
       padding: 7px;
-      background: rgba(255, 255, 255, 0.7)!important;
       text-align: center;
-      font-size: 12px;
+      font-size: 17px;
       font-weight: bold;
   }
 
@@ -37,7 +32,9 @@
 
   .block-description {
       min-height: 45px;
-      margin: 10px 0px;
+      margin: 30px 0px;
+      font-size: 16px;
+      text-align: center;
   }
 
   .block-footer .btn {
@@ -50,9 +47,10 @@
   }
 
   .block-price {
-      font-size: 14px;
+      font-size: 17px;
       text-align: center;
-      margin: 10px 0px;
+      margin: 20px 0px;
+      font-weight: 700;
   }
   .block-description ul {
     padding-inline-start: 10px;
@@ -60,13 +58,24 @@
   .stripe-button-el span {
     background: none;
     box-shadow: none;
-}
+  }
 
-button.stripe-button-el {
+  button.stripe-button-el {
+      background: none;
+      border: 1px solid #fff;
+      box-shadow: none;
+  }
+  .package-div table {
     background: none;
-    border: 1px solid #fff;
-    box-shadow: none;
-}
+  }
+  .package-div table td {
+      border-right: 1px solid;
+      width: 20%;
+      vertical-align: middle;
+  }
+  .package-div table td:last-child {
+       border-right: 0px;
+  }
 </style>
 <div class="content-inner clearfix" style="vertical-align:top;">
   <div class="row">
@@ -82,9 +91,18 @@ button.stripe-button-el {
         <div class="block-details">
           <table>
             <tr>
-              <?php foreach ($packages as $package) {
+              <?php 
+                $active_lable = false;
+                foreach ($packages as $package) {
                 ?>
-                <td><div class="block-sub-heading"><?php echo $package->title; ?><?php echo (isset($active_plans[$package->id])) ? '<span class="badge" style="margin-left:10px;background:#5cb85c">Active</span>' : '' ?></div>
+                <td><div class="block-sub-heading"><div><?php echo $package->title; ?></div>
+                  <?php
+                    if(isset($active_plans[$package->id])) {
+                      echo '<span class="badge" style="margin-left:10px;background:#5cb85c">Active</span>';
+                      $active_lable = true;
+                    }
+                  ?>
+                  </div>
                   <div class="block-description">
                     <?php echo $package->description; ?>
                   </div>
@@ -126,8 +144,19 @@ button.stripe-button-el {
                   </div>
                 </td>
               <?php } ?>
+
             </tr>
           </table>
+
+          <?php
+            if($active_lable) {
+              ?>
+              <style type="text/css">
+                .block-sub-heading {
+                  min-height: 55px;
+                }
+              </style>
+            <?php }?>
           
         </div>
       </div>
