@@ -28,7 +28,7 @@ text-overflow: ellipsis;
             <p id="accountupdate">Select a theme</p>
           </a>
         </li>
-        <li><a href="#tabs-5" id="susb_tab" data-planid="<?php echo $plan['id']; ?>">Membership<br />
+        <li><a href="#tabs-5" id="susb_tab" data-planid="1">Membership<br />
             <p id="accountupdate">Select a plan</p>
           </a>
         </li>

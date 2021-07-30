@@ -152,9 +152,9 @@ class Stripe_lib
      * @param  mixed       Customer data
      * @param  string      Stripe Token
     */
-    public function createCustomer($customer_data,$token)
+    public function createCustomer($customer_data,$token = null)
     {
-        $customer = $this->stripe->customers->create([
+      $customer_array = [
           'email' => $customer_data['email'],
           'name' => $customer_data['name'],
           'address' => [
@@ -163,9 +163,13 @@ class Stripe_lib
             'city' => 'San Francisco',
             'state' => 'CA',
             'country' => 'US',
-          ],
-          'source' => $token,
-        ]);
+          ]
+        ];
+        if($token) {
+          $customer_array['source'] = $token;
+        }
+        $customer = $this->stripe->customers->create($customer_array);
+
 
         return $customer;
     }
@@ -197,6 +201,68 @@ class Stripe_lib
     }
 
     /**
+     * Create Payment Intent
+     * 
+     * @param  float      Price
+     * @param  string     description
+    */
+    public function createPaymentIntent($price,$description)
+    {
+       $paymentObj = $this->stripe->paymentIntents->create([
+          'amount' => ($price*100),
+          'currency' => 'usd',
+          'description' =>$description
+        ]);
+       return $paymentObj;
+    }
+
+    /**
+     * Retrive Payment Intent
+     * 
+     * @param  string     payment id
+    */
+    public function getPaymentIntent($payment_id)
+    {
+       $paymentObj = $this->stripe->paymentIntents->retrieve(
+          $payment_id,
+          []
+        );
+       return $paymentObj;
+    }
+
+    /**
+     * Set Payment Id
+     * 
+     * @param  string      Customer Id
+     * @param  string      Payment Id
+    */
+    public function setPaymentMethod($customer_id,$payment_id)
+    {
+        
+        try {
+          $payment_method = $this->stripe->paymentMethods->retrieve(
+            $payment_id
+          );
+          $payment_method->attach([
+            'customer' => $customer_id,
+          ]);
+        } catch (Exception $e) {
+          return json_encode($e->jsonBody);
+        }
+
+
+        // Set the default payment method on the customer
+        $this->stripe->customers->update($customer_id, [
+          'invoice_settings' => [
+            'default_payment_method' => $payment_id
+          ]
+        ]);
+        return true;
+    }
+
+
+
+    /**
      * Create Subscription
      * 
      * @param  string      Customer Id
@@ -211,6 +277,8 @@ class Stripe_lib
           'items' => [[
             'price' => $price_id,
           ]],
+          'payment_behavior' => 'default_incomplete',
+          'expand' => ['latest_invoice.payment_intent'],
         ]);
 
         return $subscription;

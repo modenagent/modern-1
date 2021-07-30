@@ -350,25 +350,25 @@
         
       // stripe
     var $form = $('#payment-form');
-    function stripeResponseHandler(status, response) {
-      if (response.error) {
-        // Show the errors on the form
-        console.log(response.error);
-        $form.find('.payment-errors').text(response.error.message).show();
-        $form.find('button').prop('disabled', false);
-        jQuery(".loader1").hide();
-        jQuery(".backwrap").hide();
+    // function stripeResponseHandler(status, response) {
+    //   if (response.error) {
+    //     // Show the errors on the form
+    //     console.log(response.error);
+    //     $form.find('.payment-errors').text(response.error.message).show();
+    //     $form.find('button').prop('disabled', false);
+    //     jQuery(".loader1").hide();
+    //     jQuery(".backwrap").hide();
 
-      } else {
-        // response contains id and card, which contains additional card details
-        var token = response.id;
-        // Insert the token into the form so it gets submitted to the server
-        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        // blank out the form
-        // and submit
-        doSubmit();
-      }
-    }
+    //   } else {
+    //     // response contains id and card, which contains additional card details
+    //     var token = response.id;
+    //     // Insert the token into the form so it gets submitted to the server
+    //     $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+    //     // blank out the form
+    //     // and submit
+    //     doSubmit();
+    //   }
+    // }
     /*
     function doSubmit(){
       if(activeRequest){
@@ -416,12 +416,12 @@
               $(".backwrap").show(function(){
                   $(".loader1").show();
               });
-              var $form = $(this);
+              // var $form = $(this);
 
               // Disable the submit button to prevent repeated clicks
-              $form.find('button').prop('disabled', true);
+              $(this).find('button').prop('disabled', true);
 
-              Stripe.card.createToken($form, stripeResponseHandler);
+              // Stripe.card.createToken($form, stripeResponseHandler);
               
               // Prevent the form from submitting with the default action
               return false;
@@ -1028,6 +1028,16 @@
       }
       else {
 
+        $(this).parents("#step-4").find('.order-detail').hide("slow");
+        $(this).parents("#step-4").find('.order-summary').show("slow");
+        $(".actionBar").hide("slow");
+        $(".btn-checkout").hide("slow");
+        $(".btn-pay").show("slow");
+
+        // window.location.href="#top";
+        setTimeout(function(){
+          $(document).scrollTop(0);
+        },500);
         //Call Session id
         var presentation_type = $("#presentation").val().toLowerCase();
         $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
@@ -1036,36 +1046,102 @@
         
         if(!(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1)) {
 
-            $('.loader1').show();
-            $('.loader1').removeClass('hidden');
-            $('.backwrap').show();
-            $('.backwrap').removeClass('hidden');
-            var coupon_id = $('#coupon-id').val();
-            data = {pkg_name:presentation_type,coupon_id:coupon_id}
-            $.ajax({
-              url:base_url + 'user/get_stripe_session',
-              method:'POST',
-              data : data,
-              dataType: 'json',
-              success:function(resp){
-                if (resp.session_id && resp.session_id !='') {
-                    var checkoutButton = document.querySelector('#stripe_chk_btn');
-                    checkoutButton.addEventListener('click', function () {
-                      stripe.redirectToCheckout({
-                       sessionId:resp.session_id
-                      });
-                    });
-                    $("#stripe_chk_btn").trigger("click");
+            // $('.loader1').show();
+            // $('.loader1').removeClass('hidden');
+            // $('.backwrap').show();
+            // $('.backwrap').removeClass('hidden');
+
+            let elements = stripe.elements();
+
+            var style = {
+              base: {
+                color: "#32325d",
+                fontFamily: 'Arial, sans-serif',
+                fontSmoothing: "antialiased",
+                fontSize: "16px",
+                "::placeholder": {
+                  color: "#32325d"
                 }
               },
-              complete:function(){
-                $('.loader1').hide();
-                $('.loader1').addClass('hidden');
-                $('.backwrap').hide();
-                $('.backwrap').addClass('hidden');
+              invalid: {
+                fontFamily: 'Arial, sans-serif',
+                color: "#fa755a",
+                iconColor: "#fa755a"
               }
+            };
 
-          });
+            let card = elements.create('card', { style: style });
+            card.mount('#card-element');
+
+            card.on('change', function (event) {
+              document.querySelector("#stripe-submit").disabled = event.empty;
+              document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+              if(event.error) {
+                $("#card-error").show();
+              }
+              else {
+                $("#card-error").hide();
+              }
+            });
+
+            
+            document.getElementById("stripe-submit").disabled = true;
+
+            const btn = document.querySelector('#stripe-submit');
+            btn.addEventListener('click', async (e) => {
+              e.preventDefault();
+              loading(true);
+              let nameInput = '<?php echo $this->session->userdata('username')?>';
+              
+              let coupon_id = $("#coupon-id").val();
+              fetch('<?php echo base_url("user/createPaymentIntent"); ?>', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                   pkg_id: presentation_type,coupon_id: coupon_id
+                }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                if(data.status == true) {
+                  stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                      card: card,
+                      billing_details: {
+                        name: nameInput,
+                        email : '<?php echo $agentInfo->email; ?>',
+                        address : {
+                          line1 : '510 Townsend St',
+                          postal_code : '98140',
+                          city : 'San Francisco',
+                          state : 'CA',
+                          country : 'US',
+                        }
+                      },
+                    }
+                  }).then((result) => {
+                    if(result.error) {
+                      showError(result.error.message);
+                    } else {
+                      $("#payment-success").html("Success");
+                      $("#payment_intent_id").val(result.paymentIntent.id);
+                      doSubmit();
+                      // Successful payment
+                    }
+                  });
+                }
+                else {
+                  showError(data.message);
+                }
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+
+            });
+            
         }
 
         //$("#stripe_chk_btn").trigger("click");
