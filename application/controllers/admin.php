@@ -680,6 +680,33 @@ MSG;
             $stripe = new Stripe( null );
             $data['subscription_data'] = $stripe->is_subscribed($uid);
             $data['users'] = $this->base_model->get_record_by_id('lp_user_mst',array('user_id_pk' => $uid));
+
+            $ref_code_obj = null;
+
+            if($data['users'] && $data['users']->role_id_fk == 3) {
+                // Get referral code details
+                $this->load->model('coupon_model');
+                //Check referral code exist or not
+                $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                if(!$ref_code_obj) {
+                    $referral_code = 'REF'.str_pad($uid, 5, "0", STR_PAD_LEFT);
+                    $get_by_array=[
+                        'coupon_code'=>$referral_code,
+                        'sales_rep_id'=>null,
+                    ];
+                    $ref_code_obj = $this->coupon_model->get_by($get_by_array);
+                    if(!$ref_code_obj) {
+                        //Create
+                    
+                        $this->admin_model->add_referral_code($uid);
+
+                        $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                    }
+                    
+                }
+            }
+                $data['ref_code_obj']=$ref_code_obj;
+
             $this->load->view('admin/header',$data);
             $this->load->view('admin/profile',$data);
             $this->load->view('admin/footer',$data);
@@ -741,15 +768,7 @@ MSG;
                         if(!$ref_code_obj) {
                             //Create
                         
-                            $tmp_array['coupon_code'] = $referral_code;
-                            $tmp_array['coupon_name'] = $referral_code;
-                            $tmp_array['coupon_descr'] = 'Coupon for rererral program';
-                            $tmp_array['start_date'] = date('Y-m-d');
-                            $tmp_array['end_date'] = null;
-                            $tmp_array['uses_per_user'] = 10;
-                            $tmp_array['coupon_amt'] = 0;
-                            $tmp_array['sales_rep_id'] = $uid;
-                            $this->coupon_model->insert($tmp_array);
+                            $this->admin_model->add_referral_code($uid);
 
                             $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
                         }

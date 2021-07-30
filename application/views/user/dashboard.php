@@ -391,7 +391,9 @@
                   <div class="panel-heading">
                     <h3 class="panel-title">Payment Information</h3>
                   </div>
-                  <div class="panel-body">
+                  <div class="panel-body stripe-div">
+
+                    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/stripe.css') ?>">
 
                     <form action="<?php echo base_url(); ?>index.php?/user/cart_payment" method="POST" id="payment-form" class="form-horizontal" role="form">
                       <div class="alert alert-danger payment-errors" style="display:none"></div>
@@ -399,10 +401,21 @@
                       <input type="hidden" id="coupon-id" name="coupon_id">
                       <input type="hidden" id="coupon-amount" name="coupon_amount">
                       <input type="hidden" id="order-amount" name="order_amount" class="selected_pkg_val" value="<?php echo $report_price; ?>">
-                      
+                      <input type="hidden" name="payment_intent_id" id="payment_intent_id">
+                      <div id="card-element">
+                          <!-- Elements will create input elements here -->
+                        </div>
+                        <!-- <button id="stripe-submit">
+                          <div class="spinner hidden" id="spinner"></div>
+                          <span id="button-text">Pay now</span>
+                        </button> -->
+                        <!-- We'll put the error messages in this element -->
+                        <p id="card-error" class="alert alert-danger" role="alert" style="display: none;"></p>
+                        <p id="payment-success" class="alert alert-success" role="alert" style="display: none;"></p>
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9" id="paynow">
-                          <button type="button" class="btn btn-lp pay" id="paynow">Checkout & Download</button>
+                          <button type="button" class="btn btn-lp pay" id="stripe-submit"><div class="spinner hidden" id="spinner"></div>
+                          <span id="button-text">Pay now</span></button>
                         </div>
                       </div>
                     </form>
@@ -417,7 +430,9 @@
                   </div>
                 <!-- step 4 -->
                 </div>
-                <div id="checkout"></div>
+                <div id="checkout">
+                    
+                </div>
         </div>
         <!-- End SmartWizard Content --> </div>
 </section>
@@ -621,4 +636,32 @@
             });
         });    
     }
+
+    // Show the customer the error from Stripe if their card fails to charge
+    var showError = function(errorMsgText) {
+      loading(false);
+      var errorMsg = document.querySelector("#card-error");
+      $("#card-error").show();
+      errorMsg.textContent = errorMsgText;
+    };
+
+    // Show a spinner on payment submission
+    var loading = function(isLoading) {
+      if (isLoading) {
+        $("#card-error").html('');
+        $("#card-error").hide();
+        $('.loader1').hide();
+        $('.loader1').addClass('hidden');
+        $('.backwrap').hide();
+        $('.backwrap').addClass('hidden');
+        // Disable the button and show a spinner
+        document.querySelector("#stripe-submit").disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+        document.querySelector("#button-text").classList.add("hidden");
+      } else {
+        document.querySelector("#stripe-submit").disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+        document.querySelector("#button-text").classList.remove("hidden");
+      }
+    };
 </script>

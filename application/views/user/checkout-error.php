@@ -16,7 +16,7 @@
         <!-- Checkout process - Progress bar -->
         <div  style="display:block;" class="alert alert-danger">
 
-        <?php echo $error->message; ?>
+        <?php echo $error; ?>
 
         </div>
              

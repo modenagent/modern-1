@@ -665,21 +665,22 @@ class Admin_model extends CI_Model
     /**
      * Add coupon if does not existx
      */
-    public function add_referral_code($code){
-        $this->db->where('coupon_code',$code);
+    public function add_referral_code($uid){
+        $referral_code = 'REF'.str_pad($uid, 5, "0", STR_PAD_LEFT);
+        $this->db->where('coupon_code',$referral_code);
         $query = $this->db->get('lp_coupon_mst');
         $data =  $query->row();
         if(empty($data)){//Create such coupon
-            $insertData = array(
-                'coupon_code'=>$code,
-                'coupon_name'=>$code,
-                'coupon_descr'=>"Coupon for rererral program",
-                'start_date'=>date("Y-m-d"),
-                'end_date'=>null,
-                'uses_per_user'=>10,
-                'coupon_amt'=>3,
-            );
-            $this->db->insert('lp_coupon_mst',$insertData);
+            $tmp_array = array();
+            $tmp_array['coupon_code'] = $referral_code;
+            $tmp_array['coupon_name'] = $referral_code;
+            $tmp_array['coupon_descr'] = 'Coupon for rererral program';
+            $tmp_array['start_date'] = date('Y-m-d');
+            $tmp_array['end_date'] = null;
+            $tmp_array['uses_per_user'] = 10;
+            $tmp_array['coupon_amt'] = 0;
+            $tmp_array['sales_rep_id'] = $uid;
+            $this->db->insert('lp_coupon_mst',$tmp_array);
         }
     }
     /**

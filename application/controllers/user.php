@@ -256,6 +256,45 @@ class User extends CI_Controller
         redirect('frontend/login');
       }
     }
+    public function createPaymentIntent()
+    {
+      $post_data = json_decode(file_get_contents('php://input'));
+      $reponse_array = [
+        'status'=>false,
+        'message'=>'Something went wrong'
+      ];
+      if(!$post_data || empty($post_data->pkg_id)) {
+        $reponse_array['message']='Invalid data';
+        echo json_encode($reponse_array);exit();
+      }
+      $pkg_name = $post_data->pkg_id;
+      $coupon_id = $post_data->coupon_id;
+      $this->load->model('package_model');
+      $packages_value = $this->package_model->get_by(['package'=>$pkg_name]);
+      $coupon_amount = 0;
+      if($coupon_id > 0) {
+        $this->load->model('coupon_model');
+        $coupon_obj = $this->coupon_model->get($coupon_id);
+        if($coupon_obj) {
+          $coupon_amount = (float)$coupon_obj->coupon_amt;
+        }
+
+      }
+      if($packages_value && $packages_value->price > $coupon_amount) {
+        $final_value = $packages_value->price - $coupon_amount;
+        $this->load->library('Stripe_lib');
+        $stripe = new Stripe_lib();
+        $payment_obj = $stripe->createPaymentIntent($final_value,$packages_value->title);
+        if($payment_obj && !empty($payment_obj->client_secret)) {
+          $reponse_array = [
+            'status'=>true,
+            'clientSecret'=>$payment_obj->client_secret
+          ];
+        }
+
+      }
+      echo json_encode($reponse_array); 
+    }
     public function get_stripe_session() {
       $pkg_name = $this->input->post('pkg_name');
       $coupon_id = $this->input->post('coupon_id');
@@ -703,22 +742,35 @@ class User extends CI_Controller
           $data['cancel_plans'] = $cancel_plans;
           $data['active_all'] = $active_all;
 
+
+          $customer_created = false;
+          $check_customer = $data['agentInfo'];
+          $userId = $check_customer->user_id_pk;
+          if(!empty($check_customer->stripe_user_id)) {
+            $customer_obj = $stripe->getCustomer($check_customer->stripe_user_id);
+            if($customer_obj) {
+              $customer_id = $check_customer->stripe_user_id;
+              $customer_created = true;
+            }
+            
+          }
+          if(!($customer_created)) {
+
+            $customer_data = [
+              'email'=>$check_customer->email,
+              'name'=>$this->session->userdata('username'),
+            ];
+
+            $customer_response = $stripe->createCustomer($customer_data);
+            $customer_id = $customer_response->id;
+            //Update user table with stripe Id
+            $this->base_model->update_record_by_id('lp_user_mst',array('stripe_user_id'=>$customer_id),array('user_id_pk'=>$userId));
+          }
+
           // var_dump($active_plans);die;
 
+          $data['customer_id'] = $customer_id;
           
-          $this->load->library('stripe');
-          $stripe = new Stripe(null);
-          try{
-              $response = json_decode($stripe->plan_info('prem_lp_user'));
-          }catch(Exception $e){
-              print_r($e);
-          }
-          if(isset($response->id)){
-              $data['plan']['id'] = $response->id;
-              $data['plan']['name'] = $response->name;
-              $data['plan']['amount'] = $response->amount;
-              $data['plan']['interval'] = $response->interval;
-          }
           // print_r($data['agentInfo']);
           $this->load->view('user/header', $data);
           $this->load->view('user/myaccount', $data);
@@ -727,94 +779,65 @@ class User extends CI_Controller
         redirect('frontend/index');
       }
     }
-    public function subscribe(){
+    public function createSubscription(){
 
       $userId = $this->session->userdata('userid');
+      $reponse_array = [
+        'status'=>false,
+        'message'=>'Something went wrong'
+      ];
       if(!($userId)) {
-        redirect('frontend/index');
+        echo json_encode($reponse_array);exit();
       }
       $this->load->library('Stripe_lib');
       $this->load->model('package_model');
       $stripe = new Stripe_lib();
       $userId = $this->session->userdata('userid');
-      $plan_id = $this->input->post('plan_id');
-      $token = $this->input->post('stripeToken');
-
-      $checkToken = $stripe->getToken($token);
-      if(!($checkToken && $checkToken->used == false)) {
-        $this->session->set_flashdata('error', "Invalid token");
-        redirect('user/myaccount');
-        exit();
+      $post_data = json_decode(file_get_contents('php://input'));
+      if(!$post_data || empty($post_data->priceId) || empty($post_data->customerId) /*|| empty($post_data->paymentMethodId)*/) {
+        $reponse_array['message']='Invalid data';
+        echo json_encode($reponse_array);exit();
       }
+      $stripe_price_id = $post_data->priceId;
 
-      $package = $this->package_model->get($plan_id);
+      $package = $this->package_model->get_by('stripe_price_id',$stripe_price_id);
       $stripe_price_id = '';
       if(!$package) {
-        $this->session->set_flashdata('error', "Invalid Package");
-        redirect('user/myaccount');
-        exit();
-      }
-      //Check if product & Price created on stripe
-      $price_created = false;
-      if(!empty($package->stripe_price_id)) {
-        $price_obj = $stripe->getSubscriptionPrice($package->stripe_price_id);
-        if($price_obj) {
-          $stripe_price_id = $package->stripe_price_id;
-          $price_created = true;
-        }
-      }
-
-      if(!($price_created)) {
-        $stripe_response = $stripe->createSubscriptionPrice($package->title,$package->price_per_month);
-        $update_package = array();
-        $update_package['stripe_product_id'] = $stripe_response['product_id'];
-        $update_package['stripe_price_id'] = $stripe_response['price_id'];
-        $this->package_model->update($plan_id,$update_package);
-        $stripe_price_id = $stripe_response['price_id'];
-      }
-
-      // Check if customer exist in stripe
-      $check_customer = $this->base_model->get_record_by_id('lp_user_mst' , array('email'=>$this->input->post('email')));
-      $customer_id = null;
-      $customer_created = false;
-      $userId = $check_customer->user_id_pk;
-      if(!empty($check_customer->stripe_user_id)) {
-        $customer_obj = $stripe->getCustomer($check_customer->stripe_user_id);
-        if($customer_obj) {
-          $customer_id = $check_customer->stripe_user_id;
-          $customer_created = true;
-        }
+        $reponse_array['message']='Invalid Package';
+        echo json_encode($reponse_array);exit();
         
       }
-      if(!($customer_created)) {
-
-        $customer_data = [
-          'email'=>$this->input->post('email'),
-          'name'=>$this->session->userdata('username'),
-        ];
-
-        $customer_response = $stripe->createCustomer($customer_data,$this->input->post('stripeToken'));
-        $customer_id = $customer_response->id;
-        //Update user table with stripe Id
-        $this->base_model->update_record_by_id('lp_user_mst',array('stripe_user_id'=>$customer_id),array('user_id_pk'=>$userId));
-      }
+      //Check if product & Price created on stripe
+      $stripe_price_id = $package->stripe_price_id;
+      
+      // Check if customer exist in stripe
+      
+      $customer_id = $post_data->customerId;
+      
+      // $stripe->setPaymentMethod($customer_id,$post_data->paymentMethodId);
 
       $subscription_response = $stripe->createSubscription($customer_id,$stripe_price_id);
-      $this->load->model('user_package_subscription_model');
+      if($subscription_response && !empty($subscription_response->id)) {
 
-      $subscription_data = array(
-        'sub_id' => $subscription_response->id,
-        'user_id' => $userId,
-        'package_id' => $plan_id,
-        'amount' => floatval(($subscription_response->plan->amount_decimal)/100),
-        'interval' => $subscription_response->plan->interval,
-        'is_live' => $subscription_response->livemode,
+        $this->load->model('user_package_subscription_model');
 
-      );
-      $this->user_package_subscription_model->insert($subscription_data);
-      $this->session->set_flashdata('success', "You have successfully subscribed to package.");
+        $subscription_data = array(
+          'sub_id' => $subscription_response->id,
+          'user_id' => $userId,
+          'package_id' => $package->id,
+          'amount' => floatval(($subscription_response->plan->amount_decimal)/100),
+          'interval' => $subscription_response->plan->interval,
+          'is_live' => $subscription_response->livemode,
 
-      redirect('user/myaccount');
+        );
+        $this->user_package_subscription_model->insert($subscription_data);
+        $reponse_array = [
+          'subscriptionId' => $subscription_response->id,
+          'clientSecret' => $subscription_response->latest_invoice->payment_intent->client_secret
+        ];
+        $reponse_array['status'] = true;
+      }
+      echo json_encode($reponse_array);exit(); 
       
     }
     public function checkWebhook()
@@ -3226,11 +3249,7 @@ Thank you for your order. Below you can find the details of your order. If you o
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
 
         if($_POST){
-          $this->load->library('stripe');
-
-          // Create the library object
-          $stripe = new Stripe(null);
-
+          
           $amt = $_POST['amount'];
 
           $couponId = $this->input->post('coupon_id');
@@ -3246,12 +3265,20 @@ Thank you for your order. Below you can find the details of your order. If you o
           }
           $amount = 100 * $amt;
 
-          $card = $_POST['stripeToken'];
-
           $desc = 'Modern Agent Paymemnt';
+          $canprocess_payment = true;
           if(!$byPassPayment) {
+            $canprocess_payment = false;
+            $payment_id = $this->input->post('payment_intent_id');
             try{
-              $response = json_decode($stripe->charge_card($amount, $card, $desc));     
+              //check payment intent valid or not
+              $this->load->library('Stripe_lib');
+              $stripe = new Stripe_lib();
+              $payment_obj = $stripe->getPaymentIntent($payment_id);
+              if($payment_obj && $payment_obj->status == 'succeeded') {
+                $canprocess_payment = true;
+              }
+              // $response = json_decode($stripe->charge_card($amount, $card, $desc));     
             }catch(Exception $e){
             }
           }
@@ -3302,11 +3329,11 @@ Thank you for your order. Below you can find the details of your order. If you o
                 
                 echo json_encode($_project);
               }
-          }elseif($byPassPayment || $response->paid) {
+          }elseif($byPassPayment || $canprocess_payment) {
               $data = array(
                         'user_id_fk' => $userId,
                         'paid_on' => date('Y-m-d'),
-                        'txn_id' => isset($response->id)?$response->id:'',
+                        'txn_id' => $payment_id,
                         'is_success' => 'Y',
                         'total_amount' => $amt,
                         //'coupon_id_fk' => $this->session->userdata('coupon_id'),
@@ -3417,6 +3444,7 @@ Thank you for your order. Below you can find the details of your order. If you o
                 echo json_encode(array("status"=>"failed","msg"=>"failed to craete PDF"));
                 exit();
             }
+            $response = array('error'=>'Invalid request');
             $data['title'] = "Dashboard";
             $userId = $data['user_id'] = $this->session->userdata('userid');
             $data['users'] = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
@@ -4232,6 +4260,16 @@ Thank you for your order. Below you can find the details of your order. If you o
         QRimage::$custom_color = $custom_color;        
       }
       $image = QRcode::png($qr_link,false,QR_ECLEVEL_L,$size,4);
+    }
+
+    public function testPaymentIntent($payment_id='')
+    {
+
+      $payment_id = 'pi_1JIuW8SGHshxlum8wBSrQZsL';
+      $this->load->library('Stripe_lib');
+        $stripe = new Stripe_lib();
+        $data = $stripe->getPaymentIntent($payment_id);
+        var_dump($data->status);
     }
 
 

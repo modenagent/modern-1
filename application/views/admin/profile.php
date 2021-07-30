@@ -79,16 +79,17 @@
             <td><?php echo $users->company_add; ?></td>
             
           </tr>
-          <?php if($this->role_lib->is_sales_rep($users->role_id_fk)): ?>
+          <?php if($this->role_lib->is_sales_rep($users->role_id_fk) && $ref_code_obj): ?>
           <tr>
                 <td>Referral Code</td>
                 <td>
                     <?php 
-                    if (strlen($users->user_id_pk) < 5) {
-                      echo 'REF'.sprintf("%05d", $users->user_id_pk);
-                    } else {
-                      echo 'REF0'.$users->user_id_pk;
-                    }
+                    echo $ref_code_obj->coupon_code;
+                    // if (strlen($users->user_id_pk) < 5) {
+                    //   echo 'REF'.sprintf("%05d", $users->user_id_pk);
+                    // } else {
+                    //   echo 'REF0'.$users->user_id_pk;
+                    // }
                     ?>
                 </td>
           </tr>
