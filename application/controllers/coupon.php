@@ -26,21 +26,30 @@ class Coupon extends CI_Controller {
                             $validParentId = $this->base_model->check_existent("lp_user_mst",array('user_id_pk'=>$parentId,'role_id_fk'=>3));
                             if($validParentId){
                                 $this->load->model('admin_model');
-                                $this->admin_model->add_referral_code($coupon_code);
+                                $this->admin_model->add_referral_code($parentId);
                             } else {
                                echo json_encode(array('status'=>'failed', 'message'=>'Please enter a valid coupon code'));	
                                exit;
                             }
                         }
                     }
-                    $sql = "SELECT c.* from lp_coupon_mst as c 
-                            LEFT JOIN lp_coupon_redeem_log as log ON log.coupon_id_fk = c.coupon_id_pk AND log.user_id={$userId}
+                    $sql = "SELECT c.coupon_id_pk,c.coupon_amt,c.end_date,c.limit_user,count(log.redeem_count) AS redeem_cnt from lp_coupon_mst as c 
+                            LEFT JOIN lp_coupon_redeem_log as log ON log.coupon_id_fk = c.coupon_id_pk AND log.user_id={$userId} AND year(log.created_at) = year(curdate()) AND month(log.created_at) = month(curdate())
                             WHERE c.coupon_code = '{$coupon_code}' 
-                            AND (c.end_date >= '".date("Y-m-d")."' OR c.end_date IS NULL)
-                            AND (c.uses_per_user IS NULL OR log.redeem_count IS NULL OR c.uses_per_user > log.redeem_count) ";
+                            GROUP BY c.coupon_id_pk
+                            HAVING (c.end_date >= '".date("Y-m-d")."' OR c.end_date IS NULL)
+                            AND (c.limit_user = 0 OR c.limit_user > redeem_cnt) ";
+                    $sql1 = "SELECT c.coupon_id_pk,c.coupon_amt,c.end_date,c.limit_all,count(log.redeem_count) AS redeem_cnt from lp_coupon_mst as c 
+                            LEFT JOIN lp_coupon_redeem_log as log ON log.coupon_id_fk = c.coupon_id_pk AND year(log.created_at) = year(curdate()) AND month(log.created_at) = month(curdate())
+                            WHERE c.coupon_code = '{$coupon_code}' 
+                            GROUP BY c.coupon_id_pk
+                            HAVING (c.end_date >= '".date("Y-m-d")."' OR c.end_date IS NULL)
+                            AND (c.limit_all = 0 OR c.limit_all > redeem_cnt) ";
                     $query = $this->db->query($sql);
                     $result = $query->row();
-                    if($result){
+                    $query1 = $this->db->query($sql1);
+                    $result1 = $query1->row();
+                    if($result && $result1){
                             // DO NOT SET coupon_id TO SESSION
                             //$this->load->library('session');
                             //$this->session->set_userdata('coupon_id',$result->coupon_id_pk);

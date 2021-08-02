@@ -104,7 +104,7 @@
 								echo nl2br($report_content_data['paragraph_4_content']['value']);
 							} else {
 								echo 'CTA signs which is an acronym for Call-ToAction
-                                will be placed on the real estate sign in front of your property. This sign will contain a code that people can text to instantly receive sale information regarding your property.<br><br>We will follow up diligently with all leads that
+                                will be placed on the real estate sign in front of your property. This sign will contain a code that people can text to instantly receive sale information regarding your property. We will follow up diligently with all leads that
                                 are gathered from these initiatives.';
 							}
 							?>

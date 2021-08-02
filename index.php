@@ -30,10 +30,11 @@
 
 if (defined('ENVIRONMENT'))
 {
-	switch (ENVIRONMENT)
+	$environment_var = (!empty($_ENV['ENV_MODE'])) ? $_ENV['ENV_MODE'] :ENVIRONMENT;
+	switch ($environment_var)
 	{
 		case 'development':
-			error_reporting(E_ALL);
+			error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT & ~E_NOTICE);
 		break;
 	
 		case 'testing':

@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: #fff;
+}
+@font-face {
+  font-family: "vulture";
+  src: url(fonts/vulture.otf);
+}
+* {
+  box-sizing: border-box;
+}
+page {
+  position: relative;
+  display: block;
+  box-shadow: rgb(0 0 0 / 10%) 0px 0px 10px;
+  width: 816px;
+  height: 1056px;
+  overflow: hidden;
+  padding: 40px;
+  margin: 0px auto;
+  color: #273038;
+}
+h1 {
+  color: #F3246C;
+  font-size: 50px;
+  line-height: 50px;
+  font-weight: 900;
+  margin: 0 0 10px;
+}
+.qr_bg {
+  padding: 140px 0;
+  margin: 100px 0;
+  background: url(img/border.png) no-repeat;
+  background-size: contain;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+.qr_img {
+  max-width: 280px;
+}
+.qr_img{
+  margin-right: 40px;
+}
+.address {
+  font-size: 30px;
+  font-weight: 300;
+  line-height: 28px;
+  margin: 10px 0 5px;
+  text-align: right;
+}
+.address span {
+  display: block;
+  font-size: 15px;
+}
+p {
+  font-size: 20px;
+  line-height: 28px;
+  margin: 0;
+  font-weight: 300;
+}
+.sign {
+  display: flex;
+  display: -webkit-box;
+  align-items: center;
+}
+.sign_name {
+  font-family: "vulture";
+  font-size: 80px;
+  margin-left: 20px;
+}
+.sign img{
+  width: 140px;
+}
+.flare_img {
+  position: absolute;
+  right: 50px;
+  bottom: 30px;
+  width: 100px;
+  filter: brightness(0);
+  -webkit-filter: brightness(0);
+}
+.profile_img {
+  height: 160px;
+  width: 160px;
+  border-radius: 50%;
+  background-size: cover;
+}

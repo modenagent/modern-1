@@ -6,7 +6,7 @@ class Base_model extends CI_Model
     public function __construct()
     {
             parent::__construct();
-            error_reporting(E_ALL ^ E_NOTICE);
+            // error_reporting(E_ALL ^ E_NOTICE);
     }
     /* check data existence in tables */
     public function check_existent($table,$where)
@@ -132,8 +132,20 @@ class Base_model extends CI_Model
     public function get_login_data($table,$login,$password)
     {
             /* get data from user table */
-            $res = $this->db->query("SELECT * FROM $table WHERE email=? and password=?", [$login, $password]);
-            return $res->row();
+            $where['email'] = $login;
+            $row = $this->db->get_where($table,$where)->row();
+            
+            // $row = $result->row();
+
+            if($row) {
+                if(password_verify($password,$row->password)) {
+                    return $row;
+                }
+                else {
+                    return false;
+                }
+            }
+            return false;
     }
      /* LOGIN WITH userId retruns only one row */
     public function get_login_data_from_id($table, $column, $userId)
@@ -192,7 +204,7 @@ class Base_model extends CI_Model
     {
             $this->db->update($table,$data,$where);
             return $this->db->affected_rows(); 
-    }	
+    }   
     /* count all rows from table */
     public function countrow($table)
     {
@@ -258,8 +270,8 @@ class Base_model extends CI_Model
                     join lp_user_mst as s on s.user_id_pk=main.parent_id
                     WHERE main.registered_date > DATE_SUB(NOW(), INTERVAL 30 DAY) and s.parent_id=".$adminId." and main.role_id_fk=4";
         }
-    	$countResult = $this->db->query($sql);
-    	return $countResult->row();
+        $countResult = $this->db->query($sql);
+        return $countResult->row();
     }
     
     public function count_online_users($roleId=null,$adminId=null){
@@ -344,8 +356,8 @@ class Base_model extends CI_Model
     // get best buy flyers
     public function getNewFlyer3($table,$limit,$offset)
     {
-            $query = $this->db->get($table,$limit,$offset);
             $this->db->order_by("total_purchase", "desc");
+            $query = $this->db->get($table,$limit,$offset);
             return $query->result();
     }
     // get order inoive and cart detail
@@ -684,23 +696,24 @@ class Base_model extends CI_Model
             'coupon_id_fk'=> $couponId,
             'user_id'=> $userId,
         );
-        $query = $this->db->where($data)->get('lp_coupon_redeem_log');
-        $logData = $query->row();
-        if(empty($logData)){
-           $data['redeem_count'] = 1;$data['created_at'] = date("Y-m-d H:m:s");
+        // $query = $this->db->where($data)->get('lp_coupon_redeem_log');
+        // $logData = $query->row();
+         $data['redeem_count'] = 1;$data['created_at'] = date("Y-m-d H:m:s");
            $this->db->insert('lp_coupon_redeem_log',$data);
            $_logId = $this->db->insert_id();
            if($_logId){
-              $this->add_coupon_redeem_log_history($_logId); 
+              $this->add_coupon_redeem_log_history($_logId,$projectId); 
            }
-        } else {
-           $this->db->set('redeem_count', '`redeem_count`+1', FALSE);
-           $this->db->where('id',$logData->id);
-           $res = $this->db->update('lp_coupon_redeem_log');
-           if($res){
-               $this->add_coupon_redeem_log_history($logData->id,$projectId);
-           }
-        }
+        // if(empty($logData)){
+          
+        // } else {
+        //    $this->db->set('redeem_count', '`redeem_count`+1', FALSE);
+        //    $this->db->where('id',$logData->id);
+        //    $res = $this->db->update('lp_coupon_redeem_log');
+        //    if($res){
+        //        $this->add_coupon_redeem_log_history($logData->id,$projectId);
+        //    }
+        // }
     }
     private function add_coupon_redeem_log_history($redeem_log_id,$projectId){
         $this->db->select('project_id_pk,report_type,project_name,property_address')->where('project_id_pk',$projectId);
@@ -717,6 +730,7 @@ class Base_model extends CI_Model
         
         $this->db->insert('lp_coupon_redeem_log_history',$data);
     }
+
 
 }
 ?>

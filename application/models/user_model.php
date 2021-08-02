@@ -5,7 +5,7 @@ class User_model extends Base_model
     public function __construct()
     {
             parent::__construct();
-            error_reporting(E_ALL ^ E_NOTICE);
+            // error_reporting(E_ALL ^ E_NOTICE);
     }   
     
     public function isExistingUser($email) {
@@ -202,11 +202,26 @@ class User_model extends Base_model
         return $refCode;
     }
 
-    public function user_reports_count($userId, $postData)
+    public function user_reports_count($userId, $postData,$is_registery = 0,$for_guest = 0)
     {
         $this->db->select("count(project_id_pk) as count");
         $this->db->where('user_id_fk', $userId);
         $this->db->where('is_active', 'Y');
+        if($is_registery == 1) {
+            $this->db->where('report_type', 'registry');
+            $this->db->join("lp_registry_master as registry",'registry.listing_id = lp_my_listing.project_id_pk');
+            if($for_guest == 1) {
+                $this->db->join("lp_registry_users",'registry.id = lp_registry_users.registry_id','left');
+                $this->db->where('lp_registry_users.id IS NOT NULL', null, false);
+            }
+            else {
+                // $this->db->where('lp_registry_users.id', NULL);
+            }
+        }
+        else {
+            $this->db->where('report_type !=', 'registry');
+        }
+
 
         if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
             $value = trim($postData['search']['value']);
@@ -223,7 +238,7 @@ class User_model extends Base_model
         return $data['count'];
     }
 
-    public function user_reports_data($userId, $columns, $postData)
+    public function user_reports_data($userId, $columns, $postData,$is_registery = 0,$for_guest = 0)
     {
         $order = $columns[$postData['order'][0]['column']];
         $dir = $postData['order'][0]['dir'];
@@ -231,15 +246,43 @@ class User_model extends Base_model
         $this->db->select("project_id_pk, property_owner, project_name, report_type, project_date, report_path");
         $this->db->where('user_id_fk', $userId);
         $this->db->where('is_active', 'Y');
+        if($is_registery == 1) {
+            $this->db->where('report_type', 'registry');
+            $this->db->select("registry.unique_key");
+            $this->db->join("lp_registry_master as registry",'registry.listing_id = lp_my_listing.project_id_pk');
+            if($for_guest == 1) {
+                $this->db->join("lp_registry_users",'registry.id = lp_registry_users.registry_id','left');
+                $this->db->where('lp_registry_users.id IS NOT NULL', null, false);
+                $this->db->select("lp_registry_users.name as guest_name,lp_registry_users.email as guest_email,lp_registry_users.phone as guest_phone");
+
+            }
+            else {
+                //$this->db->where('lp_registry_users.id', NULL);
+            }
+        }
+        else {
+            $this->db->where('report_type !=', 'registry');
+        }
 
         if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
             $value = trim($postData['search']['value']);
             $value = $this->db->escape($value);
             $value = trim($value,"'");
-            $this->db->where("( CONCAT(TRIM(project_id_pk), '-', TRIM(property_owner)) LIKE '%".$value."%'
+            if($is_registery == 1 && $for_guest == 1) {
+                $this->db->where("( CONCAT(TRIM(project_id_pk), '-', TRIM(property_owner)) LIKE '%".$value."%'
+                OR project_name LIKE '%".$value."%' 
+                OR report_type LIKE '%".$value."%'
+                OR lp_registry_users.name LIKE '%".$value."%'
+                OR lp_registry_users.email LIKE '%".$value."%'
+                OR lp_registry_users.phone LIKE '%".$value."%' )", NULL, FALSE);
+            }
+            else {
+                $this->db->where("( CONCAT(TRIM(project_id_pk), '-', TRIM(property_owner)) LIKE '%".$value."%'
                 OR project_name LIKE '%".$value."%' 
                 OR report_type LIKE '%".$value."%'
                 )", NULL, FALSE);
+            }
+            
         }
 
         if ($postData['length'] != -1) {
@@ -248,10 +291,15 @@ class User_model extends Base_model
             $this->db->limit(10, $postData['start']);
         }
         $this->db->order_by($order, $dir);
+        if($is_registery == 1 && $for_guest == 1) {
+            $this->db->order_by('lp_registry_users.id', $dir);
+        }
+
 
         $query = $this->db->get('lp_my_listing');
         return $query->result_array();
     }
+
 
     function getUserDetailsByEmail($emailAddress, $fields = [])
     {

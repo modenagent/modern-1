@@ -28,7 +28,7 @@ text-overflow: ellipsis;
             <p id="accountupdate">Select a theme</p>
           </a>
         </li>
-        <li><a href="#tabs-5" id="susb_tab" data-planid="<?php echo $plan['id']; ?>">Membership<br />
+        <li><a href="#tabs-5" id="susb_tab" data-planid="1">Membership<br />
             <p id="accountupdate">Select a plan</p>
           </a>
         </li>
@@ -242,54 +242,8 @@ text-overflow: ellipsis;
   </div>
 </div>
 <div id="tabs-5" style="z-index:20;">
-  <div class="content-inner clearfix" style="vertical-align:top;">
-    <div class="col-md-12">
-        <h4 style="margin-bottom:10px; padding-top:25px;">Membership Plan</h4>
-        <div id="subscribed-wrap" style="display:none;">
-            <div class="col-sm-12"><label>Your are subscribed to the <span class="plan-title">info.plan_title</span> plan(<span class="plan-interval">info.interval</span>ly) and your current period ends on <span class="plan-ends">info.current_period_end</span>.</label></div>
-            <div class="col-sm-12 recurring-billing" style="display:none;">
-                <label>You will be auto charged for next billing cycle on <span class="plan-ends"></span>.</label>
-                <div class="col-md-12 text-left" id="cancelBtnWrap">
-                    <a href="#" class="btn btn-lp cancel-subscription-btn" target="_blank" data-toggle="modal" data-target="#cancel-subscription">Cancel Subscription</a>
-                </div>
-            </div>
-        </div>
-        <div id="subscriptionForm-wraper"  style="display:none;" class="col-sm-12">
-            <form id="subscriptionForm" action="#" method="post">
-                <span class="payment-errors"></span>
-                <span class="payment-success"></span>
-                <div class="form-group">
-                    <label style="padding-left:0;">Subscribe to $<?php echo floor($plan['amount']/100)." ". $plan['name']."(".ucwords($plan['interval'])."ly)"; ?></label>
-                    <input type="hidden" name="cc" value="<?php echo $plan['id']; ?>">
-                </div>
-                <input type="hidden"  data-stripe="plan_id" name="plan_id" value="<?php echo $plan['id']; ?>" /> 
-                <input type="hidden"  data-stripe="email" name="email" value="<?php echo $agentInfo->email; ?>" /> 
-                <script
-                  src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                  data-key="pk_live_kWtXKplBdNqXQMeBWHuHYZDx"
-                  data-amount="<?php echo $plan['amount'] ?>"
-                  data-name="modernagent.io"
-                  data-description="<?php echo $plan['name']." (".ucwords($plan['interval'])."ly)" ?>"
-                  data-email="<?php echo $agentInfo->email; ?>"
-                  data-image="<?php echo base_url('assets/images/favicon-32x32.png') ?>"
-                  data-locale="auto"
-                  data-zip-code="false">
-                </script>
-                <div class="row">
-                  <div class="col-sm-12">
-                    <div class="alert alert-success" style="display:none"></div>
-                  </div>
-              </div>
-            </form>
-        </div>
-        <div id="ref-code-wrap" style="font-weight:bold;color:#FFF;<?php echo (!$agentInfo->ref_code)?"display:none;":""; ?>">
-            Your unique referral code: <span id="ref-code"><?php echo $agentInfo->ref_code; ?></span>
-        </div>
-        <div id="api-token-wrap" style="font-weight:bold;color:#FFF;display:none;">
-            Your API Token: <span id="api-token-code"></span>
-        </div>
-    </div>
-  </div>
+  
+  <?php $this->load->view('user/membership/index'); ?>
 </div>
 
 </div>

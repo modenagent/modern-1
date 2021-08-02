@@ -1,0 +1,76 @@
+body {
+  font-size: 1rem;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+}
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+/* banner */
+.banner {
+  position: relative;
+  height: 100vh;
+  max-width:;
+  width: 100%;
+  background: #1a3e60;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(https://dev.modernagent.io/assets/images-2/home/header3.jpg) no-repeat 0 0;
+  background-size: cover;
+  background-attachment: fixed
+}
+form {
+  width: 100%;
+  padding: 0 2.5rem;
+  max-width:600px;
+}
+input {
+  display: block;
+  width: 100%;
+  background: rgb(255 255 255 / 50%);
+  border: 0;
+  outline: none;
+  padding: 1.25rem 2rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #fff;
+  border-left: 3px solid transparent;
+}
+input:focus {
+  border-left-color: #fff;
+}
+label {
+  display: block;
+  color: #fff;
+  margin-bottom: 0.25rem;
+  font-size: 14px;
+}
+
+.btn_submit {
+  border: 1px solid #fff;
+  background: #fff;
+  color: #1a3e60;
+  display: block;
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  margin-top: 2.5rem;
+}
+
+.btn_submit:hover {
+  background:none; 
+  border: 1px solid #fff; 
+  color:#fff;
+}

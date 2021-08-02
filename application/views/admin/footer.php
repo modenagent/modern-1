@@ -216,19 +216,19 @@ switch ($title){
         var submit = $('#change_pass').closest('form').find(':submit');
         submit.html('<i class="fa fa-spinner fa-spin"></i>');
         submit.prop('disabled', true);
-        $.ajax({
-          url     : "<?php echo site_url('admin/get_password/'); ?>",
-          method    : "post",
-        }).success(function(resp){
+        // $.ajax({
+        //   url     : "<?php echo site_url('admin/get_password/'); ?>",
+        //   method    : "post",
+        // }).success(function(resp){
 
           submit.html('Save');
           submit.prop('disabled', false);
 
-          var obj = JSON.parse(resp);
-          if(obj.status == "success"){
-            if(obj.data == old ){
+          // var obj = JSON.parse(resp);
+          // if(obj.status == "success"){
+            // if(obj.data == old ){
 
-              var old = $("#old_password").val();
+              var old_pass = $("#old_password").val();
               var new_pass = $("#password").val();
               var confirm_pass = $("#pass_confirm").val();
 
@@ -236,7 +236,9 @@ switch ($title){
                 url     : "<?php echo site_url('admin/update_password/'); ?>",
                 method    : "post",
                 data:{
-                  pass : new_pass
+                  new_password : new_pass,
+                  old_password : old_pass,
+                  confirm_password : confirm_pass,
                 }
               }).success(function(resp2){
 
@@ -246,23 +248,24 @@ switch ($title){
                 var obj2 = JSON.parse(resp2);
                 if(obj2.status == "success"){
                   $('#change_pass').trigger("reset");
-                  Notify('Password Success', obj2.msg, 'success');
+                  Notify('Password Success', obj2.message, 'success');
                   $("#change_password").modal("toggle");
                 }else{
-                  Notify('Password Change Error', 'Password could not be update..', 'error');
+                  Notify('Password Change Error', obj2.message, 'error');
                 }
 
               });
 
-            }else{
-              Notify('Password Error', 'Old password does not match..', 'error');
-            }
+            // }
+            // else{
+            //   Notify('Password Error', 'Old password does not match..', 'error');
+            // }
 
-          }else{
-            Notify('Password Error', 'User does not exist..', 'error');
-          }
+          // }else{
+          //   Notify('Password Error', 'User does not exist..', 'error');
+          // }
 
-        });
+        // });
         return false;
       }
     });

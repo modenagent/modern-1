@@ -22,11 +22,11 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css">
 <!-- Custom CSS -->
 
-<link href="<?php echo base_url(); ?>assets/css/lp-style.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assets/css/lp-style.css?v=0.1" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
 <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=AIzaSyBObeZlAuAAl86hjeiCUwHf4Crlo5_ISFI"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey()?>"></script>
 <!-- jQuery --> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
 <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
@@ -56,17 +56,26 @@
           <ul>
           <li class="<?php if($current=='dashboard'){echo 'current';} ?>"><a href="<?php echo site_url('user/dashboard'); ?>" class="external m">Create New</a></li>
           <li class="<?php if($current=='recentlp'){echo 'current';} ?>"> <a href="<?php echo site_url('user/recentlp'); ?>" class="external m">Recent</a> </li>
-          <li class="<?php if($current=='billing'){echo 'current';} ?>"> <a href="<?php echo site_url('user/billing'); ?>" class="external m">Billing History</a> </li>
+          
           <li class="<?php if($current=='leads'){echo 'current';} ?>"> <a href="<?php echo site_url('user/leads'); ?>" class="external m">My Leads</a> </li>
-          <li class="<?php if($current=='myaccount'){echo 'current';} ?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="external m">My Account</a> </li>
-          <?php 
-          $is_enterprise_user = is_enterprise_user();
-          if ($is_enterprise_user) {
-          ?>
-          <li class="<?php if($current=='customize'){echo 'current';} ?>"> <a href="<?php echo site_url('user/customize'); ?>" class="external m">Report Customization</a> </li>
-          <?php
-          }
-          ?>
+          <li class="<?php if($current=='guests'){echo 'current';} ?>"> <a href="<?php echo site_url('user/guests'); ?>" class="external m">My Guests</a> </li>
+          
+          <li class="dropdown account-menu">
+            <a href="#" class="dropdown-toggle external m" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li class="<?php if($current=='billing'){echo 'current';} ?>"> <a href="<?php echo site_url('user/billing'); ?>" class="external m">Billing History</a> </li>
+
+              <li class="<?php if($current=='myaccount'){echo 'current';} ?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="external m">My Account</a> </li>
+              <?php 
+              $is_enterprise_user = is_enterprise_user();
+              if ($is_enterprise_user) {
+              ?>
+              <li class="<?php if($current=='customize'){echo 'current';} ?>"> <a href="<?php echo site_url('user/customize'); ?>" class="external m">Report Customization</a> </li>
+              <?php
+              }
+              ?>
+            </ul>
+          </li>
           <li class=""> <a id="btn-logout" href="javascript:void(0);" class="external m btn-user-logout-click">Log Out</a> </li>
           </ul>
       </div>
@@ -78,6 +87,7 @@
         <li class="<?php if($current=='recentlp'){echo 'current';} ?>"> <a href="<?php echo site_url('user/recentlp'); ?>" class="external m">Recent</a> </li>
         <li class="<?php if($current=='billing'){echo 'current';} ?>"> <a href="<?php echo site_url('user/billing'); ?>" class="external m">Billing History</a> </li>
         <li class="<?php if($current=='leads'){echo 'current';} ?>"> <a href="<?php echo site_url('user/leads'); ?>" class="external m">My Leads</a> </li>
+        <li class="<?php if($current=='guests'){echo 'current';} ?>"> <a href="<?php echo site_url('user/guests'); ?>" class="external m">My Guests</a> </li>
         <li class="<?php if($current=='myaccount'){echo 'current';} ?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="external m">My Account</a> </li>
         <?php 
         $is_enterprise_user = is_enterprise_user();
@@ -91,4 +101,23 @@
         </ul>
     </div>          
   </div>
+  <style type="text/css">
+    .nav .account-menu.open>a, .nav .account-menu.open>a:focus, .nav .account-menu.open>a:hover {
+      background: none;
+    }
+    .account-menu .dropdown-menu {
+      background: none;
+      top: 20px;
+    }
+    .account-menu .dropdown-menu>li>a {
+      padding: 3px 0px;
+    }
+    .account-menu .dropdown-menu>li>a:focus, .account-menu .dropdown-menu>li>a:hover {
+      color: #fff;
+      background: none;
+    }
+    .account-menu.dropdown:hover  .dropdown-menu {
+      display: block;
+    }
+  </style>
 </header>

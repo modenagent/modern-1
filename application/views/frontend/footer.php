@@ -174,17 +174,19 @@
         });
 
         $('#login-form #uemail').keyup(function(e){
-            if(e.keyCode == 13) { $('#login-form').submit(); }
+            if(e.keyCode == 13) { $('#login-form-submit-btn').trigger('click'); }
         });
         $('#login-form #upass').keyup(function(e){
-            if(e.keyCode == 13) { $('#login-form').submit(); }
+            if(e.keyCode == 13) { $('#login-form-submit-btn').trigger('click'); }
         });
 
         // login form submit
-        $("#login-form").submit(function() {
-            if ( !$(this).valid() ) {
-                return false;
-            } else {   
+        $("#login-form").submit(function(e) {
+            e.preventDefault(); 
+            console.log("clicked");
+            // if ( !$(this).valid() ) {
+            //     return false;
+            // } else {   
                 var uname = $("#uemail").val();
                 var upass = $("#upass").val();
                 if ($.trim(uname) == '' || $.trim(upass) == '') {
@@ -210,7 +212,7 @@
                     }
                 });
                 return false;
-            }
+            // }
         });
         
     });

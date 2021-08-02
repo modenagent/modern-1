@@ -82,8 +82,19 @@
                           
                       <?php endforeach; ?>
                     </select>
+                    
                   </div> 
-                  <input type="hidden" name="cname" id="cname">
+                  <!-- <input type="hidden" id="cname"> -->
+              </div>
+              <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="text" placeholder="Company Name" name="cname" class="form-control alphanumeric" id="cname">
+                  </div> 
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input type="text" placeholder="Company Url" name="company_url" class="form-control" id="company_url">
+                </div>
               </div>
               <?php elseif ($add_form=='end_user'): ?>
               <div class="col-md-3">
@@ -109,9 +120,9 @@
                       </div> 
                   </div>
               <?php endif; ?>
-              <div class="col-md-6">
+              <div <?php if($add_form=='sales_rep'): ?> class="col-md-3" <?php else : ?> class="col-md-6" <?php endif;?> >
                   <div class="form-group">
-                    <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company')?'readonly="readonly"':''; ?>>
+                    <input type="text" placeholder="Company Address" name="caddress" class="form-control" id="caddress" <?php echo ($add_form!=='company' && $add_form!=='sales_rep')?'readonly="readonly"':''; ?>>
                   </div> 
               </div>
             </div>
@@ -146,8 +157,10 @@
 </div>
 </div>
 </div>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+  addressAutoComplete();
     $('#btnExExcel').click(function(){
         $.ajax({
                 url: '<?php echo site_url('admin/export_excel'); ?>',
@@ -234,6 +247,7 @@ $(document).ready(function(){
             var caddress = $("#caddress").val();
             var parent_id = $("#parent_id").val();
             var role_id = $("#role_id").val();
+            var company_url = $("#company_url").val();
 
             var submit = $('#add_user_form').closest('form').find(':submit');
             submit.html('<i class="fa fa-spinner fa-spin"></i>');
@@ -254,6 +268,7 @@ $(document).ready(function(){
                     caddress: caddress,
                     role_id: role_id,
                     parent_id:parent_id,
+                    company_url:company_url,
                     backend:"1",
                 }
             }).success(function(resp) {
@@ -299,6 +314,31 @@ function autofillCompany(user_id){
             $("#caddress").val(data.cadd);
             $("#cname").val(data.cname);
         }
+    });
+}
+
+//Google search autocomplete
+function addressAutoComplete() {
+    var input = document.getElementById('caddress');
+    var defaultBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(-32.30, 114.8),
+        new google.maps.LatLng(-42, 124.24)); // latitude and longitude ranges of California
+    var options = {
+        componentRestrictions: {
+            country: [],
+            // country: 'us'
+        },
+        bounds: defaultBounds
+    };
+    autocomplete = new google.maps.places.Autocomplete(input, options);
+    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        var place = autocomplete.getPlace(); // get address, without city and state
+        var latlng = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
+
+        setTimeout(function() {
+            $('#caddress').val(place.formatted_address);
+        }, 25); // just display street address
+
     });
 }
 </script>

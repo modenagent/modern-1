@@ -80,6 +80,7 @@ class Auth extends REST_Controller
     // user register api
     public function userregister_post()
     {
+
         $table = "lp_user_mst";
         $email = $this->post('uemail');
         $where = array('email'=> $email);
@@ -124,8 +125,10 @@ class Auth extends REST_Controller
             } else {
                 $parentId = (int)$this->get('parent_id')?(int)$this->get('parent_id'):(int)$this->post('parent_id');
             }
+            $password = $this->post('user_pass')?$this->post('user_pass'):$this->post('upass');
+            $encrypted_password = password_hash($password,PASSWORD_DEFAULT);
             $user = array(
-                'password' => $this->post('user_pass')?$this->post('user_pass'):$this->post('upass'),
+                'password' => $encrypted_password,
                 'user_name' => $this->post('uname'),
                 'first_name' => $this->post('fname'),
                 'last_name' => $this->post('lname'),
@@ -146,6 +149,12 @@ class Auth extends REST_Controller
                 'registered_date' => date('Y-m-d H:i:s', time()),
                 'is_active' => 'Y',
             );
+            if(!empty($this->post('company_url'))) {
+                $user['company_url'] = $this->post('company_url');
+            }
+            if(!empty($this->post('cma_url'))) {
+                $user['cma_url'] = $this->post('cma_url');
+            }
             $resp = $this->base_model->insert_one_row('lp_user_mst', $user);
             if($resp){
                 if($this->get('backend')){
@@ -233,38 +242,47 @@ class Auth extends REST_Controller
             $mobileNumber = clean_phone($result->phone);
             $random_password = $this->generateRandomString();
             $data = array(
-                'password' => $random_password
+                'password' => password_hash($random_password,PASSWORD_DEFAULT)
             );
             $where = array(
                 'user_id_pk' => $userId
             );
 
             $result2 = $this->base_model->update_record_by_id($table,$data,$where);
-            
-            // send sms until we have the mail running 
-            // Your Account SID and Auth Token from twilio.com/console
-            $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
-            $token = 'd33346194bc839d2c495c6b35c2c5a64';
-            $client = new Client($sid, $token);
 
-            // Use the client to do fun stuff like send text messages!
-            $smsText = "Your New Password is: {$random_password}. \n Regards, \n Modern Agent Team";
-            try {
-            $smsRes = $client->messages->create(
-                // the number you'd like to send the message to
-                '+1'.$mobileNumber,
-                array(
-                    // A Twilio phone number you purchased at twilio.com/console
-                    'from' => '+14243519064',
-                    // the body of the text message you'd like to send
-                    'body' => $smsText
-                )
-            );
-            } catch (Exception $e){
-                // var_dump($e);
-                echo json_encode(array("status"=>"failed",'msg'=>'SMS could not be sent on this number.',"sms"=>$smsText));
-                exit();
+
+            $env_mode = 'devlopment'; //Set default value
+            if(!empty(!$_ENV['ENV_MODE'])) {
+                $env_mode = $_ENV['ENV_MODE'];
             }
+            if(strtolower($env_mode) == 'production') {
+                
+                // send sms until we have the mail running 
+                // Your Account SID and Auth Token from twilio.com/console
+                $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
+                $token = 'd33346194bc839d2c495c6b35c2c5a64';
+                $client = new Client($sid, $token);
+
+                // Use the client to do fun stuff like send text messages!
+                $smsText = "Your New Password is: {$random_password}. \n Regards, \n Modern Agent Team";
+                try {
+                $smsRes = $client->messages->create(
+                    // the number you'd like to send the message to
+                    '+1'.$mobileNumber,
+                    array(
+                        // A Twilio phone number you purchased at twilio.com/console
+                        'from' => '+14243519064',
+                        // the body of the text message you'd like to send
+                        'body' => $smsText
+                    )
+                );
+                } catch (Exception $e){
+                    // var_dump($e);
+                    echo json_encode(array("status"=>"failed",'msg'=>'SMS could not be sent on this number.',"sms"=>$smsText));
+                    exit();
+                }
+            }
+            
 
             if($result2){
                 $name = 'Administrator';

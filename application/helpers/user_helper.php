@@ -99,3 +99,108 @@ if (! function_exists('is_enterprise_user')) {
         }
     }
 }
+
+if (! function_exists('generate_sso_token')) {
+    function generate_sso_token($company_id)
+    {
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        $randomString = (string)time();
+        for ($i = 0; $i < 4; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        $randomString .= $company_id;
+        for ($i = 0; $i < 4; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+
+        return $randomString;
+    }
+}
+
+//Stripe Key
+if ( ! function_exists('getStripeKey')){
+ function getStripeKey() {
+    $mode = 'live';
+    if(!empty($_ENV['STRIPE_MODE'])) {
+        $mode = $_ENV['STRIPE_MODE'];
+    }
+    if(strtolower($mode) == 'sandbox' && !empty($_ENV['STRIPE_KEY_SANDBOX'])) {
+        return $_ENV['STRIPE_KEY_SANDBOX'];
+    }
+    elseif(!empty($_ENV['STRIPE_KEY_LIVE'])) {
+        return $_ENV['STRIPE_KEY_LIVE'];
+    }
+    else {
+        return '';
+    }
+ }
+}
+
+//Stripe Key
+if ( ! function_exists('getStripeSecret')){
+ function getStripeSecret() {
+    $mode = 'live';
+    if(!empty($_ENV['STRIPE_MODE'])) {
+        $mode = $_ENV['STRIPE_MODE'];
+    }
+    if(strtolower($mode) == 'sandbox' && !empty($_ENV['STRIPE_KEY_SECRET_SANDBOX'])) {
+        return $_ENV['STRIPE_KEY_SECRET_SANDBOX'];
+    }
+    elseif(!empty($_ENV['STRIPE_KEY_SECRET_LIVE'])) {
+        return $_ENV['STRIPE_KEY_SECRET_LIVE'];
+    }
+    else {
+        return '';
+    }
+ }
+}
+//Sitex Key
+if ( ! function_exists('getSitexKey')){
+ function getSitexKey() {
+    if(!empty($_ENV['SITEX_API'])) {
+        return $_ENV['SITEX_API'];
+    }
+    else {
+        return '';
+    }    
+ }
+}
+
+//Google Map API key
+if ( ! function_exists('getGoogleMapKey')){
+ function getGoogleMapKey() {
+    if(!empty($_ENV['GOOGLE_MAP_KEY'])) {
+        return $_ENV['GOOGLE_MAP_KEY'];
+    }
+    else {
+        return '';
+    }    
+ }
+}
+
+//Generate Random string
+if ( ! function_exists('generateRandomString')){
+ function generateRandomString() {
+    return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
+ }
+}
+
+//Check access
+if ( ! function_exists('hasAccess')){
+ function hasAccess($path) {
+    $CI = & get_instance(); 
+    $CI->load->library('role_lib');
+    $hasAccess = $CI->role_lib->has_access($path);
+    if($CI->input->is_ajax_request()){
+        return $hasAccess;
+    }
+    if(!$hasAccess) {
+        $CI->session->set_flashdata('error', 'Access denied');
+        redirect('admin/dashboard');
+        return;
+    }
+    return true;
+ }
+}

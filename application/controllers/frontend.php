@@ -101,6 +101,10 @@ echo $this->email->print_debugger();die;
    // frontend view
     public function index()
     {
+        if (defined('CI_REQUEST') && CI_REQUEST == 'external')
+        {
+            return;
+        }
             if($this->session->userdata('userid')){
                 redirect(base_url().'user/dashboard');
             }
@@ -541,6 +545,23 @@ echo $this->email->print_debugger();die;
         } 
         return false;
         
+    }
+
+    public function remove_old_files()
+    {
+        $path = FCPATH.'assets/reports/widget/images/featured/temp/*';
+        $files = glob($path);
+        $now   = time();
+        $before_2_days = (60 * 60 * 24 * 2);
+
+        foreach ($files as $file) {
+            if (is_file($file)) {
+              if ($now - filemtime($file) >= $before_2_days) { // 
+                unlink($file);
+                echo '<br/>File deleted : '.$file;
+              }
+            }
+        }
     }
 }
 ?>

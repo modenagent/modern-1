@@ -4,12 +4,12 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'listingpitch';
-$db['default']['password'] = 'listingpitch';
+$db['default']['hostname'] = !empty($_ENV['DB_HOST'])?$_ENV['DB_HOST']:'localhost';
+$db['default']['username'] = $_ENV['DB_USER'];
+$db['default']['password'] = $_ENV['DB_PASSWORD'];
 
 
-$db['default']['database'] = 'listingpitch';
+$db['default']['database'] = $_ENV['DB_DATABASE'];
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;

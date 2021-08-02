@@ -3,11 +3,18 @@ class Lp extends CI_Controller{
 
 	function __construct(){
 		parent::__construct();
+        $origin = $_SERVER['HTTP_ORIGIN'];
+        $allowed_domains = array('https://'.$_ENV['WIDGET_DOMAIN'],'http://'.$_ENV['WIDGET_DOMAIN']);
+        if (in_array($origin, $allowed_domains)) {
+            header('Access-Control-Allow-Origin: ' . $origin);
+            header('Access-Control-Allow-Credentials: true');
+            
+        }
 	}
 
 	function getSearchResults(){
 		$request = $_GET['requrl'];        
-		$request .= '&key=' . '22C75EF7-5DBF-4B26-B2DB-998BE080F29C';
+		$request .= '&key=' . getSitexKey();
         
         $getsortedresults = isset($_GET['getsortedresults'])?$_GET['getsortedresults']:'false';
         
@@ -70,54 +77,134 @@ class Lp extends CI_Controller{
 		echo file_get_contents($_GET['requrl']);
 	}
 	function send_queued_mails(){
-            $this->load->config('mandrill');
-            $this->load->library('mandrill');
-            $mandrill_ready = NULL;
-            try {
-                $this->mandrill->init( $this->config->item('mandrill_api_key') );
-                $mandrill_ready = TRUE;
-            } catch(Mandrill_Exception $e) {
-                $mandrill_ready = FALSE;
+
+
+            $status_where = array('status' => 'pending');
+            $mails = $this->base_model->get_record_result_array('lp_mail_cron',$status_where);
+            //Check If environment var is of devlopment or of production
+            $env_mode = 'devlopment'; //Set default value
+            if(!empty(!$_ENV['ENV_MODE'])) {
+                $env_mode = $_ENV['ENV_MODE'];
             }
-            if( $mandrill_ready ) {
-                $this->db->where('status','pending');
-                $mails = $this->db->get('lp_mail_cron')->result_array();
-                foreach ($mails as $key => $mail) {
-                    $this->db->where('mail_cron_id',$mail['mail_cron_id']);
-                    $this->db->update('lp_mail_cron',array('status'=>'queued'));
+            if(strtolower($env_mode) == 'production') {
+            
+
+                $this->load->config('mandrill');
+                $this->load->library('mandrill');
+                $mandrill_ready = NULL;
+                try {
+                    $this->mandrill->init( $this->config->item('mandrill_api_key') );
+                    $mandrill_ready = TRUE;
+                } catch(Mandrill_Exception $e) {
+                    $mandrill_ready = FALSE;
                 }
-                foreach ($mails as $key => $mail) {
-                    $mailData = array(
-                        'html' => $mail['content'], //Consider using a view file
-                        'subject' => $mail['subject'],
-                        'from_email' => 'noreply@modernagent.io',
-                        'from_name' => 'ModernAgent.io',
-                        'to' => array(array('email' => $mail['email_address'],"type"=>"to" )), //Check documentation for more details on this one
-                        "track_opens" => true,
-                        "track_clicks" => true,
-                        "auto_text" => true,
-                    );
+
+                    if( $mandrill_ready ) {
+                    foreach ($mails as $key => $mail) {
+                        $this->db->where('mail_cron_id',$mail['mail_cron_id']);
+                        $this->db->update('lp_mail_cron',array('status'=>'queued'));
+                    }
+                    foreach ($mails as $key => $mail) {
+                        $mailData = array(
+                            'html' => $mail['content'], //Consider using a view file
+                            'subject' => $mail['subject'],
+                            'from_email' => 'noreply@modernagent.io',
+                            'from_name' => 'ModernAgent.io',
+                            'to' => array(array('email' => $mail['email_address'],"type"=>"to" )), //Check documentation for more details on this one
+                            "track_opens" => true,
+                            "track_clicks" => true,
+                            "auto_text" => true,
+                        );
+                        $invoices_tobe_delete = [];
+                        $i=1;
+                        $attachments = json_decode($mail['attachments']);
+                        if(is_array($attachments)){
+                            foreach ($attachments as $attachment){
+
+                                if (strpos($attachment, 'user_invoices') !== false) {
+                                    $invoices_tobe_delete[] = $attachment;
+                                }
+
+                                $attachment_get = file_get_contents($attachment);
+                                $attachment_encoded = base64_encode($attachment_get); 
+                                $mailData['attachments'][] = array(
+                                    'path' => base_url($attachment),
+                                    'type' => "application/pdf",
+                                    'name' => "document".$i++.".pdf",
+                                    'content'=>$attachment_encoded
+                                );
+                            }
+                        }
+                        $mail_response = $this->mandrill->messages_send($mailData);
+                        $this->db->where('mail_cron_id',$mail['mail_cron_id']);
+                        
+                        if($mail_response[0]['status']=='queued'){
+                            $updatedData = array('status'=>'finished','delivered_at'=>date('Y-m-d H:i:s'));
+                        } else {
+                            $updatedData = array('status'=>'failed');
+                        }
+                        $this->db->update('lp_mail_cron',$updatedData); 
+
+                        /**
+                         * Delete Invoice file after attachment send through mail
+                         */
+                        if (!empty($invoices_tobe_delete)) {
+                            foreach ($invoices_tobe_delete as $key => $delete_invoice) {
+                                if ($delete_invoice != '' && file_exists($delete_invoice)) {
+                                    unlink($delete_invoice);
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+            }
+            else {
+
+                $this->load->config('email');
+                $this->load->library('email');
+
+                foreach ($mails as $mail) {
+                    # code...
+                    $this->email->from('noreply@modernagent.io', 'ModernAgent.io');
+                    $this->email->to($mail['email_address']);
+
+                    $this->email->subject($mail['subject']);
+                    $this->email->message($mail['content']);
+
+                    
+
+                    // echo $this->email->print_debugger();
+
                     $invoices_tobe_delete = [];
                     $i=1;
                     $attachments = json_decode($mail['attachments']);
                     if(is_array($attachments)){
                         foreach ($attachments as $attachment){
-                            $attachment = file_get_contents($attachment);
+                            $attachment_path = FCPATH.$attachment;
+                            if(!empty($attachment) && file_exists($attachment_path)) {
 
-                            if (strpos($attachment, 'user_invoices') !== false) {
-                                $invoices_tobe_delete = $attachment;
+                                if (strpos($attachment, 'user_invoices') !== false) {
+                                    $invoices_tobe_delete[] = $attachment_path;
+                                }
+
+                                $this->email->attach($attachment_path);
                             }
 
-                            $attachment_encoded = base64_encode($attachment); 
-                            $mailData['attachments'][] = array(
-                                'path' => base_url($attachment),
-                                'type' => "application/pdf",
-                                'name' => "document".$i++.".pdf",
-                                'content'=>$attachment_encoded
-                            );
                         }
                     }
-                    $res[$mail['mail_cron_id']] = $this->mandrill->messages_send($mailData);
+                    $mail_response = $this->email->send();
+
+                    // die;
+
+                    if($mail_response){
+                        $updatedData = array('status'=>'finished','delivered_at'=>date('Y-m-d H:i:s'));
+                    } else {
+                        $updatedData = array('status'=>'failed');
+                    }
+                    $update_where = array('mail_cron_id'=>$mail['mail_cron_id']);
+                    $this->base_model->update_record_by_id('lp_mail_cron',$updatedData,$update_where);
+                   
 
                     /**
                      * Delete Invoice file after attachment send through mail
@@ -125,22 +212,17 @@ class Lp extends CI_Controller{
                     if (!empty($invoices_tobe_delete)) {
                         foreach ($invoices_tobe_delete as $key => $delete_invoice) {
                             if ($delete_invoice != '' && file_exists($delete_invoice)) {
+
                                 unlink($delete_invoice);
                             }
                         }
                     }
+
                 }
-                foreach ($res as $mail_cron_id => $mail_response) {
-                    $this->db->where('mail_cron_id',$mail_cron_id);
-                    
-                    if($mail_response[0]['status']=='queued'){
-                        $updatedData = array('status'=>'finished','delivered_at'=>date('Y-m-d H:i:s'));
-                    } else {
-                        $updatedData = array('status'=>'failed');
-                    }
-                    $this->db->update('lp_mail_cron',$updatedData);	
-                }
+
             }
+
+            
 	}
         function coupon_usage_report(){
             $day = date('w');

@@ -243,6 +243,7 @@
                 );
         exit();
     }
+    if ( ! function_exists('dump')){
     function dump($var, $die = 0){
         echo '<pre>';
         print_r($var);
@@ -250,6 +251,7 @@
         if($die == 1)
             die();
     }
+}
 
     function get_string_between($start, $end, $string){
         $string = " ".$string;

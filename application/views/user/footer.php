@@ -113,7 +113,10 @@
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
   // This identifies your website in the createToken call below
-  Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
+  // Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
+  Stripe.setPublishableKey("<?=getStripeKey()?>");
+
+  
   // ...
 </script>
 
@@ -129,7 +132,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js?v=0.1"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
@@ -260,6 +263,7 @@
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
     $("#owl-example").owlCarousel();
+    $("#owl-example-registry").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
 
@@ -299,7 +303,8 @@
           $('.loader1').removeClass('hidden');
           $('.backwrap').show();
           $('.backwrap').removeClass('hidden');
-          check_subscription();
+          // check_subscription();
+          // manage_checkout_btn();
         } 
         if(obj.attr('rel')!=4){
           $(".actionBar").show("slow");
@@ -345,25 +350,25 @@
         
       // stripe
     var $form = $('#payment-form');
-    function stripeResponseHandler(status, response) {
-      if (response.error) {
-        // Show the errors on the form
-        console.log(response.error);
-        $form.find('.payment-errors').text(response.error.message).show();
-        $form.find('button').prop('disabled', false);
-        jQuery(".loader1").hide();
-        jQuery(".backwrap").hide();
+    // function stripeResponseHandler(status, response) {
+    //   if (response.error) {
+    //     // Show the errors on the form
+    //     console.log(response.error);
+    //     $form.find('.payment-errors').text(response.error.message).show();
+    //     $form.find('button').prop('disabled', false);
+    //     jQuery(".loader1").hide();
+    //     jQuery(".backwrap").hide();
 
-      } else {
-        // response contains id and card, which contains additional card details
-        var token = response.id;
-        // Insert the token into the form so it gets submitted to the server
-        $form.append($('<input type="hidden" name="stripeToken" />').val(token));
-        // blank out the form
-        // and submit
-        doSubmit();
-      }
-    }
+    //   } else {
+    //     // response contains id and card, which contains additional card details
+    //     var token = response.id;
+    //     // Insert the token into the form so it gets submitted to the server
+    //     $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+    //     // blank out the form
+    //     // and submit
+    //     doSubmit();
+    //   }
+    // }
     /*
     function doSubmit(){
       if(activeRequest){
@@ -411,12 +416,12 @@
               $(".backwrap").show(function(){
                   $(".loader1").show();
               });
-              var $form = $(this);
+              // var $form = $(this);
 
               // Disable the submit button to prevent repeated clicks
-              $form.find('button').prop('disabled', true);
+              $(this).find('button').prop('disabled', true);
 
-              Stripe.card.createToken($form, stripeResponseHandler);
+              // Stripe.card.createToken($form, stripeResponseHandler);
               
               // Prevent the form from submitting with the default action
               return false;
@@ -527,55 +532,55 @@
     // Smart Tab
     $('#tabs').smartTab({autoProgress: false,stopOnFocus:true,transitionEffect:'vSlide',
       onShowTab:function(obj){
-        var cusrrentTab = obj[0]
-        var id = $(cusrrentTab).attr('href')
-        if(id === "#tabs-5"){
-          $(".backwrap").show(function(){
-              $(".backwrap").removeClass('hidden');
-            $(".loader1").show(function(){
-                $(".loader1").removeClass('hidden');
-            });
-          });
-          var planId = $(cusrrentTab).data('planid');
-          $('#subscriptionForm-wraper').hide();
-          $.ajax({
-              url:base_url + 'index.php?/user/is_subscribed/'+planId,
-              method:'GET',
-              dataType: 'json',
-              success:function(data) {
-                  $(".backwrap").hide(function(){
-                      $(".backwrap").addClass('hidden');
-                    $(".loader1").hide(function(){
-                        $(".loader1").addClass('hidden');
-                    });
-                  });
-                  $('#api-token-code').html(data.token);
-                  $('#api-token-wrap').show();
-                  if(data.status==true){
-                      var info = data.data;
-                      $('.plan-title').html(info.plan_title);
-                      $('.plan-interval').html(info.interval);
-                      $('.plan-ends').html(info.current_period_end);
-                      $('#subscribed-wrap').show();
-                      $('#ref-code').html(data.ref_code);
-                      $('#ref-code-wrap').show();
-                      if(info.cancel_at_period_end==0)//check if recurring billing is On
-                          $('#subscribed-wrap .recurring-billing').show();
-                      //Do not show cancel button when it is compnay's subscription plan
-                      if(data.company_plan !== undefined && data.company_plan){
-                          $('#cancelBtnWrap').hide();
-                      }
+        // var cusrrentTab = obj[0]
+        // var id = $(cusrrentTab).attr('href')
+        // if(id === "#tabs-5"){
+        //   $(".backwrap").show(function(){
+        //       $(".backwrap").removeClass('hidden');
+        //     $(".loader1").show(function(){
+        //         $(".loader1").removeClass('hidden');
+        //     });
+        //   });
+        //   var planId = $(cusrrentTab).data('planid');
+        //   $('#subscriptionForm-wraper').hide();
+        //   $.ajax({
+        //       url:base_url + 'index.php?/user/is_subscribed/'+planId,
+        //       method:'GET',
+        //       dataType: 'json',
+        //       success:function(data) {
+        //           $(".backwrap").hide(function(){
+        //               $(".backwrap").addClass('hidden');
+        //             $(".loader1").hide(function(){
+        //                 $(".loader1").addClass('hidden');
+        //             });
+        //           });
+        //           $('#api-token-code').html(data.token);
+        //           $('#api-token-wrap').show();
+        //           if(data.status==true){
+        //               var info = data.data;
+        //               $('.plan-title').html(info.plan_title);
+        //               $('.plan-interval').html(info.interval);
+        //               $('.plan-ends').html(info.current_period_end);
+        //               $('#subscribed-wrap').show();
+        //               $('#ref-code').html(data.ref_code);
+        //               $('#ref-code-wrap').show();
+        //               if(info.cancel_at_period_end==0)//check if recurring billing is On
+        //                   $('#subscribed-wrap .recurring-billing').show();
+        //               //Do not show cancel button when it is compnay's subscription plan
+        //               if(data.company_plan !== undefined && data.company_plan){
+        //                   $('#cancelBtnWrap').hide();
+        //               }
                       
-                  } else {
-                      $('#subscriptionForm-wraper').show();
-                      if(data.message !== undefined){
-                          $('#plan-msg label').html(data.message);
-                      }
-                  }
-              }
-          });
-        }
-        return true;
+        //           } else {
+        //               $('#subscriptionForm-wraper').show();
+        //               if(data.message !== undefined){
+        //                   $('#plan-msg label').html(data.message);
+        //               }
+        //           }
+        //       }
+        //   });
+        // }
+        // return true;
       }
     });
     /** Tabs content was messedup for a second before smartTab initialization 
@@ -1021,16 +1026,136 @@
         doSubmit();
         return true;
       }
-      console.log("Bypassed");
-      $(this).parents("#step-4").find('.order-detail').hide("slow");
-      $(this).parents("#step-4").find('.order-summary').show("slow");
-      $(".actionBar").hide("slow");
-      $(".btn-checkout").hide("slow");
-      $(".btn-pay").show("slow");
-      // window.location.href="#top";
-      setTimeout(function(){
-        $(document).scrollTop(0);
-      },500);
+      else {
+
+        $(this).parents("#step-4").find('.order-detail').hide("slow");
+        $(this).parents("#step-4").find('.order-summary').show("slow");
+        $(".actionBar").hide("slow");
+        $(".btn-checkout").hide("slow");
+        $(".btn-pay").show("slow");
+
+        // window.location.href="#top";
+        setTimeout(function(){
+          $(document).scrollTop(0);
+        },500);
+        //Call Session id
+        var presentation_type = $("#presentation").val().toLowerCase();
+        $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
+        $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
+        // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
+        
+        if(!(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1)) {
+
+            // $('.loader1').show();
+            // $('.loader1').removeClass('hidden');
+            // $('.backwrap').show();
+            // $('.backwrap').removeClass('hidden');
+
+            let elements = stripe.elements();
+
+            var style = {
+              base: {
+                color: "#32325d",
+                fontFamily: 'Arial, sans-serif',
+                fontSmoothing: "antialiased",
+                fontSize: "16px",
+                "::placeholder": {
+                  color: "#32325d"
+                }
+              },
+              invalid: {
+                fontFamily: 'Arial, sans-serif',
+                color: "#fa755a",
+                iconColor: "#fa755a"
+              }
+            };
+
+            let card = elements.create('card', { style: style });
+            card.mount('#card-element');
+
+            card.on('change', function (event) {
+              document.querySelector("#stripe-submit").disabled = event.empty;
+              document.querySelector("#card-error").textContent = event.error ? event.error.message : "";
+              if(event.error) {
+                $("#card-error").show();
+              }
+              else {
+                $("#card-error").hide();
+              }
+            });
+
+            
+            document.getElementById("stripe-submit").disabled = true;
+
+            const btn = document.querySelector('#stripe-submit');
+            btn.addEventListener('click', async (e) => {
+              e.preventDefault();
+              loading(true);
+              let nameInput = '<?php echo $this->session->userdata('username')?>';
+              
+              let coupon_id = $("#coupon-id").val();
+              fetch('<?php echo base_url("user/createPaymentIntent"); ?>', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                   pkg_id: presentation_type,coupon_id: coupon_id
+                }),
+              })
+              .then(response => response.json())
+              .then(data => {
+                if(data.status == true) {
+                  stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                      card: card,
+                      billing_details: {
+                        name: nameInput,
+                        email : '<?php echo $agentInfo->email; ?>',
+                        address : {
+                          line1 : '510 Townsend St',
+                          postal_code : '98140',
+                          city : 'San Francisco',
+                          state : 'CA',
+                          country : 'US',
+                        }
+                      },
+                    }
+                  }).then((result) => {
+                    if(result.error) {
+                      showError(result.error.message);
+                    } else {
+                      $("#payment-success").html("Success");
+                      $("#payment_intent_id").val(result.paymentIntent.id);
+                      doSubmit();
+                      // Successful payment
+                    }
+                  });
+                }
+                else {
+                  showError(data.message);
+                }
+              })
+              .catch((error) => {
+                console.error('Error:', error);
+              });
+
+            });
+            
+        }
+
+        //$("#stripe_chk_btn").trigger("click");
+      }
+      // console.log("Bypassed");
+      // $(this).parents("#step-4").find('.order-detail').hide("slow");
+      // $(this).parents("#step-4").find('.order-summary').show("slow");
+      // $(".actionBar").hide("slow");
+      // $(".btn-checkout").hide("slow");
+      // $(".btn-pay").show("slow");
+      // // window.location.href="#top";
+      // setTimeout(function(){
+      //   $(document).scrollTop(0);
+      // },500);
     });
     
     $(".btn-review").click(function(){
@@ -1066,7 +1191,7 @@
   });
   function check_subscription(){
       $.ajax({
-          url:base_url + 'index.php?/user/is_subscribed/prem_lp_user',
+          url:base_url + '/user/is_subscribed/prem_lp_user',
           method:'GET',
           dataType: 'json',
           success:function(resp){
@@ -1142,6 +1267,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.2"></script>
 </body>
 </html>

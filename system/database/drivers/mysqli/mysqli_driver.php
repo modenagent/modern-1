@@ -311,7 +311,10 @@ class CI_DB_mysqli_driver extends CI_DB {
 			return $str;
 		}
 
-
+		if ($this->conn_id === FALSE)
+		{
+		    $this->initialize();
+		}
 		$str = mysqli_real_escape_string($this->conn_id, $str);
 
 		// escape LIKE condition wildcards

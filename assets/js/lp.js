@@ -279,7 +279,8 @@ function runPMA(agentPath, logoPath) {
     // recordFormData();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
-    query += '&' + formData;
+    query += '&' + formData;    
+
     query += '&' + 'pdfID=' + pdfID;
     query +="&showpartner="+$('input.add-partner:checked').val();
     if($('#addNewPartner').css('display')=='none'){
@@ -287,11 +288,11 @@ function runPMA(agentPath, logoPath) {
     }else{
         query += '&' + 'showpartner=on';
     }
-    query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());		//this line comment by vijay 
-    query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
+    query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());     //this line comment by vijay 
+    // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
+    query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     //console.log(query);
-     
     if(activeRequest){
         activeRequest=false;
         xhr.abort();
@@ -300,12 +301,17 @@ function runPMA(agentPath, logoPath) {
     // return;
     activeRequest=true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
+
     xhr = $.ajax({
         url: base_url+'index.php?/lp/getPropertyData',
         type: 'POST',
         data: query
     })
         .done(function(response) {
+            console.log(response);
+            var obj = JSON.parse(response);
+            console.log(obj);
+            manage_checkout_btn();
             try {
                 var obj = JSON.parse(response);
                 if(obj.status=='success'){
@@ -584,19 +590,46 @@ function get187() {
                 all_comp = data.all;
                 sorted_comp = data.sorted;
                 $('#pre-selected-options').html('');
-                $.each(all_comp, function(i, item) {
+                $('#comparable-pre-selected-options').html('');
+                // $('#available-comparables-market-update tbody').html('');
+
+                $.each(all_comp, function(i, item) {                    
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
                     }));
+
+                    $('#comparable-pre-selected-options').append($('<option>', {
+                        value: item.index,
+                        text: item.Address+" ("+item.Price+")"
+                    }));
+                    
+                    // $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
+                
+               // $('#comparables-market-update tbody').html('');
                 $.each(sorted_comp, function(i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")",
                         selected: 'selected'
                     }));
+
+                    $('#comparable-pre-selected-options').append($('<option>', {
+                        value: item.index,
+                        text: item.Address+" ("+item.Price+")",
+                        selected: 'selected'
+                    }));
+                    
+                    /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
+                if($('#comparable-pre-selected-options').length)
+                {
+                    $('#comparable-pre-selected-options').multiSelect({
+                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+                    });
+                }
                 activeRequest=false;
             },
             error: function() {
@@ -818,6 +851,7 @@ function autoComplete() {
         new google.maps.LatLng(-42, 124.24)); // latitude and longitude ranges of California
     var options = {
         componentRestrictions: {
+            country: [],
             // country: 'us'
         },
         bounds: defaultBounds
@@ -856,4 +890,291 @@ function autoComplete() {
             //}
         }
     });
+}
+
+function widgetRunPMA(agentPath, logoPath) {
+    firstModal = false;
+    // $('#run-pma-dialog').dialog('close');
+    // $('.progress-bar').progressbar("option", "value", false);
+    // $('.progress-bar').show();
+    // reportData.rep = $('#lp-rep-name option:selected').val();
+    if (agentPath) {
+        reportData.agentPath = agentPath;
+    }
+    if (logoPath) {
+        reportData.logoPath = logoPath;
+    }
+    // recordFormData();
+    var query = $.param(reportData);
+    var formData = $('#run-pma-form').serialize();
+    query += '&' + formData;    
+
+    var testimonials = [];
+    testimonials.push($("#testimonial-1").val());
+    testimonials.push($("#testimonial-2").val());
+    testimonials.push($("#testimonial-3").val());
+    testimonials.push($("#testimonial-4").val());
+    
+    query += '&testimonials=' + encodeURIComponent(JSON.stringify(testimonials));
+
+    var testimonials_name = [];
+    testimonials_name.push($("#testimonial-name-1").val());
+    testimonials_name.push($("#testimonial-name-2").val());
+    testimonials_name.push($("#testimonial-name-3").val());
+    testimonials_name.push($("#testimonial-name-4").val());
+    
+    query += '&testimonials_name=' + encodeURIComponent(JSON.stringify(testimonials_name));
+    var bio = encodeURIComponent($("#agent-bio").val());
+    query += '&bio=' + bio;
+
+    var featured_homes = [];
+    if($("#update-featured").length > 0) {
+        for (var featured_i = 0; featured_i <= 3; featured_i++) {
+            featured_homes[featured_i] = {}
+            featured_homes[featured_i].image = $("#featured_"+featured_i+"_image_val").val();
+            featured_homes[featured_i].price = $("#featured_"+featured_i+"_price").val();
+            featured_homes[featured_i].address = $("#featured_"+featured_i+"_address").val();
+            featured_homes[featured_i].city = $("#featured_"+featured_i+"_city").val();
+        }
+
+        query += '&featured_homes='+JSON.stringify(featured_homes);
+    }
+
+    query += '&' + 'pdfID=' + pdfID;
+    var pages = $('#pdf_pages').val();
+    query += '&' + 'pdfPages=' + pages;
+    query +="&showpartner="+$('input.add-partner:checked').val();
+    if($('#addNewPartner').css('display')=='none'){
+        query += '&' + 'showpartner=off';
+    }else{
+        query += '&' + 'showpartner=on';
+    }
+   
+    query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    var presentation = $("#presentation").val();
+    if($('#comparable-pre-selected-options').length && presentation == 'marketUpdate')
+    {
+        query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
+    }
+    console.log(presentation);
+    if(presentation == 'seller')
+    {
+        query += '&' + 'use_rets_api=' + use_rets_api;
+    }
+    // console.log(query);
+    
+    //console.log(query);
+    if(activeRequest){
+        activeRequest=false;
+        xhr.abort();
+    }
+    // console.log(query); 
+    // return;
+    activeRequest=true;
+    var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
+
+    xhr = $.ajax({
+        url: base_url+'widget/getWidgetPropertyData',
+        type: 'POST',
+        data: query
+    })
+        .done(function(response) {
+            // console.log(response);
+            pdfGenerated = false;
+            var obj = JSON.parse(response);
+            // console.log(obj);
+            try {
+                var obj = JSON.parse(response);
+                if(obj.status=='success'){
+                    pdfGenerated = true;
+                    pmaRes =  {status:"success"};
+                    if(obj.project_id) {
+                        $("#payment-form #project_id").val(obj.project_id);;
+                    } 
+                }
+            } catch (e) {
+                //return false;
+            }
+            if(!pdfGenerated){
+                $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
+                setTimeout(() => {
+                    //SET TIME OUT because its add static error message from footer.php SO update exact error message after 1 second.
+                    if (obj.msg != '') {
+                        if (typeof obj.showError !== 'undefined' && (obj.showError==true || obj.showError=='true')) { 
+                            $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
+                        }
+                    }
+                }, 1000);
+                $('.btn-checkout').hide();
+                $('.btn-lp.pay').hide();
+                if (obj.msg != '') {
+                    // Error Message passed to CMA response.
+                    pmaRes =  {status:"failed",msg:obj.msg};
+                } else {
+                    pmaRes =  {status:"failed",msg:errorMsg};
+                }
+            }
+            // returnReport();
+            activeRequest=false;
+            // $('#step-4 .loader1').addClass('hidden');
+            // $('#step-4 .backwrap').addClass('hidden');
+            $('.loader1').hide();
+            $('.backwrap').hide();
+        })
+        .fail(function() {
+            $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
+            $('.btn-checkout').hide();
+            $('.btn-lp.pay').hide();
+            pmaRes =  {status:"failed",msg:errorMsg};
+            //$('.pma-error').text('PDF Generation failed. Please try again.');
+            $('.loader1').hide();
+            $('.backwrap').hide();
+        })
+        .always(function() {
+            activeRequest = false;
+        });
+        
+
+}
+
+function getRetsApiComparables(address,is_simply_rets) 
+{
+    $('.loader1').show();
+    $('.loader1').removeClass('hidden');
+    $('.backwrap').show();
+    $('.backwrap').removeClass('hidden');
+    var search_city = $("#searchboxcity").val();
+
+    $.ajax({
+        url: base_url+'widget/getRetsApiComparablesData/'+is_simply_rets,
+        type: 'POST',
+        data: {address:address,city:search_city}
+    })
+        .done(function(response) {
+            var data = JSON.parse(response);
+            all_comp = data.all;
+            sorted_comp = data.sorted;
+            $('#pre-selected-options').html('');
+            $.each(all_comp, function(i, item) {
+                $('#pre-selected-options').append($('<option>', {
+                    value: i,
+                    text: item.address +" ("+item.price+")"
+                }));
+            });
+            
+            $.each(sorted_comp, function(i, item) {
+                $('#pre-selected-options').append($('<option>', {
+                    value: i,
+                    text: item.address +" ("+item.price+")",
+                    selected: 'selected'
+                }));
+            });
+
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');           
+        })
+        .fail(function() {            
+        })
+        .always(function() {
+        });
+}
+
+function getRetsApiDataByMlsId(mlsId,is_simply_rets) 
+{
+    var dismis_alert = `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>`;
+    if(mlsId == '') {
+        var msg = '<div class="alert alert-warning">Please enter mlsId'+dismis_alert+'</div>';
+        $("#select-comps .msg-container").html(msg);
+        return false;
+    }
+    if($("#pre-selected-options option[value='"+mlsId+"']").length > 0) {
+
+
+        var msg = '<div class="alert alert-warning">This property is already exist in the list'+dismis_alert+'</div>';
+        $("#select-comps .msg-container").html(msg);
+        
+        return false;
+    }
+    else {
+
+        $("#select-comps .msg-container").html('');
+
+
+        $('.loader1').show();
+        $('.loader1').removeClass('hidden');
+        $('.backwrap').show();
+        $('.backwrap').removeClass('hidden');
+        $('#mls_search').prop('disabled', true);
+
+        $.ajax({
+            url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId+'/'+is_simply_rets,
+            type: 'GET',
+        })
+            .done(function(response) {
+                var data = JSON.parse(response);
+                all_comp = data.all;
+                sorted_comp = data.sorted;
+                $("#select-comps .msg-container").html('');
+                if($(sorted_comp).length > 0) {
+
+                    var exist_list = added_in_list = '';
+
+                    $.each(sorted_comp, function(i, item) {
+
+
+
+                        if($("#pre-selected-options option[value='"+i+"']").length > 0) {
+                            exist_list += '<div>'+$("#pre-selected-options option[value='"+i+"']").text()+'</div>';
+                        }
+                        else {
+
+                            $('#pre-selected-options').append($('<option>', {
+                                value: i,
+                                text: item.address +" ("+item.price+")",
+                                selected: 'selected'
+                            }));
+                            added_in_list += '<div>'+item.address+'</div>';
+                            
+                        }
+
+                        
+                    });
+                    if(added_in_list != '') {
+
+                        var msg = '<div class="alert alert-success"> Following property added in comparables list: '+dismis_alert+added_in_list+'</div>';
+                        $("#select-comps .msg-container").append(msg);
+                    }
+                    if(exist_list != '') {
+
+                        var msg = '<div class="alert alert-warning"> Following property already exist in the list: '+dismis_alert+exist_list+'</div>';
+                        $("#select-comps .msg-container").append(msg);
+                    }
+                    $("#pre-selected-options").multiSelect('refresh');
+                }
+                else {
+                    var msg = '<div class="alert alert-warning">No property found with Address Or Mls #  : '+mlsId+' '+dismis_alert+'</div>';
+                    $("#select-comps .msg-container").html(msg);
+                    
+                }
+                
+
+                          
+            })
+            .fail(function() {            
+                alert("Something went wrong");
+            })
+            .always(function() {
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden'); 
+                $('#mls_search').prop('disabled', false);
+
+            });
+    }
+
 }

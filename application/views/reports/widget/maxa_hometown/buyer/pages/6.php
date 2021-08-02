@@ -1,0 +1,61 @@
+<page class="buyerpdf6">
+    <h1 class="main_title top_title">Neighborhood Stats</h1>
+    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+    <div class="d-flex">
+        <div class="col-12">
+            <h4 class="mt-0 sub_title">A Little Insight</h4>
+        </div>
+    </div>
+    <div class="d-flex row-30">
+        <div class="col-50">
+            <img src="<?php echo base_url().'assets/reports/english/buyer/images/1/img4.png'; ?>" alt="img4" class="img-fluid w100">
+            <h4 class="table_title mt-40">Avg. Household Income</h4>
+            <p class="mt-0">
+                The figure to the right represents the average
+                household income within your perspective
+                neighborhood. This information is gathered
+                from the household census that is taken every
+                10 years.
+            </p>
+        </div>    
+        <div class="col-50">
+            <h4 class="table_title">Female</h4>
+            <div class="percentage">
+                <?php echo $female_ratio ?>
+            </div>
+            <h4 class="table_title">Male</h4>
+            <div class="percentage">
+                <?php echo $male_ratio ?>
+            </div>
+            <h4 class="table_title">Male To Female Ratio</h4>
+            <p class="mt-0">
+                These figures represent the male to female
+                ratio in your neighborhood. The housing census
+                is taken every 10 years so depending on the
+                time of this report these figures can be slightly
+                different.
+            </p>
+        </div>
+        
+    </div>
+    <div class="neighborhood_stats">
+        <ul class="stats">
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img7.png';?>" alt="img7">
+                Avg. Sale Price<br>$<?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianValue; ?>
+            </li>
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img8.png';?>" alt="img8">
+                Avg. Sqft<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianLivingArea; ?>
+            </li>
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img9.png';?>" alt="img9">
+                Avg. Beds<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianNumBeds; ?> Beds
+            </li>
+            <li>
+                <img src="<?php echo base_url().'assets/reports/english/buyer/images/6/img10.pn';?>g" alt="img10">
+                Avg. Baths<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianNumBaths; ?> Baths
+            </li>
+        </ul>
+    </div>
+</page>

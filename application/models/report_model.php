@@ -40,7 +40,7 @@ class Report_model extends CI_Model
     	WHERE user_id = ? 
     	AND report_type = ? 
     	AND language = ? 
-    	AND page_no = ? ';
+    	AND page_no = ?';
     	$result = $this->db->query($sql, [$userId, $type, $language, $page]);
     	if ($result->num_rows()) {
     		$data = $result->row_array();
@@ -106,6 +106,33 @@ class Report_model extends CI_Model
             }
         }
 
+        return $data;
+    }
+
+    public function prepare_user_widget_report_data($reportType, $language, $page)
+    {
+        $default_data = $this->getWidgetReportPageData($reportType, $language, $page);
+        /*$user_data = $this->getReportPageData($userId, $reportType, $language, $page);*/
+
+        $data = [];
+
+        $data = json_decode($default_data['data'], true);
+
+        return $data;
+    }
+
+    function getWidgetReportPageData($type, $language, $page)
+    {
+        $data = [];
+        $sql = 'SELECT id, page_no, page_title, data 
+        FROM lp_widget_report_content 
+        WHERE report_type = ? 
+        AND language = ? 
+        AND page_no = ?';
+        $result = $this->db->query($sql, [$type, $language, $page]);
+        if ($result->num_rows()) {
+            $data = $result->row_array();
+        }
         return $data;
     }
 }

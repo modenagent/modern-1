@@ -1774,25 +1774,22 @@ a:hover {
 .section .footer .footer-inner .left-footer h4 {
     margin: 0px;
     padding: 0px;
-	margin-left:-100px;
+	margin-left:-50px;
 }
 
 .section .footer .footer-inner .left-footer p {
     font-size: 16px;
-    margin-left: -100px ;
+    margin-left: -50px ;
 	padding-top:3px;
 	}
 
 .section .footer .footer-inner .right-footer {
     width: 300px;
-/*    position: absolute !important;
-    right: 0px;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-    position: relative*/
-	padding-top:30px;
+    padding-top: 50px;
+    text-align: right;
+    padding-right: 30px;
 }
+
 
 .page2,
 .page3 {
@@ -2605,7 +2602,7 @@ h3{
 }
 
 .page14 .columns .text-block .desc {
-    font-size: 22px;
+    font-size: 20px;
     margin: 0px;
     padding: 0px
 }
@@ -4470,7 +4467,7 @@ figure.effect-zoe:hover p.icon-links a:first-child {
     margin-top:100px;
 }
 .page14 .columns .text-block{
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 .page14{
     padding-bottom: 10px;
@@ -4487,4 +4484,13 @@ h4{
 }
 .home-pc{
     margin-top:60px;
+}
+img.img-cover {
+	border-radius: 100%;
+    margin-top: 0px;
+    margin-left: 0px;
+    width: 200px;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }

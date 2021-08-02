@@ -9,7 +9,7 @@ class Lp extends CI_Controller{
 
 	function getSearchResults(){
 		$request = $_GET['requrl'];
-		$request .= '&key=' . '22C75EF7-5DBF-4B26-B2DB-998BE080F29C';
+		$request .= '&key=' . getSitexKey();
 		$file = file_get_contents($request);
 		echo $file;
 	}

@@ -24,6 +24,20 @@ class Admin extends CI_Controller
         if($adminId){
             redirect('admin/dashboard',$data);
         }else{
+            $cookie_domain    = !empty($_ENV['MAIN_DOMAIN']) ? '.'.$_ENV['MAIN_DOMAIN']:"";
+            
+            if($cookie_domain != "") {
+
+                $cookie = array(
+                    'name'   => 'ci_session',
+                    'value'  => '',
+                    'expire' => time() - 100,
+                    'domain' => $cookie_domain ,
+                    'prefix' => 'ma_'
+                    );
+                 
+                delete_cookie($cookie);
+            }
             $this->load->view('admin/index',$data);
         }
     }
@@ -96,11 +110,7 @@ class Admin extends CI_Controller
         }
 
     }
-    // Random string
-    private function generateRandomString()
-    {
-        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
-    }
+
     /* use for forget password */
     public function forget_password()
     {
@@ -122,10 +132,10 @@ class Admin extends CI_Controller
                 $userId = $admin_details['user_id_pk'];
                 $userName = $admin_details['first_name'] . ' ' . $admin_details['last_name'];
                 $pemail = $admin_details['email'];
-                $random_password = $this->generateRandomString();
+                $random_password = generateRandomString();
                 $table = "lp_user_mst";
                 $data = array(
-                    'password' => $random_password
+                    'password' => password_hash($random_password,PASSWORD_DEFAULT)
                 );
                 $where = array(
                     'user_id_pk' => $userId
@@ -180,20 +190,28 @@ MSG;
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $_hasAccess = $this->_hasAccess('user_count');
-            if($_hasAccess){
-                if(isset($_POST["user_role_id"])){
-                    
-                    $user_role_id = $_POST["user_role_id"];
-                    $roleId = $this->session->userdata('role_id');
-                    $user_count = $this->base_model->countusers('is_active','Y',$roleId,$adminId,$user_role_id);
-                    $resp = array('status' => 'success', 'active_user' => $user_count->count_user );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
-                    echo json_encode($resp);
-                }
+            // $_hasAccess = $this->_hasAccess('user_count');
+            if(!hasAccess('user_count')) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Access Denied!'
+                );
+                echo json_encode($resp);
+                exit();
             }
+
+            if(isset($_POST["user_role_id"])){
+                
+                $user_role_id = $_POST["user_role_id"];
+                $roleId = $this->session->userdata('role_id');
+                $user_count = $this->base_model->countusers('is_active','Y',$roleId,$adminId,$user_role_id);
+                $resp = array('status' => 'success', 'active_user' => $user_count->count_user );
+                echo json_encode($resp);
+            }else{
+                $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
+                echo json_encode($resp);
+            }
+
         }else{
             redirect('admin/index'); 
         }
@@ -203,16 +221,21 @@ MSG;
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $_hasAccess = $this->_hasAccess('flyer_count');
-            if($_hasAccess){
-                $roleId = $this->session->userdata('role_id');
-                $count = $this->base_model->countreports($roleId,$adminId);
-                $resp = array('status' => 'success', 'count' => $count->count_reports);
+            
+            if(!hasAccess('flyer_count')) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Access Denied!'
+                );
                 echo json_encode($resp);
-            }else{
-                $resp = array('status' => 'error', 'msg' => 'you do have access for this request' );
-                echo json_encode($resp);
+                exit();
             }
+            
+            $roleId = $this->session->userdata('role_id');
+            $count = $this->base_model->countreports($roleId,$adminId);
+            $resp = array('status' => 'success', 'count' => $count->count_reports);
+            echo json_encode($resp);
+            
         }else{
             $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
             echo json_encode($resp);
@@ -295,14 +318,32 @@ MSG;
     public function update_password()
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
+
+
+
         if($adminId) {
-            $form_data = $_POST['pass'];
-            $result = $this->admin_model->update_password($form_data,$adminId);
-            if($result == true){
-                $resp = array('status' => 'success', 'msg' => 'Pasword updated successfully.' );
-                echo json_encode($resp);
+            $result = $this->base_model->get_record_by_id('lp_user_mst' , array('user_id_pk'=>$adminId));
+
+            $password = $_POST['old_password'];
+            if($_POST['new_password'] != $_POST['confirm_password']) {
+              $resp = array('status'=>'failed', 'message'=>'Confirm password should be same as new password!');
+            }
+            else {
+
+              if($result && password_verify($password,$result->password)){
+                $encrypted_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+                $this->base_model->update_record_by_id('lp_user_mst', array('password'=>$encrypted_password), array('user_id_pk'=>$result->user_id_pk));
+                $resp = array('status'=>'success', 'message'=>'Updated successfully');
+              }else{
+                $resp = array('status'=>'failed', 'message'=>'Your current password invalid please enter a valid password!');
+              }
             }
         }
+        else {
+             $resp = array('status'=>'failed', 'message'=>'Invalid Authentication!');
+        }
+
+        echo json_encode($resp);
 
     }
     // verify
@@ -336,7 +377,8 @@ MSG;
     // manage user
     public function manage_user()
     {
-        $this->_hasAccess('view_all_user');
+        hasAccess('view_all_user');
+        // die;
         $data['title'] = "Manage Users";
         $data['add_title'] = "Create User";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
@@ -375,7 +417,7 @@ MSG;
     // transaction
     public function transaction()
     {
-        $this->_hasAccess('transaction');
+        hasAccess('transaction');
         $data['title'] = "Manage Transaction";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -638,6 +680,33 @@ MSG;
             $stripe = new Stripe( null );
             $data['subscription_data'] = $stripe->is_subscribed($uid);
             $data['users'] = $this->base_model->get_record_by_id('lp_user_mst',array('user_id_pk' => $uid));
+
+            $ref_code_obj = null;
+
+            if($data['users'] && $data['users']->role_id_fk == 3) {
+                // Get referral code details
+                $this->load->model('coupon_model');
+                //Check referral code exist or not
+                $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                if(!$ref_code_obj) {
+                    $referral_code = 'REF'.str_pad($uid, 5, "0", STR_PAD_LEFT);
+                    $get_by_array=[
+                        'coupon_code'=>$referral_code,
+                        'sales_rep_id'=>null,
+                    ];
+                    $ref_code_obj = $this->coupon_model->get_by($get_by_array);
+                    if(!$ref_code_obj) {
+                        //Create
+                    
+                        $this->admin_model->add_referral_code($uid);
+
+                        $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                    }
+                    
+                }
+            }
+                $data['ref_code_obj']=$ref_code_obj;
+
             $this->load->view('admin/header',$data);
             $this->load->view('admin/profile',$data);
             $this->load->view('admin/footer',$data);
@@ -649,7 +718,7 @@ MSG;
     // user profile edit view  
     public function profile_edit($uid)
     {
-        $this->_hasAccess('edit_user_info');
+        hasAccess('edit_user_info');
         $data['title'] = "Profile Edit";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -657,6 +726,60 @@ MSG;
             $this->_isCreator($data['user'],'admin/manage_user','parent_id');
             $data['roles'] = $this->base_model->all_records('lp_role');
             $_isAdmin = $this->role_lib->is_admin();
+
+            if($data['user']->role_id_fk == 2 || $data['user']->role_id_fk == 3) {
+
+                $get_sso_record = $this->base_model->get_all_record_by_in('lp_idps','company_id',$uid);
+                if($get_sso_record && is_array($get_sso_record) && count($get_sso_record)) {
+                    $get_sso_record = $get_sso_record;
+                }
+                else {
+                    //Insert record
+
+                    $data_ins = array();
+                    $unique_id = generate_sso_token($uid);
+                    $data_ins['unique_id'] = $unique_id;
+                    $data_ins['company_id'] = $uid;
+                    $data_ins['metadata_url'] = '';
+                    $data_ins['idp'] = '';
+
+                    $result = $this->base_model->insert_one_row('lp_idps',$data_ins);
+
+                    $get_sso_record = $this->base_model->get_all_record_by_in('lp_idps','company_id',$uid);
+                    if($get_sso_record && is_array($get_sso_record) && count($get_sso_record)) {
+                        $get_sso_record = $get_sso_record;
+                    }
+
+                }
+                $data['sso_records'] = $get_sso_record;
+                if($data['user']->role_id_fk == 3) {
+                    // Get referral code details
+                    $this->load->model('coupon_model');
+                    
+                    //Check referral code exist or not
+                    $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                    if(!$ref_code_obj) {
+                        $referral_code = 'REF'.str_pad($uid, 5, "0", STR_PAD_LEFT);
+                        $get_by_array=[
+                            'coupon_code'=>$referral_code,
+                            'sales_rep_id'=>null,
+                        ];
+                        $ref_code_obj = $this->coupon_model->get_by($get_by_array);
+                        if(!$ref_code_obj) {
+                            //Create
+                        
+                            $this->admin_model->add_referral_code($uid);
+
+                            $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
+                        }
+                        
+                    }
+
+                    $data['ref_code_obj']=$ref_code_obj;
+                }
+            }
+
+
             if($_isAdmin && $data['user']->role_id_fk == 3) {
                 $this->load->model('role_model');
                 $data['parents'] = $this->role_model->get_companies();    
@@ -692,7 +815,33 @@ MSG;
                 $phone = mysqli_real_escape_string($this->dbConn, $postedArr['phone']);
                 $license = mysqli_real_escape_string($this->dbConn, $postedArr['license']);
                 $cname = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
+
                 $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
+                if(isset($postedArr['ccity'])){
+                    $ccity = mysqli_real_escape_string($this->dbConn, $postedArr['ccity']);
+                }
+                if(isset($postedArr['czip'])){
+                    $czip = mysqli_real_escape_string($this->dbConn, $postedArr['czip']);
+                }
+                if(isset($postedArr['cstate'])){
+                    $cstate = mysqli_real_escape_string($this->dbConn, $postedArr['cstate']);
+                }
+                if(isset($postedArr['curl'])){
+                    $curl = mysqli_real_escape_string($this->dbConn, $postedArr['curl']);
+                }
+                if(isset($postedArr['cma_url'])){
+                    $cma_url = mysqli_real_escape_string($this->dbConn, $postedArr['cma_url']);
+                }
+                if(isset($postedArr['use_rets_api'])){
+                    $use_rets_api = mysqli_real_escape_string($this->dbConn, $postedArr['use_rets_api']);
+                }
+                if(isset($postedArr['report_dir_name'])){
+                    $report_dir_name = mysqli_real_escape_string($this->dbConn, $postedArr['report_dir_name']);
+                }
+                if(isset($postedArr['widget_bg_color'])){
+                    $widget_bg_color = $postedArr['widget_bg_color'];
+                }
+                
                 $roleId = (!empty($this->input->post('role_id')))?$this->input->post('role_id'):4;
                 $parentId = (!empty($this->input->post('parent_id')))?$this->input->post('parent_id'):0;
                 $enterpriseFlag = (!empty($this->input->post('enterprise_flag')))?$this->input->post('enterprise_flag'):0;
@@ -706,10 +855,10 @@ MSG;
                         }
 
                         //If Sales Reprensentative
-                        if ($roleId == '3') {
-                            $cname = $parent_user_details->company_name;
-                            $cadd = $parent_user_details->company_add;
-                        }
+                        // if ($roleId == '3') {
+                        //     // $cname = $parent_user_details->company_name;
+                        //     // $cadd = $parent_user_details->company_add;
+                        // }
                     }
                 }
                 
@@ -725,6 +874,36 @@ MSG;
                     'company_add' => $cadd,
                     'is_enterprise_user' => $enterpriseFlag,
                 );
+                if(isset($ccity)){
+                    $data['company_city'] = $ccity;
+                }
+                if(isset($cstate)){
+                    $data['company_state'] = $cstate;
+                }
+                if(isset($czip)) {
+                    $data['comapny_zip'] = $czip;
+                }
+                if(isset($curl)) {
+                    $data['company_url'] = $curl;
+                }
+                if(isset($cma_url)) {
+                    $data['cma_url'] = $cma_url;
+                }
+                $data['use_rets_api'] = 0;
+                if(isset($use_rets_api) && $use_rets_api == 1) {
+                    $data['use_rets_api'] = 1;
+
+                }
+                $data['use_featured_home'] = 0;
+                if($this->input->post('use_featured_home')){
+                    $data['use_featured_home'] = $this->input->post('use_featured_home');
+                }
+                if(isset($report_dir_name)) {
+                    $data['report_dir_name'] = $report_dir_name;
+                }
+                if(isset($widget_bg_color)) {
+                    $data['widget_bg_color'] = $widget_bg_color;
+                }
                 $resultCheck = false;
                 // USER NAME CAN NOT BE CHANGED ONCE CREATED
                 // if($username!='') {
@@ -766,6 +945,36 @@ MSG;
                     "status" => "success",
                     "msg" => "Updated successfully."
                 );
+                //Update refferal code
+                if($roleId ==3 && !empty($this->input->post('ref_id'))) {
+                    $this->load->model('coupon_model');
+                    $referral_code = trim($this->input->post('coupon_code'));
+                    //Check duplication
+                    $check_array = [
+                        'coupon_code'=>$referral_code,
+                        'sales_rep_id !='=>$uid
+                    ];
+                    $check_ref = $this->coupon_model->get_by($check_array);
+                    if($check_ref && !empty($check_ref->sales_rep_id)) {
+                        $resp = array(
+                            "status" => "error",
+                            "msg" => "User data updated but can not update Refferal code due to duplication"
+                        );
+                    }
+                    else {
+                        $ref_id = $this->input->post('ref_id');
+                        $referral_data = [
+                            'coupon_code' =>$referral_code,
+                            'limit_all' => $this->input->post('limit_all'),
+                            'limit_user' => $this->input->post('limit_user'),
+                            'sales_rep_id' => $uid,
+                        ];
+
+                        $this->coupon_model->update($ref_id,$referral_data);
+                    }
+
+                }
+                
                 echo json_encode($resp);
             }
         }else{
@@ -773,9 +982,104 @@ MSG;
         }
     }
 
+    public function get_unique_code()
+    {
+        $uid = $this->input->post('uid');
+        $unique_id = generate_sso_token($uid);
+        $return_data['status'] = true;
+        $return_data['unique_id'] = $unique_id;
+        echo json_encode($return_data);
+        return;
+
+
+    }
+
+    public function sso_edit()
+    {
+        // echo "<pre>";
+        // print_r($this->input->post());die;
+        $data_update = array(); 
+        
+        //get existing ids
+        $where_comp['company_id'] = $this->input->post('company_id');
+        $existing_reords = $this->base_model->get_all_record_by_id('lp_idps',$where_comp);
+        $existing_ids = array();
+
+        if($existing_reords && is_array($existing_reords) && count($existing_reords)) {
+            foreach ($existing_reords as $existing_reord) {
+                $existing_ids[$existing_reord->id] = $existing_reord->id;
+            }
+        }
+        // $data_update['metadata_url'] = $this->input->post('metadata_url');
+        $form_data = $this->input->post('data');
+
+        foreach ($form_data as $data) {
+
+            $sso = $data['sso'];
+
+            // $fields = $data['fields'];
+            $fields = $data['field'];
+
+            if(!empty($sso['metadata_url'])) {
+
+                
+                    $data_update['metadata_url'] = $sso['metadata_url'];
+                    $data_update['idp'] = $sso['idp'];
+                    $data_update['unique_id'] = $sso['unique_id'];
+                    $data_update['email'] = $fields['email']; 
+                    $data_update['first_name'] = $fields['first_name']; 
+                    $data_update['last_name'] = $fields['last_name']; 
+                    $data_update['phone'] = $fields['phone']; 
+                    // $data_update['sales_rep'] = $fields['sales_rep']; 
+                    $data_update['username'] = $fields['username']; 
+                    $data_update['image'] = $fields['image']; 
+
+                    if(!empty($sso['sso_id'])) { //Update
+                         $where = array(
+                            'id' => $sso['sso_id']
+                        );
+                         if(isset($existing_ids[$sso['sso_id']])) {
+                            unset($existing_ids[$sso['sso_id']]);
+                         }
+                        $result = $this->base_model->update_record_by_id('lp_idps',$data_update,$where);
+                    }
+                    else { //insert
+                        $data_update['company_id'] = $this->input->post('company_id');
+                        $result = $this->base_model->insert_one_row('lp_idps',$data_update);
+                    }
+                
+            }
+        }
+
+        //Remove additional data
+        if(count($existing_ids)) {
+            foreach ($existing_ids as $existing_id) {
+                $where_delete['id'] = $existing_id;
+                $result = $this->base_model->delete_record_by_id('lp_idps',$where_delete);
+            }
+        }
+
+        $company_id = $this->input->post('company_id');
+
+       
+
+        if($result){
+            //Call saml to configure record
+            file_get_contents(base_url('simplesaml/module.php/cron/cron.php?key=BaPwi12emND&tag=hourly'));
+            // Set flash data
+            $this->session->set_flashdata('success', 'Record updated');
+            redirect("admin/profile_edit/".$company_id);
+        
+            
+        }else{
+            $this->session->set_flashdata('error', 'Record not updated');
+            redirect("admin/profile_edit/".$company_id);
+        }
+    }
+
     public function user_order_history($userId) 
     {
-        $this->_hasAccess('order_history');
+        hasAccess('order_history');
         $data['title'] = "Manage User Orders";
         $data['userId'] = $userId;
 
@@ -797,7 +1101,15 @@ MSG;
     // order history list view
     public function user_order_history_list_view()
     {
-        $this->_hasAccess('order_history');
+        // $this->_hasAccess('order_history');
+        if(!hasAccess('order_history')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         $roleId = $this->session->userdata('role_id');
         $userId = $this->input->post('user_id');
@@ -883,7 +1195,7 @@ MSG;
     // Order history page
     public function order_history()
     {
-        $this->_hasAccess('order_history');
+        hasAccess('order_history');
         $data['title'] = "Manage Orders";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -897,7 +1209,15 @@ MSG;
     // order history list view
     public function orderhistorylist_view()
     {
-        $this->_hasAccess('order_history');
+        // $this->_hasAccess('order_history');
+        if(!hasAccess('order_history')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         $roleId = $this->session->userdata('role_id');
 
@@ -1607,7 +1927,7 @@ MSG;
     // manage coupons
     public function manage_coupon()
     {
-        $this->_hasAccess('manage_coupon');
+        hasAccess('manage_coupon');
         $data['title'] = "Manage Coupons";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -1622,7 +1942,7 @@ MSG;
     // manage coupon edit
     public function manage_coupon_edit($cid)
     {
-        $this->_hasAccess('manage_coupon');
+        hasAccess('manage_coupon');
         $data['title'] = "Manage Coupons";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -1637,7 +1957,7 @@ MSG;
     // manage coupon edit
     public function manage_coupon_view($cid)
     {
-        $this->_hasAccess('manage_coupon');
+        hasAccess('manage_coupon');
         $data['title'] = "Manage Coupons";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
@@ -1652,7 +1972,14 @@ MSG;
     // coupon add
     public function coupon_add()
     {
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
             if($_POST){
@@ -1667,6 +1994,9 @@ MSG;
                 $s_date = date('Y-m-d', strtotime($startdate));
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
+                $limit_all = (int)$this->input->post('limit_all');
+                $limit_user = (int)$this->input->post('limit_user');
+
 
                 if ($e_date<$s_date) {
                     $resp = array(
@@ -1687,7 +2017,9 @@ MSG;
                         'coupon_descr' => $coupon_des,
                         'start_date' => $s_date,
                         'end_date' => $e_date,
-                        'coupon_amt' =>  $coupon_amt
+                        'coupon_amt' =>  $coupon_amt,
+                        'limit_all' => $limit_all,
+                        'limit_user' => $limit_user
                     );
                     $result = $this->base_model->insert_one_row($table,$data);
                     if($result){
@@ -1718,7 +2050,14 @@ MSG;
     // coupon edit
     public function coupon_edit()
     {
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
             if($_POST){
@@ -1727,18 +2066,36 @@ MSG;
 
                 $coupon_id = mysqli_real_escape_string($this->dbConn, $postedArr['cid']);
                 $coupon_name = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_name']);
-                $coupon_code = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_code']);
+                $coupon_code = mysqli_real_escape_string($this->dbConn, trim($postedArr['coupon_code']));
                 $coupon_amt = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_amt']);
                 $coupon_des = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_des']);
                 $startdate = mysqli_real_escape_string($this->dbConn, $postedArr['startdate']);
                 $s_date = date('Y-m-d', strtotime($startdate));
                 $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
+                $limit_all = (int)$this->input->post('limit_all');
+                $limit_user = (int)$this->input->post('limit_user');
 
                 if ($e_date<$s_date) {
                     $resp = array(
                         'status'=>'error',
                         'msg'=>'Coupon start date can not greater than end date.'
+                    );
+                    echo json_encode($resp);
+                    exit();
+                }
+
+                $check_array = [
+                    'coupon_code'=>$coupon_code,
+                    'coupon_id_pk !='=>$coupon_id
+                ];
+                $this->load->model('coupon_model');
+                $check_ref = $this->coupon_model->get_by($check_array);
+                if($check_ref){
+
+                    $resp = array(
+                        'status'=>'error',
+                        'msg'=>'Coupon code already exist'
                     );
                     echo json_encode($resp);
                     exit();
@@ -1751,7 +2108,10 @@ MSG;
                     'coupon_descr' => $coupon_des,
                     'start_date' => $s_date,
                     'end_date' => $e_date,
-                    'coupon_amt' =>  $coupon_amt
+                    'coupon_amt' =>  $coupon_amt,
+                    'coupon_amt' =>  $coupon_amt,
+                    'limit_all' => $limit_all,
+                    'limit_user' => $limit_user
                 );
                 $where = array('coupon_id_pk'=> $coupon_id);
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
@@ -1774,7 +2134,14 @@ MSG;
     // couponlist view
     public function couponlist_view()
     {
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId && $_POST["type"] == "couponlist") {
 
@@ -1839,7 +2206,14 @@ MSG;
     }
     // delete coupon
     public function delete_coupon($id){
-        $this->_hasAccess('manage_coupon');
+        if(!hasAccess('manage_coupon')) {
+            $resp = array(
+                'status'=>'error',
+                'msg'=>'Access Denied!'
+            );
+            echo json_encode($resp);
+            exit();
+        }
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
             // check if coupon is used
@@ -1983,7 +2357,7 @@ MSG;
     }
     public function manage_companies()
     {
-        $this->_hasAccess('manage_companies');
+        hasAccess('manage_companies');
         $data['title'] = "Manage Companies";
         $data['add_title'] = "Create Company";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
@@ -2005,7 +2379,7 @@ MSG;
      */
     public function manage_sales_reps()
     {
-        $this->_hasAccess('manage_sales_reps');
+        hasAccess('manage_sales_reps');
         $data['title'] = "Manage Sales Representatives";
         $data['add_title'] = "Create Sales Representative";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
@@ -2027,7 +2401,7 @@ MSG;
                 $data['choose'] = 'Choose Company';
             }
             $this->load->view('admin/header',$data);
-            $this->load->view('admin/manage_user',$data);
+            $this->load->view('admin/manage_sales_rep',$data);
             $this->load->view('admin/footer',$data);
         }else{
             redirect('admin/index');
@@ -2051,18 +2425,18 @@ MSG;
      * @param string $path
      * @auther Avtar Gaur <info@modernagent.io>
      */
-    private function _hasAccess($path) {
-        $hasAccess = $this->role_lib->has_access($path);
-        if($this->input->is_ajax_request()){
-            return $hasAccess;
-        }
-        if(!$hasAccess) {
-            $this->session->set_flashdata('error', 'Access denied');
-            redirect('admin/dashboard');
-            return;
-        }
-        return true;
-    }
+    // private function _hasAccess($path) {
+    //     $hasAccess = $this->role_lib->has_access($path);
+    //     if($this->input->is_ajax_request()){
+    //         return $hasAccess;
+    //     }
+    //     if(!$hasAccess) {
+    //         $this->session->set_flashdata('error', 'Access denied');
+    //         redirect('admin/dashboard');
+    //         return;
+    //     }
+    //     return true;
+    // }
     /**
     * Check if user has created the record. Rediect to redirection path given if has not.
     * @param array/object $record
@@ -2103,20 +2477,26 @@ MSG;
     {
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         if($adminId){
-            $_hasAccess = $this->_hasAccess('deactive_user');
-            if($_hasAccess){
-                if($_POST["type"] == "deactive_user"){
-                    // countusers($table, $column, $userType)
-                    $user_role_id = $_POST["user_role_id"];
-                    $roleId = $this->session->userdata('role_id');
-                    $user_count = $this->base_model->countusers('is_active','N',$roleId,$adminId,$user_role_id);
-                    $resp = array('status' => 'success', 'deactive_user' => $user_count->count_user );
-                    echo json_encode($resp);
-                }else{
-                    $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
-                    echo json_encode($resp);
-                }
+            if(!hasAccess('deactive_user')) {
+                $resp = array(
+                    'status'=>'error',
+                    'msg'=>'Access Denied!'
+                );
+                echo json_encode($resp);
+                exit();
             }
+            if($_POST["type"] == "deactive_user"){
+                // countusers($table, $column, $userType)
+                $user_role_id = $_POST["user_role_id"];
+                $roleId = $this->session->userdata('role_id');
+                $user_count = $this->base_model->countusers('is_active','N',$roleId,$adminId,$user_role_id);
+                $resp = array('status' => 'success', 'deactive_user' => $user_count->count_user );
+                echo json_encode($resp);
+            }else{
+                $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
+                echo json_encode($resp);
+            }
+
         }else{
             redirect('admin/index');
         }
@@ -2186,7 +2566,7 @@ MSG;
                 $table = "lp_user_mst";
                 $data = array(
                     //'password' => password_hash($this->input->post('pass'),PASSWORD_BCRYPT),
-                    'password' => $this->input->post('pass'),
+                    'password' => password_hash($this->input->post('pass'),PASSWORD_DEFAULT),
                 );
                 $where = array('user_id_pk'=> $this->input->post('userid'));
                 $result = $this->base_model->update_record_by_id($table,$data,$where);
@@ -2407,18 +2787,88 @@ MSG;
     {
         $data['title'] = "Manage Packages";
         $data['admin_id'] = $this->session->userdata('adminid');
-        $_hasAccess = $this->_hasAccess('packages');
+        hasAccess('packages');
         $is_admin = $this->role_lib->is_admin();
         if ($is_admin) {
 
             $this->load->model('package_model');
-            $packages = $this->package_model->get_all_packages_price();
+            $packages = $this->package_model->get_many_by('title !=', '');
+            // var_dump($packages);die;
             $data['packages'] = $packages;
-            $data['report_price'] = $packages['reports'];
-            $data['monthly_price'] = $packages['monthly'];
+            // $data['report_price'] = $packages['reports'];
+            // $data['monthly_price'] = $packages['monthly'];
 
             $this->load->view('admin/header',$data);
-            $this->load->view('packages/index',$data);
+            $this->load->view('packages/list',$data);
+            $this->load->view('admin/footer',$data);
+
+        } else {
+            redirect('admin/dashboard',$data);
+        }
+    }
+    public function edit_package($package_id)
+    {
+        $data['title'] = "Manage Packages";
+        $data['admin_id'] = $this->session->userdata('adminid');
+        hasAccess('packages');
+        $is_admin = $this->role_lib->is_admin();
+        if ($is_admin) {
+
+            $this->load->model('package_model');
+            $package = $this->package_model->get($package_id);
+            if($this->input->post()) {
+                $package_update = array();
+                $package_update['title'] = $this->input->post('title');
+                $package_update['price'] = $this->input->post('price');
+                $package_update['price_per_month'] = $this->input->post('price_per_month');
+                $package_update['description'] = $this->input->post('description');
+                $package_update['is_active'] = $this->input->post('is_active');
+                $package_update['refferral_status'] = $this->input->post('refferral_status');
+                $this->package_model->update($package_id, $package_update);
+                // Check and update product description and price on stripe
+                $this->load->library('Stripe_lib');
+                $stripe = new Stripe_lib();
+                $price_created = false;
+                $product_id = '';
+                if(!empty($package->stripe_price_id)) {
+                    $price_obj = $stripe->getSubscriptionPrice($package->stripe_price_id);
+                      $product_obj = $stripe->getSubscriptionProduct($package->stripe_product_id);
+                      if($price_obj && $product_obj->active) {
+                        //check price object amount if not matched then update price
+                        if(floatval($package->price_per_month) != (floatval($price_obj->unit_amount_decimal)/100) || !($price_obj->active)) {
+                          $price_resp = $stripe->updateSubscriptionPrice($package->stripe_product_id,$package->price_per_month);
+                          $update_package['stripe_price_id'] = $price_resp['price_id'];
+                          $this->package_model->update($package->id,$update_package);
+                        }
+                        $price_created = true;
+                        $product_id = $package->stripe_product_id;
+                      }
+                    }
+
+                    if(!($price_created)) {
+                      $stripe_response = $stripe->createSubscriptionPrice($package->title,$package->price_per_month);
+                      $update_package = array();
+                      $update_package['stripe_product_id'] = $stripe_response['product_id'];
+                      $update_package['stripe_price_id'] = $stripe_response['price_id'];
+                      $this->package_model->update($package->id,$update_package);
+                      $product_id = $stripe_response['product_id'];
+                    }
+                    $stripe->updateSubscriptionProduct($product_id,$this->input->post('title'));
+                
+                $this->session->set_flashdata('success', 'Package updated successfully');
+                redirect('admin/edit_package/'.$package_id);
+                exit();
+
+            }
+
+            
+            // var_dump($packages);die;
+            $data['package'] = $package;
+            // $data['report_price'] = $packages['reports'];
+            // $data['monthly_price'] = $packages['monthly'];
+
+            $this->load->view('admin/header',$data);
+            $this->load->view('packages/edit',$data);
             $this->load->view('admin/footer',$data);
 
         } else {
@@ -2426,19 +2876,18 @@ MSG;
         }
     }
 
-    public function update_package()
+    public function update_package($package_id)
     {
-        $package = $this->input->post('package');
-        $price = $this->input->post('price');
-        $is_admin = $this->role_lib->is_admin();
-        if ($is_admin) {
-            $this->load->model('package_model');
-            $adminId = $this->session->userdata('adminid');
-            $packages = $this->package_model->set_package_price($package, $price, $adminId);
-            echo json_encode(array('status' => 'success', 'message' => ucwords($package).' package price updated successfully.'));
-        } else {
-            echo json_encode(array('status' => 'error', 'message' => 'Access Denied'));
-        }
+
+        // $is_admin = $this->role_lib->is_admin();
+        // if ($is_admin) {
+        //     $this->load->model('package_model');
+        //     $adminId = $this->session->userdata('adminid');
+        //     $packages = $this->package_model->set_package_price($package, $price, $adminId);
+        //     echo json_encode(array('status' => 'success', 'message' => ucwords($package).' package price updated successfully.'));
+        // } else {
+        //     echo json_encode(array('status' => 'error', 'message' => 'Access Denied'));
+        // }
     }
 
     function download_invoice($invoiceNumber, $userId) 

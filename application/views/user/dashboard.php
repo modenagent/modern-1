@@ -1,12 +1,28 @@
+<style type="text/css">
+
+#step-1 .input-group-btn .btn-lp.registry:hover {
+    background-color: rgba(225, 225, 225, .7);
+    border-color: #ffffff;
+}
+#step-1 .input-group-btn .btn-lp.registry {
+    background-color: transparent;
+    border-color: #fff;
+    border: 2px solid white;
+    border-radius: 0px;
+    height: 54px;
+    width: 138px;
+}
+</style>
 <!--Features section -->
 <section id="steps">
         <div class="container"> <!-- Smart Wizard -->
                 <div id="choose-presentation"class="clearfix" style="">
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                        <div class="col-md-12">
                             <div class="step-0-content clearfix">
-                                <h2>Create Your Presentation</h2>
-                                <div class="buttonholder">
+                                <h2>How Can We Help You <br/>Make an Impression?</h2>
+                                
+                                <div class="buttonholder col-md-10 col-md-offset-1">
                                     <span class="input-group-btn">
                                         <button class="btn btn-lp" type="button" style="" onclick="choose_presentation('buyer');"> Buyers Presentation </button>
                                     </span>
@@ -15,6 +31,9 @@
                                     </span>
                                     <span class="input-group-btn">
                                         <button style="width:212px;" class="btn btn-lp" type="button" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
+                                    </span>
+                                    <span class="input-group-btn">
+                                        <button style="width:212px;" class="btn btn-lp" type="button" style="" onclick="choose_presentation('registry');"> Smart Registry </button>
                                     </span>
                                 </div>
                             </div>
@@ -209,41 +228,68 @@
                       <div class="col-md-6">
                         <h2><strong>Choose Your Branding</strong></h2>
                       </div>
-                      <div class="col-md-6" id="butcomp">
+                      <div class="col-md-6 common_template" id="butcomp">
                         <?php $_email = $this->session->userdata('user_email');?>
                         <div class="pull-right1" style=""> Report Language: 
-                          <select name="report_lang" style="background-color:transparent; border:none;"><option  style="color:#000000;"" value="english">English</option><option style="color:#000000;" value="spanish">Spanish</option></select>
+                          <select name="report_lang" style="background-color:transparent; border:none;"><option  style="color:#000000;" value="english">English</option><option style="color:#000000;" value="spanish">Spanish</option></select>
                         </div>
                         <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
                       </div>
                         </div>
-                        <div class="carousel-container">
-                      <div id="owl-example" class="owl-carousel">
-                        <?php
-                          foreach ($reportTemplates as $key => $report) {
-                            if($report->template_color != ''){
-                        ?>
-                          <div class="item">
-                            <input type="radio"  
+                        <div class="carousel-container common_template">
+                          <div id="owl-example" class="owl-carousel">
+                            <?php
+                              foreach ($reportTemplates as $key => $report) {
+                                if($report->template_color != ''){
+                            ?>
+                              <div class="item">
+                                <input type="radio"  
+                                <?php 
+                                  if($report->report_templates_id_pk==$agentInfo->default_template){
+                                    echo 'checked';
+                                  }
+                                ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
+                                <label class="user-heading alt gray-bg" for="pb">
+                                  <div class="text-center"> 
+                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
+                                    <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                    <img class="registry_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                  </div>
+
+                                </label>
+                              </div>
                             <?php 
-                              if($report->report_templates_id_pk==$agentInfo->default_template){
-                                echo 'checked';
-                              }
-                            ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
-                            <label class="user-heading alt gray-bg" for="pb">
-                              <div class="text-center"> 
-                                <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
-                                <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
-                                <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                  }
+                                }
+                            ?>
+                          </div>
+                      </div>
+                          <div class="carousel-container registry_template" style="display: none">
+                              <div id="owl-example-registry" class="owl-carousel">
+                                <?php
+                                  for ($regsitry_i=1; $regsitry_i <=6 ; $regsitry_i++) {
+                                ?>
+                                  <div class="item">
+                                    <input type="radio"  
+                                    <?php 
+                                      if($regsitry_i == 1){
+                                        echo 'checked';
+                                      }
+                                    ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
+                                    <label class="user-heading alt gray-bg" for="pb">
+                                      <div class="text-center">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/registry/preview/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
+                                      </div>
+
+                                    </label>
+                                  </div>
+                                <?php 
+                                    }
+                                ?>
                               </div>
 
-                            </label>
-                          </div>
-                        <?php 
-                              }
-                            }
-                        ?>
-                      </div>
+                            
                         </div>
                       </div>
                     </div>
@@ -290,17 +336,17 @@
                               <tbody id="lp_invoice" >
                                 <tr>
                                   <td class="no">01</td>
-                                  <td class="desc"></td>
-                                  <td class="unit" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td class="desc"><h4 class="selected_pkg_title"></h4></td>
+                                  <td class="unit" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
 
-                                  <td class="total" style="text-align: right;">$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td class="total" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                 </tr>
                               </tbody>
                               <tfoot>
                                 <tr>
                                   <td colspan=""></td>
                                   <td colspan="2">SUBTOTAL</td>
-                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                 </tr>
 
                                 <tr id="coupandiscount" style="display:none">
@@ -312,11 +358,11 @@
                                 <tr id="totalInvoiceAmount">
                                   <td colspan="" style="border-top:1px solid #fff;"></td>
                                   <td colspan="2">GRAND TOTAL</td>
-                                  <td>$<?php echo number_format($report_price,2,".",""); ?></td>
+                                  <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                 </tr>
                               </tfoot>
                             </table>
-                            <div class="row">
+                            <div class="row coupon_div">
                               <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
                                 <div class="input-group">
                                   <input class="from-field form-control" type="text" id="coupon_code" placeholder="Coupon Code" >
@@ -336,7 +382,7 @@
                   <table width="100%" border="0" style="background-color:transparent;" cellspacing="0" cellpadding="0">
                   <tr class="invoice-header">
                   <td width="45%" bgcolor=""><img src="<?php echo base_url(); ?>assets/images-2/logo.png"/></td>
-                    <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<?php echo number_format($report_price,2,".",""); ?></strong></td>
+                    <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></strong></td>
                     <td width="15%" style="color:#ffffff;" class="text-right" ><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
                   </tr>
                   </table>
@@ -345,48 +391,31 @@
                   <div class="panel-heading">
                     <h3 class="panel-title">Payment Information</h3>
                   </div>
-                  <div class="panel-body">
+                  <div class="panel-body stripe-div">
+
+                    <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/stripe.css') ?>">
 
                     <form action="<?php echo base_url(); ?>index.php?/user/cart_payment" method="POST" id="payment-form" class="form-horizontal" role="form">
                       <div class="alert alert-danger payment-errors" style="display:none"></div>
-                      <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="<?php echo $report_price; ?>">
+                      <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control selected_pkg_val" placeholder="Amount" value="<?php echo $report_price; ?>">
                       <input type="hidden" id="coupon-id" name="coupon_id">
                       <input type="hidden" id="coupon-amount" name="coupon_amount">
-                      <input type="hidden" id="order-amount" name="order_amount" value="<?php echo $report_price; ?>">
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-holder-name">Name on Card:</label>
-                        <div class="col-sm-9">
-                          <input type="text" size="80" data-stripe="name" class="form-control" placeholder="Card Holder's Name" id="cardname">
+                      <input type="hidden" id="order-amount" name="order_amount" class="selected_pkg_val" value="<?php echo $report_price; ?>">
+                      <input type="hidden" name="payment_intent_id" id="payment_intent_id">
+                      <div id="card-element">
+                          <!-- Elements will create input elements here -->
                         </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="card-number">Card Number:</label>
-                        <div class="col-sm-9">
-                          <input type="text" size="20" data-stripe="number" class="form-control" placeholder="Card Number." id="cardno">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="cvv">Card CVV:</label>
-                        <div class="col-sm-2">
-                          <input type="text" size="4" data-stripe="cvc" class="form-control" placeholder="CVV" id="cardcvv">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-sm-3 control-label" for="expiry-month">Expiration Date:</label>
-                        <div class="col-sm-9">
-                          <div class="row">
-                            <div class="col-xs-6">
-                              <input type="text" size="2" data-stripe="exp-month" class="form-control" placeholder="Month" id="expmonth">
-                            </div>
-                            <div class="col-xs-6">
-                              <input type="text" size="4" data-stripe="exp-year" class="form-control" placeholder="Year" id="expyear">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                        <!-- <button id="stripe-submit">
+                          <div class="spinner hidden" id="spinner"></div>
+                          <span id="button-text">Pay now</span>
+                        </button> -->
+                        <!-- We'll put the error messages in this element -->
+                        <p id="card-error" class="alert alert-danger" role="alert" style="display: none;"></p>
+                        <p id="payment-success" class="alert alert-success" role="alert" style="display: none;"></p>
                       <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-9" id="paynow">
-                          <button type="button" class="btn btn-lp pay" id="paynow">Checkout & Download</button>
+                          <button type="button" class="btn btn-lp pay" id="stripe-submit"><div class="spinner hidden" id="spinner"></div>
+                          <span id="button-text">Pay now</span></button>
                         </div>
                       </div>
                     </form>
@@ -396,11 +425,14 @@
                   </div>
                                 <div class=" clearfix text-right  ">
                               <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
+                              <button type="button" style="display: none;!important;" id="stripe_chk_btn"></button>
                         </div> 
                   </div>
                 <!-- step 4 -->
                 </div>
-                <div id="checkout"></div>
+                <div id="checkout">
+                    
+                </div>
         </div>
         <!-- End SmartWizard Content --> </div>
 </section>
@@ -429,6 +461,7 @@
         </div>
 </section>
 <!-- Screenshots section -->
+<script src="https://js.stripe.com/v3"></script>
 <script type="text/javascript">
     $(document).ready(function(){
       if ($('#user_transaction_table').length) {
@@ -481,7 +514,55 @@
         });
       }
     });
+    var pkg_prices_str = '<?php echo json_encode($packages)?>';
+    pkg_prices = JSON.parse(pkg_prices_str);
+    var stripe = Stripe('<?php echo getStripeKey(); ?>');
+    function manage_checkout_btn() {
+        var presentation_type = $("#presentation").val().toLowerCase();
+        $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
+        $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
+        // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
+        if(pkg_prices[presentation_type].referral_status == 1) {
+            $('.coupon_div').show();
+        }
+        else {
+            $('.coupon_div').hide();
+        }
+        if(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1) {
+            var discount = parseFloat($('#invoice-amount').val());
+            amount  =   0;
+            console.log(discount);
+            $('#coupandiscount td:last').html('$'+discount.toFixed(2));
+            $('#invoice-amount').val(amount);
+            if ($('#order-amount').length) {
+                $('#order-amount').val(amount);
+            }
+            $('#totalInvoiceAmount td:last').html('$'+amount.toFixed(2));
+            $('#payment_total').html('$'+amount.toFixed(2));
+            $('#coupandiscount').show();
+            $('#coupon_code').parent(".input-group ").hide();
+            // var info = resp.data;
+            var msg = pkg_prices[presentation_type].title+" plan(monthly) membership subscription";
+            if(pkg_prices['all'].active == 1) {
+                msg = 'All '+" plan(monthly) membership subscription";
+            }
+            $('#apply-coupan-alert').html(msg).removeClass('alert-danger').addClass('alert-success').show();
+            $('.btn-checkout').html("Download");
+            $('.btn-checkout').data("download",1);
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');
+        } else {
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');
+        }
+        
+    }
     function choose_presentation(presentation){
+        console.log(pkg_prices);
         if(presentation === 'buyer'){
             $("#config-comps-btn").hide();
             $("#presentation").val("buyer");
@@ -489,7 +570,12 @@
             $('.seller_template').hide(function(){
                 $('.buyer_template').show();
                 $('.marketUpdate_template').hide();
+                $('.registry_template').hide();
+                $('.common_template').show();
+
             });
+            
+
         }else if(presentation === 'marketUpdate'){
             $("#presentation").val("marketUpdate");
             $('#wizard').smartWizard("marketUpdate");
@@ -499,16 +585,48 @@
             $('.buyer_template').hide(function(){
                 $('.seller_template').hide();
                 $('.marketUpdate_template').show();
+                $('.registry_template').hide();
+                $('.common_template').show();
+
+
             });
             $("#config-comps-btn").show();
-        }else {
+            
+
+        }
+        else if(presentation === 'registry') {
+            // $("#presentation").val("marketUpdate");
+            $("#presentation").val("registry");
+            $('#wizard').smartWizard("registry");
+            // adding class marketUpdate so that we can manipulate the visibility of different steps
+            $('#wizard').addClass('marketUpdate');
+
+            $('.buyer_template').hide(function(){
+                $('.seller_template').hide();
+                $('.marketUpdate_template').hide();
+                $('.registry_template').show();
+                $('.common_template').hide();
+
+            });
+            $("#config-comps-btn").hide();
+            
+
+
+        }
+        else {
             $("#presentation").val("seller");
             $('#wizard').smartWizard("seller");
             $('.buyer_template').hide(function(){
                 $('.seller_template').show();
                 $('.marketUpdate_template').hide();
+                $('.registry_template').hide();
+                $('.common_template').show();
+
+                
             });
-            $("#config-comps-btn").show();
+            
+
+
         }
         //Set classes
         $("#search-btn").addClass(presentation);
@@ -518,4 +636,32 @@
             });
         });    
     }
+
+    // Show the customer the error from Stripe if their card fails to charge
+    var showError = function(errorMsgText) {
+      loading(false);
+      var errorMsg = document.querySelector("#card-error");
+      $("#card-error").show();
+      errorMsg.textContent = errorMsgText;
+    };
+
+    // Show a spinner on payment submission
+    var loading = function(isLoading) {
+      if (isLoading) {
+        $("#card-error").html('');
+        $("#card-error").hide();
+        $('.loader1').hide();
+        $('.loader1').addClass('hidden');
+        $('.backwrap').hide();
+        $('.backwrap').addClass('hidden');
+        // Disable the button and show a spinner
+        document.querySelector("#stripe-submit").disabled = true;
+        document.querySelector("#spinner").classList.remove("hidden");
+        document.querySelector("#button-text").classList.add("hidden");
+      } else {
+        document.querySelector("#stripe-submit").disabled = false;
+        document.querySelector("#spinner").classList.add("hidden");
+        document.querySelector("#button-text").classList.remove("hidden");
+      }
+    };
 </script>

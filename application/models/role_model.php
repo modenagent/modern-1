@@ -8,7 +8,7 @@ class Role_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
-        error_reporting(E_ALL ^ E_NOTICE);
+        // error_reporting(E_ALL ^ E_NOTICE);
     }
     /**
      * Get array of access paths for a admin role id
@@ -16,10 +16,11 @@ class Role_model extends CI_Model {
      * @return array
      */
     public function get_access_paths($role_id) {
-        $this->db->select('func_id_fk');
+        $this->db->select('func_name');
         $this->db->where('role_id_fk',$role_id);
+        $this->db->join('lp_permission_function', 'lp_permission_function.id = lp_role_func.permission_func_id');
         $res = $this->db->get('lp_role_func')->result_array();
-        $accessPaths = array_column($res, 'func_id_fk');
+        $accessPaths = array_column($res, 'func_name');
         return $accessPaths;
     }
     /**

@@ -38,7 +38,7 @@ class User extends CI_Controller
 		send_email('noreply@modernagent.io','No Reply', $replyto, $subject, $message, array($file));
 	}
 	
-    public function upload_file($type){
+    public function upload_file($type = ''){
        $status = "";
        $msg = "";
        $fileuri='';
@@ -222,6 +222,28 @@ class User extends CI_Controller
         $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
 
         $this->load->model('package_model');
+        $packages_all = $this->package_model->get_many_by(['title !='=>'']);
+        $packages = array();
+        foreach ($packages_all as $packages_all_key => $packages_all_value) {
+          $packages[$packages_all_value->package] =  ['val'=>number_format(floatval($packages_all_value->price), 2),'title'=>$packages_all_value->title,'active'=>0,'referral_status'=>$packages_all_value->refferral_status];
+        }
+        
+        $this->load->model('user_package_subscription_model');
+        $current_plans=  $this->user_package_subscription_model->with('package')->get_many_by(['user_id'=>$this->session->userdata('userid')]);
+        $this->load->library('Stripe_lib');
+        $stripe = new Stripe_lib();
+        $active_all = false;
+        foreach ($current_plans as $current_plan) {
+          $check_sub = $stripe->getSubscription($current_plan->sub_id);
+          
+          if($check_sub && $check_sub->status == 'active') {
+            if(isset($packages[$current_plan->package->package]['active'])) {
+              $packages[$current_plan->package->package]['active'] = 1;
+            }
+          }
+        }
+        
+        $data['packages'] = $packages;
         $data['report_price'] = $this->package_model->get_reports_price();
 
         $this->load->helper('captcha');
@@ -234,7 +256,107 @@ class User extends CI_Controller
         redirect('frontend/login');
       }
     }
+    public function createPaymentIntent()
+    {
+      $post_data = json_decode(file_get_contents('php://input'));
+      $reponse_array = [
+        'status'=>false,
+        'message'=>'Something went wrong'
+      ];
+      if(!$post_data || empty($post_data->pkg_id)) {
+        $reponse_array['message']='Invalid data';
+        echo json_encode($reponse_array);exit();
+      }
+      $pkg_name = $post_data->pkg_id;
+      $coupon_id = $post_data->coupon_id;
+      $this->load->model('package_model');
+      $packages_value = $this->package_model->get_by(['package'=>$pkg_name]);
+      $coupon_amount = 0;
+      if($coupon_id > 0) {
+        $this->load->model('coupon_model');
+        $coupon_obj = $this->coupon_model->get($coupon_id);
+        if($coupon_obj) {
+          $coupon_amount = (float)$coupon_obj->coupon_amt;
+        }
 
+      }
+      if($packages_value && $packages_value->price > $coupon_amount) {
+        $final_value = $packages_value->price - $coupon_amount;
+        $this->load->library('Stripe_lib');
+        $stripe = new Stripe_lib();
+        $payment_obj = $stripe->createPaymentIntent($final_value,$packages_value->title);
+        if($payment_obj && !empty($payment_obj->client_secret)) {
+          $reponse_array = [
+            'status'=>true,
+            'clientSecret'=>$payment_obj->client_secret
+          ];
+        }
+
+      }
+      echo json_encode($reponse_array); 
+    }
+    public function get_stripe_session() {
+      $pkg_name = $this->input->post('pkg_name');
+      $coupon_id = $this->input->post('coupon_id');
+      $coupon_amount = 0;
+      if($coupon_id > 0) {
+        $this->load->model('coupon_model');
+        $coupon_obj = $this->coupon_model->get($coupon_id);
+        if($coupon_obj) {
+          $coupon_amount = (float)$coupon_obj->coupon_amt;
+        }
+        else {
+          $coupon_id = 0;
+        }
+
+      }
+      else {
+        $coupon_id = 0;
+      }
+      $this->load->model('package_model');
+      $packages_all_value = $this->package_model->get_by(['package'=>$pkg_name]);
+      $return_response['session_id'] = '';
+      if($packages_all_value) {
+        $this->load->library('Stripe_lib');
+        $stripe = new Stripe_lib();
+          $product_created = false;
+          if(!empty($packages_all_value->stripe_product_id)) {
+            
+            $product_obj = $stripe->getSubscriptionProduct($packages_all_value->stripe_product_id);
+            if($product_obj && $product_obj->active) {
+              $product_created = true;
+              $product_id = $packages_all_value->stripe_product_id;
+            }
+          }
+
+          if($product_created == false) {
+            $stripe_response = $stripe->createSubscriptionPrice($packages_all_value->title,$packages_all_value->price_per_month);
+            $update_package = array();
+            $update_package['stripe_product_id'] = $stripe_response['product_id'];
+            $update_package['stripe_price_id'] = $stripe_response['price_id'];
+            $this->package_model->update($packages_all_value->id,$update_package);
+            $product_id = $stripe_response['stripe_product_id'];
+          }
+
+          
+          $url = base_url('user/recentlp').'?id='.$this->session->userdata('project_id');
+          if($pkg_name == 'registry') {
+            $url = base_url('user/guests').'?id='.$this->session->userdata('project_id');
+          }
+          // $url = base_url('');
+          //Modify Value
+          $payment_value = $packages_all_value->price;
+          $ref_id = $this->session->userdata('project_id').'_'.$coupon_id;
+
+          if($coupon_id > 0 && $coupon_amount > 0) {
+            $payment_value = $payment_value - $coupon_amount;
+          } 
+
+          $stripeSession = $stripe->createSession($product_id,$payment_value,$ref_id,$url);
+          $return_response['session_id'] = $stripeSession->id;
+        }
+        echo json_encode($return_response);
+    }
     public function getReportsListing()
     {
         $userId = $this->session->userdata('userid');
@@ -288,6 +410,72 @@ class User extends CI_Controller
         }
     }
 
+    public function getGuestsListing($for_guest=0)
+    {
+        $userId = $this->session->userdata('userid');
+        if ($userId) {
+            $columns = [
+                'project_date', 
+                'project_id_pk',
+                'project_name',
+                'report_type',
+                'action'                      
+            ];      
+            $this->load->model('user_model');
+            $recordsTotal = $this->user_model->user_reports_count($userId, $_POST,1,$for_guest);
+            $result = $this->user_model->user_reports_data($userId, $columns, $_POST,1,$for_guest);
+
+            $i = $_POST['start'];
+            $data = [];
+            foreach($result as $report) {
+                $i++;
+                $reportDate = date("m/d/Y", strtotime($report['project_date']));
+
+                $action = '';
+                // $action .= ' <a href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>
+                // <a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><i data-toggle="tooltip" title="Email" class="icon icon-share"  ></i></a>
+                // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+                if($for_guest == 0) {
+
+                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a> <a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-toggle="tooltip" title="Copy URL"  class="icon icon-copy"></i></a> <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'2\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+
+                  $data[] = [
+                      $reportDate, 
+                      $report['project_name'], 
+                      base_url("registry/guest/{$report['unique_key']}") , 
+                      $action
+                  ];
+                }
+                else {
+                  $data[] = [
+                      $reportDate,
+                      $report['project_name'], 
+                      $report['guest_name'], 
+                      $report['guest_phone'], 
+                      $report['guest_email'], 
+                      $action
+                  ];
+                }
+            }
+            
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $recordsTotal,
+                "recordsFiltered" => $recordsTotal,
+                "data" => $data,
+            );    
+            echo json_encode($output);
+        } else {
+            $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => 0,
+                "recordsFiltered" => 0,
+                "data" => []
+            );    
+            echo json_encode($output);
+        }
+    }
+
     public function getPartners(){
       
       if($this->session->userdata('userid')){
@@ -296,7 +484,7 @@ class User extends CI_Controller
         $user_partners = $this->base_model->get_all_record_by_condition('lp_partner_details',array('user_id_fk'=>$this->session->userdata('userid')));
         echo json_encode($user_partners);
       }else{
-        echo json_encode(array('status'=>'failed','message'=>'unauthrized access'));
+        echo json_encode(array('status'=>'failed','message'=>'unauthorized access'));
       }
     }
 
@@ -324,9 +512,65 @@ class User extends CI_Controller
         $data['title'] = "Recent Lp's";
         $this->load->helper('captcha');
         create_image();  
+        $userId = $this->session->userdata('userid');
+        if(!empty($_GET['id']) && !empty($_GET['status']) && $_GET['status']=='success') {
+          //check if payment webhook called or not
+          $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+          $wait_count = 0;
+
+          if($listing_obj && $listing_obj->is_active == 'N') {
+            do{
+              sleep(2);
+              $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+              if($listing_obj->is_active == 'Y' || $wait_count >= 5) {
+                break;
+              }
+              $wait_count ++;
+
+            }while(true);
+            
+          }
+
+        }
         $this->load->view('user/header',$data);
         $this->load->view('user/all_listings',$data);
         $this->load->view('user/footer');
+      }else{
+        // else redirect to frontend login
+        redirect('frontend/login');
+      }
+    }
+    // all listings of registry
+    public function guests(){
+      // show only when the user is logged in
+      if($this->session->userdata('userid')){
+        $data['current'] = "guests";
+        $data['title'] = "Registry";
+        $this->load->helper('captcha');
+        create_image();  
+        $userId = $this->session->userdata('userid');
+        if(!empty($_GET['id']) && !empty($_GET['status']) && $_GET['status']=='success') {
+          //check if payment webhook called or not
+          $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+          $wait_count = 0;
+
+          if($listing_obj && $listing_obj->is_active == 'N') {
+            do{
+              sleep(2);
+              $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $_GET['id']));
+              if($listing_obj->is_active == 'Y' || $wait_count >= 5) {
+                break;
+              }
+              $wait_count ++;
+
+            }while(true);
+            
+          }
+
+        }
+        $this->load->view('user/header',$data);
+        $this->load->view('user/guests/all_listings',$data);
+        // $this->load->view('user/footer');
       }else{
         // else redirect to frontend login
         redirect('frontend/login');
@@ -430,30 +674,301 @@ class User extends CI_Controller
       if($this->session->userdata('userid')){
           $this->load->helper('captcha');
           create_image();
+          $this->load->model('package_model');
+          $this->load->library('Stripe_lib');
+          $stripe = new Stripe_lib();
+          $packages = $this->package_model->get_many_by(['title !='=>'','is_active'=>1]);
+
+          foreach ($packages as $package_key=>&$package) {
+            //Check if product & Price created on stripe
+            $price_created = false;
+            if(!empty($package->stripe_price_id)) {
+              $price_obj = $stripe->getSubscriptionPrice($package->stripe_price_id);
+              $product_obj = $stripe->getSubscriptionProduct($package->stripe_product_id);
+              if($price_obj && $product_obj->active) {
+                //check price object amount if not matched then update price
+                if(floatval($package->price_per_month) != (floatval($price_obj->unit_amount_decimal)/100) || !($price_obj->active)) {
+                  $price_resp = $stripe->updateSubscriptionPrice($package->stripe_product_id,$package->price_per_month);
+                  $update_package['stripe_price_id'] = $price_resp['price_id'];
+                  $this->package_model->update($package->id,$update_package);
+                  $package->stripe_price_id = $price_resp['price_id'];
+                }
+                $price_created = true;
+              }
+            }
+
+            if(!($price_created)) {
+              $stripe_response = $stripe->createSubscriptionPrice($package->title,$package->price_per_month);
+              $update_package = array();
+              $update_package['stripe_product_id'] = $stripe_response['product_id'];
+              $update_package['stripe_price_id'] = $stripe_response['price_id'];
+              $this->package_model->update($package->id,$update_package);
+              $package->stripe_price_id = $stripe_response['price_id'];
+              $package->stripe_product_id = $stripe_response['stripe_product_id'];
+            }
+          }
+
+          $data['packages'] = $packages;
           $data['agentInfo'] = $this->base_model->get_record_by_id('lp_user_mst',
                                                                     array(
                                                                       'user_id_pk'=>$this->session->userdata('userid')
                                                                     ));
-          $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
-          $this->load->library('stripe');
-          $stripe = new Stripe(null);
-          try{
-              $response = json_decode($stripe->plan_info('prem_lp_user'));
-          }catch(Exception $e){
-              print_r($e);
+          $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');
+          $this->load->model('user_package_subscription_model');
+
+          
+
+          $current_plans=  $this->user_package_subscription_model->with('package')->get_many_by(['user_id'=>$this->session->userdata('userid')]);
+          // var_dump($current_plans);die;
+          $active_plans = array();
+          $cancel_plans = array();
+          $active_all = false;
+          foreach ($current_plans as $current_plan) {
+            $check_sub = $stripe->getSubscription($current_plan->sub_id);
+            // var_dump($check_sub);
+            if($check_sub && $check_sub->status == 'active') {
+              $active_plans[$current_plan->package_id] = $current_plan;
+              if($current_plan->package && $current_plan->package->package == 'all') {
+                $active_all = true;
+              }
+              if($check_sub->cancel_at) {
+                $cancel_plans[$current_plan->package_id] = date('d/m/y',$check_sub->cancel_at);
+              }
+              
+            }
           }
-          if(isset($response->id)){
-              $data['plan']['id'] = $response->id;
-              $data['plan']['name'] = $response->name;
-              $data['plan']['amount'] = $response->amount;
-              $data['plan']['interval'] = $response->interval;
+
+          $data['active_plans'] = $active_plans;
+          $data['cancel_plans'] = $cancel_plans;
+          $data['active_all'] = $active_all;
+
+
+          $customer_created = false;
+          $check_customer = $data['agentInfo'];
+          $userId = $check_customer->user_id_pk;
+          if(!empty($check_customer->stripe_user_id)) {
+            $customer_obj = $stripe->getCustomer($check_customer->stripe_user_id);
+            if($customer_obj) {
+              $customer_id = $check_customer->stripe_user_id;
+              $customer_created = true;
+            }
+            
           }
+          if(!($customer_created)) {
+
+            $customer_data = [
+              'email'=>$check_customer->email,
+              'name'=>$this->session->userdata('username'),
+            ];
+
+            $customer_response = $stripe->createCustomer($customer_data);
+            $customer_id = $customer_response->id;
+            //Update user table with stripe Id
+            $this->base_model->update_record_by_id('lp_user_mst',array('stripe_user_id'=>$customer_id),array('user_id_pk'=>$userId));
+          }
+
+          // var_dump($active_plans);die;
+
+          $data['customer_id'] = $customer_id;
+          
           // print_r($data['agentInfo']);
           $this->load->view('user/header', $data);
           $this->load->view('user/myaccount', $data);
           $this->load->view('user/footer');
       }else{
         redirect('frontend/index');
+      }
+    }
+    public function createSubscription(){
+
+      $userId = $this->session->userdata('userid');
+      $reponse_array = [
+        'status'=>false,
+        'message'=>'Something went wrong'
+      ];
+      if(!($userId)) {
+        echo json_encode($reponse_array);exit();
+      }
+      $this->load->library('Stripe_lib');
+      $this->load->model('package_model');
+      $stripe = new Stripe_lib();
+      $userId = $this->session->userdata('userid');
+      $post_data = json_decode(file_get_contents('php://input'));
+      if(!$post_data || empty($post_data->priceId) || empty($post_data->customerId) /*|| empty($post_data->paymentMethodId)*/) {
+        $reponse_array['message']='Invalid data';
+        echo json_encode($reponse_array);exit();
+      }
+      $stripe_price_id = $post_data->priceId;
+
+      $package = $this->package_model->get_by('stripe_price_id',$stripe_price_id);
+      $stripe_price_id = '';
+      if(!$package) {
+        $reponse_array['message']='Invalid Package';
+        echo json_encode($reponse_array);exit();
+        
+      }
+      //Check if product & Price created on stripe
+      $stripe_price_id = $package->stripe_price_id;
+      
+      // Check if customer exist in stripe
+      
+      $customer_id = $post_data->customerId;
+      
+      // $stripe->setPaymentMethod($customer_id,$post_data->paymentMethodId);
+
+      $subscription_response = $stripe->createSubscription($customer_id,$stripe_price_id);
+      if($subscription_response && !empty($subscription_response->id)) {
+
+        $this->load->model('user_package_subscription_model');
+
+        $subscription_data = array(
+          'sub_id' => $subscription_response->id,
+          'user_id' => $userId,
+          'package_id' => $package->id,
+          'amount' => floatval(($subscription_response->plan->amount_decimal)/100),
+          'interval' => $subscription_response->plan->interval,
+          'is_live' => $subscription_response->livemode,
+
+        );
+        $this->user_package_subscription_model->insert($subscription_data);
+        $reponse_array = [
+          'subscriptionId' => $subscription_response->id,
+          'clientSecret' => $subscription_response->latest_invoice->payment_intent->client_secret
+        ];
+        $reponse_array['status'] = true;
+      }
+      echo json_encode($reponse_array);exit(); 
+      
+    }
+    public function checkWebhook()
+    {
+
+      
+      $this->load->library('Stripe_lib');
+      $stripe = new Stripe_lib();
+      $subscription = $stripe->checkWebhook();
+      // $myfile = fopen("stripe_log_file.txt", "w") or die("Unable to open file!");
+      
+      // fwrite($myfile, $subscription);
+      
+      // fclose($myfile);
+      // die;
+      if($subscription) {
+        if($subscription->subscription) {
+
+          $check_sub = $stripe->getSubscription($subscription->subscription);
+          if($check_sub->status == 'active') {
+
+            $this->load->model('user_package_subscription_model');
+            $explode_ref = explode('_', $subscription->client_reference_id);
+            if(count($explode_ref) > 1) {
+              $check_entry = $this->user_package_subscription_model->get_by('sub_id', $subscription->subscription);
+              if(!($check_entry)) {
+
+                $subscription_data = array(
+                  'sub_id' => $subscription->subscription,
+                  'user_id' => $explode_ref[0],
+                  'package_id' => $explode_ref[1],
+                  'amount' => floatval(($subscription->amount_total)/100),
+                  'interval' => 'month',
+                  'is_live' => $subscription->livemode,
+
+                );
+                $this->user_package_subscription_model->insert($subscription_data);
+
+              }
+              
+            }
+          }
+        }
+        else {
+          $ref_id_str = $subscription->client_reference_id;
+          if($ref_id_str) {
+            $ref_id_array = explode('_', $ref_id_str);
+            $ref_id = $ref_id_array[0];
+            $coupon_id = 0;
+            if(count($ref_id_array)>1) {
+
+              $coupon_id = $ref_id_array[1];
+
+            }
+            $listing_obj = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $ref_id));
+            $check_entry = $this->base_model->get_record_by_id('lp_my_cart',array('txn_id' => $subscription->id));
+            if($listing_obj && !($check_entry)) {
+              $coupon_amount = 0;
+              if($coupon_id>0) {
+                $this->load->model('coupon_model');
+                $coupon_obj = $this->coupon_model->get($coupon_id);
+                if($coupon_obj) {
+                  $coupon_amount = (float)$coupon_obj->coupon_amt;
+                }
+                else {
+                  $coupon_id = 0;
+                }
+              }
+
+              $lp_cart_data = array(
+                        'user_id_fk' => $listing_obj->user_id_fk,
+                        'paid_on' => date('Y-m-d'),
+                        'txn_id' => $subscription->id,
+                        'is_success' => 'Y',
+                        'total_amount' => ((($subscription->amount_total)/100)+$coupon_amount),
+                        
+                        'coupon_id_fk' => $coupon_id,
+                        'project_id_fk' => $ref_id
+                      );
+              $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $listing_obj->user_id_fk));
+
+              $result = $this->base_model->insert_one_row('lp_my_cart',$lp_cart_data);
+              if($result) {
+                $lastId = $this->base_model->get_last_insert_id();
+                $invoice_no = $this->generateInvoice($listing_obj->user_id_fk); 
+
+                $lp_invoice_data = array(
+                  'invoice_num' => 'INV'.$invoice_no,
+                  'cart_id_fk' => $lastId,
+                  'user_id_fk' => $listing_obj->user_id_fk,
+                  'invoice_amount' => ((($subscription->amount_total)/100)+$coupon_amount),
+                  'invoice_to' => $users[0]['first_name'],
+                  'invoice_addr' => $users[0]['city'],
+                  'order_amount' => ($subscription->amount_total)/100,
+                  'coupon_amount' => $coupon_amount,
+                  );
+                $result2 = $this->base_model->insert_one_row('lp_invoices',$lp_invoice_data);
+
+                $this->gen_invoice($this->base_model->get_last_insert_id(),$lastId,$listing_obj->user_id_fk,$ref_id);
+
+                $updateProject = array('is_active'=>'Y');
+                $this->base_model->update_record_by_id('lp_my_listing',$updateProject,array('project_id_pk'=>$ref_id));
+                if($coupon_id>0) {
+                  $this->base_model->add_coupon_redeem_log($coupon_id,$listing_obj->user_id_fk,$ref_id);
+                }
+              }
+
+            }
+          }
+              
+        }
+      }
+      
+    }
+    public function cancel_subscribe(){
+      $this->load->library('Stripe_lib');
+      $stripe = new Stripe_lib();
+      $this->load->model('user_package_subscription_model');
+      $sub_id = $this->input->post('sub_id');
+      $sub_obj = $this->user_package_subscription_model->get($sub_id);
+      if($sub_obj) {
+        $sub_obj_id = $sub_obj->sub_id;
+        $resp = $stripe->cancelSubscription($sub_obj_id);
+        if($resp) {
+          $this->session->set_flashdata('success', "Subscription cancelled.");
+
+          redirect('user/myaccount');
+        }
+        else {
+          // echo "Error";
+        }
       }
     }
     public function pay_subscription(){
@@ -910,13 +1425,21 @@ class User extends CI_Controller
         $userId = $data['user_id'] = $this->session->userdata('userid'); 
         if($userId) {  
             
-            $result = $this->base_model->get_record_by_id('lp_user_mst' , array('email'=>$_POST['email'], 'password'=>$_POST['old_password']));
-            
-            if($result){
-              $this->base_model->update_record_by_id('lp_user_mst', array('password'=>$_POST['new_password']), array('user_id_pk'=>$result->user_id_pk));
-              $resp = array('status'=>'success', 'message'=>'Updated successfully');
-            }else{
-              $resp = array('status'=>'failed', 'message'=>'Your current password invalid please enter a valid password!');
+            $result = $this->base_model->get_record_by_id('lp_user_mst' , array('email'=>$_POST['email']));
+
+            $password = $_POST['old_password'];
+            if($_POST['new_password'] != $_POST['confirm_password']) {
+              $resp = array('status'=>'failed', 'message'=>'Confirm password should be same as new password!');
+            }
+            else {
+
+              if($result && password_verify($password,$result->password)){
+                $encrypted_password = password_hash($_POST['new_password'], PASSWORD_DEFAULT);
+                $this->base_model->update_record_by_id('lp_user_mst', array('password'=>$encrypted_password), array('user_id_pk'=>$result->user_id_pk));
+                $resp = array('status'=>'success', 'message'=>'Updated successfully');
+              }else{
+                $resp = array('status'=>'failed', 'message'=>'Your current password invalid please enter a valid password!');
+              }
             }
         }else{
           $resp = array('status'=>'failed', 'message'=>'unauthrized access!');
@@ -2625,8 +3148,10 @@ Thank you for your order. Below you can find the details of your order. If you o
 
     }
 
-     public function gen_invoice($inv,$cart_id){
-      $userId = $data['user_id'] = $this->session->userdata('userid');
+     public function gen_invoice($inv,$cart_id,$userId='',$project_id=''){
+      if($userId == '') {
+        $userId = $data['user_id'] = $this->session->userdata('userid');
+      }
         if($userId){
 			    $invoice_data = array();
           // user data
@@ -2656,7 +3181,10 @@ Thank you for your order. Below you can find the details of your order. If you o
           $invoice_data['tax_amount'] = $tax_amount;
           $invoice_data['total'] = $total_amount;
           // my flyer data
-          $myflyers = $data['myflyers'] = $this->base_model->get_record_result_array('lp_my_listing', array('user_id_fk'=>$userId, 'project_id_pk'=>$this->session->userdata('project_id')));
+          if($project_id = '') {
+            $project_id = $this->session->userdata('project_id');
+          }
+          $myflyers = $data['myflyers'] = $this->base_model->get_record_result_array('lp_my_listing', array('user_id_fk'=>$userId, 'project_id_pk'=>$project_id));
           
 	    	  $pdf_file = 'assets/uploads/user_invoices/'.uniqid().'.pdf';
             
@@ -2702,8 +3230,11 @@ Thank you for your order. Below you can find the details of your order. If you o
     }
 
     // cart payment
-    public function generateInvoice() {
-		  $invoice_no = $this->session->userdata('userid').'-'.time();
+    public function generateInvoice($user_id = '') {
+      if($user_id == '') {
+        $user_id = $this->session->userdata('userid');
+      }
+		  $invoice_no = $user_id.'-'.time();
 		  return $invoice_no;
     }
     // stripe post
@@ -2718,11 +3249,7 @@ Thank you for your order. Below you can find the details of your order. If you o
         $users = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
 
         if($_POST){
-          $this->load->library('stripe');
-
-          // Create the library object
-          $stripe = new Stripe(null);
-
+          
           $amt = $_POST['amount'];
 
           $couponId = $this->input->post('coupon_id');
@@ -2738,12 +3265,20 @@ Thank you for your order. Below you can find the details of your order. If you o
           }
           $amount = 100 * $amt;
 
-          $card = $_POST['stripeToken'];
-
           $desc = 'Modern Agent Paymemnt';
+          $canprocess_payment = true;
           if(!$byPassPayment) {
+            $canprocess_payment = false;
+            $payment_id = $this->input->post('payment_intent_id');
             try{
-              $response = json_decode($stripe->charge_card($amount, $card, $desc));     
+              //check payment intent valid or not
+              $this->load->library('Stripe_lib');
+              $stripe = new Stripe_lib();
+              $payment_obj = $stripe->getPaymentIntent($payment_id);
+              if($payment_obj && $payment_obj->status == 'succeeded') {
+                $canprocess_payment = true;
+              }
+              // $response = json_decode($stripe->charge_card($amount, $card, $desc));     
             }catch(Exception $e){
             }
           }
@@ -2789,14 +3324,16 @@ Thank you for your order. Below you can find the details of your order. If you o
                 $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $this->session->userdata('project_id')));
                 
                 $reportLink = base_url($_project->report_path);
+                
                 header('Content-Type: application/json; charset=utf8');
+                
                 echo json_encode($_project);
               }
-          }elseif($byPassPayment || $response->paid) {
+          }elseif($byPassPayment || $canprocess_payment) {
               $data = array(
                         'user_id_fk' => $userId,
                         'paid_on' => date('Y-m-d'),
-                        'txn_id' => isset($response->id)?$response->id:'',
+                        'txn_id' => $payment_id,
                         'is_success' => 'Y',
                         'total_amount' => $amt,
                         //'coupon_id_fk' => $this->session->userdata('coupon_id'),
@@ -2890,13 +3427,24 @@ Thank you for your order. Below you can find the details of your order. If you o
                     echo json_encode(array("status"=>"success","sms"=>$smsText));
                     exit();
                 }
-                redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
+
+                $_project = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk' => $this->session->userdata('project_id')));
+                if($_project && trim($_project->report_type) == 'registry') {
+                  $this->session->set_flashdata('project_id', $_project->project_id_pk);
+                  redirect(base_url('user/guests').'?id='.$this->session->userdata('project_id'));
+                }
+                else {
+
+                  redirect(base_url().'index.php?/user/recentlp?id='.$this->session->userdata('project_id'));
+                }
+
               }
           } else {
             if($this->input->is_ajax_request()){
                 echo json_encode(array("status"=>"failed","msg"=>"failed to craete PDF"));
                 exit();
             }
+            $response = array('error'=>'Invalid request');
             $data['title'] = "Dashboard";
             $userId = $data['user_id'] = $this->session->userdata('userid');
             $data['users'] = $this->base_model->get_record_result_array('lp_user_mst',array('user_id_pk' => $userId));
@@ -3056,6 +3604,9 @@ Thank you for your order. Below you can find the details of your order. If you o
 			}else if($from == 1){
 				redirect(base_url().'index.php?/user/recentlp');
 			}
+      else if($from == 2) {
+        redirect(base_url('user/guests'));
+      }
 		}	
 	}
     public function formward_report(){
@@ -3693,6 +4244,34 @@ Thank you for your order. Below you can find the details of your order. If you o
         }
 
     }
+
+
+    public function generate_qr_code($uniqid,$size=6,$custom_bg_color=null,$custom_color = null)
+    {
+      $qr_link = base_url('registry/guest/'.$uniqid);
+      $this->load->library('phpqrcode/qrlib');
+      $custom_bg_color = json_decode(urldecode($custom_bg_color));
+      $custom_color = json_decode(urldecode($custom_color));
+      // var_dump($custom_bg_color);die;
+      if(is_array($custom_bg_color) && count($custom_bg_color) == 3) {
+        QRimage::$custom_bg_color = $custom_bg_color;        
+      }
+      if(is_array($custom_color) && count($custom_color) == 3) {
+        QRimage::$custom_color = $custom_color;        
+      }
+      $image = QRcode::png($qr_link,false,QR_ECLEVEL_L,$size,4);
+    }
+
+    public function testPaymentIntent($payment_id='')
+    {
+
+      $payment_id = 'pi_1JIuW8SGHshxlum8wBSrQZsL';
+      $this->load->library('Stripe_lib');
+        $stripe = new Stripe_lib();
+        $data = $stripe->getPaymentIntent($payment_id);
+        var_dump($data->status);
+    }
+
 
    // Class ends here
 }

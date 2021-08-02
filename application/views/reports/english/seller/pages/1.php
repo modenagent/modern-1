@@ -19,7 +19,7 @@
                             <div class="row">
                                 <?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?>
                                 <div class="col-xs-6">
-                                        <img width="130px" height="130px" style="border-radius:100%; margin-top:0px; margin-left:0px;" class="img-responsive" src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>"  />
+                                        <img  class="img-cover" src="<?php if($callFromApi == 1) echo $user['profile_image']; else echo base_url().$user['profile_image']; ?>"  />
                                 </div>
                                 <?php else: ?>
                                 <div class="col-xs-3"></div>
@@ -38,8 +38,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="right-footer pull-right" style="padding-top:0px !important;">
-                            <?php if($user['company_logo'] != ''):?><img src="<?php if($callFromApi == 1) echo $user['company_logo']; else echo base_url().$user['company_logo']; ?>" style="max-height:130px;max-width:300px;padding-bottom: 0px;"  alt="Logo Image"/><?php endif; ?>
+                        <div class="right-footer pull-right" style="">
+                            <?php if($user['company_logo'] != ''):?><img src="<?php if($callFromApi == 1) echo $user['company_logo']; else echo base_url().$user['company_logo']; ?>" style=""  alt="Logo Image"/><?php endif; ?>
                         </div>
                     </div>
                 </div>

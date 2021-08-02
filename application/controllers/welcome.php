@@ -19,7 +19,16 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		var_export($_SERVER);
+		if(!empty($_SERVER['PATH_INFO'])) {
+			echo $_SERVER['PATH_INFO'];
+		}
 		$this->load->view('welcome_message');
+	}
+
+	public function check_info_temp()
+	{
+		phpinfo();
 	}
 }
 

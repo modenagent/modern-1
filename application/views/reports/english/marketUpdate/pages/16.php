@@ -3,10 +3,9 @@ body {
         background-color:#ffffff;
 }
 </style>
-<header class="page-16-header" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/header16-bg-3.jpg');?>);">
+<header class="page-16-header" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/header-2021.jpg');?>);">
     <h2 class="title-center heading-market">Market Update</h2>
-    <h2 class="title-center heading-zipcode"><u class="border-color" style="text-decoration: none;
-    border-bottom: 6px solid; padding-bottom: 15px;">ZipCode: <?php echo $zipCode; ?></u></h2>
+    <h2 class="title-center heading-zipcode">ZipCode: <?php echo $zipCode; ?></h2>
 </header><!-- /header -->
 <div class="table-wrapper page-16-content" style="padding-top: 18px; padding-bottom: 5px;">
     <div class="table-row gray-color">
@@ -84,7 +83,7 @@ body {
     </div>
     <h3 class="">to receive your complimentary sales report via text message.</h3>
 </div>
-<div class="footer page-16-ftr" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/footer16-bg.jpg');?>);"> 
+<div class="footer page-16-ftr" style="background-image: url(<?php echo base_url('assets/reports/english/marketUpdate/assets/images/footer.jpg');?>);"> 
     <div class="row">
         <div class="footer-inner">
             <div class="col-xs-12">
@@ -113,7 +112,7 @@ body {
                     </div>
                 </div>
                 <div class="right-footer pull-right page-16-ftrr-logo col-xs-4">
-                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:150px;" /><?php endif; ?>
+                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:" /><?php endif; ?>
                 </div>
             </div>
         </div>
