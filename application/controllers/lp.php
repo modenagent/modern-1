@@ -84,17 +84,18 @@ class Lp extends CI_Controller{
             //Check If environment var is of devlopment or of production
             $env_mode = 'devlopment'; //Set default value
             if(!empty($_ENV['ENV_MODE'])) {
-                $env_mode = $_ENV['ENV_MODE'];
+                $env_mode = trim($_ENV['ENV_MODE']);
             }
             if(strtolower($env_mode) == 'production') {
-            
-
-                $this->load->config('mandrill');
                 $this->load->library('mandrill');
                 $mandrill_ready = NULL;
                 try {
-                    $this->mandrill->init( $this->config->item('mandrill_api_key') );
-                    $mandrill_ready = TRUE;
+                    $mandrill_key = '';
+                    if(!empty($_ENV['MANDRILL_KEY'])) {
+                        $mandrill_key = trim($_ENV['MANDRILL_KEY']);
+                        $this->mandrill->init($mandrill_key);
+                        $mandrill_ready = TRUE;
+                    }
                 } catch(Mandrill_Exception $e) {
                     $mandrill_ready = FALSE;
                 }
@@ -138,7 +139,7 @@ class Lp extends CI_Controller{
                         $mail_response = $this->mandrill->messages_send($mailData);
                         $this->db->where('mail_cron_id',$mail['mail_cron_id']);
                         
-                        if($mail_response[0]['status']=='queued'){
+                        if($mail_response[0]['status']=='queued' || $mail_response[0]['status']=='sent'){
                             $updatedData = array('status'=>'finished','delivered_at'=>date('Y-m-d H:i:s'));
                         } else {
                             $updatedData = array('status'=>'failed');
