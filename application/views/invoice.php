@@ -103,7 +103,7 @@
 												<span style="font-family: Montserrat">Subtotal</span>
 											</td>
 											<td width="100" style="text-align: right; line-height: 24px;">
-												<span style="font-family: Montserrat">$ <?php echo number_format($total, 2); ?></span>
+												<span style="font-family: Montserrat">$ <?php echo number_format($total_amount, 2); ?></span>
 											</td>
 										</tr>
 										<tr><td colspan="2" height="10" style="font-size:1px;">&nbsp;</td></tr>
@@ -124,7 +124,7 @@
 												<span style="font-family: Montserrat">Total</span>
 											</td>
 											<td width="100" style="text-align: right; line-height: 24px;">
-												<span style="font-family: Montserrat">$ <?php echo number_format($total_amount, 2); ?></span>
+												<span style="font-family: Montserrat">$ <?php echo number_format($total, 2); ?></span>
 											</td>
 										</tr>
 										<tr><td colspan="2" height="10" style="font-size:1px;">&nbsp;</td></tr>
