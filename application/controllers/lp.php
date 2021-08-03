@@ -83,7 +83,7 @@ class Lp extends CI_Controller{
             $mails = $this->base_model->get_record_result_array('lp_mail_cron',$status_where);
             //Check If environment var is of devlopment or of production
             $env_mode = 'devlopment'; //Set default value
-            if(!empty(!$_ENV['ENV_MODE'])) {
+            if(!empty($_ENV['ENV_MODE'])) {
                 $env_mode = $_ENV['ENV_MODE'];
             }
             if(strtolower($env_mode) == 'production') {
