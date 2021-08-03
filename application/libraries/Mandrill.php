@@ -3,9 +3,11 @@
 class Mandrill_Exception extends Exception {}
 
 class Mandrill {
-    const API_VERSION = '1.0';    
-    const END_POINT = 'https://mandrillapp.com/api/';
-    
+    // const API_VERSION = '1.0';    
+    // const END_POINT = 'https://mandrillapp.com/api/';
+
+    var $end_point;
+    var $api_version;
     var $api;
     var $output;
     
@@ -14,6 +16,8 @@ class Mandrill {
     
     // PHP 5.0
     function __construct() {
+    	$this->end_point = (!empty($_env['MANDRILL_ENDPOINT'])) ? $_env['MANDRILL_ENDPOINT'] : 'https://mandrillapp.com/api/';
+    	$this->api_version = (!empty($_env['MANDRILL_VERSION'])) ? $_env['MANDRILL_VERSION'] : '1.0';
         return $this;
     }
 
@@ -48,10 +52,10 @@ class Mandrill {
 
         $this->output = $output;
         
-		$api_version = self::API_VERSION;
+		$api_version = $this->api_version;
 		$dot_output = ('json' == $output) ? '' : ".{$output}";
 
-		$url = self::END_POINT . "{$api_version}/{$method}{$dot_output}";
+		$url = $this->end_point . "{$api_version}/{$method}{$dot_output}";
 
 		switch ($http) {
 
