@@ -3179,7 +3179,8 @@ Thank you for your order. Below you can find the details of your order. If you o
           $invoice_data['total_amount'] = $invoice[0]['order_amount'];//$report_price;
           $invoice_data['discount_amount'] = $invoice[0]['coupon_amount'];//$discount_amount;
           $invoice_data['tax_amount'] = $tax_amount;
-          $invoice_data['total'] = $total_amount;
+          // $invoice_data['total'] = $total_amount;
+          $invoice_data['total'] = $invoice_data['total_amount'] - $invoice_data['discount_amount'];
           // my flyer data
           if($project_id = '') {
             $project_id = $this->session->userdata('project_id');
