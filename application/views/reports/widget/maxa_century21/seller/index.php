@@ -130,8 +130,12 @@ for ($i=1; $i <= $max ; $i++) {
             $data = $rangeOfSales;
         }
         
+        $load_view = 'reports/widget/'.$report_dir_name.'/seller/pages/'.$report_id;
+        if(is_file(APPPATH.'views/' . $load_view . EXT)) {
 
-        $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/'.$report_id,$data);
+            $this->load->view($load_view,$data);
+        }
+
     }
 }
 
