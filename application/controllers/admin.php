@@ -948,7 +948,7 @@ MSG;
                 //Update refferal code
                 if($roleId ==3 && !empty($this->input->post('ref_id'))) {
                     $this->load->model('coupon_model');
-                    $referral_code = trim($this->input->post('coupon_code'));
+                    $referral_code = trim($this->input->post('referral_code'));
                     //Check duplication
                     $check_array = [
                         'coupon_code'=>$referral_code,
