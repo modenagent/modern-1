@@ -156,7 +156,7 @@
                   <input type="hidden" name="ref_id" id="ref_id" value="<?php echo $ref_code_obj->coupon_id_pk; ?>">
                   <td>Referral Code</td>
                   <td>
-                    <input type="text" name="referral_code" class="form-control" placeholder="Referral Code" id="referral_code" value="<?php echo $ref_code_obj->coupon_code; ?>" />
+                    <input type="text" name="referral_code" class="form-control" placeholder="Referral Code" id="referral_code" value="<?php echo $ref_code_obj->coupon_code; ?>" required />
                   </td>
                 </tr>
                 <tr>
