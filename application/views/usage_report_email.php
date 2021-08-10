@@ -259,7 +259,7 @@
                             <br>
                         <p style="text-align: left;">
                               Dear,&nbsp;
-	<!--?php echo $data['full_name']&lt;br ?--><br>
+	<?php echo $data['full_name']?><br>
                               <br>
                               We wanted to keep you in the loop of who is using this service that you provide. Below you will find a usage report.
                             </p><br>
@@ -268,7 +268,7 @@
                             <br>
                             <p>
                               
-	<!--?php echo $week_start." - ".$week_end ?--><br>
+	<?php echo $week_start." - ".$week_end ?><br>
                               <br>
                             </p>
                         <p style="text-align: left;">
@@ -397,8 +397,8 @@
                                                         </tr>
                                                       </table>
                                                       <!-- End Wrapper 2 -->
-                                                  <!--?php foreach($data['log'] as $log): ?-->
-                                                  <!--?php foreach ($log['history'] as $history): ?-->
+                                                  <?php foreach($data['log'] as $log): ?>
+                                                  <?php foreach ($log['history'] as $history): ?>
                                                   <table class="full mce-item-table" style="position: relative; left: 0px; top: 0px;" border="0" width="600" cellspacing="0" cellpadding="0" align="center">
                                                         <tr>
                                                       <td style="font-size: 1px; line-height: 1px;" align="center" width="600" height="10">
@@ -430,7 +430,7 @@
 	<!--><span style="font-family: Montserrat; font-weight: normal;"><span style="font-family: Montserrat; font-weight: normal;">
 	<!--<![endif]--></span></span>
                                                                         <p>
-                                                                         	<!--?php echo $history['project_name']?$history['project_name']:'Data Not Avialable' ?-->
+                                                                         	<?php echo $history['project_name']?$history['project_name']:'Data Not Avialable' ?>
 	<!-- [if !mso]>
 	<!-->
                                                                         </p>
@@ -454,7 +454,7 @@
 	<!--><span style="font-family: Montserrat; font-weight: normal;"><span style="font-family: Montserrat; font-weight: normal;">
 	<!--<![endif]--></span></span>
                                                                         <p>
-                                                                         	<!--?php echo $history['report_type']?ucwords($history['report_type']):'Data Not Avialable' ?-->
+                                                                         	<?php echo $history['report_type']?ucwords($history['report_type']):'Data Not Avialable' ?>
 	<!-- [if !mso]>
 	<!-->
                                                                         </p>
@@ -480,7 +480,7 @@
 	<!--><span style="font-family: Montserrat; font-weight: normal;"><span style="font-family: Montserrat; font-weight: normal;">
 	<!--<![endif]--></span></span>
                                                                         <p>
-                                                                         	<!--?php echo $log['full_name']?$log['full_name']:'' ?-->
+                                                                         	<?php echo $log['full_name']?$log['full_name']:'' ?>
 	<!-- [if !mso]>
 	<!-->
                                                                         </p>
@@ -519,8 +519,8 @@
                                                           </td>
                                                         </tr>
                                                   </table>
-                                                      <!--?php endforeach; ?-->
-                                                      <!--?php endforeach; ?-->
+                                                      <?php endforeach; ?>
+                                                      <?php endforeach; ?>
                                                       <table class="full mce-item-table" style="-webkit-border-bottom-right-radius: 3px; -moz-border-bottom-right-radius: 3px; border-bottom-right-radius: 3px; -webkit-border-bottom-left-radius: 3px; -moz-border-bottom-left-radius: 3px; border-bottom-left-radius: 3px;" border="0" width="600" cellspacing="0" cellpadding="0" align="center">
                                                         <tr>
                                                       <td style="font-size: 1px; line-height: 1px;" width="100%" height="30">
