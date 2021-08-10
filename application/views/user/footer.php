@@ -439,7 +439,7 @@
         success:function(resp){
           if(resp.status=='success'){
             var amount  = parseFloat($('#invoice-amount').val());
-            if (amount<parseFloat(resp.discount)) {
+            if (amount<parseFloat(resp.discount) || resp.discount == 0) {
               resp.discount = amount;
             }
             amount  =   amount-parseFloat(resp.discount);
