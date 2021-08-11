@@ -87,14 +87,14 @@ div#slider {
 ?> 
 
 <?php
-$max = 32;
+$max = 31;
 // var_dump($pdfPages);die;
 // $pdfPages = [2];
 for ($i=1; $i <= $max ; $i++) { 
     if($i == 14) {
         continue;
     }
-    if(in_array($i, $pdfPages))
+    if(in_array($i, $pdfPages) || true)
     {
         $report_id = $i;
 
