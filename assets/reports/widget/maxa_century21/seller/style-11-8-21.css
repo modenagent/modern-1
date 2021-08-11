@@ -612,7 +612,7 @@ table td {
 }
 .image_hero h2 {
   color: #fff;
-  background: rgba(191,175,135,0.76);
+  background: rgba(191, 175, 135, 0.76);
   position: absolute;
   top: 0;
   left: 0;
@@ -629,10 +629,9 @@ table td {
   list-style: none;
   margin-top: 50px;
   clear: both;
-  -webkit-column-count: 2;
-       -moz-column-count: 2;
-            column-count: 2;
+  column-count: 2;
 }
+.pdf11 li,
 .audience_box li {
   position: relative;
   padding-left: 50px;
@@ -640,6 +639,7 @@ table td {
   min-height: 50px;
   line-height: 22px;
 }
+.pdf11 li:before,
 .audience_box li:before {
   content: attr(data-count);
   position: absolute;
@@ -1059,11 +1059,7 @@ ul.custom_list ul.custom_list {
   padding: 30px;
 }
 .marketing_planning {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.58)), to(rgba(255,255,255,0.58))),
-    url(images/meeting.jpg) no-repeat;
-  background: -o-linear-gradient(rgba(255,255,255,0.58), rgba(255,255,255,0.58)),
-    url(images/meeting.jpg) no-repeat;
-  background: linear-gradient(rgba(255,255,255,0.58), rgba(255,255,255,0.58)),
+  background: linear-gradient(rgb(255 255 255 / 58%), rgb(255 255 255 / 58%)),
     url(images/meeting.jpg) no-repeat;
   background-size: cover;
   background-position: center;
@@ -1247,330 +1243,4 @@ ul.custom_list ul.custom_list {
   text-transform: uppercase;
   color: #bfaf87 !important;
   letter-spacing: 5px;
-}
-.new_pdf1 {
-  padding: 30px;
-}
-.new_pdf1 .bg_gray{
-  padding: 35px 35px 70px;
-}
-.new_pdf1 .c21_logo {
-  display: block;
-  margin-left: auto;
-}
-.new_pdf1 h1 {
-  font-size: 50px;
-  font-weight: 600;
-  color: #BEAF87;
-  letter-spacing: 3px;
-}
-.seller_title{
-  color: #000000;
-  font-size: 26px;
-  line-height: 32px;
-  font-weight: 500;
-}
-.seller_address{
-  position: relative;
-}
-.seller_address img{
-  width: 100%;
-}
-.seller_address .address_block {
-  background-color: rgba(190,175,135,0.85);
-  padding: 25px;
-  position: absolute;
-  right: 0;
-  bottom: 80px;
-  width: 240px;
-}
-.seller_name{
-  font-size: 20px;
-  font-weight: 700;
-  color: #fff;
-}
-.seller_address .address_block  address {
-  font-style: normal !important;
-  font-size: 12px;
-  color: #fff;
-  line-height: 16px;
-}
-.seller_address .address_block a{
-  color: #fff;
-  text-decoration: none !important;
-}
-.resume_title{
-  color: #808285;
-  font-size: 90px;
-  line-height: 70px;
-  letter-spacing: 2px;
-  font-weight: 600;
-  margin-top: 70px;
-  position: relative;
-  z-index: 99;
-  margin-left: -7px;
-}
-.resume_card {
-  margin-top: -10px;
-  background: #E6E7E8;
-  padding: 80px 50px;
-  position: relative;
-}
-.achivement_title {
-  font-size: 45px;
-  font-weight: 100;
-  color: #000000;
-}
-.achivement_title span {
-  font-weight: 500;
-  color: #BEAF87;
-  font-size: 100px;
-  line-height: 100px;
-}
-ul.award_list {
-  margin-left: 10px;
-  line-height: 24px;
-  font-weight: 500;
-  margin-bottom: 50px;
-}
-.achivement_title b {
-  color: #BEAF87;
-  display: block;
-  font-weight: 600;
-  margin-top: 60px;
-  font-size: 40px;
-}
-.myprofile_img {
-  position: absolute;
-  right: 10px;
-  bottom: 0;
-  width: 330px;
-}
-.century21{
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 9;
-}
-.listing_title {
-  font-weight: 600;
-  color: #BEAF87;
-  font-size: 140px;
-  letter-spacing: 3px;
-  text-align: center;
-  line-height: 90px;
-}
-.listing_steps {
-  background: #e6e7e8;
-  padding: 50px 50px 50px 100px;
-  max-width: 560px;
-  margin: -15px auto;
-}
-.listing_steps li {
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 28px;
-  margin-bottom: 30px;
-  padding-left: 20px;
-}
-.listing_steps li::marker {
-  color: #BEAF87;
-}
-.local_reach {
-  font-size: 10rem;
-  font-weight: 600;
-  line-height: 160px;
-  color: #bfaf87;
-  text-align: center;
-  text-transform: uppercase;
-  letter-spacing: 15px;
-}
-.century_states {
-  background-color: #bfaf87;
-  padding: 40px;
-  text-align: center;
-  color: #fff;
-}
-.hashnumber {
-  font-size: 150px;
-  font-weight: 500;
-  font-family: 'NorthernBlock';
-  line-height: 160px;
-}
-.century_states p {
-  font-size: 18px;
-  letter-spacing: 2px;
-  font-weight: 300;
-  line-height: 26px;
-  font-family: 'Barlow-Regular';
-  opacity: 0.8;
-}
-.local_reach_pdf .percentage {
-  margin-bottom: 28px;
-  font-size: 90px;
-  font-weight: 500;
-  font-family: 'NorthernBlock';
-  line-height: 75px;
-  text-align: left;
-  text-transform: uppercase;
-}
-.local_reach_pdf .percentage span {
-  font-size: 45px;
-  line-height: 30px;
-}
-.gallery_grid {
-  padding: 160px 50px;
-  text-align: center;
-}
-.gallery_grid img {
-  width: 225px;
-  height: 225px;
-  margin: 5px;
-}
-.senitizer_img{
-  width: 450px;
-}
-.coved_safety {
-  background-color: rgba(190,175,135,0.85);
-  padding: 15px 25px;
-  position: absolute;
-  right: 100px;
-  top: 240px;
-  color: #fff;
-  font-size: 70px;
-  line-height: 70px;
-  font-weight: 600;
-  letter-spacing: 7px;
-  width: 400px;
-}
-.covid_certi {
-  width: 230px;
-  margin-top: 40px;
-}
-.covid_safety_certificate .d-flex {
-  margin-top: 50px;
-  padding-left: 50px;
-  font-size: 14px;
-}
-.covid_safety_certificate .c21_watermark {
-  background: url(images/c21_watermark_white.png);
-  width: 100%;
-  position: absolute;
-  bottom: 30px;
-  height: 145px;
-  left: 0;
-}
-.social_ad_report_title {
-  background-color: #bfaf87;
-  color: #fff;
-  font-size: 30px;
-  font-weight: 600;
-  padding: 15px 20px;
-  display: inline-block;
-  letter-spacing: 2px;
-}
-.social_stats li{
-  display: inline-block;
-  text-align: center;
-  font-size: 16px;
-  font-weight: 600;
-  color: #bfaf87;
-  margin: 0 12px;
-}
-.social_stats li *{
-  display: block;
-  margin: 0 auto;
-}
-.social_stats li img{
-  margin-bottom: 8px;
-}
-.social_stats li span {
-  font-size: 36px;
-  color: #000;
-  display: block;
-  margin-top: 8px;
-}
-.social_stats {
-  padding: 0;
-}
-.social_ad_grid {
-  background: #e6e7e8;
-  padding: 15px;
-  margin-top: 50px;
-}
-.mobile_img {
-  margin-top: -150px;
-  margin-bottom:-134px;
-  width: 240px;
-  margin-left: 40px;
-}
-.social_ad_grid img:not(.mobile_img){   
-  width: 175px;
-  margin: 5px;
-}
-.eleven_things {
-  color: #bfaf87;
-  font-size: 150px;
-  font-weight: 600;
-  -webkit-transform: rotate(270deg);
-      -ms-transform: rotate(270deg);
-          transform: rotate(270deg);
-  width: 105%;
-  position: absolute;
-  left: -40%;
-  bottom: 25%;
-}
-.property_list_title {
-  color: #000;
-  font-size: 48px;
-  font-weight: 600;
-  -webkit-transform: rotate(270deg);
-      -ms-transform: rotate(270deg);
-          transform: rotate(270deg);
-  width: 165%;
-  position: absolute;
-  left: -60%;
-  bottom: 66%;
-}
-.property_list .listing_steps {
-  padding: 50px;
-  max-width: 570px;
-  margin: 0 0 0 auto;
-}
-.property_list .listing_steps li {
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 22px;
-  margin-bottom: 32px;
-  padding-left: 30px;
-  vertical-align: text-bottom;
-}
-.property_list ol ul{
-    list-style-type: disc;
-    margin-top: 30px;
-}
-.property_list .ol_num {
-  list-style: none;
-}
-.property_list .ol_num > li{
-  position: relative;
-}
-.property_list .ol_num > li::marker{
-  content: none
-}
-.property_list .ol_num > li::before {
-  content: attr(data-value) '.';
-  color: #bfaf87;
-  font-size: 33px;
-  position: absolute;
-  left: -15px;
-  top: 5px;
-}
-.property_list ol ul li::marker{
-  color: #000;
-  font-size: 14;
-}
-.property_list .listing_steps ol ul li {
-  margin-bottom: 0;
-  padding-left: 0;
 }
