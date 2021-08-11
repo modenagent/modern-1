@@ -88,14 +88,19 @@ div#slider {
 
 <?php
 $max = 32;
+// var_dump($pdfPages);die;
+// $pdfPages = [2];
 for ($i=1; $i <= $max ; $i++) { 
+    if($i == 14) {
+        continue;
+    }
     if(in_array($i, $pdfPages))
     {
         $report_id = $i;
 
         $data = array();
 
-        if($i==8 || $i==9) {
+        if($i==9 || $i==10) {
 
             if($use_rets_api == 1)
             {
@@ -112,21 +117,24 @@ for ($i=1; $i <= $max ; $i++) {
 
                 list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
 
-                if($i==8 && (isset($comparable_1) && !empty($comparable_1)))
+                if($i==9 && (isset($comparable_1) && !empty($comparable_1)))
                 {
                     $data['comparables'] = $comparable_1;
                     
                 }
 
-                if($i==9 && (isset($comparable_2) && !empty($comparable_2)))
+                if($i==10 && (isset($comparable_2) && !empty($comparable_2)))
                 {
                     $data['comparables'] = $comparable_2;
-                    $report_id = 8;
+                    $report_id = 9;
                 }
+            }
+            else {
+                continue;
             }
 
         }
-        elseif($i==10) {
+        elseif($i==12) {
             $data = $rangeOfSales;
         }
         

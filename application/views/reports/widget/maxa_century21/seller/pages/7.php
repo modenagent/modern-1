@@ -1,96 +1,94 @@
-    <page class="pdf7"> 
-        <div class="gray_title">
-            <h2 class="small_big">AREA SALES ANALYSIS <span>SALES IN THE PAST 12 MONTHS</span></h2>
-        </div>
-
-        <div class="d-flex">    
-            <div class="col-12">
-                <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=beaf86&chds=a&chxt=y" alt="graph" class="img-fluid mx-auto">
-                <table class="mt-60 bar_chart_data">
-                    <thead>
-                        <tr>
-                            <th>Monthly Sales Overview</th>
-                            <th>PIQ</th>
-                            <th>Low</th>
-                            <th>Median</th>
-                            <th>High</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Distance</td>
-                            <td>0</td>
-                            <td><?php echo isset($areaSalesAnalysis['areaMinRadius']) && !empty($areaSalesAnalysis['areaMinRadius']) ? $areaSalesAnalysis['areaMinRadius'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaMedianRadius']) && !empty($areaSalesAnalysis['areaMedianRadius']) ? $areaSalesAnalysis['areaMedianRadius'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaMaxRadius']) && !empty($areaSalesAnalysis['areaMaxRadius']) ? $areaSalesAnalysis['areaMaxRadius'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Living Area</td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLivingArea']) && !empty($areaSalesAnalysis['areaLivingArea']) ? $areaSalesAnalysis['areaLivingArea'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLivingAreaLow']) && !empty($areaSalesAnalysis['areaLivingAreaLow']) ? $areaSalesAnalysis['areaLivingAreaLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLivingAreaMedian']) && !empty($areaSalesAnalysis['areaLivingAreaMedian']) ? $areaSalesAnalysis['areaLivingAreaMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLivingAreaHigh']) && !empty($areaSalesAnalysis['areaLivingAreaHigh']) ? $areaSalesAnalysis['areaLivingAreaHigh'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Price Per Soft</td>
-                            <td><?php echo isset($areaSalesAnalysis['areaPriceFoot']) && !empty($areaSalesAnalysis['areaPriceFoot']) ? '$'.$areaSalesAnalysis['areaPriceFoot'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaPriceFootLow']) && !empty($areaSalesAnalysis['areaPriceFootLow']) ? '$'.$areaSalesAnalysis['areaPriceFootLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaPriceFootMedian']) && !empty($areaSalesAnalysis['areaPriceFootMedian']) ? '$'.$areaSalesAnalysis['areaPriceFootMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaPriceFootHigh']) && !empty($areaSalesAnalysis['areaPriceFootHigh']) ? '$'.$areaSalesAnalysis['areaPriceFootHigh'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Year Built</td>
-                            <td><?php echo isset($areaSalesAnalysis['areaYear']) && !empty($areaSalesAnalysis['areaYear']) ? $areaSalesAnalysis['areaYear'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaYearLow']) && !empty($areaSalesAnalysis['areaYearLow']) ? $areaSalesAnalysis['areaYearLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaYearMedian']) && !empty($areaSalesAnalysis['areaYearMedian']) ? $areaSalesAnalysis['areaYearMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaYearHigh']) && !empty($areaSalesAnalysis['areaYearHigh']) ? $areaSalesAnalysis['areaYearHigh'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Lot Size</td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLotSize']) && !empty($areaSalesAnalysis['areaLotSize']) ? $areaSalesAnalysis['areaLotSize'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLotSizeLow']) && !empty($areaSalesAnalysis['areaLotSizeLow']) ? $areaSalesAnalysis['areaLotSizeLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLotSizeMedian']) && !empty($areaSalesAnalysis['areaLotSizeMedian']) ? $areaSalesAnalysis['areaLotSizeMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaLotSizeHigh']) && !empty($areaSalesAnalysis['areaLotSizeHigh']) ? $areaSalesAnalysis['areaLotSizeHigh'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Bedrooms</td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBedrooms']) && !empty($areaSalesAnalysis['areaBedrooms']) ? $areaSalesAnalysis['areaBedrooms'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBedroomsLow']) && !empty($areaSalesAnalysis['areaBedroomsLow']) ? $areaSalesAnalysis['areaBedroomsLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBedroomsMedian']) && !empty($areaSalesAnalysis['areaBedroomsMedian']) ? $areaSalesAnalysis['areaBedroomsMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBedroomsHigh']) && !empty($areaSalesAnalysis['areaBedroomsHigh']) ? $areaSalesAnalysis['areaBedroomsHigh'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Baths</td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBaths']) && !empty($areaSalesAnalysis['areaBaths']) ? $areaSalesAnalysis['areaBaths'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBathsLow']) && !empty($areaSalesAnalysis['areaBathsLow']) ? $areaSalesAnalysis['areaBathsLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBathsMedian']) && !empty($areaSalesAnalysis['areaBathsMedian']) ? $areaSalesAnalysis['areaBathsMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['areaBathsHigh']) && !empty($areaSalesAnalysis['areaBathsHigh']) ? $areaSalesAnalysis['areaBathsHigh'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Stories</td>
-                            <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['stories']) && !empty($areaSalesAnalysis['stories']) ? $areaSalesAnalysis['stories'] : 0; ?></td>
-                        </tr>
-                        <tr>
-                            <td>Pools</td>
-                            <td><?php echo isset($areaSalesAnalysis['propertyPool']) && !empty($areaSalesAnalysis['propertyPool']) ? $areaSalesAnalysis['propertyPool'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['propertyPoolLow']) && !empty($areaSalesAnalysis['propertyPoolLow']) ? $areaSalesAnalysis['propertyPoolLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['propertyPoolMedian']) && !empty($areaSalesAnalysis['propertyPoolMedian']) ? $areaSalesAnalysis['propertyPoolMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['propertyPoolHign']) && !empty($areaSalesAnalysis['propertyPoolHign']) ? $areaSalesAnalysis['propertyPoolHign'] : 0; ?></td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td>Sales Price</td>
-                            <td><?php echo isset($areaSalesAnalysis['propertySalePrice']) && !empty($areaSalesAnalysis['propertySalePrice']) ? '$'.$areaSalesAnalysis['propertySalePrice'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['propertySalePriceLow']) && !empty($areaSalesAnalysis['propertySalePriceLow']) ? '$'.$areaSalesAnalysis['propertySalePriceLow'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['propertySalePriceMedian']) && !empty($areaSalesAnalysis['propertySalePriceMedian']) ? '$'.$areaSalesAnalysis['propertySalePriceMedian'] : 0; ?></td>
-                            <td><?php echo isset($areaSalesAnalysis['propertySalePriceLowHigh']) && !empty($areaSalesAnalysis['propertySalePriceLowHigh']) ? '$'.$areaSalesAnalysis['propertySalePriceLowHigh'] : 0; ?></td>
-                        </tr>
-                    </tfoot>
-                </table> 
+        <page class="pdf6">
+            <div class="gray_title">
+                <h2 class="small_big">PROSPECTIVE PROPERTY <span>OVERVIEW OF YOUR PROPERTY</span></h2>
             </div>
-        </div>
-    </page>
+            <div class="d-flex">    
+                <div class="col-12">
+                    <h4 class="table_title">Owner, Address & Legal Description</h4>
+                    <table>
+                        <tr>
+                            <td colspan="2">Primary Owner: <?php echo isset($primary_owner) && !empty($primary_owner) ? $primary_owner : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Secondary Owner:  <?php echo isset($secondary_owner) && !empty($secondary_owner) ? $secondary_owner : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <?php 
+                                $site_address = $property->PropertyProfile->SiteAddress.', '. $property->PropertyProfile->SiteCity.', '. $property->PropertyProfile->SiteState.' '.$property->PropertyProfile->SiteZip; 
+                            ?>
+                            <td colspan="2">Site Address: <?php echo isset($site_address) && !empty($site_address) ? $site_address : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <?php 
+                                $mailing_address = $property->PropertyProfile->MailAddress.', '. $property->PropertyProfile->MailCity.', '. $property->PropertyProfile->MailState.' '.$property->PropertyProfile->MailZip; 
+                            ?>
+                            <td colspan="2">Mailing Address:<?php echo isset($mailing_address) && !empty($mailing_address) ? $mailing_address : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>APN : <?php echo isset($property->PropertyProfile->APN) && !empty($property->PropertyProfile->APN) ? $property->PropertyProfile->APN : '-'; ?></td>
+                            <td>County Name: <?php echo isset($property->SubjectValueInfo->CountyName) && !empty($property->SubjectValueInfo->CountyName) ? $property->SubjectValueInfo->CountyName : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Census Tract: <?php echo isset($property->PropertyProfile->CensusTract) && !empty($property->PropertyProfile->CensusTract) ? $property->PropertyProfile->CensusTract : '-'; ?></td>
+                            <td>Housing Tract #: <?php echo isset($property->PropertyProfile->HousingTract) && !empty($property->PropertyProfile->HousingTract) ? $property->PropertyProfile->HousingTract : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Lot Number: <?php echo isset($property->PropertyProfile->LotNumber) && !empty($property->PropertyProfile->LotNumber) ? $property->PropertyProfile->LotNumber : '-'; ?></td>
+                            <td>Page Grid: <?php echo isset($property->PropertyProfile->TBMGrid) && !empty($property->PropertyProfile->TBMGrid) ? $property->PropertyProfile->TBMGrid : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Brief Legal Description:<br>
+                            <?php echo isset($property->PropertyProfile->LegalDescriptionInfo->LegalBriefDescription) && !empty($property->PropertyProfile->LegalDescriptionInfo->LegalBriefDescription) ? $property->PropertyProfile->LegalDescriptionInfo->LegalBriefDescription : '-'; ?></td>
+                        </tr>
+                    </table>
+                    <h4 class="table_title">Beds, Baths & Square Footage</h4>
+                    <table>
+                        <tr>
+                            <td>Bedrooms: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->Bedrooms) && !empty($property->PropertyProfile->PropertyCharacteristics->Bedrooms) ? $property->PropertyProfile->PropertyCharacteristics->Bedrooms : '-'; ?></td>
+                            <td>Year: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->YearBuilt) && !empty($property->PropertyProfile->PropertyCharacteristics->YearBuilt) ? $property->PropertyProfile->PropertyCharacteristics->YearBuilt : '-'; ?></td>
+                            <td>Square Feet: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->BuildingArea) && !empty($property->PropertyProfile->PropertyCharacteristics->BuildingArea) ? $property->PropertyProfile->PropertyCharacteristics->BuildingArea : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Bathrooms: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->Baths) && !empty($property->PropertyProfile->PropertyCharacteristics->Baths) ? $property->PropertyProfile->PropertyCharacteristics->Baths : '-'; ?></td>
+                            <td>Garage: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->GarageNumCars) && !empty($property->PropertyProfile->PropertyCharacteristics->GarageNumCars) ? $property->PropertyProfile->PropertyCharacteristics->GarageNumCars : '-'; ?></td>
+                            <td>Lot Size: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->LotSize) && !empty($property->PropertyProfile->PropertyCharacteristics->LotSize) ? $property->PropertyProfile->PropertyCharacteristics->LotSize : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Partial Bath: 0</td>
+                            <td>Fireplace: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->Fireplace) && !empty($property->PropertyProfile->PropertyCharacteristics->Fireplace) ? $property->PropertyProfile->PropertyCharacteristics->Fireplace : '-'; ?></td>
+                            <td># of Units: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->NumUnits) ? $property->PropertyProfile->PropertyCharacteristics->NumUnits : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Total Rooms: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->TotalRooms) && !empty($property->PropertyProfile->PropertyCharacteristics->TotalRooms) ? sizeof($property->PropertyProfile->PropertyCharacteristics->TotalRooms) : '-'; ?></td>
+                            <td>Pool/Spa:<?php echo isset($property->PropertyProfile->PropertyCharacteristics->Pool) && !empty($property->PropertyProfile->PropertyCharacteristics->Pool) ? $property->PropertyProfile->PropertyCharacteristics->Pool : '-'; ?></td>
+                            <td>Zoning: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->Zoning) && !empty($property->PropertyProfile->PropertyCharacteristics->Zoning) ? $property->PropertyProfile->PropertyCharacteristics->Zoning : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Property Type: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->UseCode) && !empty($property->PropertyProfile->PropertyCharacteristics->UseCode) ? $property->PropertyProfile->PropertyCharacteristics->UseCode : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">Use Code: <?php echo isset($property->PropertyProfile->PropertyCharacteristics->UseCode) && !empty($property->PropertyProfile->PropertyCharacteristics->UseCode) ? $property->PropertyProfile->PropertyCharacteristics->UseCode : '-'; ?></td>
+                        </tr>
+                    </table>
+                    <h4 class="table_title">Assessed Value & Tax Details</h4>
+                    <table>
+                        <tr>
+                            <td>Assessed Value: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->AssessedValue) && !empty($property->PropertyProfile->AssessmentTaxInfo->AssessedValue) ? '$'.$property->PropertyProfile->AssessmentTaxInfo->AssessedValue : '-'; ?></td>
+                            <td>Tax Amount: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->TaxAmount) && !empty($property->PropertyProfile->AssessmentTaxInfo->TaxAmount) ? '$'.$property->PropertyProfile->AssessmentTaxInfo->TaxAmount : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Land Value: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->LandValue) && !empty($property->PropertyProfile->AssessmentTaxInfo->LandValue) ? '$'.$property->PropertyProfile->AssessmentTaxInfo->LandValue : '-'; ?></td>
+                            <td>Tax Status: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->TaxStatus) && !empty($property->PropertyProfile->AssessmentTaxInfo->TaxStatus) ? $property->PropertyProfile->AssessmentTaxInfo->TaxStatus : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Improvement Value: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->ImprovementValue) && !empty($property->PropertyProfile->AssessmentTaxInfo->ImprovementValue) ? $property->PropertyProfile->AssessmentTaxInfo->ImprovementValue : '-'; ?></td>
+                            <td>Tax Rate Area: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->TaxRateArea) && !empty($property->PropertyProfile->AssessmentTaxInfo->TaxRateArea) ? $property->PropertyProfile->AssessmentTaxInfo->TaxRateArea.'%' : '-'; ?></td>
+                        </tr>
+                        <tr>
+                            <td>% Improvement: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->PercentImproved) && !empty($property->PropertyProfile->AssessmentTaxInfo->PercentImproved) ? $property->PropertyProfile->AssessmentTaxInfo->PercentImproved.'%' : '-'; ?></td>
+                            <td>Tax Year: <?php echo isset($property->PropertyProfile->AssessmentTaxInfo->TaxYear) && !empty($property->PropertyProfile->AssessmentTaxInfo->TaxYear) ? $property->PropertyProfile->AssessmentTaxInfo->TaxYear : '-'; ?></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </page>
