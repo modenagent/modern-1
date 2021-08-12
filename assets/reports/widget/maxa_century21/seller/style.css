@@ -635,7 +635,7 @@ table td {
   /* You *must* define a fixed height which is
   large enough to fit the whole content,
   otherwise the layout is unpredictable. */
-  height: 310px;
+  height: 330px;
   /* Width and count aren't respected, but you
   have to give at least some dummy value (??). */
   -webkit-columns: 0 0;
