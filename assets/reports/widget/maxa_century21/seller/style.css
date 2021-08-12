@@ -805,7 +805,7 @@ table td {
 }
 .real_estate_stats span {
   display: block;
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 600;
   margin-bottom: 10px;
 }
@@ -1120,7 +1120,7 @@ ul.custom_list ul.custom_list {
   margin-bottom: 15px;
 }
 .pdf27 > ul {
-  height: 660px;
+  height: 680px;
   width: 50%;
   -webkit-columns: 0 0;
 }
@@ -1378,7 +1378,7 @@ ul.award_list {
 .listing_title {
   font-weight: 600;
   color: #BEAF87;
-  font-size: 140px;
+  font-size: 130px;
   letter-spacing: 3px;
   text-align: center;
   line-height: 90px;
@@ -1387,7 +1387,7 @@ ul.award_list {
   background: #e6e7e8;
   padding: 50px 50px 50px 100px;
   max-width: 560px;
-  margin: -15px auto;
+  margin: -10px auto -20px;
 }
 .listing_steps li {
   font-size: 20px;
@@ -1553,7 +1553,7 @@ ul.award_list {
   width: 165%;
   position: absolute;
   left: -60%;
-  bottom: 67%;
+  bottom: 68%;
 }
 .property_list .listing_steps {
   padding: 50px;
@@ -1561,7 +1561,7 @@ ul.award_list {
   margin: 0 0 0 auto;
 }
 .property_list .listing_steps li {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 500;
   line-height: 22px;
   margin-bottom: 32px;
