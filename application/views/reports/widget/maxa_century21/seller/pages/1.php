@@ -6,6 +6,7 @@
             </h1>
             <div class="seller_title">
                 PREPARED FOR: <br>
+                <?php echo $primary_owner; ?>
                 <!-- SELLER'S NAME  -->
             </div>
         </div>

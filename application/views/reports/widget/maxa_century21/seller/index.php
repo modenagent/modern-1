@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/style.css") ?>">
 <style type="text/css">
@@ -91,10 +91,10 @@ $max = 31;
 // var_dump($pdfPages);die;
 // $pdfPages = [2];
 for ($i=1; $i <= $max ; $i++) { 
-    if($i == 14) {
-        continue;
-    }
-    if(in_array($i, $pdfPages) || true)
+    // if($i == 14) {
+    //     continue;
+    // }
+    if(in_array($i, $pdfPages))
     {
         $report_id = $i;
 
