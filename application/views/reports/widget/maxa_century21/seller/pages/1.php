@@ -6,12 +6,26 @@
             </h1>
             <div class="seller_title">
                 PREPARED FOR: <br>
-                <?php echo $primary_owner; ?>
                 <!-- SELLER'S NAME  -->
+                <?php 
+                if(!empty($page['cover_prepared_for'])) {
+                    echo $page['cover_prepared_for'];
+                }
+                else {
+                    echo $primary_owner; 
+                }
+                
+                ?>
             </div>
         </div>
         <div class="seller_address">
-            <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/new.png" alt="seller_image" class="img-fluid">
+            <?php
+            if(!empty($page['cover_image'])): ?>
+                 <img src="<?php echo base_url($page['cover_image']); ?>" alt="seller_image" class="img-fluid">
+            
+            <?php else : ?>
+                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/new.png" alt="seller_image" class="img-fluid">
+            <?php endif; ?>
             <div class="address_block">
                 <div class="seller_name"><?php echo (!empty($user['first_name']) || !empty($user['last_name'])) ?  $user['first_name'].' '.$user['last_name']  : (!empty($user['fullname']) ?  $user['fullname'] : '-'); ?></div>
                 <address>

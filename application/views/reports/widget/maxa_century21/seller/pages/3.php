@@ -28,24 +28,6 @@
         <a href="http://www.century21award.com">www.century21award.com</a>
     </div>
     <div class="profile_intro">
-        Since 2005, I have become one of the most trusted and
-        top-selling real estate agents in all of San Diego County. By
-        recognizing the importance of trust with my clients, I have
-        continued to exceed their expectations year by year. Whether
-        it’s residential or commercial, I am your local expert for all
-        your real estate needs.<br><br>
-        Since 2010, I have ranked amongst the Top 1% in all of
-        CENTURY 21 with an annual average of $70 million in sales
-        volume. I specialize in the unique & exclusive communities of
-        La Jolla, Del Mar, Encinitas, Solana Beach & Rancho Santa Fe.
-        If you’re looking more for the big city look & feel, I can show
-        you our luxury high rises downtown.<br><br>
-        San Diego is my home; I grew up here and graduated
-        from San Diego State University with a bachelor’s in
-        communication. When it comes to real estate, I am always
-        continuing my education by investing my time and money to
-        learn the latest sales, marketing, and negotiation techniques.<br><br>
-        Outside of real estate, I enjoy traveling, cooking, and spending
-        time with my family and friends.
+        <?php echo nl2br($bio); ?>
     </div>
 </page>

@@ -1,5 +1,7 @@
 <?php
 $site_address = $property->PropertyProfile->SiteAddress;
+$site_unit_type = $property->PropertyProfile->SiteUnitType;
+$site_unit_number = $property->PropertyProfile->SiteUnit;
 
 // var_dump($user);die;
 ?>
@@ -60,31 +62,15 @@ $site_address = $property->PropertyProfile->SiteAddress;
                 <div class="cover_letter">
                     <div class="subject">
                         FOR THE PROPERTY LOCATED AT:
-                        <span><?php if(!empty($site_address)) {echo $site_address;} ?></span>
+                        <span><?php if(!empty($site_address)) {echo $site_unit_type.$site_unit_number.' '.$site_address;} ?></span>
                     </div>
                     <div class="letter_body">
-                        Dear Sir/Madam:<br><br>
-                        Thank you very much for giving me the
-                        opportunity to present the enclosed proposal
-                        to market your home. I appreciate the time
-                        you spent with me reviewing the features of
-                        your home and outlining your financial goals
-                        and time considerations.<br><br>
-                        You will receive competent and professional
-                        service when you select me and CENTURY 21
-                        Award to represent you. We have represented
-                        many families in this area concluding
-                        transactions that realize maximum value in a
-                        reasonable time. I hope you will select me as
-                        your agent in this very important transaction.<br><br>
-                        This proposal includes a comprehensive market
-                        analysis that will assist us in determining the
-                        market
-                        value and pricing of your home. I hope the
-                        information included on me and CENTURY 21
-                        Award
-                        will confirm that I am best qualified to market
-                        your home.<br><br>
+                        <?php 
+                            if(!empty($page['cover_letter'])) {
+                                echo nl2br($page['cover_letter']);
+                            }
+                        ?>
+                        <br>
                         Very truly yours,
                         <div class="letter_signature">
                             <?php echo (!empty($user['first_name']) || !empty($user['last_name'])) ?  $user['first_name'].' '.$user['last_name']  : (!empty($user['fullname']) ?  $user['fullname'] : '-'); ?>
