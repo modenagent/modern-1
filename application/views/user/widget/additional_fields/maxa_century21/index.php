@@ -4,7 +4,7 @@
   <ul class="dropdown-menu">
   	<li><a href="#" data-toggle="modal" data-target="#conf-cover-main" title="configure Main Cover Page">Main Cover Page </a></li>
     <li><a href="#" data-toggle="modal" data-target="#conf-cover-letter" title="configure Cover Letter">Cover Letter </a></li>
-    <li><a href="#" data-toggle="modal" data-target="#conf-portfolio-text" title="configure Portfolio"> Portfoio Text </a></li>
+    <li><a href="#" data-toggle="modal" data-target="#conf-portfolio-text" title="configure Portfolio"> Portfolio Text </a></li>
     <li><a href="#" data-toggle="modal" data-target="#conf-resume-text" title="configure Resume"> Resume </a></li>
   </ul>
 </div>
