@@ -3,20 +3,36 @@
         <div class="resume_card">
             <div>
                 <div class="achivement_title">
-                    <span>5</span> AWARDS
+                    <?php 
+                        if(!empty($page['resume_award_no'])) {
+                            echo '<span>'.$page['resume_award_no'].'</span> AWARDS';
+                        }
+                    ?>
                 </div>
                 <ul class="award_list">
-                    <li>Award 1 2018</li>
-                    <li>Award 2 2019</li>
-                    <li>Award 3 2020</li>
-                    <li>Award 4 2021</li>
-                    <li>Award 5 2021</li>
+                    <?php
+                    if(!empty($page['resume_award_list'])) {
+                            $list_array = explode("\n", $page['resume_award_list']);
+                            foreach ($list_array as $list_array_val) {
+                                echo '<li>'.$list_array_val.'</li>';
+                                # code...
+                            }
+                        }
+                    ?>
                 </ul>
                 <div class="achivement_title">
-                    <span>7</span> YEARS
+                    <?php 
+                        if(!empty($page['resume_years_no'])) {
+                            echo '<span>'.$page['resume_years_no'].'</span> YEARS';
+                        }
+                    ?>
                 </div>  
                 <div class="achivement_title">
-                    <b>$100,000,000+</b> volume
+                    <?php
+                        if(!empty($page['resume_volume'])) {
+                            echo '<b>'.$page['resume_volume'].'</b> volume';
+                        }
+                    ?>
                 </div>
             </div>
             <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/century21.png" alt="century21" class="century21"></a>

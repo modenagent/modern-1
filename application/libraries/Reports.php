@@ -1065,6 +1065,12 @@ use Knp\Snappy\Pdf;
                 $data['featured_homes'] = $CI->base_model->all_records('lp_featured_home');
             }
             /*Featured section*/
+
+            /*Dynamic setting*/
+            if($CI->input->post('page') && is_array($CI->input->post('page'))) {
+                $data['page'] = $CI->input->post('page');
+            }
+            /*Dynamic setting*/
             
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
