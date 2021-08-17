@@ -9,13 +9,15 @@ body {
   src: url(fonts/Abuget.ttf);
   font-family: 'Abuget';
 }
-/*@font-face {
+@font-face {
   src: url(fonts/Barlow-Regular.otf);
   font-family: 'Barlow-Regular';
-}*/
+  font-weight: normal;
+}
 @font-face {
   src: url(fonts/Barlow-Bold.otf);
-  font-family: 'BarlowB-Bold';
+  font-family: 'Barlow-Regular';
+  font-weight: bold;
 }
 @font-face {
   src: url(fonts/NorthernBlock.ttf);
@@ -794,7 +796,8 @@ table td {
 }
 .badge h2 {
     margin: 0;
-    font-family: 'BarlowB-Bold';
+    font-family: 'Barlow-Regular';
+    font-weight: bold;
     text-transform: uppercase;
     font-size: 22px;
 }
@@ -887,7 +890,8 @@ table td {
 }
 .chart_box h4 {
     margin: 0;
-    font-family: 'BarlowB-Bold';
+    font-family: 'Barlow-Regular';
+    font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
     color: #bfaf87;
@@ -1410,7 +1414,8 @@ ul.custom_list ul.custom_list {
 }
 .pdf32 .name {
   color: #bfaf87;
-  font-family: 'BarlowB-Bold';
+  font-family: 'Barlow-Regular';
+  font-weight: bold;
   font-size: 30px;
 }
 .pdf32 a {
