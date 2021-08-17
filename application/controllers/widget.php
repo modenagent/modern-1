@@ -17,7 +17,7 @@ class Widget extends CI_Controller {
           if($this->uri->uri_string() != 'widget/setAuth'){
 
             $user_id = $this->setAuth();
-            // $user_id = 1607;
+            // $user_id = 1606;
             if($user_id) {
 
               $this->user_id = $user_id;
@@ -164,6 +164,23 @@ class Widget extends CI_Controller {
                 $data['leads'] =  $this->user_model->get_leads($user_id);
                 $data['ref_code'] = $this->user_model->has_ref_code($user_id);
                 /* leads */
+                $data['page_contents'] = array();
+                /*Report Dynamic  content*/
+                $this->load->model('widget_report_dynamic_data_model');
+                $page_contents = $this->widget_report_dynamic_data_model->get_many_by('user_id',$user_id);
+                if($page_contents) {
+                  foreach ($page_contents as $page_content) {
+                    if($page_content->report_type == 'seller') {
+                      $data['page_contents']['seller'] = unserialize($page_content->data);
+                    }
+                    else if($page_content->report_type == 'buyer') {
+                      $data['page_contents']['buyer'] = unserialize($page_content->data);
+                    }
+                  }
+                }
+
+
+                /*Report Dynamic  content*/
                 
                 
 

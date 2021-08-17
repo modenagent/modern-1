@@ -2,10 +2,15 @@
 <a class="dropdown-toggle " style=""   data-toggle="dropdown" title="configure More page" >More Pages</a>
  <span class="caret"></span></button>
   <ul class="dropdown-menu">
+  	<?php if(count($featured_homes)) : ?>
+    <li><a href="#"  data-toggle="modal" data-target="#update-featured" title="Featured Homes" >Featured Homes</a></li>
+    <?php endif; ?>
   	<li><a href="#" data-toggle="modal" data-target="#conf-cover-main" title="configure Main Cover Page">Main Cover Page </a></li>
     <li><a href="#" data-toggle="modal" data-target="#conf-cover-letter" title="configure Cover Letter">Cover Letter </a></li>
     <li><a href="#" data-toggle="modal" data-target="#conf-portfolio-text" title="configure Portfolio"> Portfolio Text </a></li>
     <li><a href="#" data-toggle="modal" data-target="#conf-resume-text" title="configure Resume"> Resume </a></li>
+    <li><a href="#" data-toggle="modal" data-target="#conf-social-media" title="configure Social Media Text"> Social Media </a></li>
+    <li><a href="#" data-toggle="modal" data-target="#conf-social-ad" title="configure Social AD Report"> Social AD Report </a></li>
   </ul>
 </div>
 <style type="text/css">
@@ -39,5 +44,8 @@
 	    border: 1px solid #fff;
 	    left: -30px;
 
+	}
+	#cma-widget-container .search-result .btn-sm {
+		    color: #bfaf87;
 	}
 </style>
