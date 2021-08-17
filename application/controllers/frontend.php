@@ -593,7 +593,7 @@ echo $this->email->print_debugger();die;
         foreach ($files as $file) {
             if (is_file($file)) {
               if ($now - filemtime($file) >= $before_2_days && !in_array(basename($file), $images_array)) { // 
-                // unlink($file);
+                unlink($file);
                 echo '<br/>File deleted : '.$file;
               }
             }
