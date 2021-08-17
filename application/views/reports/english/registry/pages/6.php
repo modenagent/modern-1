@@ -21,7 +21,7 @@
                 <p>
                     Thank you for visiting. Please scan<br>
                     the QR code with your smart<br>
-                    phone’s camera.
+                    phone's camera.
                 </p>
             </div>
             <?php
