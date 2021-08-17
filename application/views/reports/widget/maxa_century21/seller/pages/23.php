@@ -1,7 +1,7 @@
 <page class="pdf23 pdf14">
     <div class="image_hero">
         <h2><small>MAKE THE BEST DECISION</small> <br>FOR YOUR UNIQUE <br>CIRCUMSTANCES</h2>
-        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/pg13.jpg" alt="..." class="img220">
+        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/page_best_dec.png" alt="..." class="img220">
     </div>
     <div class="content_box">
         <b class="theme_color">OPEN MARKET SALES</b>

@@ -1,53 +1,33 @@
-    <page class="pdf3 px-30">
-        <h1 class="mt-20">TESTIMONIALS</h1>
-        <div class="testimonial_box">
-
+<page class="pdf2">
+    <a href="#"><img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/C21_dark_logo.png");?>' alt="C21" class="profile_pic"></a>
+    <div class="signature horizontal_sign mt-50">
         <?php
-        if(isset($testimonials) && !empty($testimonials))
-        {
-            list($upper_testimonial, $lower_testimonial) = array_chunk($testimonials, ceil(count($testimonials) / 2));
+        if($user['profile_image'] != '' && $user['profile_image'] != 'no') {?>
 
-            if(isset($upper_testimonial) && !empty($upper_testimonial))
-            {
-                ?>
-                <div class="d-flex">
-                    <?php
-
-                    foreach ($upper_testimonial as $key => $value) 
-                    { ?>
-                        <div class="col-50">
-                        <p>
-                            <?php echo trim($value['content']); ?>
-                        </p>
-                        <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/rating.png");?>' alt="rating">
-                        <div class="feedbacker_name">- <?php echo $value['name']; ?></div>
-                    </div>
-                    <?php }
-                    ?>
-                </div>
-            <?php }
-
-            if(isset($lower_testimonial) && !empty($lower_testimonial))
-            {
-            ?>
-            <div class="d-flex mt-50">
-            <?php
-
-                foreach ($lower_testimonial as $k => $v) 
-                { ?>
-                    <div class="col-50">
-                        <p><?php echo trim($v['content']); ?></p>
-                        <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/rating.png");?>' alt="rating">
-                        <div class="feedbacker_name">- <?php echo $v['name']; ?></div>
-                    </div>
-
-               <?php } ?>
-            </div>
-            <?php }
-
-        }
+        <a href="#" class="profile_pic"><img src="<?php echo base_url().$user['profile_image']; ?>" alt="..."></a>
+        <?php }
         ?>
-
-
-        </div>
-    </page>
+        <span class="profile_name"><?php echo (!empty($user['first_name']) || !empty($user['last_name'])) ?  $user['first_name'].' '.$user['last_name']  : (!empty($user['fullname']) ?  $user['fullname'] : '-'); ?></span>
+        <!-- Branch Manager<br> -->
+        <!-- DRE # 01266573<br> -->
+        <?php if(isset($user['title']) && !empty($user['title'])) {echo $user['title'].'<br>';}?>
+        CENTURY 21 Award<br>
+        1530 Hilton Head Road #201<br>
+        El Cajon, CA 92019<br><br>
+        <?php 
+        if(isset($user['mobile']) && !empty($user['mobile'])) {
+        ?>
+        P: <a href="tel:<?php echo $user['mobile']; ?>"><?php echo $user['mobile']; ?></a><br>
+        <?php }?>
+        <?php 
+        if(isset($user['email']) && !empty($user['email'])) {
+        ?>
+        E: <a href="mailto:<?php echo $user['email']; ?>"><?php echo $user['email']; ?></a><br>
+        <?php }?>
+        <!-- Social: @NikkiCoppa<br> -->
+        <a href="http://www.century21award.com">www.century21award.com</a>
+    </div>
+    <div class="profile_intro">
+        <?php echo nl2br($bio); ?>
+    </div>
+</page>

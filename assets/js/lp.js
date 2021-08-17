@@ -962,9 +962,18 @@ function widgetRunPMA(agentPath, logoPath) {
         query += '&' + 'use_rets_api=' + use_rets_api;
     }
     // console.log(query);
+
+    // Dynamic contents
+    // config-page-modals
+    $('.config-page-modals .more-page-config').each(function(i, obj) {
+        if($(this).attr('name') && $(this).attr('name') != "") {
+                query += '&' + $(this).attr('name')+"=" + encodeURIComponent($(this).val());
+            
+        }
+        // console.log($(this).attr('name')+$(this).val());
+    });
     
-    //console.log(query);
-    if(activeRequest){
+    if(activeRequest && xhr){
         activeRequest=false;
         xhr.abort();
     }

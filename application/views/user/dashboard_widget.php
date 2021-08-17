@@ -291,19 +291,21 @@
                           <div class="col-md-12">
                             <h2 id="comp-heading" class="text-center"><strong>Comparables</strong></h2>
                           </div>
-                          <div class="col-md-4">
+                          <div class="col-md-3">
                             <h2 class="marketUpdateHide"><strong>Review Pages</strong></h2>
                           </div>
-                          <div class="col-md-8 marketUpdateHide" id="butcomp">
+                          <div class="col-md-9 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
                             <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Agent Bio
-                            </a> &nbsp | &nbsp
-                            <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
-                            <?php if(count($featured_homes)) : ?>
-                            &nbsp | &nbsp
-                            <a id="btn-featured" class="" data-toggle="modal" data-target="#update-featured" title="Featured Homes" >Featured Homes</a>
-                            <?php endif; ?>
-                            <a id="config-comps-btn" class="pull-right comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a> | &nbsp
+                            </a> &nbsp; | &nbsp;
+                            <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>&nbsp; | &nbsp;
+                            <a id="config-comps-btn" class="comps"  target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a>
+                            <?php
+                            $load_view = 'user/widget/additional_fields/'.$report_dir_name.'/index';
+                            if(is_file(APPPATH.'views/' . $load_view . EXT)) {
+                                  $this->load->view($load_view);
+                              }
+                            ?>
                           </div>
                             </div>
                           </div>
@@ -331,7 +333,7 @@
                                    <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $seller_images; ?>">
                                   <label class="user-heading alt gray-bg" for="pb">
                                     <div class="text-center"> 
-                                      <img class="seller_template" src="<?php echo base_url().$check_dir.$seller_images.'.jpg'; ?>" alt="">
+                                      <img class="seller_template" src="<?php echo base_url().$check_dir.$seller_images.'.jpg?'.time(); ?>" alt="">
                                     </div>
 
                                   </label>
@@ -389,7 +391,7 @@
                                     <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_images; ?>">
                                     <label class="user-heading alt gray-bg" for="pb">
                                       <div class="text-center">
-                                        <img class="buyer_template" style="display:none;" src="<?php echo base_url().$check_dir.$buyer_images.'.jpg'; ?>" alt="">
+                                        <img class="buyer_template" style="display:none;" src="<?php echo base_url().$check_dir.$buyer_images.'.jpg?'.time(); ?>" alt="">
                                       </div>
                                     </label>
                                   </div>
@@ -686,7 +688,16 @@
                 <div class="modal-body">
                   <div class="row">
                   <?php
-                    foreach ($testimonials as $testimonial_i => $testimonial) : 
+                    if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+                          $report_seller_data = $page_contents['seller'];
+                          if(!empty($report_seller_data['testimonials'])) {
+                            $testimonials = $report_seller_data['testimonials'];
+                          }
+                      }
+                    foreach ($testimonials as $testimonial_i => $testimonial) :
+                      if(is_array($testimonial)):
+                        $testimonial = (object)$testimonial;
+                      endif; 
                       if($testimonial_i == 2) :
                         echo '<div class="row" style="margin-top:10px;">';
                       endif;
@@ -723,7 +734,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <textarea class="form-control" rows="5" id="agent-bio">Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.</textarea>
+                          <?php
+                          $bio = 'Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.';
+                          if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+                                $report_seller_data = $page_contents['seller'];
+                                if(!empty($report_seller_data['bio'])) {
+                                  $bio = $report_seller_data['bio'];
+                                }
+                            } ?>
+                            <textarea class="form-control" rows="5" id="agent-bio"><?php echo $bio;?></textarea>
                         </div>                        
                     </div>
                 </div>
@@ -746,7 +765,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                      <?php 
+                      <?php
+                      if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+                          $report_seller_data = $page_contents['seller'];
+                          if(!empty($report_seller_data['featured_homes'])) {
+                            $featured_homes = $report_seller_data['featured_homes'];
+                          }
+                      }
                       if(count($featured_homes)) {
 
                       
@@ -780,6 +805,15 @@
         </div>
     </div>
     <!-- modal for Featured section -->
+
+    <!-- modals for Additional page configs -->
+    <?php
+      $load_view = 'user/widget/additional_fields/'.$report_dir_name.'/modals';
+      if(is_file(APPPATH.'views/' . $load_view . EXT)) {
+            $this->load->view($load_view);
+        }
+      ?>
+    <!-- modals for Additional page configs -->
 </div>
 </div>      
       <!-- footer js and other stuff starts here -->
@@ -871,7 +905,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.6"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.7"></script>
       
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -1618,6 +1652,62 @@ function submitFormAndGetReport()
                     file_obj.parent().css("background-image", "url(" + base_url+data.file + ")");
 
                     file_obj.parent().children('.featured_file').val(data.file)
+                 }
+                 else
+                 {
+                   // imgclean.replaceWith( imgclean = imgclean.clone( true ) );
+                   alert(data.error);
+                 }
+
+              });
+            }//end size
+            else
+            {
+                // imgclean.replaceWith( imgclean = imgclean.clone( true ) );//Its for reset the value of file type
+                alert('Sorry File size exceeding from 1 Mb');
+            }
+          }//end FILETYPE
+          else
+          {
+             // imgclean.replaceWith( imgclean = imgclean.clone( true ) );
+            alert('Sorry Only you can uplaod JPEG|JPG|PNG|GIF file type ');
+          }
+        }
+  });
+
+  $(document).on('change','.config-file-change',function(){
+        var file = $(this).get(0).files[0];
+        var file_index = $(this).data('val');
+        var file_obj = $(this);
+
+        if(file) {
+          // var upload_img = $(this);
+          // console.log("File uplaoded for "+$(this).attr("id"));
+     
+          data = new FormData();
+          data.append('file', $(this)[0].files[0]);
+
+          var imgname  =  $(this).val();
+          var size  =  $(this)[0].files[0].size;
+
+          var ext =  imgname.substr( (imgname.lastIndexOf('.') +1) );
+          if(ext=='jpg' || ext=='jpeg' || ext=='png' || ext=='gif' || ext=='PNG' || ext=='JPG' || ext=='JPEG')
+          {
+           if(size<=1000000)
+           {
+              $.ajax({
+                url: "<?php echo base_url('widget/upload_image') ?>",
+                type: "POST",
+                data: data,
+                dataType: 'json',
+                enctype: 'multipart/form-data',
+                processData: false,  // tell jQuery not to process the data
+                contentType: false   // tell jQuery not to set contentType
+              }).done(function(data) {
+                 if(data && data.status == true)
+                 {
+
+                    file_obj.parent().children('.config_file_value').val(data.file)
                  }
                  else
                  {

@@ -1,34 +1,53 @@
-    <page class="pdf4">
-        <h2 class="small_big">PORTFOLIO AT A GLANCE<span> FEATURED LIST OF HOMES SOLD</span></h2>
-        <p class="mt-30">
-            With over $500 million in sales closed, I have the knowledge and experience to list your
-            home.
-        </p>
-        <p>
-            I have had the pleasure of working with some of San Diego County’s most beautiful
-            homes. A first impression is everything in this world, especially in real estate. With my
-            marketing plan, I bring in some of the best photographers in the business to shoot my
-            listings. This will ensure that your home is shown with an elegant and luxurious look.
-        </p>
-        <p>
-            Take a look at my most notable sales in San Diego:
-        </p>
-        <div class="d-flex mt-50"> 
-        <?php
-        foreach ($featured_homes as $key => $featured_home) {
-            if($key == 4) {break;} 
-            ?>
-            <?php if($key==2):?> <div class="d-flex"> <?php endif;?>
-                <div class="col-50">
-                    <img src='<?php echo base_url($featured_home->image);?>' alt="villa1"  class="img-fluid villa_img">
-                    <p class="product_detail">
-                        <b>SOLD FOR $<?php echo number_format($featured_home->price) ?></b>
-                       <span> <?php echo $featured_home->address; ?> <br> <?php echo $featured_home->city; ?></span>
-                    </p>
-                </div>
+    <page class="pdf3 px-30">
+        <h1 class="mt-20">TESTIMONIALS</h1>
+        <div class="testimonial_box">
 
-                <?php if($key==1 && count($featured_homes) >2 ):?> </div> <?php endif;?>
-        <?php }
+        <?php
+        if(isset($testimonials) && !empty($testimonials))
+        {
+            list($upper_testimonial, $lower_testimonial) = array_chunk($testimonials, ceil(count($testimonials) / 2));
+
+            if(isset($upper_testimonial) && !empty($upper_testimonial))
+            {
+                ?>
+                <div class="d-flex">
+                    <?php
+
+                    foreach ($upper_testimonial as $key => $value) 
+                    { ?>
+                        <div class="col-50">
+                        <p>
+                            <?php echo trim($value['content']); ?>
+                        </p>
+                        <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/rating.png");?>' alt="rating">
+                        <div class="feedbacker_name">- <?php echo $value['name']; ?></div>
+                    </div>
+                    <?php }
+                    ?>
+                </div>
+            <?php }
+
+            if(isset($lower_testimonial) && !empty($lower_testimonial))
+            {
+            ?>
+            <div class="d-flex mt-50">
+            <?php
+
+                foreach ($lower_testimonial as $k => $v) 
+                { ?>
+                    <div class="col-50">
+                        <p><?php echo trim($v['content']); ?></p>
+                        <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/rating.png");?>' alt="rating">
+                        <div class="feedbacker_name">- <?php echo $v['name']; ?></div>
+                    </div>
+
+               <?php } ?>
+            </div>
+            <?php }
+
+        }
         ?>
+
+
         </div>
     </page>
