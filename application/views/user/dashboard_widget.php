@@ -1000,7 +1000,7 @@ jQuery(document).ready(function() {
 
     // Smart Wizard   
     $('#wizard').smartWizard({
-        //keyNavigation:false,
+        keyNavigation:false,
         onLeaveStep:function(obj){
             //console.log(obj.attr('rel'));
             if(obj.attr('rel')==1){
