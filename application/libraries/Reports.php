@@ -1069,6 +1069,35 @@ use Knp\Snappy\Pdf;
             /*Dynamic setting*/
             if($CI->input->post('page') && is_array($CI->input->post('page'))) {
                 $data['page'] = $CI->input->post('page');
+                $page_data = $CI->input->post('page');
+                //Bio
+                $page_data['bio'] = $CI->input->post('bio');
+                //Bio
+                //Testimonial
+                $page_data['testimonials'] = $data['testimonials'];
+                //Testimonial
+                //Featured Section
+                if(!empty($CI->input->post('featured_homes')) && json_decode($CI->input->post('featured_homes'))) {
+                    $page_data['featured_homes'] = json_decode($CI->input->post('featured_homes'));
+                }
+                //Featured Section
+                // var_dump($page_data);die;
+                $page_data = serialize($page_data);
+                $check_page_condition = [
+                    'user_id' => $currentUserId,
+                    'language' => 'english',
+                    'report_type' => trim($CI->input->post('presentation')),
+                ];
+                $CI->load->model('widget_report_dynamic_data_model');
+                $check_page_contents = $CI->widget_report_dynamic_data_model->get_by($check_page_condition);
+                if($check_page_contents) {
+                    $CI->widget_report_dynamic_data_model->update($check_page_contents->id,['data'=>$page_data]);
+                }
+                else{
+                    $check_page_condition['data'] = $page_data;
+                    $CI->widget_report_dynamic_data_model->insert($check_page_condition);
+
+                }
             }
             /*Dynamic setting*/
             

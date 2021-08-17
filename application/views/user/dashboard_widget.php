@@ -298,11 +298,7 @@
                             <?php $_email = $this->session->userdata('user_email');?>
                             <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Agent Bio
                             </a> &nbsp; | &nbsp;
-                            <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>
-                            <?php if(count($featured_homes)) : ?>
-                            &nbsp; | &nbsp;
-                            <a id="btn-featured" class="" data-toggle="modal" data-target="#update-featured" title="Featured Homes" >Featured Homes</a> &nbsp; | &nbsp;
-                            <?php endif; ?>
+                            <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>&nbsp; | &nbsp;
                             <a id="config-comps-btn" class="comps"  target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a>
                             <?php
                             $load_view = 'user/widget/additional_fields/'.$report_dir_name.'/index';
@@ -692,7 +688,16 @@
                 <div class="modal-body">
                   <div class="row">
                   <?php
-                    foreach ($testimonials as $testimonial_i => $testimonial) : 
+                    if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+                          $report_seller_data = $page_contents['seller'];
+                          if(!empty($report_seller_data['testimonials'])) {
+                            $testimonials = $report_seller_data['testimonials'];
+                          }
+                      }
+                    foreach ($testimonials as $testimonial_i => $testimonial) :
+                      if(is_array($testimonial)):
+                        $testimonial = (object)$testimonial;
+                      endif; 
                       if($testimonial_i == 2) :
                         echo '<div class="row" style="margin-top:10px;">';
                       endif;
@@ -729,7 +734,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <textarea class="form-control" rows="5" id="agent-bio">Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.</textarea>
+                          <?php
+                          $bio = 'Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.';
+                          if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+                                $report_seller_data = $page_contents['seller'];
+                                if(!empty($report_seller_data['bio'])) {
+                                  $bio = $report_seller_data['bio'];
+                                }
+                            } ?>
+                            <textarea class="form-control" rows="5" id="agent-bio"><?php echo $bio;?></textarea>
                         </div>                        
                     </div>
                 </div>
@@ -752,7 +765,13 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                      <?php 
+                      <?php
+                      if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+                          $report_seller_data = $page_contents['seller'];
+                          if(!empty($report_seller_data['featured_homes'])) {
+                            $featured_homes = $report_seller_data['featured_homes'];
+                          }
+                      }
                       if(count($featured_homes)) {
 
                       
