@@ -18,7 +18,7 @@
         </h2>
         <div class="qr_bg">
             <?php
-            $image = base_url("user/generate_qr_code/$unique_key/6/".urlencode(json_encode([183,220,65]))."/".urlencode(json_encode([255,255,255])));
+            $image = base_url("user/generate_qr_code/$unique_key/10/".urlencode(json_encode([183,220,65]))."/".urlencode(json_encode([255,255,255])));
             ?>
             <img src="<?php echo $image; ?>" alt="QR Code" class="qr_img">
             <div>
@@ -26,7 +26,7 @@
                 <p>
                     Thank you for visiting. Please scan<br>
                     the QR code with your smart<br>
-                    phone’s camera.
+                    phone's camera.
                 </p>
             </div>
         </div>

@@ -554,9 +554,45 @@ echo $this->email->print_debugger();die;
         $now   = time();
         $before_2_days = (60 * 60 * 24 * 2);
 
+        $this->load->model('widget_report_dynamic_data_model');
+        $images_array = array();
+        $page_contents = $this->widget_report_dynamic_data_model->get_all();
+        foreach ($page_contents as $page_content) {
+            $temp_data = @unserialize($page_content->data);
+            if($temp_data && count($temp_data)) {
+                foreach ($temp_data as $temp_key => $temp_value) {
+                    $check_key = $temp_key;
+                    $check_val = $temp_value;
+                    if(is_array($temp_value) || is_object($temp_value1)) {
+                        foreach ($temp_value as $temp_key1 => $temp_value1) {
+                            if(is_array($temp_value1) || is_object($temp_value1)) {
+                                foreach ($temp_value1 as $temp_key2 => $temp_value2) {
+                                    $check_key = $temp_key2;
+                                    $check_val = $temp_value2;
+                                    if (strpos($check_key, 'image') !== false && !empty($check_val)) {
+                                        $images_array[]=basename($check_val);
+                                    }
+                                }
+                            }
+                            else {
+                                $check_key = $temp_key;
+                                $check_val = $temp_value;
+                                if (strpos($check_key, 'image') !== false && !empty($check_val)) {
+                                        $images_array[]=basename($check_val);
+                                    }
+                            }
+                            
+                        }
+                    }
+                    elseif (strpos($check_key, 'image') !== false && !empty($check_val)) {
+                        $images_array[]=basename($check_val);
+                    }
+                }
+            }
+        }
         foreach ($files as $file) {
             if (is_file($file)) {
-              if ($now - filemtime($file) >= $before_2_days) { // 
+              if ($now - filemtime($file) >= $before_2_days && !in_array(basename($file), $images_array)) { // 
                 unlink($file);
                 echo '<br/>File deleted : '.$file;
               }

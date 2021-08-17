@@ -9,13 +9,13 @@ body {
   src: url(fonts/Abuget.ttf);
   font-family: 'Abuget';
 }
-@font-face {
+/*@font-face {
   src: url(fonts/Barlow-Regular.otf);
   font-family: 'Barlow-Regular';
-}
+}*/
 @font-face {
   src: url(fonts/Barlow-Bold.otf);
-  font-family: 'Barlow-Bold';
+  font-family: 'BarlowB-Bold';
 }
 @font-face {
   src: url(fonts/NorthernBlock.ttf);
@@ -99,6 +99,9 @@ p {
 }
 .p-0 {
   padding: 0 !important;
+}
+.col-90 {
+    width: 66.66% !important;
 }
 .col-60 {
   width: 60% !important;
@@ -367,7 +370,7 @@ page {
 }
 .profile_intro {
   background-color: #e6e7e9;
-  padding: 60px 50px 50px 50px;
+  padding: 60px 50px 50px 70px;
   max-width: 540px;
   margin-left: auto;
   margin-top: 24px;
@@ -760,8 +763,143 @@ table td {
   margin: 60px -50px 0;
   width: 114%;
 }
+.small_big .second_line {
+    font-size: 51px;
+}
+.pdf18 .small_big span {
+    color: #57585a;
+    font-size: 47px;
+    display: block;
+    letter-spacing: 14px;
+    margin-right: -12px;
+    line-height: 49px;
+}
+.badge_list {
+    margin: 20px 0 10px;
+}
+.badge {
+    width: 190px;
+    height: 190px;
+    position: relative;
+    border-radius: 50%;
+    border: 8px solid #57585a;
+    margin: 0 auto;
+    text-align: center;
+    padding: 15px;
+    overflow: hidden;
+    color: #bfaf87;
+    -webkit-mask-image: -webkit-radial-gradient(circle, white, black);
+    /*-webkit-transform: translateZ(0);
+    -webkit-mask-image: -webkit-radial-gradient(circle, white 100%, black 100%);*/
+}
+.badge h2 {
+    margin: 0;
+    font-family: 'BarlowB-Bold';
+    text-transform: uppercase;
+    font-size: 22px;
+}
+.badge h2 span {
+    color: #57585a;
+    font-size: 19px;
+    display: block;
+}
+.badge small {
+    text-transform: uppercase;
+    font-size: 9px;
+    font-weight: 600;
+}
+.century {
+    background-color: #bfaf87;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 600;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 10px;
+    padding: 4px 0;
+    letter-spacing: 1px;
+    /*height: 25px;*/
+}
+.century sub {
+    font-size: 6px;
+    vertical-align: baseline;
+}
+.about_c21 {
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+}
+.about_c21 span {
+    color: #bfaf87;
+    margin: 0 10px;
+}
+.d-flex.gutter-5 {
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.d-flex.gutter-5 > [class*='col-'] {
+     padding-left: 5px; 
+     padding-right: 5px; 
+}
+
+.states_box {
+    background-color: #bfaf87;
+    color: #fff;
+    text-align: center;
+    height: 190px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-bottom: 10px;
+    padding: 15px;
+}
+.states_box .big_number {
+    font-size: 90px;
+    font-weight: 600;
+}
+.states_box p.big {
+    font-size: 24px;
+}
+.states_box p {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 300;
+}
+.states_box .small_number {
+    font-size: 50px;
+    font-weight: 600;
+}
+.chart_box {
+    padding: 15px;
+    background: #e6e7e8;
+    height: 190px;
+}
+.chart_box h4 {
+    margin: 0;
+    font-family: 'BarlowB-Bold';
+    text-transform: uppercase;
+    font-size: 16px;
+    color: #bfaf87;
+}
+.chart_box p {
+    font-family: 'Barlow-Regular';
+    font-size: 14px;
+    line-height: 19px;
+    margin-top: 5px;
+}
 /* pdf18 */
-.pdf18 {
+/*.pdf18 {
   font-size: 14px;
   line-height: 20px;
 }
@@ -795,7 +933,20 @@ table td {
   margin: 20px -50px;
   padding: 20px 40px 20px 50px;
   color: #fff;
+}*/
+.pdf18 {
+  padding: 30px 50px;
 }
+.pdf18 .small_big {
+    text-align: center;
+    letter-spacing: 5px;
+    font-size: 60px;
+    color: #bfaf87;
+    font-weight: 600;
+    margin: 0;
+    line-height: 58px;
+}
+/* pdf18 */
 .real_estate_stats div {
   display: inline-block;
   text-align: center;
@@ -1073,14 +1224,14 @@ ul.custom_list ul.custom_list {
   padding: 30px;
 }
 .marketing_planning {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.58)), to(rgba(255,255,255,0.58))),
+  /*background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.58)), to(rgba(255,255,255,0.58))),
     url(images/meeting.jpg) no-repeat;
   background: -o-linear-gradient(rgba(255,255,255,0.58), rgba(255,255,255,0.58)),
     url(images/meeting.jpg) no-repeat;
   background: linear-gradient(rgba(255,255,255,0.58), rgba(255,255,255,0.58)),
     url(images/meeting.jpg) no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center;*/
   padding: 0 80px 40px;
   position: relative;
   z-index: 9;
@@ -1259,7 +1410,7 @@ ul.custom_list ul.custom_list {
 }
 .pdf32 .name {
   color: #bfaf87;
-  font-family: 'Barlow-Bold';
+  font-family: 'BarlowB-Bold';
   font-size: 30px;
 }
 .pdf32 a {
@@ -1491,6 +1642,7 @@ ul.award_list {
   padding: 15px 20px;
   display: inline-block;
   letter-spacing: 2px;
+  white-space: nowrap;
 }
 .social_stats li{
   display: inline-block;
