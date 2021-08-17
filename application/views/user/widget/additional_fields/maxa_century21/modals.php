@@ -224,8 +224,6 @@ Award 5 2021';
             <div class="modal-body">
                 <div class="row">
                     <div class="col-md-12">
-
-                        <div class="modal-body">
                             <div class="row form-group">
                                 <div class="col-md-12">
                                   <label for="social_intro_txt">Change Intro Text</label>
@@ -233,11 +231,11 @@ Award 5 2021';
                                   $social_intro_txt = "Millions of people use social media channels like Facebook®, Twitter®, YouTube®, and lnstagram® daily. As your agent, I will utilize my strong Social Media presence to promote your property listing to a wide audience, in the right area at the right time.";
                                   if(!empty($report_seller_data['social_intro_txt'])) {
                                     $social_intro_txt = $report_seller_data['social_intro_txt'];
-                                }
-                              ?>
-                              <textarea name="page[social_intro_txt]" id="social_intro_txt" class="form-control more-page-config"><?php echo $social_intro_txt; ?></textarea>
+                                    }
+                                  ?>
+                                  <textarea name="page[social_intro_txt]" id="social_intro_txt" class="form-control more-page-config" style="height: 100px"><?php echo $social_intro_txt; ?></textarea>
+                                </div>
                             </div>
-                        </div>
 
 
 
