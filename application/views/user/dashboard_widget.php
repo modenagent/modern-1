@@ -96,7 +96,7 @@
                                             <button class="btn btn-lp" type="button" id="buyerPresentationButton" style="" onclick="choose_presentation('buyer');"> Buyers Presentation </button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-lp" id="sellerPresentationButton" type="button" style="" onclick="choose_presentation('seller');"> Sellers Presentation </button>
+                                            <button class="btn btn-lp" id="sellerPresentationButton" type="button" style="" onclick="choose_presentation('seller');"> Listing Presentation </button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-lp" type="button" id="marketUpdatePresentationButton" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
@@ -900,7 +900,7 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0_widget.min.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
