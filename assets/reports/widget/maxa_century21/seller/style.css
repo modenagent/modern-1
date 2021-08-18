@@ -1,35 +1,30 @@
 @font-face {
-  src: url(fonts/Montserrat-UltraLight.otf);
+  src: url('fonts/Montserrat-UltraLight.otf');
   font-family: 'Montserrat';
   font-weight: 100;
 }
 @font-face {
-  src: url(fonts/Montserrat-Light.otf);
+  src: url('fonts/Montserrat-Light.otf');
   font-family: 'Montserrat';
   font-weight: 300;
 }
 @font-face {
-  src: url(fonts/Montserrat-Regular.otf);
-  font-family: 'Montserrat';
-  font-weight: 400;
-}
-@font-face {
-  src: url(fonts/Montserrat-Light.otf);
+  src: url('fonts/Montserrat-Light.otf');
   font-family: 'Montserrat';
   font-weight: 500;
 }
 @font-face {
-  src: url(fonts/Montserrat-SemiBold.ttf);
+  src: url('fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
   font-family: 'Montserrat';
   font-weight: 600;
 }
 @font-face {
-  src: url(fonts/Montserrat-SemiBold.ttf);
+  src: url('fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
   font-family: 'Montserrat';
   font-weight: 700;
 }
 @font-face {
-  src: url(fonts/Montserrat-Bold.otf);
+  src: url('fonts/Montserrat-Bold.otf');
   font-family: 'Montserrat';
   font-weight: bold;
 }
