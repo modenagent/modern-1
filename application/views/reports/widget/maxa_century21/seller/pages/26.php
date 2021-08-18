@@ -28,7 +28,7 @@
             <p class="mt-80">
                 <?php
                 if(!empty($page['social_txt1'])): ?>
-                <span><?php echo number_format($page['social_txt1']); ?></span>followers on Instagram
+                <span><?php echo number_format($page['social_txt1']); ?></span> followers on Instagram
                 <?php endif; ?>
             </p>
             <p>
