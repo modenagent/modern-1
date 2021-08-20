@@ -10,22 +10,19 @@
     
     <div class="badge_list d-flex">
         <div class="col-30">
-            <div class="badge">
-                <h2>#1<br> leader <span>in brand<br> awareness</span></h2>
-                <small>21 years running</small>
-                <h4 class="century"> century 21 <sub>&copy;</sub></h4>
+            <div class="img_badge">
+                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Seal_1-01.png" alt="#1 Leader" class="img-fluid">
+                
             </div>
         </div>
         <div class="col-30">
-            <div class="badge">
-                <h2>Most <br> Respected <span>in the<br> industry</span></h2>
-                <h4 class="century"> century 21 <sub>&copy;</sub></h4>
+            <div class="img_badge">
+                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Seal_2-01.png" alt="Respected in the industry" class="img-fluid">
             </div>
         </div>
         <div class="col-30">
-            <div class="badge">
-                <h2>Most <br> recognized <span> name in <br> real estate</span></h2>
-                <h4 class="century"> century 21 <sub>&copy;</sub></h4>
+            <div class="img_badge">
+                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Seal_3-01.png" alt="Most recognized name" class="img-fluid">
             </div>
         </div>
     </div>
@@ -61,7 +58,7 @@
             <div class="chart_box">
                 <div class="d-flex">
                     <div class="col-50">
-                        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/chart2.png" alt="chart2" class="img-fluid">
+                        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/chart-1-01.png" alt="chart2" class="img-fluid">
                     </div>
                     <div class="col-50">
                         <h4>Most recognizaed</h4>
@@ -82,7 +79,7 @@
             <div class="chart_box">
                 <div class="d-flex">
                     <div class="col-50">
-                        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/chart2.png" alt="chart2" class="img-fluid">
+                        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/chart-2-01.png" alt="chart2" class="img-fluid">
                     </div>
                     <div class="col-50">
                         <h4>Total brand awareness</h4>
