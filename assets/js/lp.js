@@ -1118,9 +1118,10 @@ function getRetsApiDataByMlsId(mlsId,is_simply_rets)
         $('.backwrap').show();
         $('.backwrap').removeClass('hidden');
         $('#mls_search').prop('disabled', true);
+        var mlsId_param = encodeURIComponent(mlsId);
 
         $.ajax({
-            url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId+'/'+is_simply_rets,
+            url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId_param+'/'+is_simply_rets,
             type: 'GET',
         })
             .done(function(response) {

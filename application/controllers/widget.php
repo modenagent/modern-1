@@ -511,6 +511,8 @@ class Widget extends CI_Controller {
     {
         if(!empty($mlsId) && $simply_rets)
         {
+
+            $mlsId=urldecode($mlsId);
             // $mlsId = $mlsId;
             $query = array();
             $result = $this->reports->make_request('GET', 'properties/'.$mlsId);
@@ -569,6 +571,7 @@ class Widget extends CI_Controller {
             echo json_encode($properties);
         }
         elseif(!empty($mlsId) && $simply_rets == 0){
+          $mlsId=urldecode($mlsId);
           $this->load->library('rets');
           $rets = new Rets();
           $response = $rets->searchData($mlsId,1);
