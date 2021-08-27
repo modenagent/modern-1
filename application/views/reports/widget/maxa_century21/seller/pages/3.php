@@ -28,6 +28,8 @@
         <a href="http://www.century21award.com">www.century21award.com</a>
     </div>
     <div class="profile_intro">
+        <div class="profile_intro_data">
         <?php echo nl2br($bio); ?>
+        </div>
     </div>
 </page>

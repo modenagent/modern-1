@@ -1,6 +1,6 @@
     <page class="pdf4">
         <h2 class="small_big">PORTFOLIO AT A GLANCE<span> FEATURED LIST OF HOMES SOLD</span></h2>
-        <p class="mt-30">
+        <p class="mt-30 portfolio_txt">
             <?php 
                 if(!empty($page['portfolio_txt'])) {
                     echo  nl2br($page['portfolio_txt']);

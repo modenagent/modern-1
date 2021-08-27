@@ -1088,7 +1088,7 @@ use Knp\Snappy\Pdf;
             /*Featured section*/
 
             /*Dynamic setting*/
-            if($CI->input->post('page') && is_array($CI->input->post('page'))) {
+            if(trim($CI->input->post('presentation')) == 'seller' && $CI->input->post('page') && is_array($CI->input->post('page'))) {
                 $data['page'] = $CI->input->post('page');
                 $page_data = $CI->input->post('page');
                 //Bio
