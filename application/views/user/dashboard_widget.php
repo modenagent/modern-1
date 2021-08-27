@@ -754,58 +754,6 @@
     </div>
     <!-- modal for bio -->
 
-    <!-- modal for Featured section -->
-    <div id="update-featured" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Featured List</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                      <?php
-                      if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
-                          $report_seller_data = $page_contents['seller'];
-                          if(!empty($report_seller_data['featured_homes'])) {
-                            $featured_homes = $report_seller_data['featured_homes'];
-                          }
-                      }
-                      if(count($featured_homes)) {
-
-                      
-                      foreach ($featured_homes as $featured_i => $featured_home) { ?>
-                         
-                        <div class="col-md-6">
-                          <div class="featured-div">
-                            <label class="featured_img" for="featured_<?php echo $featured_i; ?>_image" style="background: url(<?php echo base_url($featured_home->image) ?>)">
-                              <div><span>Change Image</span></div>
-                              <input type="hidden" value="<?php echo $featured_home->image ?>" name="featured[<?php echo $featured_i ?>]['image_val']" id="featured_<?php echo $featured_i; ?>_image_val" class="featured_file" data-val="<?php echo $featured_i; ?>"/>
-                              <input class="form-control featured_file_input" accept="image/*" type="file" name="featured[<?php echo $featured_i ?>]['image']" id="featured_<?php echo $featured_i; ?>_image" />
-                            </label>
-                            <div class="featured_inputs">
-                            <input class="form-control" value="<?php echo $featured_home->price; ?>" placeholder="Price" type="text" name="featured[<?php echo $featured_i ?>]['price']" id="featured_<?php echo $featured_i; ?>_price" />
-                            <input class="form-control" value="<?php echo $featured_home->address; ?>" placeholder="Street address" type="text" name="featured[<?php echo $featured_i ?>]['address']" id="featured_<?php echo $featured_i; ?>_address" />
-                            <input class="form-control" value="<?php echo $featured_home->city; ?>" placeholder="City" type="text" name="featured[<?php echo $featured_i ?>]['city']" id="featured_<?php echo $featured_i; ?>_city" />
-                            </div>
-                          </div>
-                        </div>
-                      <?php } 
-                      }
-                      ?>
-                        
-                        
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- modal for Featured section -->
-
     <!-- modals for Additional page configs -->
     <?php
       $load_view = 'user/widget/additional_fields/'.$report_dir_name.'/modals';
