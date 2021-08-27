@@ -415,9 +415,18 @@ page {
   font-weight: 500;
   line-height: 22px;
 }
+.profile_intro_data {
+  overflow: hidden;
+  max-height: 610px;
+}
+.letter_body_data {
+  max-height: 490px;
+  overflow: hidden;
+}
+
 /* pdf3 */
 .pdf3 h1 {
-  font-size: 80px;
+  font-size: 90px;
   line-height: 55px;
   color: #e6e7e9;
   font-weight: 600;
@@ -451,6 +460,8 @@ page {
   font-style: italic;
   line-height: 22px;
   font-weight: 500;
+  max-height: 260px;
+  overflow: hidden;
 }
 .testimonial_box .feedbacker_name {
   color: #bfaf87;
@@ -1559,6 +1570,8 @@ ul.award_list {
   line-height: 24px;
   font-weight: 500;
   margin-bottom: 50px;
+  max-height: 210px;
+  overflow: hidden;
 }
 .achivement_title b {
   color: #BEAF87;
@@ -1952,4 +1965,8 @@ ul.award_list {
   background-repeat: no-repeat;
   background-size: contain;
   margin: 10px;
+}
+.portfolio_txt {
+  max-height: 200px;
+  overflow: hidden;
 }

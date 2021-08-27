@@ -18,10 +18,12 @@ $site_unit_number = $property->PropertyProfile->SiteUnit;
                 </h1>
                 <div class="signature vertical_sign">
                     <?php
+                    /*
                     if($user['profile_image'] != '' && $user['profile_image'] != 'no') {?>
 
                     <img src="<?php echo base_url().$user['profile_image']; ?>" alt="..." class="profile_pic">
-                    <?php }
+                    <?php 
+                } */
                     ?>
                     PREPARED BY: <br><br>
                     <span class="profile_name"><?php echo (!empty($user['first_name']) || !empty($user['last_name'])) ?  $user['first_name'].' '.$user['last_name']  : (!empty($user['fullname']) ?  $user['fullname'] : '-'); ?>
@@ -65,11 +67,13 @@ $site_unit_number = $property->PropertyProfile->SiteUnit;
                         <span><?php if(!empty($site_address)) {echo $site_unit_type.$site_unit_number.' '.$site_address;} ?></span>
                     </div>
                     <div class="letter_body">
+                        <div class="letter_body_data">
                         <?php 
                             if(!empty($page['cover_letter'])) {
                                 echo nl2br($page['cover_letter']);
                             }
                         ?>
+                        </div>
                         <br>
                         Very truly yours,
                         <div class="letter_signature">
