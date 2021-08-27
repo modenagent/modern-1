@@ -349,6 +349,7 @@ use Knp\Snappy\Pdf;
                     $i = strval($j + 1);
                     $tmp['index'] = $index++;
                     $tmp['Date'] = formatDate((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]);
+                    $tmp['ChartLabelVal'] = date('Y-m',strtotime((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]));
                     $tmp['Price'] = dollars(number_format((string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0]));
                     $tmp['PriceRate'] = (string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SalePrice[0];
                     $tmp['PricePerSQFT']=(string)$report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->PricePerSQFT[0];
@@ -993,28 +994,48 @@ use Knp\Snappy\Pdf;
             $ChartArr = array();
             $tmp2=array();
 
-            $totalMonthsReport=0;       
-            foreach ($reportItems['comparable'] as $key => $item) {
-                /*****************************************/
-                if($key > 8) break;
-                $date=date_create($item['Date']);
-                $tmepDate = date_format($date,"M'y");
-                $months[] = array('date'=>$tmepDate,'value'=>$item['PriceRate']);
+            $now = date('Y-m');
+            for($x = 10; $x >= 1; $x--) {
+                $ym = date('Y-m', strtotime($now . " -$x month"));
+                $ym_txt = date('My', strtotime($now . " -$x month"));
+                $ChartArr[$ym] = array(
+                    'label'=>$ym_txt,
+                    'val'=>0
+                );
             }
+            foreach ($comparableTemp as $comp_tmp_key => $comp_tmp_val) {
+                $chart_ind = $comp_tmp_val['ChartLabelVal'];
+                $chart_price = $comp_tmp_val['PriceRate'];
+                if(isset($ChartArr[$chart_ind])) {
+                    $ChartArr[$chart_ind]['val'] += $chart_price;
+                }
+            }
+            $tmp2['date'] = implode('|', array_column($ChartArr, 'label'));
+            $tmp2['series'] = implode(',', array_column($ChartArr, 'val'));
+            
 
-            foreach ($months as $key => $itemMonth) {
-                if($key<(sizeof($months)-1)){
-                    $tmp2['date'].=$itemMonth['date'].'|';
-                    $tmp2['series'].=$itemMonth['value'].',';
-                }else{
-                    $tmp2['date'].=$itemMonth['date'];
-                    $tmp2['series'].=$itemMonth['value'];
-                }
-                if($itemMonth['value']!='_'){
-                    $totalMonthsReport++;
-                }
-                array_push($ChartArr, $tmp2);
-            }
+            // $totalMonthsReport=0;       
+            // foreach ($reportItems['comparable'] as $key => $item) {
+            //     /*****************************************/
+            //     if($key > 8) break;
+            //     $date=date_create($item['Date']);
+            //     $tmepDate = date_format($date,"M'y");
+            //     $months[] = array('date'=>$tmepDate,'value'=>$item['PriceRate']);
+            // }
+
+            // foreach ($months as $key => $itemMonth) {
+            //     if($key<(sizeof($months)-1)){
+            //         $tmp2['date'].=$itemMonth['date'].'|';
+            //         $tmp2['series'].=$itemMonth['value'].',';
+            //     }else{
+            //         $tmp2['date'].=$itemMonth['date'];
+            //         $tmp2['series'].=$itemMonth['value'];
+            //     }
+            //     if($itemMonth['value']!='_'){
+            //         $totalMonthsReport++;
+            //     }
+            //     array_push($ChartArr, $tmp2);
+            // }
 
             $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';
             // $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
