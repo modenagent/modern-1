@@ -5,6 +5,81 @@ if(count($page_contents) && !empty($page_contents['seller'])) {
 }
 ?>
 <div class="config-page-modals c21-modals">
+<!-- modal for Featured section -->
+<div id="update-featured" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Featured List</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                      <label for="portfolio_txt">Change Portfolio Text</label>
+                      <?php
+                      $portfolio_txt = "With over $500 million in sales closed, I have the knowledge and experience to list your home.
+
+I have had the pleasure of working with some of San Diego County's most beautiful homes. A first impression is everything in this world, especially in real estate. With my marketing plan, I bring in some of the best photographers in the business to shoot my listings. This will ensure that your home is shown with an elegant and luxurious look. 
+
+Take a look at my most notable sales in San Diego:";
+if(!empty($report_seller_data['portfolio_txt'])) {
+    $portfolio_txt = $report_seller_data['portfolio_txt'];
+}
+                      ?>
+                      <textarea name="page[portfolio_txt]" id="portfolio_txt" class="form-control more-page-config" style="height: 150px;"><?php echo $portfolio_txt; ?></textarea>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px">
+                    <div class="col-sm-12">
+                        <label>Featured Content</label>
+                    </div>
+                </div>
+                <div class="row">
+                  <?php
+                  if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+                      $report_seller_data = $page_contents['seller'];
+                      if(!empty($report_seller_data['featured_homes'])) {
+                        $featured_homes = $report_seller_data['featured_homes'];
+                      }
+                  }
+                  if(count($featured_homes)) {
+
+                  
+                  foreach ($featured_homes as $featured_i => $featured_home) { ?>
+                     
+                    <div class="col-md-6">
+                      <div class="featured-div">
+                        <label class="featured_img" for="featured_<?php echo $featured_i; ?>_image" style="background: url(<?php echo base_url($featured_home->image) ?>)">
+                          <div><span>Change Image</span></div>
+                          <input type="hidden" value="<?php echo $featured_home->image ?>" name="featured[<?php echo $featured_i ?>]['image_val']" id="featured_<?php echo $featured_i; ?>_image_val" class="featured_file" data-val="<?php echo $featured_i; ?>"/>
+                          <input class="form-control featured_file_input" accept="image/*" type="file" name="featured[<?php echo $featured_i ?>]['image']" id="featured_<?php echo $featured_i; ?>_image" />
+                        </label>
+                        <div class="featured_inputs">
+                        <input class="form-control" value="<?php echo $featured_home->price; ?>" placeholder="Price" type="text" name="featured[<?php echo $featured_i ?>]['price']" id="featured_<?php echo $featured_i; ?>_price" />
+                        <input class="form-control" value="<?php echo $featured_home->address; ?>" placeholder="Street address" type="text" name="featured[<?php echo $featured_i ?>]['address']" id="featured_<?php echo $featured_i; ?>_address" />
+                        <input class="form-control" value="<?php echo $featured_home->city; ?>" placeholder="City" type="text" name="featured[<?php echo $featured_i ?>]['city']" id="featured_<?php echo $featured_i; ?>_city" />
+                        </div>
+                      </div>
+                    </div>
+                  <?php } 
+                  }
+                  ?>
+                    
+                    
+                </div>
+
+
+            </div>
+            <div class="modal-footer text-center">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal for Featured section -->
 <!-- modal for Main Cover Page  -->
 <div id="conf-cover-main" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -109,22 +184,7 @@ if(!empty($report_seller_data['cover_letter'])) {
                 <h4 class="modal-title">Portfolio Text</h4>
             </div>
             <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12">
-                      <label for="portfolio_txt">Change Portfolio Text</label>
-                      <?php
-                      $portfolio_txt = "With over $500 million in sales closed, I have the knowledge and experience to list your home.
-
-I have had the pleasure of working with some of San Diego County's most beautiful homes. A first impression is everything in this world, especially in real estate. With my marketing plan, I bring in some of the best photographers in the business to shoot my listings. This will ensure that your home is shown with an elegant and luxurious look. 
-
-Take a look at my most notable sales in San Diego:";
-if(!empty($report_seller_data['portfolio_txt'])) {
-    $portfolio_txt = $report_seller_data['portfolio_txt'];
-}
-                      ?>
-                      <textarea name="page[portfolio_txt]" id="portfolio_txt" class="form-control more-page-config"><?php echo $portfolio_txt; ?></textarea>
-                    </div>
-                </div>
+                
             </div>
             <div class="modal-footer text-center">
                 <button type="button" class="btn btn-default save_additional_data" data-dismiss="modal">Save</button>

@@ -43,11 +43,8 @@
 
         ?>
             <a href="#"><img src="<?php echo $img_name; ?>" alt="Image"></a>
-            <?php if($img_tmp == 2) : ?>
-            <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/phone.png" class="mobile_img" alt="img1"></a>
-        <?php
-            elseif($img_tmp == 4) :
-                echo '<br/>';
+            <?php if($img_tmp == 2 || $img_tmp == 4) :
+                // echo '<br/>';
             endif;
         endfor;
         ?>

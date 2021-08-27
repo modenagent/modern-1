@@ -1725,6 +1725,7 @@ ul.award_list {
   background: #e6e7e8;
   padding: 15px;
   margin-top: 50px;
+  text-align: center;
 }
 .mobile_img {
   margin-top: -150px;
@@ -1733,8 +1734,10 @@ ul.award_list {
   margin-left: 40px;
 }
 .social_ad_grid img:not(.mobile_img){   
-  width: 175px;
-  margin: 5px;
+  /*width: 175px;
+  margin: 5px;*/
+  width: 25%;
+  margin: 15px;
 }
 .eleven_things {
   color: #bfaf87;
