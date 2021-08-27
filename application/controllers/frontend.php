@@ -563,7 +563,7 @@ echo $this->email->print_debugger();die;
                 foreach ($temp_data as $temp_key => $temp_value) {
                     $check_key = $temp_key;
                     $check_val = $temp_value;
-                    if(is_array($temp_value) || is_object($temp_value1)) {
+                    if(is_array($temp_value) || is_object($temp_value)) {
                         foreach ($temp_value as $temp_key1 => $temp_value1) {
                             if(is_array($temp_value1) || is_object($temp_value1)) {
                                 foreach ($temp_value1 as $temp_key2 => $temp_value2) {
