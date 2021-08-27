@@ -1945,3 +1945,11 @@ ul.award_list {
   margin-bottom: 40px;
   display: block;
 }
+.social_ad_imgs {
+  display: inline-block;
+  width: 25%;
+  height: 170px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 10px;
+}

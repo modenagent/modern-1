@@ -42,7 +42,10 @@
             endif;
 
         ?>
-            <a href="#"><img src="<?php echo $img_name; ?>" alt="Image"></a>
+            <!-- <a href="#"><img src="<?php echo $img_name; ?>" alt="Image"></a> -->
+            <div class="social_ad_imgs" style="background-image: url(<?php echo $img_name; ?>)">
+                
+            </div>
             <?php if($img_tmp == 2 || $img_tmp == 4) :
                 // echo '<br/>';
             endif;

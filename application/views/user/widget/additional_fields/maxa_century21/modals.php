@@ -106,7 +106,7 @@ if(!empty($report_seller_data['portfolio_txt'])) {
                                 $cover_image_preview_val = '';
                                 if(!empty($report_seller_data['cover_image']))
                                 {
-                                    $cover_image_preview_val = base_url($report_seller_data['cover_image']);
+                                    $cover_image_preview_val = $report_seller_data['cover_image'];
                                 }?>
                                 <input type="hidden" name="page[cover_image]" class="more-page-config config_file_value" value = "<?php echo $cover_image_preview_val;?>" />
                               </div>
@@ -445,7 +445,7 @@ Award 5 2021';
                                     $social_ad_img_1_preview_val = '';
                                     if(!empty($report_seller_data[$img_dynamic_name]))
                                     {
-                                        $social_ad_img_1_preview_val = base_url($report_seller_data[$img_dynamic_name]);
+                                        $social_ad_img_1_preview_val = $report_seller_data[$img_dynamic_name];
                                     }?>
                                     <input type="hidden" name="page[<?php echo $img_dynamic_name; ?>]" class="more-page-config config_file_value" value = "<?php echo $social_ad_img_1_preview_val;?>" />
                                   </div>
