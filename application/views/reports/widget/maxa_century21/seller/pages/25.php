@@ -1,59 +1,54 @@
-    <page class="pdf25 pdf24">
-        <h2 class="big_title">VIRTUAL SHOWINGS <span>& PITCH IT LIVE!</span></h2>
-        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/c21-watermark.png" alt="..." class="c21_watermark">
-        
-        <div class="d-flex gutter-30 mt-120">
-            <div class="col-50 mt-20">
-                <b class="theme_color">
-                    VIRTUAL SHOWINGS
-                </b>
-                <p>
-                    Our virtual open house option allows
-                    open houses to be requested or
-                    scheduled while practicing social
-                    distancing. Best features of this tool:
-                </p>
-                <ul class="custom_list">
-                    <li>All listings with a virtual open
-                    house livestream will be fl agged on
-                    CENTURY21.com site for maximum
-                    exposure</li>
-                    <li>
-                        Informational cards are added to the
-                        property detail page
-                    </li>
-                    <li>
-                        When searching for a property the
-                        properties with a livestream open
-                        house will fl oat to the top of the
-                        search results page!
-                    </li>
-                </ul>
-               
-                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/PIL_composite.jpg" alt="PIL_composite" class="img-fluid mt-50 w90">
-            </div>
-            <div class="col-50 mt-20">
-                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/ss.png" alt="ss" class="img-fluid w90">
-                <b  class="theme_color mt-50 d-block">
-                    PITCH IT LIVE!
-
-                </b>
-                <p>
-                    We leveraged social media to market
-                    your home to thousands of potential
-                    buyers all at once.
-                </p>
-                <ul class="custom_list">
-                    <li>Your property LIVE on Facebook!</li>
-                    <li>
-                        Average views between 3k – 5k
-                    </li>
-                    <li>
-                        Consumers are able to view at their
-                        own leisure and connect instantly to
-                        schedule a showing
-                    </li>
-                </ul>
-            </div>
+    <page class="pdf28">
+        <h2 class="big_title">
+            SOCIAL<br> MEDIA
+        </h2>
+        <ul class="social_media_icons">
+            <li><a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/IG.jpg" alt="IG"></a></li>
+            <li><a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/FB.jpg" alt="FB"></a></li>
+            <li><a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/YT.jpg" alt="YT"></a></li>
+            <li><a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Twitter.jpg" alt="Twitter"></a></li>
+            <li><a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/IN.jpg" alt="IN"></a></li>
+        </ul>
+        <div class="gray_block">
+            <h3>
+                FIND THE RIGHT BUYER
+            </h3>
+            <p class="w70">
+                <?php
+                if(!empty($page['social_intro_txt'])): ?>
+                    <?php echo nl2br($page['social_intro_txt']); ?>
+                <?php else: ?>
+                Millions of people use social media channels like
+                Facebook®, Twitter®, YouTube®, and lnstagram®
+                daily. As your agent, I will utilize my strong Social
+                Media presence to promote your property listing to
+                a wide audience, in the right area at the right time.
+                <?php endif;?>
+            </p>
+            <p class="mt-80">
+                <?php
+                if(!empty($page['social_txt1'])): ?>
+                <span><?php echo number_format($page['social_txt1']); ?></span> followers on Instagram
+                <?php endif; ?>
+            </p>
+            <p>
+                <?php
+                if(!empty($page['social_txt2'])): ?>
+                <span><?php echo number_format($page['social_txt2']); ?></span> average reach on Instagram
+                <?php endif; ?>
+            </p>
+            <p>
+                <?php
+                if(!empty($page['social_txt3'])): ?>
+                <span><?php echo number_format($page['social_txt3']); ?></span> followers on  Facebook
+                <?php endif; ?>
+            </p>
+            <p>
+                <?php
+                if(!empty($page['social_txt4'])): ?> 
+                <span><?php echo number_format($page['social_txt4']); ?></span> followers on Twitter
+                <?php endif; ?>
+            </p>
+            <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/big_c21.png" alt="big_c21" class="c21_logo_bottom_right">
         </div>
     </page>

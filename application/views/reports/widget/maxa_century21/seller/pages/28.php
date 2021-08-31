@@ -1,104 +1,56 @@
-    <page class="pdf27">
-        <div class="text-right">
-            <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/big_c21.png" alt="..." width="70">
+    <page class="pdf26">
+        <!-- <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/alphabets.png" alt="..." class="alphabets"> -->
+        <div class="marketing_planning">
+            <h2 class="big_title">MARKETING <span>PLAN OF ACTION</span></h2>
+            <b class="theme_color">
+                COMING SOON                
+            </b>
+            <ul class="custom_list">
+                <li>On deck.</li>
+            </ul>
+            <b class="theme_color">
+                FIRST WEEK ON THE MARKET
+            </b>
+            <ul class="custom_list">
+                <li>Enter listing into MLS system.</li>
+                <li>Put up “For Sale” sign.</li>
+                <li>Install lock box.</li>
+                <li>Take property photos.</li>
+                <li>Prepare property fl yer/brochure.</li>
+                <li>Submit property listing with photos to select real estate websites.</li>
+            </ul>
+            <b class="theme_color">
+                SECOND WEEK ON THE MARKET
+            </b>
+            <ul class="custom_list">
+                <li>Schedule Virtual Tour.</li>
+                <li>Invite local Realtors to tour home.</li>
+                <li>Prepare and place advertisements with select print and online media outlets.</li>
+            </ul>
+            <b class="theme_color">
+                THIRD WEEK ON THE MARKET
+            </b>
+            <ul class="custom_list">
+                <li>Submit Open House announcement to MLS & Offi ce Sales meeting.</li>
+                <li>Prepare and distribute special Open House fl yer.</li>
+                <li>Hold Sunday Open House.</li>
+            </ul>
+            <b class="theme_color">
+                ON-GOING
+            </b>
+            <ul class="custom_list">
+                <li>Handle incoming calls and schedule showing appointments.</li>
+                <li>Update owner on showings.</li>
+                <li>Pre-qualify buyers.</li>
+                <li>Present all offers and recommend counter-offer strategies.</li>
+                <li>Review price based on agent input & market conditions.</li>
+            </ul>
+            <b class="theme_color">
+                ASAP
+            </b>
+            <ul class="custom_list">
+                <li>Obtain an acceptable contract on your property!.</li>
+            </ul>
+            <!-- <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/big_c21.png" alt="big_c21" class="img-fluid big_c21"> -->
         </div>
-        <h2 class="big_title">21 STEPS.
-            <span>AND MY 121%</span>
-        </h2>
-        <ul>
-            <li data-count="1.">
-                Recommend a pre-listing inspection
-                and hiring a professional home staging
-                service
-            </li>
-            <li data-count="2.">
-                Develop a Comparative Market Analysis
-                (CMA)
-            </li>
-            <li data-count="3.">
-                Create a photo slideshow or virtual tour
-                to post on listing websites
-            </li>
-            <li data-count="4.">
-                Enter your listing into the local Multiple
-                Listing Service
-            </li>
-            <li data-count="5.">
-                Place the CENTURY 21® “For Sale” yard
-                sign
-            </li>
-            <li data-count="6.">
-                Announce your listing to sales associates
-                in my office and other CENTURY 21 offices
-                in the area
-            </li>
-            <li data-count="7.">
-                Place a “Lock Box” on your door to
-                provide easy access for other sales
-                associates
-            </li>
-            <li data-count="8.">
-                Place your listing on our century21.com
-                website
-            </li>
-            <li data-count="9.">
-                Distribute your listing to hundreds of
-                Listing Partners
-            </li>
-            <li data-count="10.">
-                Place your listing on social media sites
-                like Facebook®, Twitter®, and YouTube®
-            </li>
-            <li data-count="11.">
-                Place your listing on my personal
-                website
-            </li>
-            <li data-count="12.">
-                Create a Unique Property Site for your
-                listing
-            </li>
-            <li data-count="13.">
-                Prepare full color property flyers and
-                brochures to showcase your home to
-                buyers and other sales associates
-            </li>
-            <li data-count="14.">
-                Offer the CENTURY 21 Home Protection
-                Plan® that can help attract buyers to your
-                property
-            </li>
-            <li data-count="15.">
-                Schedule email marketing pieces to my
-                entire list of contacts and past clients as
-                well as area REALTORS®
-            </li>
-            <li data-count="16.">
-                Print (newspaper) and direct mail
-                advertising in our local area
-                <ul class="custom_list">
-                    <li>Just Listed Cards</li>
-                    <li>Open House Cards</li>
-                </ul>
-            </li>
-            <li data-count="17.">
-                Hold an Open House for area
-                REALTORS and the public
-            </li>
-            <li data-count="18.">
-                Tour your home with prospective
-                buyers
-            </li>
-            <li data-count="19.">
-                Provide you with constant feedback
-                from buyer showings
-            </li>
-            <li data-count="20.">
-                Send you weekly online activity reports
-                on your property
-            </li>
-            <li data-count="21.">
-                Negotiate with potential buyers on your
-                behalf to help get you to the closing table
-            </li>
-        </ul>
     </page>

@@ -1,29 +1,59 @@
-<page class="pdf22 covid_safety_certificate">
-    <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/senitizer.png" alt="senitizer" class="senitizer_img">
-    <div class="coved_safety">
-        COVID<br>SAFETY
-    </div>
-    <div class="d-flex">
-        <div class="col-60">
-            <p>
-                We are committed to following the
-                COVID-19 Industry Guidance published by
-                the California Department of Public Health.
-                By adhering to the protocols, you will be
-                able to navigate the home sale process with
-                a sense of confidence and security.
-            </p>
-            <p>
-                Our agents have completed the required
-                training and passed the exam to earn their
-                COVID-19 Safety Certification. Just one more
-                way that our CENTURY 21 Award agents can
-                give you 121%. 
-            </p>
+    <page class="pdf25 pdf24">
+        <h2 class="big_title">VIRTUAL SHOWINGS <span>& PITCH IT LIVE!</span></h2>
+        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/c21-watermark.png" alt="..." class="c21_watermark">
+        
+        <div class="d-flex gutter-30 mt-120">
+            <div class="col-50 mt-20">
+                <b class="theme_color">
+                    VIRTUAL SHOWINGS
+                </b>
+                <p>
+                    Our virtual open house option allows
+                    open houses to be requested or
+                    scheduled while practicing social
+                    distancing. Best features of this tool:
+                </p>
+                <ul class="custom_list">
+                    <li>All listings with a virtual open
+                    house livestream will be fl agged on
+                    CENTURY21.com site for maximum
+                    exposure</li>
+                    <li>
+                        Informational cards are added to the
+                        property detail page
+                    </li>
+                    <li>
+                        When searching for a property the
+                        properties with a livestream open
+                        house will fl oat to the top of the
+                        search results page!
+                    </li>
+                </ul>
+               
+                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/PIL_composite.jpg" alt="PIL_composite" class="img-fluid mt-50 w90">
+            </div>
+            <div class="col-50 mt-20">
+                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/ss.png" alt="ss" class="img-fluid w90">
+                <b  class="theme_color mt-50 d-block">
+                    PITCH IT LIVE!
+
+                </b>
+                <p>
+                    We leveraged social media to market
+                    your home to thousands of potential
+                    buyers all at once.
+                </p>
+                <ul class="custom_list">
+                    <li>Your property LIVE on Facebook!</li>
+                    <li>
+                        Average views between 3k – 5k
+                    </li>
+                    <li>
+                        Consumers are able to view at their
+                        own leisure and connect instantly to
+                        schedule a showing
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="col-40">
-            <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/covidemblem.png" alt="covid" class="covid_certi">
-        </div>
-    </div>
-    <div class="c21_watermark"></div>
-</page>
+    </page>

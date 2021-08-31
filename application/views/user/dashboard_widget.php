@@ -1641,7 +1641,13 @@ function submitFormAndGetReport()
           var ext =  imgname.substr( (imgname.lastIndexOf('.') +1) );
           if(ext=='jpg' || ext=='jpeg' || ext=='png' || ext=='gif' || ext=='PNG' || ext=='JPG' || ext=='JPEG')
           {
-           if(size<=1000000)
+
+            var max_size = 1000000;
+            if($(this).attr("id") == 'cover_image') {
+               max_size = 3000000;
+                data.append('max_size',3000);
+            }
+           if(size<=max_size)
            {
               $.ajax({
                 url: "<?php echo base_url('widget/upload_image') ?>",
@@ -1656,6 +1662,8 @@ function submitFormAndGetReport()
                  {
 
                     file_obj.parent().children('.config_file_value').val(data.file)
+
+                    file_obj.parents('.image_preview_container').find('.widget_image_preview').css("background-image", "url(" + base_url+data.file + ")");
                  }
                  else
                  {

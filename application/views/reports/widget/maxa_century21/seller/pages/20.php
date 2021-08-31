@@ -1,61 +1,38 @@
-<page class="responsive_app">
-    <div class="gray_title m-0">
-        <div class="always_text">WE'RE ALWAYS</div>
+<page class="advertising">
+    <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/big_c21.png" alt="c21_logo" class="c21_logo"></a>
+    <div class="c21_bg">
         <h2 class="small_big">
-            RESPONSIVE <br>& MOBILE
-        </h2>
+            <span>NATIONAL ADVERTISING</span> BEYOND PRINT + DIGITAL
     </div>
-    <div class="p-30">
+    <div class="ml-120">
         <p>
-            Close to 76% of buyers who used their mobile device to search, found their home through
-            a mobile application.* We have all the tools to make your property look great on the go: 
+            CENTURY 21 Real Estate breaks through the clutter of traditional home
+            alignments and reaches an engaged audience by leaning into ESPN partnership. 
         </p>
+        <a href="#">
+            <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/channels.png" alt="" class="img-fluid mx-auto">
+        </a>
         <div class="d-flex mt-50">
-            <div class="col-50 border-right">
-                <h4>USER-FRIENDLY</h4>
-                <div class="media">
-                    <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/responsive.png" alt="responsive">
-                    <p>
-                        79% of consumers
-                        leave a non-mobile
-                        optimized site.
-                        So century21.com
-                        displays your home
-                        in its responsive
-                        interface optimized
-                        for mobile devices. 
-                    </p>
-                </div>
+            <div class="col-40">
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Layer_2_4.jpg" alt="" class="img-fluid"></a>
+                
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Layer_3_3.jpg" alt="" class="img-fluid mt-30"></a>
+                
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Layer_4_3.jpg" alt="" class="img-fluid mt-30"></a>
             </div>
-            <div class="col-50">
-                <h4>MULTI-PLATFORM </h4>
-                <div class="media">
-                    <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/platforms.png" alt="responsive">
-                    <p>
-                        At the touch of a
-                        finger, your home
-                        will be available in
-                        full screen for
-                        buyers using our
-                        mobile app on
-                        their smartphones
-                        and tablets. 
-                    </p>
-                </div>
+            <div class="col-60">
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/espn-logo.png" alt="espn-logo" class="img-fluid mx-auto mt-50"></a>
+                <h5>
+                   <span>21%</span> of home buyers and sellers age 25<br>
+                    - 49 watched ESPN in the past week<br>
+                   <span> 17%</span> watch SportsCenter weekly.
+                </h5>
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/hgtv-logo.png" alt="espn-logo" class="img-fluid mx-auto mt-40"></a>
+                <h5>
+                    Audience: <span>2.7MM</span> age 25 - 49,<br>
+                    expected home buyers & sellers. 
+                </h5>
             </div>
         </div>
-        <div class="media">
-            <div>
-                <h4>INTERACTIVE</h4>
-                <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/interactive.png" alt="">
-            </div>
-            <p class="mt-80 ml-50">
-                Agents can monitor each prospect’s website
-                activity. So I can predict who is “ready” and
-                reach out at the right time, through chats or
-                comments, to elicit a response. 
-            </p>
-        </div>
-        <p class="text-center"> *2018 National Association of Realtors Profile of Home Buyers and Sellers. </p>
     </div>
 </page>

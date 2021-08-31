@@ -1,29 +1,28 @@
-        <page class="p-0 pdf5">
-            <div class="map_content d-flex gutter-30">
+    <page class="pdf4">
+        <h2 class="small_big">PORTFOLIO AT A GLANCE<span> FEATURED LIST OF HOMES SOLD</span></h2>
+        <p class="mt-30 portfolio_txt">
+            <?php 
+                if(!empty($page['portfolio_txt'])) {
+                    echo  nl2br($page['portfolio_txt']);
+                }
+            ?>
+        </p>
+        <div class="d-flex mt-50"> 
+        <?php
+        foreach ($featured_homes as $key => $featured_home) {
+            if($key == 4) {break;} 
+            ?>
+            <?php if($key==2):?> <div class="d-flex"> <?php endif;?>
                 <div class="col-50">
-                    <h2>
-                        Aerial View
-                    </h2>
-                    <p>
-                        This is an aerial view of the 
-                        neighborhood in which you
-                        prospective property is located.
-                        This will give you the opportunity
-                        to get a birds eye view of any local
-                        parks, major streets, & highways.
+                    <img src='<?php echo base_url($featured_home->image);?>' alt="villa1"  class="img-fluid villa_img">
+                    <p class="product_detail">
+                        <b>SOLD FOR $<?php echo number_format($featured_home->price) ?></b>
+                       <span> <?php echo $featured_home->address; ?> <br> <?php echo $featured_home->city; ?></span>
                     </p>
                 </div>
-                <div class="col-50">
-                    <h2>
-                        Why a 1-Mile Radius
-                    </h2>
-                    <p>
-                        A one mile radius has proven to
-                        yield that best results when it
-                        comes to properties that best
-                        match yours.
-                    </p>
-                </div>
-            </div>
-            <img src="https://maps.googleapis.com/maps/api/staticmap?size=800x500&zoom=15&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:0xbeaf86|<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg" alt="map" alt="map" class="img-fluid d-block" style="margin:auto">
-        </page>
+
+                <?php if($key==1 && count($featured_homes) >2 ):?> </div> <?php endif;?>
+        <?php }
+        ?>
+        </div>
+    </page>
