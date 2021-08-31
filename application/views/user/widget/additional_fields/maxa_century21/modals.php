@@ -229,7 +229,7 @@ Award 5 2021';
                                     $resume_award_list = $report_seller_data['resume_award_list'];
                                 }
                                 ?>
-                                <textarea class="form-control more-page-config" name="page[resume_award_list]" id="resume_award_list" style="height: 150px;"><?php echo $resume_award_list;?></textarea>
+                                <textarea data-limit-rows="true"  class="form-control more-page-config" name="page[resume_award_list]" id="resume_award_list" style="height: 150px;" rows="10"><?php echo $resume_award_list;?></textarea>
                               </div>
                         </div>
 
@@ -514,4 +514,9 @@ Award 5 2021';
     .img_pre_div .widget_image_preview {
         height: 150px;
     }
+    /*#agent-bio {
+        width: 415px;
+        min-width: 415px;
+        width: 415px;
+    }*/
 </style>

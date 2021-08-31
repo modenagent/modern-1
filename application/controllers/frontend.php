@@ -549,6 +549,7 @@ echo $this->email->print_debugger();die;
 
     public function remove_old_files()
     {
+        die;
         $path = FCPATH.'assets/reports/widget/images/featured/temp/*';
         $files = glob($path);
         $now   = time();
