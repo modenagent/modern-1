@@ -4,7 +4,7 @@
   <ul class="dropdown-menu">
   	<?php if(count($featured_homes)) : ?>
     <?php endif; ?>
-  	<li><a href="#" data-toggle="modal" data-target="#conf-cover-main" title="configure Main Cover Page">Main Cover Page </a></li>
+  	<!-- <li><a href="#" data-toggle="modal" data-target="#conf-cover-main" title="configure Main Cover Page">Main Cover Page </a></li> -->
     <li><a href="#" data-toggle="modal" data-target="#conf-cover-letter" title="configure Cover Letter">Cover Letter </a></li>
     <li><a href="#"  data-toggle="modal" data-target="#update-featured" title="Featured Homes" >Featured Homes</a></li>
     <!-- <li><a href="#" data-toggle="modal" data-target="#conf-portfolio-text" title="configure Portfolio"> Portfolio Text </a></li> -->

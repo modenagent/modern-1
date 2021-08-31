@@ -296,6 +296,8 @@
                           </div>
                           <div class="col-md-9 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
+                            <a href="#" data-toggle="modal" data-target="#conf-cover-main" title="configure Main Cover Page" style="background: none;border: 1px solid #fff;font-weight: 500;font-size: 12px;color: #fff;text-decoration: none;font: 11px Montserrat;text-transform: uppercase;">Cover Page </a> &nbsp; | &nbsp
+
                             <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Agent Bio
                             </a> &nbsp; | &nbsp;
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>&nbsp; | &nbsp;
@@ -1685,6 +1687,20 @@ function submitFormAndGetReport()
             alert('Sorry Only you can uplaod JPEG|JPG|PNG|GIF file type ');
           }
         }
+  });
+
+  $(document).ready(function(){
+    $('textarea[data-limit-rows=true]')
+    .on('keypress', function (event) {
+        var textarea = $(this),
+            text = textarea.val(),
+            numberOfLines = (text.match(/\n/g) || []).length + 1,
+            maxRows = parseInt(textarea.attr('rows'));
+
+        if (event.which === 13 && numberOfLines >= maxRows ) {
+          return false;
+        }
+  })
   });
 
   <?php

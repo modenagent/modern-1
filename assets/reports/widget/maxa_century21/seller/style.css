@@ -1578,8 +1578,11 @@ ul.award_list {
   line-height: 24px;
   font-weight: 500;
   margin-bottom: 50px;
-  max-height: 210px;
-  overflow: hidden;
+  /*max-height: 210px;
+  overflow: hidden;*/
+}
+.award_list li {
+  white-space: nowrap;
 }
 .achivement_title b {
   color: #BEAF87;

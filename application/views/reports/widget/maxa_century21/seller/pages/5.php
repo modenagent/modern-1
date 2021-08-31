@@ -13,7 +13,12 @@
                     <?php
                     if(!empty($page['resume_award_list'])) {
                             $list_array = explode("\n", $page['resume_award_list']);
+                            $resume_line_cnt = 0;
                             foreach ($list_array as $list_array_val) {
+                                $resume_line_cnt++;
+                                if($resume_line_cnt > 10) {
+                                    break;
+                                }
                                 echo '<li>'.$list_array_val.'</li>';
                                 # code...
                             }
