@@ -100,7 +100,7 @@ for ($i=1; $i <= $max ; $i++) {
 
         $data = array();
 
-        if($i==9 || $i==10) {
+        if($i==10 || $i==11) {
 
             if($use_rets_api == 1)
             {
@@ -117,16 +117,16 @@ for ($i=1; $i <= $max ; $i++) {
 
                 list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
 
-                if($i==9 && (isset($comparable_1) && !empty($comparable_1)))
+                if($i==10 && (isset($comparable_1) && !empty($comparable_1)))
                 {
                     $data['comparables'] = $comparable_1;
                     
                 }
 
-                if($i==10 && (isset($comparable_2) && !empty($comparable_2)))
+                if($i==11 && (isset($comparable_2) && !empty($comparable_2)))
                 {
                     $data['comparables'] = $comparable_2;
-                    $report_id = 9;
+                    $report_id = 10;
                 }
             }
             else {

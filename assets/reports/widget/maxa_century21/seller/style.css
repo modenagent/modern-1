@@ -435,8 +435,11 @@ page {
 }
 .testimonial_box {
   background-color: #e6e7e9;
-  padding: 50px 80px;
+  /*padding: 50px 80px;*/
+  padding: 0px 80px;
   position: relative;
+  height: 900px;
+  line-height: 900px;
 }
 .testimonial_box:before,
 .testimonial_box:after {
@@ -454,6 +457,11 @@ page {
 .testimonial_box:after {
   bottom: 40px;
   right: 30px;
+}
+.testimonial_content {
+  line-height: 22px;
+  vertical-align: middle;
+  display: inline-block;
 }
 .testimonial_box p {
   font-size: 13px;
@@ -1284,7 +1292,7 @@ ul.custom_list ul.custom_list {
 }
 /* pdf26 */
 .pdf26 {
-  padding: 30px;
+  /*padding: 30px;*/
 }
 .marketing_planning {
   /*background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.58)), to(rgba(255,255,255,0.58))),
@@ -1296,8 +1304,8 @@ ul.custom_list ul.custom_list {
   background-size: cover;
   background-position: center;*/
   padding: 0 80px 40px;
-  position: relative;
-  z-index: 9;
+  /*position: relative;
+  z-index: 9;*/
 }
 .pdf26 .custom_list {
   padding-left: 0;
@@ -1319,8 +1327,8 @@ ul.custom_list ul.custom_list {
   filter: brightness(50);
 }
 .pdf26 .big_title {
-  top: -32px;
-  position: relative;
+  /*top: -32px;*/
+  /*position: relative;*/
   margin-bottom: 20px;
 }
 /* pdf27 */

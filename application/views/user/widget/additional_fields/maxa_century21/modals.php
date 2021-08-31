@@ -98,7 +98,7 @@ if(!empty($report_seller_data['portfolio_txt'])) {
                                 <input type="text" class="form-control more-page-config" name="page[cover_prepared_for]" id="cover_prepared_for" value="">
                               </div>
                         </div>
-                        <div class="row form-group">
+                        <div class="row form-group image_preview_container">
                             <label class="col-sm-4" for="cover_image">Cover Image</label>
                               <div class="col-sm-8">
                                 <input type="file" id="cover_image" class="form-control config-file-change"/>
@@ -110,20 +110,18 @@ if(!empty($report_seller_data['portfolio_txt'])) {
                                 }?>
                                 <input type="hidden" name="page[cover_image]" class="more-page-config config_file_value" value = "<?php echo $cover_image_preview_val;?>" />
                               </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <div>Current Image Preview</div>
-                                <?php
-                                $cover_image_preview = base_url('assets/reports/widget/'.$report_dir_name.'/seller/images/new.png');
-                                if(!empty($report_seller_data['cover_image']))
-                                {
-                                    $cover_image_preview = base_url($report_seller_data['cover_image']);
-                                }
-                                ?>
-                                <div class="widget_image_preview" style="background-image: url(<?php echo $cover_image_preview;?>);">
+                                <div class="col-sm-12" style="margin-top: 15px;">
+                                    <div>Current Image Preview</div>
+                                    <?php
+                                    $cover_image_preview = base_url('assets/reports/widget/'.$report_dir_name.'/seller/images/new.png');
+                                    if(!empty($report_seller_data['cover_image']))
+                                    {
+                                        $cover_image_preview = base_url($report_seller_data['cover_image']);
+                                    }
+                                    ?>
+                                    <div class="widget_image_preview" style="background-image: url(<?php echo $cover_image_preview;?>);">
+                                    </div>
                                 </div>
-                            </div>
                         </div>
                       
                     </div>
@@ -435,7 +433,7 @@ Award 5 2021';
 
                             <div class="col-sm-4">
 
-                                <div class="img_pre_div"> 
+                                <div class="img_pre_div image_preview_container"> 
                                     <div class="row"> 
 
                                 <label class="col-sm-4" for="social_ad_img_<?php echo $img_tmp;?>">Image <?php echo $img_tmp; ?></label>

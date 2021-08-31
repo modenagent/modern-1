@@ -1,28 +1,48 @@
-    <page class="pdf4">
-        <h2 class="small_big">PORTFOLIO AT A GLANCE<span> FEATURED LIST OF HOMES SOLD</span></h2>
-        <p class="mt-30 portfolio_txt">
-            <?php 
-                if(!empty($page['portfolio_txt'])) {
-                    echo  nl2br($page['portfolio_txt']);
-                }
-            ?>
-        </p>
-        <div class="d-flex mt-50"> 
-        <?php
-        foreach ($featured_homes as $key => $featured_home) {
-            if($key == 4) {break;} 
-            ?>
-            <?php if($key==2):?> <div class="d-flex"> <?php endif;?>
-                <div class="col-50">
-                    <img src='<?php echo base_url($featured_home->image);?>' alt="villa1"  class="img-fluid villa_img">
-                    <p class="product_detail">
-                        <b>SOLD FOR $<?php echo number_format($featured_home->price) ?></b>
-                       <span> <?php echo $featured_home->address; ?> <br> <?php echo $featured_home->city; ?></span>
-                    </p>
+<page class="pdf8">
+        <div class="resume_title">MY RESUME</div>
+        <div class="resume_card">
+            <div>
+                <div class="achivement_title">
+                    <?php 
+                        if(!empty($page['resume_award_no'])) {
+                            echo '<span>'.$page['resume_award_no'].'</span> AWARDS';
+                        }
+                    ?>
                 </div>
+                <ul class="award_list">
+                    <?php
+                    if(!empty($page['resume_award_list'])) {
+                            $list_array = explode("\n", $page['resume_award_list']);
+                            foreach ($list_array as $list_array_val) {
+                                echo '<li>'.$list_array_val.'</li>';
+                                # code...
+                            }
+                        }
+                    ?>
+                </ul>
+                <div class="achivement_title">
+                    <?php 
+                        if(!empty($page['resume_years_no'])) {
+                            echo '<span>'.$page['resume_years_no'].'</span> YEARS';
+                        }
+                    ?>
+                </div>  
+                <div class="achivement_title">
+                    <?php
+                        if(!empty($page['resume_volume'])) {
+                            echo '<b>'.$page['resume_volume'].'</b> volume';
+                        }
+                    ?>
+                </div>
+            </div>
+            <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/century21.png" alt="century21" class="century21"></a>
+            <?php
+            if(!empty($user['profile_image']) && $user['profile_image'] != 'no') {?>
 
-                <?php if($key==1 && count($featured_homes) >2 ):?> </div> <?php endif;?>
-        <?php }
-        ?>
+            <img src="<?php echo base_url().$user['profile_image']; ?>" alt="myprofile" class="myprofile_img">
+            <?php }
+            ?>
+            <!-- <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/myprofile.png" alt="myprofile" class="myprofile_img"> -->
         </div>
+        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/c21_watermark_white.png" alt="c21-watermark" class="img-fluid">
     </page>

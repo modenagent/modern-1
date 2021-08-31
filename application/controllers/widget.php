@@ -634,6 +634,9 @@ class Widget extends CI_Controller {
       $config['upload_path'] = './'.$dir_to_upload;
       $config['allowed_types'] = '*';
       $config['max_size'] = '1024';
+      if(!empty($this->input->post('max_size')) && $this->input->post('max_size') > 0 ) {
+        $config['max_size'] = $this->input->post('max_size');
+      }
       
 
       $this->load->library('upload', $config);
@@ -641,7 +644,7 @@ class Widget extends CI_Controller {
       if ( ! $this->upload->do_upload('file'))
       {
 
-        $data['error'] = $this->upload->display_errors();
+        $data['error'] = strip_tags($this->upload->display_errors());
 
         $data['status'] = false; 
         
