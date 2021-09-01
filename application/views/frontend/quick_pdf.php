@@ -188,7 +188,8 @@
     </div>
     
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
+<script src="<?php echo base_url("assets/js/jquery-ui.1.11.2.min.js") ?>" type="text/javascript"></script>
 <?php if(!isset($isWidget)){ ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
 <?php } ?>
@@ -387,6 +388,7 @@ $("#create-report").click(function(){
     doSubmit();
     
 });
+function manage_checkout_btn() {}
 function isActive(){
     if($.active){
       setTimeout(function(){
