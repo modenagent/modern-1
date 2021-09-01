@@ -1,24 +1,58 @@
+@font-face {
+  src: url('fonts/Montserrat-UltraLight.otf');
+  font-family: 'Montserrat';
+  font-weight: 100;
+}
+@font-face {
+  src: url('fonts/Montserrat-Light.otf');
+  font-family: 'Montserrat';
+  font-weight: 300;
+}
+@font-face {
+  src: url('fonts/Montserrat-Light.otf');
+  font-family: 'Montserrat';
+  font-weight: 500;
+}
+@font-face {
+  src: url('fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
+  font-family: 'Montserrat';
+  font-weight: 600;
+}
+@font-face {
+  src: url('fonts/Montserrat-SemiBold.svg#Montserrat-SemiBold') format('svg');
+  font-family: 'Montserrat';
+  font-weight: 700;
+}
+@font-face {
+  src: url('fonts/Montserrat-Bold.otf');
+  font-family: 'Montserrat';
+  font-weight: 800;
+}
 body {
   margin: 0;
   padding: 0;
   font-family: 'Montserrat', sans-serif;
   font-size: 16px;
   color: #252525;
+  font-weight: 300;
 }
 @font-face {
   src: url(fonts/Abuget.ttf);
   font-family: 'Abuget';
 }
-/*@font-face {
+@font-face {
   src: url(fonts/Barlow-Regular.otf);
   font-family: 'Barlow-Regular';
-}*/
-@font-face {
-  src: url(fonts/Barlow-Bold.otf);
-  font-family: 'BarlowB-Bold';
+  font-weight: normal;
 }
 @font-face {
-  src: url(fonts/NorthernBlock.ttf);
+  src: url(fonts/Barlow-Bold.otf);
+  font-family: 'Barlow-Regular';
+  font-weight: bold;
+}
+@font-face {
+  src: url('fonts/NorthernBlock.svg#Typold-Medium') format('svg');
+  /*src: url(fonts/NorthernBlock.ttf);*/
   font-family: 'NorthernBlock';
 }
 ::selection {
@@ -41,13 +75,16 @@ body {
 .text-right {
   text-align: right !important;
 }
+b {
+  font-weight: 800;
+}
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-weight: normal;
+  font-weight: 300;
 }
 .h100 {
   height: 100%;
@@ -355,7 +392,7 @@ page {
   font-family: 'Abuget';
   font-size: 36px;
   margin-top: 40px;
-  font-weight: normal;
+  font-weight: 300;
 }
 /* pdf2 */
 .horizontal_sign .profile_pic img {
@@ -378,9 +415,18 @@ page {
   font-weight: 500;
   line-height: 22px;
 }
+.profile_intro_data {
+  overflow: hidden;
+  max-height: 610px;
+}
+.letter_body_data {
+  max-height: 490px;
+  overflow: hidden;
+}
+
 /* pdf3 */
 .pdf3 h1 {
-  font-size: 80px;
+  font-size: 90px;
   line-height: 55px;
   color: #e6e7e9;
   font-weight: 600;
@@ -389,8 +435,11 @@ page {
 }
 .testimonial_box {
   background-color: #e6e7e9;
-  padding: 50px 80px;
+  /*padding: 50px 80px;*/
+  padding: 0px 80px;
   position: relative;
+  height: 900px;
+  line-height: 900px;
 }
 .testimonial_box:before,
 .testimonial_box:after {
@@ -409,11 +458,18 @@ page {
   bottom: 40px;
   right: 30px;
 }
+.testimonial_content {
+  line-height: 22px;
+  vertical-align: middle;
+  display: inline-block;
+}
 .testimonial_box p {
   font-size: 13px;
   font-style: italic;
   line-height: 22px;
   font-weight: 500;
+  max-height: 260px;
+  overflow: hidden;
 }
 .testimonial_box .feedbacker_name {
   color: #bfaf87;
@@ -470,7 +526,7 @@ tr:nth-of-type(even) {
   padding: 10px 0;
 }
 table td {
-  font-weight: normal;
+  font-weight: 300;
   padding: 7px 15px;
   font-size: 13px;
   line-height: 18px;
@@ -794,7 +850,8 @@ table td {
 }
 .badge h2 {
     margin: 0;
-    font-family: 'BarlowB-Bold';
+    font-family: 'Barlow-Regular';
+    font-weight: bold;
     text-transform: uppercase;
     font-size: 22px;
 }
@@ -887,16 +944,25 @@ table td {
 }
 .chart_box h4 {
     margin: 0;
-    font-family: 'BarlowB-Bold';
+    font-family: 'Barlow-Regular';
+    font-weight: bold;
     text-transform: uppercase;
     font-size: 16px;
     color: #bfaf87;
+    white-space: nowrap;
 }
 .chart_box p {
     font-family: 'Barlow-Regular';
     font-size: 14px;
     line-height: 19px;
     margin-top: 5px;
+}
+.chart_box img {
+  height: 180px;
+  width: 100%
+}
+.img_badge img.img-fluid {
+    height: 190px;
 }
 /* pdf18 */
 /*.pdf18 {
@@ -1190,29 +1256,34 @@ ul.custom_list ul.custom_list {
   padding: 0;
 }
 .trusted_adviser li {
-  padding-left: 60px;
+  padding-left: 70px;
   position: relative;
   margin-bottom: 15px;
   min-height: 58px;
+  font-weight:500;
 }
 .trusted_adviser li:before {
   content: attr(data-count);
-  width: 35px;
-  height: 35px;
+  width: 50px;
+  height: 50px;
   background: #3e3e3f;
   text-align: center;
-  line-height: 35px;
-  color: #fff;
+  line-height: 50px;
+  color: #bfaf87;
   display: block;
   border-radius: 50%;
   position: absolute;
   left: 0;
+  font-weight: 700;
+  font-size: 32px;
+  top: -12px;
 }
 .trusted_adviser span {
   color: #bfaf87;
-  font-weight: 600;
-  display: block;
-  margin-bottom: 3px;
+  font-weight: 800;
+  display: inline-block;
+  font-size: 22px;
+  margin-right: 15px;
 }
 /* pdf25 */
 .pdf25 {
@@ -1221,7 +1292,7 @@ ul.custom_list ul.custom_list {
 }
 /* pdf26 */
 .pdf26 {
-  padding: 30px;
+  /*padding: 30px;*/
 }
 .marketing_planning {
   /*background: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.58)), to(rgba(255,255,255,0.58))),
@@ -1233,8 +1304,8 @@ ul.custom_list ul.custom_list {
   background-size: cover;
   background-position: center;*/
   padding: 0 80px 40px;
-  position: relative;
-  z-index: 9;
+  /*position: relative;
+  z-index: 9;*/
 }
 .pdf26 .custom_list {
   padding-left: 0;
@@ -1256,8 +1327,8 @@ ul.custom_list ul.custom_list {
   filter: brightness(50);
 }
 .pdf26 .big_title {
-  top: -32px;
-  position: relative;
+  /*top: -32px;*/
+  /*position: relative;*/
   margin-bottom: 20px;
 }
 /* pdf27 */
@@ -1271,7 +1342,7 @@ ul.custom_list ul.custom_list {
   margin-bottom: 15px;
 }
 .pdf27 > ul {
-  height: 680px;
+  height: 700px;
   width: 50%;
   -webkit-columns: 0 0;
 }
@@ -1410,7 +1481,8 @@ ul.custom_list ul.custom_list {
 }
 .pdf32 .name {
   color: #bfaf87;
-  font-family: 'BarlowB-Bold';
+  font-family: 'Barlow-Regular';
+  font-weight: bold;
   font-size: 30px;
 }
 .pdf32 a {
@@ -1433,7 +1505,7 @@ ul.custom_list ul.custom_list {
   margin-left: auto;
 }
 .new_pdf1 h1 {
-  font-size: 50px;
+  font-size: 55px;
   font-weight: 600;
   color: #BEAF87;
   letter-spacing: 3px;
@@ -1506,6 +1578,11 @@ ul.award_list {
   line-height: 24px;
   font-weight: 500;
   margin-bottom: 50px;
+  /*max-height: 210px;
+  overflow: hidden;*/
+}
+.award_list li {
+  white-space: nowrap;
 }
 .achivement_title b {
   color: #BEAF87;
@@ -1538,7 +1615,7 @@ ul.award_list {
   background: #e6e7e8;
   padding: 50px 50px 50px 100px;
   max-width: 560px;
-  margin: -10px auto -20px;
+  margin: -20px auto -10px;
 }
 .listing_steps li {
   font-size: 20px;
@@ -1672,6 +1749,7 @@ ul.award_list {
   background: #e6e7e8;
   padding: 15px;
   margin-top: 50px;
+  text-align: center;
 }
 .mobile_img {
   margin-top: -150px;
@@ -1680,8 +1758,10 @@ ul.award_list {
   margin-left: 40px;
 }
 .social_ad_grid img:not(.mobile_img){   
-  width: 175px;
-  margin: 5px;
+  /*width: 175px;
+  margin: 5px;*/
+  width: 25%;
+  margin: 15px;
 }
 .eleven_things {
   color: #bfaf87;
@@ -1748,4 +1828,156 @@ ul.award_list {
 .property_list .listing_steps ol ul li {
   margin-bottom: 0;
   padding-left: 0;
+}
+.responsive_app {
+  padding-top: 70px;
+}
+.responsive_app .gray_title {
+  padding: 20px 30px;
+}
+.responsive_app .small_big {
+  font-size: 80px;
+  line-height: 70px;
+}
+.always_text {
+  color: #BEAF87;
+  font-size: 40px;
+  font-weight: 600;
+  margin-top: -50px;
+  margin-left: -50px;
+}
+.p-30{
+  padding: 30px 20px;
+}
+.responsive_app p{
+  font-size: 15px;
+}
+.responsive_app .media p {
+    width: 60%;
+}
+.responsive_app h4{
+  font-size: 25px;
+  font-weight: 800;
+  color: #BEAF87;
+  text-align: center;
+  margin-top: 0;
+}
+.responsive_app .col-50 .media img {
+  margin-right: 20px;
+  width: 115px;
+  height: 225px;
+  object-fit: contain;
+}
+.responsive_app .media {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.responsive_app .col-50{
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 50px;
+}
+.responsive_app .border-right{
+  border-right: 1px solid #000;
+}
+.ml-50 {
+  margin-left: 50px;
+}
+.responsive_app p.text-center {
+  font-size: 12px;
+  margin-top: 30px;
+}
+.c21_bg {
+  background: url(images/c21_watermark.png);
+  margin-left: 120px;
+}
+.advertising .small_big {
+  font-weight: 600;
+  margin: 0;
+  font-size: 28px;
+  line-height: 45px;
+  text-transform: uppercase;
+  padding-left: 40px;
+  position: relative;
+  top: -35px;
+  letter-spacing: 5px;
+}
+.advertising .small_big span {
+  color: #bfaf87;
+  font-size: 54px;
+  display: block;
+  line-height: 54px;
+}
+.advertising {
+  padding: 70px 50px;
+}
+.advertising .c21_logo{
+  width: 120px;
+  float: left;
+  margin-top: -35px;
+  margin-left: -20px;
+}
+.ml-120{
+  margin-left: 120px;
+}
+.advertising p {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+.advertising h5 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  max-width: 280px;
+  margin: 20px auto;
+}
+.advertising h5 span{
+  color: #BEAF87;
+  font-weight: 700;
+}
+.seller_program .big_title{
+  font-weight: 600;
+  color: #252525;
+  letter-spacing: 2px;
+}
+.seller_program .big_title span {
+  color: #BEAF87;
+  display: block;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  margin-bottom: 5px;
+}
+.seller_program .theme_color {
+  color: #bfaf87;
+  font-weight: 600;
+  font-size: 16px;
+}
+.award_text {
+  padding-left: 40px;
+  font-size: 14px;
+}
+.advisor_box {
+  background: #e6e7e8;
+  padding: 40px 80px 10px;
+  margin: 40px 0 30px;
+}
+.seller_program  .advisor_box .theme_color {
+  font-size: 30px;
+  margin-bottom: 40px;
+  display: block;
+}
+.social_ad_imgs {
+  display: inline-block;
+  width: 25%;
+  height: 170px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 10px;
+}
+.portfolio_txt {
+  max-height: 200px;
+  overflow: hidden;
 }

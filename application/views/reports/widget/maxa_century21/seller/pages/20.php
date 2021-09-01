@@ -1,61 +1,38 @@
-    <page class="pdf20">
-        <div class="gray_title">
-            <h2 class="small_big">
-                MOBILE APP <span>&nbsp;</span>
-            </h2>
-        </div>
-        <div class="d-flex gutter-30">
-            <div class="col-50">
-                <h4>
-                    WE’RE ALWAYS RESPONSIVE &
-                    MOBILE. JUST LIKE YOUR LISTING.
-                </h4>
-                <p>
-                    Close to 76% of buyers who used their
-                    mobile device to search, found their
-                    home through a mobile application.* We
-                    have all the tools to make your property
-                    look great on the go:
-                </p>
-                <div class="w90">
-                    <h4>
-                        USER-FRIENDLY
-                        
-                    </h4>
-                    <p>
-                        79% of consumers leave a non-mobile optimized
-                        site. So century21.com displays your home in its
-                        responsive interface optimized for mobile devices.
-                    </p>
-                    <h4>
-                        MULTI-PLATFORM
-                    </h4>
-                    <p>
-                        The state-of-the-art CENTURY 21® Zap® suite
-                        of digital products attracts and engage online
-                        buyers across our website, mobile website and
-                        mobile app.
-                    </p>
-                    <h4>INTERACTIVE</h4>
-                    <p>
-                        Agents can monitor each prospect’s website
-                        activity. So I can predict who is “ready” and reach
-                        out at the right time, through chats or comments,
-                        to elicit a response
-                    </p>
-                    <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/desktop.png");?>' alt="desktop">
-                    <p><small>*2018 National Association of Realtors Profile of Home Buyers and Sellers.</small></p>
-                </div>
+<page class="advertising">
+    <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/big_c21.png" alt="c21_logo" class="c21_logo"></a>
+    <div class="c21_bg">
+        <h2 class="small_big">
+            <span>NATIONAL ADVERTISING</span> BEYOND PRINT + DIGITAL
+    </div>
+    <div class="ml-120">
+        <p>
+            CENTURY 21 Real Estate breaks through the clutter of traditional home
+            alignments and reaches an engaged audience by leaning into ESPN partnership. 
+        </p>
+        <a href="#">
+            <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/channels.png" alt="" class="img-fluid mx-auto">
+        </a>
+        <div class="d-flex mt-50">
+            <div class="col-40">
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Layer_2_4.jpg" alt="" class="img-fluid"></a>
+                
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Layer_3_3.jpg" alt="" class="img-fluid mt-30"></a>
+                
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/Layer_4_3.jpg" alt="" class="img-fluid mt-30"></a>
             </div>
-            <div class="col-50">
-                <h4>CONNECTING WITH BUYERS</h4>
-                <p>
-                    At the touch of a finger, your home will
-                    be available in full screen for buyers using
-                    our mobile app on their smartphones
-                    and tablets.
-                </p>
-                <img src='<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/mobiles.png");?>' alt="chart3" class="img-fluid mt-20">
+            <div class="col-60">
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/espn-logo.png" alt="espn-logo" class="img-fluid mx-auto mt-50"></a>
+                <h5>
+                   <span>21%</span> of home buyers and sellers age 25<br>
+                    - 49 watched ESPN in the past week<br>
+                   <span> 17%</span> watch SportsCenter weekly.
+                </h5>
+                <a href="#"><img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/hgtv-logo.png" alt="espn-logo" class="img-fluid mx-auto mt-40"></a>
+                <h5>
+                    Audience: <span>2.7MM</span> age 25 - 49,<br>
+                    expected home buyers & sellers. 
+                </h5>
             </div>
         </div>
-    </page>
+    </div>
+</page>

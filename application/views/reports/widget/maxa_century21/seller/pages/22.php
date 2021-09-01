@@ -1,53 +1,44 @@
-    <page class="pdf24">
-        <h2 class="big_title">SELLER SOLUTIONS <span>PROGRAM</span></h2>
-        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/c21-watermark.png" alt="..." class="c21_watermark">
+<page class="pdf23 pdf14">
+    <div class="image_hero">
+        <h2><small>MAKE THE BEST DECISION</small> <br>FOR YOUR UNIQUE <br>CIRCUMSTANCES</h2>
+        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/page_best_dec.png" alt="..." class="img220">
+    </div>
+    <div class="content_box">
+        <b class="theme_color">OPEN MARKET SALES</b>
+        Selling on the open market exposes the property to the greatest number of
+        buyers, often resulting in the highest sale price and net proceeds to the seller.
+        Every home is also eligible for sale on the open market. Open market sellers
+        should expect some uncertainty about the amount of time necessary to complete
+        the sale. In additon, the process of preparing the home for open houses and
+        showings (in-person or virtual) should be taken into account. Properties listed for
+        sale on the open market are still eligible to recieve cash offers.
+
+        <b class="theme_color">BUY BEFORE YOU SELL</b>
+        This solution empowers a homeowner to buy their next house before selling and
+        moving out of their current home. This allows sellers to fi nd a new home, move
+        when they are ready and sell without the hassle of dealing with showings. Most
+        programs allow sellers to access a portion of the equity of their current home
+        while still living in it. Buy before you sell service fees should be taken into account
+        and not all properties and sellers are eligible.
+
+        <b class="theme_color">INSTANT SALE</b>
+        iBuyers usually purchase properties that are in good condition at close to the open
+        market price with cash. Their service fees and prep and repair costs should be
+        takeing into account. Closing costs are comparable to an open market sale. iBuyers
+        enable selling without showings or open houses and can close on the seller’s
+        timetable, often more quickly than selling on the openmarket.
+
+        <b class="theme_color">INSTANT SALE - ANY CONDITION</b>
+        Any condition iBuyers are a great resource for sellers who want the convenience
+        and certainty of a cash offer, but whose property might need additional
+        renovations. Any condition iBuyers purchase properties “as-is,” so all prep and
+        repair expenses are factored into their offer amounts. These buyers specialize in
+        renovations, so they can usually make repairs more cost effectively than the seller,
+        and they pass along those savings to the seller. Therefore, although any condition
+        iBuyer offer amounts may be lower than other options, the seller’s net proceeds
+        may be higher. Any condition iBuyers can complete the entire process, from offer
+        request to cloe, in just a few days.            
         
-        <div class="d-flex gutter-30 mt-120">
-            <div class="col-50">
-                <b class="theme_color">
-                    SELL YOUR HOME WITH SPEED,<br>
-                    CERTAINTY, SAFETY &<br>
-                    CONVENIENCE
-                </b>
-                <p>
-                    Century 21 Award understands you
-                    have options. Our technology allows
-                    us to walk you through all of your
-                    selling opportunities, including
-                    getting multiple offers from Instant
-                    Sale Companies and buyers looking
-                    for homes like yours.
-                </p>
-                <p>
-                    If you want a quick cash offer on your
-                    home - let us advise you on the best
-                    path for your unique circumstances. I
-                    will help you assess the surety, speed,
-                    convenience and fi nancial benefi t of
-                    all selling opportunities.
-                </p>
-            </div>
-            <div class="col-50">
-                <b  class="theme_color">
-                    AS YOUR TRUSTED ADVISOR, WE<br>
-                    WILL HELP YOU...
-                </b>
-                <ul class="trusted_adviser mt-20">
-                    <li data-count="1">
-                        <span>COLLECT</span>
-                        Offers from all available
-                        selling solutions                        
-                    </li>
-                    <li data-count="2">
-                        <span>COMPARE</span>
-                        All options for selling your
-                        home
-                    </li>
-                    <li data-count="3">
-                        <span>CHOOSE</span>
-                        The best option for Y-O-U
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </page>
+        
+    </div>
+</page>

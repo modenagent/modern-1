@@ -96,7 +96,7 @@
                                             <button class="btn btn-lp" type="button" id="buyerPresentationButton" style="" onclick="choose_presentation('buyer');"> Buyers Presentation </button>
                                         </span>
                                         <span class="input-group-btn">
-                                            <button class="btn btn-lp" id="sellerPresentationButton" type="button" style="" onclick="choose_presentation('seller');"> Sellers Presentation </button>
+                                            <button class="btn btn-lp" id="sellerPresentationButton" type="button" style="" onclick="choose_presentation('seller');"> Listing Presentation </button>
                                         </span>
                                         <span class="input-group-btn">
                                             <button class="btn btn-lp" type="button" id="marketUpdatePresentationButton" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
@@ -296,6 +296,8 @@
                           </div>
                           <div class="col-md-9 marketUpdateHide" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
+                            <a href="#" data-toggle="modal" data-target="#conf-cover-main" title="configure Main Cover Page" style="background: none;border: 1px solid #fff;font-weight: 500;font-size: 12px;color: #fff;text-decoration: none;font: 11px Montserrat;text-transform: uppercase;">Cover Page </a> &nbsp; | &nbsp
+
                             <a id="btn-bio" class="" data-toggle="modal" data-target="#update-bio" title="Bio" >Agent Bio
                             </a> &nbsp; | &nbsp;
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>&nbsp; | &nbsp;
@@ -754,58 +756,6 @@
     </div>
     <!-- modal for bio -->
 
-    <!-- modal for Featured section -->
-    <div id="update-featured" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Featured List</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                      <?php
-                      if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
-                          $report_seller_data = $page_contents['seller'];
-                          if(!empty($report_seller_data['featured_homes'])) {
-                            $featured_homes = $report_seller_data['featured_homes'];
-                          }
-                      }
-                      if(count($featured_homes)) {
-
-                      
-                      foreach ($featured_homes as $featured_i => $featured_home) { ?>
-                         
-                        <div class="col-md-6">
-                          <div class="featured-div">
-                            <label class="featured_img" for="featured_<?php echo $featured_i; ?>_image" style="background: url(<?php echo base_url($featured_home->image) ?>)">
-                              <div><span>Change Image</span></div>
-                              <input type="hidden" value="<?php echo $featured_home->image ?>" name="featured[<?php echo $featured_i ?>]['image_val']" id="featured_<?php echo $featured_i; ?>_image_val" class="featured_file" data-val="<?php echo $featured_i; ?>"/>
-                              <input class="form-control featured_file_input" accept="image/*" type="file" name="featured[<?php echo $featured_i ?>]['image']" id="featured_<?php echo $featured_i; ?>_image" />
-                            </label>
-                            <div class="featured_inputs">
-                            <input class="form-control" value="<?php echo $featured_home->price; ?>" placeholder="Price" type="text" name="featured[<?php echo $featured_i ?>]['price']" id="featured_<?php echo $featured_i; ?>_price" />
-                            <input class="form-control" value="<?php echo $featured_home->address; ?>" placeholder="Street address" type="text" name="featured[<?php echo $featured_i ?>]['address']" id="featured_<?php echo $featured_i; ?>_address" />
-                            <input class="form-control" value="<?php echo $featured_home->city; ?>" placeholder="City" type="text" name="featured[<?php echo $featured_i ?>]['city']" id="featured_<?php echo $featured_i; ?>_city" />
-                            </div>
-                          </div>
-                        </div>
-                      <?php } 
-                      }
-                      ?>
-                        
-                        
-                    </div>
-                </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- modal for Featured section -->
-
     <!-- modals for Additional page configs -->
     <?php
       $load_view = 'user/widget/additional_fields/'.$report_dir_name.'/modals';
@@ -900,12 +850,12 @@
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0_widget.min.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.7"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.8"></script>
       
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
@@ -1000,7 +950,7 @@ jQuery(document).ready(function() {
 
     // Smart Wizard   
     $('#wizard').smartWizard({
-        //keyNavigation:false,
+        keyNavigation:false,
         onLeaveStep:function(obj){
             //console.log(obj.attr('rel'));
             if(obj.attr('rel')==1){
@@ -1693,7 +1643,13 @@ function submitFormAndGetReport()
           var ext =  imgname.substr( (imgname.lastIndexOf('.') +1) );
           if(ext=='jpg' || ext=='jpeg' || ext=='png' || ext=='gif' || ext=='PNG' || ext=='JPG' || ext=='JPEG')
           {
-           if(size<=1000000)
+
+            var max_size = 1000000;
+            if($(this).attr("id") == 'cover_image') {
+               max_size = 3000000;
+                data.append('max_size',3000);
+            }
+           if(size<=max_size)
            {
               $.ajax({
                 url: "<?php echo base_url('widget/upload_image') ?>",
@@ -1708,6 +1664,8 @@ function submitFormAndGetReport()
                  {
 
                     file_obj.parent().children('.config_file_value').val(data.file)
+
+                    file_obj.parents('.image_preview_container').find('.widget_image_preview').css("background-image", "url(" + base_url+data.file + ")");
                  }
                  else
                  {
@@ -1729,6 +1687,20 @@ function submitFormAndGetReport()
             alert('Sorry Only you can uplaod JPEG|JPG|PNG|GIF file type ');
           }
         }
+  });
+
+  $(document).ready(function(){
+    $('textarea[data-limit-rows=true]')
+    .on('keypress', function (event) {
+        var textarea = $(this),
+            text = textarea.val(),
+            numberOfLines = (text.match(/\n/g) || []).length + 1,
+            maxRows = parseInt(textarea.attr('rows'));
+
+        if (event.which === 13 && numberOfLines >= maxRows ) {
+          return false;
+        }
+  })
   });
 
   <?php

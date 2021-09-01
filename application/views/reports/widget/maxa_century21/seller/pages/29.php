@@ -1,56 +1,29 @@
-    <page class="pdf26">
-        <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/alphabets.png" alt="..." class="alphabets">
-        <div class="marketing_planning">
-            <h2 class="big_title">MARKETING <span>PLAN OF ACTION</span></h2>
-            <b class="theme_color">
-                COMING SOON                
-            </b>
-            <ul class="custom_list">
-                <li>On deck.</li>
-            </ul>
-            <b class="theme_color">
-                FIRST WEEK ON THE MARKET
-            </b>
-            <ul class="custom_list">
-                <li>Enter listing into MLS system.</li>
-                <li>Put up “For Sale” sign.</li>
-                <li>Install lock box.</li>
-                <li>Take property photos.</li>
-                <li>Prepare property fl yer/brochure.</li>
-                <li>Submit property listing with photos to select real estate websites.</li>
-            </ul>
-            <b class="theme_color">
-                SECOND WEEK ON THE MARKET
-            </b>
-            <ul class="custom_list">
-                <li>Schedule Virtual Tour.</li>
-                <li>Invite local Realtors to tour home.</li>
-                <li>Prepare and place advertisements with select print and online media outlets.</li>
-            </ul>
-            <b class="theme_color">
-                THIRD WEEK ON THE MARKET
-            </b>
-            <ul class="custom_list">
-                <li>Submit Open House announcement to MLS & Offi ce Sales meeting.</li>
-                <li>Prepare and distribute special Open House fl yer.</li>
-                <li>Hold Sunday Open House.</li>
-            </ul>
-            <b class="theme_color">
-                ON-GOING
-            </b>
-            <ul class="custom_list">
-                <li>Handle incoming calls and schedule showing appointments.</li>
-                <li>Update owner on showings.</li>
-                <li>Pre-qualify buyers.</li>
-                <li>Present all offers and recommend counter-offer strategies.</li>
-                <li>Review price based on agent input & market conditions.</li>
-            </ul>
-            <b class="theme_color">
-                ASAP
-            </b>
-            <ul class="custom_list">
-                <li>Obtain an acceptable contract on your property!.</li>
-            </ul>
-            <!-- <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/big_c21.png" alt="big_c21" class="img-fluid big_c21"> -->
-        </div>
-    </page>
+<page class="property_list">
+    <h2 class="eleven_things">
+        11 THINGS
+    </h2>
+    <div class="property_list_title">YOU NEED TO LIST YOUR PROPERTY</div>
+    <div class="listing_steps">
+        <ol class="ol_num">
+            <li data-value="1">Last year's tax bill</li>
+            <li data-value="2">Survey</li>
+            <li data-value="3">Account numbers for mortgage </li>
+            <li data-value="4">3 copies of the key to the front or main entrance door </li>
+            <li data-value="5">Invoices for repairs or improvements to the property  </li>
+            <li data-value="6">A list of inclusions and exclusions in the sale</li>
+            <li data-value="7">Any interior or exterior pictures of the property </li>
+            <li data-value="8">Declarations / covenants / deed restrictions (if applicable) </li>
+            <li data-value="9">Utility bills, actual monthly costs or monthly budget </li>
+            <li data-value="10">Information on special assessments (if applicable) </li>
+            <li data-value="11">Homeowners / Condominium associations
+                <ul>
+                    <li>Amount</li>
+                    <li>Company</li>
+                    <li>Address</li>
+                    <li>Contact name</li>
+                    <li>Phone number </li>
+                </ul>
+            </li>
+        </ol>
+    </div>
+</page>
