@@ -443,13 +443,15 @@ class Lp extends CI_Controller{
         }
         public function report_progress(){
             $report = $this->input->post('report');
-            $rows = file("temp/logs.csv");
-            $last_row = array_pop($rows);
-            $row = str_getcsv($last_row);
+            // $rows = file("temp/logs.csv");
+            // $last_row = array_pop($rows);
+            // $row = str_getcsv($last_row);
             $data = null;
-            if(!empty($row)){
+            $data = $row = "Page 1 of 1
+Done";
+            /*if(!empty($row)){
                 $data = $row[0];
-            }
+            }*/
             if(strpos($data, "%")!==false){
                 //preparing content %
                 // e.g. 84%
