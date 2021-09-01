@@ -744,7 +744,7 @@
                                   $bio = $report_seller_data['bio'];
                                 }
                             } ?>
-                            <textarea class="form-control" rows="5" id="agent-bio"><?php echo $bio;?></textarea>
+                            <textarea data-rows-count="true" max-rows="28" class="form-control" rows="5" id="agent-bio"><?php echo $bio;?></textarea>
                         </div>                        
                     </div>
                 </div>
@@ -1700,9 +1700,59 @@ function submitFormAndGetReport()
         if (event.which === 13 && numberOfLines >= maxRows ) {
           return false;
         }
-  })
   });
 
+    $('textarea[data-rows-count=true]')
+    .on('keyup', function (event) {
+        var textarea = $(this);
+        
+        checkForMaxChar(textarea)
+  });
+
+  $('textarea[data-rows-count=true]').each(function() {
+    checkForMaxChar($(this));
+  });
+
+  $('.modal').on('shown.bs.modal', function (event) {
+    var modal_id = $(this).attr('id');
+    $('#'+modal_id+' textarea[data-rows-count=true]').each(function() {
+      checkForMaxChar($(this));
+    });
+  })
+
+
+  });
+  function removelastChar(input_obj) {
+    input_obj.val(
+        function(index, value){
+            return value.substr(0, value.length - 1);
+    });
+    checkForMaxChar(input_obj);
+  }
+  function checkForMaxChar(input_obj) {
+    var maxRows = parseInt(input_obj.attr('max-rows'));
+
+    var lht = parseInt(input_obj.css('lineHeight'),10);
+    var lines = input_obj.prop('scrollHeight') / lht;
+    lines = parseInt(lines);
+    var attr_id = input_obj.attr("id");
+    var check_alert_div = attr_id+"-alert-div";
+    if (lines > maxRows ) {
+      if($("#"+check_alert_div).length){
+        $("#"+check_alert_div).show();
+      }
+      else {
+        $(input_obj.after('<div style = "margin-top:10px;" id="'+check_alert_div+'" class="alert alert-warning">You have reached maximum number of lines</div>'))
+      }
+      removelastChar(input_obj);
+    }
+    else if(lines < maxRows) {
+      if($("#"+check_alert_div).length){
+        $("#"+check_alert_div).hide();
+      }
+    }
+          
+  }
   <?php
   if(isset($_GET['tab']) && $_GET['tab'] == 'list') { ?>
    $(document).ready(function(){

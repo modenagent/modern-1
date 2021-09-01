@@ -160,7 +160,7 @@ if(!empty($report_seller_data['cover_letter'])) {
     $cover_letter = $report_seller_data['cover_letter'];
 }
                       ?>
-                      <textarea name="page[cover_letter]" id="cover_letter" class="form-control more-page-config"><?php echo $cover_letter; ?></textarea>
+                      <textarea data-rows-count="true" max-rows="25" name="page[cover_letter]" id="cover_letter" class="form-control more-page-config"><?php echo $cover_letter; ?></textarea>
                     </div>
                 </div>
             </div>
@@ -514,9 +514,24 @@ Award 5 2021';
     .img_pre_div .widget_image_preview {
         height: 150px;
     }
-    /*#agent-bio {
-        width: 415px;
-        min-width: 415px;
-        width: 415px;
-    }*/
+    #agent-bio {
+        width: 470px;
+        min-width: 470px;
+        max-width: 470px;
+        font-size: 16px;
+        font-family: sans-serif;
+        line-height: 22px;
+        letter-spacing: 0.1px;
+    }
+    #cover_letter {
+        width: 368px;
+        min-width: 368px;
+        max-width: 368px;
+        font-family: sans-serif;
+        line-height: 22px;
+        margin: 0px 223px 0px 0px;
+        height: 141px;
+        font-size: 17px;
+        letter-spacing: 0.1px;
+    }
 </style>
