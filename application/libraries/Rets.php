@@ -80,7 +80,7 @@ class Rets {
         return $data;
     }
 
-    public function check_crmls($search='',$limit=2)
+    public function check_crmls($limit=2)
     {
     	$config = new \PHRETS\Configuration;
 		$config->setLoginUrl('https://pt.rets.crmls.org/contact/rets/login')
