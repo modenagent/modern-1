@@ -232,8 +232,9 @@ echo $this->email->print_debugger();die;
                     $parentId = (int)str_ireplace("REF", "", $ref_code);
                 }
                 $parentId = isset($parentId)?$parentId:0;
+                $encrypted_password = password_hash($this->input->post('user_pass'),PASSWORD_DEFAULT);
                 $user = array(
-                    'password' => $this->input->post('user_pass'),
+                    'password' => $encrypted_password,
                     'first_name' => $this->input->post('fname'),
                     'last_name' => $this->input->post('lname'),
                     'email'=>$this->input->post('uemail'),
