@@ -79,4 +79,22 @@ class Rets {
 
         return $data;
     }
+
+    public function check_crmls($search='',$limit=2)
+    {
+    	$config = new \PHRETS\Configuration;
+		$config->setLoginUrl('https://pt.rets.crmls.org/contact/rets/login')
+        ->setUsername('AWARDSUPERSTARS')
+        ->setPassword('6azE$DsY')
+        ->setRetsVersion('1.5');
+		 $rets = new \PHRETS\Session($config);
+		 $limit = (int)$limit;
+		 if($limit > 20) {
+		 	$limit = 20;
+		 }
+
+    	$connect = $rets->Login();
+		$results = $rets->Search('Property', 'Residential', '(ListOfficeName=Century 21 Award),(City=SD)',['Limit' => $limit,'QueryType' => 'DMQL2','Format' => 'COMPACT-DECODED','StandardNames' => 0]);
+		return $results;
+    }
 }
