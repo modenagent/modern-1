@@ -913,7 +913,7 @@ jQuery(document).ready(function() {
         });  
         if(firstOpen)
         // If received list is not greater than min value than set our min value to received list length
-        if(_min>$('#pre-selected-options').val().length){
+        if($('#pre-selected-options').val() && _min>$('#pre-selected-options').val().length){
             _min = $('#pre-selected-options').val().length;;
         }
         firstOpen = false;
@@ -929,12 +929,12 @@ jQuery(document).ready(function() {
     });
 
     $('#select-comps').on('hide.bs.modal', function(event) {
-        if($('#pre-selected-options').val().length < _min){
+        if($('#pre-selected-options').val() && $('#pre-selected-options').val().length < _min){
             alert('Please select '+_min+' comparables');
             event.stopPropagation();
             return false;
         }
-        if($('#pre-selected-options').val().length > _max){
+        if($('#pre-selected-options').val() && $('#pre-selected-options').val().length > _max){
             alert('Please do not select more than '+_max+' comparables');
             event.stopPropagation();
             return false;
@@ -988,6 +988,23 @@ jQuery(document).ready(function() {
                        // event.stopPropagation();
                         return false;
                     }
+                }
+                else if(presentation == 'seller')
+                {
+                  var page_length = $("#owl-example .custom-checkbox:checked").length;
+                  var comparable_length = $('#pre-selected-options option:selected').length;
+                  if(comparable_length > 0 && comparable_length < 5) {
+                    page_length--; 
+                  }
+                  if(page_length%2 != 0) {
+                    var confirm_go = confirm("If you intend to print and bind the presentation, please make sure you keep the total page count to an even number. Only remove pages in multiples of 2. \n Press OK to continue. \n Press Cancel to update selection of pages.");
+                    if(confirm_go) {
+                      return true;
+                    }
+                    else {
+                      return false;
+                    }
+                  }
                 }
             }
             return true;
@@ -1651,6 +1668,8 @@ function submitFormAndGetReport()
             }
            if(size<=max_size)
            {
+              file_obj.parents('.image_preview_container').find('.widget_image_preview').addClass('loading_preview');
+
               $.ajax({
                 url: "<?php echo base_url('widget/upload_image') ?>",
                 type: "POST",
@@ -1673,6 +1692,7 @@ function submitFormAndGetReport()
                    alert(data.error);
                  }
 
+                file_obj.parents('.image_preview_container').find('.widget_image_preview').removeClass('loading_preview');
               });
             }//end size
             else
@@ -1697,8 +1717,21 @@ function submitFormAndGetReport()
             numberOfLines = (text.match(/\n/g) || []).length + 1,
             maxRows = parseInt(textarea.attr('rows'));
 
+        var attr_id = textarea.attr("id");
+        var check_alert_div = attr_id+"-alert-div";
         if (event.which === 13 && numberOfLines >= maxRows ) {
+          if($("#"+check_alert_div).length){
+            $("#"+check_alert_div).show();
+          }
+          else {
+            $(textarea.after('<div style = "margin-top:10px;" id="'+check_alert_div+'" class="alert alert-warning">You have reached maximum number of lines</div>'))
+          }
           return false;
+        }
+        if(numberOfLines < maxRows) {
+          if($("#"+check_alert_div).length){
+            $("#"+check_alert_div).hide();
+          }
         }
   });
 
