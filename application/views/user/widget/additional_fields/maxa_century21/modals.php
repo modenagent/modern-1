@@ -479,6 +479,9 @@ Award 5 2021';
 <!-- modal for Social Ad Report  -->
 </div>
 <style type="text/css">
+    #buyerPresentationButton {
+        display: none !important;
+    }
     .c21-txt-modal textarea {
         height: 400px;
         width: 100%;
@@ -487,6 +490,12 @@ Award 5 2021';
         height: 300px;
         background-repeat: no-repeat;
         background-size: contain;
+        /*background-size: auto;*/
+        background-position: center;
+    }
+    .widget_image_preview.loading_preview {
+        background-size: auto;
+        background-image: url(<?php echo base_url('assets/images/gears.gif'); ?>) !important;
     }
     .social-ad-text label {
         margin-top: 10px;
