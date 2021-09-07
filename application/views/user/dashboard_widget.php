@@ -652,6 +652,11 @@
     <!-- modal for selecting the comparables starts here -->
     <div id="select-comps" class="modal fade" role="dialog">
         <div class="modal-dialog">
+            <div class="loader1 hidden" style="display: block;">
+              <img src="https://modernagent.localhost.com/assets/images/gears.gif">
+              <p class="loader-text">Searching ...</p>
+            </div>
+            <div class="backwrap hidden" style="display: block;"></div>
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -1045,10 +1050,10 @@ jQuery(document).ready(function() {
                     property_address = $.trim(property_address);
                     getRetsApiComparables(property_address,is_simply_rets);
                 }
-                $('.loader1').removeClass('hidden');
-                $('.backwrap').removeClass('hidden');
+                // $('.loader1').removeClass('hidden');
+                // $('.backwrap').removeClass('hidden');
                 $('.btn-checkout').data("download",1);
-                return hasActiveRequest();
+                // return hasActiveRequest();
             }
             return true;
         }

@@ -495,6 +495,10 @@ class Widget extends CI_Controller {
                         'address' => $value['address'].' '.$value['city'],
                         'price' => $value['price']
                     );
+
+                  if($key >= 200) {
+                    break;
+                  }
                 }
                   
                   
@@ -595,6 +599,10 @@ class Widget extends CI_Controller {
                         'address' => $value['address'].' '.$value['city'],
                         'price' => $value['price']
                     );
+
+                  if($key >= 200) {
+                    break;
+                  }
                 }
                   
                   
@@ -624,7 +632,6 @@ class Widget extends CI_Controller {
       $data = array();
       $data['status'] = true; 
       $data['file'] = '';
-
       $dir_to_upload = 'assets/reports/widget/images/featured/temp/';
 
       if ( ! is_dir(FCPATH.$dir_to_upload)) {
