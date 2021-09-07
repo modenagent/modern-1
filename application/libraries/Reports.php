@@ -855,10 +855,12 @@ use Knp\Snappy\Pdf;
                                 $rets = new Rets();
                                 $mlsId = implode(',', $mls_ids);
                                 $responses = $rets->getDataBymlsId($mlsId);
-                                $rets_images = $rets->getImages($mlsId);
+                                $listingKeyNumeric = array_column($responses, 'ListingKeyNumeric');
+                                $listingKeyNumeric = implode(',', $listingKeyNumeric);
+                                $rets_images = $rets->getImages($listingKeyNumeric);
                                 foreach ($responses as $m_key => $response) {
                                     $mls_comparables[$m_key]['mls_id'] =  !empty($response['mlsId']) ? $response['mlsId'] : '';
-                                    $mls_comparables[$m_key]['img'] =  isset($rets_images[$response['mlsId']]) ? $rets_images[$response['mlsId']]:'';
+                                    $mls_comparables[$m_key]['img'] =  isset($rets_images[$response['ListingKeyNumeric']]) ? $rets_images[$response['ListingKeyNumeric']]:'';
                                     $mls_comparables[$m_key]['Address'] = !empty($response['address']) ? $response['address'] : '';
                                     $mls_comparables[$m_key]['Price'] =  !empty($response['price']) ? dollars(number_format((string)$response['price'])) : '';
                                     $mls_comparables[$m_key]['Date'] = !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
