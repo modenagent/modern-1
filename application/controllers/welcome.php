@@ -30,6 +30,23 @@ class Welcome extends CI_Controller {
 	{
 		phpinfo();
 	}
+
+	public function check_crmls($value=2)
+	{
+		$this->load->library('rets');
+      $rets = new Rets();
+      $response = $rets->check_crmls($value);
+
+      foreach ($response as $key => $value) {
+      	echo 'ListAgentMlsId :'.$value['ListAgentMlsId'].'<br>';
+      	echo 'Address :'.$value['StreetNumberNumeric'].', '.$value['StreetName'].', '.$value['SubdivisionName'].', '.$value['SubdivisionNameOther'].'<br>';
+      	echo 'City :'.$value['City'].'<br>';
+      	echo 'ListPrice :'.$value['ListPrice'].'<br>';
+
+      	echo "<br>=====================<br>";
+
+      }
+	}
 }
 
 /* End of file welcome.php */

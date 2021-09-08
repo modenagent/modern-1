@@ -569,6 +569,11 @@ table td {
 .address_title {
   font-weight: 700;
   margin-bottom: 12px;
+  /*white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;*/
+  overflow: hidden;
+  max-height: 20px;
 }
 .pricing_buttons {
   padding: 0;
@@ -907,7 +912,8 @@ table td {
     background-color: #bfaf87;
     color: #fff;
     text-align: center;
-    height: 190px;
+    /*height: 190px;*/
+    height: 175px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -940,7 +946,8 @@ table td {
 .chart_box {
     padding: 15px;
     background: #e6e7e8;
-    height: 190px;
+    /*height: 190px;*/
+    height: 175px;
 }
 .chart_box h4 {
     margin: 0;
@@ -958,11 +965,13 @@ table td {
     margin-top: 5px;
 }
 .chart_box img {
-  height: 180px;
+  /*height: 180px;*/
+  height: 165px;
   width: 100%
 }
 .img_badge img.img-fluid {
-    height: 190px;
+    /*height: 190px;*/
+    height: 185px;
 }
 /* pdf18 */
 /*.pdf18 {
@@ -1704,12 +1713,16 @@ ul.award_list {
   font-size: 14px;
 }
 .covid_safety_certificate .c21_watermark {
-  background: url(images/c21_watermark_white.png);
+  /*background: url(images/c21_watermark_white.png);*/
+  background: url(images/c21_watermark.png);
   width: 100%;
   position: absolute;
   bottom: 30px;
   height: 145px;
   left: 0;
+  background-position: -64px -72px;
+  background-repeat: no-repeat;
+  background-size: 895px 280px;
 }
 .social_ad_report_title {
   background-color: #bfaf87;
@@ -1891,6 +1904,9 @@ ul.award_list {
 .c21_bg {
   background: url(images/c21_watermark.png);
   margin-left: 120px;
+  background-position: -58px -75px;
+  margin-right: 10px;
+  height: 160px;
 }
 .advertising .small_big {
   font-weight: 600;
