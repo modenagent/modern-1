@@ -569,9 +569,11 @@ table td {
 .address_title {
   font-weight: 700;
   margin-bottom: 12px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  /*white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;*/
   overflow: hidden;
+  max-height: 20px;
 }
 .pricing_buttons {
   padding: 0;
