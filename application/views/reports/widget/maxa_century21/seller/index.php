@@ -208,7 +208,9 @@ for ($i=1; $i <= $max ; $i++) {
 
     var _minValue = $('#slider').slider('values', 0 );
     var _maxValue = $('#slider').slider('values', 1 );
-
+    _minValue = _minValue/1000;
+    _maxValue = _maxValue/1000;
+    
     if(_maxValue>1000){
         _maxValue = _maxValue/1000 + 'M';
     } else {
