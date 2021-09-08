@@ -52,25 +52,31 @@ div#slider {
     $rangeOfSales['sQFootage']=0;
     $rangeOfSales['avgNoOfBeds'] = 0;
     $rangeOfSales['avgNoOfBaths'] = 0;
-    $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-    $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-    foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
-    if($key>8){
-    break;
-    }
-    $rangeOfSales['avaiProperty']++;
-    $rangeOfSales['sQFootage']+=$cpmrebl['BuildingArea'];
-    $rangeOfSales['avgNoOfBeds']+=$cpmrebl['Beds'];
-    $rangeOfSales['avgNoOfBaths'] +=$cpmrebl['Baths'];
-    if($minRange> $cpmrebl['PriceRate']){
-    $maxRange= $cpmrebl['PriceRate'];
-    }
+    $range_comparable = $mls_comparables;
+    // var_dump($range_comparable);die;
+    $minRange = $range_comparable[0]['PriceRate'];
+    $maxRange = $range_comparable[0]['PriceRate'];
+    $sqFeetCnt = 0;
+    foreach ($range_comparable as $key => $cpmrebl) {
+        if($key>=8){
+            break;
+        }
+        $rangeOfSales['avaiProperty']++;
+        if(!empty($cpmrebl['SquareFeetVal'])) {
+            $sqFeetCnt ++;
+            $rangeOfSales['sQFootage']+=(float)$cpmrebl['SquareFeetVal'];
+        }
+        $rangeOfSales['avgNoOfBeds']+=$cpmrebl['Beds'];
+        $rangeOfSales['avgNoOfBaths'] +=$cpmrebl['Baths'];
+        if($minRange > $cpmrebl['PriceRate']){
+            $minRange = $cpmrebl['PriceRate'];
+        }
 
-    if($maxRange< $cpmrebl['PriceRate']){
-    $maxRange= $cpmrebl['PriceRate'];
+        if($maxRange < $cpmrebl['PriceRate']){
+            $maxRange = $cpmrebl['PriceRate'];
+        }
     }
-    }
-    $rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage']/$rangeOfSales['avaiProperty'];
+    $rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage']/$sqFeetCnt;
     $rangeOfSales['avgNoOfBeds'] = $rangeOfSales['avgNoOfBeds']/$rangeOfSales['avaiProperty'];
     $rangeOfSales['avgNoOfBaths'] = $rangeOfSales['avgNoOfBaths']/$rangeOfSales['avaiProperty'];
 
@@ -78,8 +84,10 @@ div#slider {
 
     
 
-    $_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
-    $_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
+    // $_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
+    // $_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
+    $_priceMinRange = round($minRange);
+    $_priceMaxRange = round($maxRange);
     $rangeDiff= (int)$_priceMaxRange - (int)$_priceMinRange;
     $_sliderStartPoint = (int)$_priceMinRange - round($rangeDiff/8);
     $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
