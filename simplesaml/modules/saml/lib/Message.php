@@ -713,7 +713,7 @@ class Message
         $notBefore = $assertion->getNotBefore();
         if ($notBefore !== null && $notBefore > time() + $allowed_clock_skew) {
             throw new SSP_Error\Exception(
-                'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP...'
+                'Received an assertion that is valid in the future. Check clock synchronization on IdP and SP...'.$notBefore.' > '.time().' + '.$allowed_clock_skew)
             );
         }
         $notOnOrAfter = $assertion->getNotOnOrAfter();
