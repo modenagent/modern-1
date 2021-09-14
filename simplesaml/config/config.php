@@ -222,7 +222,7 @@ $config = [
      * Allowed range: 180 - 300
      * Defaults to 180.
      */
-    'assertion.allowed_clock_skew' => 180,
+    'assertion.allowed_clock_skew' => 240,
 
 
     /************************
