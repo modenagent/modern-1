@@ -262,8 +262,8 @@
   });
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
+    $(".owl-carousel").owlCarousel();
     $("#owl-example").owlCarousel();
-    $("#owl-example-registry").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
 
@@ -1267,6 +1267,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.2"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.3"></script>
 </body>
 </html>
