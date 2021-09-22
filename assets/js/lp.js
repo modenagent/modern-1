@@ -266,17 +266,14 @@ function makeID() {
 // sends customized for info and report URL to backend to generate PDF
 function runPMA(agentPath, logoPath) {
     firstModal = false;
-    // $('#run-pma-dialog').dialog('close');
-    // $('.progress-bar').progressbar("option", "value", false);
-    // $('.progress-bar').show();
-    // reportData.rep = $('#lp-rep-name option:selected').val();
+
     if (agentPath) {
         reportData.agentPath = agentPath;
     }
     if (logoPath) {
         reportData.logoPath = logoPath;
     }
-    // recordFormData();
+
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
     query += '&' + formData;    
@@ -291,24 +288,22 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());     //this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
+    query += '&' + 'mu_theme='+$('.mu_radio:checked').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
-    //console.log(query);
+    
     if(activeRequest){
         activeRequest=false;
         xhr.abort();
     }
-    console.log(query); 
-    // return;
     activeRequest=true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
-
+    console.log(query);
     xhr = $.ajax({
-        url: base_url+'index.php?/lp/getPropertyData',
+        url: base_url+'/lp/getPropertyData',
         type: 'POST',
         data: query
     })
         .done(function(response) {
-            console.log(response);
             var obj = JSON.parse(response);
             console.log(obj);
             manage_checkout_btn();
