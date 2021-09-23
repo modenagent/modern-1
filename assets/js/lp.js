@@ -290,6 +290,7 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
     query += '&' + 'mu_theme='+$('.mu_radio:checked').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    query += '&' + 'selected_theme='+rgb2hex($('#report_color').val());
     
     if(activeRequest){
         activeRequest=false;

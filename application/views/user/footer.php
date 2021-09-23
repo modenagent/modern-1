@@ -1267,6 +1267,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.3"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.4"></script>
 </body>
 </html>
