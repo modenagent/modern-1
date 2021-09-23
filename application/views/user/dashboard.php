@@ -230,7 +230,19 @@
                             </div>
                             <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
                         </div>
-                        <div class="marketUpdate_dropdowns">
+                        <div class="col-md-6 marketUpdate_dropdowns" style="display: none">
+                            <div class="pull-right1 mu-theme-default-color" style="">
+                                <?php
+                                if(count($reportTemplates)): ?>
+                                    Select Color
+                                    <select name="report_color" >
+                                        <?php foreach($reportTemplates as $key=>$reportTemplate): ?>
+                                        <option <?php echo $key==0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                <?php endif; ?>
+                               
+                            </div>
                         </div>
                     </div>
                     <div class="carousel-container common_template">
