@@ -72,6 +72,15 @@ $site_unit_number = $property->PropertyProfile->SiteUnit;
                             if(!empty($page['cover_letter'])) {
                                 echo nl2br($page['cover_letter']);
                             }
+                            elseif($fromcma) {
+                                echo 'Dear Sir/Madam:
+
+Thank you very much for giving me the opportunity to present the enclosed proposal to market your home. I appreciate the time you spent with me reviewing the features of your home and outlining your financial goals and time considerations.
+
+You will receive competent and professional service when you select me and CENTURY 21 Award to represent you. We have represented many families in this area concluding transactions that realize maximum value in a reasonable time. I hope you will select me as your agent in this very important transaction.
+
+This proposal includes a comprehensive market analysis that will assist us in determining the market value and pricing of your home. I hope the information included on me and CENTURY 21 Award will confirm that I am best qualified to market your home.';
+                            }
                         ?>
                         </div>
                         <br>

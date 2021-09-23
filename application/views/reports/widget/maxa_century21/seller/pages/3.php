@@ -29,7 +29,15 @@
     </div>
     <div class="profile_intro">
         <div class="profile_intro_data">
-        <?php echo nl2br($bio); ?>
+            <?php if($fromcma):
+                    if(!empty($page['bio'])) :
+                        $bio = $page['bio'];
+                    else:
+                        $bio = 'Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.';
+                    endif;
+                endif;
+                echo nl2br($bio);
+            ?>
         </div>
     </div>
 </page>
