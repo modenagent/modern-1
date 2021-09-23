@@ -236,7 +236,7 @@
                                     <?php
                                     if(count($reportTemplates)): ?>
                                         Select Color
-                                        <select  name="report_color" style="background: transparent;">
+                                        <select id="report_color" name="report_color" style="background: transparent;">
                                             <?php foreach($reportTemplates as $key=>$reportTemplate): ?>
                                             <option <?php echo $key==0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
                                             <?php endforeach; ?>
