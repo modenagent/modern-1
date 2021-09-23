@@ -96,6 +96,9 @@ div#slider {
 
 <?php
 $max = 31;
+if($fromcma == 1) {
+    $pdfPages = range(1, 31);
+}
 // var_dump($pdfPages);die;
 // $pdfPages = [2];
 for ($i=1; $i <= $max ; $i++) { 
@@ -155,6 +158,7 @@ for ($i=1; $i <= $max ; $i++) {
     }
 }
 
+// die;
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>

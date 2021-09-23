@@ -2,6 +2,13 @@
         <h2 class="small_big">PORTFOLIO AT A GLANCE<span> FEATURED LIST OF HOMES SOLD</span></h2>
         <p class="mt-30 portfolio_txt">
             <?php 
+                if($fromcma && empty($page['portfolio_txt'])) {
+                            $page['portfolio_txt'] = "With over $500 million in sales closed, I have the knowledge and experience to list your home.
+
+I have had the pleasure of working with some of San Diego County's most beautiful homes. A first impression is everything in this world, especially in real estate. With my marketing plan, I bring in some of the best photographers in the business to shoot my listings. This will ensure that your home is shown with an elegant and luxurious look. 
+
+Take a look at my most notable sales in San Diego:";
+                        }
                 if(!empty($page['portfolio_txt'])) {
                     echo  nl2br($page['portfolio_txt']);
                 }

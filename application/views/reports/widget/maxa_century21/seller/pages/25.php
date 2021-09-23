@@ -27,24 +27,36 @@
             </p>
             <p class="mt-80">
                 <?php
+                if($fromcma && empty($page['social_txt1'])) {
+                    $page['social_txt1'] = '2100';
+                }
                 if(!empty($page['social_txt1'])): ?>
                 <span><?php echo number_format($page['social_txt1']); ?></span> followers on Instagram
                 <?php endif; ?>
             </p>
             <p>
                 <?php
+                if($fromcma && empty($page['social_txt2'])) {
+                    $page['social_txt2'] = '87';
+                }
                 if(!empty($page['social_txt2'])): ?>
                 <span><?php echo number_format($page['social_txt2']); ?></span> average reach on Instagram
                 <?php endif; ?>
             </p>
             <p>
                 <?php
+                if($fromcma && empty($page['social_txt3'])) {
+                    $page['social_txt3'] = '2100';
+                }
                 if(!empty($page['social_txt3'])): ?>
                 <span><?php echo number_format($page['social_txt3']); ?></span> followers on  Facebook
                 <?php endif; ?>
             </p>
             <p>
                 <?php
+                if($fromcma && empty($page['social_txt4'])) {
+                    $page['social_txt4'] = '2100';
+                }
                 if(!empty($page['social_txt4'])): ?> 
                 <span><?php echo number_format($page['social_txt4']); ?></span> followers on Twitter
                 <?php endif; ?>

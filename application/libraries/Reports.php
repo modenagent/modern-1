@@ -778,26 +778,37 @@ use Knp\Snappy\Pdf;
                 $currentUserId = $CI->session->userdata('userid');   
             }
 
-            if($currentUserId > 0) {
+            if(empty($currentUserId)) {
+                $user_info_id = $CI->db->select(array('user_id_pk'))
+                                ->where('email', $data['user']['email'])
+                                ->get('lp_user_mst')
+                                ->row_array();
+                $currentUserId = $user_info_id['user_id_pk'];
+            }
 
-                $tableName = "lp_user_mst";
-                $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
-                $data['cma_url'] = $user_details->cma_url;
-                $data['report_dir_name'] = $user_details->report_dir_name;
+            $tableName = "lp_user_mst";
+            $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
+            $data['cma_url'] = $user_details->cma_url;
+            $data['report_dir_name'] = $user_details->report_dir_name;
+            $use_rets_api = $user_details->use_rets_api;
 
-                if(!empty($user_details->parent_id))
-                {
-                    $parent_id = $user_details->parent_id;
-                    $sales_rep_info = $CI->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
-                    
-                    if(!empty($sales_rep_info->cma_url)) {
-                      $data['cma_url'] = $sales_rep_info->cma_url;
-                    }
-                    if($sales_rep_info->role_id_fk == 3) {
-                        $data['report_dir_name'] = $sales_rep_info->report_dir_name;
-                    }
+            if(!empty($user_details->parent_id))
+            {
+                $parent_id = $user_details->parent_id;
+                $sales_rep_info = $CI->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
+
+                if(!empty($sales_rep_info->use_rets_api)) {
+                  $use_rets_api = $sales_rep_info->use_rets_api;
+                }
+                
+                if(!empty($sales_rep_info->cma_url)) {
+                  $data['cma_url'] = $sales_rep_info->cma_url;
+                }
+                if($sales_rep_info->role_id_fk == 3) {
+                    $data['report_dir_name'] = $sales_rep_info->report_dir_name;
                 }
             }
+            $data['use_rets_api'] = $use_rets_api;
             $simply_rets = 0;
             if($data['report_dir_name'] == 'maxa_hometown') {
                 $simply_rets=1;
@@ -809,7 +820,7 @@ use Knp\Snappy\Pdf;
 
                 if(true && ($_POST['presentation'] == 'seller' || $_POST['presentation'] == 'buyer'))
                 {
-                   if(empty($compKeys)){
+                   if(empty($compKeys) && $use_rets_api == 0){
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
                     } else {
@@ -850,11 +861,25 @@ use Knp\Snappy\Pdf;
                                     }
                                 }
                             }
-                            elseif(isset($mls_ids) && !empty($mls_ids) && $simply_rets==0) {
+                            elseif($simply_rets==0) {
                                 $CI->load->library('rets');
                                 $rets = new Rets();
-                                $mlsId = implode(',', $mls_ids);
-                                $responses = $rets->getDataBymlsId($mlsId);
+                                if(isset($mls_ids) && !empty($mls_ids)) {
+                                    $mlsId = implode(',', $mls_ids);
+                                    $responses = $rets->getDataBymlsId($mlsId);
+                                }
+                                else {
+                                    $search_city = $report187->PropertyProfile->SiteCity;
+                                    
+                                    $responses = $rets->getRecentSold($search_city);
+                                    if(empty($responses)) {
+                                        return array( 
+                                            'report_generated' => false,
+                                            'error_msg' => "Comparable not found for $search_city",
+                                            'pdf_filename'=> ''
+                                        );
+                                    }
+                                }
                                 $listingKeyNumeric = array_column($responses, 'ListingKeyNumeric');
                                 $listingKeyNumeric = implode(',', $listingKeyNumeric);
                                 $rets_images = $rets->getImages($listingKeyNumeric);
@@ -863,7 +888,7 @@ use Knp\Snappy\Pdf;
                                     $mls_comparables[$m_key]['img'] =  isset($rets_images[$response['ListingKeyNumeric']]) ? $rets_images[$response['ListingKeyNumeric']]:'';
                                     $mls_comparables[$m_key]['Address'] = !empty($response['address']) ? $response['address'] : '';
                                     $mls_comparables[$m_key]['Price'] =  !empty($response['price']) ? dollars(number_format((string)$response['price'])) : '';
-                                    $mls_comparables[$m_key]['PriceRate'] = $response['price'];
+                                    $mls_comparables[$m_key]['PriceRate'] = (float)$response['price'];
                                     $mls_comparables[$m_key]['Date'] = !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
                                     $mls_comparables[$m_key]['Distance'] =  0;
                                     $mls_comparables[$m_key]['SquareFeet'] = !empty($response['area']) ? number_format((string)$response['area']) : '';
@@ -1122,6 +1147,27 @@ use Knp\Snappy\Pdf;
                     $check_page_condition['data'] = $page_data;
                     $CI->widget_report_dynamic_data_model->insert($check_page_condition);
 
+                }
+            }
+            if($data['fromcma'] == 1) {
+                $data['page'] = array();
+                $check_page_condition = [
+                    'user_id' => $currentUserId,
+                    'language' => 'english',
+                    'report_type' => trim($CI->input->post('presentation')),
+                ];
+                $CI->load->model('widget_report_dynamic_data_model');
+                $check_page_contents = $CI->widget_report_dynamic_data_model->get_by($check_page_condition);
+                if($check_page_contents) {
+                    $page_data = unserialize($check_page_contents->data);
+                    $data['page'] = $page_data;
+                    if(!empty($page_data['testimonials'])) {
+                        $data['testimonials'] = $page_data['testimonials'];
+                    }
+                    if(!empty($page_data['featured_homes'])) {
+                        $data['featured_homes'] = $page_data['featured_homes'];
+                    }
+                    
                 }
             }
             /*Dynamic setting*/
