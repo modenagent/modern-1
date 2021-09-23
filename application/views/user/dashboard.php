@@ -230,20 +230,22 @@
                             </div>
                             <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
                         </div>
-                        <div class="col-md-6 marketUpdate_dropdowns" style="display: none">
-                            <div class="pull-right1 mu-theme-default-color" style="">
-                                <?php
-                                if(count($reportTemplates)): ?>
-                                    Select Color
-                                    <select name="report_color" >
-                                        <?php foreach($reportTemplates as $key=>$reportTemplate): ?>
-                                        <option <?php echo $key==0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                <?php endif; ?>
-                               
+                        <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                            <div class="col-md-6 marketUpdate_dropdowns marketUpdate_template" style="display: none">
+                                <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
+                                    <?php
+                                    if(count($reportTemplates)): ?>
+                                        Select Color
+                                        <select  name="report_color" style="background: transparent;">
+                                            <?php foreach($reportTemplates as $key=>$reportTemplate): ?>
+                                            <option <?php echo $key==0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    <?php endif; ?>
+                                   
+                                </div>
                             </div>
-                        </div>
+                        <?php endif; ?>
                     </div>
                     <div class="carousel-container common_template">
                         <div id="owl-example" class="owl-carousel">
@@ -492,6 +494,15 @@
 <script src="https://js.stripe.com/v3"></script>
 <script type="text/javascript">
     $(document).ready(function(){
+        $('input[type=radio][name=cover_mu]').on('ifChecked', function () {
+            if($(this).val() == 1) {
+                 $("#mu_report_select").show();
+            }
+            else {
+                $("#mu_report_select").hide();
+            }
+        })
+        
       if ($('#user_transaction_table').length) {
         $('#user_transaction_table').DataTable({
             // Processing indicator

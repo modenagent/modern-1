@@ -270,13 +270,17 @@ use Knp\Snappy\Pdf;
             }
 
             $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';
+            $data['theme'] = $CI->input->post('theme');
+            if($CI->input->post('presentation') == 'marketUpdate' && $CI->input->post('mu_theme') == 1 && !empty($CI->input->post('selected_theme'))) {
+                $chart_color = !empty($CI->input->post('selected_theme')) ? str_replace("#", "", $CI->input->post('selected_theme')) : '082147';
+                $data['theme'] = $CI->input->post('selected_theme');
+            }
             // $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
             $tmp2['color'] = $chart_color;
             
             $reportItems['chart']=$tmp2;
             $reportItems['totalMonthsReport'] = $totalMonthsReport;
             $data['areaSalesAnalysis'] = $reportItems;
-            $data['theme'] = $CI->input->post('theme');
 
             if($CI->input->post('presentation') == 'registry') {
                 $data['unique_key'] = time().substr(md5(rand()), 0, 10);
