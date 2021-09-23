@@ -70,7 +70,7 @@ $domain_url = 'https://'.$_ENV['APP_DOMAIN'].'/';
 <script type="text/javascript" src="<?php echo $domain_url; ?>assets/js/custom.js"></script> 
 <script src="<?php echo $domain_url; ?>assets/js/jquery.multi-select.js"></script>
 
-
+<script src="<?php echo base_url("assets/js/jquery-ui.1.11.2.min.js") ?>" type="text/javascript"></script>
 
 <script type="text/javascript">
 	var app_check_url = "<?=$domain_url?>widgetcma";
