@@ -222,8 +222,11 @@
 
   //Function to convert hex format to a rgb color
   function rgb2hex(rgb) {
-   rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-   return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    if(rgb != undefined) {
+      
+     rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    }
   }
 
   function hex(x) {
