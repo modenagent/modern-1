@@ -8,25 +8,24 @@
 
         <div class="hero">
             <div class="hero_caption">
-                <div class="d-flex">
-                    <div class="col-60">
+                <div class="image-inner">
+                    
+                    <div class="qr-code-container">
+                        <?php
+                        $url = urlencode(base_url("cma/".$user['ref_code']));
+                        list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
+                        $rgb_color_front =  urlencode(json_encode(array($r,$g,$b)));
+                        $rgb_color_back =  urlencode(json_encode(array(255,255,255)));
+                        $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=".$url);
+                        ?>
+                        <img src="<?php echo $image; ?>">
+                        
+                    </div>
+                    <div class="">
                         <p>
                             To receive your complimentary sales report via
-                            text message, enter the Modern Agent code:
+                            text message, scan above QR code
                         </p>
-                    </div>
-                    <div class="col-40">
-                        <ul class="list-inline">
-                            <?php 
-                            // if(empty($cma_url)):
-                                $cma_url = "https://modernagent.io/cma";
-                            // endif;
-                            $cma_url_display = preg_replace("(^https?://)", "", $cma_url );
-                             ?>
-                            <li class="mb-2"><a href="https://modernagent.io/cma"><img src="https://i.ibb.co/5KWxJxL/world.png" alt="WWW">
-                                    <?php echo $cma_url_display; ?></a></li>
-                            <li><a href="https://modernagent.io/cma"><img src="https://i.ibb.co/jWYqWyd/keyboard.png" alt="Code"><p><span>ENTER CODE:</span><br><?php echo $user['ref_code']; ?></p></a></li>
-                        </ul>
                     </div>
                 </div>
             </div>

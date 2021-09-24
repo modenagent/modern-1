@@ -434,7 +434,7 @@ echo $this->email->print_debugger();die;
             $this->load->view('frontend/footer',$data);
     }
     // frontend view
-    public function quick_pdf()
+    public function quick_pdf($code ='')
     {
             if($this->input->post()){
                 $form = $this->input->post('form-name');
@@ -451,6 +451,7 @@ echo $this->email->print_debugger();die;
                 }
             }
             $data['title'] = "Moder Agent";
+            $data['code'] = $code;
             
             $this->load->library('session');
 
