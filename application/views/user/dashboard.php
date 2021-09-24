@@ -494,14 +494,14 @@
 <script src="https://js.stripe.com/v3"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        $('input[type=radio][name=cover_mu]').on('ifChecked', function () {
-            if($(this).val() == 1) {
-                 $("#mu_report_select").show();
-            }
-            else {
-                $("#mu_report_select").hide();
-            }
-        })
+        // $('input[type=radio][name=cover_mu]').on('ifChecked', function () {
+        //     if($(this).val() == 1) {
+        //          $("#mu_report_select").show();
+        //     }
+        //     else {
+        //         $("#mu_report_select").hide();
+        //     }
+        // })
         
       if ($('#user_transaction_table').length) {
         $('#user_transaction_table').DataTable({

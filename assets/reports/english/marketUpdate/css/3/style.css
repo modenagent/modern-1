@@ -89,7 +89,9 @@ page {
   right: 55px;
 }
 .signature + .logo img {
-  width: 160px;
+  /*width: 160px;*/
+  max-height: 150px;
+  max-width: 150px;
 }
 .profile_img {
   width: 110px;
@@ -104,7 +106,7 @@ page {
   margin: 0;
 }
 .profile_title {
-  opacity: 0.6;
+  /*opacity: 0.6;*/
   font-size: 14px;
   margin-bottom: 10px;
 }
@@ -117,10 +119,10 @@ page {
   line-height: 20px;
 }
 .tel_number span {
-  opacity: 0.6;
+  /*opacity: 0.6;*/
 }
 .contact_info {
-  opacity: 0.6;
+  /*opacity: 0.6;*/
   display: block;
   color: #000;
   text-decoration: none;

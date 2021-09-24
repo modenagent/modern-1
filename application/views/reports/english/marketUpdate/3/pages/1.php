@@ -151,7 +151,10 @@
                         </div>
                     </div>
                     <div class="logo">
-                        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0">
+                        <?php if(!empty($user['company_logo']) && is_file(FCPATH.'/'.$user['company_logo'])) : ?>
+                            <img src="<?php echo base_url().$user['company_logo']; ?>" alt="companyname" border="0">
+                        <?php endif; ?>
+                        <!-- <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0"> -->
                     </div>
                 </div>
             </div>
