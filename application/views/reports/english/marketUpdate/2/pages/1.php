@@ -1,7 +1,7 @@
 <body>
     <page class="p-0 market_update">
         <div class="header">
-            <img src="https://i.ibb.co/4823bQX/logo.png" alt="logo" class="logo">
+            <!-- <img src="https://i.ibb.co/4823bQX/logo.png" alt="logo" class="logo"> -->
 
             <h1>MARKET UPDATE <span>ZIPCODE: <?php echo $zipCode; ?></span></h1>
         </div>

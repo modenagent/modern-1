@@ -271,7 +271,7 @@ use Knp\Snappy\Pdf;
 
             $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';
             $data['theme'] = $CI->input->post('theme');
-            if($CI->input->post('presentation') == 'marketUpdate' && $CI->input->post('mu_theme') == 1 && !empty($CI->input->post('selected_theme'))) {
+            if($CI->input->post('presentation') == 'marketUpdate' && !empty($CI->input->post('selected_theme'))) {
                 $chart_color = !empty($CI->input->post('selected_theme')) ? str_replace("#", "", $CI->input->post('selected_theme')) : '082147';
                 $data['theme'] = $CI->input->post('selected_theme');
             }
