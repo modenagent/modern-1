@@ -67,7 +67,7 @@ body {
         find out now for free.</b>
     </h1>
     <div class="row">
-        <div class="col-xs-6">
+        <!-- <div class="col-xs-6">
             <div class="article-1 gray-color">
                 <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/icon/01.png');?>">
                 <p style="text-transform: none;">www.modernagent.io/cma</p>
@@ -78,6 +78,18 @@ body {
             <div class="article-2 gray-color">
                 <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/icon/02.png');?>">
                 <p>enter code: <strong><?php echo $user['ref_code']; ?></strong></p>
+            </div>
+        </div> -->
+        <div class="col-xs-12">
+            <div class="qr-code-container">
+                <?php
+                    $url = urlencode(base_url("cma/".$user['ref_code']));
+                    list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
+                    $rgb_color_front =  urlencode(json_encode(array($r,$g,$b)));
+                    $rgb_color_back =  urlencode(json_encode(array(255,255,255)));
+                    $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=".$url);
+                ?>
+                <img src="<?php echo $image; ?>">
             </div>
         </div>
     </div>
@@ -112,7 +124,7 @@ body {
                     </div>
                 </div>
                 <div class="right-footer pull-right page-16-ftrr-logo col-xs-4">
-                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:" /><?php endif; ?>
+                    <?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" alt="Logo Image" style="max-height:100px;" /><?php endif; ?>
                 </div>
             </div>
         </div>

@@ -43,6 +43,9 @@ h6 {
 .mt-130 {
   margin-top: 139px !important;
 }
+.mt-30 {
+  margin-top: 30px !important;
+}
 page {
   position: relative;
   display: block;
@@ -108,7 +111,7 @@ page {
 .profile_title {
   /*opacity: 0.6;*/
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom:  10px;
 }
 .tel_number {
   display: block;
@@ -156,6 +159,7 @@ page {
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 10px;
+  margin-top: 50px;
 }
 .list-inline {
   padding: 0;
@@ -187,9 +191,13 @@ page {
 .market_update_hero p {
   font-family: "Crimson Text", serif;
   font-size: 17px;
+  float: right;
 }
 .market_update_hero ul {
   margin-top: 25px;
+}
+.qr-code-container {
+  text-align: center;
 }
 .market_update_table {
   padding: 37px 50px;

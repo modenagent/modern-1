@@ -34,7 +34,7 @@
                                         <input type="hidden" class="form-control" name="form-name"  value="ref-form">
                                         <div class="form-group">
                                             <p>Enter Your Reference Code</p>
-                                            <input type="text" style="height:54px;" class="form-control" name="ref_code" id="ref_code" placeholder="Reference code" required>
+                                            <input type="text" style="height:54px;" class="form-control" name="ref_code" id="ref_code" placeholder="Reference code" value="<?php echo $code; ?>" required>
                                         </div><br>
                                         <div class="form-group">
                                             <p>Enter Valid Phone Number</p>

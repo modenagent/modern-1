@@ -4247,9 +4247,14 @@ Thank you for your order. Below you can find the details of your order. If you o
     }
 
 
-    public function generate_qr_code($uniqid,$size=6,$custom_bg_color=null,$custom_color = null)
+    public function generate_qr_code($uniqid = '',$size=6,$custom_bg_color=null,$custom_color = null)
     {
-      $qr_link = base_url('registry/guest/'.$uniqid);
+      if(empty($uniqid) && !empty($_GET['url'])) {
+        $qr_link = urldecode($_GET['url']);
+      }
+      else {
+        $qr_link = base_url('registry/guest/'.$uniqid);
+      }
       $this->load->library('phpqrcode/qrlib');
       $custom_bg_color = json_decode(urldecode($custom_bg_color));
       $custom_color = json_decode(urldecode($custom_color));
@@ -4265,6 +4270,9 @@ Thank you for your order. Below you can find the details of your order. If you o
 
     public function testPaymentIntent($payment_id='')
     {
+
+      echo base_url("user/generate_qr_code/1234/6/".urlencode(json_encode([183,220,65]))."/".urlencode(json_encode([255,255,255])));
+      die;
 
       $payment_id = 'pi_1JIuW8SGHshxlum8wBSrQZsL';
       $this->load->library('Stripe_lib');

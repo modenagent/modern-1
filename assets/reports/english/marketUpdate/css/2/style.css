@@ -119,14 +119,18 @@ page {
 .hero_caption {
   position: absolute;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.4);
+  /*background: rgba(0, 0, 0, 0.4);*/
   padding: 25px 50px;
   color: #fff;
   font-size: 17px;
   line-height: 25px;
+  text-align: center;
+  left: 0;
+  right: 0;
 }
 .hero_caption p {
   margin: 0;
+  background: rgba(0, 0, 0, 0.8);
 }
 .hero_caption ul {
   list-style: none;
