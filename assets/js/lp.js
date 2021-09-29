@@ -291,6 +291,14 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'mu_theme='+$('.mu_radio:checked').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     query += '&' + 'selected_theme='+rgb2hex($('#report_color').val());
+    var subscribe_temp = [];
+    var i_index = 0;
+    $('.subscribe_temp:checked').each(function() {
+        query += '&' + 'subscribe_temp['+i_index+']='+this.value;
+        i_index++;
+    }); 
+
+    subscribe_temp
     
     if(activeRequest){
         activeRequest=false;

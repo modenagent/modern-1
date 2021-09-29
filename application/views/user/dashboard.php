@@ -230,8 +230,8 @@
                             </div>
                             <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
                         </div>
-                        <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
-                            <div class="col-md-6 marketUpdate_dropdowns marketUpdate_template" style="display: none">
+                        <?php if($packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                            <div class="col-md-6 color-selection" style="display: none">
                                 <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
                                     <?php
                                     if(count($reportTemplates)): ?>
@@ -262,7 +262,9 @@
                                         ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
                                 <label class="user-heading alt gray-bg" for="pb">
                                     <div class="text-center"> 
+                                        <?php if(!($packages['seller']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
                                         <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
+                                        <?php endif; ?>
                                         <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
                                         <?php if(!($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
                                         <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
@@ -278,6 +280,7 @@
                         </div>
                     </div>
                     <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                        <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="marketUpdate" checked="" style="display: none !important">
                     <div class="carousel-container marketUpdate_template" style="display: none">
                         <div id="owl-example-marketUpdate" class="owl-carousel">
                             <?php
@@ -302,6 +305,35 @@
                         </div>
                     </div>
                     <?php endif; ?>
+
+                    <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                        <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="seller" checked="" style="display: none !important">
+                    <div class="carousel-container seller_template" style="display: none">
+                        <div id="owl-example-seller" class="owl-carousel">
+                            <?php
+                                for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
+                                ?>
+                            <div class="item">
+                                <input type="radio"  
+                                    <?php 
+                                        if($mu_i == 1){
+                                          echo 'checked';
+                                        }
+                                        ?> class="mu_radio" id="seller_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_seller">
+                                <label class="user-heading alt gray-bg" for="pb">
+                                    <div class="text-center">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/seller/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
+                                    </div>
+                                </label>
+                            </div>
+                            <?php 
+                                }
+                                ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+
                     <div class="carousel-container registry_template" style="display: none">
                         <div id="owl-example-registry" class="owl-carousel">
                             <?php
@@ -629,6 +661,7 @@
     
                 <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                     $('.common_template').hide();
+                    $('.color-selection').show();
                 <?php endif; ?>
     
             });
@@ -667,6 +700,11 @@
     
                 
             });
+
+            <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                    $('.common_template').hide();
+                    $('.color-selection').show();
+                <?php endif; ?>
             
     
     
