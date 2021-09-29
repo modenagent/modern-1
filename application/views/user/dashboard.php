@@ -701,7 +701,7 @@
                 
             });
 
-            <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+            <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                     $('.common_template').hide();
                     $('.color-selection').show();
                 <?php endif; ?>
