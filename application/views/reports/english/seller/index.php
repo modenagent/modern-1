@@ -1,3 +1,11 @@
+<?php
+$default_theme = 1;
+if($this->input->post('mu_theme') >= 1 && $this->input->post('mu_theme') <= 3) {
+    $default_theme = (int)$this->input->post('mu_theme');
+}
+if($default_theme > 1) :
+$this->load->view('reports/english/seller/'.$default_theme .'/index');
+else: ?>
 <!DOCTYPE html>
 <html>
 
@@ -203,3 +211,9 @@ $('.ui-slider-handle:eq(1)').append('<span class="price-range-max value">$' + _m
 </body>
 
 </html>
+<?php
+endif;
+if($this->input->post('show_html') == 1) {
+ die;
+}
+?>
