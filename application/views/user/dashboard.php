@@ -11,6 +11,14 @@
     height: 54px;
     width: 138px;
     }
+    #step-2 h2, #step-3 h2 {
+        font-size: 18px;
+    }
+    #report_color {
+        max-width: 100px;
+    }
+    #butcomp .row > div:before {content: "|";position: absolute;left: 0px;}
+    #butcomp .row > div:first-child:before {content: "";}
 </style>
 <!--Features section -->
 <section id="steps">
@@ -216,36 +224,45 @@
                 <div class="backwrap hidden"></div>
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <h2><strong>Choose Your Branding</strong></h2>
                         </div>
-                        <div class="col-md-6 common_template" id="butcomp">
+                        <div class="col-md-8 common_template" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
-                            <div class="pull-right1" style="">
-                                Report Language: 
-                                <select name="report_lang" style="background-color:transparent; border:none;">
-                                    <option  style="color:#000000;" value="english">English</option>
-                                    <option style="color:#000000;" value="spanish">Spanish</option>
-                                </select>
-                            </div>
-                            <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a> | &nbsp
-                        </div>
-                        <?php if($packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
-                            <div class="col-md-6 color-selection" style="display: none">
-                                <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
-                                    <?php
-                                    if(count($reportTemplates)): ?>
-                                        Select Color
-                                        <select id="report_color" name="report_color" style="background: transparent;">
-                                            <?php foreach($reportTemplates as $key=>$reportTemplate): ?>
-                                            <option <?php echo $key==0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
-                                            <?php endforeach; ?>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="pull-right1" style="">
+                                        Language: 
+                                        <select name="report_lang" style="background-color:transparent; border:none;">
+                                            <option  style="color:#000000;" value="english">English</option>
+                                            <option style="color:#000000;" value="spanish">Spanish</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a>
+                                </div>
+                                <div class="col-sm-4">
+                                    <?php if($packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                                        <div class="color-selection" style="display: none">
+                                            <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
+                                                <?php
+                                                if(count($reportTemplates)): ?>
+                                                    Color
+                                                    <select id="report_color" name="report_color" style="background: transparent;">
+                                                        <?php foreach($reportTemplates as $key=>$reportTemplate): ?>
+                                                        <option <?php echo $key==0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
+                                                        <?php endforeach; ?>
+                                                    </select>
+                                                <?php endif; ?>
+                                               
+                                            </div>
+                                        </div>
                                     <?php endif; ?>
-                                   
                                 </div>
                             </div>
-                        <?php endif; ?>
+                        </div>
+                        
                     </div>
                     <div class="carousel-container common_template">
                         <div id="owl-example" class="owl-carousel">
@@ -660,7 +677,7 @@
                 $('.common_template').show();
     
                 <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
-                    $('.common_template').hide();
+                    $('.carousel-container.common_template').hide();
                     $('.color-selection').show();
                 <?php endif; ?>
     
@@ -702,7 +719,7 @@
             });
 
             <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
-                    $('.common_template').hide();
+                    $('.carousel-container.common_template').hide();
                     $('.color-selection').show();
                 <?php endif; ?>
             
