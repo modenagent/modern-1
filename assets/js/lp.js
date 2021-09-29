@@ -289,6 +289,7 @@ function runPMA(agentPath, logoPath) {
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
     query += '&' + 'mu_theme='+$('.mu_radio:checked').val(); 
+    query += '&' + 'seller_theme='+$('.seller_radio:checked').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     query += '&' + 'selected_theme='+rgb2hex($('#report_color').val());
     var subscribe_temp = [];

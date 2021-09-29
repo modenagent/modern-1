@@ -336,7 +336,7 @@
                                         if($mu_i == 1){
                                           echo 'checked';
                                         }
-                                        ?> class="mu_radio" id="seller_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_seller">
+                                        ?> class="seller_radio" id="seller_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_seller">
                                 <label class="user-heading alt gray-bg" for="pb">
                                     <div class="text-center">
                                         <img class="registry_template1" src="<?php echo base_url("assets/reports/english/seller/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
