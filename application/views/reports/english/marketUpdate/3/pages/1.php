@@ -7,18 +7,12 @@
                         <h2>Curious about what
                         your home can sell
                         for FREE?</h2>
+                        <p class="infor-line">
+                            To receive your complimentary sales report via text message, scan the QR code with your smart phone.
+                        </p>
                     </div>
                     <div class="col-50">
-                        <!-- <ul class="list-inline">
-                            <?php 
-                            // if(empty($cma_url)):
-                                $cma_url = "https://modernagent.io/cma";
-                            // endif;
-                            $cma_url_display = preg_replace("(^https?://)", "", $cma_url );
-                             ?>
-                            <li><a href="<?php echo $cma_url; ?>"><img src="<?php echo base_url('assets/reports/english/marketUpdate/images/world.png');?>" alt="WWW"><?php echo $cma_url_display; ?></a></li>
-                            <li><a href="<?php echo $cma_url; ?>"><img src="<?php echo base_url('assets/reports/english/marketUpdate/images/keyboard.png');?>" alt="Code">ENTER CODE:<span><?php echo $user['ref_code']; ?></span></a></li>
-                        </ul> -->
+                        
                         <div class="qr-code-container">
                             <?php
                             $url = urlencode(base_url("cma/".$user['ref_code']));
@@ -32,9 +26,7 @@
                         </div>
                         
                     </div>
-                    <p class="infor-line">
-                        To receive your complimentary sales report via text message, scan above QR code
-                    </p>
+                    
                 </div>
             </div>
 
@@ -126,14 +118,14 @@
                                 ?>
 
                                 <?php 
-                                    if(isset($user['mobile']) && !empty($user['mobile']))
+                                    /*if(isset($user['mobile']) && !empty($user['mobile']))
                                     {
                                 ?>
                                         <a class="tel_number" href="tel:<?php echo $user['mobile']; ?>">
                                             M <span><?php echo $user['mobile']; ?></span>
                                         </a>
                                 <?php
-                                    }
+                                    }*/
                                 ?>
                             <?php 
                                     if(isset($user['email']) && !empty($user['email']))

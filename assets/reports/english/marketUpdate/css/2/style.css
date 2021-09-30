@@ -85,7 +85,7 @@ page {
 /* header */
 .header {
   background: #000;
-  text-align: center;
+  /*text-align: center;*/
   color: #fff;
   padding: 30px 50px;
   position: relative;
@@ -96,11 +96,11 @@ page {
   letter-spacing: 4px;
 }
 .header h1 span {
-  font-size: 10px;
+  /*font-size: 10px;*/
   position: absolute;
   right: 50px;
   letter-spacing: 1px;
-  top: 46%;
+  /*top: 46%;*/
   white-space: nowrap;
 }
 .header .logo {
@@ -120,9 +120,9 @@ page {
   position: absolute;
   bottom: 0;
   /*background: rgba(0, 0, 0, 0.4);*/
-  padding: 25px 50px;
+  /*padding: 25px 50px;*/
   color: #fff;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 25px;
   text-align: center;
   left: 0;
@@ -130,7 +130,8 @@ page {
 }
 .hero_caption p {
   margin: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 15px;
 }
 .hero_caption ul {
   list-style: none;
@@ -211,7 +212,9 @@ page {
   transform: translate(0, -50%);*/
 }
 .signature + .logo .smaller_img img {
-  width: 80px;
+  /*width: 80px;*/
+    max-height: 80px;
+    width: auto;
 }
 .signature + .logo .smaller_img .copyright {
   margin-top: 2px;
@@ -262,8 +265,8 @@ page {
 .address {
   padding: 0;
   font-weight: 700;
-  font-size: 12px;
-  margin-bottom: 10px;
+  font-size: 14px;
+  margin-top: 25px;
 }
 .visit_us {
   font-size: 11px;
@@ -278,9 +281,10 @@ page {
   font-size: 10px;
 }
 .copyright {
-  font-size: 8px;
-  text-align: center;
-  margin-top: 15px;
+  font-size: 9px;
+  text-align: right;
+  /*margin-top: 15px;*/
+  margin-bottom: 2px;
 }
 .logo_here {
   position: absolute;
@@ -342,17 +346,17 @@ page {
   width: 160px;
 }
 .signature + .logo img.mini_icon {
-  width: 45px;
+  width: 40px;
   position: absolute;
   right: -20px;
-  bottom: -40px;
+  bottom: -50px;
 }
 .orange_footer {
   background: #f2964a;
   color: #fff;
-  padding: 15px 50px;
-  display: flex;
-  justify-content: space-between;
+  padding: 18px 50px;
+  /*display: flex;
+  justify-content: space-between;*/
   font-size: 11px;
   letter-spacing: 1px;
 }
@@ -360,4 +364,8 @@ page {
   color: inherit;
   letter-spacing: 0;
   text-decoration: none;
+}
+.qr-code-container {
+  position: relative;
+  bottom: 60px;
 }
