@@ -96,7 +96,7 @@ page {
 .signature + .logo img {
   /*width: 160px;*/
   max-height: 100px;
-  /*max-width: 150px;*/
+  max-width: 250px;
   width: auto;
 }
 .profile_img {
