@@ -58,9 +58,11 @@ page {
 }
 /* footer */
 .footer {
-  background: #0d294b;
+  background: url("../../images/3_mu_footer.jpg") no-repeat bottom;
+  /*background: #0d294b;*/
   padding: 50px 50px;
   color: #fff;
+  background-size: cover;
 }
 .logo img {
   width: 120px;
@@ -79,7 +81,7 @@ page {
 }
 .horizontal_sign > img {
   margin-right: 30px;
-  margin-top: 14px;
+  /*margin-top: 14px;*/
 }
 .horizontal_sign .tel_number,
 .horizontal_sign .contact_info {
@@ -93,8 +95,9 @@ page {
 }
 .signature + .logo img {
   /*width: 160px;*/
-  max-height: 150px;
-  max-width: 150px;
+  max-height: 100px;
+  /*max-width: 150px;*/
+  width: auto;
 }
 .profile_img {
   width: 110px;
@@ -127,7 +130,7 @@ page {
 .contact_info {
   /*opacity: 0.6;*/
   display: block;
-  color: #000;
+  color: #000\
   text-decoration: none;
   font-size: 12px;
 }
@@ -136,10 +139,10 @@ page {
   padding: 0;
 }
 .market_update_hero {
-  background: url("https://i.ibb.co/RB7SFz0/Market-Update.png") no-repeat bottom;
+  background: url("../../images/3_mu_top.jpg") no-repeat bottom;
   background-size: cover;
   color: #fff;
-  padding: 50px 50px 25px;
+  padding: 50px 50px;
 }
 .market_update_hero h1 {
   font-size: 70px;
@@ -159,7 +162,7 @@ page {
   font-size: 26px;
   font-weight: 600;
   margin-bottom: 10px;
-  margin-top: 50px;
+  /*margin-top: 50px;*/
 }
 .list-inline {
   padding: 0;
@@ -190,23 +193,23 @@ page {
 }
 .market_update_hero p {
   font-family: "Crimson Text", serif;
-  font-size: 17px;
-  float: right;
+  font-size: 24px;
+  /*float: right;*/
 }
 .market_update_hero ul {
   margin-top: 25px;
 }
 .qr-code-container {
-  text-align: center;
+  text-align: right;
 }
 .market_update_table {
-  padding: 37px 50px;
+  padding: 38px 50px;
 }
 .market_update_table table {
   width: 100%;
   border-collapse: collapse;
 }
-.market_update_table th {
+.market_update_table th,.market_update_table td {
   font-family: "Crimson Text", serif;
 }
 .market_update_table table th {
@@ -216,8 +219,8 @@ page {
   font-size: 18px;
 }
 .market_update_table table td {
-  padding: 18px 0 0;
-  font-size: 16px;
+  padding: 15px 0 0;
+  font-size: 18px;
   font-weight: 600;
 }
 .market_update_table table tr:nth-child(2) {

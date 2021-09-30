@@ -14,6 +14,9 @@
         .orange_footer {
             background: <?php echo $theme ?>;
         }
+        .table_transparent th {
+            color: <?php echo $theme ?>;
+        }
     </style>
 </head>
 

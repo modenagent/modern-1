@@ -23,8 +23,7 @@
                     </div>
                     <div class="">
                         <p>
-                            To receive your complimentary sales report via
-                            text message, scan above QR code
+                            Scan above QR code to receive your complimentary sales report via text message
                         </p>
                     </div>
                 </div>
@@ -130,18 +129,18 @@
 
                                 $company_display_url = preg_replace("(^https?://)", "", $parsed_url );
                         ?>
-                            <div class="visit_us">Visit us online at
+                            <!-- <div class="visit_us">Visit us online at
                                 <a href="<?php echo $parsed_url; ?>" target="_blank"class="contact_info">
                                     <?php echo $company_display_url; ?>
                                 </a>
-                            </div>
+                            </div> -->
                        
                         <div class="address"><?php echo $user['street']; ?> <br><?php echo $user['company_city']; ?> <?php echo $user['city']; ?> <?php echo $user['zip']; ?></div>
-                        <div class="licensed">Licensed in Oregon & Washington</div>
+                        <!-- <div class="licensed">Licensed in Oregon & Washington</div> -->
                     </div>
                     <div class="smaller_img">
                         <img src="<?php echo base_url().$user['company_logo']; ?>" alt="companyname">
-                        <p class="copyright"><?php echo $user['companyname']; ?></p>
+                        <!-- <p class="copyright"><?php echo $user['companyname']; ?></p> -->
                     </div>
                     <img src="https://i.ibb.co/VQSTyxQ/footer-icons.png" alt="footer-icons" class="mini_icon">
                 </div>
