@@ -1,4 +1,4 @@
-<page>
+<page class="page23">
     <div class="thanks_block">
         <h2 class="small_big"><span>Thank</span>You</h2>
         <div class="mini_line white"></div>

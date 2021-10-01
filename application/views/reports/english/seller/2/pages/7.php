@@ -3,7 +3,7 @@
 
     <div class="d-flex mt-20">    
         <div class="col-12">
-            <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="graph" class="img-fluid mx-auto mt-50">
+            <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=620x350&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="graph" class="img-fluid mx-auto mt-50 chart-img">
             <table class="mt-60 bar_chart_data">
                 <thead>
                     <tr>

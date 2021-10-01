@@ -8,7 +8,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
 <page>
     <h1 class="report_title">Sellers Report</h1>
     <!-- <img src='<?php echo base_url("assets/reports/english/seller/2/images/black_logo.png"); ?>' alt="black-logo" class="mx-auto z9"> -->
-    <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" class="mx-auto z9 top-logo">
+    <!-- <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" class="mx-auto z9 top-logo"> -->
     <img src='<?php echo base_url("assets/reports/english/seller/2/images/hero.png"); ?>' alt="hero" class="w100 hero_img">
     <div class="main_title">
         <?php if(!empty($site_address)) {echo $site_address.', ';} ?>

@@ -1,6 +1,6 @@
 <page class="pdf24">
     <h1 class="report_title">&nbsp;</h1>
-    <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" class="mx-auto z9 top-logo">
+    <!-- <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" class="mx-auto z9 top-logo"> -->
     <img src="https://i.ibb.co/5K2mcTx/resort.png" alt="resort"  class="w100 hero_img">
     <div class="footer">
         <div class="more_info">For more information, please contact me.</div>
