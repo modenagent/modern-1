@@ -1,34 +1,37 @@
 <body>
     <page class="p-0 market_update">
-        <div class="header">
-            <!-- <img src="https://i.ibb.co/4823bQX/logo.png" alt="logo" class="logo"> -->
+        <div class="header-main">
+            <div class="header">
+                <!-- <img src="https://i.ibb.co/4823bQX/logo.png" alt="logo" class="logo"> -->
 
-            <h1>MARKET UPDATE <span>ZIPCODE: <?php echo $zipCode; ?></span></h1>
-        </div>
+                <h1>MARKET UPDATE <span>ZIPCODE: <?php echo $zipCode; ?></span></h1>
+            </div>
 
-        <div class="hero">
-            <div class="hero_caption">
-                <div class="image-inner">
-                    
-                    <div class="qr-code-container">
-                        <?php
-                        $url = urlencode(base_url("cma/".$user['ref_code']));
-                        list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
-                        $rgb_color_front =  urlencode(json_encode(array($r,$g,$b)));
-                        $rgb_color_back =  urlencode(json_encode(array(255,255,255)));
-                        $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=".$url);
-                        ?>
-                        <img src="<?php echo $image; ?>">
+            <div class="hero">
+                <div class="hero_caption">
+                    <div class="image-inner">
                         
-                    </div>
-                    <div class="">
-                        <p>
-                            Scan above QR code to receive your complimentary sales report via text message
-                        </p>
+                        <div class="qr-code-container">
+                            <?php
+                            $url = urlencode(base_url("cma/".$user['ref_code']));
+                            list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
+                            $rgb_color_front =  urlencode(json_encode(array($r,$g,$b)));
+                            $rgb_color_back =  urlencode(json_encode(array(255,255,255)));
+                            $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=".$url);
+                            ?>
+                            <img src="<?php echo $image; ?>">
+                            
+                        </div>
+                        <div class="">
+                            <p>
+                                Scan above QR code to receive your complimentary sales report via text message
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        
 
         <div class="p-50">
             <table class="table_transparent">
