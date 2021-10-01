@@ -45,7 +45,7 @@
                 </div>
             </div>
             <div class="logo">
-                <div class="mr-90">
+                <div class="">
                     <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" border="0">
                     <div class="auth">AUTHENTICITY ABOVE ALL.</div>
                     <div class="info_policy">This is not intended to solicit currently listed properties.<br>
