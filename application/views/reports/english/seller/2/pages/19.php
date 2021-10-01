@@ -1,7 +1,7 @@
 <page class="pdf19 pt-0 pr-0">
     <div class="d-flex">
         <div class="col-60">
-            <h2 class="small_big mt-120"><span>SOCIAL MEDIA</span>MARKETING</h2>
+            <h2 class="small_big"><span>SOCIAL MEDIA</span>MARKETING</h2>
             <div class="mini_line mx-0"></div>
             <p class="f14">
                 As part of our digital marketing strategy, your listing will be
