@@ -157,6 +157,7 @@
                         <?php if(!empty($user['company_logo']) && is_file(FCPATH.'/'.$user['company_logo'])) : ?>
                             <img src="<?php echo base_url().$user['company_logo']; ?>" alt="companyname" border="0">
                         <?php endif; ?>
+                        <p class="copyright">This is not intended to solicit currently listed properties. This information is deemed reliable, but not guaranteed.</p>
                         <!-- <img src="<?php echo base_url().'assets/reports/english/seller/images/1/white-logo.png'; ?>" alt="white-logo" border="0"> -->
                     </div>
                 </div>

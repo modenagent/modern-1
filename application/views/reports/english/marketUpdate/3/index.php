@@ -19,6 +19,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             background: -webkit-gradient(linear, left bottom, left top, from(rgba(<?php echo "$r,$g,$b" ?>, 0.6)), to(rgba(<?php echo "$r,$g,$b" ?>, 0.6))), url(<?php echo base_url("assets/reports/english/marketUpdate/images/3_mu_footer.jpg") ?>);
             background: -o-linear-gradient(bottom, rgba(<?php echo "$r,$g,$b" ?>, 0.6), rgba(<?php echo "$r,$g,$b" ?>, 0.6)), url(<?php echo base_url("assets/reports/english/marketUpdate/images/3_mu_footer.jpg") ?>);
             background : linear-gradient(0deg, rgba(<?php echo "$r,$g,$b" ?>, 0.6), rgba(<?php echo "$r,$g,$b" ?>, 0.6)), url(<?php echo base_url("assets/reports/english/marketUpdate/images/3_mu_footer.jpg") ?>);
+            background-size: cover;
         }
         .market_update_table table th {
             color: <?php echo $theme ?>;

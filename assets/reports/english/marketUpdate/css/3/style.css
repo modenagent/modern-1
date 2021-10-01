@@ -89,9 +89,10 @@ page {
 }
 .signature + .logo {
   width: auto;
-  flex: initial;
+  /*flex: initial;*/
   position: absolute;
   right: 55px;
+  text-align: right;
 }
 .signature + .logo img {
   /*width: 160px;*/
@@ -194,6 +195,7 @@ page {
 .market_update_hero p {
   font-family: "Crimson Text", serif;
   font-size: 24px;
+  line-height: 25px;
   /*float: right;*/
 }
 .market_update_hero ul {
@@ -201,9 +203,10 @@ page {
 }
 .qr-code-container {
   text-align: right;
+  margin-top: 20px;
 }
 .market_update_table {
-  padding: 38px 50px;
+  padding: 40px 50px;
 }
 .market_update_table table {
   width: 100%;
@@ -229,4 +232,8 @@ page {
 .market_update_table table th:not(:first-child),
 .market_update_table table td:not(:first-child) {
   text-align: center;
+}
+p.copyright {
+  font-size: 9px;
+  margin-top: 20px;
 }
