@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700,800,300);
 body {
   margin: 0;
   padding: 0;
@@ -288,7 +289,7 @@ page {
 .we_reach {
   width: 420px;
   /*height: 660px;*/
-  height: 730px;
+  height: 712px;
   position: relative;
 }
 /*.we_reach:before {
@@ -312,8 +313,8 @@ page {
   content: "";
   /*width: calc(100% - 50px);
   height: calc(100% - 50px);*/
-  width: 365px;
-  height: 687px;
+  width: 370px;
+  height: 670px;
   position: absolute;
   top: 25px;
   left: 25px;
@@ -351,7 +352,7 @@ page {
 }
 .pdf15 .w100 {
   /*height: 650px; */
-  height: 730px; 
+  height: 712px; 
 }
 /* pdf 20 */
 
@@ -431,8 +432,10 @@ page {
 .logo img {
   /*width: 120px;
   height: auto;*/
-  max-height: 79px;
+  max-height: 100px;
     width: auto;
+    max-width: 100px;
+    object-fit: contain;
 }
 .logo {
   width: 30%;
@@ -869,8 +872,8 @@ ul.home_list {
   height: 400px;
 }
 .map-image {
-  height: 558px;
-  object-fit: cover;
+  height: 523px;
+  /*object-fit: cover;*/
 }
 .chart-image {
   width: 100%;
