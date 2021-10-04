@@ -34,9 +34,9 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                     
                 <div>
                     <?php 
-                    if(!empty($user['first_name']) || !empty($user['last_name'])) {
+                    if(!empty($user['fullname'])) {
                     ?>
-                        <div class="profile_name"><?php echo $user['first_name']; ?> <?php echo $user['last_name']; ?></div>
+                        <div class="profile_name"><?php echo $user['fullname']; ?></div>
                     <?php } ?>
                     <?php 
                     if(isset($user['title']) && !empty($user['title'])) {
