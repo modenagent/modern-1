@@ -8,7 +8,7 @@
     </div>
     <!-- <div class="d-flex mt-20">    
         <div class="col-12"> -->
-            <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="Area Sales Analysis" class="img-fluid mx-auto w90">
+            <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=620x350&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="Area Sales Analysis" class="img-fluid mx-auto chart-image">
             <table class="mt-60">
                 <thead>
                     <tr>

@@ -175,6 +175,13 @@ page {
 .sub_title {
   font-size: 20px;
 }
+.body {
+    height: 800px;
+    width: auto;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
 /* pdf 5 */
 .pdf5 hr {
   width: 75%;
@@ -280,7 +287,8 @@ page {
 }
 .we_reach {
   width: 420px;
-  height: 660px;
+  /*height: 660px;*/
+  height: 730px;
   position: relative;
 }
 /*.we_reach:before {
@@ -302,8 +310,10 @@ page {
 }
 .we_reach:after {
   content: "";
-  width: calc(100% - 50px);
-  height: calc(100% - 50px);
+  /*width: calc(100% - 50px);
+  height: calc(100% - 50px);*/
+  width: 365px;
+  height: 687px;
   position: absolute;
   top: 25px;
   left: 25px;
@@ -340,7 +350,8 @@ page {
   object-fit: cover;
 }
 .pdf15 .w100 {
-  height: 650px; 
+  /*height: 650px; */
+  height: 730px; 
 }
 /* pdf 20 */
 
@@ -389,7 +400,8 @@ page {
   font-size: 32px;
 }
 .address {
-  padding: 40px 0 40px 70px;
+  /*padding: 40px 0 40px 70px;*/
+  padding: 50px;
   color: #0d294b;
 }
 .address a {
@@ -442,10 +454,19 @@ page {
 }
 .pdf20 {
   padding: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.pdf20 > .content {
+.pdf20 .main-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.pdf20  .content {
   padding: 35px 30px;
   position: relative;
+  background: #fff;
 }
 /* pdf18 */
 .table_title {
@@ -617,8 +638,9 @@ ul.home_list {
 }
 .pdf1 .header h1 {
   font-size: 24px;
-  margin-bottom: 3rem;
-  margin-top: 0;
+  /*margin-bottom: 3rem;*/
+  margin-top: 25px;
+  margin-bottom: 0;
 }
 .pdf1 .header p:nth-child(2) {
   font-weight: 600;
@@ -627,7 +649,7 @@ ul.home_list {
   margin: 0;
 }
 .pdf1 .header p:nth-child(3) {
-  /*margin-top: -0.5rem;*/
+  margin-top: 0;
   font-size: 22px;
   margin-bottom: 0;
 }
@@ -662,7 +684,11 @@ ul.home_list {
   width: auto;
 }
 .pdf1 .footer {
-  margin-top: -5px;
+  /*margin-top: -5px;*/
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 /* pdf2 */
 .pdf2 {
@@ -841,6 +867,13 @@ ul.home_list {
 }
 .map_image {
   height: 400px;
+}
+.map-image {
+  height: 558px;
+  object-fit: cover;
+}
+.chart-image {
+  width: 100%;
 }
 .pricing_img {
   height: 300px;
