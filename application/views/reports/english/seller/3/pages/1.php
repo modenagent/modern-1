@@ -24,8 +24,9 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
             <p><?php echo $city.' ,'.$state.' '.$zip; ?></p>
         </div>
     </div>
-    <div class="body">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/architecture-modern-residence6.jpg'; ?>" alt="architecture-modern-residence6" class="img-fluid d-block"><div class="footer">
+    <div class="body" style="background-image: url(<?php echo base_url().'assets/reports/english/seller/images/1/architecture-modern-residence6.jpg'; ?>)">
+        <!-- <img src="" alt="architecture-modern-residence6" class="img-fluid d-block">  -->
+        <div class="footer">
             <div class="d-flex">
                 <div class="signature horizontal_sign">
                     <?php 

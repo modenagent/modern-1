@@ -18,12 +18,11 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             border: 1px solid <?php echo $theme ?>; !important;
             background: <?php echo $theme ?>; !important;
         }
-        
-        .pdf1 .header h1 {
-                margin-bottom: 1rem;
-        }
-        .number_round,.btn_sale,.avg_block .number,.pdf16,.pdf17,.footer {
+        .number_round,.btn_sale,.avg_block .number,.pdf16,.pdf17 {
             background: <?php echo $theme ?>;
+        }
+        .footer {
+            background: rgba(<?php echo "$r,$g,$b" ?>, 0.7);
         }
         .main_title,.pricing_buttons li a.btn_price {
             color: <?php echo $theme ?>;
