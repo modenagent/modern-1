@@ -4507,3 +4507,6 @@ img.img-cover {
     max-height: 200px;
     object-fit: contain;
 }
+.page-right-img {
+    height: 1393px;
+}
