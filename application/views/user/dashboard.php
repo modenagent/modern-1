@@ -242,9 +242,9 @@
                                 <div class="col-sm-4">
                                     <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a>
                                 </div>
-                                <div class="col-sm-4">
-                                    <?php if($packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
-                                        <div class="color-selection" style="display: none">
+                                <div class="col-sm-4" style="display: none">
+                                    <?php if($packages['buyer']['active'] == 1 || $packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                                        <div class="color-selection" >
                                             <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
                                                 <?php
                                                 if(count($reportTemplates)): ?>
@@ -282,7 +282,9 @@
                                         <?php if(!($packages['seller']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
                                         <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
                                         <?php endif; ?>
+                                        <?php if(!($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
                                         <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
+                                        <?php endif; ?>
                                         <?php if(!($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
                                         <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
                                         <?php endif; ?>
@@ -310,7 +312,7 @@
                                           echo 'checked';
                                         }
                                         ?> class="mu_radio" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
-                                <label class="user-heading alt gray-bg" for="pb">
+                                <label class="user-heading alt gray-bg" for="mu_page_<?php echo $mu_i; ?>">
                                     <div class="text-center">
                                         <img class="registry_template1" src="<?php echo base_url("assets/reports/english/marketUpdate/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
                                     </div>
@@ -337,9 +339,36 @@
                                           echo 'checked';
                                         }
                                         ?> class="seller_radio" id="seller_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_seller">
-                                <label class="user-heading alt gray-bg" for="pb">
+                                <label class="user-heading alt gray-bg" for="seller_page_<?php echo $mu_i; ?>">
                                     <div class="text-center">
-                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/seller/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/seller/preview/{$mu_i}.jpg"); ?>" alt="Seller Report Preview">
+                                    </div>
+                                </label>
+                            </div>
+                            <?php 
+                                }
+                                ?>
+                        </div>
+                    </div>
+                    <?php endif; ?>
+
+                    <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                        <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="buyer" checked="" style="display: none !important">
+                    <div class="carousel-container buyer_template" style="display: none">
+                        <div id="owl-example-buyer" class="owl-carousel">
+                            <?php
+                                for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
+                                ?>
+                            <div class="item">
+                                <input type="radio"  
+                                    <?php 
+                                        if($mu_i == 1){
+                                          echo 'checked';
+                                        }
+                                        ?> class="buyer_radio" id="buyer_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_buyer">
+                                <label class="user-heading alt gray-bg" for="buyer_page_<?php echo $mu_i; ?>">
+                                    <div class="text-center">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/buyer/preview/{$mu_i}.jpg"); ?>" alt="Buyer report">
                                     </div>
                                 </label>
                             </div>
@@ -652,7 +681,7 @@
     function choose_presentation(presentation){
         console.log(pkg_prices);
         if(presentation === 'buyer'){
-            $("#config-comps-btn").hide();
+            $("#config-comps-btn").parent().hide();
             $("#presentation").val("buyer");
             $('#wizard').smartWizard("buyer");
             $('.seller_template').hide(function(){
@@ -660,8 +689,13 @@
                 $('.marketUpdate_template').hide();
                 $('.registry_template').hide();
                 $('.common_template').show();
+                <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                        $('.carousel-container.common_template').hide();
+                        $('.color-selection').parent().show();
+                    <?php endif; ?>
     
             });
+
             
     
         }else if(presentation === 'marketUpdate'){
@@ -678,12 +712,12 @@
     
                 <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                     $('.carousel-container.common_template').hide();
-                    $('.color-selection').show();
+                    $('.color-selection').parent().show();
                 <?php endif; ?>
     
             });
     
-            $("#config-comps-btn").show();
+            $("#config-comps-btn").parent().show();
             
     
         }
@@ -701,7 +735,7 @@
                 $('.common_template').hide();
     
             });
-            $("#config-comps-btn").hide();
+            $("#config-comps-btn").parent().hide();
             
     
     
@@ -720,7 +754,7 @@
 
             <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                     $('.carousel-container.common_template').hide();
-                    $('.color-selection').show();
+                    $('.color-selection').parent().show();
                 <?php endif; ?>
             
     
