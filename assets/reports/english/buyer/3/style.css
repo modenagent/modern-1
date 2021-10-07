@@ -1518,6 +1518,7 @@ ul.stats li:not(:last-child):after {
   position: absolute;
   left: -85px;
   top: 120px;
+  white-space: nowrap;
 }
 .position-relative {
   position: relative;
