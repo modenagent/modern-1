@@ -20,9 +20,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             background: <?php echo $theme; ?>;
         }
         .pdf8 {
-            background: -webkit-linear-gradient(top, rgba(<?php echo "$r,$g,$b" ?>,0.95) 0%, rgba(<?php echo "$r,$g,$b" ?>,0.95) 100%), url(<?php echo base_url("assets/reports/english/buyer/2/images/shutterstock-1395528875.jpg"); ?>);
-            background: linear-gradient(rgba(<?php echo "$r,$g,$b" ?>,0.95), rgba(<?php echo "$r,$g,$b" ?>,0.95)), url(<?php echo base_url("assets/reports/english/buyer/2/images/shutterstock-1395528875.jpg"); ?>);
-            background: -o-linear-gradient(rgba(<?php echo "$r,$g,$b" ?>,0.95), rgba(<?php echo "$r,$g,$b" ?>,0.95)),
+            background: -webkit-linear-gradient(top, rgba(<?php echo "$r,$g,$b" ?>,0.8) 0%, rgba(<?php echo "$r,$g,$b" ?>,0.8) 100%), url(<?php echo base_url("assets/reports/english/buyer/2/images/shutterstock-1395528875.jpg"); ?>);
+            background: linear-gradient(rgba(<?php echo "$r,$g,$b" ?>,0.8), rgba(<?php echo "$r,$g,$b" ?>,0.8)), url(<?php echo base_url("assets/reports/english/buyer/2/images/shutterstock-1395528875.jpg"); ?>);
+            background: -o-linear-gradient(rgba(<?php echo "$r,$g,$b" ?>,0.8), rgba(<?php echo "$r,$g,$b" ?>,0.8)),
             url(<?php echo base_url("assets/reports/english/buyer/2/images/shutterstock-1395528875.jpg"); ?>);
         }
         .pdf11 .col-20 {
@@ -127,7 +127,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
                $neighbor['male_ratio'] = (string)$demoInfo->ZipTotal;
             } else if((string)$demoInfo->Description=="Female Ratio") {
                $neighbor['female_ratio'] = (string)$demoInfo->ZipTotal;
-            } else if(in_array((string)$demoInfo->Description, array(2000,2009,2014))) {
+            } else if(is_numeric((int)$demoInfo->Description) && (int)$demoInfo->Description > 1000) {
                $neighbor['household_income'] = (string)$demoInfo->ZipTotal;
             }
         }

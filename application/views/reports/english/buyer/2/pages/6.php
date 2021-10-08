@@ -29,6 +29,9 @@
                 from the household census that is taken every
                 10 years.
             </p>
+            <p class="percentage" style="margin: 0">
+                $<?php echo $household_income; ?>k
+            </p>
         </div>
     </div>
     <div class="neighborhood_stats">
