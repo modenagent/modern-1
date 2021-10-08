@@ -38,7 +38,7 @@
 		</div>
 
 		<!--box 3-->
-		<div class="box-div">
+		<div class="box-div" style="clear: left;">
 			<h3>Credit</h3>
 			<h4>What You Need to Know</h4>	
 			<span>Most lenders today reserve the lowest rates for customers strong credit scores</span><Br><br>
