@@ -17,6 +17,9 @@
                 from the household census that is taken every
                 10 years.
             </p>
+            <p class="percentage" style="margin: 0">
+                $<?php echo $household_income; ?>k
+            </p>
         </div>    
         <div class="col-50">
             <h4 class="table_title">Female</h4>

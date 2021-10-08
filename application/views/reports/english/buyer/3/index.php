@@ -39,13 +39,13 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
               linear,
               left top,
               left bottom,
-              from(rgba(<?php echo "$r,$g,$b" ?>, 0.9)),
-              to(rgba(<?php echo "$r,$g,$b" ?>, 0.9))
+              from(rgba(<?php echo "$r,$g,$b" ?>, 0.7)),
+              to(rgba(<?php echo "$r,$g,$b" ?>, 0.7))
             ),
             url(<?php echo base_url("assets/reports/english/buyer/3/images/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg")?>);
-          background: -o-linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.9), rgba(<?php echo "$r,$g,$b" ?>, 0.9)),
+          background: -o-linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.7), rgba(<?php echo "$r,$g,$b" ?>, 0.7)),
             url(<?php echo base_url("assets/reports/english/buyer/3/images/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg")?>);
-          background: linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.9), rgba(<?php echo "$r,$g,$b" ?>, 0.9)),
+          background: linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.7), rgba(<?php echo "$r,$g,$b" ?>, 0.7)),
             url(<?php echo base_url("assets/reports/english/buyer/3/images/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg")?>);
         }
         .pdf6, .neighborhood_stats, .pdf16, .pdf17{
@@ -53,13 +53,13 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
               linear,
               left top,
               left bottom,
-              from(rgba(<?php echo "$r,$g,$b" ?>, 0.9)),
-              to(rgba(<?php echo "$r,$g,$b" ?>, 0.9))
+              from(rgba(<?php echo "$r,$g,$b" ?>, 0.7)),
+              to(rgba(<?php echo "$r,$g,$b" ?>, 0.7))
             ),
             url(<?php echo base_url("assets/reports/english/buyer/3/images/chuttersnap-u-Zcl28p3m4-unsplash.jpg")?>);
-          background: -o-linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.9), rgba(<?php echo "$r,$g,$b" ?>, 0.9)),
+          background: -o-linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.7), rgba(<?php echo "$r,$g,$b" ?>, 0.7)),
             url(<?php echo base_url("assets/reports/english/buyer/3/images/chuttersnap-u-Zcl28p3m4-unsplash.jpg")?>);
-          background: linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.9), rgba(<?php echo "$r,$g,$b" ?>, 0.9)),
+          background: linear-gradient(rgba(<?php echo "$r,$g,$b" ?>, 0.7), rgba(<?php echo "$r,$g,$b" ?>, 0.7)),
             url(<?php echo base_url("assets/reports/english/buyer/3/images/chuttersnap-u-Zcl28p3m4-unsplash.jpg")?>);
         }
         .buyerpdf13 .col-20,.ul_border {
@@ -169,9 +169,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
            $neighbor['male_ratio'] = (string)$demoInfo->ZipTotal;
         } else if((string)$demoInfo->Description=="Female Ratio") {
            $neighbor['female_ratio'] = (string)$demoInfo->ZipTotal;
-        } else if(in_array((string)$demoInfo->Description, array(2000,2009,2014))) {
-           $neighbor['household_income'] = (string)$demoInfo->ZipTotal;
-        }
+        } else if(is_numeric((int)$demoInfo->Description) && (int)$demoInfo->Description > 1000) {
+               $neighbor['household_income'] = (string)$demoInfo->ZipTotal;
+            }
     }
 
   ?>

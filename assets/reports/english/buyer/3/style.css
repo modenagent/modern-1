@@ -636,13 +636,13 @@ ul.home_list {
 .address_box {
   padding: 25px;
   text-align: center;
-  border: 2px solid #0d294b;
+  /*border: 2px solid #0d294b;*/
   margin: 0;
   color: #0d294b;
   font-size: 20px;
   background: #fff;
-  border-left: 0;
-  border-right: 0;
+  /*border-left: 0;
+  border-right: 0;*/
 }
 .address_box b {
   font-family: 'Crimson Text', serif;
@@ -1291,7 +1291,7 @@ ul.stats li:not(:last-child):after {
   margin-top: 40px !important;
 }
 .neighborhood_stats {
-  padding: 120px 50px;
+  padding: 80px 50px;
   /*background: -webkit-gradient(
       linear,
       left top,
@@ -1306,7 +1306,7 @@ ul.stats li:not(:last-child):after {
     url(https://i.ibb.co/n6DCLVr/chuttersnap-u-Zcl28p3m4-unsplash.jpg);*/
   background-size: cover;
   background-position: center;
-  margin: 50px -50px 0;
+  margin: 45px -50px 0;
 }
 .neighborhood_stats .stats {
   display: -webkit-box;
