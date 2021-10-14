@@ -256,6 +256,9 @@ class User extends CI_Controller
         $theme_data = $data['theme_data'] = $this->user_default_templates_model->with('theme_color_obj')->get_many_by('user_id',$userId);
         if($theme_data) {
           foreach ($theme_data as $theme_data_val) {
+            if($theme_data_val->theme_type == 'marketUpdate') {
+              $theme_data_val->theme_type = 'mu';
+            }
               $default_color[$theme_data_val->theme_type] = $theme_data_val->theme_color_obj->template_color;
               $default_sub_type[$theme_data_val->theme_type] = $theme_data_val->theme_sub_type;
           }

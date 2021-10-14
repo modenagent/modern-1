@@ -748,8 +748,8 @@ function multipleResults(response) { //console.log(response);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-city').text(city);
         // $('.js-run-apn-button').show();
     });
-    $('input[type="checkbox"], input[type="radio"]').iCheck({
-      checkboxClass: 'icheckbox_minimal-grey',
+    $('input[type="radio"]').iCheck({
+      // checkboxClass: 'icheckbox_minimal-grey',
       radioClass: 'icheckbox_minimal-grey',
       increaseArea: '20%' // optional
     });
