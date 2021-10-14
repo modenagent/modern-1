@@ -259,7 +259,7 @@
 
   //BEGIN CHECKBOX & RADIO
   $('input[type="radio"]').iCheck({
-    checkboxClass: 'icheckbox_minimal-grey',
+    // checkboxClass: 'icheckbox_minimal-grey',
     radioClass: 'icheckbox_minimal-grey',
     increaseArea: '20%' // optional
   });
@@ -1373,6 +1373,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.7"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.8"></script>
 </body>
 </html>
