@@ -5,6 +5,46 @@ white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
 }
+.theme_selection_div {
+    display: inline-block;
+    padding: 8px 6px;
+    border: 1px solid #fff;
+    color: #fff;
+    margin: 0px 5px;
+}
+.theme_selection_div select {
+    border: 0;
+    background: transparent;
+    width: 120px;
+}
+.theme_selection_div input.btn  {
+    border: 0;
+    height: initial;
+    margin: 0;  
+    padding: 0
+}
+.theme_selection_div select option {
+    color: #111;
+}
+.theme_selection_div input.btn:hover {
+    background: none;
+    margin: 0;
+}
+.cover-item.col-sm-2:nth-child(6n+1) {
+    clear: left;
+}
+.cover-item {
+  margin-top: 15px;
+}
+.theme_selection_div select option:disabled {
+    color: gray;
+}
+.subscribe_notice {
+  padding: 10px 0px;
+}
+.subscribe_notice > span {
+  padding: 10px;
+}
 </style>
 <!-- My Account section -->
 <section id="myaccount">
@@ -53,7 +93,8 @@ text-overflow: ellipsis;
                 <input type="password" class="form-control" name="old_password" placeholder="Password">
               </div>
             </div>
-            <div class=" col-sm-6 col-md-6 col-lg-6">
+            <div c
+            .lass=" col-sm-6 col-md-6 col-lg-6">
               <div class="form-group">
                 <label for="exampleInputPassword1">New Password</label>
                 <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Password">
@@ -205,10 +246,67 @@ text-overflow: ellipsis;
 <div id="tabs-3" style="z-index:20;">
   <div class="content-inner clearfix">
     <div class="col-md-12">
-      <h4>Select Cover Theme <!--<span class="pull-right">Default Theme:<strong> Blue (Like Prudential)</strong></span>--></h4>
-      <form id="agentDefaultThemeForm" action="#" method="post">
-        <div class="cover-list row">
+      <div class="row">
+        <div class="col-sm-4">
           <?php
+          $default_sub_type = 1;
+          $default_theme_color = 1;
+          if($theme_data){
+
+            foreach ($theme_data as $key => $theme_data_val) {
+              if($theme_data_val->theme_type == 'buyer') {
+                $default_sub_type = $theme_data_val->theme_sub_type;
+                $default_theme_color = $theme_data_val->theme_color;
+              }
+            }
+          }
+          ?>
+          
+          <h4>Select Cover Theme <!--<span class="pull-right">Default Theme:<strong> Blue (Like Prudential)</strong></span>--></h4>
+        </div>
+        <div class="col-sm-8">
+          <div class="theme_selection_div">
+            
+            <select class="select_theme_type select_change" id="select-theme-type">
+              <option value="buyer" selected="">Buyer</option>
+              <option value="seller">Seller</option>
+              <option value="marketUpdate">Market Update</option>
+            </select>
+          </div>
+          <div class="theme_selection_div">
+            
+            <select class="select_theme select_change" id="select-theme">
+              <?php for ($select_theme_sub_type=1; $select_theme_sub_type <=3 ; $select_theme_sub_type++) {  ?>
+                <option <?= ($select_theme_sub_type == $default_sub_type)?'selected' : '' ?> value="<?=$select_theme_sub_type?>">Theme <?=$select_theme_sub_type?></option>
+                
+              <?php } ?>
+            </select>
+          </div>
+          <div class="theme_selection_div">
+            
+            <select class="select_color" id="select-color">
+              <?php
+                foreach ($reportTemplates as $key => $report):
+              ?>
+              <option <?= ($report->report_templates_id_pk == $default_theme_color)?'selected' : '' ?> value="<?=$report->report_templates_id_pk?>" style="color: <?=$report->template_color?>"><?=$report->template_name?></option>
+              <?php endforeach; ?>
+            </select>
+          </div>
+
+          <div class="theme_selection_div">
+             <input id="agentDefaultTheme_save" type="button" class="btn btn-lp save" value="Save" />
+          </div>
+        </div>
+      </div>
+
+      <div class="subscribe_notice" style="display: none;"><span class="alert-warning">Please subscribe for <span id="rep_type"></span> to view all themes</span></div>
+        <div id="preview_pages" class="row" style="max-height: 230px;overflow: auto;">
+          <?php
+          $data_theme['type'] = 'seller';
+          $data_theme['sub_type'] = $default_sub_type;
+          ?>
+          <?php $this->load->view('user/theme/index',$data_theme); ?>
+          <?php /*
           foreach ($reportTemplates as $key => $report) {
           ?>
           <div class="col-xs-3 cover-item">
@@ -226,7 +324,8 @@ text-overflow: ellipsis;
             </label>
           </div>
           <?php
-          }
+          } */
+          
           ?>
         </div>
         <div class="row">
@@ -234,10 +333,10 @@ text-overflow: ellipsis;
             <div class="alert alert-success" style="display:none"></div>
           </div>
         </div>
-      </form>
-      <div class="col-md-12 text-right">
+      
+      <!-- <div class="col-md-12 text-right">
         <input id="agentDefaultTheme" type="button" class="btn btn-lp save" id="" value="Save" />
-      </div>
+      </div> -->
     </div>
   </div>
 </div>
@@ -274,3 +373,47 @@ text-overflow: ellipsis;
 
   </div>
 </div>
+<script type="text/javascript">
+  default_sub_type_buyer = default_sub_type_seller = default_sub_type_mu = 1; 
+  default_color_buyer = default_color_seller = default_color_mu = 1; 
+  active_buyer = active_seller = active_mu = active_all = 0;
+
+  <?php
+  if($theme_data){
+      foreach ($theme_data as $key => $theme_data_val) {
+        if($theme_data_val->theme_type == 'buyer') { ?>
+          default_sub_type_buyer = '<?php echo $theme_data_val->theme_sub_type ;?>';
+          default_color_buyer = '<?php echo $theme_data_val->theme_color;?>';
+        <?php
+        }
+        else if($theme_data_val->theme_type == 'seller') { ?>
+          default_sub_type_seller = '<?php echo $theme_data_val->theme_sub_type ;?>';
+          default_color_seller = '<?php echo $theme_data_val->theme_color;?>';
+        <?php
+        }
+        else if($theme_data_val->theme_type == 'marketUpdate') { ?>
+          default_sub_type_mu = '<?php echo $theme_data_val->theme_sub_type ;?>';
+          default_color_mu = '<?php echo $theme_data_val->theme_color;?>';
+        <?php
+        }
+      }
+    }
+
+    if($active_plans) {
+      foreach($active_plans as $active_plan) {
+        if($active_plan->package && $active_plan->package->package == 'buyer') { ?>
+          active_buyer = 1;
+        <?php }
+        else if($active_plan->package && $active_plan->package->package == 'seller') { ?>
+          active_seller = 1;
+        <?php }
+        else if($active_plan->package && $active_plan->package->package == 'marketupdate') { ?>
+          active_mu = 1;
+        <?php }
+        else if($active_plan->package && $active_plan->package->package == 'all') { ?>
+          active_all = 1;
+        <?php }
+      }
+    } 
+  ?>
+</script>

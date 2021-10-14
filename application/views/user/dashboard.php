@@ -17,8 +17,8 @@
     #report_color {
         max-width: 100px;
     }
-    #butcomp .row > div:before {content: "|";position: absolute;left: 0px;}
-    #butcomp .row > div:first-child:before {content: "";}
+    /*#butcomp .row > div:before {content: "|";position: absolute;left: 0px;}
+    #butcomp .row > div:first-child:before {content: "";}*/
 </style>
 <!--Features section -->
 <section id="steps">
@@ -224,14 +224,18 @@
                 <div class="backwrap hidden"></div>
                 <div class="col-md-12">
                     <div class="col-md-12">
-                        <div class="col-md-4">
-                            <h2><strong>Choose Your Branding</strong></h2>
+                        <div class="col-md-6">
+                            
+                            <h2 ><strong class="common_cls">Choose Your Branding</strong>
+                                <strong class="subscribe_cls" style="display: none;">Preview Pages</strong>
+                                <span style="display: block; font-size: 12px; text-transform: initial;">Select theme from <a href="<?php echo base_url('user/myaccount');?>">My Account</a></span>
+                            </h2>
                         </div>
-                        <div class="col-md-8 common_template" id="butcomp">
+                        <div class="col-md-6 common_template" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
                             <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="pull-right1" style="">
+                                <div class="col-sm-4" style="display: none !important">
+                                    <div class="pull-right1 report_lang_div" style="">
                                         Language: 
                                         <select name="report_lang" style="background-color:transparent; border:none;">
                                             <option  style="color:#000000;" value="english">English</option>
@@ -239,10 +243,10 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-4">
+                                <div class="col-sm-6">
                                     <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a>
                                 </div>
-                                <div class="col-sm-4" style="display: none">
+                                <div class="col-sm-2" style="display: none !important">
                                     <?php if($packages['buyer']['active'] == 1 || $packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                                         <div class="color-selection" >
                                             <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
@@ -300,9 +304,10 @@
                     </div>
                     <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="marketUpdate" checked="" style="display: none !important">
+                        <input type="hidden" class="mu_radio" id="mu_page_1" value="<?php echo $default_sub_type['mu']; ?>" name="cover_mu">
                     <div class="carousel-container marketUpdate_template" style="display: none">
                         <div id="owl-example-marketUpdate" class="owl-carousel">
-                            <?php
+                            <?php /*
                                 for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
                                 ?>
                             <div class="item">
@@ -319,7 +324,33 @@
                                 </label>
                             </div>
                             <?php 
-                                }
+                                } */
+                                $type = 'marketUpdate';
+                                $sub_type = $default_sub_type['mu'];
+                                $check_dir = "assets/reports/english/$type/preview/$sub_type/";
+                                $load_dir = FCPATH.$check_dir;
+
+                                if(is_dir($load_dir)) :
+
+                                  $images = glob($load_dir . "*.jpg");
+
+                                  $count_imgs = count($images);
+
+                                  for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+
+                                    <div class="item">
+                                        
+                                        <div class="text-center">
+                                            <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Market Update">
+                                        </div>
+                                        
+                                    </div>
+
+                                
+                                <?php
+
+                                  endfor;
+                                endif;
                                 ?>
                         </div>
                     </div>
@@ -327,9 +358,11 @@
 
                     <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="seller" checked="" style="display: none !important">
+                        <input type="hidden" class="seller_radio" id="seller_page_1" value="<?php echo $default_sub_type['seller']; ?>" name="cover_seller">
                     <div class="carousel-container seller_template" style="display: none">
                         <div id="owl-example-seller" class="owl-carousel">
                             <?php
+                            /*
                                 for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
                                 ?>
                             <div class="item">
@@ -346,7 +379,34 @@
                                 </label>
                             </div>
                             <?php 
-                                }
+                                } */
+                                $type = 'seller';
+                                $sub_type = $default_sub_type['seller'];
+                                $check_dir = "assets/reports/english/$type/preview/$sub_type/";
+                                $load_dir = FCPATH.$check_dir;
+
+                                if(is_dir($load_dir)) :
+
+                                  $images = glob($load_dir . "*.jpg");
+
+                                  $count_imgs = count($images);
+
+                                  for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+
+                                    <div class="item">
+                                        
+                                        <div class="text-center">
+                                            <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Seller">
+                                        </div>
+                                        
+                                    </div>
+
+                                
+                                <?php
+
+                                  endfor;
+                                endif;
+                                
                                 ?>
                         </div>
                     </div>
@@ -354,9 +414,11 @@
 
                     <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="buyer" checked="" style="display: none !important">
+                        <input type="hidden"  class="buyer_radio" id="buyer_page_1" value="<?php echo $default_sub_type['buyer']; ?>" name="cover_buyer">
                     <div class="carousel-container buyer_template" style="display: none">
                         <div id="owl-example-buyer" class="owl-carousel">
                             <?php
+                            /*
                                 for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
                                 ?>
                             <div class="item">
@@ -374,6 +436,33 @@
                             </div>
                             <?php 
                                 }
+                                */
+                                $type = 'buyer';
+                                $sub_type = $default_sub_type['buyer'];
+                                $check_dir = "assets/reports/english/$type/preview/$sub_type/";
+                                $load_dir = FCPATH.$check_dir;
+
+                                if(is_dir($load_dir)) :
+
+                                  $images = glob($load_dir . "*.jpg");
+
+                                  $count_imgs = count($images);
+
+                                  for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+
+                                    <div class="item">
+                                        
+                                        <div class="text-center">
+                                            <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Seller">
+                                        </div>
+                                        
+                                    </div>
+
+                                
+                                <?php
+
+                                  endfor;
+                                endif;
                                 ?>
                         </div>
                     </div>
@@ -571,6 +660,10 @@
 <!-- Screenshots section -->
 <script src="https://js.stripe.com/v3"></script>
 <script type="text/javascript">
+
+    var default_color = '<?php echo json_encode($default_color); ?>';
+    default_color = JSON.parse(default_color);
+    console.log(default_color);
     $(document).ready(function(){
         // $('input[type=radio][name=cover_mu]').on('ifChecked', function () {
         //     if($(this).val() == 1) {
@@ -689,9 +782,16 @@
                 $('.marketUpdate_template').hide();
                 $('.registry_template').hide();
                 $('.common_template').show();
+                $(".custom-checkbox[value='"+default_color.buyer+"']").prop("checked",true);
+                $(".custom-checkbox").iCheck('update');
                 <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                         $('.carousel-container.common_template').hide();
-                        $('.color-selection').parent().show();
+                        $('.report_lang_div').parent().hide();
+                        $('#report_color').val(default_color.buyer);
+                        $('.common_cls').hide();
+                        $('.subscribe_cls').show();
+                        // $('.color-selection').parent().show();
+                        //
                     <?php endif; ?>
     
             });
@@ -709,10 +809,15 @@
                 $('.marketUpdate_template').show();
                 $('.registry_template').hide();
                 $('.common_template').show();
-    
+                $(".custom-checkbox[value='"+default_color.mu+"']").prop("checked",true);
+                $(".custom-checkbox").iCheck('update');
                 <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                     $('.carousel-container.common_template').hide();
-                    $('.color-selection').parent().show();
+                    $('.report_lang_div').parent().hide();
+                    $('#report_color').val(default_color.mu);
+                    $('.common_cls').hide();
+                    $('.subscribe_cls').show();
+                    // $('.color-selection').parent().show();
                 <?php endif; ?>
     
             });
@@ -748,15 +853,20 @@
                 $('.marketUpdate_template').hide();
                 $('.registry_template').hide();
                 $('.common_template').show();
-    
+                $(".custom-checkbox[value='"+default_color.seller+"']").prop("checked",true);
+                $(".custom-checkbox").iCheck('update');
                 
+                
+                <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                        $('.carousel-container.common_template').hide();
+                        $('.report_lang_div').parent().hide();
+                        $('#report_color').val(default_color.seller);
+                        $('.common_cls').hide();
+                        $('.subscribe_cls').show();
+                        // $('.color-selection').parent().show();
+                    <?php endif; ?>
             });
 
-            <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
-                    $('.carousel-container.common_template').hide();
-                    $('.color-selection').parent().show();
-                <?php endif; ?>
-            
     
     
         }
