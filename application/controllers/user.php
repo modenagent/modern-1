@@ -219,8 +219,13 @@ class User extends CI_Controller
                                 array(
                                   'user_id_pk'=>$this->session->userdata('userid')
                             ));
-        $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
-
+        $reportTemplates = $this->base_model->all_records('lp_report_templates');  
+        $data['reportTemplates'] = $reportTemplates;
+        $default_color['seller'] = $default_color['buyer'] = $default_color['mu'] = null;
+        $default_sub_type['seller'] = $default_sub_type['buyer'] = $default_sub_type['mu'] = 1;
+        if(is_array($data['reportTemplates']) && count($data['reportTemplates'])) {
+          $default_color['seller'] = $default_color['buyer'] = $default_color['mu'] = $data['reportTemplates'][0]->template_color;
+        }
         $this->load->model('package_model');
         $packages_all = $this->package_model->get_many_by(['title !='=>'']);
         $packages = array();
@@ -246,8 +251,20 @@ class User extends CI_Controller
         $data['packages'] = $packages;
         $data['report_price'] = $this->package_model->get_reports_price();
 
-        $this->load->helper('captcha');
-        create_image();
+        $this->load->model('user_default_templates_model');
+
+        $theme_data = $data['theme_data'] = $this->user_default_templates_model->with('theme_color_obj')->get_many_by('user_id',$userId);
+        if($theme_data) {
+          foreach ($theme_data as $theme_data_val) {
+              $default_color[$theme_data_val->theme_type] = $theme_data_val->theme_color_obj->template_color;
+              $default_sub_type[$theme_data_val->theme_type] = $theme_data_val->theme_sub_type;
+          }
+        }
+
+        $data['default_color'] = $default_color;
+        $data['default_sub_type'] = $default_sub_type;
+        // $this->load->helper('captcha');
+        // create_image();
         $this->load->view('user/header', $data);
         $this->load->view('user/dashboard', $data);
         $this->load->view('user/footer');
@@ -672,6 +689,7 @@ class User extends CI_Controller
       $data['current'] = "myaccount";
       $data['title'] = "My Account";
       if($this->session->userdata('userid')){
+        $user_id = $this->session->userdata('userid');
           $this->load->helper('captcha');
           create_image();
           $this->load->model('package_model');
@@ -743,6 +761,7 @@ class User extends CI_Controller
           $data['active_all'] = $active_all;
 
 
+
           $customer_created = false;
           $check_customer = $data['agentInfo'];
           $userId = $check_customer->user_id_pk;
@@ -769,6 +788,9 @@ class User extends CI_Controller
 
           // var_dump($active_plans);die;
 
+          $this->load->model('user_default_templates_model');
+
+          $data['theme_data'] = $this->user_default_templates_model->get_many_by('user_id',$user_id);
           $data['customer_id'] = $customer_id;
           
           // print_r($data['agentInfo']);
@@ -778,6 +800,43 @@ class User extends CI_Controller
       }else{
         redirect('frontend/index');
       }
+    }
+    public function getPreviews()
+    {
+      $data = array();
+      $data['type']=$this->input->post('theme_type');
+      $data['sub_type']=$this->input->post('theme_sub_type');
+      $this->load->view('user/theme/index',$data);
+    }
+    public function saveTheme()
+    {
+      $return_data['status'] = '';
+      $return_data['message'] = '';
+      $theme_type = $this->input->post('theme_type');
+      $theme_sub_type = $this->input->post('theme_sub_type');
+      $theme_color = $this->input->post('theme_color');
+      $userId = $this->session->userdata('userid');
+      $this->load->model('user_default_templates_model');
+      //Check existence
+      $data['user_id']=$userId;
+      $data['theme_type']=$theme_type;
+      $check_data = $this->user_default_templates_model->get_by($data);
+      if($check_data && !empty($check_data->id)) {
+        $update_data['theme_sub_type'] = $theme_sub_type;
+        $update_data['theme_color'] = $theme_color;
+        $this->user_default_templates_model->update($check_data->id,$update_data);
+        $return_data['status'] = 'success';
+        $return_data['message'] = 'Default theme Changed.';
+      }
+      else {
+        $data['theme_sub_type'] = $theme_sub_type;
+        $data['theme_color'] = $theme_color;
+        $this->user_default_templates_model->insert($data);
+        $return_data['status'] = 'success';
+        $return_data['message'] = 'Default theme Saved.';
+      }
+      echo json_encode($return_data);
+
     }
     public function createSubscription(){
 

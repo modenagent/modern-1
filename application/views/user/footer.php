@@ -258,7 +258,7 @@
   }
 
   //BEGIN CHECKBOX & RADIO
-  $('input[type="checkbox"], input[type="radio"]').iCheck({
+  $('input[type="radio"]').iCheck({
     checkboxClass: 'icheckbox_minimal-grey',
     radioClass: 'icheckbox_minimal-grey',
     increaseArea: '20%' // optional
@@ -1268,8 +1268,111 @@
                     }
             });
         }
+
+        if($('#myaccount #tabs-3 #preview_pages ').length) {
+
+          
+          $('#myaccount #tabs-3 .theme_selection_div .select_change').change(function() {
+
+            if($(this).attr('id') == "select-theme-type") {
+              $("#select-theme option[value='2']").prop('disabled', false);
+              $("#select-theme option[value='3']").prop('disabled', false);
+              $(".subscribe_notice").hide();
+              if($(this).val() == 'buyer') {
+                $("#select-theme").val(default_sub_type_buyer);
+                $("#select-color").val(default_color_buyer);
+                if(active_buyer == 0 && active_all == 0) {
+                  $("#select-theme").val(1);
+                  $("#select-theme option[value='2']").prop('disabled', true);
+                  $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#rep_type").html('Buyer');
+                  $(".subscribe_notice").show();
+
+                }
+              }
+              else if($(this).val() == 'seller') {
+                $("#select-theme").val(default_sub_type_seller);
+                $("#select-color").val(default_color_seller);
+                if(active_seller == 0 && active_all == 0) {
+                  $("#select-theme").val(1);
+                  $("#select-theme option[value='2']").prop('disabled', true);
+                  $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#rep_type").html('Seller');
+                  $(".subscribe_notice").show();
+
+                }
+              }
+              else if($(this).val() == 'marketUpdate') {
+                $("#select-theme").val(default_sub_type_mu);
+                $("#select-color").val(default_color_mu);
+                if(active_mu == 0 && active_all == 0) {
+                  $("#select-theme").val(1);
+                  $("#select-theme option[value='2']").prop('disabled', true);
+                  $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#rep_type").html('Market Update');
+                  $(".subscribe_notice").show();
+
+                }
+              }
+            }
+
+            var theme_type = $("#select-theme-type").val();
+            var theme_sub_type = $("#select-theme").val();
+            $.ajax({
+              url:base_url + 'user/getPreviews',
+              method:'POST',
+              data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
+              success:function(resp){
+                $('#tabs-3 #preview_pages').html(resp)
+              }
+            });
+          });
+
+          $('#agentDefaultTheme_save').click(function(){
+            $(this).prop('disabled', true);
+            var theme_type = $("#select-theme-type").val();
+            var theme_sub_type = $("#select-theme").val();
+            var theme_color = $("#select-color").val();
+
+            $.ajax({
+              url:base_url + 'user/saveTheme',
+              method:'POST',
+              data : {theme_type:theme_type,theme_sub_type,theme_sub_type,theme_color:theme_color},
+              dataType:'json',
+              success:function(resp){
+                if (resp.status=="success") {
+                    $('#tabs-3 .alert').html(resp.message).show();
+                    setTimeout(function(){
+                      $('#tabs-3 .alert').fadeOut(1500);
+                    },2000);
+                } else {
+
+                }
+                $('#agentDefaultTheme_save').prop('disabled', false);
+
+              },
+              error: function(error) {
+                $('#agentDefaultTheme_save').prop('disabled', false);
+              }
+            });
+
+            if(theme_type == 'buyer') {
+              default_sub_type_buyer = theme_sub_type;
+              default_color_buyer = theme_color;
+            }
+            else if(theme_type == 'seller') {
+              default_sub_type_seller = theme_sub_type;
+              default_color_seller = theme_color;
+            }
+            else if(theme_type == 'marketUpdate') {
+              default_sub_type_mu = theme_sub_type;
+              default_color_mu = theme_color;
+            }
+
+          });
+        }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.6"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.7"></script>
 </body>
 </html>
