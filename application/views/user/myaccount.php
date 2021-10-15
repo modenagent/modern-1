@@ -45,6 +45,30 @@ text-overflow: ellipsis;
 .subscribe_notice > span {
   padding: 10px;
 }
+#preview_pages {
+    /*max-height: 230px;*/
+    max-height: 400px;
+    overflow: auto;
+}
+/* Height related chnages BI */
+.stMain ul.tabAnchor li {
+  height: 100px;
+}
+.stMain ul.tabAnchor li a {
+  padding: 25px 10px;
+  height: 100px;
+}
+.stContainer {
+  height: 500px !important;
+}
+
+#tabs #tabs-4 h4 {
+    margin-bottom: 40px;
+}
+.form-group {
+    margin-bottom: 30px;
+}
+/* Height related chnages BI */
 </style>
 <!-- My Account section -->
 <section id="myaccount">
@@ -93,8 +117,7 @@ text-overflow: ellipsis;
                 <input type="password" class="form-control" name="old_password" placeholder="Password">
               </div>
             </div>
-            <div c
-            .lass=" col-sm-6 col-md-6 col-lg-6">
+            <div class=" col-sm-6 col-md-6 col-lg-6">
               <div class="form-group">
                 <label for="exampleInputPassword1">New Password</label>
                 <input type="password" class="form-control" id="new_password" name="new_password" placeholder="Password">
@@ -300,7 +323,7 @@ text-overflow: ellipsis;
       </div>
 
       <div class="subscribe_notice" style="display: none;"><span class="alert-warning">Please subscribe for <span id="rep_type"></span> to view all themes</span></div>
-        <div id="preview_pages" class="row" style="max-height: 230px;overflow: auto;">
+        <div id="preview_pages" class="row" >
           <?php
           $data_theme['type'] = 'seller';
           $data_theme['sub_type'] = $default_sub_type;

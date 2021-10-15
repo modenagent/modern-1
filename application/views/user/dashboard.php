@@ -17,6 +17,12 @@
     #report_color {
         max-width: 100px;
     }
+    .wizard-head-container {
+        margin-right: 70px;
+    }
+    .report_lang_div {
+        white-space: nowrap;
+    }
     /*#butcomp .row > div:before {content: "|";position: absolute;left: 0px;}
     #butcomp .row > div:first-child:before {content: "";}*/
 </style>
@@ -223,12 +229,12 @@
                 </div>
                 <div class="backwrap hidden"></div>
                 <div class="col-md-12">
-                    <div class="col-md-12">
+                    <div class="wizard-head-container">
                         <div class="col-md-6">
                             
                             <h2 ><strong class="common_cls">Choose Your Branding</strong>
                                 <strong class="subscribe_cls" style="display: none;">Preview Pages</strong>
-                                <span style="display: block; font-size: 12px; text-transform: initial;">Select theme from <a href="<?php echo base_url('user/myaccount');?>">My Account</a></span>
+                                <span style="display: block; font-size: 12px; text-transform: initial;margin-bottom: 25px;">Select theme from <a href="<?php echo base_url('user/myaccount');?>">My Account</a></span>
                             </h2>
                         </div>
                         <div class="col-md-6 common_template" id="butcomp">
@@ -243,9 +249,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
-                                    <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a>
-                                </div>
+                                
                                 <div class="col-sm-2" style="display: none !important">
                                     <?php if($packages['buyer']['active'] == 1 || $packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                                         <div class="color-selection" >
@@ -263,6 +267,9 @@
                                             </div>
                                         </div>
                                     <?php endif; ?>
+                                </div>
+                                <div class="col-sm-6 pull-right">
+                                    <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a>
                                 </div>
                             </div>
                         </div>
@@ -504,7 +511,7 @@
                 <div class="alert alert-success" id="apply-coupan-alert"  style="display:none"></div>
                 <p class="clearfix">&nbsp;</p>
                 <div class="panel panel-body order-detail">
-                    <section class="invoice ">
+                  /////////  <section class="invoice ">
                         <header class="clearfix">
                             <div id="logo">
                                 <img src="<?php echo base_url(); ?>assets/images-2/logo.png"/>
