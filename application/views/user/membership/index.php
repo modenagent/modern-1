@@ -21,7 +21,7 @@
               <div class="block-footer">
                 <?php if(isset($active_plans[$package->id])): ?>
                   <?php if(isset($cancel_plans[$package->id])): ?>
-                        <h5 class="label-info" style="padding: 8px;">Active untill : <?php echo $cancel_plans[$package->id]; ?></h5>
+                        <div class="label-info" >Active untill : <?php echo $cancel_plans[$package->id]; ?></div>
                   <?php else: ?>
                         <form action="<?php echo base_url('user/cancel_subscribe') ?>" method="post">
                           <input type="hidden" name="sub_id" value="<?php echo $active_plans[$package->id]->id; ?>">
