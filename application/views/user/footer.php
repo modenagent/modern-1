@@ -1,62 +1,39 @@
+<!-- footer -->
 
-
-<div class="user-footer">
-  <div class="section upper-footer">
-        <div class="container">
-            <div class="row">
-                <div class="upper-footer-wrapper">
-                    <div class="col-md-3">
-                        <div class="md_agent">
-                            <h3 id="modern">MODERN AGENT</h3>
-                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                    </div>
-                </div>
+  <footer>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
+            <div class="footer_content">
+              <div>
+                <a href="index.html"><img src="<?php echo base_url(); ?>assets/new_site/img/logo.png" alt="Modern Agent"></a>
+                <p class="mt-3 mb-0">we are all about helping real estate agents <br> make the perfect impression./2018</p>
+              </div>
+              <a href="<?php echo base_url(); ?>" target="_blank" class="d-block text-center web_link"><?php echo base_url(); ?></a>
+              <ul class="list-inline mb-0">
+                  <li class="list-inline-item"><a href="#"><img src="<?php echo base_url(); ?>assets/new_site/img/facebook-logo.svg" alt="..."></a></li>
+                  <li class="list-inline-item"><a href="#"><img src="<?php echo base_url(); ?>assets/new_site/img/twitter.svg" alt="..."></a></li>
+                  <li class="list-inline-item"><a href="#"><img src="<?php echo base_url(); ?>assets/new_site/img/instagram.svg" alt="..."></a></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="mb-0 copyright">© <?php echo date('Y');?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </div>
-    <div class="section lower-footer section-alternate">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="left">
-                        <p class="font">www.modernagent.io </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="center">
-                        <p class="font fontc">&COPY; <?php echo date('Y'); ?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-1 text-center">
-                    <ul class="social-links">
-                        <a href="#">
-                            <li class="fb" aria-hidden="true"></li>
-                        </a>
-                        <a href="#">
-                            <li class="twitter" aria-hidden="true"></li>
-                        </a>
-                        <a href="#">
-                            <li class="insta" aria-hidden="true"></li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  </footer>
 <!-- Start modals -->
 <div id="forward-report" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content ">
         <form action="<?php echo base_url('user/formward_report'); ?>" method="post" id="forward-report-form">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
               <h4 class="modal-title">Forward Report</h4>
             </div>
             <div class="modal-body">
@@ -78,11 +55,11 @@
   </div>
 </div>
 <div id="select-comps" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
             <h4 class="modal-title">Select Minimum 4 and up to 8 Comparables</h4>
             <a href="#" class="hide" id="refresh">Refresh Selection</a>
         </div>
@@ -91,7 +68,7 @@
             </select>
         </div>
         <div class="modal-footer text-center">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Save</button>
         </div>
     </div>
   </div>
@@ -121,8 +98,10 @@
 </script>
 
 <!-- Bootstrap Core JavaScript --> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.bootstrap4.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
@@ -259,14 +238,18 @@
 
   //BEGIN CHECKBOX & RADIO
   $('input[type="radio"]').iCheck({
-    // checkboxClass: 'icheckbox_minimal-grey',
+    checkboxClass: 'icheckbox_minimal-grey',
     radioClass: 'icheckbox_minimal-grey',
     increaseArea: '20%' // optional
   });
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
-    $(".owl-carousel").owlCarousel();
-    $("#owl-example").owlCarousel();
+    $(".owl-carousel").owlCarousel({
+      items:4,
+      margin:15,
+      autoWidth:true,
+      });
+    // $("#owl-example").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
 
@@ -1178,7 +1161,11 @@
     }
   }
   $(document).ready(function() {
-      $("body").tooltip({ selector: '[data-toggle=tooltip]', placement:'left' });
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+      // $("body").tooltip({ selector: '[data-bs-toggle=tooltip]', placement:'left' });
 
       $(window).on("scroll", function () {
           if ($(window).scrollTop() > 50) {
@@ -1269,10 +1256,10 @@
             });
         }
 
-        if($('#myaccount #tabs-3 #preview_pages ').length) {
+        if($('.myaccount  #preview_pages ').length) {
 
           
-          $('#myaccount #tabs-3 .theme_selection_div .select_change').change(function() {
+          $('.myaccount .theme_selection_div .select_change').change(function() {
 
             if($(this).attr('id') == "select-theme-type") {
               $("#select-theme option[value='2']").prop('disabled', false);
@@ -1287,7 +1274,6 @@
                   $("#select-theme option[value='3']").prop('disabled', true);
                   $("#rep_type").html('Buyer');
                   $(".subscribe_notice").show();
-
                 }
               }
               else if($(this).val() == 'seller') {
@@ -1299,7 +1285,6 @@
                   $("#select-theme option[value='3']").prop('disabled', true);
                   $("#rep_type").html('Seller');
                   $(".subscribe_notice").show();
-
                 }
               }
               else if($(this).val() == 'marketUpdate') {
@@ -1311,7 +1296,6 @@
                   $("#select-theme option[value='3']").prop('disabled', true);
                   $("#rep_type").html('Market Update');
                   $(".subscribe_notice").show();
-
                 }
               }
             }
@@ -1323,7 +1307,7 @@
               method:'POST',
               data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
               success:function(resp){
-                $('#tabs-3 #preview_pages').html(resp)
+                $('.myaccount #preview_pages').html(resp)
               }
             });
           });
@@ -1341,9 +1325,9 @@
               dataType:'json',
               success:function(resp){
                 if (resp.status=="success") {
-                    $('#tabs-3 .alert').html(resp.message).show();
+                    $('#theme .alert').html(resp.message).show();
                     setTimeout(function(){
-                      $('#tabs-3 .alert').fadeOut(1500);
+                      $('#theme .alert').fadeOut(1500);
                     },2000);
                 } else {
 
@@ -1373,6 +1357,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.8"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.7"></script>
 </body>
 </html>

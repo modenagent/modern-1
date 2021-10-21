@@ -1,157 +1,34 @@
-<style type="text/css">
-  #myaccount .container {
-        width: 1200px;
-  }
-  .content-inner {
-    min-width: 99%;
-  }
-  .package-div {
-    color: #fff;
-  }
-  .block-heading {
-    padding: 15px;
-    text-align: center;
-    font-size: 22px;
-  }
-
-  .block-description li {
-      border-bottom: 2px solid;
-      padding: 5px;
-  }
-
-  .block-sub-heading {
-      padding: 7px;
-      text-align: center;
-      font-size: 17px;
-      font-weight: bold;
-  }
-
-  .block-details td {
-      vertical-align: top;
-  }
-
-  .block-description {
-      min-height: 45px;
-      margin: 30px 0px;
-      font-size: 16px;
-      text-align: center;
-  }
-
-  .block-footer .btn {
-      border: 1px solid #fff;
-  }
-
-  .block-footer {
-      margin: 10px 0px;
-      text-align: center;
-  }
-
-  .block-price {
-      font-size: 17px;
-      text-align: center;
-      margin: 20px 0px;
-      font-weight: 700;
-  }
-  .block-description ul {
-    padding-inline-start: 10px;
-  }
-  .stripe-button-el span {
-    background: none;
-    box-shadow: none;
-  }
-
-  button.stripe-button-el {
-      background: none;
-      border: 1px solid #fff;
-      box-shadow: none;
-  }
-  .package-div table {
-    background: none;
-  }
-  .package-div table td {
-      border-right: 1px solid;
-      width: 20%;
-      vertical-align: middle;
-  }
-  .package-div table td:last-child {
-       border-right: 0px;
-  }
-  .payment-info-table {
-    background: none;
-    border: 1px solid;
-  }
-  .payment-info-table tr:nth-child(2n) td {
-    background: none;
-  }
-  .payment-info-table thead th {
-    text-align: center;
-    font-size: 18px;
-    border-bottom: 1px solid;
-  }
-  .payment-info-table tbody th {
-    text-align: right;
-  }
-  .payment-info-table tbody th,.payment-info-table tbody td {
-    padding: 10px 25px;
-    font-size: 16px;
-    font-weight: 700;
-  }
-  a.back-subscribe {
-    text-decoration: underline !important;
-    color: #fff;
-    margin-top: 10px;
-    font-size: 16px;
-    display: block;
-  }
-  .stContainer {
-    overflow-y: auto;
-  }
-</style>
-<div class="content-inner clearfix" style="vertical-align:top;">
-  <div class="row">
-    <div class="col-md-12">
-        <h4 style="margin-bottom:10px; padding-top:25px;">Membership Plan</h4>
-    </div>
-  </div>
+<div class="membership_box">
+  <h2 class="mini_title">Membership Plan</h2>
   <div class="package-div">
-    <div class="row">
-      <script src="https://js.stripe.com/v3"></script>
-      <div class="col-md-12">
-        <div class="block-heading">Monthly Subscription</div>
-        <div class="block-details">
-          <table>
-            <tr>
-              <?php 
-                $active_lable = false;
-                foreach ($packages as $package) {
-                ?>
-                <td><div class="block-sub-heading"><div><?php echo $package->title; ?></div>
-                  <?php
-                    if(isset($active_plans[$package->id])) {
-                      echo '<span class="badge" style="margin-left:10px;background:#5cb85c">Active</span>';
-                      $active_lable = true;
-                    }
-                  ?>
-                  </div>
-                  <div class="block-description">
-                    <?php echo $package->description; ?>
-                  </div>
-                  <div class="block-price">
-                    $<?php echo number_format($package->price_per_month,2); ?>/month
-                  </div>
-                  <div class="block-footer">
-
-                    <?php if(isset($active_plans[$package->id])): ?>
-                      <?php if(isset($cancel_plans[$package->id])): ?>
+    <div class="monthly_subscription"><span>Monthly Subscription</span></div>
+    <script src="https://js.stripe.com/v3"></script>
+    <div class="row justify-content-center">
+      <?php 
+          $active_lable = false;
+          foreach ($packages as $package) { ?>
+          <div class="col-lg-4 col-md-6">
+            <div class="pricing_box">
+              <h4><?php echo $package->title; ?></h4>
+              <?php
+                if(isset($active_plans[$package->id])) {
+                  echo '<span class="active_plan_badge">Active</span>';
+                  $active_lable = true;
+                }
+              ?>
+              <p><?php echo $package->description; ?></p>
+              <h4 class="block-price">$<?php echo number_format($package->price_per_month,2); ?>/month</h4>
+              <div class="block-footer">
+                <?php if(isset($active_plans[$package->id])): ?>
+                  <?php if(isset($cancel_plans[$package->id])): ?>
                         <h5 class="label-info" style="padding: 8px;">Active untill : <?php echo $cancel_plans[$package->id]; ?></h5>
-                      <?php else: ?>
-                      <form action="<?php echo base_url('user/cancel_subscribe') ?>" method="post">
-                        <input type="hidden" name="sub_id" value="<?php echo $active_plans[$package->id]->id; ?>">
-                        <button  type="button" class="btn btn-danger  cancel_subscription"><span>Cancel Subscription</span></button>
-                      </form>
-                      <?php endif; ?>
-                    <?php else : ?>
-                    
+                  <?php else: ?>
+                        <form action="<?php echo base_url('user/cancel_subscribe') ?>" method="post">
+                          <input type="hidden" name="sub_id" value="<?php echo $active_plans[$package->id]->id; ?>">
+                          <button  type="button" class="btn btn-danger  cancel_subscription"><span>Cancel Subscription</span></button>
+                        </form>
+                  <?php endif; ?>
+                <?php else : ?>
                   <button type="button" class="btn btn-default subscription_select" id="checkout-button-<?php echo $package->id;?>" <?php echo ($active_all)?'disabled':''; ?> data-price-id="<?php echo $package->stripe_price_id;?>" data-plan-name="<?php echo $package->title;?>" data-plan-price="<?php echo number_format($package->price_per_month,2);?>">Subscribe</button>
                   <script type="text/javascript">
                     // var stripe = Stripe('<?php echo getStripeKey(); ?>');
@@ -170,53 +47,35 @@
                     //   });
                     // });
                   </script>
-                    <?php endif; ?>
-                  </div>
-                </td>
-              <?php } ?>
-
-            </tr>
-          </table>
-
-          <?php
-            if($active_lable) {
-              ?>
-              <style type="text/css">
-                .block-sub-heading {
-                  min-height: 55px;
-                }
-              </style>
-            <?php }?>
-          
-        </div>
-      </div>
+                <?php endif; ?>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
     </div>
-    
   </div>
+
   <div class="stripe-div" style="display: none;">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/stripe.css') ?>">
     <div class="stripe-container">
-      <div class="row">
-        <div class="col-sm-8 col-sm-offset-2">
-          <table class="payment-info-table">
-            <thead>
-              <tr>
-                <th colspan="2">
-                  Payment Information
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>Selected Plan : </th>
-                <td><span id="selected_plan_title"></span> </td>
-              </tr>
-              <tr>
-                <th>Subscription Value : </th>
-                <td>$ <span id="selected_plan_value"></span> / month </td>
-              </tr>
-            </tbody>
-          </table>
+      <div class="row row justify-content-center">
+        <div class="col-sm-12">
+          <div class="payment-info-table">
+            <div class="row">
+              <div class="col-sm-12 text-center">
+                <h2 class="text-decoration-underline">Payment Information</h2>
+              </div>
+            </div>
+            <div class="row payment-info-table-row">
+              <div class="col-sm-6 text-end">Selected Plan : </div>
+              <div class="col-sm-6"><span id="selected_plan_title"></span></div>
+            </div>
+            <div class="row payment-info-table-row">
+              <div class="col-sm-6 text-end">Subscription Value : </div>
+              <div class="col-sm-6">$ <span id="selected_plan_value"></span> / month </div>
+            </div>
+          </div>
+          
           <form id="subscription-form">
             <input type="hidden" name="stripe_price_id" id="stripe_price_id">
             <div id="card-element">
@@ -230,7 +89,7 @@
             <p id="card-error" class="alert alert-danger" role="alert" style="display: none;"></p>
             <p id="payment-success" class="alert alert-success" role="alert" style="display: none;"></p>
 
-            <a href="javascript:void(0);" class="back-subscribe">Back to select Subscription</a>
+            <a href="javascript:void(0);" class="back-subscribe text-end">Back to select Subscription</a>
 
           </form>
         </div>
@@ -240,6 +99,7 @@
       
     </div>
   </div>
+  
 </div>
 
 <script type="text/javascript">
@@ -259,10 +119,12 @@
       $("#selected_plan_title").html(plan_title);
       $("#selected_plan_value").html(plan_price);
       $('.stripe-div').show();
+      $('.membership_box').addClass('tab_white_box');
       $('.package-div').hide();
     });
     $('.back-subscribe').click(function(){
       $('.stripe-div').hide();
+      $('.membership_box').removeClass('tab_white_box');
       $('.package-div').show();
     });
 
