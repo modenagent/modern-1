@@ -2329,11 +2329,11 @@ form#payment-form {
 }
 
 .search-result .btn-sm {
-    background: #fff;border: 1px solid #fff;color: #000
+    background: #fff;border: 1px solid #582a82;color: #000
 }
 
 .search-result .btn-sm:hover {
-    background: none;
+    background: #582a82;
     color: #FFF;
 }
 
