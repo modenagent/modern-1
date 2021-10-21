@@ -399,9 +399,9 @@ class User extends CI_Controller
                 $reportDate = date("m/d/Y", strtotime($report['project_date']));
 
                 $action = '';
-                $action .= ' <a href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>
-                <a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><i data-toggle="tooltip" title="Email" class="icon icon-share"  ></i></a>
-                <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+                $action .= ' <ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
+                <li class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/email.svg" alt="..." class="w20"></a></li>
+                <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li></ul>';
                 
                 $data[] = [
                     $reportDate, 
@@ -457,7 +457,9 @@ class User extends CI_Controller
                 // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
                 if($for_guest == 0) {
 
-                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a> <a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-toggle="tooltip" title="Copy URL"  class="icon icon-copy"></i></a> <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'2\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+                  $action = '<ul class="list-inline m-0"><li class="list-inline-item"> <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-bs-toggle="tooltip" title="Copy URL" class="copy-tile"><img src="'.base_url().'assets/new_site/img/copy.svg" class="w20" alt="..."></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'2\')"><img src="'.base_url().'assets/new_site/img/clear.svg" class="w20" alt="..."></a></li></ul>';
 
                   $data[] = [
                       $reportDate, 
@@ -473,7 +475,7 @@ class User extends CI_Controller
                       $report['guest_name'], 
                       $report['guest_phone'], 
                       $report['guest_email'], 
-                      $action
+                      // $action
                   ];
                 }
             }
@@ -638,7 +640,7 @@ class User extends CI_Controller
                 $leadDate = date("m/d/Y", strtotime($lead['created_at']));
 
                 $action = '';
-                $action .= '<a href="'.base_url().$lead['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>';
+                $action .= '<ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$lead['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li></ul>';
                 
                 $data[] = [
                     $leadDate, 

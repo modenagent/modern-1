@@ -1,5 +1,5 @@
 <style type="text/css">
-    #step-1 .input-group-btn .btn-lp.registry:hover {
+    /*#step-1 .input-group-btn .btn-lp.registry:hover {
     background-color: rgba(225, 225, 225, .7);
     border-color: #ffffff;
     }
@@ -22,108 +22,108 @@
     }
     .report_lang_div {
         white-space: nowrap;
-    }
+    }*/
     /*#butcomp .row > div:before {content: "|";position: absolute;left: 0px;}
     #butcomp .row > div:first-child:before {content: "";}*/
 </style>
 <!--Features section -->
-<section id="steps">
+<section id="steps" class="impression">
     <div class="container">
-        <!-- Smart Wizard -->
-        <div id="choose-presentation"class="clearfix" style="">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="step-0-content clearfix">
-                        <h2>How Can We Help You <br/>Make an Impression?</h2>
-                        <div class="buttonholder col-md-10 col-md-offset-1">
-                            <span class="input-group-btn">
-                            <button class="btn btn-lp" type="button" style="" onclick="choose_presentation('buyer');"> Buyers Presentation </button>
-                            </span>
-                            <span class="input-group-btn">
-                            <button class="btn btn-lp" type="button" style="" onclick="choose_presentation('seller');"> Sellers Presentation </button>
-                            </span>
-                            <span class="input-group-btn">
-                            <button style="width:212px;" class="btn btn-lp" type="button" style="" onclick="choose_presentation('marketUpdate');"> Market Update </button>
-                            </span>
-                            <span class="input-group-btn">
-                            <button style="width:212px;" class="btn btn-lp" type="button" style="" onclick="choose_presentation('registry');"> Smart Registry </button>
-                            </span>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- Smart Wizard -->
+            <div id="choose-presentation">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="main_title">How Can We Help You Make an Impression?</h1>
+                        <div class="impression_block_list">
+                            <button class="impression_block" type="button" onclick="choose_presentation('buyer');">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/buyer_presentation.png" alt="..." class="img-fluid d-block mx-auto">
+                              Buyers Presentation 
+                            </button>
+                            <button class="impression_block" type="button" onclick="choose_presentation('seller');">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
+                              Sellers Presentation
+                            </button>
+                            <button class="impression_block" type="button" onclick="choose_presentation('marketUpdate');">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/market_update.png" alt="..." class="img-fluid d-block mx-auto">
+                              Market Update
+                            </button>
+                            <button class="impression_block" type="button" onclick="choose_presentation('registry');">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/smart_registry.png" alt="..." class="img-fluid d-block mx-auto">
+                              Smart Registry
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="wizard" class="swMain loader-back" style="display:none;">
+          </div>
+      </div>
+        
+        <div id="wizard" class="swMain loader-back wizard_block" style="display:none;">
             <ul>
                 <li id="step-1-link">
-                    <a href="#step-1"> 
-                    <span class="stepNumber">01</span> 
-                    <span class="stepDesc"> Step 1<br /><small class="little">Find Your Property</small></span> 
+                    <a href="#step-1">
+                        <b>Step 1</b>Find Your Property
                     </a>
                 </li>
                 <li id="step-2-link">
-                    <a href="#step-2"> 
-                    <span class="stepNumber">02</span> 
-                    <span class="stepDesc"> Step 2<br /><small class="little">Enter Your Information</small></span>
+                    <a href="#step-2">
+                        <b>Step 2</b>Enter Your Information
                     </a>
                 </li>
                 <li id="step-3-link">
-                    <a href="#step-3"> 
-                    <span class="stepNumber">03</span> 
-                    <span class="stepDesc marketUpdateHide"> Step 3<br /><small class="little">Branding & Options</small></span>
-                    <span class="stepDesc marketUpdateShow"> Step 3<br /><small class="little">Branding</small></span>
+                    <a href="#step-3">
+                        <b>Step 3</b>
+                        <span class="marketUpdateHide">Branding & Options</span>
+                        <span class="marketUpdateShow">Branding</span>
                     </a>
                 </li>
                 <li id="step-4-link">
-                    <a href="#step-4"> 
-                    <span class="stepNumber">04</span> 
-                    <span class="stepDesc marketUpdateHide"> Step 4<br /><small class="little">Checkout &amp; Download</small></span>
-                    <span class="stepDesc marketUpdateShow"> Step 4<br /><small class="little">Download</small></span> 
+                    <a href="#step-4">
+                        <b>Step 4</b>
+                        <span class="marketUpdateHide">Checkout &amp; Download</span>
+                        <span class="marketUpdateShow">Download</span>
                     </a>
                 </li>
             </ul>
-            <div id="step-1" class="clearfix">
+            <div id="step-1">
                 <div class="row">
-                    <div class="col-md-10 col-md-offset-1">
-                        <div class="step-1-content clearfix">
-                            <h2>Enter Address to Start</h2>
-                            <p>Search By Property Address or APN</p>
-                            <form accept-charset="UTF-8" action="" class="huge-search" method="get">
-                                <div class="form-group">
-                                    <input name="utf8" type="hidden" value="✓">
-                                    <div class="input-group">
-                                        <input class="form-control" name="term" id="searchbox" placeholder="e.g. ‘123 Success Ave’" type="search">
-                                        <input type="text" id="searchboxcity" class="citynames" placeholder="Choose City">
-                                        <input type="hidden" id="neighbourhood">
-                                        <input type="hidden" id="state">
-                                        <span class="input-group-btn">
-                                        <button class="btn btn-lp" type="button" id="search-btn"> Search </button>
-                                        </span> 
-                                    </div>
+                    <div class="col-md-12">
+                        <h2 class="main_title text-start">Enter Address to Start</h2>
+                        <p>Search By Property Address or APN</p>
+                        <form accept-charset="UTF-8" action="" class="huge-search" method="get">
+                            <div class="form-group">
+                                <input name="utf8" type="hidden" value="✓">
+                                <div class="input-group">
+                                    <input class="form-control" name="term" id="searchbox" placeholder="e.g. ‘123 Success Ave’" type="search">
+                                    <input type="text" id="searchboxcity" class="citynames" placeholder="Choose City">
+                                    <input type="hidden" id="neighbourhood">
+                                    <input type="hidden" id="state">
+                                    <span class="input-group-btn">
+                                    <button class="btn btn-lp" type="button" id="search-btn"> Search </button>
+                                    </span> 
                                 </div>
-                                <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
-                                <div class="search-result hidden">
-                                    <div class="search-loader"></div>
-                                    <table class="table-responsive hidden">
-                                        <thead>
-                                            <tr>
-                                                <th width="15%">APN</th>
-                                                <th width="15%">Unit #</th>
-                                                <th width="25%">Address</th>
-                                                <th width="20%">Owner Name</th>
-                                                <th width="10%">City</th>
-                                                <th width="15%">Run Listing</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-md-12" >
-                        <p>&nbsp;</p>
+                            </div>
+                            <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
+                            <div class="search-result hidden">
+                                <div class="search-loader"></div>
+                                <table class="table-responsive hidden">
+                                    <thead>
+                                        <tr>
+                                            <th width="15%">APN</th>
+                                            <th width="15%">Unit #</th>
+                                            <th width="25%">Address</th>
+                                            <th width="20%">Owner Name</th>
+                                            <th width="10%">City</th>
+                                            <th width="15%">Run Listing</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -131,9 +131,9 @@
             <div id="step-2" class="clearfix">
                 <form id="run-pma-form" >
                     <div class="col-md-12">
-                        <div class="row">
-                            <div class="col-xs-12 col-lg-6 col-md-6">
-                                <h2><strong>Agent:</strong> Upload Pic &amp; Enter Info</h2>
+                        <div class="row justify-content-between">
+                            <div class="col-xs-12 col-lg-5 col-md-6">
+                                <h2><strong>Agent:</strong> <span> Upload Pic &amp; Enter Info</span></h2>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="leftpic"> <a href="javascript:;">
@@ -167,8 +167,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-lg-6 col-md-6">
-                                <h2><strong>Company:</strong> Upload Logo &amp; Enter Info</h2>
+                            <div class="col-xs-12 col-lg-5 col-md-6">
+                                <h2><strong>Company:</strong><span> Upload Logo &amp; Enter Info</span></h2>
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="rightpic"> <a href="javascript:;">
@@ -229,17 +229,18 @@
                 </div>
                 <div class="backwrap hidden"></div>
                 <div class="col-md-12">
-                    <div class="wizard-head-container">
-                        <div class="col-md-6">
-                            
-                            <h2 ><strong class="common_cls">Choose Your Branding</strong>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2>
+                                <strong class="common_cls">Choose Your Branding</strong>
                                 <strong class="subscribe_cls" style="display: none;">Preview Pages</strong>
-                                <span style="display: block; font-size: 12px; text-transform: initial;margin-bottom: 25px;">Select theme from <a href="<?php echo base_url('user/myaccount');?>">My Account</a></span>
+                                <span style="display: block; font-size: 12px; text-transform: initial;">Select theme from <a href="<?php echo base_url('user/myaccount');?>">My Account</a></span>
                             </h2>
                         </div>
-                        <div class="col-md-6 common_template" id="butcomp">
+
+                        <div class="col-md-8 common_template" id="butcomp">
                             <?php $_email = $this->session->userdata('user_email');?>
-                            <div class="row">
+                            <div class="row  pull-right">
                                 <div class="col-sm-4" style="display: none !important">
                                     <div class="pull-right1 report_lang_div" style="">
                                         Language: 
@@ -268,13 +269,13 @@
                                         </div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="col-sm-6 pull-right">
-                                    <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comparables</a>
+                                <div class="col-sm-6">
+                                    <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-bs-toggle="modal" data-bs-target="#select-comps" title="configure comparables" >Review Comparables</a>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
+
                     <div class="carousel-container common_template">
                         <div id="owl-example" class="owl-carousel">
                             <?php
@@ -511,10 +512,10 @@
                 <div class="alert alert-success" id="apply-coupan-alert"  style="display:none"></div>
                 <p class="clearfix">&nbsp;</p>
                 <div class="panel panel-body order-detail">
-                  /////////  <section class="invoice ">
+                  <section class="invoice ">
                         <header class="clearfix">
                             <div id="logo">
-                                <img src="<?php echo base_url(); ?>assets/images-2/logo.png"/>
+                                <img src="<?php echo base_url(); ?>assets/new_site/img/logo.png"/>
                             </div>
                             <div id="company">
                             </div>
@@ -587,7 +588,7 @@
                 <div class="order-summary panel panel-body" style="display:none;">
                     <table width="100%" border="0" style="background-color:transparent;" cellspacing="0" cellpadding="0">
                         <tr class="invoice-header">
-                            <td width="45%" bgcolor=""><img src="<?php echo base_url(); ?>assets/images-2/logo.png"/></td>
+                            <td width="45%" bgcolor=""><img src="<?php echo base_url(); ?>assets/new_site/img/logo.png"/></td>
                             <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></strong></td>
                             <td width="15%" style="color:#ffffff;" class="text-right" ><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
                         </tr>
@@ -614,10 +615,10 @@
                                     <span id="button-text">Pay now</span>
                                     </button> -->
                                 <!-- We'll put the error messages in this element -->
-                                <p id="card-error" class="alert alert-danger" role="alert" style="display: none;"></p>
+                                <p id="card-error"  a class="alert alert-danger" role="alert" style="display: none;"></p>
                                 <p id="payment-success" class="alert alert-success" role="alert" style="display: none;"></p>
                                 <div class="form-group">
-                                    <div class="col-sm-offset-3 col-sm-9" id="paynow">
+                                    <div class="col-sm-12" id="paynow">
                                         <button type="button" class="btn btn-lp pay" id="stripe-submit">
                                             <div class="spinner hidden" id="spinner"></div>
                                             <span id="button-text">Pay now</span>
@@ -629,7 +630,7 @@
                     </div>
                     <div class="loaders" style="opacity:1!important;"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
                 </div>
-                <div class=" clearfix text-right  ">
+                <div class=" clearfix pull-right  ">
                     <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
                     <button type="button" style="display: none;!important;" id="stripe_chk_btn"></button>
                 </div>
@@ -643,13 +644,14 @@
 </section>
 <!-- Features section -->
 <!-- Recent LP's section -->
-<section id="recent-lp">
+<section id="" class="presentation">
     <div class="container">
-        <h1 class="page-header">Recently Created Presentations</h1>
-        <p>We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p>
-        <p>&nbsp;</p>
-        <div class="table-responsive">
-            <table id="user_transaction_table">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="main_title mb-4">Recently Created Presentations</h1>
+            <p class="text-center">We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p>
+            
+            <table id="user_transaction_table" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
                         <th>DATE</th>
@@ -660,8 +662,11 @@
                     </tr>
                 </thead>
             </table>
-        </div>
-        <?php //$this->load->view('user/listing_table',array('reports'=>$reports)); ?>
+            
+            <?php //$this->load->view('user/listing_table',array('reports'=>$reports)); ?>
+          </div>
+      </div>
+        
     </div>
 </section>
 <!-- Screenshots section -->
@@ -683,13 +688,20 @@
         
       if ($('#user_transaction_table').length) {
         $('#user_transaction_table').DataTable({
+            "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
+            aaSorting: [],
+            responsive: true,
+            'columnDefs': [ {
+                'targets': [4,4], // column index (start from 0)
+                'orderable': false, // set orderable false for selected columns
+            }],
             // Processing indicator
             "processing": true,
             // DataTables server-side processing mode
             "serverSide": true,
             // Initial no order.
-            "paging": true,
-            "searching": true,
+            // "paging": true,
+            // "searching": true,
             "order": [
               [0, "DESC"]
             ],
@@ -701,19 +713,19 @@
             "initComplete": function () {
                 var input = $('.dataTables_filter input').unbind(),
                     self = this.api(),
-                    $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                    $searchButton = $('<button class="btn_search">')
                     .text('Search')
                     .click(function () {
                         self.search(input.val()).draw();
                     }),
-                    $clearButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                    $clearButton = $('<button class="btn_clear">')
                     .text('Clear')
                     .click(function () {
                         input.val('');
                         $searchButton.click();
                     })
-                $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
-                $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+                // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
+                // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
                 $('.dataTables_filter').append($searchButton, $clearButton);
             },
             "language": {
@@ -721,14 +733,19 @@
                 "emptyTable": "<div align='center'>Record(s) not found.</div>"
             },
             //Set column definition initialisation properties
-            "columnDefs": [{ 
-                "orderable": false,
-                "targets": "no-sort"
-            }],
+            // "columnDefs": [{ 
+            //     "orderable": false,
+            //     "targets": "no-sort"
+            // }],
+
             "drawCallback": function( settings ) {
               $("[data-toggle='tooltip']").tooltip();
             }
         });
+        $(".dataTables_filter input").attr("placeholder", "Search here").css({
+                  width: "452px",
+                  display: "inline-block"
+              });
       }
     });
     var pkg_prices_str = '<?php echo json_encode($packages)?>';

@@ -9,7 +9,15 @@ if(is_dir($load_dir)) {
   $count_imgs = count($images);
 
   for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) {
-    echo '<div class="col-sm-2 cover-item"> <div class="text-center"> <img src="'.base_url().$check_dir.$img_cnt.'.jpg" class="img img-responsive" alt="'.$img_cnt.'"> </div></div>';
+    // echo '<div class="col-sm-2 cover-item"> <div class="text-center"> <img src="'.base_url().$check_dir.$img_cnt.'.jpg" class="img img-responsive" alt="'.$img_cnt.'"> </div></div>';
+    ?>
+    <div class="col-lg-3 col-md-6">
+	  <label class="theme_bg" >
+	    <img src="<?php echo base_url().$check_dir.$img_cnt.'.jpg';?>" alt="..." class="img-fluid">
+	    <h5><?php echo 'Page '.$img_cnt;?></h5>
+	  </label>
+	</div>
+    <?php
   }
 }
 ?>

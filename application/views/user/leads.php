@@ -1,8 +1,6 @@
  
-
-
 <!-- Recent LP's section -->
-<section id="recent-lp2">
+<section class="impression">
      
   <div class="container">
     <?php if ($this->session->flashdata('success')): ?>
@@ -17,18 +15,17 @@
         <a href="#" class="close" data-dismiss="alert">&times;</a> 
         <strong>Error! </strong>
     <?php echo $this->session->flashdata('error') ?>
-</div>
-<?php endif; ?>
-    <h1 class="page-header">Leads</h1>
+    </div>
+    <?php endif; ?>
+    <h1 class="main_title mb-4">Leads</h1>
     <?php if($ref_code): ?>
-    <p class="subhead">Your unique referral code: <span style="font-size:15px; font-weight:bold;" id="ref-code"><?php echo $ref_code; ?></span></p><br>
-	 <p class="subhead">Put this link on your marketing material:  <span style="font-size:15px; font-weight:bold;">www.modernagent.io/cma</span></p>
+    <p class="">Your unique referral code: <span style="font-size:15px; font-weight:bold;" id="ref-code"><?php echo $ref_code; ?></span></p><br>
+	 <p class="">Put this link on your marketing material:  <span style="font-size:15px; font-weight:bold;">www.modernagent.io/cma</span></p>
     <?php else: ?>
     <p>This feature is not available to you.
     <?php endif; ?>
-    <p>&nbsp;</p>
     <div class="table-responsive">
-      <table class="actions" id="leads-table-dt">
+      <table class="table table-hover responsive nowrap" style="width:100%" id="leads-table-dt">
         <thead>
           <tr>
             <th>DATE</th>
@@ -48,13 +45,19 @@
 $(document).ready(function(){
   if ($('#leads-table-dt').length) {
     $('#leads-table-dt').DataTable({
+        "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
+        aaSorting: [],
+        responsive: true,
+        'columnDefs': [ {
+            'targets': [4,4], // column index (start from 0)
+            'orderable': false, // set orderable false for selected columns
+        }],
         // Processing indicator
         "processing": true,
         // DataTables server-side processing mode
         "serverSide": true,
         // Initial no order.
-        "paging": true,
-        "searching": true,
+        
         "order": [
           [0, "DESC"]
         ],
@@ -66,19 +69,19 @@ $(document).ready(function(){
         "initComplete": function () {
             var input = $('.dataTables_filter input').unbind(),
                 self = this.api(),
-                $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                $searchButton = $('<button class="btn_search">')
                 .text('Search')
                 .click(function () {
                     self.search(input.val()).draw();
                 }),
-                $clearButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
+                $clearButton = $('<button class="btn_clear">')
                 .text('Clear')
                 .click(function () {
                     input.val('');
                     $searchButton.click();
                 })
-            $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
-            $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+            // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
+            // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
             $('.dataTables_filter').append($searchButton, $clearButton);
         },
         "language": {
@@ -86,10 +89,10 @@ $(document).ready(function(){
             "emptyTable": "<div align='center'>Record(s) not found.</div>"
         },
         //Set column definition initialisation properties
-        "columnDefs": [{ 
-            "orderable": false,
-            "targets": "no-sort"
-        }],
+        // "columnDefs": [{ 
+        //     "orderable": false,
+        //     "targets": "no-sort"
+        // }],
         "drawCallback": function( settings ) {
           $("[data-toggle='tooltip']").tooltip({placement:'left'});
         }
