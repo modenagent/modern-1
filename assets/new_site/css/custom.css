@@ -1505,4 +1505,14 @@ a.back-subscribe {
     display: block;
     font-size: 16px;
 }
+.label-info {
+    padding: 0;
+    margin-top: 50px;
+    height: 48px;
+    font-size: 15px;
+    text-transform: uppercase;
+    line-height: 48px;
+    display: inline-block;
+    color: #582A82;
+}
 /*BI*/
