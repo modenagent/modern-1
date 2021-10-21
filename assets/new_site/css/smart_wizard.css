@@ -756,6 +756,8 @@ a {
 .invoice .invoice-table th {
     white-space: nowrap;
     font-weight: normal;
+    background: rgba(255,255,255,0.65) !important;
+    color: #fff !important;
 }
 
 .invoice .invoice-table tbody td {
