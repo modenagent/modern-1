@@ -457,7 +457,7 @@ footer a:hover{
     background-position: left 20px center;
 }
 .huge-search {
-    max-width: 872px;
+    /*max-width: 872px;*/
     margin: 44px 0 120px;
 }
 .stepContainer .content .input-group-btn .btn {
@@ -1106,7 +1106,7 @@ input[type="checkbox"]:checked + label::before{
         margin: 0;
     }
     .huge-search {
-        max-width: 872px;
+        /*max-width: 872px;*/
         margin: 40px 0 50px;
     }
 }

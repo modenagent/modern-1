@@ -1,31 +1,3 @@
-<style type="text/css">
-    /*#step-1 .input-group-btn .btn-lp.registry:hover {
-    background-color: rgba(225, 225, 225, .7);
-    border-color: #ffffff;
-    }
-    #step-1 .input-group-btn .btn-lp.registry {
-    background-color: transparent;
-    border-color: #fff;
-    border: 2px solid white;
-    border-radius: 0px;
-    height: 54px;
-    width: 138px;
-    }
-    #step-2 h2, #step-3 h2 {
-        font-size: 18px;
-    }
-    #report_color {
-        max-width: 100px;
-    }
-    .wizard-head-container {
-        margin-right: 70px;
-    }
-    .report_lang_div {
-        white-space: nowrap;
-    }*/
-    /*#butcomp .row > div:before {content: "|";position: absolute;left: 0px;}
-    #butcomp .row > div:first-child:before {content: "";}*/
-</style>
 <!--Features section -->
 <section id="steps" class="impression">
     <div class="container">
