@@ -629,13 +629,24 @@ function get187() {
                     
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                if($('#comparable-pre-selected-options').length)
-                {
-                    $('#comparable-pre-selected-options').multiSelect({
-                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
-                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-                    });
-                }
+                if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+
+                    // $('.buyer-cls').hide();
+                    $('#pre-selected-options').multiSelect({
+                      selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
+                      selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+                    });  
+                    if(firstOpen) {
+                        // If received list is not greater than min value than set our min value to received list length
+                        var pre_selected_options = $.trim($('#pre-selected-options').html());
+                        if (pre_selected_options!='') {
+                          if(_min>$('#pre-selected-options').val().length){
+                              _min = $('#pre-selected-options').val().length;
+                          }
+                        }
+                        firstOpen = false;
+                    }
+                  }
                 activeRequest=false;
             },
             error: function() {
@@ -1084,25 +1095,6 @@ function getRetsApiComparables(address,is_simply_rets)
                     selected: 'selected'
                 }));
             });
-
-            if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
-
-                // $('.buyer-cls').hide();
-                $('#pre-selected-options').multiSelect({
-                  selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
-                  selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-                });  
-                if(firstOpen) {
-                    // If received list is not greater than min value than set our min value to received list length
-                    var pre_selected_options = $.trim($('#pre-selected-options').html());
-                    if (pre_selected_options!='') {
-                      if(_min>$('#pre-selected-options').val().length){
-                          _min = $('#pre-selected-options').val().length;
-                      }
-                    }
-                    firstOpen = false;
-                }
-              }
 
             $('.loader1').hide();
             $('.loader1').addClass('hidden');
