@@ -24,7 +24,7 @@
   <!-- Custom CSS -->
 
   <link href="<?php echo base_url(); ?>assets/new_site/css/lp-style.css?v=0.2" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/multi-select.css"); ?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/new_site/css/multi-select.css"); ?>">
   <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey()?>"></script>
@@ -43,7 +43,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/header_user.css"); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/responsive.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.1">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.2">
 </head>
 
 <body class="home">
