@@ -153,23 +153,23 @@
       */
   });
   $('#select-comps').on('hide.bs.modal', function(event) {
-    var pre_selected_options = $.trim($('#pre-selected-options').html());
-    if (pre_selected_options!='') {
-      if ($('#pre-selected-options').val()==null) {
-          alert('Please select '+_min+' comparables');
-          event.stopPropagation();
-          return false;
-      } else if ($('#pre-selected-options').val().length < _min){
-          alert('Please select '+_min+' comparables');
-          event.stopPropagation();
-          return false;
-      }
-      if($('#pre-selected-options').val().length > _max){
-          alert('Please do not select more than '+_max+' comparables');
-          event.stopPropagation();
-          return false;
-      }
-    } 
+    // var pre_selected_options = $.trim($('#pre-selected-options').html());
+    // if (pre_selected_options!='') {
+    //   if ($('#pre-selected-options').val()==null) {
+    //       alert('Please select '+_min+' comparables');
+    //       event.stopPropagation();
+    //       return false;
+    //   } else if ($('#pre-selected-options').val().length < _min){
+    //       alert('Please select '+_min+' comparables');
+    //       event.stopPropagation();
+    //       return false;
+    //   }
+    //   if($('#pre-selected-options').val().length > _max){
+    //       alert('Please do not select more than '+_max+' comparables');
+    //       event.stopPropagation();
+    //       return false;
+    //   }
+    // } 
   });
 </script>
 <script type="text/javascript">
@@ -299,20 +299,7 @@
           if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
 
             $('.buyer-cls').hide();
-            $('#pre-selected-options').multiSelect({
-              selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
-              selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-            });  
-            if(firstOpen) {
-                // If received list is not greater than min value than set our min value to received list length
-                var pre_selected_options = $.trim($('#pre-selected-options').html());
-                if (pre_selected_options!='') {
-                  if(_min>$('#pre-selected-options').val().length){
-                      _min = $('#pre-selected-options').val().length;
-                  }
-                }
-                firstOpen = false;
-            }
+            
           }
           else {
             $('.buyer-cls').show();
@@ -1401,6 +1388,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.8"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.9"></script>
 </body>
 </html>
