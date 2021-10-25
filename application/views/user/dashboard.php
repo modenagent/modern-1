@@ -101,6 +101,11 @@
             </div>
             <!-- step 1 ends -->
             <div id="step-2" class="clearfix">
+                <div class="loader1 hidden">
+                    <img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                    <p class="loader-text">Please wait</p>
+                </div>
+                <div class="backwrap hidden"></div>
                 <form id="run-pma-form" >
                     <div class="col-md-12">
                         <div class="row"  style="display: none">
