@@ -583,6 +583,10 @@ function get187() {
             }
         });
     } else {
+        $('.loader1').show();
+        $('.loader1').removeClass('hidden');
+        $('.backwrap').show();
+        $('.backwrap').removeClass('hidden');
         activeRequest=true;
         $.ajax({
             type: "GET",
@@ -648,6 +652,10 @@ function get187() {
                     }
                   }
                 activeRequest=false;
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
             },
             error: function() {
                 console.log("An error occurred while processing data");
