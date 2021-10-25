@@ -15,6 +15,9 @@ a{
 header.overlapping {
     padding: 0;
 }
+.menu-toggler img {
+    width: 25px;
+}
 header.overlapping-down {
     background: #f4f4f9;
     box-shadow: 0 5px 20px rgb(0 0 0 / 5%);
@@ -359,7 +362,7 @@ footer a:hover{
     padding: 120px 160px;
     display: none
 }
-#wizard.swMain.wizard_block ul{
+#wizard.swMain.wizard_block ul.anchor{
     background-color: #F4F4F9;
     border: 0;
     text-align: center;
@@ -368,7 +371,7 @@ footer a:hover{
     flex-wrap: wrap;
     float: none;
 }
-.wizard_block li {
+.wizard_block li.anchor {
     width: 25%;
     text-align: center;
 }
@@ -386,21 +389,25 @@ footer a:hover{
     height: auto;
     line-height: 1.5;
 }
-.wizard_block ul a b{
+.wizard_block ul.anchor a b{
     font-size: 25px;
     font-weight: 700;
     display: block;
     margin-bottom: 8px;
 }
 .wizard_block ul li:last-child a.selected  {
-    background:#582A82!important;   
+    /*background:#582A82!important;   */
+    background: linear-gradient(to right, #582A82 0%,#582A82 75%, #fff 75%, #fff 100%)!important;
     color: #fff!important;
+}
+.wizard_block ul li:last-child a.selected::after{
+    right: 20px;
 }
 .wizard_block ul li:not(:last-child) a.selected  {
     background: linear-gradient(to right, #582A82 0%,#582A82 80%, #f4f4f9 80%, #f4f4f9 100%)!important;
     color: #fff!important;
 }
-.wizard_block ul li:not(:last-child) a.selected::after {
+.wizard_block ul li a.selected::after {
     height: 97px !important;
     width: 97px !important;
     background: #582a82;
@@ -440,10 +447,13 @@ footer a:hover{
 .stepContainer .content  .main_title{
     margin-bottom: 20px;
 }
+.stepContainer .content .input-group input{
+    padding-left: 56px !important;
+}
 .stepContainer .content  input {
     height: 48px !important;
     font-weight: 400 !important;
-    padding-left: 56px !important;
+    /*padding-left: 56px !important;*/
     font-family: 'Rubik', sans-serif !important;
     margin-right: 24px;
     border:0
@@ -471,6 +481,7 @@ footer a:hover{
     transition: all 0.3s ease-in;
     box-shadow: none;
     border: 0 !important;
+    border-radius: 0;
 }
 .stepContainer .content .input-group-btn {
     padding: 0 !important;
@@ -666,7 +677,7 @@ footer a:hover{
     height: 216px;
     border-radius: 100%;
     display: block;
-    /*border: 2px solid #EF514B;*/
+    border: 2px solid #EF514B;
     overflow: hidden;
     margin: 0 auto 95px;
 }
@@ -942,8 +953,191 @@ input[type="checkbox"]:checked + label::before{
 #step-3 .owl-theme .item {
     margin: 0px 10px;
 }
+form#run-pma-form {
+    margin-bottom: 100px;
+}
+.btn_box {
+    border: 1px solid #2F353E;
+    height: 32px;
+    line-height: 30px;
+    padding: 0 10px;
+    color: #2F353E;
+}
+.btn_box select {
+    background: transparent;
+    border: none;
+    width: auto;
+}
+#step-3 label {
+    background: #F4F4F9;
+    padding: 25px;
+    position: relative;
+    cursor: pointer;
+}
+#step-3 input[type="radio"]{
+    display: none;
+}
+#step-3 input[type="radio"] + label::before{
+    content: "";
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    background: url(../img/uncheck.svg) no-repeat;
+    background-size: contain;
+    transition: all 0.3s ease;
+}
+#step-3 input[type="radio"]:checked + label::before{
+    background: url(../img/check.svg) no-repeat;
+    background-size: contain;
+}
 .owl-theme .owl-controls .owl-buttons div {
-    color: #111;
+    color: #582A82;
+    display: inline-block;
+    margin: 12px;
+    padding: 0;
+    font-size: 15px;
+    border-radius: 0;
+    border: 0;
+    opacity: 1;
+    text-transform: uppercase;
+    width: 88px;
+    height: 40px;
+    line-height: 40px;
+    background: rgba(88,42,130, 0.20);
+}
+.owl-theme .owl-controls .owl-buttons div.owl-prev{
+    color: #EF514B;
+    background: rgba(239,81,75,0.2);
+}
+.owl-prev::before {
+    content: "\f0d9";
+    font-family: "FontAwesome";
+    padding-right: 10px;
+}
+.owl-next::after {
+    content: "\f0da";
+    font-family: "FontAwesome";
+    padding-left: 10px;
+}
+.carousel-container {
+    margin-bottom: 80px;
+}
+.owl-carousel {
+    margin-top: 40px;
+}
+a#config-comps-btn.comps {
+    display: none;
+}
+.modal-backdrop.show {
+    opacity: 1;
+    background-color: rgb(0 0 1 / 7%);
+}
+body.home.loaded.modal-open #steps {
+    filter: blur(11px);
+}
+#select-comps .modal-dialog {
+    max-width: 1310px;
+    margin-top: 150px;
+    border-radius: 0px;
+    width: 100%;
+}
+#select-comps .modal-content {
+    border: 0;
+    border-radius: 0;
+    outline: 0;
+}
+#select-comps .modal-header {
+    border-bottom: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    text-align: center;
+    display: block;
+}
+#select-comps .modal-title {
+    font-size: 35px;
+    line-height: 24px;
+    color: #2F353E;
+    font-weight: 700;
+    margin: 120px 0;
+}
+#select-comps .close {
+    font-size: 28px;
+    position: absolute;
+    right: 50px;
+    top: 50px;
+}
+.ms-container {
+    background: url(../img/compare.svg) no-repeat;
+    background-position: center top;
+}
+#select-comps  .modal-footer {
+    border-top: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    display: block;
+}
+#select-comps  .modal-footer .btn.btn-default {
+    width: 152px;
+    height: 48px;
+    padding: 0;
+    line-height: 48px;
+    border-radius: 0;
+    border: 0;
+    background: #582A82;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin: 100px 0;
+    transition: all 0.3s ease-in;
+}
+#select-comps  .modal-footer .btn.btn-default:hover{
+    background: #e0514b;
+}
+#step-4{
+    padding: 100px 0;
+}
+#step-4 #details {
+    display: flex;
+    margin-bottom: 120px;
+}
+#step-4 #details > *{
+    margin-right: 70px;
+}
+.name_date {
+    font-size: 19px;
+    color: #2F353E;
+    margin-top: 20px;
+}
+.to,.date{
+    text-transform: uppercase;
+    color: #2F353E;
+}
+.coupon_div .input-group {
+    max-width: 312px;
+    margin-bottom: 88px;
+}
+/*.invoice-table {
+    max-width: 740px;
+    background: transparent;
+    color: #2F353E;
+    font-size: 15px;
+    margin-bottom: 90px;
+}
+.invoice-table tfoot {
+    border-top: 1px solid #707070;
+}
+.invoice-table td {
+    padding: 15px 10px;
+}*/
+.selected_plan {
+    background: rgb(244 67 54 / 20%);
+    padding: 6px 19px;
+    display: inline-block;
+    font-size: 13px;
+    color: #2F353E;
+    margin-bottom: 54px;
 }
 
 
@@ -974,7 +1168,7 @@ input[type="checkbox"]:checked + label::before{
     .text-md-start {
         text-align: left;
     }
-    .wizard_block ul li:not(:last-child) a.selected::after,
+    .wizard_block ul li a.selected::after,
     .wizard_block ul li:not(:first-child) a.selected::before{
         content: "";
     }
@@ -1078,6 +1272,27 @@ input[type="checkbox"]:checked + label::before{
         margin: 100px auto 50px;
         font-size: 24px;
     }
+    #select-comps .modal-title {
+        font-size: 28px;
+        margin: 60px 0;
+    }
+    #select-comps .close img {
+        width: 20px;
+    }
+    #select-comps .close {
+        right: 20px;
+        top: 20px;
+    }
+    #select-comps .modal-footer .btn.btn-default {
+        margin: 40px 0;
+    }
+    #select-comps .modal-dialog {
+        max-width: 900px;
+        margin-top: 80px;
+    }
+    .ms-container .ms-selectable, .ms-container .ms-selection {
+        width: 49%;
+    }
 }
 @media(max-width:1366px){
     .myaccount_tabs .nav-tabs,
@@ -1087,16 +1302,19 @@ input[type="checkbox"]:checked + label::before{
     .wizard_block.swMain ul.anchor li a {
         font-size: 14px;
     }
-    .wizard_block ul a b {
+    .wizard_block ul.anchor a b {
         font-size: 20px;
     }
-    .wizard_block ul li:not(:last-child) a.selected::after,
+    .wizard_block ul li a.selected::after,
     .wizard_block ul li:not(:first-child) a.selected::before {
         height: 66px !important;
         width: 66px !important;
         top: 9px;
         right: 15px;
     }
+    .wizard_block ul li:last-child a.selected::after {
+        right: 28px;
+    }   
     .wizard_block ul li:not(:first-child) a.selected::before { 
         right: auto !important;
         left: -38px;
@@ -1111,6 +1329,21 @@ input[type="checkbox"]:checked + label::before{
     }
 }
 @media(max-width:1199px){
+    .wizard_block ul li:last-child a.selected::after {
+        right: 15px;
+    }
+    .owl-item .item {
+        margin: 0 5px;
+    }
+    #step-3 label {
+        padding: 12px;
+    }
+    #step-3 input[type="radio"] + label::before {
+        top: 6px;
+        right: 6px;
+        width: 24px;
+        height: 24px;
+    }
     .navbar-expand-lg .navbar-nav .nav-link {
         font-size: 14px;
         padding: 0 15px;
@@ -1154,14 +1387,32 @@ input[type="checkbox"]:checked + label::before{
     }
 }
 @media(max-width:991px){
+    .ms-container {
+        background-size: 50px;
+    }
+    .btn_box {
+        font-size: 12px;
+    }
+    #step-3 h2, #step-4 h2 {
+        font-size: 25px;
+    }
+    #step-2 h2, #step-3 h2 {
+        margin-bottom: 20px;
+    }
+    .rightpic,.leftpic {
+        margin-bottom: 30px;
+    }
+    form#run-pma-form {
+        margin-bottom: 20px;
+    }
     .wizard_block.swMain ul.anchor li a {
         font-size: 11px;
     }
-    .wizard_block ul a b {
+    .wizard_block ul.anchor a b {
         font-size: 16px;
         margin-bottom: 5px;
     }
-    .wizard_block ul li:not(:last-child) a.selected::after, .wizard_block ul li:not(:first-child) a.selected::before {
+    .wizard_block ul li a.selected::after, .wizard_block ul li:not(:first-child) a.selected::before {
         right: 7px;
         top: 10px;
         height: 50px !important;
@@ -1257,6 +1508,116 @@ input[type="checkbox"]:checked + label::before{
     }
 }
 @media(max-width:767px){
+    #step-4 {
+        padding: 30px 0;
+    }
+    .selected_plan {
+        padding: 5px;
+        font-size: 11px;
+        margin-bottom: 25px;
+    }
+    #step-4 #details {
+        margin: 15px 0 30px;
+    }
+    .coupon_div .input-group {
+        margin-bottom: 30px;
+    }
+    .wizard_block ul li a.selected,.wizard_block ul li:not(:last-child) a.selected {
+        background: #582A82 !important;
+    }
+    .invoice-table {
+        font-size: 12px;
+        margin-bottom: 30px;
+    }
+    .invoice-table td:nth-child(2) {
+        min-width: auto;
+    }
+    table.invoice-table th:first-child, table.invoice-table td:first-child {
+        padding-left: 6px!important;
+    }
+    .invoice-table td {
+        padding: 10px 6px;
+    }
+    table.invoice-table th {
+        padding: 10px 6px !important;
+        font-size: 12px;
+    }
+    #step-4 #details > * {
+        margin-right: 30px;
+    }
+    #step-4 .to,#step-4  .date {
+        font-size: 14px;
+    }
+    .name_date {
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    #select-comps .modal-title {
+        font-size: 18px;
+        margin: 40px 0 20px;
+        line-height: 28px;
+    }
+    .ms-container {
+        background: none;
+        flex-direction: column;
+    }
+    .ms-container .ms-selectable, .ms-container .ms-selection {
+        width: 100%;
+        margin: 20px 0;
+    }
+    #select-comps .modal-title {
+        margin: 40px 0 0;
+    }
+    #select-comps .modal-footer .btn.btn-default {
+        margin: 0 0 20px;
+    }
+    #select-comps .close img {
+        width: 14px;
+    }
+    .multiselect-header {
+        margin-bottom: 20px;
+        font-size: 16px;
+    }
+    .owl-item .item {
+        margin: 0;
+    }
+    #butcomp {
+        padding-top: 0;
+        text-align: left;
+    }
+    #butcomp li{
+        width: 100%;
+    }
+    .carousel-container {
+        margin-bottom: 40px;
+    }
+    .btn_box {
+        margin-bottom: 5px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+    }
+    .btn_box select{
+        text-align: right;
+    }
+    #step-2 h2 {
+        font-size: 18px;
+    }
+    #step-3 h2,#step-4 h2{
+        font-size: 22px;
+        margin-bottom: 10px;
+    }
+    .owl-carousel {
+        margin-top: 10px;
+    }
+    .rightpic, .leftpic {
+        margin: 0 auto 30px;    
+        width: 100px;
+        height: 100px;
+    }
+    table td.child {
+        padding-left: 15px !important;
+    }
     .impression {
         padding: 80px 0 50px !important;
     }
@@ -1267,7 +1628,8 @@ input[type="checkbox"]:checked + label::before{
     .wizard_block.swMain ul.anchor li a {
         font-size: 8px;
     }
-    .wizard_block ul li:not(:last-child) a.selected {
+    .wizard_block ul li a.selected ,
+    .wizard_block ul li:last-child a.selected {
         background: #582a82 !important;
         color: #fff!important;
     }

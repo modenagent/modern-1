@@ -103,7 +103,15 @@
             <div id="step-2" class="clearfix">
                 <form id="run-pma-form" >
                     <div class="col-md-12">
-                        <div class="row justify-content-between">
+                        <div class="row"  style="display: none">
+                            <div class="col-sm-12">
+                                <h2 class="text-center"><strong>Select Minimum 4 and up to 8 Comparables</strong></h2>
+                            </div>
+                            <div class="col-sm-12" id="config-comps-btn">
+                                <select id='pre-selected-options' multiple='multiple'></select>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between buyer-cls" >
                             <div class="col-xs-12 col-lg-5 col-md-6">
                                 <h2><strong>Agent:</strong> <span> Upload Pic &amp; Enter Info</span></h2>
                                 <div class="row">
@@ -241,9 +249,9 @@
                                         </div>
                                     <?php endif; ?>
                                 </div>
-                                <div class="col-sm-6">
-                                    <a href="javascript:void(0);" id="config-comps-btn" class="comps" style="" target="_blank" data-bs-toggle="modal" data-bs-target="#select-comps" title="configure comparables" >Review Comparables</a>
-                                </div>
+                                <!-- <div class="col-sm-6">
+                                    <a href="javascript:void(0);" id="config-comps-btn-a" class="comps" style="" target="_blank" data-bs-toggle="modal" data-bs-target="#select-comps" title="configure comparables" >Review Comparables</a>
+                                </div> -->
                             </div>
                         </div>
                     </div>
@@ -260,8 +268,8 @@
                                         if($report->report_templates_id_pk==$agentInfo->default_template){
                                           echo 'checked';
                                         }
-                                        ?> class="custom-checkbox" id="c21" value="<?php echo $report->template_color; ?>" name="cover">
-                                <label class="user-heading alt gray-bg" for="pb">
+                                        ?> class="custom-checkbox" id="def-temp-<?php echo $report->report_templates_id_pk; ?>" value="<?php echo $report->template_color; ?>" name="cover">
+                                <label class="user-heading alt gray-bg" for="def-temp-<?php echo $report->report_templates_id_pk; ?>">
                                     <div class="text-center"> 
                                         <?php if(!($packages['seller']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
                                         <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
@@ -862,6 +870,7 @@
                         // $('.color-selection').parent().show();
                     <?php endif; ?>
             });
+            $("#config-comps-btn").parent().show();
 
     
     

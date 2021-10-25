@@ -64,7 +64,7 @@
             <a href="#" class="hide" id="refresh">Refresh Selection</a>
         </div>
         <div class="modal-body">
-            <select id='pre-selected-options' multiple='multiple'>
+            <select id='pre-selected-options_old-temp' multiple='multiple'>
             </select>
         </div>
         <div class="modal-footer text-center">
@@ -127,20 +127,20 @@
     return false;
   });
   $('#select-comps').on('shown.bs.modal', function() {
-      $('#pre-selected-options').multiSelect({
-          selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
-          selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-      });  
-      if(firstOpen) {
-          // If received list is not greater than min value than set our min value to received list length
-          var pre_selected_options = $.trim($('#pre-selected-options').html());
-          if (pre_selected_options!='') {
-            if(_min>$('#pre-selected-options').val().length){
-                _min = $('#pre-selected-options').val().length;
-            }
-          }
-          firstOpen = false;
-      }
+      // $('#pre-selected-options').multiSelect({
+      //     selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+      //     selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+      // });  
+      // if(firstOpen) {
+      //     // If received list is not greater than min value than set our min value to received list length
+      //     var pre_selected_options = $.trim($('#pre-selected-options').html());
+      //     if (pre_selected_options!='') {
+      //       if(_min>$('#pre-selected-options').val().length){
+      //           _min = $('#pre-selected-options').val().length;
+      //       }
+      //     }
+      //     firstOpen = false;
+      // }
       /*
       var last_valid_selection = $('#pre-selected-options').val();
       $('#pre-selected-options').change(function(event) {
@@ -237,11 +237,11 @@
   }
 
   //BEGIN CHECKBOX & RADIO
-  $('input[type="radio"]').iCheck({
-    checkboxClass: 'icheckbox_minimal-grey',
-    radioClass: 'icheckbox_minimal-grey',
-    increaseArea: '20%' // optional
-  });
+  // $('input[type="radio"]').iCheck({
+  //   checkboxClass: 'icheckbox_minimal-grey',
+  //   radioClass: 'icheckbox_minimal-grey',
+  //   increaseArea: '20%' // optional
+  // });
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
     $(".owl-carousel").owlCarousel({
@@ -262,6 +262,27 @@
           },500);
           return true;
         }
+        if(obj.attr('rel')==2) {
+          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+            var pre_selected_options = $.trim($('#pre-selected-options').html());
+            if (pre_selected_options!='') {
+              if ($('#pre-selected-options').val()==null) {
+                  alert('Please select '+_min+' comparables');
+                  // event.stopPropagation();
+                  return false;
+              } else if ($('#pre-selected-options').val().length < _min){
+                  alert('Please select '+_min+' comparables');
+                  // event.stopPropagation();
+                  return false;
+              }
+              if($('#pre-selected-options').val().length > _max){
+                  alert('Please do not select more than '+_max+' comparables');
+                  // event.stopPropagation();
+                  return false;
+              }
+            }
+          }
+        }
         if(obj.attr('rel')==3){
           var _theme = $('.custom-checkbox:checked').val();
           console.log(_theme);
@@ -274,6 +295,29 @@
         return true;
       },
       onShowStep:function(obj){
+        if(obj.attr('rel')==2){
+          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+
+            $('.buyer-cls').hide();
+            $('#pre-selected-options').multiSelect({
+              selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
+              selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+            });  
+            if(firstOpen) {
+                // If received list is not greater than min value than set our min value to received list length
+                var pre_selected_options = $.trim($('#pre-selected-options').html());
+                if (pre_selected_options!='') {
+                  if(_min>$('#pre-selected-options').val().length){
+                      _min = $('#pre-selected-options').val().length;
+                  }
+                }
+                firstOpen = false;
+            }
+          }
+          else {
+            $('.buyer-cls').show();
+          }
+        }
         if(obj.attr('rel')==4){
           if($('.custom-checkbox:checked').val()){
             $.ajax({
@@ -1357,6 +1401,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.7"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.8"></script>
 </body>
 </html>
