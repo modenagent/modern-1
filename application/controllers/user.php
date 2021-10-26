@@ -690,7 +690,7 @@ class User extends CI_Controller
     }
 
     // My Account
-    public function myaccount(){
+    public function myaccount($active_tab = ''){
       $data['current'] = "myaccount";
       $data['title'] = "My Account";
       if($this->session->userdata('userid')){
@@ -797,6 +797,15 @@ class User extends CI_Controller
 
           $data['theme_data'] = $this->user_default_templates_model->get_many_by('user_id',$user_id);
           $data['customer_id'] = $customer_id;
+
+          //Check for active content
+          $valid_tabs = [
+            'login','agent','company','theme','membership'
+          ];
+          if($active_tab == '' ||  !in_array($active_tab, $valid_tabs)) {
+            $active_tab = 'login';
+          }
+          $data['active_tab'] = $active_tab;
           
           // print_r($data['agentInfo']);
           $this->load->view('user/header', $data);
@@ -1028,7 +1037,7 @@ class User extends CI_Controller
         if($resp) {
           $this->session->set_flashdata('success', "Subscription cancelled.");
 
-          redirect('user/myaccount');
+          redirect('user/myaccount/membership');
         }
         else {
           // echo "Error";
@@ -3916,12 +3925,12 @@ Thank you for your order. Below you can find the details of your order. If you o
             }
             if($response->current_period_end){
                 $this->session->set_flashdata('success', 'Successfully ended your susbcription cycle.');
-                redirect('user/myaccount#tabs-5');
+                redirect('user/myaccount/membership');
                 exit;
             }
         }
         $this->session->set_flashdata('error', 'Cound not unsubscribe you. Please try again or contact support.');
-        redirect('user/myaccount#tabs-5');
+        redirect('user/myaccount/membership');
         exit;
     }
     function api_doc(){

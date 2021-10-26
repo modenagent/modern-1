@@ -849,16 +849,17 @@ tr.billinghistory td.billinghistoryeven {
 .loader1:before {
     width: 40px;
     height: 40px;
-    margin: 100px auto;
+    /*margin: 100px auto;*/
     background-color: #fff9f9;
     content: '';
     display: block;
     border-radius: 100%;
     -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
     animation: sk-scaleout 1.0s infinite ease-in-out;
-    /* position: absolute; */
-    /* top: 50%; */
-    /* left: 50%; */
+     position: relative; 
+     top: 50%; 
+     margin: auto;
+     /*left: 50%; */
     /*width: 40px;
     height: 40px;
     margin: 100px auto;
@@ -2201,7 +2202,7 @@ form#payment-form {
     top: 0;
     bottom: 0;
     right:0;
-    z-index: 99;
+    z-index: 999;
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -2228,15 +2229,12 @@ form#payment-form {
 
 .loader1,
 .loaders::after {
-    /* border-radius: 50%; */
-    /* height: 10em; */
-    position: absolute;
-    /* width: 10em; */
-    /* left: 46%; */
-    width: 100%;
-    left: 0
+    
+    position: fixed;
+    left: 0;
     top:0;
-    /* z-index: 100; */
+    right: 0;
+    bottom: 0
 }
 
 
@@ -2384,7 +2382,12 @@ form#payment-form {
 }
 
 .loader-text {
-    font-size: 14px;
+    font-size: 16px;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    margin: 5% auto;
+    top: 55%;
 }
 
 #table-dt_filter label input,
