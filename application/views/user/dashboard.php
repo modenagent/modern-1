@@ -88,7 +88,7 @@
                                             <th width="25%">Address</th>
                                             <th width="20%">Owner Name</th>
                                             <th width="10%">City</th>
-                                            <th width="15%">Run Listing</th>
+                                            <th width="15%">Create Report</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -102,7 +102,7 @@
             <!-- step 1 ends -->
             <div id="step-2" class="clearfix">
                 <div class="loader1 hidden">
-                    <img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                    
                     <p class="loader-text">Please wait</p>
                 </div>
                 <div class="backwrap hidden"></div>
@@ -209,7 +209,7 @@
             <!-- step 2 ends-->
             <div id="step-3" class="clearfix">
                 <div class="loader1 hidden">
-                    <img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                    
                     <p class="loader-text">Preparing list of comparable properties ...</p>
                 </div>
                 <div class="backwrap hidden"></div>
@@ -219,7 +219,7 @@
                             <h2>
                                 <strong class="common_cls">Choose Your Branding</strong>
                                 <strong class="subscribe_cls" style="display: none;">Preview Pages</strong>
-                                <span style="display: block; font-size: 12px; text-transform: initial;">Select theme from <a href="<?php echo base_url('user/myaccount');?>">My Account</a></span>
+                                <span style="display: block; font-size: 12px; text-transform: initial;">Select theme from <a href="<?php echo base_url('user/myaccount/theme');?>">My Account</a></span>
                             </h2>
                         </div>
 
@@ -474,7 +474,7 @@
                                           echo 'checked';
                                         }
                                         ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
-                                <label class="user-heading alt gray-bg" for="pb">
+                                <label class="user-heading alt gray-bg" for="registry_page_<?php echo $regsitry_i; ?>">
                                     <div class="text-center">
                                         <img class="" src="<?php echo base_url("assets/reports/english/registry/preview/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
                                     </div>
@@ -490,7 +490,7 @@
             <!-- step 3 ends-->
             <div id="step-4" class="clearfix">
                 <div class="loader1 hidden">
-                    <img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                    
                     <p class="loader-text">Please wait</p>
                 </div>
                 <div class="backwrap hidden"></div>
@@ -553,8 +553,8 @@
                                     </tr>
                                 </tfoot>
                             </table>
-                            <div class="row coupon_div">
-                                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 pull-right">
+                            <div class="row ">
+                                <div class="col-sm-12 col-md-6 coupon_div">
                                     <div class="input-group">
                                         <input class="from-field form-control" type="text" id="coupon_code" placeholder="Coupon Code" >
                                         <span class="input-group-btn">
@@ -562,6 +562,12 @@
                                         </span>
                                     </div>
                                     <!-- /input-group -->
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <div class=" clearfix pull-right  ">
+                                        <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
+                                        <button type="button" style="display: none;!important;" id="stripe_chk_btn"></button>
+                                    </div>
                                 </div>
                             </div>
                             <hr>
@@ -578,7 +584,6 @@
                             <td width="15%" style="color:#ffffff;" class="text-right" ><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
                         </tr>
                     </table>
-                    <p>&nbsp;</p>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">Payment Information</h3>
@@ -613,12 +618,9 @@
                             </form>
                         </div>
                     </div>
-                    <div class="loaders" style="opacity:1!important;"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
+                    <div class="loaders" style="opacity:1!important;"></div>
                 </div>
-                <div class=" clearfix pull-right  ">
-                    <a href="javascript:void(0);" class="btn btn-lp btn-checkout">Checkout &amp; Download</a>
-                    <button type="button" style="display: none;!important;" id="stripe_chk_btn"></button>
-                </div>
+                
             </div>
             <!-- step 4 ends-->
         </div>

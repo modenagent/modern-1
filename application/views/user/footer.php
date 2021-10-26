@@ -38,12 +38,13 @@
             </div>
             <div class="modal-body">
               <input type="hidden" id="project-id" name="project_id">
-              <div class="form-group">
+              <div class="form-group mb-3">
                   <label for="email_to">Send to Email:</label>
                   <input type="email" class="form-control" required name="email_to">
               </div>
               <div class="form-group">
-                  <label style="padding-left:0;"><input type="checkbox" name="cc"> CC to me</label>
+                  <input type="checkbox" name="cc" id="cc_me"> 
+                  <label for="cc_me">CC to me</label>
               </div>
             </div>
             <div class="modal-footer">

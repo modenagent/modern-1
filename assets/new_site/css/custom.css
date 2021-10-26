@@ -450,7 +450,10 @@ footer a:hover{
 .stepContainer .content .input-group input{
     padding-left: 56px !important;
 }
-.stepContainer .content  input {
+.stepContainer #step-1.content input {
+    height: 75px !important;
+}
+.stepContainer .content input {
     height: 48px !important;
     font-weight: 400 !important;
     /*padding-left: 56px !important;*/
@@ -469,6 +472,10 @@ footer a:hover{
 .huge-search {
     /*max-width: 872px;*/
     margin: 44px 0 120px;
+}
+.stepContainer #step-1.content .input-group-btn .btn {
+    height: 75px !important;
+    width: 160px !important;
 }
 .stepContainer .content .input-group-btn .btn {
     background: #582a82 !important;

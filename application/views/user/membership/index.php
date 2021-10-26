@@ -202,7 +202,8 @@
                 showError(result.error.message);
               } else {
                 $("#payment-success").html("You have sucessfully Subscribed");
-                location.reload();
+                // location.reload();
+                location.replace('<?php echo base_url("user/myaccount/membership"); ?>');
                 // Successful subscription payment
               }
             });

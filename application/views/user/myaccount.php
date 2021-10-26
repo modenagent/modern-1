@@ -11,31 +11,31 @@
     <div class="myaccount_tabs">
       <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-          <a class="nav-link active" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">
+          <a class="nav-link <?php if($active_tab =='login') {echo 'active';} ?>" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">
             <b>Login info</b>
             Update your info
           </a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="agent-tab" data-bs-toggle="tab" href="#agent" role="tab" aria-controls="agent" aria-selected="false">
+          <a class="nav-link <?php if($active_tab =='agent') {echo 'active';} ?>" id="agent-tab" data-bs-toggle="tab" href="#agent" role="tab" aria-controls="agent" aria-selected="false">
             <b>Agent Info</b>
             Update your info
           </a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="company-tab" data-bs-toggle="tab" href="#company" role="tab" aria-controls="company" aria-selected="false">
+          <a class="nav-link <?php if($active_tab =='company') {echo 'active';} ?>" id="company-tab" data-bs-toggle="tab" href="#company" role="tab" aria-controls="company" aria-selected="false">
             <b>Company Info</b>
             Update company info
           </a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="theme-tab" data-bs-toggle="tab" href="#theme" role="tab" aria-controls="theme" aria-selected="false">
+          <a class="nav-link <?php if($active_tab =='theme') {echo 'active';} ?>" id="theme-tab" data-bs-toggle="tab" href="#theme" role="tab" aria-controls="theme" aria-selected="false">
             <b>Theme Default</b>
             Select a theme
           </a>
         </li>
         <li class="nav-item" role="presentation">
-          <a class="nav-link" id="plan-tab" data-bs-toggle="tab" href="#plan" role="tab" aria-controls="plan" aria-selected="false">
+          <a class="nav-link <?php if($active_tab =='membership') {echo 'active';} ?>" id="plan-tab" data-bs-toggle="tab" href="#plan" role="tab" aria-controls="plan" aria-selected="false">
             <b>Membership</b>
             Select a plan
           </a>
@@ -45,7 +45,7 @@
       <div class="backwrap hidden"></div>
 
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+        <div class="tab-pane fade <?php if($active_tab =='login') {echo 'show active';} ?>" id="login" role="tabpanel" aria-labelledby="login-tab">
           <div class="tab_white_box">
             <h2 class="mini_title">Update Login Info</h2>
             <div class="login_info_form">
@@ -73,7 +73,7 @@
           </div>
         </div>
       
-        <div class="tab-pane fade" id="agent" role="tabpanel" aria-labelledby="agent-tab">
+        <div class="tab-pane fade <?php if($active_tab =='agent') {echo 'show active';} ?>" id="agent" role="tabpanel" aria-labelledby="agent-tab">
           <div class="tab_white_box">
             <h2 class="mini_title">Update Agent Info</h2>
             <div class="leftpic"> 
@@ -131,7 +131,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="company" role="tabpanel" aria-labelledby="company-tab">
+        <div class="tab-pane fade <?php if($active_tab =='company') {echo 'show active';} ?>" id="company" role="tabpanel" aria-labelledby="company-tab">
           <div class="tab_white_box">
             <h2 class="mini_title">Update Company Info</h2>
             <div class="rightpic">
@@ -186,7 +186,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane fade" id="theme" role="tabpanel" aria-labelledby="theme-tab">
+        <div class="tab-pane fade <?php if($active_tab =='theme') {echo 'show active';} ?>" id="theme" role="tabpanel" aria-labelledby="theme-tab">
           <?php
           $default_sub_type = 1;
           $default_theme_color = 1;
@@ -261,7 +261,7 @@
           </div>
         </div>
 
-        <div class="tab-pane fade" id="plan" role="tabpanel" aria-labelledby="plan-tab">
+        <div class="tab-pane fade <?php if($active_tab =='membership') {echo 'show active';} ?>" id="plan" role="tabpanel" aria-labelledby="plan-tab">
           <?php $this->load->view('user/membership/index'); ?>
         </div>
       </div>

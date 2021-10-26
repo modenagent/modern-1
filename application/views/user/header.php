@@ -18,12 +18,12 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/carousel.css"/>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/carousel.theme.css"/>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/prettyphoto.css"/>
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/smart_wizard.css"/>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/smart_wizard.css?v=0.1"/>
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/smart_tab_vertical.css"/>
   <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css"> -->
   <!-- Custom CSS -->
 
-  <link href="<?php echo base_url(); ?>assets/new_site/css/lp-style.css?v=0.2" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/new_site/css/lp-style.css?v=0.3" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/new_site/css/multi-select.css"); ?>">
   <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
@@ -43,7 +43,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/header_user.css"); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/responsive.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.2">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.3">
 </head>
 
 <body class="home">
