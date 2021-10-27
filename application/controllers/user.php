@@ -401,6 +401,7 @@ class User extends CI_Controller
                 $action = '';
                 $action .= ' <ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
                 <li class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/email.svg" alt="..." class="w20"></a></li>
+                <li style="opacity:0.7;" class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#sms-report" title="Send SMS" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/sms.svg" alt="..." class="w20"></a></li>
                 <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li></ul>';
                 
                 $data[] = [
@@ -3781,7 +3782,48 @@ Thank you for your order. Below you can find the details of your order. If you o
         $this->session->set_flashdata('success', "Report sent successfully.");
         redirect('user/recentlp');
         exit;
-    } 
+    }
+
+    public function sms_report(){
+        $contact_number = $this->input->post('sms_to');
+        $projectId = $this->input->post('sms_report_id');
+
+        $listingData = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk'=>$projectId));
+        $reportLink = base_url($listingData->report_path);
+                    
+        // Your Account SID and Auth Token from twilio.com/console
+          $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
+          $token = 'd33346194bc839d2c495c6b35c2c5a64';
+          $client = new Client($sid, $token);
+
+          // Use the client to do fun stuff like send text messages!
+          $smsText = "You can can download report by clicking this url. {$reportLink}";
+          // echo $smsText;die;
+          try {
+            $smsRes = $client->messages->create(
+              // the number you'd like to send the message to
+              '+1'.$contact_number,
+              array(
+                  // A Twilio phone number you purchased at twilio.com/console
+                  'from' => '+14243519064',
+                  // the body of the text message you'd like to send
+                  'body' => $smsText
+              )
+            );
+          } catch (Exception $e){
+            echo $e->getMessage();die;
+              $this->session->set_flashdata('error', "SMS could not be sent on this number.");
+              redirect('user/recentlp');
+              
+          }
+        // $message = ;
+        // $this->base_model->queue_mail($email,'Report',$message,array($listingData->report_path),$ccTo);
+        
+        $this->session->set_flashdata('success', "SMS sent successfully.");
+        redirect('user/recentlp');
+        exit;
+    }
+
     function is_subscribed($planId=null, $userId = NULL){
         if($userId == NULL)
           $userId = $this->session->userdata('userid');

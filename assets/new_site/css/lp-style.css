@@ -1883,10 +1883,10 @@ div.pull-right1 {
 }
 
 .alert-danger {
-    color: #ffffff!important;
+    /*color: #ffffff!important;
     background-color: rgba(255, 255, 255, 0.19)!important;
     border-color: #ffffff!important;
-    border-radius: 0!important;
+    border-radius: 0!important;*/
     /* border-left: 3px solid red; */
 }
 
