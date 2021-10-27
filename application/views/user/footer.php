@@ -55,6 +55,31 @@
 
   </div>
 </div>
+<div id="sms-report" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content ">
+        <form action="<?php echo base_url('user/sms_report'); ?>" method="post" id="sms-report-form">
+            <div class="modal-header">
+              <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Send Report to SMS</h4>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="sms-report-id" name="sms_report_id">
+              <div class="form-group mb-3">
+                  <label for="sms_email_to">Enter Phone Number:</label>
+                  <input type="text" class="form-control" required name="sms_to" id="sms_to">
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-lp external">Send</button>              
+            </div>
+        </form>
+    </div>
+
+  </div>
+</div>
 <div id="select-comps" class="modal fade" role="dialog">
   <div class="modal-dialog modal-lg">
     <!-- Modal content-->
@@ -1210,6 +1235,10 @@
   $("#forward-report").on("show.bs.modal", function(e) {
       var projectID = $(e.relatedTarget).data('id');
       $(this).find("#project-id").val(projectID);
+  });
+  $("#sms-report").on("show.bs.modal", function(e) {
+      var projectID = $(e.relatedTarget).data('id');
+      $(this).find("#sms-report-id").val(projectID);
   });
   function check_subscription(){
       $.ajax({

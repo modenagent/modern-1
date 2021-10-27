@@ -884,7 +884,7 @@ input[type="radio"]:checked + .theme_bg::before{
 .form-group input:focus {
     border-color: rgba(88,42,130, 1);
 }
-#forward-report .btn-lp {
+.modal-footer .btn-lp {
     background: rgba(88,42,130, 1);
     color: #fff;
     border-color: rgba(88,42,130, 1);
@@ -895,8 +895,8 @@ input[type="radio"]:checked + .theme_bg::before{
     margin: 0;
     box-shadow: none;
 }
-#forward-report .btn-lp:hover,
-#forward-report .btn-lp:focus{
+.modal-footer .btn-lp:hover,
+.modal-footer .btn-lp:focus{
     border-color: #e0514b;
     background: #e0514b;
 }
