@@ -112,20 +112,20 @@ echo $this->email->print_debugger();die;
             
             $this->load->library('session');
 
-            $data['category'] = $this->base_model->all_records('lp_category_mst'); 
+            // $data['category'] = $this->base_model->all_records('lp_category_mst'); 
 
-            // new flyers
-            $data['newFlyers1'] = $this->base_model->getNewFlyer('lp_product_mst','4','0');
-            $data['newFlyers2'] = $this->base_model->getNewFlyer('lp_product_mst','4','4');
-            $data['newFlyers3'] = $this->base_model->getNewFlyer('lp_product_mst','4','8');
+            // // new flyers
+            // $data['newFlyers1'] = $this->base_model->getNewFlyer('lp_product_mst','4','0');
+            // $data['newFlyers2'] = $this->base_model->getNewFlyer('lp_product_mst','4','4');
+            // $data['newFlyers3'] = $this->base_model->getNewFlyer('lp_product_mst','4','8');
 
-            $data['mostFlyers1'] = $this->base_model->getNewFlyer2('lp_product_mst','4','0');
-            $data['mostFlyers2'] = $this->base_model->getNewFlyer2('lp_product_mst','4','4');
-            $data['mostFlyers3'] = $this->base_model->getNewFlyer2('lp_product_mst','4','8');
+            // $data['mostFlyers1'] = $this->base_model->getNewFlyer2('lp_product_mst','4','0');
+            // $data['mostFlyers2'] = $this->base_model->getNewFlyer2('lp_product_mst','4','4');
+            // $data['mostFlyers3'] = $this->base_model->getNewFlyer2('lp_product_mst','4','8');
 
-            $data['bestFlyers1'] = $this->base_model->getNewFlyer3('lp_product_mst','4','0');
-            $data['bestFlyers2'] = $this->base_model->getNewFlyer3('lp_product_mst','4','4');
-            $data['bestFlyers3'] = $this->base_model->getNewFlyer3('lp_product_mst','4','8');
+            // $data['bestFlyers1'] = $this->base_model->getNewFlyer3('lp_product_mst','4','0');
+            // $data['bestFlyers2'] = $this->base_model->getNewFlyer3('lp_product_mst','4','4');
+            // $data['bestFlyers3'] = $this->base_model->getNewFlyer3('lp_product_mst','4','8');
             $data['body_class'] = "home-all"; 
 
             $this->load->model('package_model');
@@ -187,13 +187,20 @@ echo $this->email->print_debugger();die;
 
             if ($this->form_validation->run() == false) { 
                 // validation not ok, send validation errors to the view
-                $this->load->view('frontend/header');
+                $this->load->view('frontend/header_login');
                 $this->load->view('frontend/login');
-                $this->load->view('frontend/footer');
+                $this->load->view('frontend/footer_login');
             } else { 
                 //die("Depreicated. Post request is being handeled from auth controller");
                 redirect(base_url().'user/dashboard');
             }
+    }
+
+    public function forgot_password()
+    {
+        $this->load->view('frontend/header_login');
+        $this->load->view('frontend/forgot_password');
+        $this->load->view('frontend/footer_login');
     }
 
       // frontend view
@@ -258,12 +265,17 @@ echo $this->email->print_debugger();die;
                     $this->session->set_userdata('userid', $lastId);
                     $userName = $this->input->post('fname').' '.$this->input->post('lname');
                     $name = 'Administrator';
-                    $message = $this->load->view('mails/registration_success','',true);
+                    $mail_data = array();
+                    $mail_data['email'] = $this->input->post('uemail');
+                    $mail_data['first_name'] = $this->input->post('fname');
+                    $mail_data['last_name'] = $this->input->post('lname');
+                    $mail_data['phone'] = $this->input->post('uphone');
+                    $message = $this->load->view('mails/registration_success',$mail_data,true);
                     
                     $send = $this->base_model->queue_mail($this->input->post('uemail'),'Modern Agent Registration',$message);
                     $doSubscribe = $this->input->post('do_subscribe');
                     if($doSubscribe){
-                        redirect(site_url('user/myaccount#tabs-5'));
+                        redirect(site_url('user/myaccount/membership'));
                         exit;
                     }else {
                         redirect(site_url('user/dashboard'));
@@ -273,9 +285,9 @@ echo $this->email->print_debugger();die;
                     $data['err_message'] = !isset($data['err_message'])?$data['err_message']:'Insert faild.';
                 }              
             }
-            $this->load->view('frontend/header');
+            $this->load->view('frontend/header_login');
             $this->load->view('frontend/register', $data);
-            $this->load->view('frontend/footer');
+            $this->load->view('frontend/footer_login');
     }
 
     // flyer list   

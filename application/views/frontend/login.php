@@ -1,57 +1,53 @@
 
-<div id="login-page" class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-md-offset-4">
-                <div id="errorMessage" class="login-error-msg text-center"><span><?php echo $err_message;?></span></div>
-               
-                <div class="sign-in-container">
-                    <form class="login-wrapper" method="post" id="login-form" style="">
-                        <div class="header">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-12">
-                                     <div class="logo-container">
-                                     <center><a href="#"><img id="header_logo" class="" src="<?php echo base_url(); ?>assets/images-2/logo.png" class="img-responsive" ></a></center>
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="uemail" id="uemail" placeholder="Email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control" name="upass" id="upass" placeholder="Password">
-                            </div>
-                            <div class="form-group m-b-0">
-                                <input id="login-form-submit-btn" class="btn btn-lp" name="Login" type="submit" value="Login">
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <span class="login-btns"><a href="javascript:;" class="fp-link">Forgot Password?</a> | <a href="<?php echo base_url() ?>frontend/register" class="reg-link">Register</a></span>
-                        </div>
-                    </form>
-                    <form action="" class="login-wrapper" method="post" id="forgot-form" style="display:none;">
-                        <div class="header">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-12">
-                                    <h3>Forgot Password ?</h3>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="content">
-                            <div class="form-group">
-                                <label for="userName">Email</label>
-                                <input type="text" class="form-control" name="f_uemail" id="f_uemail" placeholder="Email">
-                            </div>
-                            <div class="form-group m-b-0">
-                                <input class="btn btn-lp" id="forgot_submit" name="forgot" type="button" value="Recover Password">
-                            </div>
-                        </div>
-                        <div class="actions">
-                            <span class="login-btns"><a href="javascript:;" id="login-link">Login</a> | <a href="<?php echo base_url() ?>frontend/register" class="reg-link">Register</a></span>
-                        </div>
-                    </form>
+<div class="login-btn pull-right"><a href="<?php echo base_url('frontend/register') ?>"><i class="flaticon-user"></i>Create Account</a></div>
                 </div>
             </div>
         </div>
-</div>
+        <div class="main-content-box">
+            <div class="outer-container clearfix">
+                <div class="left-column">
+                    <div class="inner-box">
+                      
+                      <a href="<?php echo base_url();?>"><img class="loglogo" src="<?php echo base_url();?>/assets/login/images/LargeLogo.png" alt=""></a>
+                      
+                      
+                    </div>
+                </div>
+                <div class="right-column clearfix">
+                    <div class="inner-box">
+                        <div class="sec-title">
+                            <h2>Account Login</h2>
+                            <p>Enter your email and password below to login to your account.</p>
+                        </div>
+                        <div class="login-form">
+                            <form id="login-form" method="post">
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input type="email" name="uemail" id="uemail" placeholder="Email" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" name="upass" id="upass" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <!-- <div class="create-acc">
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="checkbox" checked="checked">
+                                                <span>Remember Password</span>
+                                            </label>
+                                        </div>  
+                                    </div> -->
+                                    <div class="">
+                                        <button id="login-form-submit-btn" type="submit" class="theme-btn">Login Account</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="creat-account">Dont remember password? <a href="<?php echo base_url('frontend/forgot_password') ?>">Click Here</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- login-page-section end -->
