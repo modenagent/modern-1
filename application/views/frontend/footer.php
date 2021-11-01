@@ -1,71 +1,169 @@
-<div class="user-footer">
-  <div class="section upper-footer">
-        <div class="container">
-            <div class="row">
-                <div class="upper-footer-wrapper">
-                    <div class="col-md-4">
-                        <div class="md_agent">
-                            <h3 id="modern">MODERN AGENT</h3>
-                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression. Beautiful design with accurate data we make our users look like rockstars.</small></p>
+
+            <!-- DIVIDER LINE -->
+            <hr class="divider">
+
+
+
+
+            <!-- FOOTER-4
+            ============================================= -->
+            <footer id="footer-4" class="footer division">
+                <div class="container">
+
+
+                    <!-- FOOTER CONTENT -->
+                    <div class="row">   
+
+
+                        <!-- FOOTER INFO -->
+                        <div class="col-lg-3">
+                            <div class="footer-info mb-40 mt-100">
+                                <img class="footer-logo" src="<?php echo base_url();?>/assets/frontend/images/LargeLogoDark.png" alt="footer-logo">
+                            </div>  
+                        </div>  
+
+
+                        <!-- FOOTER LINKS -->
+                        <div class="col-sm-6 col-md-3 col-lg-2 col-lg-2 col-xl-2 offset-xl-1">
+                            <div class="footer-links mb-40">
+                            
+                                <!-- Title -->
+                                <h6 class="h6-xl">About</h6>
+
+                                <!-- Footer Links -->
+                                <ul class="foo-links text-secondary clearfix">
+                                    <li><p class="p-md"><a href="#">About Us</a></p></li>   
+                                    <li><p class="p-md"><a href="#">Our Team</a></p></li>
+                                    <li><p class="p-md"><a href="#">Careers</a></p></li>
+                                    <li><p class="p-md"><a href="#">Press & Media</a></p></li>
+                                    <li><p class="p-md"><a href="#">Advertising</a></p></li>                        
+                                </ul>
+
+                            </div>
                         </div>
-                    </div>
-					 <div class="col-md-4">
-                        <div class="md_agent-2">
-                            <h3 id="modern">INDUSTRY FRIENDS</h3>
-                            <p id="mod_para"><ul class="ctft">
-												<li>Flare Media</li>
-												<li>TextMyFarm.com</li>
-												<li>DeedPro</li>
-												<li>Maxa Designs</li>
-												</ul></p>
+
+
+                        <!-- FOOTER LINKS -->
+                        <div class="col-sm-6 col-md-3 col-lg-2">
+                            <div class="footer-links mb-40">
+                            
+                                <!-- Title -->
+                                <h6 class="h6-xl">Discover</h6>
+
+                                <!-- Footer List -->
+                                <ul class="foo-links text-secondary clearfix">                          
+                                    <li><p class="p-md"><a href="#">Our Blog</a></p></li>                                       
+                                    <li><p class="p-md"><a href="#">Plans & Pricing</a></p></li>
+                                    <li><p class="p-md"><a href="#">Testimonials</a></p></li>
+                                    <li><p class="p-md"><a href="#">Knowledge Base</a></p></li>
+                                    <li><p class="p-md"><a href="#">Cookie Policy</a></p></li>                  
+                                </ul>
+
+                            </div>
                         </div>
-                    </div>
-					 <div class="col-md-4">
-                        <div class="md_agent-3">
-                            <h3 id="modern">CONTACT US</h3>
-                            <p id="mod_para"><small>info@modernagent.io</small></p>
-                        </div>
-                    </div>
-                    
+
+
+                        <!-- FOOTER LINKS -->
+                        <div class="col-sm-6 col-md-3 col-lg-2">
+                            <div class="footer-links mb-40">
+                                                
+                                <!-- Title -->
+                                <h6 class="h6-xl">Support</h6>
+
+                                <!-- Footer List -->
+                                <ul class="foo-links text-secondary clearfix">
+                                    <li><p class="p-md"><a href="#">FAQs</a></p></li>
+                                    <li><p class="p-md"><a href="#">Editor Help</a></p></li>
+                                    <li><p class="p-md"><a href="#">Community</a></p></li>                                          
+                                    <li><p class="p-md"><a href="#">Live Chatting</a></p></li>  
+                                    <li><p class="p-md"><a href="#">Contact Us</a></p></li>                             
+                                </ul>
+
+                            </div>  
+                        </div>  
+
+
+                        <!-- FOOTER LINKS -->
+                        <div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
+                            <div class="footer-links mb-40">
+                                                
+                                <!-- Title -->
+                                <h6 class="h6-xl">Connect With Us</h6>
+
+                                <!-- Social Links -->   
+                                <ul class="footer-socials text-secondary ico-25 text-center clearfix">      
+                                    <li><a href="#"><span class="flaticon-facebook"></span></a></li>
+                                    <li><a href="#"><span class="flaticon-twitter"></span></a></li>
+                                    <li><a href="#"><span class="flaticon-github"></span></a></li>
+                                    <li><a href="#"><span class="flaticon-youtube"></span></a></li>
+                                </ul>
+
+                            </div>  
+                        </div>  
+
+
+                    </div>  <!-- END FOOTER CONTENT -->
+
+
+                    <hr>
+
+
+                    <!-- BOTTOM FOOTER -->
+                    <div class="bottom-footer">
+                        <div class="row row-cols-1 row-cols-md-2 d-flex align-items-center">
+
+
+                            <!-- FOOTER COPYRIGHT -->
+                            <div class="col">
+                                <div class="footer-copyright">
+                                    <p>&copy; 2021-2022 MODERN AGENT. All Rights Reserved</p>
+                                </div>
+                            </div>
+
+
+                            <!-- BOTTOM FOOTER LINKS -->
+                            <div class="col">
+                                <ul class="bottom-footer-list text-secondary text-end">
+                                    <li class="first-li"><p><a href="#">Privacy Policy</a></p></li>
+                                    <li class="last-li"><p><a href="#">Terms & Conditions</a></p></li>
+                                </ul>
+                            </div>
+
+
+                        </div>  <!-- End row -->
+                    </div>  <!-- BOTTOM FOOTER -->
+
+
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="section lower-footer section-alternate">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="left">
-                        <p class="font">www.modernagent.io</p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="center">
-                        <p class="font fontc">&COPY; <?php echo date('Y'); ?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-1 text-center">
-                    <ul class="social-links">
-                        <a href="#">
-                            <li class="fb" aria-hidden="true"></li>
-                        </a>
-                        <a href="#">
-                            <li class="twitter" aria-hidden="true"></li>
-                        </a>
-                        <a href="#">
-                            <li class="insta" aria-hidden="true"></li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--toastr js-->
-<script src="<?php echo base_url(); ?>assets/js/jquery-toastr/toastr.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/jquery-toastr/ui-toastr-notifications.js"></script> `
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
+            </footer>   <!-- FOOTER-4 -->
+            
+
+
+
+        </div>  <!-- END PAGE CONTENT --> 
+
+        <!-- EXTERNAL SCRIPTS
+        ============================================= -->   
+        <script src="<?php echo base_url();?>/assets/frontend/js/jquery-3.6.0.min.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/bootstrap.min.js"></script> 
+        <script src="<?php echo base_url();?>/assets/frontend/js/modernizr.custom.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.easing.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.appear.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.scrollto.js"></script>   
+        <script src="<?php echo base_url();?>/assets/frontend/js/menu.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/imagesloaded.pkgd.min.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/isotope.pkgd.min.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/owl.carousel.min.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.magnific-popup.min.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/quick-form.js"></script>    
+        <script src="<?php echo base_url();?>/assets/frontend/js/request-form.js"></script>  
+        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.validate.min.js"></script>
+        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.ajaxchimp.min.js"></script>  
+        <script src="<?php echo base_url();?>/assets/frontend/js/wow.js"></script>
+                
+        <!-- Custom Script -->      
+        <script src="<?php echo base_url();?>/assets/frontend/js/custom.js"></script>
+         
 <script type="text/javascript">
     // stopping form from submitting on enter key press
     $(document).ready(function() {

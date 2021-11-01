@@ -180,7 +180,12 @@ class Auth extends REST_Controller
                 $sessionData = $this->session->set_userdata($newdata);
                 $userName = $this->input->post('fname').' '.$this->input->post('lname');
                 $name = 'Administrator';
-                $message = $this->load->view('mails/registration_success','',true);
+                $mail_data = array();
+                $mail_data['email'] = $this->input->post('uemail');
+                $mail_data['first_name'] = $this->input->post('fname');
+                $mail_data['last_name'] = $this->input->post('lname');
+                $mail_data['phone'] = $this->input->post('uphone');
+                $message = $this->load->view('mails/registration_success',$mail_data,true);
 
                 $send = $this->base_model->queue_mail($this->input->post('uemail'),'Modern Agent Registration',$message);
                 $response = array(

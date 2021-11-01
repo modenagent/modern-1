@@ -302,7 +302,7 @@ class User extends CI_Controller
       }
       if($packages_value && $packages_value->price > $coupon_amount) {
         $final_value = $packages_value->price - $coupon_amount;
-        $this->load->library('Stripe_lib');
+        $this->load->library('Stripe_lib'); 
         $stripe = new Stripe_lib();
         $payment_obj = $stripe->createPaymentIntent($final_value,$packages_value->title);
         if($payment_obj && !empty($payment_obj->client_secret)) {
@@ -3693,90 +3693,14 @@ Thank you for your order. Below you can find the details of your order. If you o
             $ccTo = $userdata=$this->session->userdata('user_email');
         }
         $listingData = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk'=>$projectId));
+        // var_dump($listingData);die;
+        $data = array();
+        $data['address'] = $listingData->property_address;
+        $data['report_url'] =base_url($listingData->report_path);
+
+        $message = $this->load->view('mails/download_report',$data,TRUE);
         
-        $message = '<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ecf0f1" style="background-color: rgb(236, 240, 241);">
-	<tr>
-		<td bgcolor="#ecf0f1"align="center" style="background-color: rgb(236, 240, 241); padding-top:30px;">
-			<table width="600" border="0" cellpadding="0" cellspacing="0" align="center" >
-				<tr>
-					<td width="600" align="center">
-						<img src="'.base_url('assets/images-2/logo.png').'"/>
-					</td>
-				</tr>
-				
-				
-				<tr>
-					<td valign="top" width="600" align="center">
-						<table width="600">
-							<tr>
-								<td valign="top" width="420" align="center">
-									<table width="420" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-										
-										<tr>
-											<td valign="middle" width="100%" style="text-align: left; font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: rgb(34, 34, 34); line-height: 24px; font-weight: normal;">
-												<span style="font-family: \'proxima_nova_rgregular\', Helvetica; font-weight: normal;">Please find attached PDF Report.
-												<br><br></span>
-											</td>
-										</tr>
-										<tr>
-											<td width="100%" height="10"></td>
-										</tr>
-									</table>
-								</td>
-								<td valign="top" width="150" align="center" style="padding-left:20px" >
-									<table width="150" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-										<tr>
-											<td width="150" bgcolor="#f15d3e"align="center" style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background:none; border: 1px solid #55c9e0;">												
-												<table width="150" border="0" cellpadding="0" cellspacing="0" align="center">
-													<tr>
-														<td width="100%" height="10" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
-													</tr>
-													<tr>
-														<td valign="top" width="100%" align="center" style="text-align: center; font-size: 14px; font-family: Helvetica, Arial, sans-serif; color: rgb(34, 34, 34); font-weight: bold; line-height: 18px; text-transform: uppercase;" >
-															<span style="font-family: \'proxima_novasemibold\', Helvetica; font-weight: normal;"><a href="<?php echo site_url(); ?>" style="text-decoration: none; color: rgb(85, 201, 224);">ACCOUNT LOGIN</a></span>
-														</td>
-													</tr>
-													<tr>
-														<td width="100%" height="10" style="font-size: 1px; line-height: 1px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;">&nbsp;</td>
-													</tr>
-												</table>												
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>							
-						</table>						
-					</td>
-				</tr>
-				<tr>
-					<td style="line-height:10px;">&nbsp;</td>
-				</tr>
-				
-				<tr>
-					<td height="30" style="line-height:20px;">&nbsp;</td>
-				</tr>
-				<tr>
-					<td valign="middle" width="600" style="text-align: left; font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: rgb(34, 34, 34); line-height: 24px; font-weight: normal;">
-						<span style="font-family: \'proxima_nova_rgregular\', Helvetica; font-weight: normal;">If you have any questions please email us @ info@modernagent.io</span>
-					</td>
-				</tr>
-				<tr>
-					<td height="5" style="line-height:5px;">&nbsp;</td>
-				</tr>
-				<tr>
-					<td width="600" border="0" height="60" cellpadding="0" cellspacing="0" align="center" bgcolor="#3e4957"style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background-color: rgb(62, 73, 87); font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(255, 255, 255);">
-						<span style="font-family: \'proxima_nova_rgregular\', Helvetica; font-weight: normal;">
-							<span style="color:#FFFFFF !important;" >&copy; '.date("Y").' ModernAgent.io All rights Reserved</span>
-						</span>
-					</td>
-				</tr>
-				<tr>
-					<td height="30" style="line-height:35px;">&nbsp;</td>
-				</tr>
-			</table>	
-		</td>
-	</tr>
-</table>';
+        
         $this->base_model->queue_mail($email,'Report',$message,array($listingData->report_path),$ccTo);
         
         $this->session->set_flashdata('success', "Report sent successfully.");
