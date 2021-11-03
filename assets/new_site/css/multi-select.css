@@ -54,10 +54,10 @@
   font-size: 15px;
   cursor: pointer;
 }
-.ms-elem-selectable:nth-of-type(even) {
+.ms-elem-selectable.multi-select-even {
   background: rgba(88,42 ,131,0.2);
 }
-.ms-elem-selection:nth-of-type(even) {
+.ms-elem-selection.multi-select-even {
   background: rgba(239,81,75 ,0.2);
 }
 .ms-container .ms-selectable li.disabled,
