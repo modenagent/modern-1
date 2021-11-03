@@ -959,6 +959,8 @@ input[type="checkbox"]:checked + label::before{
 }
 #step-3 .owl-theme .item {
     margin: 0px 10px;
+    background: #F4F4F9;
+    padding: 25px;
 }
 form#run-pma-form {
     margin-bottom: 100px;
@@ -975,10 +977,8 @@ form#run-pma-form {
     border: none;
     width: auto;
 }
-#step-3 label {
-    background: #F4F4F9;
-    padding: 25px;
-    position: relative;
+#step-3 label{
+    /*position: relative;*/
     cursor: pointer;
 }
 #step-3 input[type="radio"]{

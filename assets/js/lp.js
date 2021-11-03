@@ -66,7 +66,23 @@ $(document).ready(function() {
     }); 
 });
 
-
+function initateCompSelection() {
+    $('#ms-pre-selected-options ul').each(function(idx, li) {
+        var cnt_idx = 1;
+        $(this).find('li') .each(function(idx, li) {
+            if($(this).css('display') != 'none') {
+                if(cnt_idx % 2 == 0) {
+                    $(this).addClass('multi-select-even');
+                }
+                else {
+                    $(this).removeClass('multi-select-even');
+                }
+                cnt_idx++;
+            }
+            
+        });
+    });
+}
 function isPdfGenerated(){
     setTimeout(function(){
         if(activeRequest && !pdfGenerated){
@@ -82,6 +98,8 @@ function isPdfGenerated(){
         }
     },1000);
 }
+
+
 
 var xhr;
 var activeRequest = false;
@@ -639,6 +657,16 @@ function get187() {
                     $('#pre-selected-options').multiSelect({
                       selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
                       selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+
+                      afterInit: function(values){
+                        initateCompSelection();
+                      },
+                      afterSelect: function(values){
+                        initateCompSelection();
+                      },
+                      afterDeselect: function(values){
+                          initateCompSelection();
+                      }
                     });  
                     if(firstOpen) {
                         // If received list is not greater than min value than set our min value to received list length
