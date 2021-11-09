@@ -537,6 +537,10 @@ function compileRequest(dataObj,neighbourhood,retry) {
 function runQueries(request,dataObj,neighbourhood,retry) {
     //console.log(request);
     //console.log(base_url+'index.php?/lp/getSearchResults');
+    $('.loader1').show();
+    $('.loader1').removeClass('hidden');
+    $('.backwrap').show();
+    $('.backwrap').removeClass('hidden');
     $.ajax({
         url: base_url+'index.php?/lp/getSearchResults?',
         // url: 'http://cardbanana.net/demo/jerry/lp/lp/lp/proxy.php',
@@ -546,6 +550,7 @@ function runQueries(request,dataObj,neighbourhood,retry) {
         dataType: 'xml'
     })
         .done(function(response, textStatus, jqXHR) {
+
             var responseStatus = $(response).find('StatusCode').text();
             console.log(responseStatus);
             // $('.progress-bar').hide();
@@ -555,10 +560,14 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 multipleResults(response);
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
                 $(".buttonNext").removeClass("buttonDisabled");
+
+                
             } else if (responseStatus != 'OK') {
                 if(!retry){
                     $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
                     data(dataObj.Address,dataObj.LastLine,neighbourhood,true);
+
+                    
                 }else {
                     displayError(responseStatus);
                 }
@@ -571,11 +580,21 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 }
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
                 $(".buttonNext").removeClass("buttonDisabled");
+
             }
+
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');
         })
         .fail(function(err) {
             $('.pma-error').text('Unsuccessful Request');
             $(".buttonNext").addClass("buttonDisabled");
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');
         });
 }
 
@@ -718,6 +737,8 @@ function parse187() {
     }
     $('.js-lp-seller-name').val(ownerNamePrimary + ownerNameSecondary);
     $('.search-result table .result-owner').html(ownerNamePrimary + ownerNameSecondary);
+
+    
 //    var comparables = $(reportXML).find("ComparableSalesReport").find("ComparableSales").find("ComparableSale");
 //    for(var i=0;i<comparables.length;i++){
 //        //console.log($(comparables[i]).find("SiteAddress").text().+' '+.$(comparables[i]).find("SiteCity").text());
@@ -795,6 +816,52 @@ function multipleResults(response) { //console.log(response);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-city').text(city);
         // $('.js-run-apn-button').show();
     });
+    // $('html, body').animate({
+    //     scrollTop: $(".search-result").offset().top
+    // }, 500);
+    if($(".cma-step-2").length) {
+        $(".cma-step-2").hide();
+    }
+    if($("#cma-tbl-list").length) {
+         $('#cma-tbl-list').DataTable({
+              "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
+              aaSorting: [],
+                responsive: true,
+                'columnDefs': [ {
+                    'targets': [5], // column index (start from 0)
+                    'orderable': false, // set orderable false for selected columns
+                }],
+                "initComplete": function () {
+                    var input = $('.dataTables_filter input').unbind(),
+                        self = this.api(),
+                        $searchButton = $('<button class="btn_search" type="button">')
+                        .text('Search')
+                        .click(function () {
+                            self.search(input.val()).draw();
+                        }),
+                        $clearButton = $('<button class="btn_clear" type="button">')
+                        .text('Clear')
+                        .click(function () {
+                            input.val('');
+                            $searchButton.click();
+                        })
+                    // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
+                    // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+                    $('.dataTables_filter').append($searchButton, $clearButton);
+
+                    
+                },
+                "language": {
+                    "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
+                    "emptyTable": "<div align='center'>Record(s) not found.</div>"
+                },
+         });
+
+         $('html, body').animate({
+            scrollTop: $("#cma-tbl-list").offset().top
+        }, 500);
+
+    }
     // $('input[type="radio"]').iCheck({
     //   // checkboxClass: 'icheckbox_minimal-grey',
     //   radioClass: 'icheckbox_minimal-grey',
