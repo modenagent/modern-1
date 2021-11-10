@@ -78,7 +78,7 @@
                 <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
                     <div class="search-result hidden cma-step-3">
                         <!-- <div class="search-loader"></div> -->
-                        <table id="cma-tbl-list" class="table table-hover responsive nowrap hidden" style="width: 100%">
+                        <table id="cma-tbl-list" class="table table-hover responsive nowrap" style="width: 100%">
                             <thead>
                                 <tr>
                                     <th width="15%">APN</th>
@@ -86,7 +86,7 @@
                                     <th width="25%">Address</th>
                                     <th width="20%">Owner Name</th>
                                     <th width="10%">City</th>
-                                    <th width="15%">Run Listing</th>
+                                    <th width="15%">Get Report</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -221,7 +221,7 @@
 <?php if(!isset($isWidget)){ ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
 <?php } ?>
-<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.12") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.14") ?>"></script>
 
 
 
