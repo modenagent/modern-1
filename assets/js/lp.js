@@ -557,9 +557,9 @@ function runQueries(request,dataObj,neighbourhood,retry) {
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
             
             if (responseStatus == 'MM') {
-                multipleResults(response);
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
                 $(".buttonNext").removeClass("buttonDisabled");
+                multipleResults(response);
 
                 
             } else if (responseStatus != 'OK') {
@@ -575,11 +575,11 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 compileXmlUrls(response, '187');
                 get187();
                 // listResults(response);
+                $("#search-btn").parents("form").find("table").removeClass("hidden");
+                $(".buttonNext").removeClass("buttonDisabled");
                 if(isNewSearch){
                     multipleResults(response);
                 }
-                $("#search-btn").parents("form").find("table").removeClass("hidden");
-                $(".buttonNext").removeClass("buttonDisabled");
 
             }
 
@@ -831,23 +831,24 @@ function multipleResults(response) { //console.log(response);
                     'targets': [5], // column index (start from 0)
                     'orderable': false, // set orderable false for selected columns
                 }],
+                searching: false, paging: false, info: false,
                 "initComplete": function () {
-                    var input = $('.dataTables_filter input').unbind(),
-                        self = this.api(),
-                        $searchButton = $('<button class="btn_search" type="button">')
-                        .text('Search')
-                        .click(function () {
-                            self.search(input.val()).draw();
-                        }),
-                        $clearButton = $('<button class="btn_clear" type="button">')
-                        .text('Clear')
-                        .click(function () {
-                            input.val('');
-                            $searchButton.click();
-                        })
+                    // var input = $('.dataTables_filter input').unbind(),
+                    //     self = this.api(),
+                    //     $searchButton = $('<button class="btn_search" type="button">')
+                    //     .text('Search')
+                    //     .click(function () {
+                    //         self.search(input.val()).draw();
+                    //     }),
+                    //     $clearButton = $('<button class="btn_clear" type="button">')
+                    //     .text('Clear')
+                    //     .click(function () {
+                    //         input.val('');
+                    //         $searchButton.click();
+                    //     })
                     // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
                     // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
-                    $('.dataTables_filter').append($searchButton, $clearButton);
+                    // $('.dataTables_filter').append($searchButton, $clearButton);
 
                     
                 },
