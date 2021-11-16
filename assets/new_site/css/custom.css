@@ -1926,6 +1926,11 @@ body.cma-body {
 .cma-page.myaccount input.form-control::-ms-input-placeholder {
     color: #a6a6a6 !important;
 }
+@media(max-width:767px){
+    .cma-page.myaccount #create-report {
+        margin-top: 0px !important;
+    }
+}
 
 
 /*BI*/

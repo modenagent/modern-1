@@ -826,7 +826,13 @@ function multipleResults(response) { //console.log(response);
          $('#cma-tbl-list').DataTable({
               "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
               aaSorting: [],
-                responsive: true,
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                        type: 'none',
+                        target: ''
+                    }
+                },
                 'columnDefs': [ {
                     'targets': [5], // column index (start from 0)
                     'orderable': false, // set orderable false for selected columns

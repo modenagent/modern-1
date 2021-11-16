@@ -137,7 +137,9 @@
                     <input type="hidden" name="coupon_code" id="coupon_code" value="">
                     <input type="hidden" name="theme" value="#1BBB9B">
                     <input type="radio"  class="custom-checkbox hidden" id="c21" value="rgb(0,28,61)" name="cover" checked>
+                    <input type="radio" name="seller_radio" class="seller_radio" id="seller_radio" checked value="1" style="display: none !important">
                     <input type="hidden"  id="report_color" value="rgb(0,28,61)">
+                    <input type="checkbox" checked id="subscribe_temp" class="subscribe_temp" value="0" style="display: none !important">
                     <div id="addNewPartner" style="display:none"></div>
                     <!-- END -->
                     
@@ -221,7 +223,7 @@
 <?php if(!isset($isWidget)){ ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
 <?php } ?>
-<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.14") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.15") ?>"></script>
 
 
 
@@ -362,6 +364,13 @@ $(document.body).on('submit', '#ref-form' ,function(){
                       $("#u-zip").val(object.user.agent.comapny_zip);
                       $("#u-state").val(object.user.agent.company_state);
                       $("#user-id").val(object.user.user_id_pk);
+                      if(object.subscribed) {
+                        $("#subscribe_temp").val('seller');
+                      }
+                      $("#report_color").val(object.theme.default_color);
+                      $("#seller_radio").val(object.theme.default_sub_type);
+                      //seller_radio
+
                       var phoneNumber = $("#phone_number").val();
                       phoneNumber = phoneNumber.replace(/ /g,"");
                       phoneNumber = phoneNumber.replace(/-/g,"");
