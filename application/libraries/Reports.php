@@ -625,6 +625,7 @@ use Knp\Snappy\Pdf;
                 'load-error-handling'=>'ignore',
                 'load-media-error-handling'=>'ignore'
             ];
+            $snappy->setTimeout(150);
             $output = $snappy->getOutputFromHtml($html, $options,
                         200,
                         array(
@@ -1291,6 +1292,7 @@ use Knp\Snappy\Pdf;
                 'load-error-handling'=>'ignore',
                 'load-media-error-handling'=>'ignore'
             ];
+            $snappy->setTimeout(150);
             $output = $snappy->getOutputFromHtml($html, $options,
                         200,
                         array(
