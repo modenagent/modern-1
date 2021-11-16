@@ -515,6 +515,26 @@ echo $this->email->print_debugger();die;
                     echo  json_encode(array("status"=>"failed","msg"=>"Invalid referral code"));
                     exit();
                 }
+
+
+                $this->load->model('user_package_subscription_model');
+                $current_plans=  $this->user_package_subscription_model->with('package')->get_many_by(['user_id'=>$user->user_id_pk]);
+                $this->load->library('Stripe_lib');
+                $stripe = new Stripe_lib();
+                $subscribed = 0;
+                // var_dump($current_plans);die;
+                foreach ($current_plans as $current_plan) {
+                  $check_sub = $stripe->getSubscription($current_plan->sub_id);
+                  
+                  if($check_sub && $check_sub->status == 'active') {
+                    if(($current_plan->package->package == 'seller' || $current_plan->package->package == 'all')) {
+                      $subscribed = 1;
+                    }
+                  }
+                }
+
+
+
                 $canAvail = false;
                 $method = "";//suscription or coupon code of sales rep
                 if($user->parent_role==3){//User is under some sales rep
@@ -525,6 +545,9 @@ echo $this->email->print_debugger();die;
                         $method = "REF0".$user->parent_id;
                     }
                     
+                } else if($subscribed == 1){
+                        $method = 'subscription';
+                        $canAvail = true;
                 } else if($user->customer_id){
                     $res = $this->_cust_info_by_id($user->customer_id);
                     //if subscribed
@@ -533,8 +556,25 @@ echo $this->email->print_debugger();die;
                         $canAvail = true;
                     }
                 }
+                
                 if($canAvail){
-                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>$method));
+                    $this->load->model('user_default_templates_model');
+                    $default_color = 'rgb(0,28,61)';
+                    $default_sub_type = '1';
+
+                    $theme_data = $data['theme_data'] = $this->user_default_templates_model->with('theme_color_obj')->get_many_by(['user_id'=>$user->user_id_pk,'theme_type'=>'seller']);
+                    if($theme_data) {
+                      foreach ($theme_data as $theme_data_val) {
+                          $default_color= $theme_data_val->theme_color_obj->template_color;
+                          $default_sub_type = $theme_data_val->theme_sub_type;
+                      }
+                    }
+
+                    $theme = array('default_color'=>$default_color,'default_sub_type'=>$default_sub_type);
+
+                    
+
+                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>$method,'theme'=>$theme,'subscribed'=>$subscribed));
                     exit();
                 } else {
                     echo json_encode(array("status"=>"failed","msg"=>"This user can not avail quick PDF feature."));
