@@ -16,7 +16,7 @@
 
                                 <!-- Buttons Group -->
                                 <div class="btns-group wow fadeInUp">
-                                    <a href="#content-3" class="btn btn-orange-red tra-white-hover mr-15">Find Out More</a>
+                                    <a href="#content-3" class="btn btn-orange-red tra-white-hover mr-15">Report Types</a>
                                     <a href="#features-4" class="btn btn-tra-white tra-orange-red-hover">Core Features</a>
                                 </div>
 
@@ -251,15 +251,33 @@
                                     <h2 class="h2-xs">Listing Presentation</h2>
 
                                     <!-- Text -->   
-                                    <p class="p-lg">Quaerat sodales sapien euismod blandit purus a purus ipsum primis in cubilia 
-                                       laoreet augue luctus magna dolor luctus and egestas sapien egestas vitae nemo volute
+                                    <p class="p-lg">Combines the perfect mix of property information, sales statistics, marketing plan and elegance.
                                     </p>
 
-                                    <!-- Text -->   
-                                    <p class="p-lg">Quaerat sodales sapien euismod blandit at vitae ipsum primis undo and cubilia 
-                                       laoreet augue and luctus magna dolor luctus at egestas sapien vitae nemo egestas volute and 
-                                       turpis dolores aliquam quaerat sodales a sapien
-                                    </p>    
+                                    <!-- List -->   
+                                    <ul class="simple-list">
+
+
+                                        <li class="list-item">
+                                            <p class="p-lg">Personalized with your branding</p>
+                                        </li>
+
+                                        <li class="list-item">
+                                            <p class="p-lg">Real Time Data & Comparables 
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg">Expert Marketing PLan
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg">Fully Automated
+                                            </p>
+                                        </li>
+
+                                    </ul>   
 
                                 </div>
                             </div>  <!-- END TEXT BLOCK --> 
@@ -286,26 +304,35 @@
                                 <!-- Title -->  
                                 <h2 class="h2-xs">Market Update</h2>
 
-                                <!-- List -->   
-                                <ul class="simple-list">
+                                <!-- Text -->   
+                                    <p class="p-lg">Inform your farm area about recent sales in the area with the ability to generate leads.
+                                    </p>
 
-                                    <li class="list-item">
-                                        <p class="p-lg">Fringilla risus, luctus mauris orci auctor euismod iaculis luctus
-                                           magna purus pretium ligula purus undo quaerat tempor sapien rutrum mauris quaerat ultrice
-                                        </p>
-                                    </li>
+                                    
+                                    <!-- List -->   
+                                    <ul class="simple-list">
 
-                                    <li class="list-item">
-                                        <p class="p-lg">Quaerat sodales sapien euismod purus blandit</p>
-                                    </li>
 
-                                    <li class="list-item">
-                                        <p class="p-lg">Nemo ipsam egestas volute turpis dolores undo ultrice aliquam 
-                                           quaerat at sodales sapien purus 
-                                        </p>
-                                    </li>
+                                        <li class="list-item">
+                                            <p class="p-lg">Personalized with your branding</p>
+                                        </li>
 
-                                </ul>                           
+                                        <li class="list-item">
+                                            <p class="p-lg">Real Time Data & Comparables 
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg">Lead Collection QR Code
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg">Automatic Text Alerts
+                                            </p>
+                                        </li>
+
+                                    </ul>                        
 
                             </div>
                         </div>  <!-- END TEXT BLOCK --> 
@@ -348,15 +375,34 @@
                                     <h2 class="h2-xs">Buyers Presentation</h2>
 
                                     <!-- Text -->   
-                                    <p class="p-lg">Quaerat sodales sapien euismod blandit purus a purus ipsum primis in cubilia 
-                                       laoreet augue luctus magna dolor luctus and egestas sapien egestas vitae nemo volute
+                                    <p class="p-lg">Got Buyers? Use our presentation to inform them about their prospective home and the surrounding neighborhood.
                                     </p>
 
-                                    <!-- Text -->   
-                                    <p class="p-lg">Quaerat sodales sapien euismod blandit at vitae ipsum primis undo and cubilia 
-                                       laoreet augue and luctus magna dolor luctus at egestas sapien vitae nemo egestas volute and 
-                                       turpis dolores aliquam quaerat sodales a sapien
-                                    </p>    
+                                    
+                                    <!-- List -->   
+                                    <ul class="simple-list">
+
+
+                                        <li class="list-item">
+                                            <p class="p-lg">Personalized with your branding</p>
+                                        </li>
+
+                                        <li class="list-item">
+                                            <p class="p-lg">Real Time Data & Comparables 
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg">Local Demographics
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg">Send Via Email or Text
+                                            </p>
+                                        </li>
+
+                                    </ul>   
 
                                 </div>
                             </div>  <!-- END TEXT BLOCK --> 
@@ -383,26 +429,35 @@
                                 <!-- Title -->  
                                 <h2 class="h2-xs">Digital Guest Registry</h2>
 
-                                <!-- List -->   
-                                <ul class="simple-list">
+                                <!-- Text -->   
+                                    <p class="p-lg">Never lose a lead again. Our digital guest registry helps your visitors signin electronically.
+                                    </p>
 
-                                    <li class="list-item">
-                                        <p class="p-lg">Fringilla risus, luctus mauris orci auctor euismod iaculis luctus
-                                           magna purus pretium ligula purus undo quaerat tempor sapien rutrum mauris quaerat ultrice
-                                        </p>
-                                    </li>
+                                    
+                                    <!-- List -->   
+                                    <ul class="simple-list">
 
-                                    <li class="list-item">
-                                        <p class="p-lg">Quaerat sodales sapien euismod purus blandit</p>
-                                    </li>
 
-                                    <li class="list-item">
-                                        <p class="p-lg">Nemo ipsam egestas volute turpis dolores undo ultrice aliquam 
-                                           quaerat at sodales sapien purus 
-                                        </p>
-                                    </li>
+                                        <li class="list-item">
+                                            <p class="p-lg">Personalized with your branding</p>
+                                        </li>
 
-                                </ul>                           
+                                        <li class="list-item">
+                                            <p class="p-lg">QR code or Ipad Signin
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg">Email or Export visitor data
+                                            </p>
+                                        </li>
+                                        
+                                        <li class="list-item">
+                                            <p class="p-lg"> Automated thank you texts
+                                            </p>
+                                        </li>
+
+                                    </ul>                         
 
                             </div>
                         </div>  <!-- END TEXT BLOCK --> 
@@ -465,18 +520,16 @@
                                 <ul class="simple-list">
 
                                     <li class="list-item">
-                                        <p class="p-lg">Fringilla risus, luctus mauris orci auctor euismod iaculis luctus
-                                           magna purus pretium ligula purus undo quaerat tempor sapien rutrum mauris quaerat ultrice
+                                        <p class="p-lg">Our reports help you generate you keep track of any leads that might be generated.
                                         </p>
                                     </li>
 
                                     <li class="list-item">
-                                        <p class="p-lg">Quaerat sodales sapien euismod purus blandit</p>
+                                        <p class="p-lg">Our Lead Gen System will text you lead information instantly.</p>
                                     </li>
 
                                     <li class="list-item">
-                                        <p class="p-lg">Nemo ipsam egestas volute turpis dolores undo ultrice aliquam 
-                                           quaerat at sodales sapien purus 
+                                        <p class="p-lg">Our Digital Guest Registry will help you keep track and send thank you texts automatically on your behalf. 
                                         </p>
                                     </li>
 
@@ -607,8 +660,7 @@
                                         <h5 class="h5-md">Real Time Property Data</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">We display real-time data the shows all of the current property characteristics and ownership.
                                         </p>
 
                                     </div>
@@ -636,8 +688,7 @@
                                         <h5 class="h5-md">MLS Comparables</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">Got an SimplyRets account? Great you can integrate to pull comparables from your local area.
                                         </p>
 
                                     </div>
@@ -665,8 +716,7 @@
                                         <h5 class="h5-md">Lead Collection</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">We not only help you look good but help you collect leads aswell via our market update & guest registries.
                                         </p>
 
                                     </div>
@@ -694,9 +744,9 @@
                                         <h5 class="h5-md">Text Alerts</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">Never worry about losing a potential lead. We instantly text you the leads information once it's collected.
                                         </p>
+
 
                                     </div>
 
@@ -723,8 +773,7 @@
                                         <h5 class="h5-md">Share Reports</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">We can me it extremely easy to share your recently created reports via email, text message, or PDF.
                                         </p>
 
                                     </div>
@@ -752,8 +801,7 @@
                                         <h5 class="h5-md">Professional Marketing Plan</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">With the help if industry professionals we crafted a marekting plan that you can use to wow your clients.
                                         </p>
 
                                     </div>
@@ -780,8 +828,7 @@
                                         <h5 class="h5-md">Buyers Demographics</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">Our buyers report includes important demographics that your prospective buyers would want to be aware of.
                                         </p>
 
                                     </div>
@@ -809,8 +856,7 @@
                                         <h5 class="h5-md">Personalized Branding</h5>
                                             
                                         <!-- Text -->
-                                        <p class="p-lg">Porta semper lacus cursus feugiat primis ultrice ligula risus auctor
-                                            tempus feugiat impedit undo auctor felis augue mauris aoreet tempor
+                                        <p class="p-lg">All of our reports allow for you to add your picture, your logo, contact information, and brand color.
                                         </p>
 
                                     </div>
@@ -1216,81 +1262,75 @@
                                         <tbody>
 
                                             <tr>
-                                                <th scope="row" class="text-start">25 Projects</th>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
+                                                <th scope="row" class="text-start">1 Report Type</th>
+                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
+                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
                                             </tr>
 
                                             <tr>
-                                                <th scope="row" class="text-start">100 Projects</th>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <th scope="row" class="text-start">Unlimited</th>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <th scope="row" class="text-start">10 mySQL Database</th>
+                                                <th scope="row" class="text-start">All Report Types</th>
                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
 
                                             <tr>
-                                                <th scope="row" class="text-start">25 mySQL Database</th>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <th scope="row" class="text-start">50 mySQL Database</th>
+                                                <th scope="row" class="text-start">Unlimited Usage</th>
                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
 
                                             <tr>
-                                                <th scope="row" class="text-start">25 GB of Storage</th>
+                                                <th scope="row" class="text-start">Lead Collection</th>
+                                               <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
+                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
+                                            </tr>
+
+                                            <tr>
+                                                <th scope="row" class="text-start">Digital Guest Registry</th>
                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
 
                                             <tr>
-                                                <th scope="row" class="text-start">80 GB of Storage</th>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <th scope="row" class="text-start">500 mySQL Database</th>
+                                                <th scope="row" class="text-start">SMS Sharing</th>
                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
 
                                             <tr>
-                                                <th scope="row" class="text-start">Premium Support</th>
+                                                <th scope="row" class="text-start">Text Alerts</th>
                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
 
                                             <tr>
-                                                <th scope="row" class="text-start">VIP Support</th>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <th scope="row" class="text-start">Website Widget</th>
+                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
+
+                                            <tr>
+                                                <th scope="row" class="text-start">Brokerage Theme</th>
+                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="text-start">Brokerage Dashboard</th>
+                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                 <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
+                                            </tr>
+
+
 
                                         </tbody>
 
@@ -1390,8 +1430,7 @@
                                 <h2 class="h2-md">Got Questions? Look Here</h2> 
 
                                 <!-- Text -->   
-                                <p class="p-xl">Aliquam a augue suscipit, luctus neque purus ipsum neque dolor primis a libero
-                                   tempus, blandit and cursus varius and magnis sapien
+                                <p class="p-xl">Below are a few questions that we are usually asked. If you do not see the answer to your question click on the contact us down at the bottom.
                                 </p>
                                     
                             </div>  
@@ -1413,12 +1452,10 @@
                                     <div class="question wow fadeInUp">
 
                                         <!-- Question -->
-                                        <h5 class="h5-md">Can I see OLMO in action before purchasing?</h5>
+                                        <h5 class="h5-md">Can I see Report in action before purchasing?</h5>
 
                                         <!-- Answer -->
-                                        <p class="p-lg">Etiam amet mauris suscipit in odio integer congue metus vitae arcu mollis
-                                           blandit ultrice ligula egestas and magna suscipit lectus magna suscipit luctus blandit
-                                           vitae
+                                        <p class="p-lg">Yes we are more than happy to setup a quick demo so you can see how our reports are generated.
                                         </p>
 
                                     </div>  
@@ -1428,11 +1465,10 @@
                                     <div class="question wow fadeInUp">
 
                                         <!-- Question -->
-                                        <h5 class="h5-md">What are the requirements for using OLMO?</h5>
+                                        <h5 class="h5-md">What are the requirements for using Modern Agent?</h5>
 
                                         <!-- Answer -->
-                                        <p class="p-lg">An enim nullam tempor sapien gravida a donec ipsum enim an porta justo 
-                                           integer at velna vitae auctor integer congue undo magna at pretium purus pretium 
+                                        <p class="p-lg">There are no requirements. Typically it's reserved for Real Estate Agents. 
                                         </p>
 
                                     </div>
@@ -1445,21 +1481,10 @@
                                         <h5 class="h5-md">Can I use OLMO on different devices?</h5>
 
                                         <!-- Answer -->
-                                        <ul class="simple-list">
-
-                                            <li class="list-item">
-                                                <p class="p-lg">Fringilla risus, luctus mauris orci auctor purus ligula euismod
-                                                   pretium purus pretium rutrum tempor sapien
+                                        <p class="p-lg">Modern Agent typically renders very well on your desktop, laptops, and ipads. We have our app launching soon.
                                                 </p>
-                                            </li>
+                                            
 
-                                            <li class="list-item">
-                                                <p class="p-lg">Nemo ipsam egestas volute turpis dolores ut aliquam quaerat sodales
-                                                   sapien undo pretium a purus
-                                                </p>
-                                            </li>
-
-                                        </ul>
 
                                     </div>
 
@@ -1480,8 +1505,7 @@
                                         <h5 class="h5-md">Do you have a free trial?</h5>
 
                                         <!-- Answer -->
-                                        <p class="p-lg">Cubilia laoreet augue egestas and luctus donec curabite diam vitae dapibus
-                                           libero and quisque gravida donec and neque. Blandit justo aliquam molestie nunc sapien
+                                        <p class="p-lg">We do not have a free trial but you can create an account for free and purchase a report of your choosing.
                                         </p>
 
                                     </div>
@@ -1491,17 +1515,12 @@
                                     <div class="question wow fadeInUp">
 
                                         <!-- Question -->
-                                        <h5 class="h5-md">How does OLMO handle my privacy?</h5>
+                                        <h5 class="h5-md">How does Modern Agent handle my privacy?</h5>
 
                                         <!-- Answer -->
-                                        <p class="p-lg">Etiam amet mauris suscipit sit amet in odio. Integer congue leo metus. 
-                                           Vitae arcu mollis blandit ultrice ligula
+                                        <p class="p-lg">We take great pride in security and hold all of your information and the leads you collect, very securely.
                                         </p>
 
-                                        <!-- Answer -->
-                                        <p class="p-lg">An enim nullam tempor sapien gravida donec congue leo metus. Vitae arcu
-                                            mollis blandit integer at velna
-                                        </p>
 
                                     </div>
 
@@ -1510,22 +1529,12 @@
                                     <div class="question wow fadeInUp">
 
                                         <!-- Question -->
-                                        <h5 class="h5-md">I have an issue with my account</h5>
+                                        <h5 class="h5-md">If I have an issue with my account?</h5>
 
                                         <!-- Answer -->
-                                        <ul class="simple-list">
+                                        <p class="p-lg">You can contact us at support@modernagent.io for any questions regarding your account or billing.
+                                        </p>
 
-                                            <li class="list-item">
-                                                <p class="p-lg">Fringilla risus, luctus mauris orci auctor purus</p>
-                                            </li>
-
-                                            <li class="list-item">
-                                                <p class="p-lg">Quaerat sodales sapien euismod blandit purus and ipsum primis in
-                                                   cubilia laoreet augue luctus
-                                                </p>
-                                            </li>
-
-                                        </ul>
 
                                     </div>
 
@@ -1535,7 +1544,7 @@
 
 
                         </div>  <!-- End row -->
-                    </div>  <!-- END FAQs-2 QUESTIONS -->   
+                    </div>  <!-- END FAQs-2 QUESTIONS -->     
 
 
                     <!-- MORE QUESTIONS BUTTON -->  
@@ -1570,8 +1579,7 @@
                                     <h2 class="h2-xs">Wanna Book a Demo?</h2>
 
                                     <!-- Text -->
-                                    <p class="p-lg">Donec vel sapien augue integer urna vel turpis cursus porta, mauris 
-                                       augue luctus dolor velna auctor congue tempus
+                                    <p class="p-lg">Want to see our reports in action? Great, click on the Book Demo Now button below and choose the date that best works for you.
                                     </p>
 
                                     <!-- Button -->
@@ -1614,8 +1622,7 @@
                                 <h2 class="h2-md">Integrations & Widgets</h2>   
 
                                 <!-- Text -->   
-                                <p class="p-xl">Aliquam a augue suscipit, luctus neque purus ipsum neque dolor primis a libero
-                                   tempus, blandit and cursus varius and magnis sapien
+                                <p class="p-xl">Below are the integrations that we can make available to selected clients. Ready to talk integrations? Click on the contact button below.
                                 </p>
                                     
                             </div>  
@@ -1651,10 +1658,10 @@
                                     </h5>
 
                                     <!-- Text -->
-                                    <p class="p-lg">Looking to integrate our us with your platform? Our API has you covered.</p>
+                                    <p class="p-lg">Want a report widget for your website? We got you covered.</p>
 
                                     <!-- Post Meta -->
-                                    <div class="post-meta"><p class="p-md"><a href="#content-3" class="btn btn-tra-orange-red orange-red-hover mr-15">Find Out More</a></p></div>   
+                                    <div class="post-meta"><p class="p-md"><a href="#" class="btn btn-tra-orange-red orange-red-hover mr-15">Contact Us</a></p></div>    
 
                                 </div>  <!-- END BLOG POST TEXT -->
 
@@ -1686,10 +1693,10 @@
                                     </h5>
 
                                     <!-- Text -->
-                                    <p class="p-lg">Donec sapien augue integer turpis urna cursus porta a mauris dolor...</p>
+                                    <p class="p-lg">Looking to integrate our us with your platform? Our API has you covered.</p>
 
                                     <!-- Post Meta -->
-                                    <div class="post-meta"><p class="p-md"><a href="#content-3" class="btn btn-tra-orange-red orange-red-hover mr-15">Find Out More</a></p></div>   
+                                    <div class="post-meta"><p class="p-md"><a href="#" class="btn btn-tra-orange-red orange-red-hover mr-15">Contact Us</a></p></div>    
 
                                 </div>  <!-- END BLOG POST TEXT -->
 
@@ -1721,10 +1728,10 @@
                                     </h5>
 
                                     <!-- Text -->
-                                    <p class="p-lg">Donec sapien augue integer turpis urna cursus porta, mauris augue...</p>
+                                    <p class="p-lg">Looking for a lead collection widget for your website? We got you covered.</p>
 
                                     <!-- Post Meta -->
-                                    <div class="post-meta"><p class="p-md"><a href="#content-3" class="btn btn-tra-orange-red orange-red-hover mr-15">Find Out More</a></p></div>   
+                                    <div class="post-meta"><p class="p-md"><a href="#" class="btn btn-tra-orange-red orange-red-hover mr-15">Contact Us</a></p></div>
 
                                 </div>  <!-- END BLOG POST TEXT -->
 
