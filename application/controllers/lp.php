@@ -25,6 +25,8 @@ class Lp extends CI_Controller{
             $allComparable = $this->reports->get_all_properties($file);
             
             $comparables = $this->reports->sort_properties($file,$allComparable);
+            $comparables['Lat'] = (string)$file->PropertyProfile->PropertyCharacteristics->Latitude;
+            $comparables['Long'] = (string)$file->PropertyProfile->PropertyCharacteristics->Longitude;
             echo json_encode($comparables);
         } else {
             $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));

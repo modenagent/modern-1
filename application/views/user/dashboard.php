@@ -1,3 +1,12 @@
+<style type="text/css">
+    .comp-map-view {
+        height: 500px;
+    }
+    #comp-map {
+          height: 100%;
+          /*width: 50%;*/
+        }
+</style>
 <!--Features section -->
 <section id="steps" class="impression">
     <div class="container">
@@ -110,7 +119,10 @@
                     <div class="col-md-12">
                         <div class="row"  style="display: none">
                             <div class="col-sm-12">
-                                <h2 class="text-center"><strong>Select Minimum 4 and up to 8 Comparables</strong></h2>
+                                <h2 class="text-center">
+                                    <strong>Select Minimum 4 and up to 8 Comparables</strong>
+                                    <div class="pull-right"><button type="button" class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#map-modal">VIEW ON MAP</button></div>
+                                </h2>
                             </div>
                             <div class="col-sm-12" id="config-comps-btn">
                                 <select id='pre-selected-options' multiple='multiple'></select>
@@ -655,6 +667,27 @@
       </div>
         
     </div>
+    <div class="modal" tabindex="-1" id="map-modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Comparable Properties</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="comp-map-view">
+                <input type="hidden" id="main-prop-lat" value="0">
+                <input type="hidden" id="main-prop-long" value="0">
+                <div id="comp-map"></div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </section>
 <!-- Screenshots section -->
 <script src="https://js.stripe.com/v3"></script>
@@ -664,14 +697,6 @@
     default_color = JSON.parse(default_color);
     console.log(default_color);
     $(document).ready(function(){
-        // $('input[type=radio][name=cover_mu]').on('ifChecked', function () {
-        //     if($(this).val() == 1) {
-        //          $("#mu_report_select").show();
-        //     }
-        //     else {
-        //         $("#mu_report_select").hide();
-        //     }
-        // })
         
       if ($('#user_transaction_table').length) {
         $('#user_transaction_table').DataTable({
@@ -918,4 +943,139 @@
         document.querySelector("#button-text").classList.remove("hidden");
       }
     };
+
+    var mapModal = document.getElementById('map-modal')
+    mapModal.addEventListener('shown.bs.modal', function (event) {
+      const map = new google.maps.Map(document.getElementById("comp-map"), {
+        zoom: 15,
+        center: { lat: parseFloat($("#main-prop-lat").val()), lng: parseFloat($("#main-prop-long").val()) }
+      });
+
+      //setMarkers(map);
+      // var icon_map = "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
+       var selected_array = [];
+        const image_selected = {
+          // url: icon_map,
+          url : '<?php echo base_url()."assets/new_site/img/map-selected.png" ?>',
+          // This marker is 20 pixels wide by 32 pixels high.
+          // size: new google.maps.Size(20, 32),
+          // The origin for this image is (0, 0).
+          // origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          // anchor: new google.maps.Point(0, 32),
+        };
+
+        const image_not_selected = {
+          // url: icon_map,
+          url : '<?php echo base_url()."assets/new_site/img/map-not-selected.png" ?>',
+          // This marker is 20 pixels wide by 32 pixels high.
+          // size: new google.maps.Size(20, 32),
+          // The origin for this image is (0, 0).
+          // origin: new google.maps.Point(0, 0),
+          // The anchor for this image is the base of the flagpole at (0, 32).
+          // anchor: new google.maps.Point(0, 32),
+        };
+        comp_options = [];
+        var comp_temp_i = 1;
+        $("#pre-selected-options > option").each(function() {
+            comp_temp_i++;
+            var comp_selected = $(this).is(':selected');
+            var temp_comp_array = [
+            $(this).text(),
+            parseFloat($(this).attr('data-lat')),
+            parseFloat($(this).attr('data-long')),
+            comp_temp_i,
+            $(this).val(),
+            comp_selected
+            ]
+            comp_options.push(temp_comp_array);
+        });
+        // beaches = [
+        //   ["Main Property \n<br> $765000", 33.687355, -117.745059, 2],
+        //   ["190 FIXIE \n<br> $850000", 33.690044, -117.734337, 3],
+        //   ["107 TENOR \n<br> $870000", 33.6879, -117.7396, 4],
+        //   ["103 ACAMAR \n<br> $830000", 33.686759, -117.736257, 5],
+        //   ["137 OKRA \n<br> $950000", 33.682866, -117.744559, 6],
+        //   ["41 PEONY \n<br> $800000", 33.687098, -117.747113, 7],
+        // ];
+
+        // Shapes define the clickable region of the icon. The type defines an HTML
+        // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+        // The final coordinate closes the poly by connecting to the first coordinate.
+        const shape = {
+          coords: [1, 1, 1, 20, 18, 20, 18, 1],
+          type: "poly",
+        };
+
+        var marker = new google.maps.Marker({
+            position: { lat: parseFloat($("#main-prop-lat").val()), lng: parseFloat($("#main-prop-long").val()) },
+            map,
+            // icon: image,
+            shape: shape,
+            // title: beach[0],
+            zIndex: 1,
+
+          });
+
+        for (let i = 0; i < comp_options.length; i++) {
+          const comp_option = comp_options[i];
+          var infowindow = new google.maps.InfoWindow();
+          if(comp_option[5]) {
+            map_icon = image_selected;
+          }
+          else {
+            map_icon = image_not_selected;
+          }
+          var marker = new google.maps.Marker({
+            position: { lat: comp_option[1], lng: comp_option[2] },
+            map,
+            icon: map_icon,
+            // shape: shape,
+            // title: comp_option[0],
+            zIndex: comp_option[3],
+            custom_val : comp_option[4],
+            selected_comp : comp_option[5]
+          });
+          
+          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+              return function() {
+                infowindow.setContent(comp_options[i][0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
+            
+             google.maps.event.addListener(marker, 'click', (function(marker, i) {
+              return function() {
+                var comp_sel_val = marker.custom_val;
+                if(marker.selected_comp) {
+                    $('#pre-selected-options option[value="'+comp_sel_val+'"]').prop("selected", false);
+                    
+                    marker.setIcon(image_not_selected);
+                    marker.selected_comp = false;
+                }
+                else {
+                    $('#pre-selected-options option[value="'+comp_sel_val+'"]').prop("selected", true);
+                     marker.setIcon(image_selected);
+                    marker.selected_comp = true;
+
+                }
+                // if(i > 0) {
+
+                //   var chk_index = $.inArray(i, selected_array);
+                //   if(chk_index >= 0) {
+                //     selected_array.splice(chk_index,1);
+                //     marker.setIcon(null);
+                //   }
+                //   else {
+
+                //     marker.setIcon('https://www.google.com/mapfiles/marker_green.png');
+                //     selected_array.push(i);
+                //   }
+                // }
+                // console.log(selected_array);
+                $('#pre-selected-options').multiSelect('refresh');
+              }
+            })(marker, i));
+        }
+    })
 </script>

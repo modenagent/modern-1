@@ -146,6 +146,7 @@ body.login {
 
 .btn-lp {
     color: #fff;
+    background: #582a82;
     /*border-color: #55c9e0;*/
 }
 
@@ -163,8 +164,9 @@ body.login {
 .btn-lp:focus,
 .btn-lp:hover,
 .open>.dropdown-toggle.btn-lp {
-    background: #cc9964;
-    color: #fff;
+    background: #fff;
+    color: #582a82;
+    border-color: #582a82;
 }
 
 .btn-gray {

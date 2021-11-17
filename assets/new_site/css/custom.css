@@ -493,8 +493,9 @@ footer a:hover{
 .stepContainer .content .input-group-btn {
     padding: 0 !important;
 }
-.stepContainer .content .input-group-btn .btn:hover{
+.stepContainer .content .input-group-btn .btn:hover,.stepContainer .content .input-group-btn .btn:active,.stepContainer .content .input-group-btn .btn:focus{
     background: #e0514b !important;
+    color: #fff;
 }
 #report-type {
     float: none !important;

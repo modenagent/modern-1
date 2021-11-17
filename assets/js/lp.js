@@ -638,13 +638,16 @@ function get187() {
                 sorted_comp = data.sorted;
                 $('#pre-selected-options').html('');
                 $('#comparable-pre-selected-options').html('');
+                $('#main-prop-lat').val(data.Lat);
+                $('#main-prop-long').val(data.Long);
                 // $('#available-comparables-market-update tbody').html('');
 
                 $.each(all_comp, function(i, item) {                    
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
-                    }));
+                    }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
+                    );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,
@@ -660,7 +663,8 @@ function get187() {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")",
                         selected: 'selected'
-                    }));
+                    }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
+                    );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,

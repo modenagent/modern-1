@@ -23,7 +23,7 @@
   <!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css"> -->
   <!-- Custom CSS -->
 
-  <link href="<?php echo base_url(); ?>assets/new_site/css/lp-style.css?v=0.5" rel="stylesheet">
+  <link href="<?php echo base_url(); ?>assets/new_site/css/lp-style.css?v=0.6" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/new_site/css/multi-select.css?V=0.1"); ?>">
   <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
@@ -43,7 +43,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/header_user.css"); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/responsive.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.7">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.8">
 </head>
 
 <body class="home">
