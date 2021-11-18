@@ -1,12 +1,3 @@
-<style type="text/css">
-    .comp-map-view {
-        height: 500px;
-    }
-    #comp-map {
-          height: 100%;
-          /*width: 50%;*/
-        }
-</style>
 <!--Features section -->
 <section id="steps" class="impression">
     <div class="container">
@@ -675,6 +666,12 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            <div class="com-map-info">
+                <ul>
+                    <li><img src="<?php echo base_url('assets/new_site/img/map-selected_small.png'); ?>" />Selected Property</li>
+                    <li><img src="<?php echo base_url('assets/new_site/img/map-not-selected_small.png'); ?>" />Not Selected Property</li>
+                </ul>
+            </div>
             <div class="comp-map-view">
                 <input type="hidden" id="main-prop-lat" value="0">
                 <input type="hidden" id="main-prop-long" value="0">
@@ -817,7 +814,7 @@
                 $('.buyer_template').show();
                 $('.marketUpdate_template').hide();
                 $('.registry_template').hide();
-                $('.common_template').show();
+                $('.common_te.mplate').show();
                 $(".custom-checkbox[value='"+default_color.buyer+"']").prop("checked",true);
                 $(".custom-checkbox").iCheck('update');
                 <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
@@ -956,7 +953,7 @@
        var selected_array = [];
         const image_selected = {
           // url: icon_map,
-          url : '<?php echo base_url()."assets/new_site/img/map-selected.png" ?>',
+          url : '<?php echo base_url()."assets/new_site/img/map-selected_small.png" ?>',
           // This marker is 20 pixels wide by 32 pixels high.
           // size: new google.maps.Size(20, 32),
           // The origin for this image is (0, 0).
@@ -967,7 +964,7 @@
 
         const image_not_selected = {
           // url: icon_map,
-          url : '<?php echo base_url()."assets/new_site/img/map-not-selected.png" ?>',
+          url : '<?php echo base_url()."assets/new_site/img/map-not-selected_small.png" ?>',
           // This marker is 20 pixels wide by 32 pixels high.
           // size: new google.maps.Size(20, 32),
           // The origin for this image is (0, 0).
@@ -1014,6 +1011,7 @@
             shape: shape,
             // title: beach[0],
             zIndex: 1,
+            animation: google.maps.Animation.DROP,
 
           });
 
@@ -1030,6 +1028,7 @@
             position: { lat: comp_option[1], lng: comp_option[2] },
             map,
             icon: map_icon,
+            animation: google.maps.Animation.DROP,
             // shape: shape,
             // title: comp_option[0],
             zIndex: comp_option[3],
