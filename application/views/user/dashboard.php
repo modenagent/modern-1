@@ -1,31 +1,3 @@
-<style type="text/css">
-    .comp-map-view {
-        height: 500px;
-    }
-    #comp-map {
-      height: 100%;
-      /*width: 50%;*/
-    }
-    .com-map-info {
-        position: absolute;
-        top: 30px;
-        right: 100px;
-        z-index: 1;
-        background: #fff;
-    }
-    .com-map-info ul li img {
-        height: 28px;
-        margin: 0 10px;
-    }
-    .com-map-info ul {
-        padding: 0;
-        margin: 0;
-    }
-    .com-map-info ul li {
-        padding: 5px 8px;
-        float: left;
-    }
-</style>
 <!--Features section -->
 <section id="steps" class="impression">
     <div class="container">
