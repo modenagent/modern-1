@@ -561,6 +561,11 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 $(".buttonNext").removeClass("buttonDisabled");
                 multipleResults(response);
 
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+
                 
             } else if (responseStatus != 'OK') {
                 if(!retry){
@@ -571,7 +576,18 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 }else {
                     displayError(responseStatus);
                 }
+
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+
             } else {
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+                
                 compileXmlUrls(response, '187');
                 get187();
                 // listResults(response);
@@ -583,10 +599,7 @@ function runQueries(request,dataObj,neighbourhood,retry) {
 
             }
 
-            $('.loader1').hide();
-            $('.loader1').addClass('hidden');
-            $('.backwrap').hide();
-            $('.backwrap').addClass('hidden');
+            
         })
         .fail(function(err) {
             $('.pma-error').text('Unsuccessful Request');
