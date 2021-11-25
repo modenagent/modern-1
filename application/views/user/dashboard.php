@@ -113,6 +113,7 @@
                                 <h2 class="text-center">
                                     <strong>Select Minimum 4 and up to 8 Comparables</strong>
                                     <div class="pull-right"><button type="button" class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#map-modal">VIEW ON MAP</button></div>
+                                    <input type="hidden" name="use_rets" id="use_rets" value="0">
                                 </h2>
                             </div>
                             <div class="col-sm-12" id="config-comps-btn">
@@ -942,6 +943,32 @@
       }
     };
 
+    var coor_differ = 0.000500;
+
+    function checkValExist(lat,long,arr,cnt=0) {
+        lat = parseFloat(lat);
+        long = parseFloat(long);
+        var val = lat+'_'+long;
+        var ind_val = $.inArray(val, arr);
+        if(ind_val < 0) {
+            // comp_options.push(temp_comp_array);
+            return [lat,long];
+        }
+        else {
+            cnt++;
+            if(cnt%2==0) {
+                lat = lat + (cnt*(0-coor_differ));
+                long = long + (cnt*(0-coor_differ));
+                return checkValExist(lat,long,arr,cnt);
+            }
+            else {
+                lat = lat + (cnt*(coor_differ));
+                long = long + (cnt*(coor_differ));
+                return checkValExist(lat,long,arr,cnt);
+            }
+        }
+    }
+
     var mapModal = document.getElementById('map-modal')
     mapModal.addEventListener('shown.bs.modal', function (event) {
       const map = new google.maps.Map(document.getElementById("comp-map"), {
@@ -992,10 +1019,14 @@
             // icon: image,
             shape: shape,
             // title: beach[0],
-            zIndex: 1,
+            zIndex: (   comp_options.length +1),
             animation: google.maps.Animation.DROP,
 
           });
+
+        var existing_locations = [];
+
+        existing_locations.push($("#main-prop-lat").val()+'_'+$("#main-prop-long").val())
 
         for (let i = 0; i < comp_options.length; i++) {
           var comp_option = comp_options[i];
@@ -1006,12 +1037,17 @@
           else {
             map_icon = image_not_selected;
           }
+          var check_opt = checkValExist(comp_option[1],comp_option[2],existing_locations);
+          console.log(check_opt);
+          var new_lat = check_opt[0];
+          var new_long = check_opt[1];
+          existing_locations.push(new_lat+'_'+new_long);
           var marker = new google.maps.Marker({
-            position: { lat: comp_option[1], lng: comp_option[2] },
+            position: { lat: new_lat, lng: new_long },
             map,
             icon: map_icon,
             animation: google.maps.Animation.DROP,
-            zIndex: comp_option[3],
+            zIndex: (comp_options.length - i),
             custom_val : comp_option[4],
             selected_comp : comp_option[5]
           });

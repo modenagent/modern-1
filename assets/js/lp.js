@@ -643,7 +643,8 @@ function get187() {
             url: base_url+'index.php?/lp/getSearchResults?',
             data: {
                 requrl: reportData.report187,
-                getsortedresults: getSordrtedProperties
+                getsortedresults: getSordrtedProperties,
+                address: $('#state').val()
             },
             dataType: "json",
             success: function(data) {
@@ -653,6 +654,7 @@ function get187() {
                 $('#comparable-pre-selected-options').html('');
                 $('#main-prop-lat').val(data.Lat);
                 $('#main-prop-long').val(data.Long);
+                $('#use_rets').val(data.use_rets);
                 // $('#available-comparables-market-update tbody').html('');
 
                 $.each(all_comp, function(i, item) {                    

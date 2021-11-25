@@ -191,7 +191,7 @@ class User extends CI_Controller
           // normal JSON string or show an error
           header('Content-Type: application/json; charset=utf8');
           $data['html'] = 'ERROR: The widget is not configured properly.';
-          echo json_encode($data);
+          echo json_en356code($data);
       }
     }
 
@@ -744,7 +744,7 @@ class User extends CI_Controller
 
           $current_plans=  $this->user_package_subscription_model->with('package')->get_many_by(['user_id'=>$this->session->userdata('userid')]);
           // var_dump($current_plans);die;
-          $active_plans = array();
+           $active_plans = array();
           $cancel_plans = array();
           $active_all = false;
           foreach ($current_plans as $current_plan) {
@@ -799,9 +799,14 @@ class User extends CI_Controller
           $data['theme_data'] = $this->user_default_templates_model->get_many_by('user_id',$user_id);
           $data['customer_id'] = $customer_id;
 
+
+          //RETS API
+          $this->load->model('user_rets_api_details_model');
+          $rets_api_data = $this->user_rets_api_details_model->get_by('user_id',$userId);
+          $data['rets_api_data'] = (object)$rets_api_data;
           //Check for active content
           $valid_tabs = [
-            'login','agent','company','theme','membership'
+            'login','agent','company','theme','membership','retsapi'
           ];
           if($active_tab == '' ||  !in_array($active_tab, $valid_tabs)) {
             $active_tab = 'login';
@@ -815,6 +820,55 @@ class User extends CI_Controller
       }else{
         redirect('frontend/index');
       }
+    }
+    public function saveRetsDetails()
+    {
+      $userId = $this->session->userdata('userid');
+      if($userId){
+
+        $postData = $this->input->post();
+        // $this->encryption->initialize(array('driver' => 'openssl'));
+        $rets_user = $this->input->post('rets_user');
+        $rets_password = $this->input->post('rets_password');
+
+        //Validate credentials
+        $this->load->library('rets');
+        $rets = new Rets();
+        $result = $rets->callSimplyRets($rets_user,$rets_password);
+        $decoded_result = json_decode($result,true);
+        if(!empty($decoded_result['error'])) {
+          //Error
+          $this->session->set_flashdata('error', $decoded_result['error']);
+          redirect('user/myaccount/retsapi');
+          exit();
+
+        }
+        
+
+        $ciphertext = openssl_encrypt($rets_password,"AES-128-ECB",$this->config->item('encryption_key'));
+
+        $this->load->model('user_rets_api_details_model');
+        $data = array();
+        $data['user_id']=$userId;
+        $check_data = $this->user_rets_api_details_model->get_by($data);
+        if($check_data && !empty($check_data->id)) {
+          $update_data = array();
+          $update_data['user_name'] = $rets_user;
+          $update_data['user_password'] = $ciphertext;
+          $this->user_rets_api_details_model->update($check_data->id,$update_data);
+        } else {
+          $data['user_name'] = $rets_user;
+          $data['user_password'] = $ciphertext;
+          $this->user_rets_api_details_model->insert($data);
+        }
+        $this->session->set_flashdata('success', 'Data stored succsessfully');
+        redirect('user/myaccount/retsapi');
+      }else{
+        redirect('frontend/login');
+      }
+
+
+      // var_dump($postData);
     }
     public function getPreviews()
     {

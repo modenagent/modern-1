@@ -40,6 +40,12 @@
             Select a plan
           </a>
         </li>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link <?php if($active_tab =='retsapi') {echo 'active';} ?>" id="api-tab" data-bs-toggle="tab" href="#retsApi" role="tab" aria-controls="plan" aria-selected="false">
+            <b>API</b>
+            Simply Rets API
+          </a>
+        </li>
       </ul>
       <div class="loader1 hidden lp-loader1-myaccount"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
       <div class="backwrap hidden"></div>
@@ -263,6 +269,77 @@
 
         <div class="tab-pane fade <?php if($active_tab =='membership') {echo 'show active';} ?>" id="plan" role="tabpanel" aria-labelledby="plan-tab">
           <?php $this->load->view('user/membership/index'); ?>
+        </div>
+
+        <div class="tab-pane fade <?php if($active_tab =='retsapi') {echo 'show active';} ?>" id="retsApi" role="tabpanel" aria-labelledby="plan-tab" >
+          <div class="tab_white_box">
+
+            <?php if ($this->session->flashdata('success')): ?>
+            <div class="alert alert-success alert-dismissible fade show">
+                <strong>Success! </strong>
+                <?php echo $this->session->flashdata('success') ?>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php endif; ?>
+            <?php if ($this->session->flashdata('error')) : ?>
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>Error! </strong>
+                <?php echo $this->session->flashdata('error') ?>
+                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> 
+            </div>
+            <?php endif; ?>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <h2 class="mini_title">Add Your Rets API details</h2>
+              </div>
+            </div>
+            <?php
+            $show_api_form = false;
+            if($active_plans) {
+              foreach($active_plans as $active_plan) {
+
+                if($active_plan->package && ($active_plan->package->package == 'seller' || $active_plan->package->package == 'all')) {
+                  $show_api_form = true;
+                }
+
+              }
+            }
+            if($show_api_form):
+            ?>
+            <div class="agent_info_form">
+              <form id="retsApiForm" action="<?php echo base_url('user/saveRetsDetails') ?>" method="post">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <input placeholder="User Name" type="text" name="rets_user" id="rets_user" class="form-control" required value="<?php echo $rets_api_data->user_name;?>" >
+                  </div>
+
+                  <div class="col-sm-6">
+                    <input placeholder="Password"  type="password" name="rets_password" id="rets_password" class="form-control" required value="<?php echo !empty($rets_api_data->user_password) ? openssl_decrypt($rets_api_data->user_password,"AES-128-ECB",$this->config->item('encryption_key')) : '';?>">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <input type="submit" name="" class="btn btn-lp save">
+                  </div>
+                </div>
+              </form>
+            </div>
+            <?php
+            else: ?>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="alert alert-warning alert-dismissible fade show">
+                    <strong>Warning! </strong>
+                    Please Subscribe for "Seller Package" Or "All Package" to enable this feature
+                    
+                </div>
+                </div>
+              </div>
+            <?php 
+            endif;
+            ?>
+          </div>
         </div>
       </div>
     </div>
