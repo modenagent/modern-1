@@ -46,11 +46,11 @@ class Lp extends CI_Controller{
 
                 $address = $this->input->get('address');
                 $query = '?q='.urlencode($address);
-                $min_lat = (float)$properties['Lat'] - 0.01;
-                $min_long = (float)$properties['Long'] - 0.01;
+                $min_lat = (float)$properties['Lat'] - 0.02;
+                $min_long = (float)$properties['Long'] - 0.02;
 
-                $max_lat = (float)$properties['Lat'] + 0.01;
-                $max_long = (float)$properties['Long'] + 0.01;
+                $max_lat = (float)$properties['Lat'] + 0.02;
+                $max_long = (float)$properties['Long'] + 0.02;
                 $query .= '&limit=50';
                 $query_1 = $query.'&points='.urlencode($min_lat.','.$min_long).'&points='.urlencode($max_lat.','.$max_long);
                 $this->load->library('rets');
@@ -63,7 +63,7 @@ class Lp extends CI_Controller{
                 // echo $query_1;die;
                 $response = json_decode($result,TRUE);
                 // var_dump($response);die;
-                if(empty($response)) {
+                if(empty($response) || count($response) <= 1) {
                     $result = $this->rets->callSimplyRets($user_name,$password,$query);
                     $response = json_decode($result,TRUE);
                 }
