@@ -251,4 +251,29 @@ class Rets {
 		$results = $rets->Search('Property', 'Residential', '(ListOfficeName=Century 21 Award),(City=SD)',['Limit' => $limit,'QueryType' => 'DMQL2','Format' => 'COMPACT-DECODED','StandardNames' => 0]);
 		return $results;
     }
+
+    public function callSimplyRets($login,$password, $endpoint = '', $body_params='')
+    {
+    	$req_endpoint = 'https://api.simplyrets.com/properties';
+    	$endpoint = $req_endpoint.$endpoint;
+    	$ch = curl_init($endpoint);        
+    	// var_dump($endpoint);die;                            
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET'); 
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $body_params);                
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_setopt($ch, CURLOPT_USERPWD, "$login:$password");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+                'Content-Type: application/json',
+                'Content-Length: ' . strlen($body_params))
+            );
+        
+        $result = curl_exec($ch);
+        // Check the return value of curl_exec(), too
+	    if ($result === false) {
+	    	return json_encode(['error'=>'Something went wrong','message'=>curl_error($ch)]);
+	        // throw new Exception(curl_error($ch), curl_errno($ch));
+	    }
+        return $result;
+    }
 }

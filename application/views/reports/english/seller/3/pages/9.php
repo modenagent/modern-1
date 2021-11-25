@@ -29,7 +29,7 @@
                             <?php echo isset($value['Address']) && !empty($value['Address']) ? $value['Address'] : '-'; ?>                          
                         </div>
                         <?php
-                            if($use_rets_api == 1)
+                            if(!empty($value['img']))
                             {
                         ?> 
                                 <img src="<?php echo $value['img']; ?>" alt="<?php echo $value['Address']; ?>" class="img-fluid">

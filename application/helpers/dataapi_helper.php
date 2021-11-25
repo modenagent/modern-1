@@ -198,7 +198,7 @@ function minMaxArray($housingTrait, $query, $reportArray) {
  }
  $areaRange = array_filter($areaRange);
  if (empty($areaRange)) {
-  return 'N/A';
+  return 0;
  }
  else {
   switch ($query) {
