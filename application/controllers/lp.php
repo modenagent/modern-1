@@ -26,19 +26,23 @@ class Lp extends CI_Controller{
         // }
         // else {
         //     $req_send = "https://dev.modernagent.io/index.php?/lp/getSearchResults?&requrl=".urlencode($request).'&getsortedresults=true';
-        //     $request = 'https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dKksbOJCcSKAyaFj6VFRnk3XC3kysifrCNUzW6f-3BSSRw6Tm6pB1fgzxx7Qnqh5QlS7VHtWq1kKYIIHpnJ1QsDVU1E0f29iM6f1yKm6y-xzrErvXKuaTTRNNqQR72LxEmpDLYhUzwCOAH1dw60Mfr6xnaqqTj-_mw6ysgsSt55h0&filter=%3CCustCompFilter%3E%3CSQFT%3E0.20%3C/SQFT%3E%3CRadius%3E0.75%3C/Radius%3E%3C/CustCompFilter%3E';
+        //     $request = 'http://modernagent.localhost.com/sample.xml';
             
         // }
         
         if($getsortedresults=='true'){
             //Check user and api
-            
             $file = simplexml_load_file($request);
+            $check_presentaion = $this->input->get('presentation');
+            
             //RETS API
             $userId = $this->session->userdata('userid');
+            if(empty($userId)) {
+                $userId = $this->input->get('user_id');
+            }
             $this->load->model('user_rets_api_details_model');
             $rets_api_data = $this->user_rets_api_details_model->get_by('user_id',$userId);
-            if($rets_api_data && !empty($rets_api_data)) {
+            if($rets_api_data && !empty($rets_api_data) && $check_presentaion && $check_presentaion == 'seller') {
                 $properties = $sorted = $all = array();
 
                 $properties['Lat'] = (string)$file->PropertyProfile->PropertyCharacteristics->Latitude;

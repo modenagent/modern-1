@@ -644,7 +644,9 @@ function get187() {
             data: {
                 requrl: reportData.report187,
                 getsortedresults: getSordrtedProperties,
-                address: $('#state').val()
+                address: $('#state').val(),
+                presentation : $('#presentation').val(),
+                user_id : $("#user-id").val(),
             },
             dataType: "json",
             success: function(data) {
@@ -689,7 +691,7 @@ function get187() {
                     
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+                if($('#pre-selected-options').length && ($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate")) {
 
                     // $('.buyer-cls').hide();
                     $('#pre-selected-options').multiSelect({
