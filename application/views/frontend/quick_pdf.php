@@ -108,11 +108,12 @@
                                 $sellerPresentation = 'selected';
                             }
                             ?>
-                            <select name="presentation" class="cma hidden" style="color:black">
+                            <select id="presentation" name="presentation" class="cma hidden" style="color:black">
                                 <option value="marketUpdate" <?php echo $marketPresentation; ?> >Market Update</option>
                                 <option value="seller" <?php echo $sellerPresentation; ?>>Seller</option>
                                 <option value="buyer">Buyer</option>
                             </select>
+
                         </div>
                         <div class="col-md-2">
                             <select name="report_lang" class="cma hidden" style="color:black;">
@@ -141,6 +142,7 @@
                     <input type="hidden"  id="report_color" value="rgb(0,28,61)">
                     <input type="checkbox" checked id="subscribe_temp" class="subscribe_temp" value="0" style="display: none !important">
                     <div id="addNewPartner" style="display:none"></div>
+                    <input type="hidden" name="use_rets" id="use_rets" value="0">
                     <!-- END -->
                     
                 </form>
@@ -223,7 +225,7 @@
 <?php if(!isset($isWidget)){ ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
 <?php } ?>
-<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.15") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.19") ?>"></script>
 
 
 
