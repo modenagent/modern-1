@@ -872,7 +872,72 @@
 
                 </div>     <!-- End container -->   
             </section>  <!-- END FEATURES-4 -->
+			
+			
+			
+				<!-- CONTENT-1
+			============================================= -->
+			<section id="content-1" class="content-1 bg-02 wide-60 content-section division">
+				<div class="container">
+					<div class="row d-flex align-items-center">
 
+
+						<!-- TEXT BLOCK -->	
+						<div class="col-md-7 col-lg-6 order-last order-md-2">
+							<div class="txt-block left-column white-color wow fadeInRight">
+
+								<!-- Section ID -->	
+					 			<span class="section-id rounded-id bg-tra-white white-color txt-upcase">
+					 				SIMPLYRETS INTEGRATED
+					 			</span>
+
+								<!-- Title -->	
+								<h2 class="h2-xs">Get Real-Time Listing Pictures</h2>
+								
+								
+								<!-- Text -->	
+									<p class="p-lg">Got a SIMPLYRETS account? Awesome, you can use your credentials to pull real-time property pictures of active listings and have them inserted into your report. Using your credentials you will be able to use the following property types in your report:
+									</p>
+								
+
+								<!-- List -->	
+								<ul class="simple-list">
+
+									<li class="list-item">
+										<p class="p-lg">Residential Listings
+										</p>
+									</li>
+
+									<li class="list-item">
+										<p class="p-lg">Condo Listings</p>
+									</li>
+
+									<li class="list-item">
+										<p class="p-lg">Rental Listings 
+										</p>
+									</li>
+
+								</ul>
+
+								<a href="https://calendly.com/book-with-modern/tools?month=2021-12" class="btn btn-orange-red tra-orange-red-hover">Book a 15 Min Demo</a>
+
+							</div>
+						</div>	<!-- END TEXT BLOCK -->	
+
+
+						<!-- IMAGE BLOCK -->
+						<div class="col-md-5 col-lg-6 order-first order-md-2">
+							<div class="rel img-block right-column wow fadeInLeft">
+								<img class="img-fluid" src="images/img-07-a.png" alt="content-image">
+							</div>
+						</div>
+
+
+					</div>	   <!-- End row -->
+				</div>	   <!-- End container -->
+			</section>	<!-- END CONTENT-1 -->
+			
+			
 
 
 
