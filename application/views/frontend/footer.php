@@ -18,7 +18,7 @@
 						<!-- FOOTER INFO -->
 						<div class="col-lg-3">
 							<div class="footer-info mb-40 mt-100">
-								<img class="footer-logo" src="images/LargeLogoDark.png" alt="footer-logo">
+								<img class="footer-logo" src="<?php echo base_url();?>/assets/frontend/images/LargeLogoDark.png" alt="footer-logo">
 							</div>	
 						</div>	
 
