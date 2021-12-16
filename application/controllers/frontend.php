@@ -129,9 +129,16 @@ echo $this->email->print_debugger();die;
             $data['body_class'] = "home-all"; 
 
             $this->load->model('package_model');
-            $packages = $this->package_model->get_all_packages_price();
-            $data['report_price'] = $packages['reports'];
-            $data['monthly_price'] = $packages['monthly'];
+            // $packages = $this->package_model->get_all_packages_price();
+            // $data['report_price'] = $packages['reports'];
+            // $data['monthly_price'] = $packages['monthly'];
+
+            $package_prices = $this->package_model->get_by('package','buyer');
+            $data['single_package'] = $package_prices->price_per_month;
+            $package_prices = $this->package_model->get_by('package','all');
+            $data['all_package'] = $package_prices->price_per_month;
+            // var_dump($data);
+            // die;
 
             $this->load->view('frontend/header',$data);
             $this->load->view('frontend/index',$data);
@@ -204,7 +211,7 @@ echo $this->email->print_debugger();die;
     }
 
       // frontend view
-    public function register()
+    public function register($package = 0)
     {
             if($this->session->userdata('userid')){
                 redirect('user/dashboard');
@@ -273,7 +280,7 @@ echo $this->email->print_debugger();die;
                     $message = $this->load->view('mails/registration_success',$mail_data,true);
                     
                     $send = $this->base_model->queue_mail($this->input->post('uemail'),'Modern Agent Registration',$message);
-                    $doSubscribe = $this->input->post('do_subscribe');
+                    $doSubscribe = $this->input->post('package');
                     if($doSubscribe){
                         redirect(site_url('user/myaccount/membership'));
                         exit;
@@ -285,6 +292,7 @@ echo $this->email->print_debugger();die;
                     $data['err_message'] = !isset($data['err_message'])?$data['err_message']:'Insert faild.';
                 }              
             }
+            $data['package'] = $package;
             $this->load->view('frontend/header_login');
             $this->load->view('frontend/register', $data);
             $this->load->view('frontend/footer_login');

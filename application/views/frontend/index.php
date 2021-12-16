@@ -16,8 +16,8 @@
 
                                 <!-- Buttons Group -->
                                 <div class="btns-group wow fadeInUp">
-                                    <a href="#content-3" class="btn btn-orange-red tra-white-hover mr-15">Report Types</a>
-                                    <a href="#features-4" class="btn btn-tra-white tra-orange-red-hover">Core Features</a>
+                                    <a href="#features-4" class="btn btn-tra-white tra-orange-red-hover mr-15">Core Features</a>
+                                    <a href="https://calendly.com/book-with-modern/tools?month=2021-12" class="btn btn-orange-red tra-white-hover">Book a Demo</a>
                                 </div>
 
                             </div>  
@@ -178,7 +178,7 @@
                                         
                                         
                                         <!-- Button -->
-                                    <a href="#" class="btn btn-orange-red tra-orange-red-hover">View Sample Report</a>
+                                    <a href="https://calendly.com/book-with-modern/tools?month=<?php echo date('Y-m');?>" class="btn btn-orange-red tra-orange-red-hover">Book a 15 Min Demo</a>
 
                                     </ul>
 
@@ -514,7 +514,7 @@
                                 <span class="section-id white-color txt-upcase">View Demo</span>
 
                                 <!-- Title -->  
-                                <h2 class="h2-xs">Text Reports + Real-Time Lead Generation</h2>
+                                <h2 class="h2-xs">Real Time Text Alerts</h2>
 
                                 <!-- List -->   
                                 <ul class="simple-list">
@@ -534,6 +534,7 @@
                                     </li>
 
                                 </ul>
+                                <a href="https://calendly.com/book-with-modern/tools?month=2021-12" class="btn btn-orange-red tra-orange-red-hover">Book a 15 Min Demo</a>
 
                             </div>
                         </div>  <!-- END TEXT BLOCK --> 
@@ -1147,9 +1148,13 @@
                                         </div>  
 
                                         <!-- Price -->
-                                        <sup class="dark-color">$</sup>                             
-                                        <span class="dark-color">7</span>
-                                        <sup class="validity dark-color"><span>.99</span> / month</sup>
+                                        <sup class="dark-color">$</sup>   
+                                        <?php $whole = floor($single_package);      // 1
+                                        $fraction = $single_package - $whole; // .25  
+                                        $fraction = str_pad($fraction, 2, "0", STR_PAD_RIGHT);
+                                        ?>                        
+                                        <span class="dark-color"><?php echo $whole ?></span>
+                                        <sup class="validity dark-color"><span>.<?php echo $fraction ?></span> / month</sup>
                                         <p class="p-md">For Unlimited 1 Report Type</p>
 
                                     </div>  
@@ -1161,7 +1166,7 @@
                                     </ul>
 
                                     <!-- Pricing Plan Button -->
-                                    <a href="#" class="btn btn-sm btn-tra-grey tra-skyblue-hover">Select Plan</a>
+                                    <a href="<?php echo base_url('frontend/register/package/1');?>" class="btn btn-sm btn-tra-grey tra-skyblue-hover">Select Plan</a>
 
                                 </div>
                             </div>  <!-- END BASIC PLAN -->
@@ -1182,9 +1187,13 @@
                                         </div>  
 
                                         <!-- Price -->
-                                        <sup class="dark-color">$</sup>                             
-                                        <span class="dark-color">14</span>
-                                        <sup class="validity dark-color"><span>.99</span> / month</sup>
+                                        <sup class="dark-color">$</sup>
+                                        <?php $whole = floor($all_package);      // 1
+                                        $fraction = $all_package - $whole; // .25 
+                                        $fraction = str_pad($fraction, 2, "0", STR_PAD_RIGHT); 
+                                        ?>                             
+                                        <span class="dark-color"><?php echo $whole ?></span>
+                                        <sup class="validity dark-color"><span>.<?php echo $fraction ?></span> / month</sup>
                                         <p class="p-md">For Unlimited All Reports</p>
 
                                     </div>  
@@ -1196,7 +1205,7 @@
 
                                     <!-- Pricing Plan Button -->
                                     
-                                    <a href="#" class="btn btn-sm btn-skyblue tra-grey-hover">Select Plan</a>
+                                    <a href="<?php echo base_url('frontend/register/package/2');?>" class="btn btn-sm btn-skyblue tra-grey-hover">Select Plan</a>
 
                                 </div>
                             </div>  <!-- END AGENCY PLAN  -->
@@ -1284,14 +1293,14 @@
 
                                             <tr>
                                                 <th scope="row" class="text-start">Lead Collection</th>
-                                               <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                               <td class="ico-10 disabled-option">-</td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
 
                                             <tr>
                                                 <th scope="row" class="text-start">Digital Guest Registry</th>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <td class="ico-10 disabled-option">-</td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
@@ -1305,7 +1314,7 @@
 
                                             <tr>
                                                 <th scope="row" class="text-start">Text Alerts</th>
-                                                <td class="ico-10 disabled-option"><span class="flaticon-cancel"></span></td>
+                                                <td class="ico-10 disabled-option">-</td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                                 <td class="ico-15 green-color"><span class="flaticon-check"></span></td>
                                             </tr>
@@ -1548,13 +1557,13 @@
 
 
                     <!-- MORE QUESTIONS BUTTON -->  
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col">   
                             <div class="more-questions">
                                 <h5 class="h5-sm">Have more questions? <a href="#">Ask your question here</a></h5>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
 
 
                 </div>     <!-- End container -->       
