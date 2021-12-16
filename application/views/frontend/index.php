@@ -928,7 +928,7 @@
 						<!-- IMAGE BLOCK -->
 						<div class="col-md-5 col-lg-6 order-first order-md-2">
 							<div class="rel img-block right-column wow fadeInLeft">
-								<img class="img-fluid" src="images/img-07-a.png" alt="content-image">
+								<img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-07-a.png" alt="content-image">
 							</div>
 						</div>
 
