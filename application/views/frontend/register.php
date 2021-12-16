@@ -72,16 +72,16 @@
                                 <input type="password" class="" name="cpassword" id="cpassword" placeholder="Confirm Password">
                                 <span class="register-alert-danger"><?= form_error('cpassword'); ?></span>
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <input type="checkbox" class="col-sm-1" name="do_subscribe" style="height:25px; width:25px; margin-bottom:10px; margin-top:0px; border: 2px solid #ffffff;" id="do_subscribe" value="1" >
                                 <label for="do_subscribe" class="col-sm-10" style="display: block;color:#000; font-size:13.5px;top: 2px;">Check Box Monthly Plan</label>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                             
                                 <button type="submit" name="Register" class="theme-btn">Create Account</button>
                             </div>
-                                
+                                <input type="hidden" name="package" value="<?php echo $package; ?>" />
                             </form>
                         </div>
                        

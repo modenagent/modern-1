@@ -100,14 +100,29 @@
                             <!-- MAIN MENU -->
                             <nav class="wsmenu clearfix">
                                 <ul class="wsmenu-list nav-pink-hover">
-                                    <li class="nl-simple" aria-haspopup="true"><a href="#">Home</a></li>
-                                    <li class="nl-simple" aria-haspopup="true"><a href="#">Reports</a></li>
-                                    <li class="nl-simple" aria-haspopup="true"><a href="#">Tools</a></li>
-                                    <li class="nl-simple" aria-haspopup="true"><a href="#">API</a></li>
-                                    <li class="nl-simple" aria-haspopup="true"><a href="#">Widgets</a></li>
-                                    <li class="nl-simple" aria-haspopup="true"><a href="#">Lead Gen</a></li>
-                                    <li class="nl-simple" aria-haspopup="true"><a href="#">Pricing</a></li>
-                                    <li class="nl-simple" aria-haspopup="true"><a href="<?php echo base_url('frontend/login');?>">Login</a></li>
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#hero-10">Home</a></li>
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#content-3">Reports</a></li>
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#features-4">Features</a></li>
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#pricing-2">Pricing</a></li>
+                                    
+
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">FAQs</a></li>
+
+                                    
+                                    <!-- SIMPLE NAVIGATION LINK 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#blog-1">Blog</a></li>
+                                    --> 
+
+
+                                    <!-- HEADER BUTTON -->
+                                    <li class="nl-simple" aria-haspopup="true">
+                                        <a href="<?php echo base_url('frontend/login');?>" class="btn btn-tra-white orange-red-hover last-link">Let's Started</a>
+                                    </li> 
+                                    <!-- <li class="nl-simple" aria-haspopup="true"><a href="<?php echo base_url('frontend/login');?>">Login</a></li> -->
 
                                     
 
