@@ -964,6 +964,24 @@ class User extends CI_Controller
           'clientSecret' => $subscription_response->latest_invoice->payment_intent->client_secret
         ];
         $reponse_array['status'] = true;
+        //If user subscribed for All then cancel other subscription
+        if($package->package == 'all') {
+          // $this->load->model('user_package_subscription_model');
+          $current_plans=  $this->user_package_subscription_model->with('package')->get_many_by(['user_id'=>$userId]);
+          // $this->load->library('Stripe_lib');
+          $stripe = new Stripe_lib();
+          $active_all = false;
+          foreach ($current_plans as $current_plan) {
+            $check_sub = $stripe->getSubscription($current_plan->sub_id);
+            
+            if($check_sub && $check_sub->status == 'active') {
+              $resp = $stripe->cancelSubscription($current_plan->sub_id);
+              // if(isset($packages[$current_plan->package->package]['active'])) {
+              //   $packages[$current_plan->package->package]['active'] = 1;
+              // }
+            }
+          }
+        }
       }
       echo json_encode($reponse_array);exit(); 
       
