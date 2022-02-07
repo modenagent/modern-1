@@ -82,7 +82,7 @@
 
                     <!-- MOBILE HEADER -->
                     <div class="wsmobileheader clearfix">       
-                        <span class="smllogo"><img src="<?php echo base_url();?>/assets/frontend/images/LargeLogo.png" alt="mobile-logo"/></span>
+                        <span class="smllogo"><img src="<?php echo base_url();?>/assets/frontend/images/LargeLogoDark.png" alt="mobile-logo"/></span>
                         <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>  
                     </div>
 
