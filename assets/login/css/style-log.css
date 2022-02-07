@@ -375,7 +375,7 @@ img{
   background-image: url(../images/hero-24-img-a.jpg);
 }
 
-.login-page-section:after{
+/* .login-page-section:after{
   position: absolute;
   content: '';
   background: url(../images/icons/shap-15a.png);
@@ -386,7 +386,7 @@ img{
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-}
+} */
 
 .login-page-section .top-box{
   position: relative;
@@ -629,5 +629,17 @@ width:380px;
 
 img.loglogo2{
 width:831px;
+}
+
+@media only screen and (max-width: 767px) {
+  .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='text'],
+  .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='email'], 
+  .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='password']{
+    color: #fff;
+  }
+  .login-page-section:before {
+    width: 100%;
+    position: fixed;
+  }
 }
 
