@@ -1,3 +1,11 @@
+<?php
+$default_theme = 1;
+if($this->input->post('buyer_theme') >= 1 && $this->input->post('buyer_theme') <= 3) {
+    $default_theme = (int)$this->input->post('buyer_theme');
+}
+if($default_theme > 1) :
+$this->load->view('reports/english/buyer/'.$default_theme .'/index');
+else: ?>
 <!DOCTYPE html>
 <html>
 
@@ -131,3 +139,9 @@
 </body>
 
 </html>
+<?php
+endif;
+if($this->input->post('show_html') == 1) {
+ die;
+}
+?>

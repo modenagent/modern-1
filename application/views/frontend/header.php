@@ -1,119 +1,159 @@
 <!DOCTYPE html>
-<html>
-
-<head>
-    <title>Modern Agent - Real Estate Presentations</title>
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-
-      <script src="<?php echo base_url('assets/js/jquery.js') ?>"></script>
-      <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
-
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript" charset="utf-8" async defer></script>
-     
-     <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/iconmoon/style.css') ?>">     
-     
-    <!-- <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"> -->
-
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
-    
-    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
-    <!-- <script src="<?php echo base_url(); ?>assets/js/slick.min.js"></script> -->
-     
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>  
-     <script src="<?php echo base_url(); ?>assets/js/mobile.js"></script>
-     <script src="<?php echo base_url(); ?>assets/js/scroll.js"></script>
-    
-
-    <script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-
-    <meta charset="utf-8">
-        <title>Modern Agent - Real Estate Presentations</title>
-
-        <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
-        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon" />
-
-        <link href="<?php echo base_url('assets/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css">
+<!-- OLMO - Software, App, SaaS & Startup Landing Pages Pack design by DSAThemes (http://www.dsathemes.com) -->
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en">
 
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/flexslider.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/carousel.css"/>
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.carousel.min.css'); ?>">
-        <link rel="stylesheet" href="<?php echo base_url('assets/css/owl.theme.default.min.css'); ?>">
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/prettyphoto.css"/>
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-toastr/toastr.min.css">
+    <head>
 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="author" content="DSAThemes"/>   
+        <meta name="description" content="OLMO - Software, App, SaaS & Startup Landing Pages Pack"/>
+        <meta name="keywords" content="Responsive, HTML5, DSAThemes, One Page, Landing, Software, Mobile App, SaaS, Startup, Creative, Freelancers, Digital Product">   
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                
+        <!-- SITE TITLE -->
+        <title>Modern Agent - Beautiful Listing Presentations</title>
+                            
+        <!-- FAVICON AND TOUCH ICONS -->
+        <link rel="shortcut icon" href="<?php echo base_url();?>/assets/frontend/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="<?php echo base_url();?>/assets/frontend/images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon" sizes="152x152" href="<?php echo base_url();?>/assets/frontend/images/apple-touch-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="<?php echo base_url();?>/assets/frontend/images/apple-touch-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="<?php echo base_url();?>/assets/frontend/images/apple-touch-icon-76x76.png">
+        <link rel="apple-touch-icon" href="<?php echo base_url();?>/assets/frontend/images/apple-touch-icon.png">
+        <link rel="icon" href="<?php echo base_url();?>/assets/frontend/images/apple-touch-icon.png" type="image/x-icon">
 
+        <!-- GOOGLE FONTS -->
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
 
-        <link href="<?php echo base_url(); ?>assets/image_popup/image-popup.css" rel="stylesheet">
+        <!-- BOOTSTRAP CSS -->
+        <link href="<?php echo base_url();?>/assets/frontend/css/bootstrap.min.css" rel="stylesheet">
+                
+        <!-- FONT ICONS -->
+        <link href="<?php echo base_url();?>/assets/frontend/css/flaticon.css" rel="stylesheet">
 
-        <link href="<?php echo base_url(); ?>assets/css/login/login.css" rel="stylesheet">
+        <!-- PLUGINS STYLESHEET -->
+        <link href="<?php echo base_url();?>/assets/frontend/css/menu.css" rel="stylesheet"> 
+        <link id="effect" href="<?php echo base_url();?>/assets/frontend/css/dropdown-effects/fade-down.css" media="all" rel="stylesheet">
+        <link href="<?php echo base_url();?>/assets/frontend/css/magnific-popup.css" rel="stylesheet">   
+        <link href="<?php echo base_url();?>/assets/frontend/css/owl.carousel.min.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>/assets/frontend/css/owl.theme.default.min.css" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
-        <link href="<?php echo base_url(); ?>assets/css/lp-style.css" rel="stylesheet">
+        <!-- ON SCROLL ANIMATION -->
+        <link href="<?php echo base_url();?>/assets/frontend/css/animate.css" rel="stylesheet">
 
-</head>
-
-<body>
-
-
-<header class="overlapping">
-<div class="navbar-wrapper" > 
-             <!-- mobile menu button content -->
-             
-             
-    <a href="<?php echo site_url(); ?>"><img id="header_logo" src="<?php echo base_url(); ?>assets/images-2/logo.png" class="img-responsive" ></a>
-
-    <nav class="nav">
-        <div class="menu pull-right">
-            <?php 
-                $currentURL = current_url(); 
-                $reports_link = '#feature';
-                $tools_link = '#detail';
-                $widget_link = '#widgets';
-                $api_link = '#api';
-                $leads_link = '#leads';
-                $pricing_link = '#pricing-list';
-                if (strpos($currentURL, 'login') !== false || strpos($currentURL, 'register') !== false) {
-                    $reports_link = base_url().'#feature';
-                    $tools_link = base_url().'#detail';
-                    $widget_link = base_url().'#widgets';
-                    $api_link = base_url().'#api';
-                    $leads_link = base_url().'#leads';
-                    $pricing_link = base_url().'#pricing-list';
-                }
-            ?>
-            <ul>
-                <li><a class="m" href="<?php echo site_url(); ?>">Home</a></li>
-                <li><a class="m playscroll" href="<?php echo $reports_link; ?>">Reports</a></li>
-                <li><a class="m playscroll" href="<?php echo $tools_link; ?>">Tools</a></li>
-				<li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
-				<li><a class="m playscroll" href="<?php echo $widget_link; ?>">Widgets</a></li>
-                <li><a class="m playscroll" href="<?php echo $leads_link; ?>">Lead Gen</a></li>
-                <li><a class="m playscroll" href="<?php echo $pricing_link; ?>">Pricing</a></li>
-                <li><a class="m playscroll" href="<?php echo site_url('frontend/login'); ?>">Log In <span></span></a></li>
-            </ul>
-        </div>
-    </nav>
-
-          <div class="mobile-nav">              
-            <a class="mobile-nav-trigger" href="#"></a>
-            <ul>
-                <li><a class="m playscroll" href="<?php echo $reports_link; ?>">Reports</a></li>
-                <li><a class="m playscroll" href="<?php echo $tools_link; ?>">Tools</a></li>
-				 <li><a class="m playscroll" href="<?php echo $api_link; ?>">API</a></li>
-				<li><a class="m playscroll" href="<?php echo $widget_link; ?>">Widgets</a></li>
-                <li><a class="m playscroll" href="<?php echo $leads_link; ?>">Lead Gen</a></li>
-                <li><a class="m playscroll" href="<?php echo $pricing_link; ?>">Pricing</a></li>
-                <li><a class="m playscroll" href="<?php echo site_url('frontend/login'); ?>">Log In <span></span></a></li>
-            </ul>
-        </div>
+        <!-- TEMPLATE CSS -->
+        <link href="<?php echo base_url();?>/assets/frontend/css/style.css" rel="stylesheet"> 
         
+        <!-- RESPONSIVE CSS -->
+        <link href="<?php echo base_url();?>/assets/frontend/css/responsive.css" rel="stylesheet">
 
-            
-              </div>
-</header>
+    </head>
+
+    <body>
+        <!-- PRELOADER SPINNER
+        ============================================= -->   
+        <div id="loading" class="violet-red-loading">
+            <div id="loading-center">
+                <div id="loading-center-absolute">
+                    <div class="object" id="object_one"></div>
+                    <div class="object" id="object_two"></div>
+                    <div class="object" id="object_three"></div>
+                    <div class="object" id="object_four"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE CONTENT
+        ============================================= -->   
+        <div id="page" class="page">
+
+
+            <!-- HEADER
+            ============================================= -->
+            <header id="header" class="header tra-menu navbar-light">
+                <div class="header-wrapper">
+
+
+                    <!-- MOBILE HEADER -->
+                    <div class="wsmobileheader clearfix">       
+                        <span class="smllogo"><img src="<?php echo base_url();?>/assets/frontend/images/LargeLogo.png" alt="mobile-logo"/></span>
+                        <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>  
+                    </div>
+
+
+                    <!-- NAVIGATION MENU -->
+                    <div class="wsmainfull menu clearfix">
+                        <div class="wsmainwp clearfix">
+
+
+                            <!-- HEADER LOGO -->
+                            <div class="desktoplogo"><a href="#hero-4" class="logo-black"><img src="<?php echo base_url();?>/assets/frontend/images/LargeLogoDark.png" alt="header-logo"></a></div>
+                            <div class="desktoplogo"><a href="#hero-4" class="logo-white"><img src="<?php echo base_url();?>/assets/frontend/images/LargeLogo.png" alt="header-logo"></a></div>
+
+
+                            <!-- MAIN MENU -->
+                            <nav class="wsmenu clearfix">
+                                <ul class="wsmenu-list nav-pink-hover">
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#hero-10">Home</a></li>
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#content-3">Reports</a></li>
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#features-4">Features</a></li>
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#pricing-2">Pricing</a></li>
+                                    
+
+                                    <!-- SIMPLE NAVIGATION LINK --> 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#faqs-2">FAQs</a></li>
+
+                                    
+                                    <!-- SIMPLE NAVIGATION LINK 
+                                    <li class="nl-simple" aria-haspopup="true"><a href="#blog-1">Blog</a></li>
+                                    --> 
+
+
+                                    <!-- HEADER BUTTON -->
+                                    <li class="nl-simple" aria-haspopup="true">
+                                        <a href="<?php echo base_url('frontend/login');?>" class="btn btn-tra-white orange-red-hover last-link">Let's Started</a>
+                                    </li> 
+                                    <!-- <li class="nl-simple" aria-haspopup="true"><a href="<?php echo base_url('frontend/login');?>">Login</a></li> -->
+
+                                    
+
+
+                                    <!-- HEADER BUTTON -->
+                                    <!-- <li class="nl-simple" aria-haspopup="true">
+                                        <a href="#cta-10" class="btn btn-tra-white pink-hover last-link">Let's Started</a>
+                                    </li> --> 
+
+
+                                    <!-- HEADER SOCIAL LINKS                                                    
+                                    <li class="nl-simple white-color header-socials ico-20 clearfix" aria-haspopup="true">
+                                        <span><a href="#" class="ico-facebook"><span class="flaticon-facebook"></span></a></span>
+                                        <span><a href="#" class="ico-twitter"><span class="flaticon-twitter"></span></a></span>
+                                        <span><a href="#" class="ico-instagram"><span class="flaticon-instagram"></span></a></span>
+                                        <span><a href="#" class="ico-dribbble"><span class="flaticon-dribbble"></span></a></span>   
+                                    </li> -->   
+
+
+                                </ul>
+                            </nav>  <!-- END MAIN MENU -->
+
+
+                        </div>
+                    </div>  <!-- END NAVIGATION MENU -->
+
+
+                </div>     <!-- End header-wrapper -->
+            </header>   <!-- END HEADER -->
+
+
+
+
+

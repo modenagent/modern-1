@@ -17,15 +17,115 @@ class Lp extends CI_Controller{
 		$request .= '&key=' . getSitexKey();
         
         $getsortedresults = isset($_GET['getsortedresults'])?$_GET['getsortedresults']:'false';
+
+        // if($getsortedresults != 'true') {
+
+        //     $req_send= "https://dev.modernagent.io/index.php?/lp/getSearchResults?&requrl=".urlencode($request);
+
+        //     echo file_get_contents($req_send);die;
+        // }
+        // else {
+        //     $req_send = "https://dev.modernagent.io/index.php?/lp/getSearchResults?&requrl=".urlencode($request).'&getsortedresults=true';
+        //     $request = 'http://modernagent.localhost.com/sample.xml';
+            
+        // }
         
         if($getsortedresults=='true'){
-            $this->load->helper('dataapi');
+            //Check user and api
             $file = simplexml_load_file($request);
-            $this->load->library('reports');
-            $allComparable = $this->reports->get_all_properties($file);
+            $check_presentaion = $this->input->get('presentation');
             
-            $comparables = $this->reports->sort_properties($file,$allComparable);
-            echo json_encode($comparables);
+            //RETS API
+            $userId = $this->session->userdata('userid');
+            if(empty($userId)) {
+                $userId = $this->input->get('user_id');
+            }
+            $this->load->model('user_rets_api_details_model');
+            $rets_api_data = $this->user_rets_api_details_model->get_by('user_id',$userId);
+            if($rets_api_data && !empty($rets_api_data) && $check_presentaion && $check_presentaion == 'seller') {
+                $properties = $sorted = $all = array();
+
+                $properties['Lat'] = (string)$file->PropertyProfile->PropertyCharacteristics->Latitude;
+                $properties['Long'] = (string)$file->PropertyProfile->PropertyCharacteristics->Longitude;
+
+                $address = $this->input->get('address');
+                $query = '?q='.urlencode($address);
+                $min_lat = (float)$properties['Lat'] - 0.02;
+                $min_long = (float)$properties['Long'] - 0.02;
+
+                $max_lat = (float)$properties['Lat'] + 0.02;
+                $max_long = (float)$properties['Long'] + 0.02;
+                $query .= '&limit=50';
+                $query_1 = $query.'&points='.urlencode($min_lat.','.$min_long).'&points='.urlencode($max_lat.','.$max_long);
+                $this->load->library('rets');
+                $user_name = $rets_api_data->user_name;
+                $encrypted_password = $rets_api_data->user_password;
+                $password = openssl_decrypt($encrypted_password,"AES-128-ECB",$this->config->item('encryption_key'));
+
+                $result = $this->rets->callSimplyRets($user_name,$password, $query_1);
+                // var_dump($result);
+                // echo $query_1;die;
+                $response = json_decode($result,TRUE);
+                // var_dump($response);die;
+                if(empty($response) || count($response) <= 1) {
+                    $result = $this->rets->callSimplyRets($user_name,$password,$query);
+                    $response = json_decode($result,TRUE);
+                }
+                
+                if(isset($response) && !empty($response))
+                {
+                    foreach ($response as $key => $value) 
+                    {
+                        if($key <= 7)
+                        {
+                        $sorted[$value['mlsId']] = array(
+                                'index' => $value['mlsId'],
+                                'Address' => $value['address']['full'].' '.$value['address']['city'],
+                                'Price' => $value['listPrice'],
+                                'Latitude' => $value['geo']['lat'],
+                                'Longitude' => $value['geo']['lng'],
+                            );
+                        }
+                        else
+                        {
+                            $all[$value['mlsId']] = array(
+                                'index' => $value['mlsId'],
+                                'Address' => $value['address']['full'].' '.$value['address']['city'],
+                                'Price' => $value['listPrice'],
+                                'Latitude' => $value['geo']['lat'],
+                                'Longitude' => $value['geo']['lng'],
+                            );
+                        }
+                        
+                        
+                    }
+                }
+                // $file = simplexml_load_file($request);
+                // $file = json_decode(file_get_contents($req_send));
+                // echo($file);die;
+                
+                $properties['all'] = $all;
+                $properties['sorted'] = $sorted;
+                
+                $properties['use_rets'] = true; 
+                echo json_encode($properties);
+
+
+            }
+            else {
+
+                $this->load->helper('dataapi');
+                $file = simplexml_load_file($request);
+                $this->load->library('reports');
+                $allComparable = $this->reports->get_all_properties($file);
+                
+                $comparables = $this->reports->sort_properties($file,$allComparable);
+                $comparables['Lat'] = (string)$file->PropertyProfile->PropertyCharacteristics->Latitude;
+                $comparables['Long'] = (string)$file->PropertyProfile->PropertyCharacteristics->Longitude;
+                $properties['use_rets'] = false;
+                echo json_encode($comparables);
+            }
+
         } else {
             $opts = array('http'=>array('header' => "User-Agent:MyAgent/1.0\r\n"));
             $context = stream_context_create($opts);

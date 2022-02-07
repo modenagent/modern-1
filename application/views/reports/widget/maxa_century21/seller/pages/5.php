@@ -4,6 +4,9 @@
             <div>
                 <div class="achivement_title">
                     <?php 
+                        if($fromcma && empty($page['resume_award_no'])) {
+                            $page['resume_award_no'] = 5;
+                        }
                         if(!empty($page['resume_award_no'])) {
                             echo '<span>'.$page['resume_award_no'].'</span> AWARDS';
                         }
@@ -11,6 +14,13 @@
                 </div>
                 <ul class="award_list">
                     <?php
+                    if($fromcma && empty($page['resume_award_list'])) {
+                            $page['resume_award_list'] = 'Award 1 2018
+Award 2 2019
+Award 3 2020
+Award 4 2021
+Award 5 2021';
+                        }
                     if(!empty($page['resume_award_list'])) {
                             $list_array = explode("\n", $page['resume_award_list']);
                             $resume_line_cnt = 0;
@@ -27,6 +37,9 @@
                 </ul>
                 <div class="achivement_title">
                     <?php 
+                        if($fromcma && empty($page['resume_years_no'])) {
+                            $page['resume_years_no'] = 7;
+                        }
                         if(!empty($page['resume_years_no'])) {
                             echo '<span>'.$page['resume_years_no'].'</span> YEARS';
                         }
@@ -34,6 +47,9 @@
                 </div>  
                 <div class="achivement_title">
                     <?php
+                        if($fromcma && empty($page['resume_volume'])) {
+                            $page['resume_volume'] = '$100,000,000+';
+                        }
                         if(!empty($page['resume_volume'])) {
                             echo '<b>'.$page['resume_volume'].'</b> volume';
                         }

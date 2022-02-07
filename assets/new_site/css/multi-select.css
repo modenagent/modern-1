@@ -1,0 +1,68 @@
+
+.multiselect-header{
+  font-weight: bold;
+  font-size: 19px;
+  color: #2F353E;
+  margin-bottom: 40px;
+  text-align: center;
+	
+}
+.ms-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.ms-container .ms-selectable, .ms-container .ms-selection{ 
+  width: 47%
+}
+
+
+.ms-container .ms-list{
+  position: relative;
+  height: 300px;
+  padding: 0;
+  overflow-y: auto;
+  background: #F4F4F9;
+}
+
+.ms-container .ms-list.ms-focus{
+  box-shadow: none;
+  outline: 0;
+}
+
+.ms-container ul{
+  margin: 0;
+  list-style-type: none;
+  padding: 0;
+}
+
+.ms-container .ms-optgroup-container{
+  width: 100%;
+}
+
+.ms-container .ms-optgroup-label{
+  margin: 0;
+  padding: 5px 0px 0px 5px;
+  cursor: pointer;
+  color: #999;
+}
+
+.ms-container .ms-selectable li.ms-elem-selectable, .ms-container .ms-selection li.ms-elem-selection {
+  padding: 14px 24px;
+  color: #2f353e;
+  font-size: 15px;
+  cursor: pointer;
+}
+.ms-elem-selectable.multi-select-even {
+  background: rgba(88,42 ,131,0.2);
+}
+.ms-elem-selection.multi-select-even {
+  background: rgba(239,81,75 ,0.2);
+}
+.ms-container .ms-selectable li.disabled,
+.ms-container .ms-selection li.disabled{
+  background-color: #eee;
+  color: #aaa;
+  cursor: text;
+}

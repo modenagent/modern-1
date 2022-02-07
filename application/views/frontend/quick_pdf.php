@@ -1,163 +1,195 @@
 <script src="<?php echo base_url('assets/js/jquery.js') ?>"></script>
 <script src="<?php echo base_url('assets/js/bootstrap.min.js') ?>"></script>
 
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/iconmoon/style.css') ?>">     
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css">
-<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/smart_wizard.css")?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/cma.css")?>" />
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/css/iconmoon/style.css') ?>">      -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/main.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/smart_wizard.css")?>" /> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/cma.css")?>" /> -->
 <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
-<script src="<?php echo base_url(); ?>assets/js/mobile.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/scroll.js"></script>
-<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
-<div id="login-pag" class="containe cma-wraper">
+<!-- <script src="<?php echo base_url(); ?>assets/js/mobile.js"></script> -->
+<!-- <script src="<?php echo base_url(); ?>assets/js/scroll.js"></script> -->
+<!-- <script src="<?php echo base_url(); ?>assets/js/main.js"></script> -->
+
+<section class="myaccount cma-page">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <h1 class="main_title">Generate Your Complimentary C.M.A.</h1>
+              <!-- <p class="subline">Below you can update the following: Agent info, company info, set a default theme, and update your login info.</p> -->
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="login_info_form cma_form cma-step-1">
+                    <div class="">
+                        <form method="post" id="ref-form" >
+
+                            <input type="hidden" class="form-control" name="form-name"  value="ref-form">
+                            <div class="form-group email_field">
+                                <div class="cma_label">Enter Your Reference Code</div>
+                                <input type="text"  class="form-control " name="ref_code" id="ref_code" placeholder="Reference code" value="<?php echo $code; ?>" required>
+                            </div>
+                            <div class="form-group email_field">
+                                <div class="cma_label">Enter Valid Phone Number</div>
+                                <input type="text"  class="form-control" name="phone_number" id="phone_number" placeholder="10 Digit Phone Number" required>
+                            </div>
+                            <div >
+                                <input class="btn btn-lp save"  name="ref-submit" id="ref-submit" type="submit" value="Proceed">
+                            </div>
+                            <div class="alert alert-success" style="display:none"></div>
+                            <!-- <button type="submit" class="btn btn-lp save">Save</button> -->
+                          </form>
+                          <div id="user-details" style="display:none;" class="hidden">
+                            <p>Here are the details of user</p>
+                          
+                            <p id="email-add"></p>
+                        </div>
+                    </div>
+                </div>
+                <form accept-charset="UTF-8" action="" method="get">
+                <div class="login_info_form cma_form cma-step-2" style="display: none;">
+
+                    <div class="" >
+
+                        <h2 class="address-title">Enter Address to Start</h2>
+
+                            <div class="form-group email_field">
+
+                                <input name="utf8" type="hidden" value="✓">
+                                
+                                <input class="form-control" name="term" id="searchbox" placeholder="e.g. ‘123 Success Ave’" type="search">
+                            </div>
+                            <div class="form-group email_field">
+                                <label id="error_searchbox" style="display:none;"></label>
+                                <input type="text" id="searchboxcity" class="form-control citynames" placeholder="e.g. 'Los Angeles'" />
+                                <input type="hidden" id="neighbourhood" />
+                                <input type="hidden" id="state" />
+                            </div>
+
+                                    
+                            <button class="btn btn-lp save" type="button" id="search-btn"> Search </button>
+                        
+                    </div>
+                </div>
+
+                <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
+                    <div class="search-result hidden cma-step-3">
+                        <!-- <div class="search-loader"></div> -->
+                        <table id="cma-tbl-list" class="table table-hover responsive nowrap" style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th width="15%">APN</th>
+                                    <th width="15%">Unit #</th>
+                                    <th width="25%">Address</th>
+                                    <th width="20%">Owner Name</th>
+                                    <th width="10%">City</th>
+                                    <th width="15%">Get Report</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+
+                <form id="run-pma-form" style="display:none;">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <?php
+                            $marketPresentation = '';
+                            $sellerPresentation = '';
+                            $currentUrl = $this->uri->uri_string();
+                            if (strpos(strtolower($currentUrl), 'market') !== false) {
+                                $marketPresentation = 'selected';
+                            } else {
+                                $sellerPresentation = 'selected';
+                            }
+                            ?>
+                            <select id="presentation" name="presentation" class="cma hidden" style="color:black">
+                                <option value="marketUpdate" <?php echo $marketPresentation; ?> >Market Update</option>
+                                <option value="seller" <?php echo $sellerPresentation; ?>>Seller</option>
+                                <option value="buyer">Buyer</option>
+                            </select>
+
+                        </div>
+                        <div class="col-md-2">
+                            <select name="report_lang" class="cma hidden" style="color:black;">
+                                <option value="english" selected>English</option>
+                                <option value="spanish">Spanish</option>
+                            </select>
+                        </div>
+                    </div> 
+                    <input id="profile_image"  name="user[profile_image]" value="<?php echo $agentInfo->profile_image ?>" type="hidden">
+                    <input id="u-image"  name="user_image" value="<?php echo $agentInfo->profile_image ?>" type="hidden">
+                    <input name="user[fullname]" id="u-fullname" value="<?php echo $agentInfo->first_name." ".$agentInfo->last_name ?>" type="hidden">
+                    <input name="user[title]"  id="u-title" value="<?php echo $agentInfo->title ?>" type="hidden">
+                    <input name="user[phone]" id="u-phone" value="<?php echo $agentInfo->phone ?>" type="hidden">
+                    <input name="user[email]"  id="u-email" value="<?php echo $agentInfo->email ?>" type="hidden">
+                    <input name="user[licenceno]" id="u-licenceno" value="<?php echo $agentInfo->license_no ?>" type="hidden">
+                    <input name="user[company_logo]" id="u-company_logo" value="<?php echo $agentInfo->company_logo ?>" type="hidden">
+                    <input name="user[companyname]" id="u-companyname" value="<?php echo $agentInfo->company_name ?>" type="hidden">
+                    <input name="user[street]" id="u-street" value="<?php echo $agentInfo->company_add ?>" type="hidden">
+                    <input name="user[city]" id="u-city" value="<?php echo $agentInfo->company_city ?>" type="hidden">
+                    <input name="user[zip]" id="u-zip" value="<?php echo $agentInfo->comapny_zip ?>" type="hidden">
+                    <input name="user[state]" id="u-state" value="<?php echo $agentInfo->company_state ?>" type="hidden">
+                    <input type="hidden" name="coupon_code" id="coupon_code" value="">
+                    <input type="hidden" name="theme" value="#1BBB9B">
+                    <input type="radio"  class="custom-checkbox hidden" id="c21" value="rgb(0,28,61)" name="cover" checked>
+                    <input type="radio" name="seller_radio" class="seller_radio" id="seller_radio" checked value="1" style="display: none !important">
+                    <input type="hidden"  id="report_color" value="rgb(0,28,61)">
+                    <input type="checkbox" checked id="subscribe_temp" class="subscribe_temp" value="0" style="display: none !important">
+                    <div id="addNewPartner" style="display:none"></div>
+                    <input type="hidden" name="use_rets" id="use_rets" value="0">
+                    <!-- END -->
+                    
+                </form>
+
+                <form  method="POST" id="payment-form" class="hidden form-horizontal" role="form">
+                    <div class="alert alert-danger payment-errors" style="display:none"></div>
+                    <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="0">
+                    <input type="hidden" id="coupon_id" name="coupon_id">
+                    <input type="hidden" id="coupon-amount" name="coupon_amount" value="0">
+                    <input type="hidden" id="order-amount" name="order_amount" value="0">
+                    <input type="hidden" id="user-id" name="user-id" value="">
+                    <input type="hidden" id="submit-phone" name="phone_number" value="">
+                    <div class="form-group">
+                      <div class="col-sm-offset-3 col-sm-9" id="paynow">
+                        <button type="submit" class="btn btn-lp pay save" id="paynow">Create Complimentary Report</button>
+                      </div>
+                    </div>
+                  </form>
+                <button type="button" style="display:none;" class="btn btn-lp save" id="create-report">Create Complimentary Report</button>
+                <div class="loader1 cma-loader" style="display: none;">
+                    <img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                    <p class="loader-text">Please wait while report gets ready ....</p>
+                </div>
+                <!-- <div class="loader2 cma-loader"  style="display: none;">
+                    <img src="<?php echo base_url(); ?>assets/images/gears.gif">
+                    <p class="loader-text">Please wait while report gets ready ....</p>
+                </div> -->
+                <div class="backwrap cma-loader" style="display: none;"></div>
+                    
+                </div>
+                
+            </div>
+    </div> 
+</section>
+<!-- <div id="login-pag" class="containe cma-wraper">
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
             
-                                <?php
-                                $currentUrl = $this->uri->uri_string();
-                                if (strpos(strtolower($currentUrl), 'market') !== false) {
-                                ?>
-                                    <h2 class="logh">Generate Your Complimentary Market Update</h2>
-                                <?php
-                                } else {
-                                ?>
-                                    <h2 class="logh">Generate Your Complimentary C.M.A.</h2>
-                                <?php
-                                }
-                                ?>
-                                <div class="col-md-12">
-                                <form class="login-wrapper" method="post" id="ref-form"  style="">
-                                    <div class="content">
-                                        <input type="hidden" class="form-control" name="form-name"  value="ref-form">
-                                        <div class="form-group">
-                                            <p>Enter Your Reference Code</p>
-                                            <input type="text" style="height:54px;" class="form-control" name="ref_code" id="ref_code" placeholder="Reference code" required>
-                                        </div><br>
-                                        <div class="form-group">
-                                            <p>Enter Valid Phone Number</p>
-                                            <input type="text" style="height:54px;" class="form-control" name="phone_number" id="phone_number" placeholder="10 Digit Phone Number" required>
-                                        </div><br>
-                                        <div class="form-group m-b-0">
-                                            <input class="btn btn-lp" style="height:54px;" name="ref-submit" id="ref-submit" type="submit" value="Proceed">
-                                        </div>
-                                    </div>
-                                </form>
-                                </div>
-                                <div id="user-details" style="display:none;" class="hidden">
-                                    <p>Here are the details of user</p>
-                                    <p id="email-add"></p>
-                                </div>
+                                
+                               
+                                
                                 <div id="step-1">
                                     <div class="col-md-10 col-md-offset-1">
                                 <div class="step-1-content clearfix" style="display:none;position:relative;">
-                                    <h2>Enter Address to Start</h2>
-                                   
-
-                                    <form accept-charset="UTF-8" action="" class="huge-search" method="get">
-                                        <div class="form-group">
-                                            <input name="utf8" type="hidden" value="✓">
-                                            <div class="input-group2">
-                                                <input class="form-control" name="term" id="searchbox" placeholder="e.g. ‘123 Success Ave’" type="search">
-                                                <label id="error_searchbox" style="display:none;"></label>
-                                                <input type="text" id="searchboxcity" class="citynames2" placeholder="e.g. 'Los Angeles'">
-                                                <input type="hidden" id="neighbourhood">
-                                                <input type="hidden" id="state">
-
-                                                
-                                                    <button class="btn btn-lp" type="button" id="search-btn"> Search </button>
-                                                
-                                            </div>
-                                        </div>
-                                          
-                                        <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
-                                        <div class="search-result hidden">
-                                            <div class="search-loader"></div>
-                                            <table class="table-responsive hidden">
-                                                <thead>
-                                                    <tr>
-                                                        <th width="15%">APN</th>
-                                                        <th width="15%">Unit #</th>
-                                                        <th width="25%">Address</th>
-                                                        <th width="20%">Owner Name</th>
-                                                        <th width="10%">City</th>
-                                                        <th width="15%">Run Listing</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        </form>
-                                    <form id="run-pma-form" style="display:none;">
-                                        <!-- Hidden user details -->
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                                <?php
-                                                $marketPresentation = '';
-                                                $sellerPresentation = '';
-                                                $currentUrl = $this->uri->uri_string();
-                                                if (strpos(strtolower($currentUrl), 'market') !== false) {
-                                                    $marketPresentation = 'selected';
-                                                } else {
-                                                    $sellerPresentation = 'selected';
-                                                }
-                                                ?>
-                                                <select name="presentation" class="cma hide" style="color:black">
-                                                    <option value="marketUpdate" <?php echo $marketPresentation; ?> >Market Update</option>
-                                                    <option value="seller" <?php echo $sellerPresentation; ?>>Seller</option>
-                                                    <option value="buyer">Buyer</option>
-                                                </select>
-                                            </div>
-                                         <div class="col-md-2">
-                                                <select name="report_lang" class="cma hide" style="color:black;">
-                                                    <option value="english" selected>English</option>
-                                                    <option value="spanish">Spanish</option>
-                                                </select>
-                                            </div>
-                                        </div> 
-                                        <input id="profile_image"  name="user[profile_image]" value="<?php echo $agentInfo->profile_image ?>" type="hidden">
-                                        <input id="u-image"  name="user_image" value="<?php echo $agentInfo->profile_image ?>" type="hidden">
-                                        <input name="user[fullname]" id="u-fullname" value="<?php echo $agentInfo->first_name." ".$agentInfo->last_name ?>" type="hidden">
-                                        <input name="user[title]"  id="u-title" value="<?php echo $agentInfo->title ?>" type="hidden">
-                                        <input name="user[phone]" id="u-phone" value="<?php echo $agentInfo->phone ?>" type="hidden">
-                                        <input name="user[email]"  id="u-email" value="<?php echo $agentInfo->email ?>" type="hidden">
-                                        <input name="user[licenceno]" id="u-licenceno" value="<?php echo $agentInfo->license_no ?>" type="hidden">
-                                        <input name="user[company_logo]" id="u-company_logo" value="<?php echo $agentInfo->company_logo ?>" type="hidden">
-                                        <input name="user[companyname]" id="u-companyname" value="<?php echo $agentInfo->company_name ?>" type="hidden">
-                                        <input name="user[street]" id="u-street" value="<?php echo $agentInfo->company_add ?>" type="hidden">
-                                        <input name="user[city]" id="u-city" value="<?php echo $agentInfo->company_city ?>" type="hidden">
-                                        <input name="user[zip]" id="u-zip" value="<?php echo $agentInfo->comapny_zip ?>" type="hidden">
-                                        <input name="user[state]" id="u-state" value="<?php echo $agentInfo->company_state ?>" type="hidden">
-                                        <input type="hidden" name="coupon_code" id="coupon_code" value="">
-                                        <input type="hidden" name="theme" value="#1BBB9B">
-                                        <input type="radio"  class="custom-checkbox hidden" id="c21" value="rgb(0,28,61)" name="cover" checked>
-                                        <div id="addNewPartner" style="display:none"></div>
-                                        <!-- END -->
-                                        
-                                    </form>
-                                    <form  method="POST" id="payment-form" class="hidden form-horizontal" role="form">
-                                        <div class="alert alert-danger payment-errors" style="display:none"></div>
-                                        <input type="hidden" size="80" id="invoice-amount" data-stripe="amount" name="amount" class="form-control" placeholder="Amount" value="0">
-                                        <input type="hidden" id="coupon_id" name="coupon_id">
-                                        <input type="hidden" id="coupon-amount" name="coupon_amount" value="0">
-                                        <input type="hidden" id="order-amount" name="order_amount" value="0">
-                                        <input type="hidden" id="user-id" name="user-id" value="">
-                                        <input type="hidden" id="submit-phone" name="phone_number" value="">
-                                        <div class="form-group">
-                                          <div class="col-sm-offset-3 col-sm-9" id="paynow">
-                                            <button type="submit" class="btn btn-lp pay" id="paynow">Create Complimentary Report</button>
-                                          </div>
-                                        </div>
-                                      </form>
-                                    <button type="button" style="display:none;" class="btn btn-lp" id="create-report">Create Complimentary Report</button>
-                                    <div class="loader1 hidden" style="top:0;">
-                                        <img src="<?php echo base_url(); ?>assets/images/gears.gif">
-                                        <p class="loader-text">Please wait while report gets ready ....</p>
-                                    </div>
-                                    <div class="backwrap hidden"></div>
+                                    
+                                    
+                                    
                                 </div>
                                 </div>
                                 </div>
@@ -187,37 +219,40 @@
         </div>
     </div>
     
-</div>
+</div> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
 <script src="<?php echo base_url("assets/js/jquery-ui.1.11.2.min.js") ?>" type="text/javascript"></script>
 <?php if(!isset($isWidget)){ ?>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
 <?php } ?>
-<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.19") ?>"></script>
 
 
 
 
 <!-- Bootstrap Core JavaScript --> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
+<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script> -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.bootstrap4.js"></script>
+
+<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script> -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
-<script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
+<!-- <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script> -->
 
- 
-    
 
 <script type="text/javascript">
     var percentbar,percentLabel, pagebar, pageLabel ; 
@@ -314,7 +349,8 @@ $(document.body).on('submit', '#ref-form' ,function(){
                   if (object.status=="success") {
                       $("#email-add").html(object.user.email);
                       $("#user-details").show();
-                      $(".step-1-content").show();
+                      $(".cma-step-2").show();
+                      $(".cma-step-1").hide();
                       
                       $("#profile_image").val(object.user.agent.profile_image);
                       $("#u-image").val(object.user.agent.profile_image);
@@ -330,6 +366,13 @@ $(document.body).on('submit', '#ref-form' ,function(){
                       $("#u-zip").val(object.user.agent.comapny_zip);
                       $("#u-state").val(object.user.agent.company_state);
                       $("#user-id").val(object.user.user_id_pk);
+                      if(object.subscribed) {
+                        $("#subscribe_temp").val('seller');
+                      }
+                      $("#report_color").val(object.theme.default_color);
+                      $("#seller_radio").val(object.theme.default_sub_type);
+                      //seller_radio
+
                       var phoneNumber = $("#phone_number").val();
                       phoneNumber = phoneNumber.replace(/ /g,"");
                       phoneNumber = phoneNumber.replace(/-/g,"");
@@ -340,7 +383,8 @@ $(document.body).on('submit', '#ref-form' ,function(){
                   } else {
                       alert(object.msg);
                       $("#user-details").hide();
-                      $(".step-1-content").hide();
+                      $(".cma-step-2").hide();
+                      $(".cma-step-1").show();
                   }
                   $("#ref-submit").val("Proceed");
               }
@@ -374,16 +418,17 @@ $(document.body).on('submit', '#ref-form' ,function(){
     }
     return false;
   });
-$(document.body).on( "click",'.search-result a',function(){
+$(document.body).on( "click",'#cma-tbl-list tbody td a',function(){
 $(this).html("processing...");
+$('.loader1').show();
+$('.loader1').removeClass('hidden');
+$('.backwrap').show();
+$('.backwrap').removeClass('hidden');
 isActive();
   });
 var pmaRes = {};
 $("#create-report").click(function(){
-    $('.loader1').show();
-    $('.loader1').removeClass('hidden');
-    $('.backwrap').show();
-    $('.backwrap').removeClass('hidden');
+    
     pmaRes = runPMA('','');
     doSubmit();
     
@@ -391,14 +436,26 @@ $("#create-report").click(function(){
 function manage_checkout_btn() {}
 function isActive(){
     if($.active){
+        $('.loader1').show();
+        $('.loader1').removeClass('hidden');
+        $('.backwrap').show();
+        $('.backwrap').removeClass('hidden');
       setTimeout(function(){
         isActive();
         console.log("searching");
       },100);
+      
     }else{
-        $(".search-result a").html("Choose");
+        $("#cma-tbl-list tbody td a").html("CHOOSE");
         $("#create-report").show();
         $("#run-pma-form").show();
+        $('html, body').animate({
+            scrollTop: $("#create-report").offset().top
+        }, 500);
+        $('.loader1').hide();
+        $('.loader1').addClass('hidden');
+        $('.backwrap').hide();
+        $('.backwrap').addClass('hidden');
     }
 }
 function doSubmit(){
@@ -413,7 +470,8 @@ function doSubmit(){
 
     if(activeRequest){
       setTimeout(function(){
-          $("#progress").modal('show');
+          // $("#progress").modal('show');
+          $('.cma-loader').show();
           $.ajax({
             url:base_url + 'lp/report_progress',
             method:'POST',
@@ -435,7 +493,9 @@ function doSubmit(){
         doSubmit();
       },500);
     }else{
-        $("#progress").modal('hide');
+        // $("#progress").modal('hide');
+          $('.cma-loader').hide();
+
         if(typeof pmaRes.status !== 'underfined' && pmaRes.status=='failed'){
             alert(pmaRes.msg);
             location.reload();
@@ -508,6 +568,7 @@ function check_subscription(){
         }
     });
 }
+
 //Display Notification/Error/Success
 $(document).ready(function(){
     <?php if ($this->session->flashdata('success')): ?>
@@ -517,4 +578,7 @@ $(document).ready(function(){
     Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
     <?php endif; ?>
 });
+
 </script>
+</body>
+</html>

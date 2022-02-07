@@ -1,72 +1,75 @@
+<!-- footer -->
 
-
-<div class="user-footer">
-  <div class="section upper-footer">
-        <div class="container">
-            <div class="row">
-                <div class="upper-footer-wrapper">
-                    <div class="col-md-3">
-                        <div class="md_agent">
-                            <h3 id="modern">MODERN AGENT</h3>
-                            <p id="mod_para"><small>we are all about helping real estate agents make the perfect impression.</small></p>
-                        </div>
-                    </div>
-                    <div class="col-md-9">
-                    </div>
-                </div>
+  <footer>
+    <div class="container">
+        <div class="row">
+          <div class="col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
+            <div class="footer_content">
+              <div>
+                <a href="index.html"><img src="<?php echo base_url(); ?>assets/new_site/img/logo.png" alt="Modern Agent"></a>
+                <p class="mt-3 mb-0">we are all about helping real estate agents <br> make the perfect impression./2018</p>
+              </div>
+              <a href="<?php echo base_url(); ?>" target="_blank" class="d-block text-center web_link"><?php echo base_url(); ?></a>
+              <ul class="list-inline mb-0">
+                  <li class="list-inline-item"><a href="#"><img src="<?php echo base_url(); ?>assets/new_site/img/facebook-logo.svg" alt="..."></a></li>
+                  <li class="list-inline-item"><a href="#"><img src="<?php echo base_url(); ?>assets/new_site/img/twitter.svg" alt="..."></a></li>
+                  <li class="list-inline-item"><a href="#"><img src="<?php echo base_url(); ?>assets/new_site/img/instagram.svg" alt="..."></a></li>
+              </ul>
+            </div>
+          </div>
+      </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="mb-0 copyright">© <?php echo date('Y');?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </div>
-    <div class="section lower-footer section-alternate">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="left">
-                        <p class="font">www.modernagent.io </p>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="center">
-                        <p class="font fontc">&COPY; <?php echo date('Y'); ?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
-                    </div>
-                </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-1 text-center">
-                    <ul class="social-links">
-                        <a href="#">
-                            <li class="fb" aria-hidden="true"></li>
-                        </a>
-                        <a href="#">
-                            <li class="twitter" aria-hidden="true"></li>
-                        </a>
-                        <a href="#">
-                            <li class="insta" aria-hidden="true"></li>
-                        </a>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  </footer>
 <!-- Start modals -->
 <div id="forward-report" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <div class="modal-content ">
         <form action="<?php echo base_url('user/formward_report'); ?>" method="post" id="forward-report-form">
             <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
               <h4 class="modal-title">Forward Report</h4>
             </div>
             <div class="modal-body">
               <input type="hidden" id="project-id" name="project_id">
-              <div class="form-group">
+              <div class="form-group mb-3">
                   <label for="email_to">Send to Email:</label>
                   <input type="email" class="form-control" required name="email_to">
               </div>
               <div class="form-group">
-                  <label style="padding-left:0;"><input type="checkbox" name="cc"> CC to me</label>
+                  <input type="checkbox" name="cc" id="cc_me"> 
+                  <label for="cc_me">CC to me</label>
+              </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-lp external">Send</button>              
+            </div>
+        </form>
+    </div>
+
+  </div>
+</div>
+<div id="sms-report" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content ">
+        <form action="<?php echo base_url('user/sms_report'); ?>" method="post" id="sms-report-form">
+            <div class="modal-header">
+              <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Send Report to SMS</h4>
+            </div>
+            <div class="modal-body">
+              <input type="hidden" id="sms-report-id" name="sms_report_id">
+              <div class="form-group mb-3">
+                  <label for="sms_email_to">Enter Phone Number:</label>
+                  <input type="text" class="form-control" required name="sms_to" id="sms_to">
               </div>
             </div>
             <div class="modal-footer">
@@ -78,20 +81,20 @@
   </div>
 </div>
 <div id="select-comps" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <!-- Modal content-->
     <div class="modal-content">
         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" data-bs-dismiss="modal">&times;</button>
             <h4 class="modal-title">Select Minimum 4 and up to 8 Comparables</h4>
             <a href="#" class="hide" id="refresh">Refresh Selection</a>
         </div>
         <div class="modal-body">
-            <select id='pre-selected-options' multiple='multiple'>
+            <select id='pre-selected-options_old-temp' multiple='multiple'>
             </select>
         </div>
         <div class="modal-footer text-center">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default" data-bs-dismiss="modal">Save</button>
         </div>
     </div>
   </div>
@@ -121,8 +124,10 @@
 </script>
 
 <!-- Bootstrap Core JavaScript --> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/jquery.dataTables.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.bootstrap4.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
@@ -148,20 +153,20 @@
     return false;
   });
   $('#select-comps').on('shown.bs.modal', function() {
-      $('#pre-selected-options').multiSelect({
-          selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
-          selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-      });  
-      if(firstOpen) {
-          // If received list is not greater than min value than set our min value to received list length
-          var pre_selected_options = $.trim($('#pre-selected-options').html());
-          if (pre_selected_options!='') {
-            if(_min>$('#pre-selected-options').val().length){
-                _min = $('#pre-selected-options').val().length;
-            }
-          }
-          firstOpen = false;
-      }
+      // $('#pre-selected-options').multiSelect({
+      //     selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
+      //     selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+      // });  
+      // if(firstOpen) {
+      //     // If received list is not greater than min value than set our min value to received list length
+      //     var pre_selected_options = $.trim($('#pre-selected-options').html());
+      //     if (pre_selected_options!='') {
+      //       if(_min>$('#pre-selected-options').val().length){
+      //           _min = $('#pre-selected-options').val().length;
+      //       }
+      //     }
+      //     firstOpen = false;
+      // }
       /*
       var last_valid_selection = $('#pre-selected-options').val();
       $('#pre-selected-options').change(function(event) {
@@ -174,23 +179,23 @@
       */
   });
   $('#select-comps').on('hide.bs.modal', function(event) {
-    var pre_selected_options = $.trim($('#pre-selected-options').html());
-    if (pre_selected_options!='') {
-      if ($('#pre-selected-options').val()==null) {
-          alert('Please select '+_min+' comparables');
-          event.stopPropagation();
-          return false;
-      } else if ($('#pre-selected-options').val().length < _min){
-          alert('Please select '+_min+' comparables');
-          event.stopPropagation();
-          return false;
-      }
-      if($('#pre-selected-options').val().length > _max){
-          alert('Please do not select more than '+_max+' comparables');
-          event.stopPropagation();
-          return false;
-      }
-    } 
+    // var pre_selected_options = $.trim($('#pre-selected-options').html());
+    // if (pre_selected_options!='') {
+    //   if ($('#pre-selected-options').val()==null) {
+    //       alert('Please select '+_min+' comparables');
+    //       event.stopPropagation();
+    //       return false;
+    //   } else if ($('#pre-selected-options').val().length < _min){
+    //       alert('Please select '+_min+' comparables');
+    //       event.stopPropagation();
+    //       return false;
+    //   }
+    //   if($('#pre-selected-options').val().length > _max){
+    //       alert('Please do not select more than '+_max+' comparables');
+    //       event.stopPropagation();
+    //       return false;
+    //   }
+    // } 
   });
 </script>
 <script type="text/javascript">
@@ -222,8 +227,11 @@
 
   //Function to convert hex format to a rgb color
   function rgb2hex(rgb) {
-   rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
-   return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    if(rgb != undefined) {
+      
+     rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
+     return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
+    }
   }
 
   function hex(x) {
@@ -255,15 +263,19 @@
   }
 
   //BEGIN CHECKBOX & RADIO
-  $('input[type="checkbox"], input[type="radio"]').iCheck({
-    checkboxClass: 'icheckbox_minimal-grey',
-    radioClass: 'icheckbox_minimal-grey',
-    increaseArea: '20%' // optional
-  });
+  // $('input[type="radio"]').iCheck({
+  //   checkboxClass: 'icheckbox_minimal-grey',
+  //   radioClass: 'icheckbox_minimal-grey',
+  //   increaseArea: '20%' // optional
+  // });
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
-    $("#owl-example").owlCarousel();
-    $("#owl-example-registry").owlCarousel();
+    $(".owl-carousel").owlCarousel({
+      items:4,
+      margin:15,
+      autoWidth:true,
+      });
+    // $("#owl-example").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
 
@@ -275,6 +287,27 @@
             $(document).scrollTop(50);
           },500);
           return true;
+        }
+        if(obj.attr('rel')==2) {
+          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+            var pre_selected_options = $.trim($('#pre-selected-options').html());
+            if (pre_selected_options!='') {
+              if ($('#pre-selected-options').val()==null) {
+                  alert('Please select '+_min+' comparables');
+                  // event.stopPropagation();
+                  return false;
+              } else if ($('#pre-selected-options').val().length < _min){
+                  alert('Please select '+_min+' comparables');
+                  // event.stopPropagation();
+                  return false;
+              }
+              if($('#pre-selected-options').val().length > _max){
+                  alert('Please do not select more than '+_max+' comparables');
+                  // event.stopPropagation();
+                  return false;
+              }
+            }
+          }
         }
         if(obj.attr('rel')==3){
           var _theme = $('.custom-checkbox:checked').val();
@@ -288,6 +321,16 @@
         return true;
       },
       onShowStep:function(obj){
+        if(obj.attr('rel')==2){
+          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+
+            $('.buyer-cls').hide();
+            
+          }
+          else {
+            $('.buyer-cls').show();
+          }
+        }
         if(obj.attr('rel')==4){
           if($('.custom-checkbox:checked').val()){
             $.ajax({
@@ -1175,7 +1218,11 @@
     }
   }
   $(document).ready(function() {
-      $("body").tooltip({ selector: '[data-toggle=tooltip]', placement:'left' });
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
+      // $("body").tooltip({ selector: '[data-bs-toggle=tooltip]', placement:'left' });
 
       $(window).on("scroll", function () {
           if ($(window).scrollTop() > 50) {
@@ -1188,6 +1235,10 @@
   $("#forward-report").on("show.bs.modal", function(e) {
       var projectID = $(e.relatedTarget).data('id');
       $(this).find("#project-id").val(projectID);
+  });
+  $("#sms-report").on("show.bs.modal", function(e) {
+      var projectID = $(e.relatedTarget).data('id');
+      $(this).find("#sms-report-id").val(projectID);
   });
   function check_subscription(){
       $.ajax({
@@ -1265,8 +1316,108 @@
                     }
             });
         }
+
+        if($('.myaccount  #preview_pages ').length) {
+
+          
+          $('.myaccount .theme_selection_div .select_change').change(function() {
+
+            if($(this).attr('id') == "select-theme-type") {
+              $("#select-theme option[value='2']").prop('disabled', false);
+              $("#select-theme option[value='3']").prop('disabled', false);
+              $(".subscribe_notice").hide();
+              if($(this).val() == 'buyer') {
+                $("#select-theme").val(default_sub_type_buyer);
+                $("#select-color").val(default_color_buyer);
+                if(active_buyer == 0 && active_all == 0) {
+                  $("#select-theme").val(1);
+                  $("#select-theme option[value='2']").prop('disabled', true);
+                  $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#rep_type").html('Buyer');
+                  $(".subscribe_notice").show();
+                }
+              }
+              else if($(this).val() == 'seller') {
+                $("#select-theme").val(default_sub_type_seller);
+                $("#select-color").val(default_color_seller);
+                if(active_seller == 0 && active_all == 0) {
+                  $("#select-theme").val(1);
+                  $("#select-theme option[value='2']").prop('disabled', true);
+                  $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#rep_type").html('Seller');
+                  $(".subscribe_notice").show();
+                }
+              }
+              else if($(this).val() == 'marketUpdate') {
+                $("#select-theme").val(default_sub_type_mu);
+                $("#select-color").val(default_color_mu);
+                if(active_mu == 0 && active_all == 0) {
+                  $("#select-theme").val(1);
+                  $("#select-theme option[value='2']").prop('disabled', true);
+                  $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#rep_type").html('Market Update');
+                  $(".subscribe_notice").show();
+                }
+              }
+            }
+
+            var theme_type = $("#select-theme-type").val();
+            var theme_sub_type = $("#select-theme").val();
+            $.ajax({
+              url:base_url + 'user/getPreviews',
+              method:'POST',
+              data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
+              success:function(resp){
+                $('.myaccount #preview_pages').html(resp)
+              }
+            });
+          });
+
+          $('#agentDefaultTheme_save').click(function(){
+            $(this).prop('disabled', true);
+            var theme_type = $("#select-theme-type").val();
+            var theme_sub_type = $("#select-theme").val();
+            var theme_color = $("#select-color").val();
+
+            $.ajax({
+              url:base_url + 'user/saveTheme',
+              method:'POST',
+              data : {theme_type:theme_type,theme_sub_type,theme_sub_type,theme_color:theme_color},
+              dataType:'json',
+              success:function(resp){
+                if (resp.status=="success") {
+                    $('#theme .alert').html(resp.message).show();
+                    setTimeout(function(){
+                      $('#theme .alert').fadeOut(1500);
+                    },2000);
+                } else {
+
+                }
+                $('#agentDefaultTheme_save').prop('disabled', false);
+
+              },
+              error: function(error) {
+                $('#agentDefaultTheme_save').prop('disabled', false);
+              }
+            });
+
+            if(theme_type == 'buyer') {
+              default_sub_type_buyer = theme_sub_type;
+              default_color_buyer = theme_color;
+            }
+            else if(theme_type == 'seller') {
+              default_sub_type_seller = theme_sub_type;
+              default_color_seller = theme_color;
+            }
+            else if(theme_type == 'marketUpdate') {
+              default_sub_type_mu = theme_sub_type;
+              default_color_mu = theme_color;
+            }
+
+          });
+        }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.2"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.19"></script>
 </body>
 </html>

@@ -191,7 +191,7 @@ class User extends CI_Controller
           // normal JSON string or show an error
           header('Content-Type: application/json; charset=utf8');
           $data['html'] = 'ERROR: The widget is not configured properly.';
-          echo json_encode($data);
+          echo json_en356code($data);
       }
     }
 
@@ -219,8 +219,13 @@ class User extends CI_Controller
                                 array(
                                   'user_id_pk'=>$this->session->userdata('userid')
                             ));
-        $data['reportTemplates'] = $this->base_model->all_records('lp_report_templates');  
-
+        $reportTemplates = $this->base_model->all_records('lp_report_templates');  
+        $data['reportTemplates'] = $reportTemplates;
+        $default_color['seller'] = $default_color['buyer'] = $default_color['mu'] = null;
+        $default_sub_type['seller'] = $default_sub_type['buyer'] = $default_sub_type['mu'] = 1;
+        if(is_array($data['reportTemplates']) && count($data['reportTemplates'])) {
+          $default_color['seller'] = $default_color['buyer'] = $default_color['mu'] = $data['reportTemplates'][0]->template_color;
+        }
         $this->load->model('package_model');
         $packages_all = $this->package_model->get_many_by(['title !='=>'']);
         $packages = array();
@@ -246,8 +251,23 @@ class User extends CI_Controller
         $data['packages'] = $packages;
         $data['report_price'] = $this->package_model->get_reports_price();
 
-        $this->load->helper('captcha');
-        create_image();
+        $this->load->model('user_default_templates_model');
+
+        $theme_data = $data['theme_data'] = $this->user_default_templates_model->with('theme_color_obj')->get_many_by('user_id',$userId);
+        if($theme_data) {
+          foreach ($theme_data as $theme_data_val) {
+            if($theme_data_val->theme_type == 'marketUpdate') {
+              $theme_data_val->theme_type = 'mu';
+            }
+              $default_color[$theme_data_val->theme_type] = $theme_data_val->theme_color_obj->template_color;
+              $default_sub_type[$theme_data_val->theme_type] = $theme_data_val->theme_sub_type;
+          }
+        }
+
+        $data['default_color'] = $default_color;
+        $data['default_sub_type'] = $default_sub_type;
+        // $this->load->helper('captcha');
+        // create_image();
         $this->load->view('user/header', $data);
         $this->load->view('user/dashboard', $data);
         $this->load->view('user/footer');
@@ -282,7 +302,7 @@ class User extends CI_Controller
       }
       if($packages_value && $packages_value->price > $coupon_amount) {
         $final_value = $packages_value->price - $coupon_amount;
-        $this->load->library('Stripe_lib');
+        $this->load->library('Stripe_lib'); 
         $stripe = new Stripe_lib();
         $payment_obj = $stripe->createPaymentIntent($final_value,$packages_value->title);
         if($payment_obj && !empty($payment_obj->client_secret)) {
@@ -379,9 +399,10 @@ class User extends CI_Controller
                 $reportDate = date("m/d/Y", strtotime($report['project_date']));
 
                 $action = '';
-                $action .= ' <a href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>
-                <a href="javascript:void(0);" target="_blank" data-toggle="modal" data-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><i data-toggle="tooltip" title="Email" class="icon icon-share"  ></i></a>
-                <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+                $action .= ' <ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
+                <li class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/email.svg" alt="..." class="w20"></a></li>
+                <li style="opacity:0.7;" class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#sms-report" title="Send SMS" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/sms.svg" alt="..." class="w20"></a></li>
+                <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li></ul>';
                 
                 $data[] = [
                     $reportDate, 
@@ -437,7 +458,9 @@ class User extends CI_Controller
                 // <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
                 if($for_guest == 0) {
 
-                  $action = ' <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a> <a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-toggle="tooltip" title="Copy URL"  class="icon icon-copy"></i></a> <a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'2\')"><i data-toggle="tooltip" title="Delete" class="icon icon-remove-circle"></i></a>';
+                  $action = '<ul class="list-inline m-0"><li class="list-inline-item"> <a class="download_'.$report['project_id_pk'].'" href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0);" class="copy_url" data-url="'.base_url("registry/guest/{$report['unique_key']}").'"><i data-bs-toggle="tooltip" title="Copy URL" class="copy-tile"><img src="'.base_url().'assets/new_site/img/copy.svg" class="w20" alt="..."></i></a></li>
+                    <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'2\')"><img src="'.base_url().'assets/new_site/img/clear.svg" class="w20" alt="..."></a></li></ul>';
 
                   $data[] = [
                       $reportDate, 
@@ -453,7 +476,7 @@ class User extends CI_Controller
                       $report['guest_name'], 
                       $report['guest_phone'], 
                       $report['guest_email'], 
-                      $action
+                      // $action
                   ];
                 }
             }
@@ -618,7 +641,7 @@ class User extends CI_Controller
                 $leadDate = date("m/d/Y", strtotime($lead['created_at']));
 
                 $action = '';
-                $action .= '<a href="'.base_url().$lead['report_path'].'" download target="_blank"><i data-toggle="tooltip" title="Download" class="icon icon-download"></i></a>';
+                $action .= '<ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$lead['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li></ul>';
                 
                 $data[] = [
                     $leadDate, 
@@ -668,10 +691,11 @@ class User extends CI_Controller
     }
 
     // My Account
-    public function myaccount(){
+    public function myaccount($active_tab = ''){
       $data['current'] = "myaccount";
       $data['title'] = "My Account";
       if($this->session->userdata('userid')){
+        $user_id = $this->session->userdata('userid');
           $this->load->helper('captcha');
           create_image();
           $this->load->model('package_model');
@@ -720,7 +744,7 @@ class User extends CI_Controller
 
           $current_plans=  $this->user_package_subscription_model->with('package')->get_many_by(['user_id'=>$this->session->userdata('userid')]);
           // var_dump($current_plans);die;
-          $active_plans = array();
+           $active_plans = array();
           $cancel_plans = array();
           $active_all = false;
           foreach ($current_plans as $current_plan) {
@@ -741,6 +765,7 @@ class User extends CI_Controller
           $data['active_plans'] = $active_plans;
           $data['cancel_plans'] = $cancel_plans;
           $data['active_all'] = $active_all;
+
 
 
           $customer_created = false;
@@ -769,7 +794,24 @@ class User extends CI_Controller
 
           // var_dump($active_plans);die;
 
+          $this->load->model('user_default_templates_model');
+
+          $data['theme_data'] = $this->user_default_templates_model->get_many_by('user_id',$user_id);
           $data['customer_id'] = $customer_id;
+
+
+          //RETS API
+          $this->load->model('user_rets_api_details_model');
+          $rets_api_data = $this->user_rets_api_details_model->get_by('user_id',$userId);
+          $data['rets_api_data'] = (object)$rets_api_data;
+          //Check for active content
+          $valid_tabs = [
+            'login','agent','company','theme','membership','retsapi'
+          ];
+          if($active_tab == '' ||  !in_array($active_tab, $valid_tabs)) {
+            $active_tab = 'login';
+          }
+          $data['active_tab'] = $active_tab;
           
           // print_r($data['agentInfo']);
           $this->load->view('user/header', $data);
@@ -778,6 +820,92 @@ class User extends CI_Controller
       }else{
         redirect('frontend/index');
       }
+    }
+    public function saveRetsDetails()
+    {
+      $userId = $this->session->userdata('userid');
+      if($userId){
+
+        $postData = $this->input->post();
+        // $this->encryption->initialize(array('driver' => 'openssl'));
+        $rets_user = $this->input->post('rets_user');
+        $rets_password = $this->input->post('rets_password');
+
+        //Validate credentials
+        $this->load->library('rets');
+        $rets = new Rets();
+        $result = $rets->callSimplyRets($rets_user,$rets_password);
+        $decoded_result = json_decode($result,true);
+        if(!empty($decoded_result['error'])) {
+          //Error
+          $this->session->set_flashdata('error', $decoded_result['error']);
+          redirect('user/myaccount/retsapi');
+          exit();
+
+        }
+        
+
+        $ciphertext = openssl_encrypt($rets_password,"AES-128-ECB",$this->config->item('encryption_key'));
+
+        $this->load->model('user_rets_api_details_model');
+        $data = array();
+        $data['user_id']=$userId;
+        $check_data = $this->user_rets_api_details_model->get_by($data);
+        if($check_data && !empty($check_data->id)) {
+          $update_data = array();
+          $update_data['user_name'] = $rets_user;
+          $update_data['user_password'] = $ciphertext;
+          $this->user_rets_api_details_model->update($check_data->id,$update_data);
+        } else {
+          $data['user_name'] = $rets_user;
+          $data['user_password'] = $ciphertext;
+          $this->user_rets_api_details_model->insert($data);
+        }
+        $this->session->set_flashdata('success', 'Data stored succsessfully');
+        redirect('user/myaccount/retsapi');
+      }else{
+        redirect('frontend/login');
+      }
+
+
+      // var_dump($postData);
+    }
+    public function getPreviews()
+    {
+      $data = array();
+      $data['type']=$this->input->post('theme_type');
+      $data['sub_type']=$this->input->post('theme_sub_type');
+      $this->load->view('user/theme/index',$data);
+    }
+    public function saveTheme()
+    {
+      $return_data['status'] = '';
+      $return_data['message'] = '';
+      $theme_type = $this->input->post('theme_type');
+      $theme_sub_type = $this->input->post('theme_sub_type');
+      $theme_color = $this->input->post('theme_color');
+      $userId = $this->session->userdata('userid');
+      $this->load->model('user_default_templates_model');
+      //Check existence
+      $data['user_id']=$userId;
+      $data['theme_type']=$theme_type;
+      $check_data = $this->user_default_templates_model->get_by($data);
+      if($check_data && !empty($check_data->id)) {
+        $update_data['theme_sub_type'] = $theme_sub_type;
+        $update_data['theme_color'] = $theme_color;
+        $this->user_default_templates_model->update($check_data->id,$update_data);
+        $return_data['status'] = 'success';
+        $return_data['message'] = 'Default theme Changed.';
+      }
+      else {
+        $data['theme_sub_type'] = $theme_sub_type;
+        $data['theme_color'] = $theme_color;
+        $this->user_default_templates_model->insert($data);
+        $return_data['status'] = 'success';
+        $return_data['message'] = 'Default theme Saved.';
+      }
+      echo json_encode($return_data);
+
     }
     public function createSubscription(){
 
@@ -836,6 +964,24 @@ class User extends CI_Controller
           'clientSecret' => $subscription_response->latest_invoice->payment_intent->client_secret
         ];
         $reponse_array['status'] = true;
+        //If user subscribed for All then cancel other subscription
+        if($package->package == 'all') {
+          // $this->load->model('user_package_subscription_model');
+          $current_plans=  $this->user_package_subscription_model->with('package')->get_many_by(['user_id'=>$userId]);
+          // $this->load->library('Stripe_lib');
+          $stripe = new Stripe_lib();
+          $active_all = false;
+          foreach ($current_plans as $current_plan) {
+            $check_sub = $stripe->getSubscription($current_plan->sub_id);
+            
+            if($check_sub && $check_sub->status == 'active') {
+              $resp = $stripe->cancelSubscription($current_plan->sub_id);
+              // if(isset($packages[$current_plan->package->package]['active'])) {
+              //   $packages[$current_plan->package->package]['active'] = 1;
+              // }
+            }
+          }
+        }
       }
       echo json_encode($reponse_array);exit(); 
       
@@ -964,7 +1110,7 @@ class User extends CI_Controller
         if($resp) {
           $this->session->set_flashdata('success', "Subscription cancelled.");
 
-          redirect('user/myaccount');
+          redirect('user/myaccount/membership');
         }
         else {
           // echo "Error";
@@ -3619,96 +3765,61 @@ Thank you for your order. Below you can find the details of your order. If you o
             $ccTo = $userdata=$this->session->userdata('user_email');
         }
         $listingData = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk'=>$projectId));
+        // var_dump($listingData);die;
+        $data = array();
+        $data['address'] = $listingData->property_address;
+        $data['report_url'] =base_url($listingData->report_path);
+
+        $message = $this->load->view('mails/download_report',$data,TRUE);
         
-        $message = '<table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ecf0f1" style="background-color: rgb(236, 240, 241);">
-	<tr>
-		<td bgcolor="#ecf0f1"align="center" style="background-color: rgb(236, 240, 241); padding-top:30px;">
-			<table width="600" border="0" cellpadding="0" cellspacing="0" align="center" >
-				<tr>
-					<td width="600" align="center">
-						<img src="'.base_url('assets/images-2/logo.png').'"/>
-					</td>
-				</tr>
-				
-				
-				<tr>
-					<td valign="top" width="600" align="center">
-						<table width="600">
-							<tr>
-								<td valign="top" width="420" align="center">
-									<table width="420" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-										
-										<tr>
-											<td valign="middle" width="100%" style="text-align: left; font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: rgb(34, 34, 34); line-height: 24px; font-weight: normal;">
-												<span style="font-family: \'proxima_nova_rgregular\', Helvetica; font-weight: normal;">Please find attached PDF Report.
-												<br><br></span>
-											</td>
-										</tr>
-										<tr>
-											<td width="100%" height="10"></td>
-										</tr>
-									</table>
-								</td>
-								<td valign="top" width="150" align="center" style="padding-left:20px" >
-									<table width="150" border="0" cellpadding="0" cellspacing="0" align="center" style="border-collapse:collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;">
-										<tr>
-											<td width="150" bgcolor="#f15d3e"align="center" style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background:none; border: 1px solid #55c9e0;">												
-												<table width="150" border="0" cellpadding="0" cellspacing="0" align="center">
-													<tr>
-														<td width="100%" height="10" style="font-size: 1px; line-height: 1px;">&nbsp;</td>
-													</tr>
-													<tr>
-														<td valign="top" width="100%" align="center" style="text-align: center; font-size: 14px; font-family: Helvetica, Arial, sans-serif; color: rgb(34, 34, 34); font-weight: bold; line-height: 18px; text-transform: uppercase;" >
-															<span style="font-family: \'proxima_novasemibold\', Helvetica; font-weight: normal;"><a href="<?php echo site_url(); ?>" style="text-decoration: none; color: rgb(85, 201, 224);">ACCOUNT LOGIN</a></span>
-														</td>
-													</tr>
-													<tr>
-														<td width="100%" height="10" style="font-size: 1px; line-height: 1px; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px;">&nbsp;</td>
-													</tr>
-												</table>												
-											</td>
-										</tr>
-									</table>
-								</td>
-							</tr>							
-						</table>						
-					</td>
-				</tr>
-				<tr>
-					<td style="line-height:10px;">&nbsp;</td>
-				</tr>
-				
-				<tr>
-					<td height="30" style="line-height:20px;">&nbsp;</td>
-				</tr>
-				<tr>
-					<td valign="middle" width="600" style="text-align: left; font-family: Helvetica, Arial, sans-serif; font-size: 14px; color: rgb(34, 34, 34); line-height: 24px; font-weight: normal;">
-						<span style="font-family: \'proxima_nova_rgregular\', Helvetica; font-weight: normal;">If you have any questions please email us @ info@modernagent.io</span>
-					</td>
-				</tr>
-				<tr>
-					<td height="5" style="line-height:5px;">&nbsp;</td>
-				</tr>
-				<tr>
-					<td width="600" border="0" height="60" cellpadding="0" cellspacing="0" align="center" bgcolor="#3e4957"style="border-top-left-radius: 3px; border-top-right-radius: 3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px; background-color: rgb(62, 73, 87); font-family: Helvetica, Arial, sans-serif; font-size: 13px; color: rgb(255, 255, 255);">
-						<span style="font-family: \'proxima_nova_rgregular\', Helvetica; font-weight: normal;">
-							<span style="color:#FFFFFF !important;" >&copy; '.date("Y").' ModernAgent.io All rights Reserved</span>
-						</span>
-					</td>
-				</tr>
-				<tr>
-					<td height="30" style="line-height:35px;">&nbsp;</td>
-				</tr>
-			</table>	
-		</td>
-	</tr>
-</table>';
+        
         $this->base_model->queue_mail($email,'Report',$message,array($listingData->report_path),$ccTo);
         
         $this->session->set_flashdata('success', "Report sent successfully.");
         redirect('user/recentlp');
         exit;
-    } 
+    }
+
+    public function sms_report(){
+        $contact_number = $this->input->post('sms_to');
+        $projectId = $this->input->post('sms_report_id');
+
+        $listingData = $this->base_model->get_record_by_id('lp_my_listing',array('project_id_pk'=>$projectId));
+        $reportLink = base_url($listingData->report_path);
+                    
+        // Your Account SID and Auth Token from twilio.com/console
+          $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
+          $token = 'd33346194bc839d2c495c6b35c2c5a64';
+          $client = new Client($sid, $token);
+
+          // Use the client to do fun stuff like send text messages!
+          $smsText = "You can can download report by clicking this url. {$reportLink}";
+          // echo $smsText;die;
+          try {
+            $smsRes = $client->messages->create(
+              // the number you'd like to send the message to
+              '+1'.$contact_number,
+              array(
+                  // A Twilio phone number you purchased at twilio.com/console
+                  'from' => '+14243519064',
+                  // the body of the text message you'd like to send
+                  'body' => $smsText
+              )
+            );
+          } catch (Exception $e){
+            echo $e->getMessage();die;
+              $this->session->set_flashdata('error', "SMS could not be sent on this number.");
+              redirect('user/recentlp');
+              
+          }
+        // $message = ;
+        // $this->base_model->queue_mail($email,'Report',$message,array($listingData->report_path),$ccTo);
+        
+        $this->session->set_flashdata('success', "SMS sent successfully.");
+        redirect('user/recentlp');
+        exit;
+    }
+
     function is_subscribed($planId=null, $userId = NULL){
         if($userId == NULL)
           $userId = $this->session->userdata('userid');
@@ -3852,12 +3963,12 @@ Thank you for your order. Below you can find the details of your order. If you o
             }
             if($response->current_period_end){
                 $this->session->set_flashdata('success', 'Successfully ended your susbcription cycle.');
-                redirect('user/myaccount#tabs-5');
+                redirect('user/myaccount/membership');
                 exit;
             }
         }
         $this->session->set_flashdata('error', 'Cound not unsubscribe you. Please try again or contact support.');
-        redirect('user/myaccount#tabs-5');
+        redirect('user/myaccount/membership');
         exit;
     }
     function api_doc(){
@@ -4247,9 +4358,14 @@ Thank you for your order. Below you can find the details of your order. If you o
     }
 
 
-    public function generate_qr_code($uniqid,$size=6,$custom_bg_color=null,$custom_color = null)
+    public function generate_qr_code($uniqid = '',$size=6,$custom_bg_color=null,$custom_color = null)
     {
-      $qr_link = base_url('registry/guest/'.$uniqid);
+      if(empty($uniqid) && !empty($_GET['url'])) {
+        $qr_link = urldecode($_GET['url']);
+      }
+      else {
+        $qr_link = base_url('registry/guest/'.$uniqid);
+      }
       $this->load->library('phpqrcode/qrlib');
       $custom_bg_color = json_decode(urldecode($custom_bg_color));
       $custom_color = json_decode(urldecode($custom_color));
@@ -4265,6 +4381,9 @@ Thank you for your order. Below you can find the details of your order. If you o
 
     public function testPaymentIntent($payment_id='')
     {
+
+      echo base_url("user/generate_qr_code/1234/6/".urlencode(json_encode([183,220,65]))."/".urlencode(json_encode([255,255,255])));
+      die;
 
       $payment_id = 'pi_1JIuW8SGHshxlum8wBSrQZsL';
       $this->load->library('Stripe_lib');

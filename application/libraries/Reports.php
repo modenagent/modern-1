@@ -48,6 +48,7 @@ use Knp\Snappy\Pdf;
             $errorMsg = "Unexpacted error occured while trying to create ".$_POST['report_lang']." ".$_POST['presentation']." Report PDF for user account ".$CI->session->userdata('user_email');
             // loading the required helper
             $CI->load->helper('dataapi');
+            $user_info = null;
             
             // if call is from the API then we give the data after processing on our end
             if($callFromApi == 1){
@@ -80,7 +81,7 @@ use Knp\Snappy\Pdf;
             }
 
             if($data['user']['email'] != ''){
-                $CI =& get_instance();
+                // $CI =& get_instance();
                 $ref_code = $CI->db->select('ref_code')
                                 ->where('email', $data['user']['email'])
                                 ->get('lp_user_mst')
@@ -88,7 +89,7 @@ use Knp\Snappy\Pdf;
 
                 $data['user']['ref_code'] = $ref_code['ref_code'];
 
-                $user_info = $CI->db->select(array('mobile','website'))
+                $user_info = $CI->db->select(array('user_id_pk','mobile','website'))
                                 ->where('email', $data['user']['email'])
                                 ->get('lp_user_mst')
                                 ->row_array();
@@ -142,17 +143,81 @@ use Knp\Snappy\Pdf;
             $data['secondary_owner'] = $ownerNameSecondary;
             $reportItems['comparable']=array();
             if($_POST['presentation'] != 'registry') {
-                $comparableTemp = $this->get_all_properties($report187);
-                if(empty($compKeys)){
-                    $comparables = $this->sort_properties($report187, $comparableTemp);
-                    $reportItems['comparable'] = $comparables['sorted'];
-                } else {
-                    foreach($comparableTemp as $key => $_property){
-                        if(in_array($key, $compKeys)){
-                            array_push($reportItems['comparable'],$_property);
+                $rets_login = '';
+                $rets_pasword = '';
+                if($user_info) {
+                    $userId = $user_info['user_id_pk'];
+                    $CI->load->model('user_rets_api_details_model');
+                    $rets_api_data = $CI->user_rets_api_details_model->get_by('user_id',$userId);
+                }
+                
+                if($CI->input->post('use_rets') && ($CI->input->post('use_rets') == 1 || $CI->input->post('use_rets') == 'true') && $rets_api_data && !empty($rets_api_data)) {
+                    //Start RETS
+
+                    $user_name = $rets_api_data->user_name;
+                    $encrypted_password = $rets_api_data->user_password;
+                    $password = openssl_decrypt($encrypted_password,"AES-128-ECB",$CI->config->item('encryption_key'));
+                    
+                    // $comparables = $this->sort_properties($report187, $comparableTemp);
+                    // $reportItems['comparable'] = $comparables['sorted'];
+
+                    $mls_comparables = array();
+
+                    $mls_ids = $compKeys;
+                    
+                    if(isset($mls_ids) && !empty($mls_ids))
+                    {
+                        $CI->load->library('rets');
+                        foreach ($mls_ids as $m_key => $m_value) 
+                        {                    
+                            $mls_id = $m_value;
+                            $endPoint = '/'.$mls_id;
+                            // $result = $this->make_request('GET', $endPoint);
+                            $result = $CI->rets->callSimplyRets($user_name,$password,$endPoint);
+                            $response = json_decode($result,TRUE);
+
+                            if(isset($response) && !empty($response))
+                            {
+                                $mls_comparables[$m_key]['mls_id'] =  isset($mls_id) && !empty($mls_id) ? $mls_id : '';
+                                $mls_comparables[$m_key]['img'] =  isset($response['photos'][0]) && !empty($response['photos'][0]) ? $response['photos'][0] : '';
+                                $mls_comparables[$m_key]['Address'] =  isset($response['address']['full']) && !empty($response['address']['full']) ? $response['address']['full'] : '';
+                                $mls_comparables[$m_key]['Price'] =  isset($response['listPrice']) && !empty($response['listPrice']) ? dollars(number_format((string)$response['listPrice'])) : '';
+                                $mls_comparables[$m_key]['PriceRate'] =  isset($response['listPrice']) && !empty($response['listPrice']) ? (float)$response['listPrice'] : 0.00;
+                                $mls_comparables[$m_key]['Date'] =  isset($response['listDate']) && !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
+                                $mls_comparables[$m_key]['Distance'] =  0;
+                                $mls_comparables[$m_key]['SquareFeet'] = isset($response['property']['area']) && !empty($response['property']['area']) ? number_format((string)$response['property']['area']) : '';
+                                $mls_comparables[$m_key]['PricePerSQFT'] = (float)0.00;
+                                $mls_comparables[$m_key]['Beds'] = isset($response['property']['bedrooms']) && !empty($response['property']['bedrooms']) ? number_format((string)$response['property']['bedrooms']) : '';
+                                $mls_comparables[$m_key]['Baths'] = isset($response['property']['bathrooms']) && !empty($response['property']['bathrooms']) ? number_format((string)$response['property']['bathrooms']) : '';
+                                $mls_comparables[$m_key]['Year'] = isset($response['property']['yearBuilt']) && !empty($response['property']['yearBuilt']) ? (string)$response['property']['yearBuilt'] : '';
+                                $mls_comparables[$m_key]['LotSize'] = isset($response['property']['lotSize']) && !empty($response['property']['lotSize']) ? number_format((string)$response['property']['lotSize']) : '';
+                                $mls_comparables[$m_key]['Pool'] = isset($response['property']['pool']) && !empty($response['property']['pool']) ? (string)$response['property']['pool'] : '';
+                                $mls_comparables[$m_key]['BuildingArea'] = $mls_comparables[$m_key]['SquareFeet'];
+                            }
+                        }
+                    }
+                    
+                    $reportItems['comparable'] = $mls_comparables;
+                    
+                    //END RETS
+                }
+                else {
+
+                    $comparableTemp = $this->get_all_properties($report187);
+
+                    if(empty($compKeys)){
+                        $comparables = $this->sort_properties($report187, $comparableTemp);
+                        $reportItems['comparable'] = $comparables['sorted'];
+                    } else {
+                        foreach($comparableTemp as $key => $_property){
+                            if(in_array($key, $compKeys)){
+                                array_push($reportItems['comparable'],$_property);
+                            }
                         }
                     }
                 }
+
+                // var_dump($data);die;
                 if (empty($reportItems['comparable'])) {
                     return ["status"=>false, "showError"=>true, "msg"=>"Report can not be generated due to lack of comparable data."];
                 }
@@ -254,6 +319,8 @@ use Knp\Snappy\Pdf;
                     $months[] = array('date'=>$tmepDate,'value'=>$item['PriceRate']);
                 }
 
+                // var_dump($months);die;
+
                 foreach ($months as $key => $itemMonth) {
                     if($key<(sizeof($months)-1)){
                         $tmp2['date'].=$itemMonth['date'].'|';
@@ -270,13 +337,17 @@ use Knp\Snappy\Pdf;
             }
 
             $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';
+            $data['theme'] = $CI->input->post('theme');
+            if(is_array($CI->input->post('subscribe_temp')) && in_array(trim($CI->input->post('presentation')), $CI->input->post('subscribe_temp')) && !empty($CI->input->post('selected_theme'))) {
+                $chart_color = !empty($CI->input->post('selected_theme')) ? str_replace("#", "", $CI->input->post('selected_theme')) : '082147';
+                $data['theme'] = $CI->input->post('selected_theme');
+            }
             // $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
             $tmp2['color'] = $chart_color;
             
             $reportItems['chart']=$tmp2;
             $reportItems['totalMonthsReport'] = $totalMonthsReport;
             $data['areaSalesAnalysis'] = $reportItems;
-            $data['theme'] = $CI->input->post('theme');
 
             if($CI->input->post('presentation') == 'registry') {
                 $data['unique_key'] = time().substr(md5(rand()), 0, 10);
@@ -621,6 +692,7 @@ use Knp\Snappy\Pdf;
                 'load-error-handling'=>'ignore',
                 'load-media-error-handling'=>'ignore'
             ];
+            $snappy->setTimeout(150);
             $output = $snappy->getOutputFromHtml($html, $options,
                         200,
                         array(
@@ -778,26 +850,37 @@ use Knp\Snappy\Pdf;
                 $currentUserId = $CI->session->userdata('userid');   
             }
 
-            if($currentUserId > 0) {
+            if(empty($currentUserId)) {
+                $user_info_id = $CI->db->select(array('user_id_pk'))
+                                ->where('email', $data['user']['email'])
+                                ->get('lp_user_mst')
+                                ->row_array();
+                $currentUserId = $user_info_id['user_id_pk'];
+            }
 
-                $tableName = "lp_user_mst";
-                $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
-                $data['cma_url'] = $user_details->cma_url;
-                $data['report_dir_name'] = $user_details->report_dir_name;
+            $tableName = "lp_user_mst";
+            $user_details = $CI->base_model->get_login_data_from_id("lp_user_mst",'user_id_pk', $currentUserId);
+            $data['cma_url'] = $user_details->cma_url;
+            $data['report_dir_name'] = $user_details->report_dir_name;
+            $use_rets_api = $user_details->use_rets_api;
 
-                if(!empty($user_details->parent_id))
-                {
-                    $parent_id = $user_details->parent_id;
-                    $sales_rep_info = $CI->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
-                    
-                    if(!empty($sales_rep_info->cma_url)) {
-                      $data['cma_url'] = $sales_rep_info->cma_url;
-                    }
-                    if($sales_rep_info->role_id_fk == 3) {
-                        $data['report_dir_name'] = $sales_rep_info->report_dir_name;
-                    }
+            if(!empty($user_details->parent_id))
+            {
+                $parent_id = $user_details->parent_id;
+                $sales_rep_info = $CI->base_model->get_record_by_id('lp_user_mst', array('user_id_pk'=>$parent_id));
+
+                if(!empty($sales_rep_info->use_rets_api)) {
+                  $use_rets_api = $sales_rep_info->use_rets_api;
+                }
+                
+                if(!empty($sales_rep_info->cma_url)) {
+                  $data['cma_url'] = $sales_rep_info->cma_url;
+                }
+                if($sales_rep_info->role_id_fk == 3) {
+                    $data['report_dir_name'] = $sales_rep_info->report_dir_name;
                 }
             }
+            $data['use_rets_api'] = $use_rets_api;
             $simply_rets = 0;
             if($data['report_dir_name'] == 'maxa_hometown') {
                 $simply_rets=1;
@@ -809,7 +892,7 @@ use Knp\Snappy\Pdf;
 
                 if(true && ($_POST['presentation'] == 'seller' || $_POST['presentation'] == 'buyer'))
                 {
-                   if(empty($compKeys)){
+                   if(empty($compKeys) && $use_rets_api == 0){
                         $comparables = $this->sort_properties($report187, $comparableTemp);
                         $reportItems['comparable'] = $comparables['sorted'];
                     } else {
@@ -850,11 +933,25 @@ use Knp\Snappy\Pdf;
                                     }
                                 }
                             }
-                            elseif(isset($mls_ids) && !empty($mls_ids) && $simply_rets==0) {
+                            elseif($simply_rets==0) {
                                 $CI->load->library('rets');
                                 $rets = new Rets();
-                                $mlsId = implode(',', $mls_ids);
-                                $responses = $rets->getDataBymlsId($mlsId);
+                                if(isset($mls_ids) && !empty($mls_ids)) {
+                                    $mlsId = implode(',', $mls_ids);
+                                    $responses = $rets->getDataBymlsId($mlsId);
+                                }
+                                else {
+                                    $search_city = $report187->PropertyProfile->SiteCity;
+                                    
+                                    $responses = $rets->getRecentSold($search_city);
+                                    if(empty($responses)) {
+                                        return array( 
+                                            'report_generated' => false,
+                                            'error_msg' => "Comparable not found for $search_city",
+                                            'pdf_filename'=> ''
+                                        );
+                                    }
+                                }
                                 $listingKeyNumeric = array_column($responses, 'ListingKeyNumeric');
                                 $listingKeyNumeric = implode(',', $listingKeyNumeric);
                                 $rets_images = $rets->getImages($listingKeyNumeric);
@@ -863,7 +960,7 @@ use Knp\Snappy\Pdf;
                                     $mls_comparables[$m_key]['img'] =  isset($rets_images[$response['ListingKeyNumeric']]) ? $rets_images[$response['ListingKeyNumeric']]:'';
                                     $mls_comparables[$m_key]['Address'] = !empty($response['address']) ? $response['address'] : '';
                                     $mls_comparables[$m_key]['Price'] =  !empty($response['price']) ? dollars(number_format((string)$response['price'])) : '';
-                                    $mls_comparables[$m_key]['PriceRate'] = $response['price'];
+                                    $mls_comparables[$m_key]['PriceRate'] = (float)$response['price'];
                                     $mls_comparables[$m_key]['Date'] = !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
                                     $mls_comparables[$m_key]['Distance'] =  0;
                                     $mls_comparables[$m_key]['SquareFeet'] = !empty($response['area']) ? number_format((string)$response['area']) : '';
@@ -1124,6 +1221,27 @@ use Knp\Snappy\Pdf;
 
                 }
             }
+            if($data['fromcma'] == 1) {
+                $data['page'] = array();
+                $check_page_condition = [
+                    'user_id' => $currentUserId,
+                    'language' => 'english',
+                    'report_type' => trim($CI->input->post('presentation')),
+                ];
+                $CI->load->model('widget_report_dynamic_data_model');
+                $check_page_contents = $CI->widget_report_dynamic_data_model->get_by($check_page_condition);
+                if($check_page_contents) {
+                    $page_data = unserialize($check_page_contents->data);
+                    $data['page'] = $page_data;
+                    if(!empty($page_data['testimonials'])) {
+                        $data['testimonials'] = $page_data['testimonials'];
+                    }
+                    if(!empty($page_data['featured_homes'])) {
+                        $data['featured_homes'] = $page_data['featured_homes'];
+                    }
+                    
+                }
+            }
             /*Dynamic setting*/
             
             $PdfGenResponse = $this->prepareWidgetPdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
@@ -1241,6 +1359,7 @@ use Knp\Snappy\Pdf;
                 'load-error-handling'=>'ignore',
                 'load-media-error-handling'=>'ignore'
             ];
+            $snappy->setTimeout(150);
             $output = $snappy->getOutputFromHtml($html, $options,
                         200,
                         array(

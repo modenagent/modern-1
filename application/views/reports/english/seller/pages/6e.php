@@ -112,7 +112,7 @@
 				</div>
 				<div class="col-xs-6">
 					<div class="right-grid">
-						<img width="100%" class="img-responsive" src="<?php echo base_url("assets/reports/english/seller/images/6e/6e2.jpg")?>" alt="">
+						<img width="100%" class="img-responsive page-right-img" src="<?php echo base_url("assets/reports/english/seller/images/6e/6e2.jpg")?>" alt="">
 					</div>
 				</div>
 		</div> <!-- .two-grid-wrapper -->

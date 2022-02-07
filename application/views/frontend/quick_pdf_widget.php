@@ -223,7 +223,7 @@
 </div>
 <!-- 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.jss" type="text/javascript"></script> -->
-<script src="<?php echo base_url("assets/js/jquery-ui.1.11.2.min.js") ?>" type="text/javascript"></script>
+
 <script type="text/javascript" src="<?php echo base_url("assets/js/lp_cma_widget.js?v=0.1") ?>"></script>
 
 

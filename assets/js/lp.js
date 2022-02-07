@@ -66,7 +66,23 @@ $(document).ready(function() {
     }); 
 });
 
-
+function initateCompSelection() {
+    $('#ms-pre-selected-options ul').each(function(idx, li) {
+        var cnt_idx = 1;
+        $(this).find('li') .each(function(idx, li) {
+            if($(this).css('display') != 'none') {
+                if(cnt_idx % 2 == 0) {
+                    $(this).addClass('multi-select-even');
+                }
+                else {
+                    $(this).removeClass('multi-select-even');
+                }
+                cnt_idx++;
+            }
+            
+        });
+    });
+}
 function isPdfGenerated(){
     setTimeout(function(){
         if(activeRequest && !pdfGenerated){
@@ -82,6 +98,8 @@ function isPdfGenerated(){
         }
     },1000);
 }
+
+
 
 var xhr;
 var activeRequest = false;
@@ -266,17 +284,14 @@ function makeID() {
 // sends customized for info and report URL to backend to generate PDF
 function runPMA(agentPath, logoPath) {
     firstModal = false;
-    // $('#run-pma-dialog').dialog('close');
-    // $('.progress-bar').progressbar("option", "value", false);
-    // $('.progress-bar').show();
-    // reportData.rep = $('#lp-rep-name option:selected').val();
+
     if (agentPath) {
         reportData.agentPath = agentPath;
     }
     if (logoPath) {
         reportData.logoPath = logoPath;
     }
-    // recordFormData();
+
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
     query += '&' + formData;    
@@ -291,24 +306,33 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());     //this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
+    query += '&' + 'mu_theme='+$('.mu_radio').val(); 
+    query += '&' + 'seller_theme='+$('.seller_radio').val(); 
+    query += '&' + 'buyer_theme='+$('.buyer_radio').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
-    //console.log(query);
+    query += '&' + 'selected_theme='+rgb2hex($('#report_color').val());
+    var subscribe_temp = [];
+    var i_index = 0;
+    $('.subscribe_temp:checked').each(function() {
+        query += '&' + 'subscribe_temp['+i_index+']='+this.value;
+        i_index++;
+    }); 
+
+    subscribe_temp
+    
     if(activeRequest){
         activeRequest=false;
         xhr.abort();
     }
-    console.log(query); 
-    // return;
     activeRequest=true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
-
+    console.log(query);
     xhr = $.ajax({
-        url: base_url+'index.php?/lp/getPropertyData',
+        url: base_url+'lp/getPropertyData',
         type: 'POST',
         data: query
     })
         .done(function(response) {
-            console.log(response);
             var obj = JSON.parse(response);
             console.log(obj);
             manage_checkout_btn();
@@ -513,6 +537,10 @@ function compileRequest(dataObj,neighbourhood,retry) {
 function runQueries(request,dataObj,neighbourhood,retry) {
     //console.log(request);
     //console.log(base_url+'index.php?/lp/getSearchResults');
+    $('.loader1').show();
+    $('.loader1').removeClass('hidden');
+    $('.backwrap').show();
+    $('.backwrap').removeClass('hidden');
     $.ajax({
         url: base_url+'index.php?/lp/getSearchResults?',
         // url: 'http://cardbanana.net/demo/jerry/lp/lp/lp/proxy.php',
@@ -522,36 +550,64 @@ function runQueries(request,dataObj,neighbourhood,retry) {
         dataType: 'xml'
     })
         .done(function(response, textStatus, jqXHR) {
+
             var responseStatus = $(response).find('StatusCode').text();
             console.log(responseStatus);
             // $('.progress-bar').hide();
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
             
             if (responseStatus == 'MM') {
-                multipleResults(response);
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
                 $(".buttonNext").removeClass("buttonDisabled");
+                multipleResults(response);
+
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+
+                
             } else if (responseStatus != 'OK') {
                 if(!retry){
                     $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
                     data(dataObj.Address,dataObj.LastLine,neighbourhood,true);
+
+                    
                 }else {
                     displayError(responseStatus);
                 }
+
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+
             } else {
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
+                
                 compileXmlUrls(response, '187');
                 get187();
                 // listResults(response);
+                $("#search-btn").parents("form").find("table").removeClass("hidden");
+                $(".buttonNext").removeClass("buttonDisabled");
                 if(isNewSearch){
                     multipleResults(response);
                 }
-                $("#search-btn").parents("form").find("table").removeClass("hidden");
-                $(".buttonNext").removeClass("buttonDisabled");
+
             }
+
+            
         })
         .fail(function(err) {
             $('.pma-error').text('Unsuccessful Request');
             $(".buttonNext").addClass("buttonDisabled");
+            $('.loader1').hide();
+            $('.loader1').addClass('hidden');
+            $('.backwrap').hide();
+            $('.backwrap').addClass('hidden');
         });
 }
 
@@ -577,13 +633,20 @@ function get187() {
             }
         });
     } else {
+        $('.loader1').show();
+        $('.loader1').removeClass('hidden');
+        $('.backwrap').show();
+        $('.backwrap').removeClass('hidden');
         activeRequest=true;
         $.ajax({
             type: "GET",
             url: base_url+'index.php?/lp/getSearchResults?',
             data: {
                 requrl: reportData.report187,
-                getsortedresults: getSordrtedProperties
+                getsortedresults: getSordrtedProperties,
+                address: $('#state').val(),
+                presentation : $('#presentation').val(),
+                user_id : $("#user-id").val(),
             },
             dataType: "json",
             success: function(data) {
@@ -591,13 +654,17 @@ function get187() {
                 sorted_comp = data.sorted;
                 $('#pre-selected-options').html('');
                 $('#comparable-pre-selected-options').html('');
+                $('#main-prop-lat').val(data.Lat);
+                $('#main-prop-long').val(data.Long);
+                $('#use_rets').val(data.use_rets);
                 // $('#available-comparables-market-update tbody').html('');
 
                 $.each(all_comp, function(i, item) {                    
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")"
-                    }));
+                    }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
+                    );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,
@@ -613,7 +680,8 @@ function get187() {
                         value: item.index,
                         text: item.Address+" ("+item.Price+")",
                         selected: 'selected'
-                    }));
+                    }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
+                    );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,
@@ -623,14 +691,39 @@ function get187() {
                     
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                if($('#comparable-pre-selected-options').length)
-                {
-                    $('#comparable-pre-selected-options').multiSelect({
-                        selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
-                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-                    });
-                }
+                if($('#pre-selected-options').length && ($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate")) {
+
+                    // $('.buyer-cls').hide();
+                    $('#pre-selected-options').multiSelect({
+                      selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
+                      selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+
+                      afterInit: function(values){
+                        initateCompSelection();
+                      },
+                      afterSelect: function(values){
+                        initateCompSelection();
+                      },
+                      afterDeselect: function(values){
+                          initateCompSelection();
+                      }
+                    });  
+                    if(firstOpen) {
+                        // If received list is not greater than min value than set our min value to received list length
+                        var pre_selected_options = $.trim($('#pre-selected-options').html());
+                        if (pre_selected_options!='') {
+                          if(_min>$('#pre-selected-options').val().length){
+                              _min = $('#pre-selected-options').val().length;
+                          }
+                        }
+                        firstOpen = false;
+                    }
+                  }
                 activeRequest=false;
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
             },
             error: function() {
                 console.log("An error occurred while processing data");
@@ -665,6 +758,8 @@ function parse187() {
     }
     $('.js-lp-seller-name').val(ownerNamePrimary + ownerNameSecondary);
     $('.search-result table .result-owner').html(ownerNamePrimary + ownerNameSecondary);
+
+    
 //    var comparables = $(reportXML).find("ComparableSalesReport").find("ComparableSales").find("ComparableSale");
 //    for(var i=0;i<comparables.length;i++){
 //        //console.log($(comparables[i]).find("SiteAddress").text().+' '+.$(comparables[i]).find("SiteCity").text());
@@ -742,11 +837,64 @@ function multipleResults(response) { //console.log(response);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-city').text(city);
         // $('.js-run-apn-button').show();
     });
-    $('input[type="checkbox"], input[type="radio"]').iCheck({
-      checkboxClass: 'icheckbox_minimal-grey',
-      radioClass: 'icheckbox_minimal-grey',
-      increaseArea: '20%' // optional
-    });
+    // $('html, body').animate({
+    //     scrollTop: $(".search-result").offset().top
+    // }, 500);
+    if($(".cma-step-2").length) {
+        $(".cma-step-2").hide();
+    }
+    if($("#cma-tbl-list").length) {
+         $('#cma-tbl-list').DataTable({
+              "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
+              aaSorting: [],
+                responsive: {
+                    details: {
+                        display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                        type: 'none',
+                        target: ''
+                    }
+                },
+                'columnDefs': [ {
+                    'targets': [5], // column index (start from 0)
+                    'orderable': false, // set orderable false for selected columns
+                }],
+                searching: false, paging: false, info: false,
+                "initComplete": function () {
+                    // var input = $('.dataTables_filter input').unbind(),
+                    //     self = this.api(),
+                    //     $searchButton = $('<button class="btn_search" type="button">')
+                    //     .text('Search')
+                    //     .click(function () {
+                    //         self.search(input.val()).draw();
+                    //     }),
+                    //     $clearButton = $('<button class="btn_clear" type="button">')
+                    //     .text('Clear')
+                    //     .click(function () {
+                    //         input.val('');
+                    //         $searchButton.click();
+                    //     })
+                    // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
+                    // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+                    // $('.dataTables_filter').append($searchButton, $clearButton);
+
+                    
+                },
+                "language": {
+                    "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
+                    "emptyTable": "<div align='center'>Record(s) not found.</div>"
+                },
+         });
+
+         $('html, body').animate({
+            scrollTop: $("#cma-tbl-list").offset().top
+        }, 500);
+
+    }
+    // $('input[type="radio"]').iCheck({
+    //   // checkboxClass: 'icheckbox_minimal-grey',
+    //   radioClass: 'icheckbox_minimal-grey',
+    //   increaseArea: '20%' // optional
+    // });
 
     // $('[name=selected_apn]')
     // .on('ifChecked', function(event){

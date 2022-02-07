@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css">
 <style type="text/css">
-  #user_transaction_table_filter, #guests_transaction_table_filter {
+  /*#user_transaction_table_filter, #guests_transaction_table_filter {
     display: none
   }
   .leads_tbl {
@@ -19,10 +19,16 @@
     color: #fff;
     border-color: #fff;
 
+}*/
+div.dt-buttons {
+  text-align: right;
+  flex: auto;
 }
-  }
+.leads_tbl {
+  margin-top: 100px; 
+}
 </style>
-<section id="recent-lp2">
+<section class="impression">
      
   <div class="container">
     <?php if ($this->session->flashdata('success')): ?>
@@ -40,11 +46,11 @@
     </div>
     <?php endif; ?>
 
-    <h1 class="page-header">My Smart Registries</h1>
-    <p class="subhead">Below you will find your active registries.</p>
-    <p>&nbsp;</p>
+    <h1 class="main_title mb-4">My Smart Registries</h1>
+    <p class="text-center">Below you will find your active registries.</p>
+    
       <div class="table-responsive smart_register">
-        <table id="user_transaction_table">
+        <table id="user_transaction_table" class="table table-hover responsive nowrap" style="width:100%">
           <thead>
               <tr>
                   <th>DATE</th>
@@ -58,11 +64,11 @@
       </div>
 
       <div class="leads_tbl">
-        <h1 class="page-header">Registration Leads</h1>
-        <p class="subhead">Below you will find guests that signed in.</p>
-        <p>&nbsp;</p>
+        <h1 class="main_title mb-4">Registration Leads</h1>
+        <p class="text-center">Below you will find guests that signed in.</p>
+        
         <div class="table-responsive smart_guest">
-          <table id="guests_transaction_table">
+          <table id="guests_transaction_table" class="table table-hover responsive nowrap" style="width:100%">
             <thead>
                 <tr>
                     <th>DATE</th>
@@ -70,7 +76,7 @@
                     <th>NAME</th>
                     <th>PHONE</th>
                     <th>EMAIL</th>
-                    <th class="no-sort">ACTIONS</th>
+                    
                 </tr>
             </thead>
 
@@ -95,13 +101,21 @@ https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
 $(document).ready(function(){
   if ($('#user_transaction_table').length) {
     $('#user_transaction_table').DataTable({
+
+        "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
+        aaSorting: [],
+        responsive: true,
+        'columnDefs': [ {
+            'targets': [3], // column index (start from 0)
+            'orderable': false, // set orderable false for selected columns
+        }],
         // Processing indicator
         "processing": true,
         // DataTables server-side processing mode
         "serverSide": true,
         // Initial no order.
-        "paging": true,
-        "searching": true,
+        // "paging": true,
+        "searching": false,
         "order": [
           [0, "DESC"]
         ],
@@ -111,32 +125,17 @@ $(document).ready(function(){
             "type": "POST"
         },
         "initComplete": function () {
-            var input = $('.smart_register .dataTables_filter input').unbind(),
-                self = this.api(),
-                $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
-                .text('Search')
-                .click(function () {
-                    self.search(input.val()).draw();
-                }),
-                $clearButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
-                .text('Clear')
-                .click(function () {
-                    input.val('');
-                    $searchButton.click();
-                })
-            $('.smart_register div.dataTables_filter input').addClass('lp-datatable-custom-search');
-            $('.smart_register div.dataTables_length select').addClass('lp-datatable-custom-page-length');
-            $('.smart_register .dataTables_filter').append($searchButton, $clearButton);
+            
         },
         "language": {
             "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
             "emptyTable": "<div align='center'>Record(s) not found.</div>"
         },
         //Set column definition initialisation properties
-        "columnDefs": [{ 
-            "orderable": false,
-            "targets": "no-sort"
-        }],
+        // "columnDefs": [{ 
+        //     "orderable": false,
+        //     "targets": "no-sort"
+        // }],
         "drawCallback": function( settings ) {
           $("[data-toggle='tooltip']").tooltip();
         }
@@ -146,13 +145,19 @@ $(document).ready(function(){
   if ($('#guests_transaction_table').length) {
     $('#guests_transaction_table').DataTable({
         // Processing indicator
-        "dom": 'Blfrtip',
+        "dom": '<"table_filter"flB>rt<"table_navigation"ip>',
+        aaSorting: [],
+        responsive: true,
+        // 'columnDefs': [ {
+        //     'targets': [5], // column index (start from 0)
+        //     'orderable': false, // set orderable false for selected columns
+        // }],
         "processing": true,
         // DataTables server-side processing mode
         "serverSide": true,
         // Initial no order.
-        "paging": true,
-        "searching": true,
+        // "paging": true,
+        "searching": false,
         "order": [
           [0, "DESC"]
         ],
@@ -162,32 +167,17 @@ $(document).ready(function(){
             "type": "POST"
         },
         "initComplete": function () {
-            var input = $('.smart_guest .dataTables_filter input').unbind(),
-                self = this.api(),
-                $searchButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
-                .text('Search')
-                .click(function () {
-                    self.search(input.val()).draw();
-                }),
-                $clearButton = $('<button class="btn lp-datatable-custom-btn lp-ml-5 lp-mb-5">')
-                .text('Clear')
-                .click(function () {
-                    input.val('');
-                    $searchButton.click();
-                })
-            $('.smart_guest div.dataTables_filter input').addClass('lp-datatable-custom-search');
-            $('.smart_guest div.dataTables_length select').addClass('lp-datatable-custom-page-length');
-            $('.smart_guest .dataTables_filter').append($searchButton, $clearButton);
+            
         },
         "language": {
             "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
             "emptyTable": "<div align='center'>Record(s) not found.</div>"
         },
         //Set column definition initialisation properties
-        "columnDefs": [{ 
-            "orderable": false,
-            "targets": "no-sort"
-        }],
+        // "columnDefs": [{ 
+        //     "orderable": false,
+        //     "targets": "no-sort"
+        // }],
         "drawCallback": function( settings ) {
           $("[data-toggle='tooltip']").tooltip();
         },
@@ -214,6 +204,7 @@ $(document).ready(function(){
     });
   }
 });
+// new bootstrap.Tooltip(exampleEl, options);
 $(document).on('click','.copy_url',function(){
   var copy_text = $(this).attr('data-url');
   var $temp = $("<input>");
@@ -221,12 +212,9 @@ $(document).on('click','.copy_url',function(){
   $temp.val(copy_text).select();
   document.execCommand("copy");
   $temp.remove();
-  console.log($(this).find('i').attr('class'));
-  $(this).find('i').attr('title',copy_text);
+  // $(this).find('i').attr('title',copy_text);
   $(this).find('i')
-          .attr('title', 'Copied!')
-          .tooltip('fixTitle')
-          .tooltip('show');
+          .attr('title', 'Copied!');
 
 });
 </script>

@@ -1793,9 +1793,13 @@ a:hover {
 
 .section .footer .footer-inner .right-footer {
     width: 300px;
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     text-align: right;
     padding-right: 30px;
+}
+
+.section .footer .footer-inner .right-footer img {
+    max-height: 200px;
 }
 
 .page2,
@@ -4504,4 +4508,9 @@ img.img-cover {
     display: block;
     max-width: 100%;
     height: auto;
+    max-height: 200px;
+    object-fit: contain;
+}
+.page-right-img {
+    height: 1393px;
 }

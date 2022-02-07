@@ -39,7 +39,7 @@
 										<p>
 											The figure to the right represents the average household income within your perspective neighborhood. This information is gathered from the household census that is taken every 10 years.
                                                                                 </p>
-                                                                                <p style="color: <?php echo $theme ?>; font-size:25px;font-family: GlacialIndifferenceBold;">$<?php echo $household_income ?>k</p>
+                                                                                <p style="color: <?php echo $theme ?>; font-size:70px;font-family: 'MontserratBold';font-weight: bold;">$<?php echo $household_income ?>k</p>
 								</div>
 							</div>   <!-- .right-insight  -->
 						</div> <!-- .col-xs-6 -->

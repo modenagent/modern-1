@@ -8,6 +8,9 @@
                     <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/reach.png" alt="">
                     REACH
                     <?php
+                    if($fromcma && empty($page['social_ad_reach'])) {
+                        $page['social_ad_reach'] = '2100';
+                    }
                     if(!empty($page['social_ad_reach'])): ?>
                     <span> <?php echo number_format($page['social_ad_reach']); ?> </span>
                     <?php endif; ?>
@@ -16,6 +19,9 @@
                     <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/impressions.png" alt="">
                     IMPRESSIONS
                     <?php
+                    if($fromcma && empty($page['social_ad_imp'])) {
+                        $page['social_ad_imp'] = '87';
+                    }
                     if(!empty($page['social_ad_imp'])): ?>
                     <span> <?php echo number_format($page['social_ad_imp']); ?> </span>
                     <?php endif; ?>
@@ -24,6 +30,9 @@
                     <img src="<?php echo base_url('assets/reports/widget/'.$report_dir_name.'/'.$presentation_type.'/images');?>/leads.png" alt="">
                     LEADS
                     <?php
+                    if($fromcma && empty($page['social_ad_leads'])) {
+                        $page['social_ad_leads'] = '2100';
+                    }
                     if(!empty($page['social_ad_leads'])): ?>
                     <span> <?php echo number_format($page['social_ad_leads']); ?> </span>
                     <?php endif; ?>

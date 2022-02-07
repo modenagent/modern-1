@@ -1919,6 +1919,9 @@ a:hover {
     font-size: 22px;
     color: #333;
     line-height: 40px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .page5 .table-wrapper .table-row p.no-lineheight {
@@ -2140,7 +2143,7 @@ a:hover {
 
 .page7 .two-grid-wrapper .text-block-condensed h2 {
     font-family: GlacialIndifferenceBold;
-    font-size: 30px;
+    font-size: 25px;
     margin: 0px;
     padding: 0px;
     position: relative
@@ -3637,7 +3640,7 @@ margin-top:-55px;
 }
 .page6_a{padding-bottom:144.25px;}
 
-.page7{padding-top:8.65%;}
+.page7{padding-top:6.65%;}
 .page7 header{padding-bottom:5px;}
 .top-banner-right h3{
     margin-bottom:0;
