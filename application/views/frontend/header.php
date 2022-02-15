@@ -12,8 +12,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
         <meta name="author" content="DSAThemes"/>   
-        <meta name="description" content="OLMO - Software, App, SaaS & Startup Landing Pages Pack"/>
-        <meta name="keywords" content="Responsive, HTML5, DSAThemes, One Page, Landing, Software, Mobile App, SaaS, Startup, Creative, Freelancers, Digital Product">   
+        <meta name="description" content="Real Estate Listing Presentations"/>
+        <meta name="keywords" content="Real Estate, Presentations, Real Estate Listing">   
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                 
         <!-- SITE TITLE -->
