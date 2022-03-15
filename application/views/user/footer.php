@@ -104,7 +104,7 @@
 <style type="text/css">
   
   input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
-    background-color: none !importent;
+    background-color: none !important;
       background-image: none;
       color: rgb(0, 0, 0);
   }
@@ -368,29 +368,6 @@
       } );
     }
 
-    $('#contactForm').submit(function(){
-      $.ajax({
-        url:'<?php echo base_url(); ?>index.php?/frontend/contactreq?&',
-        method:'POST',
-        data: $('#contactForm').serialize(),
-        success:function(resp){
-          console.log(resp);
-          var obj = JSON.parse(resp);
-          if(obj.status=="success"){
-            document.getElementById('contactForm').reset();
-            $('#contactstatus').removeClass("alert-danger").addClass("alert-success").html(obj.msg).show();
-            changeCaptcha();
-          }else{
-            $('#contactstatus').removeClass("alert-success").addClass("alert-danger").html(obj.msg).show();
-          }
-          setTimeout(function(){
-            $('#contactstatus').fadeOut(3500);
-          },3000);
-        }
-      });
-      return false;
-    });
-        
       // stripe
     var $form = $('#payment-form');
     // function stripeResponseHandler(status, response) {
@@ -512,20 +489,6 @@
           $('.backwrap').hide();
         }
       }); 
-    });
-
-    $.ajax({
-      url:base_url + 'index.php?/user/getPartners',
-      method:'GET',
-      dataType:'json',
-      success:function(resp){
-        if(resp.status=='success'){
-          for(var k in resp.partners){
-            partners.push(resp.partners[k]);
-          }
-        }else{
-        }
-      }
     });
 
     function onFinishCallback(){
