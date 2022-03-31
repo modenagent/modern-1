@@ -254,7 +254,6 @@ class Frontend extends CI_Controller
                 $this->load->library('Stripe_lib');
                 $stripe = new Stripe_lib();
                 $subscribed = 0;
-                // var_dump($current_plans);die;
                 foreach ($current_plans as $current_plan) {
                   $check_sub = $stripe->getSubscription($current_plan->sub_id);
                   
@@ -268,28 +267,28 @@ class Frontend extends CI_Controller
 
 
                 $canAvail = false;
-                $method = "";//suscription or coupon code of sales rep
-                if($user->parent_role==3){//User is under some sales rep
-                    $canAvail = true;
-                    if (strlen($user->parent_id) < 5) {
-                        $method = "REF".sprintf("%05d", $user->parent_id);
-                    } else {
-                        $method = "REF0".$user->parent_id;
-                    }
+                // $method = "";//suscription or coupon code of sales rep
+                // if($user->parent_role==3){//User is under some sales rep
+                //     $canAvail = true;
+                //     if (strlen($user->parent_id) < 5) {
+                //         $method = "REF".sprintf("%05d", $user->parent_id);
+                //     } else {
+                //         $method = "REF0".$user->parent_id;
+                //     }
                     
-                } else if($subscribed == 1){
-                        $method = 'subscription';
-                        $canAvail = true;
-                } else if($user->customer_id){
-                    $res = $this->_cust_info_by_id($user->customer_id);
-                    //if subscribed
-                    if($res){
-                        $method = 'subscription';
-                        $canAvail = true;
-                    }
-                }
+                // } else if($subscribed == 1){
+                //         $method = 'subscription';
+                //         $canAvail = true;
+                // } else if($user->customer_id){
+                //     $res = $this->_cust_info_by_id($user->customer_id);
+                //     //if subscribed
+                //     if($res){
+                //         $method = 'subscription';
+                //         $canAvail = true;
+                //     }
+                // }
                 
-                if($canAvail){
+                // if($canAvail){
                     $this->load->model('user_default_templates_model');
                     $default_color = 'rgb(0,28,61)';
                     $default_sub_type = '1';
@@ -306,12 +305,12 @@ class Frontend extends CI_Controller
 
                     
 
-                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>$method,'theme'=>$theme,'subscribed'=>$subscribed));
+                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>'','theme'=>$theme,'subscribed'=>$subscribed));
                     exit();
-                } else {
-                    echo json_encode(array("status"=>"failed","msg"=>"This user can not avail quick PDF feature."));
-                    exit();
-                }
+                // } else {
+                //     echo json_encode(array("status"=>"failed","msg"=>"This user can not avail quick PDF feature."));
+                //     exit();
+                // }
                 
             }
         
