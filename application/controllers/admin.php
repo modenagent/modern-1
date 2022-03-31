@@ -2,8 +2,6 @@
 ob_start();
 class Admin extends CI_Controller
 {
-
-    public $dbConn = false;
     //    Initialize Constructor Here
     function __construct()
     {
@@ -12,7 +10,7 @@ class Admin extends CI_Controller
         if ( $this->input->post( 'rememberme' ) )
             $this->config->set_item('sess_expire_on_close', '0');
         $this->load->library('role_lib');
-        $this->dbConn = $this->db->conn_id;
+        // $this->dbConn = $this->db->conn_id;
         
     }
     //    Admin login View Function
@@ -54,8 +52,8 @@ class Admin extends CI_Controller
             } else {
 
                 $postedArr = $this->security->xss_clean($_POST);
-                $username = mysqli_real_escape_string($this->dbConn,$postedArr['username']);
-                $password = mysqli_real_escape_string($this->dbConn,$postedArr['password']);
+                $username = $this->input->post('username');//mysqli_real_escape_string($this->dbConn,$postedArr['username']);
+                $password =  $this->input->post('password');//mysqli_real_escape_string($this->dbConn,$postedArr['password']);
                 $tableName = "lp_user_mst";
                 $admin = $this->admin_model->get_admin_login_data( $tableName,$username,$password );
 
@@ -806,37 +804,37 @@ MSG;
             if($_POST){
                 $postedArr = $this->security->xss_clean($_POST);
 
-                $uid = mysqli_real_escape_string($this->dbConn, $postedArr['userid']);
-                $fname = mysqli_real_escape_string($this->dbConn, $postedArr['fname']);
-                $lname = mysqli_real_escape_string($this->dbConn, $postedArr['lname']);
-                $email = mysqli_real_escape_string($this->dbConn, $postedArr['email']);
+                $uid = $this->input->post('userid');//mysqli_real_escape_string($this->dbConn, $postedArr['userid']);
+                $fname = $this->input->post('fname');//mysqli_real_escape_string($this->dbConn, $postedArr['fname']);
+                $lname = $this->input->post('lname');//mysqli_real_escape_string($this->dbConn, $postedArr['lname']);
+                $email = $this->input->post('email');//mysqli_real_escape_string($this->dbConn, $postedArr['email']);
                 // USER NAME CAN NOT BE CHANGED ONCE CREATED
-                //$username = mysqli_real_escape_string($this->dbConn, $postedArr['username']);
-                $phone = mysqli_real_escape_string($this->dbConn, $postedArr['phone']);
-                $license = mysqli_real_escape_string($this->dbConn, $postedArr['license']);
-                $cname = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
+                //$username = $this->input->post('username');//mysqli_real_escape_string($this->dbConn, $postedArr['username']);
+                $phone = $this->input->post('phone');//mysqli_real_escape_string($this->dbConn, $postedArr['phone']);
+                $license = $this->input->post('license');//mysqli_real_escape_string($this->dbConn, $postedArr['license']);
+                $cname = $this->input->post('cname');//mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
 
-                $cadd = mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
+                $cadd = $this->input->post('cadd');//mysqli_real_escape_string($this->dbConn, $postedArr['cadd']);
                 if(isset($postedArr['ccity'])){
-                    $ccity = mysqli_real_escape_string($this->dbConn, $postedArr['ccity']);
+                    $ccity = $this->input->post('ccity');//mysqli_real_escape_string($this->dbConn, $postedArr['ccity']);
                 }
                 if(isset($postedArr['czip'])){
-                    $czip = mysqli_real_escape_string($this->dbConn, $postedArr['czip']);
+                    $czip = $this->input->post('czip');//mysqli_real_escape_string($this->dbConn, $postedArr['czip']);
                 }
                 if(isset($postedArr['cstate'])){
-                    $cstate = mysqli_real_escape_string($this->dbConn, $postedArr['cstate']);
+                    $cstate = $this->input->post('cstate');//mysqli_real_escape_string($this->dbConn, $postedArr['cstate']);
                 }
                 if(isset($postedArr['curl'])){
-                    $curl = mysqli_real_escape_string($this->dbConn, $postedArr['curl']);
+                    $curl = $this->input->post('curl');//mysqli_real_escape_string($this->dbConn, $postedArr['curl']);
                 }
                 if(isset($postedArr['cma_url'])){
-                    $cma_url = mysqli_real_escape_string($this->dbConn, $postedArr['cma_url']);
+                    $cma_url = $this->input->post('cma_url');//mysqli_real_escape_string($this->dbConn, $postedArr['cma_url']);
                 }
                 if(isset($postedArr['use_rets_api'])){
-                    $use_rets_api = mysqli_real_escape_string($this->dbConn, $postedArr['use_rets_api']);
+                    $use_rets_api = $this->input->post('use_rets_api');//mysqli_real_escape_string($this->dbConn, $postedArr['use_rets_api']);
                 }
                 if(isset($postedArr['report_dir_name'])){
-                    $report_dir_name = mysqli_real_escape_string($this->dbConn, $postedArr['report_dir_name']);
+                    $report_dir_name = $this->input->post('report_dir_name');//mysqli_real_escape_string($this->dbConn, $postedArr['report_dir_name']);
                 }
                 if(isset($postedArr['widget_bg_color'])){
                     $widget_bg_color = $postedArr['widget_bg_color'];
@@ -1276,376 +1274,7 @@ MSG;
             echo json_encode($output);
         }
     }
-    // Manage products view
-    public function manage_product()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $data['title'] = "Manage Products";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            
-            $table = "lp_category_mst";
-            $data['category'] = $this->base_model->all_records($table);
-            $this->load->view('admin/header',$data);
-            $this->load->view('admin/manage_product',$data);
-            $this->load->view('admin/footer',$data);
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // Manage products view
-    public function flyer_add()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $data['title'] = "Flyer Add";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            
-            $table = "lp_category_mst";
-            $data['category'] = $this->base_model->all_records($table);
-            $this->load->view('admin/header',$data);
-            $this->load->view('admin/flyer_add',$data);
-            $this->load->view('admin/footer',$data);
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // Manage products view
-    public function flyer_add2()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $data['title'] = "Flyer Add";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            
-            $table = "lp_category_mst";
-            $data['category'] = $this->base_model->all_records($table);
-            $this->load->view('admin/header',$data);
-            $this->load->view('admin/flyer-workshop',$data);
-            $this->load->view('admin/footer',$data);
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // product edit view
-    public function manage_product_edit($id)
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $data['title'] = "Edit Products";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            $data['products'] = $this->admin_model->manage_product_edit($id);
-            $table = "lp_category_mst";
-            $data['category'] = $this->base_model->all_records($table);
-            $this->load->view('admin/header',$data);
-            
-            $this->load->view('admin/flyer_add',$data);
-            $this->load->view('admin/footer',$data);
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // product detail view
-    public function manage_product_view($id)
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $data['title'] = "View Products";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            $data['products'] = $this->base_model->get_record_by_id('lp_product_mst',array('product_id_pk' => $id));
-            $this->load->view('admin/header',$data);
-            $this->load->view('admin/manage_product_view',$data);
-            $this->load->view('admin/footer',$data);
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // product add
-    public function product_add()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            if($_POST){
-                $postedArr = $this->security->xss_clean($_POST);
-                $category_id = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
-                $product_name = mysqli_real_escape_string($this->dbConn, $postedArr['pname']);
-                $added_date = mysqli_real_escape_string($this->dbConn, $postedArr['adddate']);
-                $prod_desc = mysqli_real_escape_string($this->dbConn, $postedArr['dname']);
-                if($added_date == ""){
-                    $product_date = date('Y-m-d');
-                }else{
-                    $product_date = date('Y-m-d', strtotime($added_date));
-                }
-                
-                $product_content = $_POST['flyer_html'];
-                
-                // image upload
-                $status = "";
-                $msg = "";
-                $fileuri='';
-                $file_element_name = 'fileToUpload';
-                if ($status != "error"){
-
-                    $config['upload_path'] = './assets/uploads/product_img/';
-                    $config['allowed_types'] = 'gif|jpg|png';
-                    $config['max_size']  = 10240;
-                    $config['encrypt_name'] = TRUE;
-
-                    $this->load->library('upload', $config);
-
-                    if (!$this->upload->do_upload($file_element_name)){
-                        $status = 'error';
-                        $msg = $this->upload->display_errors('', '');
-                    }else{
-                        $data = $this->upload->data();
-                        $status = "success";
-                        $msg = "File successfully uploaded";
-                        $fileuri= $data['file_name'];
-                        $uploadedFolderPath = 'assets/uploads/product_img/';
-                        // insert row
-                        if($status == "success"){
-                            // product add
-                            $data2 = array(
-                                'product_name' => $product_name,
-                                'product_image' => $uploadedFolderPath.$fileuri,
-                                'product_content' =>  $product_content,
-                                'is_active' => 'Y',
-                                'active_from' => $product_date,
-                                'category_id_fk' => $category_id,
-                                'product_desc' => $prod_desc
-                            );
-                            $result = $this->base_model->insert_one_row('lp_product_mst',$data2);
-                            if($result){
-                                
-                                $resp = array("status"=>"success","msg"=>"Product added successfully.");
-                                echo json_encode($resp);
-                                
-                            }else{
-                                $resp = array("status"=>"error","msg"=>"Product could not be added.");
-                                echo json_encode($resp);
-                            }
-
-                        }
-                        
-                    }
-                }
-            }
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // product edit
-    public function product_edit()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-
-            if($_POST){
-                $postedArr = $this->security->xss_clean($_POST);
-                $pid = mysqli_real_escape_string($this->dbConn, $postedArr['pid']);
-                $category_id = mysqli_real_escape_string($this->dbConn, $postedArr['cname']);
-                $product_name = mysqli_real_escape_string($this->dbConn, $postedArr['pname']);
-                $added_date = mysqli_real_escape_string($this->dbConn, $postedArr['adddate']);
-                $prod_desc = mysqli_real_escape_string($this->dbConn, $postedArr['dname']);
-                $product_date = date('Y-m-d', strtotime($added_date));
-                
-                $product_content = $_POST['flyer_html'];
-                $fileset = $_FILES['fileToUpload']['name'];
-                if($fileset != ""){
-                    // image upload
-                    $status = "";
-                    $msg = "";
-                    $fileuri='';
-                    $file_element_name = 'fileToUpload';
-                    if ($status != "error"){
-                        $config['upload_path'] = './assets/uploads/product_img/';
-                        $config['allowed_types'] = 'gif|jpg|png';
-                        $config['max_size']  = 10240;
-                        $config['encrypt_name'] = TRUE;
-                        $this->load->library('upload', $config);
-                        if (!$this->upload->do_upload($file_element_name)){
-                            $status = 'error';
-                            $msg = $this->upload->display_errors('', '');
-                        }else{
-                            $data = $this->upload->data();
-                            $status = "success";
-                            $msg = "File successfully uploaded";
-                            $fileuri= $data['file_name'];
-                            $uploadedFolderPath = 'assets/uploads/product_img/';
-                            // update row
-                            if($status == "success"){
-                                // product update
-                                $data2 = array(
-                                    'product_name' => $product_name,
-                                    'product_image' => $uploadedFolderPath.$fileuri,
-                                    'product_content' =>  $product_content,
-                                    'is_active' => 'Y',
-                                    'active_from' => $product_date,
-                                    'category_id_fk' => $category_id,
-                                    'product_desc' => $prod_desc
-                                );
-                                $where = array(
-                                    'product_id_pk' => $pid
-                                );
-                                $getImgUrl = $this->base_model->get_record_by_id('lp_product_mst', array('product_id_pk'=>$pid));
-                                @unlink($getImgUrl->product_image);
-                                $result = $this->base_model->update_record_by_id('lp_product_mst',$data2,$where);
-                                if($result){
-                                    
-                                    $resp = array("status"=>"success","msg"=>"Product edited successfully.");
-                                    echo json_encode($resp);
-                                    
-                                }else{
-                                    $resp = array("status"=>"error","msg"=>"Product could not be edited.");
-                                    echo json_encode($resp);
-                                }
-
-                            }
-                            
-                        }
-                    }
-
-
-                }else{
-
-                    $data2 = array(
-                        'product_name' => $product_name,
-                        'product_content' =>  $product_content,
-                        'is_active' => 'Y',
-                        'active_from' => $product_date,
-                        'category_id_fk' => $category_id,
-                        'product_desc' => $prod_desc
-                    );
-                    $where = array(
-                        'product_id_pk' => $pid
-                    );
-                    $result = $this->base_model->update_record_by_id('lp_product_mst',$data2,$where);
-                    if($result){
-                        $resp = array("status"=>"success","msg"=>"Product edited successfully.");
-                        echo json_encode($resp);
-                    }else{
-                        $resp = array("status"=>"error","msg"=>"Product could not be edited.");
-                        echo json_encode($resp);
-                    }
-                }
-            }
-
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // product list view
-    public function productlist_view()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            if($_POST["type"] == "productlist"){
-                $table = "lp_product_mst"; 
-                $product = $this->admin_model->manage_product();
-                // table table-hover table-bordered
-                $prodlist_table ='<table class="" id="prod-table">
-                              <thead>
-                                <tr>  
-                                    <!--<th class="col-md-1">Sr. no.</th>-->
-                                    <th  class="col-md-2" >Product Name</th>
-                                    <th  class="col-md-2" >Category Name</th>
-                                    <th  class="col-md-3" >Product Image</th>
-                                    <th  class="col-md-2" >Added Date</th>
-                                    <th  class="col-md-2" >Actions</th>
-                                </tr>
-                              </thead>
-                              <tbody>';
-                $i = 1;
-                foreach($product as $info)   {
-                    $prodlist_table .= '<tr>';
-                    $prodlist_table .= '<!--<td  class="text-right">'.$i.'</td>-->
-                                    <td>'.$info->product_name.'</td>
-                                    <td>'.$info->category_name.'</td>
-                                    <td><img src="'.site_url().$info->product_image.'" width="40px" height="40px" ></td>
-                                    <td>'.date("F j, Y", strtotime($info->active_from)).'</td>';
-                    $prodlist_table .= '<td>
-                                    <div class="text-right">
-                                      <a class="btn btn-xs btn-info" href="'.site_url().'?/admin/manage_product_view/'.$info->product_id_pk.'" data-toggle="tooltip" data-title="View detail"><i class="fa fa-eye"></i></a> 
-                                      <a class="btn btn-xs btn-warning" href="'.site_url().'?/admin/manage_product_edit/'.$info->product_id_pk.'" data-toggle="tooltip" data-title="Edit"><i class="fa fa-edit"></i></a>
-                                      <a class="btn btn-xs btn-danger" href="javascript:;" onclick="deleteproduct('.$info->product_id_pk.');" data-toggle="tooltip" data-title="Delete"><i class="fa fa-times"></i></a> ';
-                    if($info->is_active == 'N'){
-                        $prodlist_table .= '<a class="btn btn-xs btn-success" href="javascript:;" onclick="verifyproduct('.$info->product_id_pk.');" data-toggle="tooltip" data-title="Active"><i class="fa fa-check-circle"></i></a>';
-                    } else {
-                        $prodlist_table .= '<a class="btn btn-xs btn-warning" href="javascript:;" onclick="unverifyproduct('.$info->product_id_pk.');" data-toggle="tooltip" data-title="Deactive"><i class="fa fa-ban"></i></a>';
-                    }
-                    $prodlist_table .= '</div>
-                                  </td>';
-                    $prodlist_table .= '</tr>';
-                    $i++;
-                }
-                $prodlist_table .= '</tbody>
-                            </table>';
-
-                $resp = array('status' => 'success', 'prodlist_table' => $prodlist_table );
-                echo json_encode($resp);
-
-            }else{
-                $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
-                echo json_encode($resp);
-            }
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // delete product
-    public function deleteproduct($id)
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_product was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-
-            $delResult = $this->admin_model->delete_prod_cat($id);
-            if($delResult){
-                $delResult2 = $this->admin_model->deleteproduct($id);
-                if($delResult2){
-                    $resp = array('status' => 'success', 'msg' => 'Product deleted successfully.' );
-                    echo json_encode($resp);
-                }
-            }else{
-                $resp = array('status' => 'error', 'msg' => 'Product could not be deleted.' );
-                echo json_encode($resp);
-            }
-        }
-        else{
-            redirect('admin/index');
-        }
-
-    }
+    
     // actice product
     public function verifyproduct($id)
     {
@@ -1676,254 +1305,7 @@ MSG;
         }
 
     }
-    // manage category
-    public function manage_category()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_category was commented
-         */
-        die();
-        $data['title'] = "Manage Category";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            $table = "lp_category_mst";
-            $data['parent_cat'] = $this->base_model->all_records($table);
-            $this->load->view('admin/header',$data);
-            $this->load->view('admin/manage_category',$data);
-            $this->load->view('admin/footer');
-        }else{
-            redirect('admin/index');
-        }
-    }
-    //
-    public function category_edit_view($cid)
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_category was commented
-         */
-        die();
-        $data['title'] = "Manage Category";
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            // show category dropdown
-            $table = "lp_category_mst";
-            $data['parent_cat'] = $this->base_model->all_records($table);
-            // fetch category by id
-            $data['category'] = $this->base_model->get_record_by_id($table,array('category_id_pk' => $cid));
-            $this->load->view('admin/header',$data);
-            $this->load->view('admin/category_edit_view',$data);
-            $this->load->view('admin/footer');
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // categorylist view
-    public function categorylist_view()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_category was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            if($_POST["type"] == "categorylist"){
-                $table = "lp_category_mst";
-                $category = $this->base_model->all_records($table);
-                // table table-hover table-bordered 
-                $categoryTable ='<table class="" id="categorylist">
-                              <thead>
-                                <tr>          
-                                  <th class="col-md-1">Sr. no.</th>
-                                  <th class="col-md-9" >Name</th>                                  
-                                  <th class="col-md-2">Actions</th>
-                                </tr>
-                              </thead>
-                              <tbody>';
-                $i = 1;
-                foreach($category as $info)   {
-                    $categoryTable .= '<tr>
-                                  <td class="text-right">'.$i.'</td>
-                                  <td>'.$info->category_name.'</td>                                 
-                                  <td>
-                                    <div class="text-right">
-                                      <!--<a class="btn btn-xs btn-info" href="javascript:;" onclick="info_cat('.$info->category_id_pk.');" data-toggle="tooltip" data-title="View detail"><i class="fa fa-eye"></i></a>-->
-                                      <a class="btn btn-xs btn-warning" href="'.site_url('admin/category_edit_view/'.$info->category_id_pk).'" data-toggle="tooltip" data-title="Edit"><i class="fa fa-edit"></i></a>
-                                      <a class="btn btn-xs btn-danger" href="javascript:;" onclick="delete_cat('.$info->category_id_pk.');" data-toggle="tooltip" data-title="Delete"><i class="fa fa-times"></i></a> ';
-                    $categoryTable .= '</div>
-                                  </td>
-                                </tr>';
-                    $i++;
-                }
-                $categoryTable .= '</tbody>
-                            </table>';
-
-                $resp = array('status' => 'success', 'categorylist_table' => $categoryTable );
-                echo json_encode($resp);
-            }else{
-                $resp = array('status' => 'error', 'msg' => 'Invalid Request.' );
-                echo json_encode($resp);
-            }
-        }else{
-            redirect('admin/index');
-        }
-
-    }
-    // delete category
-    public function delete_cat($id){
-        /**
-         * Die added because left bar navigation link of admin/manage_category was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            $table = "lp_category_mst";
-            $where = array(
-                "parent_category" => $id
-            );
-            $resultCheck = $this->base_model->check_existent($table,$where);
-            if(!$resultCheck){
-                $where1 = array(
-                    "category_id_pk" => $id
-                );
-                $delResult = $this->base_model->delete_record_by_id($table,$where1);
-                if($delResult){
-                    $resp = array('status' => 'success', 'msg' => 'Category deleted successfully.' );
-                    echo json_encode($resp);
-                }
-            }else{
-                $resp = array(
-                    'status'=>'cat_error',
-                    'msg'=>'Category used as Parent category.'
-                );
-                echo json_encode($resp);
-            }
-
-        }
-        else{
-            redirect('admin/index');
-        }
-    }
-    // category add
-    public function category_add()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_category was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            if($_POST){
-                $postedArr = $this->security->xss_clean($_POST);
-                $cat_name = mysqli_real_escape_string($this->dbConn, $postedArr['cat_name']);
-                $parent_cat = mysqli_real_escape_string($this->dbConn, $postedArr['parent_cat']);
-                $table = "lp_category_mst";
-                $where = array('category_name'=> $cat_name);
-                $resultCheck = $this->base_model->check_existent($table,$where);
-                if(!$resultCheck){
-                    $data = array(
-                        'category_name' => $cat_name,
-                        'parent_category' => $parent_cat
-                    );
-                    $result = $this->base_model->insert_one_row( $table, $data );
-                    if($result){
-                        $resp = array(
-                            'status'=>'success',
-                            'msg'=>'Category added successfully.'
-                        );
-                        echo json_encode($resp);
-                    }
-                }else{
-                    $resp = array(
-                        'status'=>'error',
-                        'msg'=>'Category already exists.'
-                    );
-                    echo json_encode($resp);
-                }
-            }else{
-                $resp = array(
-                    'status'=>'error',
-                    'msg'=>'Category add error.'
-                );
-                echo json_encode($resp);
-            }
-        }else{
-            redirect('admin/index');
-        }
-    }
-    // category edit
-    public function category_edit()
-    {
-        /**
-         * Die added because left bar navigation link of admin/manage_category was commented
-         */
-        die();
-        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
-        if($adminId){
-            if($_POST){
-                $postedArr = $this->security->xss_clean($_POST);
-
-                $cat_id = mysqli_real_escape_string($this->dbConn, $postedArr['catid']);
-                $cat_name = mysqli_real_escape_string($this->dbConn, $postedArr['cat_name']);
-                $parent_cat = mysqli_real_escape_string($this->dbConn, $postedArr['parent_cat']);
-
-                $table = "lp_category_mst";
-                // check if category name is changed
-                $data['category'] = $this->base_model->get_record_by_id($table,array('category_id_pk' => $cat_id));
-                if($data['category']->category_name != $cat_name ){
-
-                    $where = array('category_name'=> $cat_name);
-                    $resultCheck = $this->base_model->check_existent($table,$where);
-                    if(!$resultCheck){
-                        $data = array(
-                            'category_name' => $cat_name,
-                            'parent_category' => $parent_cat
-                        );
-                        $where2 = array(
-                            'category_id_pk' => $cat_id
-                        );
-                        $result = $this->base_model->update_record_by_id($table, $data, $where2);
-                        if($result){
-                            $resp = array(
-                                'status'=>'success',
-                                'msg'=>'Category edited successfully.'
-                            );
-                            echo json_encode($resp);
-                        }
-                    }else{
-                        $resp = array(
-                            'status'=>'error',
-                            'msg'=>'Category already exists.'
-                        );
-                        echo json_encode($resp);
-                    }
-
-                }else{
-                    $data = array(
-                        'parent_category' => $parent_cat
-                    );
-                    $where2 = array(
-                        'category_id_pk' => $cat_id
-                    );
-                    $result = $this->base_model->update_record_by_id($table, $data, $where2);
-                    if($result){
-                        $resp = array(
-                            'status'=>'success',
-                            'msg'=>'Category edited successfully.'
-                        );
-                        echo json_encode($resp);
-                    }
-                }
-            }else{
-                $resp = array(
-                    'status'=>'error',
-                    'msg'=>'Category edit error.'
-                );
-                echo json_encode($resp);
-            }
-        }else{
-            redirect('admin/index');
-        }
-    }
+   
     // manage coupons
     public function manage_coupon()
     {
@@ -1986,13 +1368,13 @@ MSG;
 
                 $postedArr = $this->security->xss_clean($_POST);
 
-                $coupon_name = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_name']);
-                $coupon_code = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_code']);
-                $coupon_amt = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_amt']);
-                $coupon_des = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_des']);
-                $startdate = mysqli_real_escape_string($this->dbConn, $postedArr['startdate']);
+                $coupon_name = $this->input->post('coupon_name');//mysqli_real_escape_string($this->dbConn, $postedArr['coupon_name']);
+                $coupon_code = $this->input->post('coupon_code');//mysqli_real_escape_string($this->dbConn, $postedArr['coupon_code']);
+                $coupon_amt = $this->input->post('coupon_amt');//mysqli_real_escape_string($this->dbConn, $postedArr['coupon_amt']);
+                $coupon_des = $this->input->post('coupon_des');//mysqli_real_escape_string($this->dbConn, $postedArr['coupon_des']);
+                $startdate = $this->input->post('startdate');//mysqli_real_escape_string($this->dbConn, $postedArr['startdate']);
                 $s_date = date('Y-m-d', strtotime($startdate));
-                $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
+                $enddate = $this->input->post('enddate');//mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
                 $limit_all = (int)$this->input->post('limit_all');
                 $limit_user = (int)$this->input->post('limit_user');
@@ -2044,7 +1426,7 @@ MSG;
                 echo json_encode($resp);
             }
         }else{
-            redirect(site_url_url('admin'));
+            redirect(site_url('admin'));
         }
     }
     // coupon edit
@@ -2064,14 +1446,14 @@ MSG;
 
                 $postedArr = $this->security->xss_clean($_POST);
 
-                $coupon_id = mysqli_real_escape_string($this->dbConn, $postedArr['cid']);
-                $coupon_name = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_name']);
-                $coupon_code = mysqli_real_escape_string($this->dbConn, trim($postedArr['coupon_code']));
-                $coupon_amt = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_amt']);
-                $coupon_des = mysqli_real_escape_string($this->dbConn, $postedArr['coupon_des']);
-                $startdate = mysqli_real_escape_string($this->dbConn, $postedArr['startdate']);
+                $coupon_id = $this->input->post('cid');//mysqli_real_escape_string($this->dbConn, $postedArr['cid']);
+                $coupon_name = $this->input->post('coupon_name');//mysqli_real_escape_string($this->dbConn, $postedArr['coupon_name']);
+                $coupon_code = $this->input->post('coupon_code');//mysqli_real_escape_string($this->dbConn, trim($postedArr['coupon_code']));
+                $coupon_amt = $this->input->post('coupon_amt');//mysqli_real_escape_string($this->dbConn, $postedArr['coupon_amt']);
+                $coupon_des = $this->input->post('coupon_des');//mysqli_real_escape_string($this->dbConn, $postedArr['coupon_des']);
+                $startdate = $this->input->post('startdate');//mysqli_real_escape_string($this->dbConn, $postedArr['startdate']);
                 $s_date = date('Y-m-d', strtotime($startdate));
-                $enddate = mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
+                $enddate = $this->input->post('enddate');//mysqli_real_escape_string($this->dbConn, $postedArr['enddate']);
                 $e_date = date('Y-m-d', strtotime($enddate));
                 $limit_all = (int)$this->input->post('limit_all');
                 $limit_user = (int)$this->input->post('limit_user');

@@ -11,93 +11,6 @@ class Frontend extends CI_Controller
             $this->load->model('user_model');
     }
 
-
-    function getmonths()
-    {
-            for ($i = 1; $i <= 12; $i++) {
-                $months[] = date("m/d/Y", strtotime( date( 'Y-m-01' )." -$i months"));
-            }
-            echo '<pre>';
-            print_r($months);
-            echo '</pre>';
-    }
-
-
-    function gencaptcha()
-    {
-            $this->load->helper('captcha');
-            create_image();
-            $this->load->library('session');
-            echo '<img src="'.base_url('assets/captcha/image'.$this->session->userdata('timestamp')).'.png">';
-    }
-
-    function genpdf()
-    {
-            $this->load->library('mpdf');
-            $mpdf=new mPDF('','Letter','','',0,0,0,0); 
-  
-            $html = $this->load->view('pdf_template','',true);
-
-            $mpdf->SetFooter('<table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color:red;"><tr><td bg="red" ><table width="89%" border="0" cellspacing="0" cellpadding="15" style="" align="center"><tr><td align="left" width="50%" bgcolor="red" style="color:#fff;"><strong >Listing Proposal</strong> <p>&nbsp; </p>sdfdsfsd dsfds</td><td align="right" bgcolor="red" style="color:#fff; margin-right:150px;">Page {PAGENO}</td></tr></table></td></tr></table>');
-
-            $mpdf->WriteHTML($html);
-            $pdfFileName = 'temp/'.uniqid().time().'.pdf';
-            $mpdf->Output($pdfFileName,'F'); 
-            $this->load->view('pdf_template');
-    }
-
-    function sendmail()
-    {
-        $config = Array(
-    'protocol' => 'smtp',
-    'smtp_host' => 'ssl://smtp.gmail.com',
-    'smtp_port' => 465,
-    'smtp_user' => 'info@modernagent.io',
-    'smtp_pass' => 'admin#123',
-    'mailtype'  => 'html', 
-    'charset'   => 'iso-8859-1'
-);
-
-$this->load->library('email');
-
-$this->email->from("info@modernagent.io", "Jerry");
-$this->email->to('info@modernagent.io'); 
-$this->email->subject("Email Testing");
-$this->email->message('Testing the email class.');  
-
-$result = $this->email->send();
-var_dump($result);
-echo $this->email->print_debugger();die;
-            $this->load->helper('sendemail');
-            $res = send_email('info@modernagent.io','noreply','info@modernagent.io','Email Testing','Testing the email class.');
-            var_dump($res);die;
-    }
-
-
-    // frontend view
-    public function index2()
-    {
-            $data['title'] = "Farming Flyers";
-
-            $data['category'] = $this->base_model->all_records('lp_category_mst'); 
-            // new flyers
-            $data['newFlyers1'] = $this->base_model->getNewFlyer('lp_product_mst','4','0');
-            $data['newFlyers2'] = $this->base_model->getNewFlyer('lp_product_mst','4','4');
-            $data['newFlyers3'] = $this->base_model->getNewFlyer('lp_product_mst','4','8');
-
-            $data['mostFlyers1'] = $this->base_model->getNewFlyer2('lp_product_mst','4','0');
-            $data['mostFlyers2'] = $this->base_model->getNewFlyer2('lp_product_mst','4','4');
-            $data['mostFlyers3'] = $this->base_model->getNewFlyer2('lp_product_mst','4','8');
-
-            $data['bestFlyers1'] = $this->base_model->getNewFlyer3('lp_product_mst','4','0');
-            $data['bestFlyers2'] = $this->base_model->getNewFlyer3('lp_product_mst','4','4');
-            $data['bestFlyers3'] = $this->base_model->getNewFlyer3('lp_product_mst','4','8');
-
-            $this->load->view('frontend/header',$data);
-            $this->load->view('frontend/index',$data);
-            $this->load->view('frontend/footer',$data);    
-    }
-
    // frontend view
     public function index()
     {
@@ -112,26 +25,11 @@ echo $this->email->print_debugger();die;
             
             $this->load->library('session');
 
-            // $data['category'] = $this->base_model->all_records('lp_category_mst'); 
-
-            // // new flyers
-            // $data['newFlyers1'] = $this->base_model->getNewFlyer('lp_product_mst','4','0');
-            // $data['newFlyers2'] = $this->base_model->getNewFlyer('lp_product_mst','4','4');
-            // $data['newFlyers3'] = $this->base_model->getNewFlyer('lp_product_mst','4','8');
-
-            // $data['mostFlyers1'] = $this->base_model->getNewFlyer2('lp_product_mst','4','0');
-            // $data['mostFlyers2'] = $this->base_model->getNewFlyer2('lp_product_mst','4','4');
-            // $data['mostFlyers3'] = $this->base_model->getNewFlyer2('lp_product_mst','4','8');
-
-            // $data['bestFlyers1'] = $this->base_model->getNewFlyer3('lp_product_mst','4','0');
-            // $data['bestFlyers2'] = $this->base_model->getNewFlyer3('lp_product_mst','4','4');
-            // $data['bestFlyers3'] = $this->base_model->getNewFlyer3('lp_product_mst','4','8');
+            
             $data['body_class'] = "home-all"; 
 
             $this->load->model('package_model');
-            // $packages = $this->package_model->get_all_packages_price();
-            // $data['report_price'] = $packages['reports'];
-            // $data['monthly_price'] = $packages['monthly'];
+            
 
             $package_prices = $this->package_model->get_by('package','buyer');
             $data['single_package'] = $package_prices->price_per_month;
@@ -143,37 +41,6 @@ echo $this->email->print_debugger();die;
             $this->load->view('frontend/header',$data);
             $this->load->view('frontend/index',$data);
             $this->load->view('frontend/footer',$data);
-    }
-
-
-
-    function change_captcha(){
-            $this->load->helper('captcha');
-            create_image();
-            $this->load->library('session');
-            echo json_encode(array('status'=>'success','timestamp'=>$this->session->userdata('timestamp')));
-    }
-    
-    public function contactreq(){
-            $this->load->library('session');
-            $this->load->helper('form');
-            if(isset($_GET['flag'])){
-                if($this->session->userdata('captcha_string'.$this->input->get('flag'))==$this->input->get('captcha')){
-                    $this->load->model('base_model');
-                    $data = array(
-                                    'name'=>$this->input->get('senderName'),
-                                    'email'=>$this->input->get('senderEmail'),
-                                    'message'=>$this->input->get('message')
-                                  );
-                    $this->base_model->insert_one_row('contactus',$data);
-                    echo json_encode(  array('status' =>'success' ,'msg'=>'Thanks, Your request submitted. We will get back to your shortly!' ));
-                }else{
-                    echo json_encode(  array('status' =>'failed' ,'msg'=>'Invalid Characters Please reenter captcha image characters!' ));
-                }
-            }
-            else{
-                echo json_encode(  array('status' =>'failed' ,'msg'=>'Invalid request parameters' ));
-            }
     }
 
 
@@ -298,161 +165,18 @@ echo $this->email->print_debugger();die;
             $this->load->view('frontend/footer_login');
     }
 
-    // flyer list   
-    public function flyerlist()
-    {
-            if($_POST["type"] == "flyerlist"){                
-
-                $config["base_url"] = base_url() . "frontend/flyerlist";
-                $config["total_rows"] = $this->base_model->record_count('lp_product_mst');
-                $config["per_page"] = 18;
-                $config["uri_segment"] = 3;
-
-                $this->pagination->initialize($config);
-
-                $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
-                $category = ($this->uri->segment(4)) ? $this->uri->segment(4) : '0';
-
-                $myflyers = $this->base_model->flyers_list2($config["per_page"], $page, $category); 
-
-                $flyerlist = '';          
-                //$flyerlist .='<div>';
-                foreach ($myflyers as $flyer) {
-                    $flyerlist .='<div class=" portfolio-item filter-web '.$flyer->category_id_fk.'">
-                                    <div  class="thumbnail">
-                                      <div class="thumb-cover">
-                                        <img src="'.site_url().$flyer->product_image.'">
-                                      </div>
-                                    </div>                                          
-                                    <div class="row cap-head">
-
-                                      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" >
-                                        <b class="itsd">'.$flyer->product_name.'</b>
-                                      </div>
-                                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2 text-right">
-                                        <a href="javascript:;" class="btn btn-xs"><i class="fa fa-heart-o"></i></a>
-                                      </div>
-                                    </div>
-                                  </div>';
-                }
-                $flyerlist .='<!--<script src="'.site_url().'assets/js/isotope.pkgd.min.js"></script>-->
-                              <!--<script src="'.site_url().'assets/js/jquery.isotope.min.js"></script>
-                              <script src="'.site_url().'assets/js/main.js"></script>-->
-                              ';
-
-                $resp = array(
-                    'status' => 'success', 
-                    'flyerlist' => $flyerlist 
-                );
-                echo json_encode($resp);
-                
-            }else{
-                $resp = array(
-                    'status' => 'error', 
-                    'msg' => 'Invalid Request.' 
-                    );
-                echo json_encode($resp);
-            }        
-    }
-
-    // flyer list   
-    public function pagination($start=0,$category=0)
-    {      
-            $config["base_url"] = "";
-            $config["total_rows"] = $this->base_model->flyers_list2_count(18, $start,$category);
-            $config["per_page"] = 18;
-            $config["uri_segment"] = 3;
-            $config['full_tag_open'] = "<ul class='pagination pagination-small'>";
-            $config['full_tag_close'] ="</ul>";
-            $config['num_tag_open'] = '<li>';
-            $config['num_tag_close'] = '</li>';
-            $config['cur_tag_open'] = "<li class='active'><a href='#'>";
-            $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-            $config['next_tag_open'] = "<li>";
-            $config['next_tagl_close'] = "</li>";
-            $config['prev_tag_open'] = "<li>";
-            $config['prev_tagl_close'] = "</li>";
-            $config['first_tag_open'] = "<li>";
-            $config['first_tagl_close'] = "</li>";
-            $config['last_tag_open'] = "<li>";
-            $config['last_tagl_close'] = "</li>";
-            $config['anchor_class'] = 'class="pagination_link"';
-
-            $this->pagination->initialize($config);
-
-            echo $this->pagination->create_links();
-    }
-
-    // about us page view
-    public function aboutus()
-    {
-            $data['title'] = "About Us";
-            $this->load->view('frontend/header_static',$data);
-            $this->load->view('frontend/about');
-            $this->load->view('frontend/footer');
-    }
-    // how it works page view
-    public function howitworks()
-    {
-            $data['title'] = "How it works";
-            $this->load->view('frontend/header_static',$data);
-            $this->load->view('frontend/howitworks');
-            $this->load->view('frontend/footer');
-    }
-    // super simple pricing
-    public function simplepricing()
-    {
-            $data['title'] = "Super Simple Pricing";
-            $this->load->view('frontend/header_static',$data);
-            $this->load->view('frontend/simplepricing');
-            $this->load->view('frontend/footer');
-    }
-    // FAQ
-    public function faq()
-    {
-            $data['title'] = "FAQ";
-            $this->load->view('frontend/header_static',$data);
-            $this->load->view('frontend/faq');
-            $this->load->view('frontend/footer');
-    }
-    // contact us
-    public function contactus()
-    {
-            $data['title'] = "Contact Us";
-            $this->load->view('frontend/header_static',$data);
-            $this->load->view('frontend/contactus');
-            $this->load->view('frontend/footer');
-    }
+    
+   
+    
+   
     
     function check_refcode($ref_code){
         if($ref_code=='') return true;//Allow blank ref code
         $parentId = (int)str_ireplace("REF", "", $ref_code);
         return $this->base_model->check_existent("lp_user_mst",array('user_id_pk'=>$parentId));
     }
-    public function affiliate_program()
-    {
-            if($this->session->userdata('userid')){
-                redirect(base_url().'user/dashboard');
-            }
-            $data['title'] = "Farming Flyers";
-            $this->load->library('session');
-            
-            $this->load->view('frontend/header',$data);
-            $this->load->view('frontend/affiliate_program',$data);
-            $this->load->view('frontend/footer',$data);
-    }
-    public function release_notes()
-    {
-            if($this->session->userdata('userid')){
-                redirect(base_url().'user/dashboard');
-            }
-            $data['title'] = "Farming Flyers";
-            $this->load->library('session');
-            
-            $this->load->view('frontend/header',$data);
-            $this->load->view('frontend/release_notes',$data);
-            $this->load->view('frontend/footer',$data);
-    }
+    
+    
     // frontend view
     public function quick_pdf($code ='')
     {
@@ -530,7 +254,6 @@ echo $this->email->print_debugger();die;
                 $this->load->library('Stripe_lib');
                 $stripe = new Stripe_lib();
                 $subscribed = 0;
-                // var_dump($current_plans);die;
                 foreach ($current_plans as $current_plan) {
                   $check_sub = $stripe->getSubscription($current_plan->sub_id);
                   
@@ -544,28 +267,28 @@ echo $this->email->print_debugger();die;
 
 
                 $canAvail = false;
-                $method = "";//suscription or coupon code of sales rep
-                if($user->parent_role==3){//User is under some sales rep
-                    $canAvail = true;
-                    if (strlen($user->parent_id) < 5) {
-                        $method = "REF".sprintf("%05d", $user->parent_id);
-                    } else {
-                        $method = "REF0".$user->parent_id;
-                    }
+                // $method = "";//suscription or coupon code of sales rep
+                // if($user->parent_role==3){//User is under some sales rep
+                //     $canAvail = true;
+                //     if (strlen($user->parent_id) < 5) {
+                //         $method = "REF".sprintf("%05d", $user->parent_id);
+                //     } else {
+                //         $method = "REF0".$user->parent_id;
+                //     }
                     
-                } else if($subscribed == 1){
-                        $method = 'subscription';
-                        $canAvail = true;
-                } else if($user->customer_id){
-                    $res = $this->_cust_info_by_id($user->customer_id);
-                    //if subscribed
-                    if($res){
-                        $method = 'subscription';
-                        $canAvail = true;
-                    }
-                }
+                // } else if($subscribed == 1){
+                //         $method = 'subscription';
+                //         $canAvail = true;
+                // } else if($user->customer_id){
+                //     $res = $this->_cust_info_by_id($user->customer_id);
+                //     //if subscribed
+                //     if($res){
+                //         $method = 'subscription';
+                //         $canAvail = true;
+                //     }
+                // }
                 
-                if($canAvail){
+                // if($canAvail){
                     $this->load->model('user_default_templates_model');
                     $default_color = 'rgb(0,28,61)';
                     $default_sub_type = '1';
@@ -582,12 +305,12 @@ echo $this->email->print_debugger();die;
 
                     
 
-                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>$method,'theme'=>$theme,'subscribed'=>$subscribed));
+                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>'','theme'=>$theme,'subscribed'=>$subscribed));
                     exit();
-                } else {
-                    echo json_encode(array("status"=>"failed","msg"=>"This user can not avail quick PDF feature."));
-                    exit();
-                }
+                // } else {
+                //     echo json_encode(array("status"=>"failed","msg"=>"This user can not avail quick PDF feature."));
+                //     exit();
+                // }
                 
             }
         
