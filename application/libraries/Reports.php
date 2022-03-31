@@ -5,17 +5,10 @@
      *    
      * Date: Nov 30, 2016
      */
-// require 'vendor/autoload.php';
 
 use Knp\Snappy\Pdf;
     class Reports {
 
-        // constructor for the library to initialize the CI object
-        public function __construct() {
-            // initiating the CI object
-            // parent::__construct();
-        }
-        
         private function _prepareMinMaxComparable($priceRate,&$firstTime,&$minPrice, &$maxPrice,&$tmp_property,&$tmp_lot_size, &$lotSize,&$min_lot_size,&$max_lot_size){
             if($firstTime){
                 $minPrice = floatval($priceRate);
@@ -736,11 +729,7 @@ use Knp\Snappy\Pdf;
             // loading the required helper
             $CI->load->helper('dataapi');
             
-            // if call is from the API then we give the data after processing on our end
-            /*if($callFromApi == 1){
-                $_POST = $reportData;
-                $data['callFromApi'] = $callFromApi;
-            }*/            
+                     
             $rep111 = $_POST['report111'];
             $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
             $compKeys = json_decode(stripslashes($_POST['custom_comps']));
@@ -844,11 +833,8 @@ use Knp\Snappy\Pdf;
             $data['secondary_owner'] = $ownerNameSecondary;
 
             // if it is an api call then we get the user id from the token
-            if($callFromApi == 1){
-                $currentUserId = getUserIdByToken($reportData['token']);
-            }else{
-                $currentUserId = $CI->session->userdata('userid');   
-            }
+            $currentUserId = $CI->session->userdata('userid');   
+           
 
             if(empty($currentUserId)) {
                 $user_info_id = $CI->db->select(array('user_id_pk'))
@@ -910,7 +896,6 @@ use Knp\Snappy\Pdf;
                                 foreach ($mls_ids as $m_key => $m_value) 
                                 {                    
                                     $mls_id = $m_value;
-                                    $query = array('q' => $address);
                                     $endPoint = 'properties/'.$mls_id;
                                     $result = $this->make_request('GET', $endPoint);
                                     $response = json_decode($result,TRUE);
@@ -1115,35 +1100,12 @@ use Knp\Snappy\Pdf;
             $tmp2['series'] = implode(',', array_column($ChartArr, 'val'));
             
 
-            // $totalMonthsReport=0;       
-            // foreach ($reportItems['comparable'] as $key => $item) {
-            //     /*****************************************/
-            //     if($key > 8) break;
-            //     $date=date_create($item['Date']);
-            //     $tmepDate = date_format($date,"M'y");
-            //     $months[] = array('date'=>$tmepDate,'value'=>$item['PriceRate']);
-            // }
-
-            // foreach ($months as $key => $itemMonth) {
-            //     if($key<(sizeof($months)-1)){
-            //         $tmp2['date'].=$itemMonth['date'].'|';
-            //         $tmp2['series'].=$itemMonth['value'].',';
-            //     }else{
-            //         $tmp2['date'].=$itemMonth['date'];
-            //         $tmp2['series'].=$itemMonth['value'];
-            //     }
-            //     if($itemMonth['value']!='_'){
-            //         $totalMonthsReport++;
-            //     }
-            //     array_push($ChartArr, $tmp2);
-            // }
-
             $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';
             // $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
             $tmp2['color'] = $chart_color;
             
             $reportItems['chart']=$tmp2;
-            $reportItems['totalMonthsReport'] = $totalMonthsReport;
+            $reportItems['totalMonthsReport'] = 0;
             $data['areaSalesAnalysis'] = $reportItems;
             $data['theme'] = $CI->input->post('theme');
 
@@ -1263,10 +1225,7 @@ use Knp\Snappy\Pdf;
                                             'report_type'=>$_POST['presentation'],
                                     );
 
-                // if it is an api call then we mark it as active
-                if($callFromApi == 1){
-                    $insertPdfReport['is_active'] = 'Y';
-                }
+               
 
                 $CI->base_model->insert_one_row('lp_my_listing', $insertPdfReport);
                 $project_id = $CI->base_model->get_last_insert_id();
@@ -1375,21 +1334,7 @@ use Knp\Snappy\Pdf;
                     'pdf_filename'=> ''
                 );
             }
-            if($turboMode){
-                $qpdf_path =  $CI->config->item('qpdf_path');
-                //Merging Static pdf pages with dynamic pdf pages
-                $pdfFileName = 'temp/'.str_replace(" ", "_", $siteAddress).'_'.md5(time() . rand()).'.pdf';
-                if($presentationType=="seller"){
-                    $res = exec($qpdf_path." {$pdfFileDynamic} --pages {$pdfFileDynamic} 1 {$contentsFile} 1 {$pdfFileDynamic} 2-7 {$tailFile} 1-12 -- {$pdfFileName}");
-                } else {
-                    $res = exec($qpdf_path." {$pdfFileDynamic} --pages {$pdfFileDynamic} 1 {$contentsFile} 1 {$pdfFileDynamic} 2-6 {$tailFile} 1-13 -- {$pdfFileName}");
-                }
-                //Removing dynamic as it is not needed any more
-                unlink($pdfFileDynamic);
-            } /*else {
-                $pdfFileName = $pdfFileDynamic;
-                //$res = exec("qpdf  {$pdffFileDynamic} --pages {$pdfFileDynamic} 1 temp/S-2.pdf 1 {$pdfFileDynamic} 2-7 temp/S-9-20.pdf 1-12 -- {$pdfFileName}");
-            }*/
+           
             return array(
                 'report_generated' => true,
                 'pdf_filename'=>$pdfFileName,

@@ -71,31 +71,31 @@ class WidgetCma extends CI_Controller {
                     echo  json_encode(array("status"=>"failed","msg"=>"Invalid referral code"));
                     exit();
                 }
-                $canAvail = false;
-                $method = "";//suscription or coupon code of sales rep
-                if($user->parent_role==3){//User is under some sales rep
-                    $canAvail = true;
-                    if (strlen($user->parent_id) < 5) {
-                        $method = "REF".sprintf("%05d", $user->parent_id);
-                    } else {
-                        $method = "REF0".$user->parent_id;
-                    }
+                // $canAvail = false;
+                // $method = "";//suscription or coupon code of sales rep
+                // if($user->parent_role==3){//User is under some sales rep
+                //     $canAvail = true;
+                //     if (strlen($user->parent_id) < 5) {
+                //         $method = "REF".sprintf("%05d", $user->parent_id);
+                //     } else {
+                //         $method = "REF0".$user->parent_id;
+                //     }
                     
-                } else if($user->customer_id){
-                    $res = $this->_cust_info_by_id($user->customer_id);
-                    //if subscribed
-                    if($res){
-                        $method = 'subscription';
-                        $canAvail = true;
-                    }
-                }
-                if($canAvail){
-                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>$method));
+                // } else if($user->customer_id){
+                //     $res = $this->_cust_info_by_id($user->customer_id);
+                //     //if subscribed
+                //     if($res){
+                //         $method = 'subscription';
+                //         $canAvail = true;
+                //     }
+                // }
+                // if($canAvail){
+                    echo json_encode(array("status"=>"success","user"=>$user,'method'=>''));
                     exit();
-                } else {
-                    echo json_encode(array("status"=>"failed","msg"=>"This user can not avail quick PDF feature."));
-                    exit();
-                }
+                // } else {
+                //     echo json_encode(array("status"=>"failed","msg"=>"This user can not avail quick PDF feature."));
+                //     exit();
+                // }
                 
             }
         
