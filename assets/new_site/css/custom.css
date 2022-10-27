@@ -104,7 +104,7 @@ header.overlapping-down {
 }
 .impression_block_list {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 .impression_block {
     background-color: #fff;
@@ -112,9 +112,10 @@ header.overlapping-down {
     padding: 44px 10px;
     text-align: center;
     margin-top: 80px;
-    font-size: 19px;
+    font-size: 23px;
     font-weight: 500;
     color: #000;
+	letter-spacing: -1.05px;
 }
 .impression_block img{
     margin-bottom: 26px;
