@@ -7,7 +7,7 @@
             <div class="footer_content">
               <div>
                 <a href="index.html"><img src="<?php echo base_url(); ?>assets/new_site/img/logo.png" alt="Modern Agent"></a>
-                <p class="mt-3 mb-0">we are all about helping real estate agents <br> make the perfect impression./2018</p>
+                <p class="mt-3 mb-0">We are all about helping real estate agents <br> make the perfect impression.</p>
               </div>
               <a href="<?php echo base_url(); ?>" target="_blank" class="d-block text-center web_link"><?php echo base_url(); ?></a>
               <ul class="list-inline mb-0">

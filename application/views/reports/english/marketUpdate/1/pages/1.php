@@ -15,7 +15,7 @@ body {
             </div>
 
             <div class="col-xs-2">
-                <p>Sale Price</p>
+                <p>Sold For</p>
             </div>
 
             <div class="col-xs-2">
