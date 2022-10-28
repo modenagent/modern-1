@@ -35,7 +35,7 @@
 
                     <tr>
                         <th>PROPERTY ADDRESS</th>
-                        <th>SALE PRICE</th>
+                        <th>SOLD FOR</th>
                         <th>SQFT</th>
                         <th>BEDS</th>
                         <th>BATHS</th>
