@@ -306,9 +306,9 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());     //this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
-    query += '&' + 'mu_theme='+$('.mu_radio').val(); 
-    query += '&' + 'seller_theme='+$('.seller_radio').val(); 
-    query += '&' + 'buyer_theme='+$('.buyer_radio').val(); 
+    query += '&' + 'mu_theme='+$('.mu_radio:checked').val(); 
+    query += '&' + 'seller_theme='+$('.seller_radio:checked').val(); 
+    query += '&' + 'buyer_theme='+$('.buyer_radio:checked').val(); 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     query += '&' + 'selected_theme='+rgb2hex($('#report_color').val());
     var subscribe_temp = [];

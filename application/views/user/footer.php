@@ -1381,6 +1381,6 @@
         }
     });
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.19"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.20"></script>
 </body>
 </html>
