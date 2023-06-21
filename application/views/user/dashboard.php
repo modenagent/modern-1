@@ -15,7 +15,11 @@
                             </button>  -->
                             <button class="impression_block" type="button" onclick="choose_presentation('seller');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
-                              Sellers CMA
+                              CMA + Marketing
+                            </button>
+							<button class="impression_block" type="button" onclick="choose_presentation('seller');">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
+                              CMA Only
                             </button>
                             <button class="impression_block" type="button" onclick="choose_presentation('marketUpdate');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/market_update.png" alt="..." class="img-fluid d-block mx-auto">
