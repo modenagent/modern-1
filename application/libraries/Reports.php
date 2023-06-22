@@ -346,7 +346,7 @@ use Knp\Snappy\Pdf;
                 $data['unique_key'] = time().substr(md5(rand()), 0, 10);
                 $data['pdf_page'] = $CI->input->post('pdf_page');
             }
-            
+            $data['seller_cma'] = isset($_POST['seller_cma']) ? $_POST['seller_cma'] : '';
             $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
@@ -639,7 +639,7 @@ use Knp\Snappy\Pdf;
             }
 
             $customization_data = [];
-            if ($presentationType=="seller" && !empty($data['user_id_for_report_customization'])) {
+            if ($presentationType=="seller" && !empty($data['user_id_for_report_customization']) && empty($data['seller_cma'])) {
                 $CI->load->model('report_model');
                 $customization_data['9']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 9);
                 $customization_data['10']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 10);
