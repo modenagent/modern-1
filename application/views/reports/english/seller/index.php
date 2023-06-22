@@ -126,6 +126,7 @@ else: ?>
     $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
     
     if (empty($seller_cma)) {
+        echo "hello sellr";die;
         $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
         $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
         $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
