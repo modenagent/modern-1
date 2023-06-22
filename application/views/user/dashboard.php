@@ -17,7 +17,7 @@
                               <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
                               CMA + Marketing
                             </button>
-							<button class="impression_block" type="button" onclick="choose_presentation('seller');">
+                            <button class="impression_block" type="button" onclick="choose_presentation('sellerCma');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
                               CMA Only
                             </button>
@@ -156,7 +156,8 @@
                                         <input type="text" class="form-control"   name="user[phone]"      id="" placeholder="Phone"   value="<?php echo $users[0]['phone']; ?>"/>
                                         <input type="text" class="form-control"   name="user[email]"      id="" placeholder="Email"   value="<?php echo $users[0]['email']; ?>"/>
                                         <input type="text" class="form-control"   name="user[licenceno]"  id="" placeholder="CA BRE#" value="<?php echo $users[0]['license_no']; ?>"/>
-                                        <input type="hidden" class="form-control"   name="presentation"  id="presentation" value=""/>
+                                        <input type="hidden" name="presentation"  id="presentation" value=""/>
+                                        <input type="hidden" name="seller_cma"  id="seller_cma" value=""/>
                                     </div>
                                 </div>
                             </div>
@@ -885,6 +886,11 @@
     
         }
         else {
+            if (presentation == 'sellerCma') {
+                $(".swMain ul.anchor li a").addClass('sellerCma');
+                presentation = 'seller';
+                $("#seller_cma").val("sellerCma");
+            }
             $("#presentation").val("seller");
             $('#wizard').smartWizard("seller");
             $('.buyer_template').hide(function(){
