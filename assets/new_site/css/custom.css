@@ -1004,6 +1004,25 @@ form#run-pma-form {
     background: url(../img/check.svg) no-repeat;
     background-size: contain;
 }
+#step-3 input[type="checkbox"]{
+    display: none;
+}
+#step-3 input[type="checkbox"] + label::before{
+    content: "";
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    left: auto;
+    background: url(../img/uncheck.svg) no-repeat;
+    background-size: contain;
+    transition: all 0.3s ease;
+}
+#step-3 input[type="checkbox"]:checked + label::before{
+    background: url(../img/check.svg) no-repeat;
+    background-size: contain;
+}
 .owl-theme .owl-controls .owl-buttons div {
     color: #582A82;
     display: inline-block;

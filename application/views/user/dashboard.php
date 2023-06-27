@@ -271,37 +271,35 @@
                     </div>
 
                     <div class="carousel-container common_template">
-                        <div id="owl-example" class="owl-carousel">
-                            <?php
-                                foreach ($reportTemplates as $key => $report) {
-                                  if($report->template_color != ''){
+                        <div id="preview_pages"  class="row"></div>
+                        <div style="display: none;" >
+                            <div id="owl-example" class="owl-carousel" style="display: none;" >
+                            
+                                <?php 
+                                    foreach ($reportTemplates as $key => $report) {
+                                    if($report->template_color != '') { ?>
+                                <div class="item">
+                                    <input type="radio" <?php if($report->report_templates_id_pk==$agentInfo->default_template) { echo 'checked'; } ?> class="custom-checkbox" id="def-temp-<?php echo $report->report_templates_id_pk; ?>" value="<?php echo $report->template_color; ?>" name="cover">
+                                    <label class="user-heading alt gray-bg" for="def-temp-<?php echo $report->report_templates_id_pk; ?>">
+                                        <div class="text-center"> 
+                                            <?php if(!($packages['seller']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
+                                            <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
+                                            <?php endif; ?>
+                                            <?php if(!($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
+                                            <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
+                                            <?php endif; ?>
+                                            <?php if(!($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
+                                            <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                            <?php endif; ?>
+                                            <img class="registry_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
+                                        </div>
+                                    </label> 
+                                </div>
+                                <?php 
+                                    }
+                                }
                                 ?>
-                            <div class="item">
-                                <input type="radio"  
-                                    <?php 
-                                        if($report->report_templates_id_pk==$agentInfo->default_template){
-                                          echo 'checked';
-                                        }
-                                        ?> class="custom-checkbox" id="def-temp-<?php echo $report->report_templates_id_pk; ?>" value="<?php echo $report->template_color; ?>" name="cover">
-                                <label class="user-heading alt gray-bg" for="def-temp-<?php echo $report->report_templates_id_pk; ?>">
-                                    <div class="text-center"> 
-                                        <?php if(!($packages['seller']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
-                                        <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
-                                        <?php endif; ?>
-                                        <?php if(!($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
-                                        <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
-                                        <?php endif; ?>
-                                        <?php if(!($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
-                                        <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
-                                        <?php endif; ?>
-                                        <img class="registry_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
-                                    </div>
-                                </label>
                             </div>
-                            <?php 
-                                }
-                                }
-                                ?>
                         </div>
                     </div>
                     <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>

@@ -829,6 +829,7 @@ class User extends CI_Controller
       $data = array();
       $data['type']=$this->input->post('theme_type');
       $data['sub_type']=$this->input->post('theme_sub_type');
+      $data['displayCheckbox'] = !empty($this->input->post('displayCheckboxes')) ? $this->input->post('displayCheckboxes') : false;
       $this->load->view('user/theme/index',$data);
     }
     public function saveTheme()
