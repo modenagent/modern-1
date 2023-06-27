@@ -896,11 +896,6 @@
     
         }
         else {
-            if (presentation == 'sellerCma') {
-                $(".swMain ul.anchor li a").addClass('sellerCma');
-                presentation = 'seller';
-                $("#seller_cma").val("sellerCma");
-            }
             $("#presentation").val("seller");
             $('#wizard').smartWizard("seller");
             $('.buyer_template').hide(function(){
