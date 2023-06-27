@@ -13,9 +13,9 @@ if(is_dir($load_dir)) {
     ?>
     <div class="col-lg-3 col-md-6">
     <?php if ($displayCheckbox) {?>
-      <input type="checkbox"  class="page-checkbox" id="def-temp-<?php echo $img_cnt; ?>" value="<?php echo $img_cnt; ?>" name="pageNumber[]">
+      <input type="checkbox"  class="page-checkbox" id="page-<?php echo $img_cnt; ?>" value="<?php echo $img_cnt; ?>" name="pageNumber[]">
     <?php } ?>
-	  <label class="theme_bg" for="def-temp-<?php echo $img_cnt; ?>">
+	  <label class="theme_bg" for="page-<?php echo $img_cnt; ?>">
 	    <img src="<?php echo base_url().$check_dir.$img_cnt.'.jpg';?>" alt="..." class="img-fluid">
 	    <h5><?php echo 'Page '.$img_cnt;?></h5>
 	  </label>
