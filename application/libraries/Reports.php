@@ -346,7 +346,10 @@ use Knp\Snappy\Pdf;
                 $data['unique_key'] = time().substr(md5(rand()), 0, 10);
                 $data['pdf_page'] = $CI->input->post('pdf_page');
             }
-            $data['seller_cma'] = isset($_POST['seller_cma']) ? $_POST['seller_cma'] : '';
+            // $data['seller_cma'] = isset($_POST['seller_cma']) ? $_POST['seller_cma'] : '';
+            $data['pageList'] = isset($_POST['selected_pages']) ? $_POST['selected_pages'] : '';
+            // echo "<pre>";
+            // print_r($data);die;
             $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
             $pdfFileName = $PdfGenResponse['pdf_filename'];
             $reportGenerated = $PdfGenResponse['report_generated'];
@@ -639,7 +642,7 @@ use Knp\Snappy\Pdf;
             }
 
             $customization_data = [];
-            if ($presentationType=="seller" && !empty($data['user_id_for_report_customization']) && empty($data['seller_cma'])) {
+            if ($presentationType=="seller" && !empty($data['user_id_for_report_customization'])) {
                 $CI->load->model('report_model');
                 $customization_data['9']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 9);
                 $customization_data['10']['report_content_data'] = $CI->report_model->prepare_user_report_data($data['user_id_for_report_customization'], $presentationType, $reportLang, 10);
@@ -665,7 +668,7 @@ use Knp\Snappy\Pdf;
                 $html = $CI->load->view("reports/".$reportLang."/".$presentationType."/index",$data,true);
             
             }
-            // echo "<pre>"; print_r($html); exit;
+            // echo "<pre>Hello"; print_r('reports/'.$reportLang.'/'.$presentationType.'/index');die;//print_r($html); exit;
             //file_put_contents("tmp.html", $html);
             $wkhtmltopdfPath =  $CI->config->item('wkhtmltopdf_path');
             if($turboMode && $presentationType=='seller' && $reportLang=='english'){

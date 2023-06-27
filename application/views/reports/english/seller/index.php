@@ -109,39 +109,76 @@ else: ?>
 </style>   
 
 <?php 
-    if($partner && count($partner)>1) {
-        $this->load->view('reports/english/seller/pages/1');
-        $this->load->view('reports/english/seller/pages/1_multiagent');
-    } else if($partner && count($partner)==1) {
-        $this->load->view('reports/english/seller/pages/1_agent');
-    } else {
-        $this->load->view('reports/english/seller/pages/1');
-    }
-
-    $this->load->view('reports/english/seller/pages/2');    
-    $this->load->view('reports/english/seller/pages/4');
-    $this->load->view('reports/english/seller/pages/5');
-    $this->load->view('reports/english/seller/pages/5b');
-    $this->load->view('reports/english/seller/pages/5c');
-    $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
     
-    echo "hello sellr";die;
-    if (empty($seller_cma)) {
+    if (in_array("1", $pageList)) {
+        if($partner && count($partner)>1) {
+            $this->load->view('reports/english/seller/pages/1');
+            $this->load->view('reports/english/seller/pages/1_multiagent');
+        } else if($partner && count($partner)==1) {
+            $this->load->view('reports/english/seller/pages/1_agent');
+        } else {
+            $this->load->view('reports/english/seller/pages/1');
+        }
+    }
+    
+    if (in_array("2", $pageList)) {
+        $this->load->view('reports/english/seller/pages/2');
+    }
+    if (in_array("3", $pageList)) {
+        $this->load->view('reports/english/seller/pages/4');
+    }
+    if (in_array("4", $pageList)) {
+        $this->load->view('reports/english/seller/pages/5');
+    }
+    if (in_array("5", $pageList)) {
+        $this->load->view('reports/english/seller/pages/5b');
+    }
+    if (in_array("6", $pageList)) {
+        $this->load->view('reports/english/seller/pages/5c');
+    }
+    if (in_array("7", $pageList)) {
+        $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
+    }
+    if (in_array("8", $pageList)) {
         $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
+    }
+    if (in_array("9", $pageList)) {
         $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
+    }
+    if (in_array("10", $pageList)) {
         $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
-        
+    }
+    if (in_array("11", $pageList)) {
         $this->load->view('reports/english/seller/pages/5k', $customization_pages_data['12']);
+    }
+    if (in_array("12", $pageList)) {
         $this->load->view('reports/english/seller/pages/6');
+    }
+    if (in_array("13", $pageList)) {
         $this->load->view('reports/english/seller/pages/6c', $customization_pages_data['13']);
+    }
+    if (in_array("14", $pageList)) {
         $this->load->view('reports/english/seller/pages/6d', $customization_pages_data['14']);
+    }
+    if (in_array("15", $pageList)) {
         $this->load->view('reports/english/seller/pages/6e', $customization_pages_data['15']);
+    }
+    if (in_array("16", $pageList)) {
         $this->load->view('reports/english/seller/pages/6f', $customization_pages_data['16']);
+    }
+    if (in_array("17", $pageList)) {
         $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']);
+    }
+    if (in_array("18", $pageList)) {
         $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
+    }
+    if (in_array("19", $pageList)) {
         $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
+    }
+    if (in_array("20", $pageList)) {
         $this->load->view('reports/english/seller/pages/15');
     }
+    
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 

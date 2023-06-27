@@ -283,13 +283,16 @@
     $('#wizard').smartWizard({
       onLeaveStep:function(obj){
         if(obj.attr('rel')==1){
+          console.log('Leaving page 1');
           setTimeout(function(){
             $(document).scrollTop(50);
           },500);
           return true;
         }
         if(obj.attr('rel')==2) {
-          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+          var presentation = $("#presentation").val();
+          console.log('Leaving page 2');
+          if(presentation == "seller" || presentation == "marketUpdate") {
             var pre_selected_options = $.trim($('#pre-selected-options').html());
             if (pre_selected_options!='') {
               if ($('#pre-selected-options').val()==null) {
@@ -307,16 +310,42 @@
                   return false;
               }
             }
+            var theme_type = $("#select-theme-type").val();
+            var defaultSubType = <?php echo json_encode($default_sub_type); ?>;
+            console.log('defaultSubType ===', defaultSubType);
+            var theme_sub_type = defaultSubType[presentation];
+            console.log('theme_sub_type ==', theme_sub_type);
+            $.ajax({
+              url:base_url + 'user/getPreviews',
+              method:'POST',
+              data : {theme_type:presentation,theme_sub_type,theme_sub_type,displayCheckboxes: true},
+              success:function(resp){
+                $('#step-3 .common_template #preview_pages').html(resp)
+              }
+            });
           }
         }
         if(obj.attr('rel')==3){
-          var _theme = $('.custom-checkbox:checked').val();
-          console.log(_theme);
-          console.log(typeof _theme);
-          if(typeof _theme==='undefined'){
-              alert("Please choose a theme");
+          var selectedPage = [];
+          $('.page-checkbox:checked').each(function(){
+            selectedPage.push($(this).val());
+          });
+          // var _theme = $('.custom-checkbox:checked').val();
+          console.log('selectedPage ===', selectedPage);
+          console.log('selectedPage length =', selectedPage.length);
+          if(selectedPage.length == 0){
+              alert("Please select atleast one page");
               return false;
           }
+          // return false;
+
+          // var _theme = $('.custom-checkbox:checked').val();
+          // console.log(_theme);
+          // console.log(typeof _theme);
+          // if(typeof _theme==='undefined'){
+          //     alert("Please choose a theme");
+          //     return false;
+          // }
         }
         return true;
       },
@@ -332,7 +361,17 @@
           }
         }
         if(obj.attr('rel')==4){
-          if($('.custom-checkbox:checked').val()){
+          var selectedPage = [];
+          $('.page-checkbox:checked').each(function(){
+            selectedPage.push($(this).val());
+          });
+          // if(selectedPage.length == 0){
+          //   $.ajax({
+          //     url:base_url + 'index.php?/user/generateInvoiceWithSelectedPage',
+          //     method:'POST',
+          //     data: selectedPage
+          // })
+          if(selectedPage.length > 0){
             $.ajax({
               url:base_url + 'index.php?/user/generateInvoice',
               method:'GET'

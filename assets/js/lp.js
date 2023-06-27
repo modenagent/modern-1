@@ -305,6 +305,13 @@ function runPMA(agentPath, logoPath) {
     }
     query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());     //this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
+    var selectedPage = [];
+    if ($('.page-checkbox:checked').length > 0) {
+        $('.page-checkbox:checked').each(function(){
+            selectedPage.push($(this).val());
+        });
+    }
+    query += '&' + 'selected_pages=' + JSON.stringify(selectedPage);
     query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
     query += '&' + 'mu_theme='+$('.mu_radio:checked').val(); 
     query += '&' + 'seller_theme='+$('.seller_radio:checked').val(); 
