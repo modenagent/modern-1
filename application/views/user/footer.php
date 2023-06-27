@@ -320,7 +320,7 @@
               method:'POST',
               data : {theme_type:presentation,theme_sub_type,theme_sub_type,displayCheckboxes: true},
               success:function(resp){
-                $('#step-3 .common_template #preview_pages').html(resp)
+                $('#step-3 .common_template .preview_pages').html(resp)
               }
             });
           }
