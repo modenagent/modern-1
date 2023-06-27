@@ -320,7 +320,15 @@
               method:'POST',
               data : {theme_type:presentation,theme_sub_type,theme_sub_type,displayCheckboxes: true},
               success:function(resp){
-                $('#step-3 .common_template .preview_pages').html(resp)
+                if(presentation == "seller" && $('#step-3 .carousel-container.seller_template .preview_pages').length > 0){
+                  $('#step-3 .carousel-container.seller_template .preview_pages').html(resp)
+                } else if(presentation == "marketUpdate" && $('#step-3 .carousel-container.marketUpdate_template .preview_pages').length > 0) {
+                  $('#step-3 .carousel-container.marketUpdate_template .preview_pages').html(resp)
+                } else if(presentation == "registry" && $('#step-3 .carousel-container.registry_template .preview_pages').length > 0) {
+                  $('#step-3 .carousel-container.registry_template .preview_pages').html(resp)
+                } else {
+                  $('#step-3 .carousel-container.common_template .preview_pages').html(resp)
+                }
               }
             });
           }
