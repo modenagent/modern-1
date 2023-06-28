@@ -377,7 +377,7 @@
           //     method:'POST',
           //     data: selectedPage
           // })
-          if(selectedPage.length > 0){
+          // if(selectedPage.length > 0){
             $.ajax({
               url:base_url + 'index.php?/user/generateInvoice',
               method:'GET'
@@ -386,7 +386,7 @@
               
               runPMA('','');
             });
-          }
+          // }
           $('.loader1').show();
           $('.loader1').removeClass('hidden');
           $('.backwrap').show();
