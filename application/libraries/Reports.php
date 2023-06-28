@@ -347,7 +347,11 @@ use Knp\Snappy\Pdf;
                 $data['pdf_page'] = $CI->input->post('pdf_page');
             }
             // $data['seller_cma'] = isset($_POST['seller_cma']) ? $_POST['seller_cma'] : '';
-            $data['pageList'] = isset($_POST['selected_pages']) ? $_POST['selected_pages'] : '';
+            if (isset($_POST['selected_pages']) && !empty($_POST['selected_pages'])) {
+                $pageList = json_decode($_POST['page_list']);
+                // $pageList = array_map('intval', $pageList);
+            }
+            $data['pageList'] = $pageList;
             // echo "<pre>";
             // print_r($data);die;
             $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'],$report187->PropertyProfile->SiteAddress);
