@@ -91,9 +91,12 @@ $skip_pages = [3,4,22];
 for ($i=1; $i <= 24 ; $i++) { 
     // if(in_array($i, $pdfPages) || true)
     // {
-        if(in_array($i, $skip_pages) || (!empty($seller_cma) && $i > 10)) {
+        if (!in_array($i, $pageList)) {
             continue;
         }
+        // if(in_array($i, $skip_pages) || (!empty($seller_cma) && $i > 10)) {
+        //     continue;
+        // }
         $report_id = $i;
 
         $data = array();

@@ -118,7 +118,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
 $skip_pages = [2,3];
 for ($i=1; $i <= 20 ; $i++) {
     $report_id = $i;
-    if(in_array($i, $skip_pages) || (!empty($seller_cma) && $i > 10)) {
+    if (!in_array($i, $pageList)) {
         continue;
     }
     if($i==9 || $i==10) {
