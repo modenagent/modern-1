@@ -348,7 +348,7 @@ use Knp\Snappy\Pdf;
             }
             // $data['seller_cma'] = isset($_POST['seller_cma']) ? $_POST['seller_cma'] : '';
             if (isset($_POST['selected_pages']) && !empty($_POST['selected_pages'])) {
-                $pageList = json_decode($_POST['page_list']);
+                $pageList = json_decode($_POST['selected_pages']);
                 // $pageList = array_map('intval', $pageList);
             }
             $data['pageList'] = $pageList;
