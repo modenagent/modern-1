@@ -17,10 +17,10 @@
                               <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
                               CMA + Marketing
                             </button>
-                            <button class="impression_block" type="button" onclick="choose_presentation('sellerCma');">
+                            <!-- <button class="impression_block" type="button" onclick="choose_presentation('sellerCma');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
                               CMA Only
-                            </button>
+                            </button> -->
                             <button class="impression_block" type="button" onclick="choose_presentation('marketUpdate');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/market_update.png" alt="..." class="img-fluid d-block mx-auto">
                               Market Update
@@ -271,8 +271,8 @@
                     </div>
 
                     <div class="carousel-container common_template">
-                        <div  class="row preview_pages"></div>
-                        <div style="display: none;" >
+                        <!-- <div  class="row preview_pages"></div> -->
+                        <!-- <div style="display: none;" > -->
                             <div id="owl-example" class="owl-carousel" style="display: none;" >
                             
                                 <?php 
@@ -300,61 +300,58 @@
                                 }
                                 ?>
                             </div>
-                        </div>
+                        <!-- </div> -->
                     </div>
                     <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                     <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="marketUpdate" checked="" style="display: none !important">
                         <!-- <input type="hidden" class="mu_radio" id="mu_page_1" value="<?php echo $default_sub_type['mu']; ?>" name="cover_mu"> -->
-                    <div class="carousel-container marketUpdate_template" style="display: none">
-                        <div  class="row preview_pages"></div>
-                        <div style="display: none;" >
-                            <div id="owl-example-marketUpdate" class="owl-carousel">
-                                <?php 
-                                    for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
-                                    ?>
-                                <div class="item">
-                                    <input type="radio"  
-                                        <?php 
-                                            if($mu_i == $default_sub_type['mu']){
-                                            echo 'checked';
-                                            }
-                                            ?> class="mu_radio" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
-                                    <label class="user-heading alt gray-bg" for="mu_page_<?php echo $mu_i; ?>">
-                                        <div class="text-center">
-                                            <img class="registry_template1" src="<?php echo base_url("assets/reports/english/marketUpdate/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
-                                        </div>
-                                    </label>
-                                </div>
-                                <?php 
-                                    } /*
-                                    $type = 'marketUpdate';
-                                    $sub_type = $default_sub_type['mu'];
-                                    $check_dir = "assets/reports/english/$type/preview/$sub_type/";
-                                    $load_dir = FCPATH.$check_dir;
-
-                                    if(is_dir($load_dir)) :
-
-                                    $images = glob($load_dir . "*.jpg");
-
-                                    $count_imgs = count($images);
-
-                                    for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
-
-                                        <div class="item">
-                                            
-                                            <div class="text-center">
-                                                <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Market Update">
-                                            </div>
-                                            
-                                        </div>
-
-                                    
-                                    <?php
-
-                                    endfor;
-                                    endif;
-                                */ ?>
+                    <div class="carousel-container marketUpdate_template">
+                        <div id="owl-example-marketUpdate" class="owl-carousel">
+                            <?php 
+                                for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
+                                ?>
+                            <div class="item">
+                                <input type="radio"  
+                                    <?php 
+                                        if($mu_i == $default_sub_type['mu']){
+                                        echo 'checked';
+                                        }
+                                        ?> class="mu_radio" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
+                                <label class="user-heading alt gray-bg" for="mu_page_<?php echo $mu_i; ?>">
+                                    <div class="text-center">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/marketUpdate/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
+                                    </div>
+                                </label>
                             </div>
+                            <?php 
+                                } /*
+                                $type = 'marketUpdate';
+                                $sub_type = $default_sub_type['mu'];
+                                $check_dir = "assets/reports/english/$type/preview/$sub_type/";
+                                $load_dir = FCPATH.$check_dir;
+
+                                if(is_dir($load_dir)) :
+
+                                $images = glob($load_dir . "*.jpg");
+
+                                $count_imgs = count($images);
+
+                                for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+
+                                    <div class="item">
+                                        
+                                        <div class="text-center">
+                                            <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Market Update">
+                                        </div>
+                                        
+                                    </div>
+
+                                
+                                <?php
+
+                                endfor;
+                                endif;
+                            */ ?>
                         </div>
                     </div>
                     <?php endif; ?>
@@ -421,87 +418,81 @@
                     <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="buyer" checked="" style="display: none !important">
                         <input type="hidden"  class="buyer_radio" id="buyer_page_1" value="<?php echo $default_sub_type['buyer']; ?>" name="cover_buyer">
-                    <div class="carousel-container buyer_template" style="display: none">
-                        <div class="row preview_pages"></div>
-                        <div style="display: none;" >
-                            <div id="owl-example-buyer" class="owl-carousel">
-                                <?php
-                                /*
-                                    for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
-                                    ?>
-                                <div class="item">
-                                    <input type="radio"  
-                                        <?php 
-                                            if($mu_i == 1){
-                                            echo 'checked';
-                                            }
-                                            ?> class="buyer_radio" id="buyer_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_buyer">
-                                    <label class="user-heading alt gray-bg" for="buyer_page_<?php echo $mu_i; ?>">
-                                        <div class="text-center">
-                                            <img class="registry_template1" src="<?php echo base_url("assets/reports/english/buyer/preview/{$mu_i}.jpg"); ?>" alt="Buyer report">
-                                        </div>
-                                    </label>
-                                </div>
-                                <?php 
-                                    }
-                                    */
-                                    $type = 'buyer';
-                                    $sub_type = $default_sub_type['buyer'];
-                                    $check_dir = "assets/reports/english/$type/preview/$sub_type/";
-                                    $load_dir = FCPATH.$check_dir;
-
-                                    if(is_dir($load_dir)) :
-
-                                    $images = glob($load_dir . "*.jpg");
-
-                                    $count_imgs = count($images);
-
-                                    for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
-
-                                        <div class="item">
-                                            
-                                            <div class="text-center">
-                                                <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Seller">
-                                            </div>
-                                            
-                                        </div>
-
-                                    
-                                    <?php
-
-                                    endfor;
-                                    endif;
-                                    ?>
+                    <div class="carousel-container buyer_template">
+                        <div id="owl-example-buyer" class="owl-carousel">
+                            <?php
+                            /*
+                                for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
+                                ?>
+                            <div class="item">
+                                <input type="radio"  
+                                    <?php 
+                                        if($mu_i == 1){
+                                        echo 'checked';
+                                        }
+                                        ?> class="buyer_radio" id="buyer_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_buyer">
+                                <label class="user-heading alt gray-bg" for="buyer_page_<?php echo $mu_i; ?>">
+                                    <div class="text-center">
+                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/buyer/preview/{$mu_i}.jpg"); ?>" alt="Buyer report">
+                                    </div>
+                                </label>
                             </div>
+                            <?php 
+                                }
+                                */
+                                $type = 'buyer';
+                                $sub_type = $default_sub_type['buyer'];
+                                $check_dir = "assets/reports/english/$type/preview/$sub_type/";
+                                $load_dir = FCPATH.$check_dir;
+
+                                if(is_dir($load_dir)) :
+
+                                $images = glob($load_dir . "*.jpg");
+
+                                $count_imgs = count($images);
+
+                                for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+
+                                    <div class="item">
+                                        
+                                        <div class="text-center">
+                                            <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Seller">
+                                        </div>
+                                        
+                                    </div>
+
+                                
+                                <?php
+
+                                endfor;
+                                endif;
+                                ?>
                         </div>
                     </div>
                     <?php endif; ?>
 
 
-                    <div class="carousel-container registry_template" style="display: none">
-                        <div class="row preview_pages"></div>
-                        <div style="display: none;" >
-                            <div id="owl-example-registry" class="owl-carousel">
-                                <?php
-                                    for ($regsitry_i=1; $regsitry_i <=6 ; $regsitry_i++) {
-                                    ?>
-                                <div class="item">
-                                    <input type="radio"  
-                                        <?php 
-                                            if($regsitry_i == 1){
-                                            echo 'checked';
-                                            }
-                                            ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
-                                    <label class="user-heading alt gray-bg" for="registry_page_<?php echo $regsitry_i; ?>">
-                                        <div class="text-center">
-                                            <img class="" src="<?php echo base_url("assets/reports/english/registry/preview/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
-                                        </div>
-                                    </label>
-                                </div>
-                                <?php 
-                                    }
-                                    ?>
+                    <div class="carousel-container registry_template">
+                        <div id="owl-example-registry" class="owl-carousel">
+                            <?php
+                                for ($regsitry_i=1; $regsitry_i <=6 ; $regsitry_i++) {
+                                ?>
+                            <div class="item">
+                                <input type="radio"  
+                                    <?php 
+                                        if($regsitry_i == 1){
+                                        echo 'checked';
+                                        }
+                                        ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
+                                <label class="user-heading alt gray-bg" for="registry_page_<?php echo $regsitry_i; ?>">
+                                    <div class="text-center">
+                                        <img class="" src="<?php echo base_url("assets/reports/english/registry/preview/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
+                                    </div>
+                                </label>
                             </div>
+                            <?php 
+                                }
+                                ?>
                         </div>
                     </div>
                 </div>

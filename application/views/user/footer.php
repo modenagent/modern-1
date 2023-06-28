@@ -310,50 +310,48 @@
                   return false;
               }
             }
-            var theme_type = $("#select-theme-type").val();
-            var defaultSubType = <?php echo json_encode($default_sub_type); ?>;
-            console.log('defaultSubType ===', defaultSubType);
-            var theme_sub_type = defaultSubType[presentation];
-            console.log('theme_sub_type ==', theme_sub_type);
-            $.ajax({
-              url:base_url + 'user/getPreviews',
-              method:'POST',
-              data : {theme_type:presentation,theme_sub_type,theme_sub_type,displayCheckboxes: true},
-              success:function(resp){
-                if(presentation == "seller" && $('#step-3 .carousel-container.seller_template .preview_pages').length > 0){
-                  $('#step-3 .carousel-container.seller_template .preview_pages').html(resp)
-                } else if(presentation == "marketUpdate" && $('#step-3 .carousel-container.marketUpdate_template .preview_pages').length > 0) {
-                  $('#step-3 .carousel-container.marketUpdate_template .preview_pages').html(resp)
-                } else if(presentation == "registry" && $('#step-3 .carousel-container.registry_template .preview_pages').length > 0) {
-                  $('#step-3 .carousel-container.registry_template .preview_pages').html(resp)
-                } else {
-                  $('#step-3 .carousel-container.common_template .preview_pages').html(resp)
+            if (presentation == "seller") {
+              var theme_type = $("#select-theme-type").val();
+              var defaultSubType = <?php echo json_encode($default_sub_type); ?>;
+              var theme_sub_type = defaultSubType[presentation];
+              
+              $.ajax({
+                url:base_url + 'user/getPreviews',
+                method:'POST',
+                data : {theme_type:presentation,theme_sub_type,theme_sub_type,displayCheckboxes: true},
+                success:function(resp){
+                  if(presentation == "seller" && $('#step-3 .carousel-container.seller_template .preview_pages').length > 0){
+                    $('#step-3 .carousel-container.seller_template .preview_pages').html(resp)
+                  } else {
+                    $('#step-3 .carousel-container.common_template .preview_pages').html(resp)
+                  }
                 }
-              }
-            });
+              });
+            }
           }
         }
         if(obj.attr('rel')==3){
-          var selectedPage = [];
-          $('.page-checkbox:checked').each(function(){
-            selectedPage.push($(this).val());
-          });
-          // var _theme = $('.custom-checkbox:checked').val();
-          console.log('selectedPage ===', selectedPage);
-          console.log('selectedPage length =', selectedPage.length);
-          if(selectedPage.length == 0){
+          var presentation = $("#presentation").val();
+          if (presentation == "seller") {
+            var selectedPage = [];
+            $('.page-checkbox:checked').each(function(){
+              selectedPage.push($(this).val());
+            });
+            console.log('selectedPage ===', selectedPage);
+            console.log('selectedPage length =', selectedPage.length);
+            if(selectedPage.length == 0){
               alert("Please select atleast one page");
               return false;
+            }
+          } else {
+            var _theme = $('.custom-checkbox:checked').val();
+            console.log(_theme);
+            console.log(typeof _theme);
+            if(typeof _theme==='undefined'){
+                alert("Please choose a theme");
+                return false;
+            }
           }
-          // return false;
-
-          // var _theme = $('.custom-checkbox:checked').val();
-          // console.log(_theme);
-          // console.log(typeof _theme);
-          // if(typeof _theme==='undefined'){
-          //     alert("Please choose a theme");
-          //     return false;
-          // }
         }
         return true;
       },
