@@ -1908,21 +1908,46 @@ a.back-subscribe {
     display: inline-block;
     color: #EF514B;
 }
+
 body.cma-body {
     background-image: url(../img/cma-bg.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
+
 .cma_form {
-    padding: 100px 20px;
+    padding: 50px 20px;
 }
+
 .cma_form.login_info_form .form-group {
     background: #fff;
 }
+
 .cma_form.login_info_form .form-group .cma_label {
     font-weight: 700;
     /*font-size: 20px;*/
 }
+
+.cma_form.login_info_form form .agent-info {
+    text-align: center;
+    margin: 35px 0;
+    font-size: 18px;
+}
+
+.cma_form.login_info_form form .profile-info { 
+    margin-bottom: 20px;
+}
+
+.cma_form.login_info_form form .profile_img {
+    height: 120px;
+    width: 120px;
+    margin: auto;
+    border-radius: 50%;
+    padding: 1px;
+    background: #fff;
+    margin-bottom: 30px;
+}
+
 .cma-page .address-title {
     font-size: 1.5rem;
     margin-bottom: 15px;

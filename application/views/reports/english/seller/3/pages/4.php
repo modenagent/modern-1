@@ -1,7 +1,9 @@
 <page class="pdf4">
     <h1>Our Mission Statement</h1>
     <div class="whitebox">
-        <h2>Home Towne Real Estate</h2>
+        <h2>
+            <?php echo $user['companyname']; ?>
+        </h2>
         <p>believes that the best interests of our
             clients will always come first. We select
             the most professional and ethical people
@@ -22,5 +24,6 @@
             support their efforts to develop their
             business and be responsible and active community advocates.</p>
     </div>
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/4/lighthouse_small.png' ?>" alt="lighthouse" class="white_house" style="width: 370px">
+    <img src="<?php echo base_url() . 'assets/reports/english/seller/images/4/lighthouse_small.png' ?>" alt="lighthouse"
+        class="white_house" style="width: 370px">
 </page>
