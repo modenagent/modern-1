@@ -224,9 +224,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         }
         if ($i == 1) {
             $this->load->view('reports/english/seller/3/pages/1', $data);
-            $this->load->view('reports/english/seller/3/pages/2', $data);
-            $this->load->view('reports/english/seller/3/pages/3', $data);
-
+            // $this->load->view('reports/english/seller/3/pages/2', $data);
+            // $this->load->view('reports/english/seller/3/pages/3', $data);
+    
         } else {
             // $report_id = $i;
             $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
