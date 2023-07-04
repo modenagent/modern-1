@@ -352,9 +352,7 @@ class Reports
         }
         $data['pageList'] = $pageList;
         // echo "<pre>";
-        // print_r($CI->session->userdata());
-        // print_r($data);
-        // die;
+        // print_r($data);die;
         $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'], $report187->PropertyProfile->SiteAddress);
         $pdfFileName = $PdfGenResponse['pdf_filename'];
         $reportGenerated = $PdfGenResponse['report_generated'];
