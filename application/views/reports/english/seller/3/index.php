@@ -212,7 +212,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
 
                 if ($i == 10 && (isset($comparable_2) && !empty($comparable_2))) {
                     $data['comparables'] = $comparable_2;
-                    // $report_id = 9;
+                    $report_id = 9;
                 }
             }
             // $report_id = $i + 2;
