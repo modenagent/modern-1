@@ -110,9 +110,13 @@
 
     <?php
     $pageList = array_map(function ($val) {
-        if ($val > 1) {
+        if ($val > 19) {
+            return $val + 3;
+        }
+        if ($val > 2) {
             return $val + 2;
         }
+        return $val;
     }, $pageList);
 
     // $pdfPages 
@@ -130,7 +134,7 @@
 
         $data = array();
 
-        if ($i == 9 || $i == 10) {
+        if ($i == 11 || $i == 10) {
 
             $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
@@ -139,13 +143,13 @@
     
                 list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
 
-                if ($i == 9 && (isset($comparable_1) && !empty($comparable_1))) {
+                if ($i == 10 && (isset($comparable_1) && !empty($comparable_1))) {
                     $data['comparables'] = $comparable_1;
                 }
-
-                if ($i == 10 && (isset($comparable_2) && !empty($comparable_2))) {
+                
+                if ($i == 11 && (isset($comparable_2) && !empty($comparable_2))) {
                     $data['comparables'] = $comparable_2;
-                    // $report_id = 10;
+                    $report_id = 10;
                 }
             }
             // $report_id = $i + 2;
@@ -156,15 +160,15 @@
             // $this->load->view('reports/english/seller/2/pages/11', $data);
         }
 
-        if ($i == 1) {
-            $this->load->view('reports/english/seller/2/pages/1', $data);
-            $this->load->view('reports/english/seller/2/pages/2', $data);
-            $this->load->view('reports/english/seller/2/pages/3', $data);
+        $this->load->view('reports/english/seller/2/pages/' . $report_id, $data);
+        // if ($i == 1) {
+        //     $this->load->view('reports/english/seller/2/pages/1', $data);
+            // $this->load->view('reports/english/seller/2/pages/2', $data);
+            // $this->load->view('reports/english/seller/2/pages/3', $data);
 
-        } else {
-            $report_id = $i + 2;
-            $this->load->view('reports/english/seller/2/pages/' . $report_id, $data);
-        }
+        // } else {
+            // $report_id = $i + 2;
+        // }
         // }
     }
 
