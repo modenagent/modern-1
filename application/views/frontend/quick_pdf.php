@@ -29,10 +29,13 @@
                         <form method="post" id="ref-form">
                             <div class="agent-info">
                                 <div class="profile-info">
-                                    <img class="profile_img"
-                                        src="https://dev.modernagent.io/assets/images/user_333_162439511584347.png">
-                                    <div>Zoe Noelle</div>
-                                    <div>Lic# 0123456789</div>
+                                    <img class="profile_img mb-2"
+                                        src="https://dev.modernagent.io/<?= $agent->profile_image ?>">
+                                    <div class="mb-2" ><?= $agent->first_name . ' ' . $agent->last_name; ?></div>
+                                    <div class="mb-2">Lic# <?= $agent->license_no; ?></div>
+                                    <div class="mb-2">Email# <?= $agent->email ; ?></div>
+                                    <div class="mb-2">Phone# <?= $agent->phone; ?></div>
+                                    <div class="mb-2">Contact Info# <?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></div>
                                 </div>
 
                             </div>
@@ -46,7 +49,7 @@
                             <div class="form-group email_field">
                                 <div class="cma_label">Enter Valid Phone Number</div>
                                 <input type="text" class="form-control" name="phone_number" id="phone_number"
-                                    placeholder="10 Digit Phone Number" required>
+                                    placeholder="10 Digit Phone Number" value="<?= $agent->phone; ?>" required>
                             </div>
                             <div>
                                 <input class="btn btn-lp save" name="ref-submit" id="ref-submit" type="submit"

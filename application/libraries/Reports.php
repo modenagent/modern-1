@@ -696,9 +696,12 @@ class Reports
         $wkhtmltopdfPath = $CI->config->item('wkhtmltopdf_path');
         if ($turboMode && $presentationType == 'seller' && $reportLang == 'english') {
             $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
+        } else if($_POST['seller_theme'] == 1 && $presentationType == 'seller' && $reportLang == 'english') {
+            $zoom = 1.1;
         } else {
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
         }
+        // print_r ($zoom);die;
         $snappy = new Pdf($wkhtmltopdfPath);
         //$snappy = new Pdf($this->binaryPath);
         $options = [
