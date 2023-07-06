@@ -189,16 +189,24 @@ class Frontend extends CI_Controller
                 if ($refCode == '') {
                     die("Blank Code");
                 }
-                $user = $this->user_model->get_user_by_ref($refCode);
+                $user = $this->user_model->get_user_by_ref($code);
                 if (!is_object($user)) {
                     die("Invalid Code");
                 }
                 $data['user'] = $user;
             }
         }
+        if (!empty($code)) {
+            $user = $this->user_model->get_user_by_ref($code);
+            // print_r($user);die;
+            if (!empty($user) && isset($user->agent) && !empty($user->agent)) {
+                $data['agent'] = $user->agent;
+            }
+        }
         $data['title'] = "Moder Agent";
         $data['code'] = $code;
-
+        // echo "<pre>";
+        // print_r($data);die;
         $this->load->library('session');
 
         $this->load->view('frontend/header_cma', $data);
