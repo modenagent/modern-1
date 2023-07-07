@@ -346,9 +346,27 @@ class Reports
             $data['pdf_page'] = $CI->input->post('pdf_page');
         }
         // $data['seller_cma'] = isset($_POST['seller_cma']) ? $_POST['seller_cma'] : '';
-        if (isset($_POST['selected_pages']) && !empty($_POST['selected_pages'])) {
+        $pageList = [];
+        
+        if (isset($_POST['selected_pages'])) {
             $pageList = json_decode($_POST['selected_pages']);
-            // $pageList = array_map('intval', $pageList);
+            if (empty($pageList)) {
+                if ($_POST['seller_theme'] == 3) {
+                    $pageList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+                } else if ($_POST['seller_theme'] == 2) {
+                    $pageList = [1,2,3,4,5,6,7,8,9,10,21];
+                } else {
+                    $pageList = [1,2,3,4,5,6,7,8];
+                }    
+            }
+        } else {
+            if ($_POST['seller_theme'] == 3) {
+                $pageList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+            } else if ($_POST['seller_theme'] == 2) {
+                $pageList = [1,2,3,4,5,6,7,8,9,10,21];
+            } else {
+                $pageList = [1,2,3,4,5,6,7,8];
+            }
         }
         $data['pageList'] = $pageList;
         // echo "<pre>";
