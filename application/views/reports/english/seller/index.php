@@ -136,22 +136,22 @@ else: ?>
     if (in_array("6", $pageList)) {
         $this->load->view('reports/english/seller/pages/5c');
     }
-    if (in_array("7", $pageList)) {
+    if (in_array("8", $pageList)) {
         $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
     }
-    if (in_array("8", $pageList)) {
+    if (in_array("9", $pageList)) {
         $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
     }
-    if (in_array("9", $pageList)) {
+    if (in_array("10", $pageList)) {
         $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
     }
-    if (in_array("10", $pageList)) {
+    if (in_array("11", $pageList)) {
         $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
     }
-    if (in_array("11", $pageList)) {
+    if (in_array("12", $pageList)) {
         $this->load->view('reports/english/seller/pages/5k', $customization_pages_data['12']);
     }
-    if (in_array("12", $pageList)) {
+    if (in_array("13", $pageList) || in_array("14", $pageList) || in_array("15", $pageList) ) {
         $this->load->view('reports/english/seller/pages/6');
     }
     if (in_array("13", $pageList)) {

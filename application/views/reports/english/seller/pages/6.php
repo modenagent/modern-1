@@ -5,8 +5,8 @@
 
 			<div class="page-content">
 				<header>
-                                    <h2 class="underline title-bold">Neighborhood Stats</h2>
-                                    <p>A Little Insight</p>
+					<h2 class="underline title-bold">Neighborhood Stats</h2>
+					<p>A Little Insight</p>
 				</header>
 		
 				<div class="row">
@@ -18,7 +18,7 @@
 								<div class="text-content">
 									<h2>Male To Female Ratio</h2>
 									<p>These figures represent the male to female ratio in your neighborhood. The housing census is taken every 10 years so depending on the time of this report these figures can be slightly different.
-								</p>
+									</p>
 								</div>
 							</div>
 						</div>
