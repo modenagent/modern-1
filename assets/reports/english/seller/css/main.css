@@ -7,6 +7,10 @@ a:hover {
     color: #b30021
 }
 
+* {
+    font-size: 100%;
+}
+
 *,
 *:before,
 *:after {
@@ -1853,7 +1857,6 @@ a:hover {
     letter-spacing: 1px;
 	font-family: GlacialIndifference;
 }
-}
 
 .page3 .regular {
     margin-top: 0px
@@ -3450,7 +3453,7 @@ div#slider-range {
 }
 
 .avg-box {
-    background: #;
+    /* background: #; */
     width: 235px;
     height: 235px;
     padding-left: 10px
@@ -3507,7 +3510,7 @@ div#slider-range {
 	background: url(../images/5/obg.png);
     width: 35px;
     height: 35px;
-    background:;
+    /* background:; */
     margin-top: 12px
 }
 

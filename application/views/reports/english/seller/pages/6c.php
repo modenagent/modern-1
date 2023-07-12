@@ -94,11 +94,7 @@
 						<img width="100%" class="img-responsive" src="<?php echo base_url("assets/reports/english/seller/images/6c/6c3.jpg")?>" alt="">
 					</div>
 				</div>
-		</div> <!-- .two-grid-wrapper -->
-
-
-	</div>
-
-	
+			</div> <!-- .two-grid-wrapper -->
+		</div>
     </div>
 </div>
