@@ -399,10 +399,10 @@ class User extends CI_Controller
                 $reportDate = date("m/d/Y", strtotime($report['project_date']));
 
                 $action = '';
-                $action .= ' <ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
+                $action .= '<ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
                 <li class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/email.svg" alt="..." class="w20"></a></li>
                 <li style="opacity:0.7;" class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#sms-report" title="Send SMS" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/sms.svg" alt="..." class="w20"></a></li>
-                <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li></ul>';
+                <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li><li style="opacity:0.7;" class="list-inline-item"><a href="'.base_url().'user/report-review/'.$report['project_id_pk'].'" target="_blank" data-bs-toggle="modal" data-bs-target="#sms-report" title="Send SMS" data-id="'.$report['project_id_pk'].'"><i class="fa fa-eye w20" aria-hidden="true" class="w20"></i></a></li></ul>';
                 
                 $data[] = [
                     $reportDate, 
@@ -2147,7 +2147,11 @@ class User extends CI_Controller
         var_dump($data->status);
     }
 
-
+    public function reportReview($id='test') {
+      $this->load->view('report-review/header');
+      $this->load->view('report-review/report');
+      $this->load->view('report-review/footer');
+    }
    // Class ends here
 }
 ?>
