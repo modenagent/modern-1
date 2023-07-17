@@ -393,6 +393,7 @@ class Reports
                 'property_lat' => $CI->db->escape_str($report187->PropertyProfile->PropertyCharacteristics->Latitude),
                 'property_lng' => $CI->db->escape_str($report187->PropertyProfile->PropertyCharacteristics->Longitude),
                 'report_type' => $_POST['presentation'],
+                'pdf_data' => json_encode($data)
             );
 
             // if it is an api call then we mark it as active
