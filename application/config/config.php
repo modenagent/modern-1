@@ -405,5 +405,68 @@ $config['wkhtmltopdf_zoom'] = 1.285;
 $config['wkhtmltopdf_zoom_seller'] = 0.7999;
 $config['qpdf_path'] = 'qpdf';
 
+$config['seller_report_title'] = array(
+		1 => array(
+			1 => 'Sellers Report',
+			2 => 'Contents',
+			3 => 'Areal View',
+			4 => 'Prospective Property',
+			5 => 'Area Sales Analysis',
+			6 => 'Sales comparables',
+			8 => 'Rang of Sales',
+			9 => 'Home buying Process',
+			10 => 'How buyers find home',
+			11 => 'Pricing Correctly',
+			12 => 'Average Days on Market',
+			13 => 'Pics & Online Exposure',
+			14 => 'Printed Collateral',
+			15 => 'Social Media & Networking',
+			16 => 'Analyze & Optimize',
+			17 => 'Negotiating Offers',
+			18 => 'Typical Transaction',
+			19 => 'Promise To Client'
+		),
+		2 => array(
+			1 => 'Sellers Report',
+			2 => 'Owner',
+			3 => 'Areal View',
+			4 => 'Prospective Property',
+			5 => 'Area Sales Analysis',
+			6 => 'Rang of Sales',
+			7 => 'Checklist',
+			8 => 'Sales comparables',
+			10 => 'Qualified Agents',
+			11 => 'Pricing your homes',
+			12 => 'Pricing Correctly',
+			13 => 'Days on Market',
+			14 => 'Analyze & Optimize',
+			15 => 'Selling Plan',
+			16 => 'Advertising',
+			17 => 'Marketing',
+			18 => 'Agent',
+			19 => 'Promise',
+			20 => 'Thank You',
+			21 => 'Final',
+		),
+		3 => array(
+			1 => 'Sellers Report',
+			2 => 'Mission',
+			3 => 'Accolades',
+			4 => 'Aerial View',
+			5 => 'Prospective Property',
+			6 => 'Area Sales Analysis',
+			7 => 'Sales comparables',
+			9 => 'Range of Sales',
+			10 => 'Pricing Correctly',
+			11 => 'Days on Market',
+			12 => 'Digital Marketing Plan',
+			11 => 'Social Proof',
+			14 => 'Sales Road-map',
+			16 => 'Analyze Optimize',
+			17 => 'Promise to Client',
+			18 => 'Address',
+		)
+	);
+
 /* End of file config.php */
 /* Location: ./application/config/config.php */
