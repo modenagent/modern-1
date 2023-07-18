@@ -385,6 +385,21 @@ footer .credits {
 	transform: initial;
 	position: initial;
 }
+.price-button-group {
+	display: flex;
+}
+.text-content .total-text1, .text-content .total-text2, .text-content .total-text3, .text-content .total-text4, .market-content-top .valuable2 {
+	margin-top: 0px;
+}
+.market-content-top .row {
+	margin-top: 15px;
+}
+.market-content-top2 .home{
+	margin-top: 25px;
+}
+.homea2 {
+	padding-left: 0;
+}
 /** End Report content css */
 
 /* @media (min-width: 992px) {
