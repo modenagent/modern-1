@@ -323,7 +323,7 @@ footer .credits {
 @media (min-width: 576px) {
 
 	.tabs > ul {
-		width: 150px;
+		width: 200px;
 	}
 
 	.tabs > ul li a {
@@ -337,7 +337,8 @@ footer .credits {
 	.tabs > ul li a > span.tab-label {
 		width: 100%;
 		display: block;
-		margin-top: 0.2rem;
+		margin: 0.5rem 0rem;
+		font-size: 17px;
 	}
 
 	.tabs section {
@@ -355,9 +356,39 @@ footer .credits {
 		padding: 4rem 4rem;
 	}
 }
-@media (min-width: 992px) {
 
+/** Start Report content css */
+
+.container {
+    max-width: 970px;
+}
+
+.line {
+    width: 40%;
+    height: 5px;
+    margin: 30px 0px;
+    margin-left: 175px;
+}
+
+.page2 .body .card, .page3 .body .card {
+	height: 70%;
+	top: 35%;
+}
+
+.page2 .body .card .card-inner, .page3 .body .card .card-inner {
+	margin-top: 0;
+}
+.page2 .body .card .card-inner ul, .page3 .body .card .card-inner ul {
+	width: 100%;
+	right: 5%;
+    top: 30%;
+	transform: initial;
+	position: initial;
+}
+/** End Report content css */
+
+/* @media (min-width: 992px) {
 	.tabs {
 		width: 800px;
 	}
-}
+} */

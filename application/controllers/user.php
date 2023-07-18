@@ -402,7 +402,12 @@ class User extends CI_Controller
                 $action .= '<ul class="list-inline m-0"><li class="list-inline-item"><a href="'.base_url().$report['report_path'].'" download target="_blank"><img src="'.base_url().'assets/new_site/img/cloud-computing.svg" class="w20" alt="..."></a></li>
                 <li class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#forward-report" title="Forward" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/email.svg" alt="..." class="w20"></a></li>
                 <li style="opacity:0.7;" class="list-inline-item"><a href="javascript:void(0);" target="_blank" data-bs-toggle="modal" data-bs-target="#sms-report" title="Send SMS" data-id="'.$report['project_id_pk'].'"><img src="'.base_url().'assets/new_site/img/sms.svg" alt="..." class="w20"></a></li>
-                <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li><li style="opacity:0.7;" class="list-inline-item"><a href="'.base_url().'user/report-review/'.$report['project_id_pk'].'" target="_blank"><i class="fa fa-eye w20" aria-hidden="true" class="w20"></i></a></li></ul>';
+                <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li>';
+                
+                if ($report['report_type'] == 'seller') {
+                  $action .= '<li style="opacity:0.7;" class="list-inline-item"><a href="'.base_url().'user/report-review/'.$report['project_id_pk'].'" target="_blank"><i class="fa fa-eye w20" aria-hidden="true" class="w20"></i></a></li>';
+                }
+                $action .= '</ul>';
                 
                 $data[] = [
                     $reportDate, 
@@ -2147,10 +2152,62 @@ class User extends CI_Controller
         var_dump($data->status);
     }
 
-    public function reportReview($id='test') {
-      $this->load->view('report-review/header');
-      $this->load->view('report-review/report');
-      $this->load->view('report-review/footer');
+    public function reportReview($id='') {
+      if (!empty($id)) { 
+        $data = $this->base_model->get_record_result_array('lp_my_listing', array('project_id_pk'=>$id));
+        $pdfData = json_decode($data[0]['pdf_data'], true);
+        if ($pdfData['presentation'] == 'seller') {
+          /**
+         * Start Code to fetch customized text data of user
+         */
+        // echo "<pre>";
+        // print_r($pdfData['user']);die;
+        $pdfData['user_id_for_report_customization'] = 0;
+        $reportLang = $pdfData['report_lang'];
+        if ($pdfData['user']['email'] != '') {
+            $this->load->model('user_model');
+            $userInfo = $this->user_model->getUserDetailsByEmail($pdfData['user']['email'], ['user_id_pk', 'email', 'role_id_fk', 'customer_id', 'ref_code']);
+            $pdfData['user_id_for_report_customization'] = $userInfo['user_id_pk'];
+        }
+        $presentationType = $pdfData['presentation'];
+        $customization_data = [];
+        if (!empty($pdfData['user_id_for_report_customization'])) {
+            $this->load->model('report_model');
+            $customization_data['9']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 9);
+            $customization_data['10']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 10);
+            $customization_data['11']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 11);
+            $customization_data['12']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 12);
+            $customization_data['13']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 13);
+            $customization_data['14']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 14);
+            $customization_data['15']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 15);
+            $customization_data['16']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 16);
+            $customization_data['17']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 17);
+            $customization_data['18']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 18);
+            $customization_data['19']['report_content_data'] = $this->report_model->prepare_user_report_data($pdfData['user_id_for_report_customization'], $presentationType, $reportLang, 19);
+        }
+        $pdfData['customization_pages_data'] = $customization_data;
+
+        /**
+         * END Code to fetch customized text data of user
+         */
+          $pdfData['seller_theme'] = !empty($pdfData['seller_theme']) ?  $pdfData['seller_theme'] : 1;
+          $titleList = $this->config->item('seller_report_title')[$pdfData['seller_theme']];
+          $pageList = $pdfData['pageList'];
+          $titleFilter = array_filter( $titleList,function ($key) use ($pageList) {
+                return in_array($key, $pageList);
+            },
+            ARRAY_FILTER_USE_KEY
+          );
+          
+          $pdfData['titleList'] = $titleFilter;
+          // echo "<pre>";
+          // print_r($pdfData);die;
+          $this->load->view('report-review/header');
+          $this->load->view('report-review/report', $pdfData);
+          $this->load->view('report-review/footer');
+        }
+      }
+
     }
    // Class ends here
 }

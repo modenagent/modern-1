@@ -1,3 +1,58 @@
+<?php
+    $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
+    $rangeOfSales['avaiProperty'] = 0;
+    $rangeOfSales['sQFootage']=0;
+    $rangeOfSales['avgNoOfBeds'] = 0;
+    $rangeOfSales['avgNoOfBaths'] = 0;
+    $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+    $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+    // echo "<pre>";
+    // print_r($areaSalesAnalysis);die;
+    foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
+        if($key>8){
+            break;
+        }
+        $cpmrebl['BuildingArea'] = !empty($cpmrebl['BuildingArea']) ? $cpmrebl['BuildingArea'] :  0;
+        $cpmrebl['Beds'] = !empty($cpmrebl['Beds']) ? $cpmrebl['Beds'] :  0;
+        $cpmrebl['Baths'] = !empty($cpmrebl['Baths']) ? $cpmrebl['Baths'] :  0;
+        $rangeOfSales['avaiProperty']++;
+        $rangeOfSales['sQFootage']+= $cpmrebl['BuildingArea'];
+        $rangeOfSales['avgNoOfBeds']+= $cpmrebl['Beds'];
+        $rangeOfSales['avgNoOfBaths'] += $cpmrebl['Baths'];
+
+        if($minRange> $cpmrebl['PriceRate']){
+            $maxRange= $cpmrebl['PriceRate'];
+        }
+
+        if($maxRange< $cpmrebl['PriceRate']){
+            $maxRange= $cpmrebl['PriceRate'];
+        }
+    }
+
+    $rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage']/$rangeOfSales['avaiProperty'];
+    $rangeOfSales['avgNoOfBeds'] = $rangeOfSales['avgNoOfBeds']/$rangeOfSales['avaiProperty'];
+    $rangeOfSales['avgNoOfBaths'] = $rangeOfSales['avgNoOfBaths']/$rangeOfSales['avaiProperty'];
+    $no_of_pages =0 ;
+    $no_of_pages = intval($availableCompareAble/3) ;
+    
+    if(($no_of_pages*3)<$availableCompareAble) {
+        $no_of_pages++;
+    }
+    
+    if($no_of_pages>3) {
+        $no_of_pages=3;
+    } else {
+
+    } 
+
+    $no_of_pages+=5;
+    $_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
+    $_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
+    $rangeDiff= (int)$_priceMaxRange - (int)$_priceMinRange;
+    $_sliderStartPoint = (int)$_priceMinRange - round($rangeDiff/8);
+    $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
+
+?>
 <div class="site-wrapper">
     <section class="article-wrapper">
         <div class="article-container">
@@ -14,10 +69,14 @@
             <div class="tabs-block">
                 <div id="tabs-section" class="tabs">
                     <ul class="tab-head">
+                        <?php 
+                        $firstPage = $pageList[0];
+                        foreach($titleList as $key => $val) { ?>
                         <li>
-                            <a href="#tab-1" class="tab-link active"> <span class="material-icons tab-icon">face</span> <span class="tab-label">Face Primer</span></a>
+                            <a href="#tab-<?= $key ?>" class="tab-link <?= ($firstPage == $key) ? 'active' : '';?>">  <span class="tab-label"><?= $val ?></span></a>
                         </li>
-                        <li>
+                        <?php } ?>
+                        <!-- <li>
                             <a href="#tab-2" class="tab-link"> <span class="material-icons tab-icon">visibility</span> <span class="tab-label">Foundation</span></a>
                         </li>
                         <li>
@@ -29,15 +88,79 @@
                         <li>
                             <a href="#tab-5" class="tab-link"> <span class="material-icons tab-icon">toll</span> <span class="tab-label">Blush</span></a>
                         </li>
+                        <li>
+                            <a href="#tab-6" class="tab-link"> <span class="material-icons tab-icon">toll</span> <span class="tab-label">Test</span></a>
+                        </li> -->
                     </ul>
-
-                    <section id="tab-1" class="tab-body entry-content active active-content">
-                        <h2>Face Primer</h2>
-                        <p>While some people don’t think that <a href="#">face primer</a> is necessary, I personally view it as a vital step in my makeup routine.</p>
-                        <p>Face primers’ exact effects on your skin and makeup can vary, but overall, their main purpose is to keep your skin looking smooth and your makeup looking fresh all day long.</p>
+                    
+                    <?php foreach($pageList as $key => $val) { ?>
+                    <section id="tab-<?= $val ?>" class="tab-body entry-content  <?= ($firstPage == $val) ? 'active active-content' : '';?>">
+                        <?php if ($seller_theme == 1) {
+                            if ($val == 1) {
+                                $this->load->view('reports/english/seller/pages/1');
+                            }
+                            
+                            if ($val == 2) {
+                                $this->load->view('reports/english/seller/pages/2');
+                            }
+                            if ($val == 3) {
+                                $this->load->view('reports/english/seller/pages/4');
+                            }
+                            if ($val == 4) {
+                                $this->load->view('reports/english/seller/pages/5');
+                            }
+                            if ($val == 5) {
+                                $this->load->view('reports/english/seller/pages/5b');
+                            }
+                            if ($val == 6) {
+                                $this->load->view('reports/english/seller/pages/5c');
+                            }
+                            if ($val == 8) {
+                                $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
+                            }
+                            if ($val == 9) {
+                                $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
+                            }
+                            if ($val == 10) {
+                                $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
+                            }
+                            if ($val == 11) {
+                                $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
+                            }
+                            if ($val == 12) {
+                                $this->load->view('reports/english/seller/pages/5k', $customization_pages_data['12']);
+                            }
+                            if ($val == 13 || $val == 14 || $val == 15 ) {
+                                $this->load->view('reports/english/seller/pages/6');
+                            }
+                            if ($val == 13) {
+                                $this->load->view('reports/english/seller/pages/6c', $customization_pages_data['13']);
+                            }
+                            if ($val == 14) {
+                                $this->load->view('reports/english/seller/pages/6d', $customization_pages_data['14']);
+                            }
+                            if ($val == 15) {
+                                $this->load->view('reports/english/seller/pages/6e', $customization_pages_data['15']);
+                            }
+                            if ($val == 16) {
+                                $this->load->view('reports/english/seller/pages/6f', $customization_pages_data['16']);
+                            }
+                            if ($val == 17) {
+                                $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']);
+                            }
+                            if ($val == 18) {
+                                $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
+                            }
+                            if ($val == 19) {
+                                $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
+                            }
+                            if ($val == 20) {
+                                $this->load->view('reports/english/seller/pages/15');
+                            }
+                        } ?>
                     </section>
-
-                    <section id="tab-2" class="tab-body entry-content">
+                    <?php } ?>
+                    <!-- <section id="tab-2" class="tab-body entry-content">
                         <h2>Foundation</h2>
                         <p>Foundation is probably the hardest part of your makeup routine to get right, as you not only have to consider the type of coverage you want (i.e. sheer/natural, medium, or full), but also your skin type and undertones.</p>
                         <p>If you are new to wearing foundation or aren’t sure what type/shade is right for you, I’d highly recommend going to your nearest Sephora, MAC, or department store and have a makeup artist help you pick out one that matches your complexion and fits your coverage needs. It’s also a good idea to request a sample if you want to see how a formula feels on your skin before buying.</p>
@@ -61,6 +184,11 @@
                         <p>Putting on blush can have a huge effect on your overall look, and I personally never leave it out of my makeup routine. Blush is especially necessary if you’re wearing a foundation with more opaque coverage, which can sometimes leave your complexion looking a little bit flat.</p>
                         <p>Blush comes in powder, gel, and cream formulations, with powder being the most popular. Recently, though, cream and gel blush have become very popular as well.</p>
                     </section>
+                    <section id="tab-6" class="tab-body entry-content">
+                        <h2>Blush</h2>
+                        <p>Putting on blush can have a huge effect on your overall look, and I personally never leave it out of my makeup routine. Blush is especially necessary if you’re wearing a foundation with more opaque coverage, which can sometimes leave your complexion looking a little bit flat.</p>
+                        <p>Blush comes in powder, gel, and cream formulations, with powder being the most popular. Recently, though, cream and gel blush have become very popular as well.</p>
+                    </section> -->
                 </div>
             </div>
         </div>

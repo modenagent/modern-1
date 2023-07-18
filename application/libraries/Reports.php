@@ -68,7 +68,7 @@ class Reports
 
         $data['mapinfo'] = $report111;
         $data['property'] = $report187;
-
+        $data['report_lang'] = $reportLang;
         $data['user'] = $_POST['user'];
         if ($_POST['user_image'] != '') {
             $data['user']['profile_image'] = $_POST['user_image'];
@@ -136,6 +136,7 @@ class Reports
         }
         $data['primary_owner'] = $ownerNamePrimary;
         $data['secondary_owner'] = $ownerNameSecondary;
+        $data['presentation'] = $_POST['presentation'];
         $reportItems['comparable'] = array();
         if ($_POST['presentation'] != 'registry') {
             $rets_login = '';
@@ -369,6 +370,8 @@ class Reports
             }
         }
         $data['pageList'] = $pageList;
+        $data['seller_theme'] = $_POST['seller_theme'] ?? 1;
+
         // echo "<pre>";
         // print_r($data);die;
         $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'], $report187->PropertyProfile->SiteAddress);
