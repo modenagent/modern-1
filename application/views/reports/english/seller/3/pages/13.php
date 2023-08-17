@@ -15,7 +15,7 @@
 		    ?>
             <span><?php echo $avg_text; ?></span>
         	<?php
-		        $avg_days = isset($report_content_data['average_days']['value']) && !empty($report_content_data['average_days']['value']) ? $report_content_data['average_days']['value'] : '52';
+		        $avg_days = isset($report_content_data['average_days']['value']) && !empty($report_content_data['average_days']['value']) ? $report_content_data['average_days']['value'] : '37';
 		    ?>
             <div class="number"><?php echo $avg_days; ?></div>
         </div>
