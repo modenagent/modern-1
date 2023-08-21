@@ -405,7 +405,7 @@ class User extends CI_Controller
                 <li class="list-inline-item"><a href="javascript:void(0);" onclick="delete_lp(\''.$report['project_id_pk'].'\', \'1\')"><img src="'.base_url().'assets/new_site/img/clear.svg" alt="..."></a></li>';
                 
                 if ($report['report_type'] == 'seller') {
-                  $action .= '<li style="opacity:0.7;" class="list-inline-item"><a href="'.base_url().'user/report-review/'.$report['project_id_pk'].'" target="_blank"><i class="fa fa-eye w20" aria-hidden="true" class="w20"></i></a></li>';
+                  $action .= '<li style="opacity:0.7;" class="list-inline-item"><a href="'.base_url().'user/report-review/'.$report['project_id_pk'].'" target="_blank"><img style="width:20px;" src="'.base_url().'assets/new_site/img/view.png" alt="..."></a></li>';
                 }
                 $action .= '</ul>';
                 
