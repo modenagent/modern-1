@@ -20,14 +20,17 @@
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/bootstrap.min.css") ?>">
     	<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/main.css") ?>">
-
+		
 		<!-- CSS Files -->
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/report/style.css"); ?>">
+        
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
-
-                <script `src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
-                
-                <link re`l="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+		
+		<script `src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
+		
+		<link re`l="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    	<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/2/style.css") ?>">
+    	<link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/report/style.css") ?>">
 	</head>
 
 	<body class="home">

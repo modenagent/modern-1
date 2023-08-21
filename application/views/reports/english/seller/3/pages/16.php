@@ -106,9 +106,10 @@
                 <img src="<?php echo base_url();?>assets/reports/english/seller/images/proffesional.png" alt="user" class="img-fluid icons">
             </div>
         </div>
-        <div class="d-flex">
+        <div class="d-flex pos-rel">
+            <div class="connection-line"></div>
             <div class="col-50">
-                <h4 class="crimson mt-0">Establish a Price</h4>
+                <h4 class="crimson mt-0">Establish a Price <span class="connection-circel"></span></h4>
                 <p class="f14 w80">
                     Your agent will provide a market
                     analysis, which will help you set
@@ -141,9 +142,10 @@
                 <img src="<?php echo base_url();?>assets/reports/english/seller/images/chat.png" alt="msg" border="0" class="img-fluid icons">
             </div>
         </div>
-        <div class="d-flex">
+        <div class="d-flex pos-rel">
+            <div class="connection-line"></div>
             <div class="col-50">
-                <h4 class="crimson mt-0">List It For Sale</h4>
+                <h4 class="crimson mt-0">List It For Sale <span class="connection-circel"></span> </h4>
                 <p class="f14 w80">
                     When everything is in place your
                     agent will put your home on the

@@ -320,6 +320,9 @@ footer .credits {
 	opacity: 1;
 	transform: translateY(0);
 }
+.mt-2 {
+	margin-top: 20px;
+}
 @media (min-width: 576px) {
 
 	.tabs > ul {
@@ -370,6 +373,94 @@ footer .credits {
     margin-left: 175px;
 }
 
+.pdf1 {
+	padding: 0;
+}
+.pdf1 .header {
+	display: flex;
+    flex-direction: row;
+    padding: 20px 40px;
+    align-items: center;
+	height: 20%;
+}
+
+.pdf1 .company_logo {
+	width: 15%;
+}
+
+.pdf1 .line_break_img {
+	-webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+    height: 20px;
+}
+
+.pdf1 .text h3 {
+	letter-spacing: 0;
+    text-transform: capitalize;
+}
+
+.pdf1 .body {
+	width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+	position: relative;
+	height: 80%;
+}
+
+.pdf1 .footer {
+	position: absolute;
+    bottom: 0;
+	width: 100%;
+    display: flex;
+    padding: 80px 50px;
+    flex-direction: row;
+    justify-content: space-between;
+	background: #0e7da975;
+}
+.pdf1 .signature + .logo {
+	background: #fff;
+	top: 35%;
+}
+.pdf1 .horizontal_sign.signature {
+	width: 340px;
+    text-align: left;
+    position: relative;
+    top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pdf1 .profile_details {
+	padding: 10px;
+    color: #fff;
+}
+
+.pdf1 .profile_img {
+	width: 150px;
+	height: 150px;
+}
+.pdf1 .profile_name {
+	margin: 0;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 25px;
+}
+
+.pdf1 .profile_title {
+	font-size: 16px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+
+.contact_info {
+	text-decoration: none;
+	font-size: 15px;
+}
+
 .page2 .body .card, .page3 .body .card {
 	height: 70%;
 	top: 35%;
@@ -388,7 +479,7 @@ footer .credits {
 .price-button-group {
 	display: flex;
 }
-.text-content .total-text1, .text-content .total-text2, .text-content .total-text3, .text-content .total-text4, .market-content-top .valuable2 {
+.text-content .total-text1, .text-content .total-text2, .text-content .total-text3, .text-content .total-text4, .valuable2 {
 	margin-top: 0px;
 }
 .market-content-top .row {
@@ -399,6 +490,348 @@ footer .credits {
 }
 .homea2 {
 	padding-left: 0;
+}
+
+.container .section, .section-theme-2 {
+	padding: 6rem !important;
+}
+
+.white_house .lighthouse_house {
+	margin: 0 auto;
+}
+
+.white_house, .bordered_img {
+	margin: -10px 0 -10px -8%;
+}
+.home_list {
+	display: flex;
+	margin-top: 20px;
+}
+.section-theme-2 .grey-chart {
+	margin-top: 0px !important;
+}
+.thanks_block {
+	background: url(https://i.ibb.co/5MT6bBS/wooden.png) no-repeat;
+}
+.pdf4 {
+	text-align: center;
+}
+.pdf4 h1 {
+	margin-bottom: 50px;
+}
+.whitebox h2 {
+	margin-bottom: 25px;
+}
+.pdf5 .bigger_title {
+	font-size: 45px;
+	text-transform: capitalize;
+}
+.main_title {
+	text-align: start;
+    color: #0088ff;
+	text-transform: capitalize;
+	background: none;
+	letter-spacing: 0;
+	font-size: 36px;
+}
+
+.pdf5 .sold_count h3.main_title {
+	color: #0088ff;
+	text-transform: capitalize;
+	text-align: start;
+	background: none;
+	letter-spacing: 0px;
+	height: 65px;
+}
+
+.pdf5 .number_round {
+	padding: 15px;
+    border: 1px solid black;
+    width: 67px;
+    border-radius: 50px;
+    font-size: 25px;
+    text-align: center;
+    color: #fff;
+    background-color: #31708f;
+    margin: 10px;
+}
+
+.pdf5 .big_hr {
+	border-top: 1px solid #000;
+	margin: 9px 0;
+    height: 2px;
+    width: 100%;
+    background-color: #dedcdc;
+    border-radius: 5px;
+}
+
+.pdf6 .map_content, .pdf11 .map_content {
+	padding: 30px 0px;
+}
+
+.pdf6 .map_content h2 {
+	margin-top: 15px;
+}
+
+.pdf8 .sub_title {
+	text-align: center;
+	margin: 25px 0px;
+}
+
+.pdf8 {
+	padding: 45px 50px;
+}
+
+.pdf11 .map_content ul.stats {
+	display: flex;
+}
+
+.pdf11 .map_content ul.stats li {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.pdf11 .map_content ul.stats li span {
+	font-size: 30px;
+}
+
+.pdf12 p {
+    max-width: none;
+    text-align: start;
+    margin: 0;
+    font-size: 15px;
+}
+
+.pdf12 h4, .pdf15 .sub_title, .pdf19 .sub_title, .pdf18 .sub_title, .pdf19 h4.crimson {
+	margin: 25px 0px;
+	text-transform: capitalize;
+	letter-spacing: 0px;
+}
+
+.pdf12 .steps h4 {
+	margin-top: 20px;
+}
+
+.pdf13 .steps h4 { 
+	margin: 25px 0px 10px 0px;
+}
+
+.pdf13 .steps ul {
+	font-size: 20px;
+}
+.pdf13 div:last-child {
+	margin-top: 0px !important;
+}
+.pdf14 .d-flex h4 {
+	margin: 25px 0;
+	text-transform: capitalize;
+}
+.pdf14 .d-flex .col-50 h4 {
+	font-size: 20px;
+    letter-spacing: 0px;
+}
+
+.pdf14 .f14, .pdf15 .f14, .pdf18 .f14, .pdf19 .f14 {
+	font-size: 16px;
+}
+
+.pdf14 ul.f14 {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.pdf14 ul.f14 li, .pdf15 ul.f14 li {
+	list-style-type: circle;
+	margin: 10px 0px 10px 18px;
+	display: revert;
+}
+
+.pdf15 .caption {
+	position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 5;
+    color: white;
+    background: rgba(39,62,84,0.82);
+    width: 100%;
+    height: 100%;
+}
+
+.pdf15 .d-flex.mt-50 img {
+	width: 18%;
+	margin: 10px 0px;
+}
+.pdf15 .we_reach {
+	position: relative;
+}
+.pdf15 .we_reach img {
+	width: 100% !important;
+}
+.pdf15 .caption img {
+	margin-top: 130px !important;
+	width: 18% !important;
+}
+.pdf15 .caption h5, .pdf15 .caption h3 {
+	color: #ffffff;
+}
+.pdf15 .crimson {
+	letter-spacing: 0px;
+	text-transform: lowercase;
+	font-weight: 600;
+}
+.pdf15 .crimson:last-child {
+	text-transform: capitalize;
+}
+.pdf16 {
+	background: #2e6caa;
+}
+.pdf16 .main_title, .pdf16 h4, .pdf16 p {
+	color: #ffffff;
+}
+.pdf16 h4 {
+	letter-spacing: 0px;
+	text-transform: capitalize;
+	margin-bottom: 15px;
+}
+
+.pdf16 .msg_box {
+	border: 1px solid #fff;
+    padding: 10px;
+    border-radius: 15px;
+}
+
+.pdf18 .table_title {
+	letter-spacing: 0px;
+}
+
+.pdf18 table {
+	margin-bottom: 20px;
+}
+
+.pdf20 {
+	position: relative;
+}
+
+.pdf20 .main-content {
+	position: absolute;
+	top: 50%;
+}
+
+.pos-rel {
+	position: relative;
+}
+
+.connection-line {
+	position: absolute;
+    width: 170px;
+    height: 1px;
+    color: white;
+    background: white;
+    left: 30%;
+    top: 10%;
+}
+
+.connection-circel {
+	position: absolute;
+    background: white;
+    margin-left: 10px;
+    color: white;
+    width: 35px;
+    height: 35px;
+    -webkit-border-radius: 25px; 
+    -moz-border-radius: 25px;
+    border-radius: 25px;
+    z-index: 999999;
+}
+
+.pdf20 .main-content {
+	width: 100%;
+    /* background: white; */
+    left: 0%;
+}
+
+.pdf20 .signature {
+	margin-left: 50px;
+}
+
+.pdf20 .content {
+	background: white;
+	padding: 20px 10px;
+}
+
+.pdf20 .content .d-flex {
+	display: flex;
+}
+
+.pdf20 .profile_name {
+	letter-spacing: 0px;
+	font-size: 15px;
+}
+
+.pdf20 .profile_title {
+	margin-bottom: 10px;
+}
+
+.pdf20 a {
+	border: none;
+	color: inherit;
+}
+
+.pdf20 .bordered_img {
+	-webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+	height: 30px;
+	margin-left: 0px;
+    margin-top: 80px
+}
+
+.pdf20 .address {
+	padding: 0px;
+}
+
+.pdf20 .footer {
+	display:flex;
+	gap:50px;
+	position:relative;
+	padding: 80px 50px;
+    align-items: center;
+}
+
+.pdf20 .blue-overlay {
+	position: absolute;
+    background: #0e7da975;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.pdf20 .logo {
+	width: 100%;
+}
+
+.pdf20 .logo img {
+	background-color: #fff;
+}
+
+.pdf20 .copy_right_text p {
+	color: #fff;
 }
 /** End Report content css */
 
