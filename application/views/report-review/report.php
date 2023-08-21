@@ -93,9 +93,56 @@
                         </li> -->
                     </ul>
                     
-                    <?php foreach($pageList as $key => $val) { ?>
-                    <section id="tab-<?= $val ?>" class="tab-body entry-content  <?= ($firstPage == $val) ? 'active active-content' : '';?>">
-                        <?php if ($seller_theme == 1) {
+                    <?php 
+                    // print_r($pageList);die;
+                    foreach($pageList as $key => $val) { ?>
+                    <section id="tab-<?= $val ?>" class="tab-body entry-content <?= ($seller_theme == 2) ? 'section-theme-2' : '';?>  <?= ($firstPage == $val) ? 'active active-content' : '';?>">
+                    <?php 
+                        if ($seller_theme == 2) {
+                            $data = array();
+
+                            if ($val == 11 || $val == 10) {
+                                $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+
+                                if (isset($comparable) && !empty($comparable)) {
+                                    list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
+                                    if ($val == 10 && (isset($comparable_1) && !empty($comparable_1))) {
+                                        $data['comparables'] = $comparable_1;
+                                    }
+                                    
+                                    if ($val == 11 && (isset($comparable_2) && !empty($comparable_2))) {
+                                        $data['comparables'] = $comparable_2;
+                                        $val = 10;
+                                    }
+                                }
+                            } elseif ($val == 11) {
+                                $data = $rangeOfSales;
+                                // $this->load->view('reports/english/seller/2/pages/11', $data);
+                            }
+                            $this->load->view('reports/english/seller/2/pages/' . $val, $data);
+                        } else if ($seller_theme == 3) {
+                            $data = array();
+
+                            if ($val == 9 || $val == 10) {
+                                $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
+
+                                if (isset($comparable) && !empty($comparable)) {
+                                    list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
+                                    if ($val == 9 && (isset($comparable_1) && !empty($comparable_1))) {
+                                        $data['comparables'] = $comparable_1;
+                                    }
+                                    
+                                    if ($val == 10 && (isset($comparable_2) && !empty($comparable_2))) {
+                                        $data['comparables'] = $comparable_2;
+                                        $val = 9;
+                                    }
+                                }
+                            } elseif ($val == 11) {
+                                $data = $rangeOfSales;
+                                // $this->load->view('reports/english/seller/2/pages/11', $data);
+                            }
+                            $this->load->view('reports/english/seller/3/pages/' . $val, $data);
+                        } else {
                             if ($val == 1) {
                                 $this->load->view('reports/english/seller/pages/1');
                             }
@@ -157,7 +204,8 @@
                             if ($val == 20) {
                                 $this->load->view('reports/english/seller/pages/15');
                             }
-                        } ?>
+                        }
+                    ?>
                     </section>
                     <?php } ?>
                     <!-- <section id="tab-2" class="tab-body entry-content">

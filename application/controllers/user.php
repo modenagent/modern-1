@@ -2193,6 +2193,28 @@ class User extends CI_Controller
           $pdfData['seller_theme'] = !empty($pdfData['seller_theme']) ?  $pdfData['seller_theme'] : 1;
           $titleList = $this->config->item('seller_report_title')[$pdfData['seller_theme']];
           $pageList = $pdfData['pageList'];
+          if ($pdfData['seller_theme'] == 2) {
+            $pageList = array_map(function ($val) {
+                if ($val > 19) {
+                    return $val + 3;
+                }
+                if ($val > 2) {
+                    return $val + 2;
+                }
+                return $val;
+            }, $pageList);
+        } else if ($pdfData['seller_theme'] == 3) {
+            $pageList = array_map(function ($val) {
+                if ($val > 1) {
+                    return $val + 2;
+                }
+                return $val;
+            }, $pageList);
+        }
+        $pdfData['pageList'] = $pageList;
+        // print_r($pageList);die;
+          // echo "<pre>";
+          // print_r($pageList);
           $titleFilter = array_filter( $titleList,function ($key) use ($pageList) {
                 return in_array($key, $pageList);
             },

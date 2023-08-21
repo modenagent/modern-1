@@ -8,10 +8,10 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
 ?>
 <page class="pdf1">
     <div class="header">
-        <img src="<?php echo base_url($user['company_logo']); ?>" alt="company_logo" border="0">
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0">
+        <img src="<?php echo base_url($user['company_logo']); ?>" alt="company_logo" border="0" class="company_logo" >
+        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" border="0" class="line_break_img">
         <div class="text">
-            <h1>Seller Report</h1>
+            <h3>Seller Report</h3>
             <?php 
                 if(isset($site_address) && !empty($site_address))
                 {
@@ -37,7 +37,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                     <?php
                         }
                     ?>
-                    <div style="padding: 10px;">
+                    <div class="profile_details"  style="padding: 10px;">
                         <?php 
                             if(isset($user['fullname']) && !empty($user['fullname']))
                             {

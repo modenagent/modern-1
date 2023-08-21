@@ -25,5 +25,5 @@
             business and be responsible and active community advocates.</p>
     </div>
     <img src="<?php echo base_url() . 'assets/reports/english/seller/images/4/lighthouse_small.png' ?>" alt="lighthouse"
-        class="white_house" style="width: 370px">
+        class="lighthouse_house" style="width: 370px">
 </page>
