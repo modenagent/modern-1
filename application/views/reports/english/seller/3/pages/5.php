@@ -1,7 +1,7 @@
 <page class="pdf5">
     <h1 class="main_title top_title">Accolades</h1>
     <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
-    <div class="d-flex space_evenly mt-80">
+    <div class="d-flex space_evenly mt-80 no-margin-top">
         <div class="col-50">
             <h2 class="bigger_title">
                 Voted #1
