@@ -12,10 +12,10 @@
         $content = isset($report_content_data['content']['value']) && !empty($report_content_data['content']['value']) ? $report_content_data['content']['value'] : 'At any given time, there are plenty of buyers in the market looking for newly listed properties. As your agent, I want to make sure to help you attract as many buyers as possible. One thing that can hinder this is setting the price too high. The key to getting your home sold as quickly as possible is to price it correctly from day 1. Many sellers have the tendency to want to list their home at a higher sales price than advised because they hope to increase their profit or they assume that buyers always make low off ers so it’s good to start high';
     ?>
     <p class="text-justify"><?php echo $content; ?></p>
-    <div class="mt-40" style="background: url(<?php echo base_url().'assets/reports/english/seller/images/12/pricing.png'; ?>) no-repeat; background-size: contain;height: 350px;"></div>
+    <div class="mt-40 pricing-img" style="background: url(<?php echo base_url().'assets/reports/english/seller/images/12/pricing.png'; ?>) no-repeat; background-size: contain;"></div>
     
     <div class="d-flex mt-30 steps">
-        <div class="col-50">
+        <div class="col-50 responsive-100">
             <?php
                 $para_1_title = isset($report_content_data['paragraph_1_title']['value']) && !empty($report_content_data['paragraph_1_title']['value']) ? $report_content_data['paragraph_1_title']['value'] : '1. On Market Longer';
             ?>
@@ -33,7 +33,7 @@
             ?>
             <p><?php echo $para_2_content; ?></p>
         </div> 
-        <div class="col-50">
+        <div class="col-50 responsive-100">
             <?php
                 $para_3_title = isset($report_content_data['paragraph_3_title']['value']) && !empty($report_content_data['paragraph_3_title']['value']) ? $report_content_data['paragraph_3_title']['value'] : '3. Lost Time';
             ?>

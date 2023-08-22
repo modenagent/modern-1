@@ -54,8 +54,8 @@
 
 ?>
 <div class="site-wrapper">
-    <section class="article-wrapper">
-        <div class="article-container">
+    <section class="row article-wrapper">
+        <div class="col-sm-12 article-container">
             <div class="article-block">
                 <div class="entry-content">
                     <h1>Makeup Essentials</h1>
@@ -68,6 +68,7 @@
         <div class="tabs-container">
             <div class="tabs-block">
                 <div id="tabs-section" class="tabs">
+                    <img src="<?php echo base_url().'assets/new_site/img/hamburger_icon.png'; ?>" alt="humbergen" class="humberger" >
                     <ul class="tab-head">
                         <?php 
                         $firstPage = $pageList[0];

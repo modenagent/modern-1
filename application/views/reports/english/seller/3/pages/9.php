@@ -19,9 +19,9 @@
                 }
     ?>
                 <?php if($count==0):?>
-                    <div class="d-flex mt-35 row-30">
+                    <div class="d-flex mt-35 row-30 parent-house-wrapper">
                 <?php elseif($count==2):?>
-                    <div class="d-flex mt-20 row-30">
+                    <div class="d-flex mt-20 row-30 parent-house-wrapper">
                 <?php endif; ?>
                 <div class="col-50">
                     <div class="house_pricing">

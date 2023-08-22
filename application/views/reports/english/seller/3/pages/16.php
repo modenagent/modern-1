@@ -91,7 +91,7 @@
     </div>    -->
     <div class="content_area">
         <div class="d-flex mt-60">
-            <div class="col-50">
+            <div class="col-50 responsive-100 res-dis-none mar-ver-15">
                 <h4 class="crimson mt-0">Meet With a Real <br>Estate Professional</h4>
                 <p class="f14 w80">
                     There’s no commitment required
@@ -100,24 +100,24 @@
                     and help you identify your next
                     steps.
                 </p>
-                <img src="<?php echo base_url();?>assets/reports/english/seller/images/down-arrow.png" alt="arrow" class="my-20">
+                <img src="<?php echo base_url();?>assets/reports/english/seller/images/down-arrow.png" alt="arrow" class="my-20 res-dis-none">
             </div>
-            <div class="col-50">
+            <div class="col-50 responsive-100 res-dis-none mar-ver-15">
                 <img src="<?php echo base_url();?>assets/reports/english/seller/images/proffesional.png" alt="user" class="img-fluid icons">
             </div>
         </div>
         <div class="d-flex pos-rel">
-            <div class="connection-line"></div>
-            <div class="col-50">
-                <h4 class="crimson mt-0">Establish a Price <span class="connection-circel"></span></h4>
+            <div class="connection-line res-dis-none"></div>
+            <div class="col-50 responsive-100 mar-ver-15">
+                <h4 class="crimson mt-0">Establish a Price <span class="connection-circel res-dis-none"></span></h4>
                 <p class="f14 w80">
                     Your agent will provide a market
                     analysis, which will help you set
                     an asking price.
                 </p>
-                <img src="<?php echo base_url();?>assets/reports/english/seller/images/down-arrow.png" alt="arrow" class="my-20">
+                <img src="<?php echo base_url();?>assets/reports/english/seller/images/down-arrow.png" alt="arrow" class="my-20 res-dis-none">
             </div>
-            <div class="col-50">
+            <div class="col-50 responsive-100 mar-ver-15">
                 <div class="msg_box">
                     <h4 class="crimson mt-0">Strategic Pricing</h4>
                     <p>
@@ -130,22 +130,22 @@
             </div>
         </div>
         <div class="d-flex">
-            <div class="col-50">
+            <div class="col-50 responsive-100 mar-ver-15">
                 <h4 class="crimson mt-0">Prepare Your Home</h4>
                 <p class="f14 w80">
                     View your home through the eyes of the buyer and ask yourself what you’d expect. Your agent will off er some useful
                     suggestions.
                 </p>
-                <img src="<?php echo base_url();?>assets/reports/english/seller/images/down-arrow.png" alt="arrow" class="my-20">
+                <img src="<?php echo base_url();?>assets/reports/english/seller/images/down-arrow.png" alt="arrow" class="my-20 res-dis-none">
             </div>
-            <div class="col-50">
+            <div class="col-50 responsive-100 mar-ver-15">
                 <img src="<?php echo base_url();?>assets/reports/english/seller/images/chat.png" alt="msg" border="0" class="img-fluid icons">
             </div>
         </div>
         <div class="d-flex pos-rel">
             <div class="connection-line"></div>
-            <div class="col-50">
-                <h4 class="crimson mt-0">List It For Sale <span class="connection-circel"></span> </h4>
+            <div class="col-50 responsive-100 mar-ver-15">
+                <h4 class="crimson mt-0">List It For Sale <span class="connection-circel res-dis-none"></span> </h4>
                 <p class="f14 w80">
                     When everything is in place your
                     agent will put your home on the
@@ -154,7 +154,7 @@
                     buyers to view your home.
                 </p>
             </div>
-            <div class="col-50">
+            <div class="col-50 responsive-100 mar-ver-15">
                 <div class="msg_box">
                     <h4 class="crimson mt-0">Showings</h4>
                     <p>
