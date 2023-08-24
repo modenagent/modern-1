@@ -63,7 +63,7 @@
             <?php
                 $footer_content = isset($report_content_data['footer_content']['value']) && !empty($report_content_data['footer_content']['value']) ? $report_content_data['footer_content']['value'] : 'Joe and Jane went from being very competitively priced to being the highest property in their price range. From a buyer\'s perspective, their home now offers the worst value proposition in the marketplace.';
             ?>
-            <p class="f14"><?php echo $footer_content; ?></p>
+            <p class="f14 res-text-center"><?php echo $footer_content; ?></p>
             <ul class="home_list">
                 <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
                 <li><img src="<?php echo base_url().'assets/reports/english/seller/images/18/home.png'; ?>" alt="home" border="0"></li>
