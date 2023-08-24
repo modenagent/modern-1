@@ -1077,4 +1077,55 @@ footer .credits {
 		margin-top: 15px;
 		margin-bottom: 15px;
 	}
+
+	.pdf18 table th, .pdf18 td {
+		font-size: 8px !important;
+	}
+
+	.pdf18 {
+		padding: 45px 10px;
+	}
+	.res-text-center {
+		text-align: center;
+	}
+
+	.pdf20 {
+		padding: 20px;
+	}
+
+	.pdf20 .main-content {
+		position: relative;
+	}
+
+	.pdf20 .content .d-flex {
+		display: flex;
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.pdf20 .content {
+		background: none;
+		color: #000;
+	}
+
+	.pdf20 .signature {
+		margin-left: 0px;
+		width: auto;
+	}
+
+	.pdf20 .bordered_img {
+		transform: none;
+		height: auto;
+		margin: 0 auto;
+	}
+
+	.pdf20 .visit_us {
+		margin-top: 0px;
+	}
+
+	.pdf20 .footer {
+		gap: 10;
+		padding: 0px;
+	}
+	
 }
