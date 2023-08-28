@@ -22,9 +22,9 @@
 			</p>
 		</header>
 
-        <div class="row">
+        <div class="row vertical-align">
 
-          <div class="col-xs-4">
+          <div class="col-xs-4 responsive-100">
             
             <div class="avg-text-box">
 
@@ -62,7 +62,7 @@
     
           </div>
 
-          <div class="col-xs-8">
+          <div class="col-xs-8 responsive-100">
           
 			<p class="most-buyers3"> 
 			<?php 
@@ -84,9 +84,9 @@
 
     <div class="market-content-top2">
       
-    <div class="row">
+    <div class="row vertical-align">
     
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
        
 		<h4 class="home">
 		<?php 
@@ -112,7 +112,7 @@
      </div>
 
 
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
         
 		<h4 class="home">
 		<?php 
@@ -140,7 +140,7 @@
 
     <div class="row">
       
-     <div class="col-xs-6">
+     <div class="col-xs-6 horizontal-align">
         
       <div class="col-xs-1"> 
       

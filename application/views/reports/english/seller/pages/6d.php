@@ -23,8 +23,8 @@
 		</header>
 
 		<div class="row">
-			<div class="two-grid-wrapper">
-				<div class="col-xs-6">
+			<div class="two-grid-wrapper vertical-align">
+				<div class="col-xs-6 responsive-100">
 					<div class="left-grid">
 						<div class="text-block-condensed">
 							<h2>
@@ -113,7 +113,7 @@
 						
 					</div>
 				</div>
-				<div class="col-xs-6">
+				<div class="col-xs-6 responsive-100">
 					<div class="right-grid">
 						<img width="100%" class="img-responsive" src="<?php echo base_url("assets/reports/english/seller/images/6c/6c2.jpg")?>" alt="">
 					</div>

@@ -51,7 +51,6 @@
     $rangeDiff= (int)$_priceMaxRange - (int)$_priceMinRange;
     $_sliderStartPoint = (int)$_priceMinRange - round($rangeDiff/8);
     $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
-
 ?>
 <div class="site-wrapper">
     <section class="row article-wrapper">
@@ -97,7 +96,7 @@
                     <?php 
                     // print_r($pageList);die;
                     foreach($pageList as $key => $val) { ?>
-                    <section id="tab-<?= $val ?>" class="tab-body entry-content <?= ($seller_theme == 2) ? 'section-theme-2' : '';?>  <?= ($firstPage == $val) ? 'active active-content' : '';?>">
+                    <section id="tab-<?= $val ?>" class="tab-body entry-content <?= ($seller_theme == 2) ? 'section-theme-2' : ($seller_theme == 3) ? 'section-theme-3' : 'section-theme-1';?>  <?= ($firstPage == $val) ? 'active active-content' : '';?>">
                     <?php 
                         if ($seller_theme == 2) {
                             $data = array();
