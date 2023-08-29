@@ -533,7 +533,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                     </tr>
 				</table>
             </div><!-- .page-4-table-main -->
-        	<h4>BEDS, BATHS, & SQUARE FOOTAGE</h4>
+        	<h4></h4>
             <div class="page-4-table-main cf">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>

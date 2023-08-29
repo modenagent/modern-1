@@ -148,7 +148,7 @@
 			<div class="table-row">
 				<div class="row">
 					<div class="col-xs-4">
-						<p>Total Rooms: <?php echo sizeof($property->PropertyProfile->PropertyCharacteristics->TotalRooms); ?></p>
+						<p>Total Rooms: <?php echo !empty($property->PropertyProfile->PropertyCharacteristics->TotalRooms) ? sizeof($property->PropertyProfile->PropertyCharacteristics->TotalRooms) : 0; ?></p>
 					</div>
 
 					<div class="col-xs-4">
