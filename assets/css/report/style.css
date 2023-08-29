@@ -839,6 +839,11 @@ footer .credits {
 .pricing-img, .gray-chart {
 	height: 350px;
 }
+
+.section-theme-1 #map9 {
+	margin-left: auto !important;
+	margin-right: auto !important;
+}
 /** End Report content css */
 
 /* @media (min-width: 992px) {
