@@ -94,9 +94,9 @@
                     </ul>
                     
                     <?php 
-                    // print_r($pageList);die;
+                    // print_r($seller_theme);die;
                     foreach($pageList as $key => $val) { ?>
-                    <section id="tab-<?= $val ?>" class="tab-body entry-content <?= ($seller_theme == 2) ? 'section-theme-2' : ($seller_theme == 3) ? 'section-theme-3' : 'section-theme-1';?>  <?= ($firstPage == $val) ? 'active active-content' : '';?>">
+                    <section id="tab-<?= $val ?>" class="tab-body entry-content <?= (($seller_theme == 2) ? 'section-theme-2' : (($seller_theme == 3) ? 'section-theme-3' : 'section-theme-1'));?>  <?= ($firstPage == $val) ? 'active active-content' : '';?>">
                     <?php 
                         if ($seller_theme == 2) {
                             $data = array();

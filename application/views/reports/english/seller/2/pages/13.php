@@ -6,8 +6,8 @@
         and its final sale price. To get the best possible outcome, an intelligent pricing strategy is used
         to attract more buyers in a shorter amount of time, resulting in a better sale price for you.
     </p>
-    <div class="d-flex mt-40">
-        <div class="col-30">
+    <div class="d-flex mt-40 vertical-align">
+        <div class="col-30 responsive-100">
             <h4 class="medium_bold">MARKET DEMAND
             VS. TIMING.</h4>
             <div class="orange_line"></div>
@@ -22,7 +22,7 @@
                 and attractive price.
             </p>
         </div>
-        <div class="col-30 mt-100">
+        <div class="col-30 mt-100 responsive-100">
             <h4 class="medium_bold">SELLING PRICE
             VS. TIMING</h4>
             <div class="orange_line"></div>
@@ -38,7 +38,7 @@
                 market value
             </p>
         </div>
-        <div class="col-30">
+        <div class="col-30 responsive-100">
             <h4 class="medium_bold">DETERMINING THE
             VALUE OF YOUR HOME</h4>
             <div class="orange_line"></div>

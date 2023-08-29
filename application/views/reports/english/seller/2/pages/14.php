@@ -9,8 +9,8 @@
         to start high.
     </p>
     <img src="https://i.ibb.co/vcQQrcB/pricing.png" alt="pricing" class="img-fluid mt-60 d-block pricing_img">
-    <div class="d-flex mt-30 steps">
-        <div class="col-50">
+    <div class="d-flex mt-30 steps vertical-align">
+        <div class="col-50 responsive-100">
             <h4 class="medium_bold">1. On Market Longer</h4>
             <p class="f14">
                 Properties that are over priced tend to stay on the
@@ -24,7 +24,7 @@
                 in your property.
             </p>
         </div> 
-        <div class="col-50">
+        <div class="col-50 responsive-100">
             <h4 class="medium_bold">3. Lost Time</h4>
             <p class="f14">
                 Time lost in waiting for an off er can be time spent

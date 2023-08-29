@@ -1,6 +1,6 @@
 <page>
     <h1 class="main_title top_title">Prospective Property</h1>
-    <div class="d-flex">    
+    <div class="d-flex res-text-center">    
         <div class="col-12">
             <h4 class="table_title mt-50">Owner, Address & Legal Description</h4>
             <table>

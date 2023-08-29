@@ -1,6 +1,6 @@
 <page>
     <h1 class="main_title top_title">AVERAGE DAYS ON THE MARKET</h1>
-    <div class="d-flex mt-50">
+    <div class="d-flex mt-50 vertical-align">
         <div class="avg_block">
             <span>Avg. Days on Market</span>
             <div class="number">12</div>
@@ -19,8 +19,8 @@
             </p>
         </div>
     </div>
-    <div class="d-flex mt-20 steps">
-        <div class="col-50">
+    <div class="d-flex mt-20 steps vertical-align res-col-reverse">
+        <div class="col-50 responsive-100">
             <h4 class="medium_bold">Market</h4>
             <p class="mb-10 f14">
                 Can be a geographic location or type of housing.
@@ -36,7 +36,7 @@
                 </li>
             </ul>
         </div> 
-        <div class="col-50">
+        <div class="col-50 responsive-100">
             <h4  class="medium_bold">Season</h4>
             <p class="f14">
                 When someone is looking to pack up and move they

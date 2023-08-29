@@ -5,8 +5,8 @@
         multiple skill-sets. Go through the questions below and see if you can check off every
         single one of them
     </p>
-    <div class="d-flex mt-20">    
-        <div class="col-50">
+    <div class="d-flex mt-20 vertical-align">    
+        <div class="col-50  responsive-100">
             <ul class="f16">
                 <li>
                     Understand your goals, objectives and
@@ -26,7 +26,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-50">
+        <div class="col-50  responsive-100">
             <ul class="f16">
                 <li>
                     Discuss current market conditions and
