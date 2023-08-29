@@ -19,8 +19,8 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
     <hr>
     <div class="footer">
         <div class="more_info">For more information, please contact me.</div>
-        <div class="d-flex">
-            <div class="signature horizontal_sign">
+        <div class="d-flex vertical-align">
+            <div class="signature horizontal_sign vertical-align res-pos-relative">
 
                     <?php 
                         if($user['profile_image'] != '' && $user['profile_image'] != 'no')
@@ -32,7 +32,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                     ?>
 
                     
-                <div>
+                <div class="res-text-center">
                     <?php 
                     if(!empty($user['fullname'])) {
                     ?>
@@ -61,8 +61,8 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                     <?php } ?>
                 </div>
             </div>
-            <div class="logo">
-                <div class="">
+            <div class="logo vertical-align res-pos-relative signature-wrap">
+                <div class="vertical-align">
                     <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" border="0">
                     <div class="auth">AUTHENTICITY ABOVE ALL.</div>
                     <div class="info_policy">This is not intended to solicit currently listed properties.<br>

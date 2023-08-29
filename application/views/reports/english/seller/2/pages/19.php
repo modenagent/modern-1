@@ -1,8 +1,8 @@
-<page class="pdf19 pt-0 pr-0">
-    <div class="d-flex">
-        <div class="col-60">
-            <h2 class="small_big"><span>SOCIAL MEDIA</span>MARKETING</h2>
-            <div class="mini_line mx-0"></div>
+<page class="pdf19 pt-0 pr-0 vertical-align">
+    <div class="d-flex vertical-align">
+        <div class="col-60 responsive-100">
+            <h2 class="small_big res-text-center"><span>SOCIAL MEDIA</span>MARKETING</h2>
+            <div class="mini_line mx-0 res-width-auto"></div>
             <p class="f14">
                 As part of our digital marketing strategy, your listing will be
                 exposed to millions more across the globe using targeted
@@ -14,7 +14,7 @@
                 platforms such as:
             </p>
         </div>
-        <div class="col-40">
+        <div class="col-40 responsive-100">
             <img src="https://i.ibb.co/mF9MHCN/social-media.png" alt="social-media" class="img-fluid d-block">
         </div>
     </div>

@@ -16,9 +16,9 @@
                     }
                 ?>
                 <?php if(($avaiProperty+1) % 2):?><!-- Start row div when odd number -->
-                <div class="row" >
+                <div class="row vertical-align" >
                 <?php endif; ?>
-                    <div class="col-xs-6">
+                    <div class="col-xs-6 responsive-100">
 
                         <h5 class="arrow"> <?php echo $item['Address']; ?> </h5>
 
@@ -41,7 +41,7 @@
 
                         </div>
 
-                        <table class="table table-top-sales">
+                        <table class="table table-top-sales responsive-100">
                             <tbody>
                                 <tr class="gray-color">
                                         <td style="padding-right: 80px;">Sold Date</td>

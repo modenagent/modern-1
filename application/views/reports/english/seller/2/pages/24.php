@@ -2,10 +2,10 @@
     <h1 class="report_title">&nbsp;</h1>
     <!-- <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" class="mx-auto z9 top-logo"> -->
     <img src="https://i.ibb.co/5K2mcTx/resort.png" alt="resort"  class="w100 hero_img">
-    <div class="footer">
+    <div class="footer vertical-align">
         <div class="more_info">For more information, please contact me.</div>
-        <div class="d-flex">
-            <div class="signature horizontal_sign">
+        <div class="d-flex vertical-align">
+            <div class="signature horizontal_sign vertical-align">
                     <?php 
                         if($user['profile_image'] != '' && $user['profile_image'] != 'no')
                         {
@@ -14,7 +14,7 @@
                     <?php
                         }
                     ?>
-                <div>
+                <div class="res-text-center">
                     <?php 
                     if(!empty($user['fullname'])) {
                     ?>
@@ -44,7 +44,7 @@
                     <!-- <a href="https://dawncordiner.com" target="_blank" class="contact_info"><b>dawncordiner.com</b></a> -->
                 </div>
             </div>
-            <div class="logo">
+            <div class="logo res-text-center res-pos-relative signature-wrap">
                 <div class="">
                     <img src='<?php echo base_url($user["company_logo"]); ?>' alt="company-logo" border="0">
                     <div class="auth">AUTHENTICITY ABOVE ALL.</div>
@@ -56,7 +56,7 @@
             </div>
         </div>
     </div>
-    <p class="mini_text">
+    <p class="mini_text res-pos-relative res-pos-auto">
         This material is intended as informational only and not as a solicitation. All information contained has been provided
         by the Realtor and even where intended to be reliable is in no case
         a guarantee to accuracy of the information contained including but not limited to condition, lot size, square footage,
