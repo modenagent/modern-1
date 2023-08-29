@@ -1045,10 +1045,7 @@ footer .credits {
 	.pdf14 .f14, .pdf15 .f14, .pdf18 .f14, .pdf19 .f14 {
 		font-size: 10px;
 	}
-	.responsive-100 {
-		width: 100%!important;
-	}
-
+	
 	.pdf13 .top_title, .pdf19 .top_title {
 		font-size: 16px;
 	}
@@ -1268,6 +1265,19 @@ footer .credits {
 		margin-top: 0px;
 	}
 
+	.responsive-100 {
+		width: 100%!important;
+	}
+
+	.res-col-reverse {
+		flex-direction: column-reverse
+	}
+
+	.res-text-center {
+		text-align: center;
+		margin: 0 auto;
+	}
+
 	.vertical-align {
 		display: flex;
 		flex-direction: column;
@@ -1463,15 +1473,10 @@ footer .credits {
 		position: relative !important;
 	}
 
-	.res-text-center {
-		text-align: center;
-		margin: 0 auto;
-	}
-
 	.container .section, .section-theme-2 {
 		padding : 0rem !important;
 	}
-	.section-theme-2 page {
+	.section-theme-3 page, .section-theme-2 page {
 		padding: 15px 10px;
 	}
 
@@ -1519,10 +1524,6 @@ footer .credits {
 	.section-theme-2 .pdf13 .medium_bold {
 		font-size: 13px;
 		letter-spacing: normal;
-	}
-
-	.res-col-reverse {
-		flex-direction: column-reverse
 	}
 
 	.section-theme-2 .plan_circle {
