@@ -271,8 +271,9 @@
                     </div>
 
                     <div class="carousel-container common_template">
-                        <!-- <div  class="row preview_pages"></div> -->
-                        <!-- <div style="display: none;" > -->
+                        <input type="hidden" class="seller_default_theme" id="seller_default_theme" value="<?php echo $default_sub_type['seller']; ?>" name="cover_seller">
+                        <div  class="row preview_pages"></div>
+                        <div style="display: none;" >
                             <div id="owl-example" class="owl-carousel" style="display: none;" >
                             
                                 <?php 
@@ -300,7 +301,7 @@
                                 }
                                 ?>
                             </div>
-                        <!-- </div> -->
+                        </div>
                     </div>
                     <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
                     <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="marketUpdate" checked="" style="display: none !important">
