@@ -1026,6 +1026,7 @@ footer .credits {
 	table td, .pdf18 table th {
 		font-size: 10px;
 	}
+
 	.parent-house-wrapper {
 		display: flex;
 		flex-direction: column;
@@ -1083,13 +1084,21 @@ footer .credits {
 	}
 
 	.pdf18 table th, .pdf18 td {
-		font-size: 8px !important;
+		font-size: 10px !important;
 	}
 
 	.pdf18 {
 		padding: 45px 10px;
 	}
 
+	.pdf8 table td, .pdf8 table th {
+		padding: 5px;
+		font-size: 12px !important;
+	}
+	.pdf18 table th, .pdf18 table td {
+		padding: 5px;
+		font-size: 10px !important;
+	}
 	.pdf20 {
 		padding: 20px;
 	}
@@ -1129,6 +1138,9 @@ footer .credits {
 		padding: 0px;
 	}
 	
+	.pdf12 h4, .pdf15 .sub_title, .pdf19 .sub_title, .pdf18 .sub_title, .pdf19 h4.crimson {
+		margin: 10px 0px;
+	}
 	.tabs-block, .tabs section {
 		width: 100%;
 	}
