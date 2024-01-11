@@ -3164,7 +3164,7 @@ p.terms-txt a,
 
 #hero-10 {
   position: relative;
-  background-image: url(../images/hero-24-img-a.jpg);
+  background-image: url(../images/hero-24-img-b.jpg);
   padding-top: 170px;
   margin-bottom: 100px;
 }
@@ -3176,6 +3176,7 @@ p.terms-txt a,
 .hero-10-txt h2 {
   padding:  4% 6% 0%;
   margin-bottom: 30px;
+  font-size: 4.375rem;
   
 }
 
