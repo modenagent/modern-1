@@ -28,3 +28,4 @@ pipelines:
                     SSH_USER: 'root'
                     SERVER: '173.255.248.119'
                     COMMAND: 'sudo bash /home/script/dev-autodeployment.sh'
+              max-time: 10
