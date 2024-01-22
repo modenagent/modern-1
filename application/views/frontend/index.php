@@ -11,7 +11,7 @@
                         
                                 <!-- Title -->
                                 <h2 class="h2-md wow fadeInUp">
-                                   Helping You Create Beautiful <br> Real Estate CMA's
+                                   Helping You Create Beautifull <br> Real Estate CMA's
                                 </h2>   
 
                                 <!-- Buttons Group -->
