@@ -18,3 +18,14 @@ pipelines:
                         PORT: $MA_PORT
                         MODE: 'command'
                         COMMAND: $MA_PROD_SH
+                       
+     master:  # Trigger this for master branch to deploy on development server
+          - step:
+              name: Deploy to deployment server
+              script:
+                - pipe: atlassian/ssh-run:0.2.2
+                  variables:
+                    SSH_USER: 'root'
+                    SERVER: '173.255.248.119'
+                    COMMAND: 'sudo bash /home/script/dev-autodeployment.sh'
+              max-time: 10
