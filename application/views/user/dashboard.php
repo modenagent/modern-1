@@ -7,14 +7,14 @@
             <div id="choose-presentation">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1 class="main_title">How Can We Help You Make an Impression?</h1>
+                        <h1 class="main_title">Choose Your Report</h1>
                         <div class="impression_block_list">
                          <!--   <button class="impression_block" type="button" onclick="choose_presentation('buyer');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/buyer_presentation.png" alt="..." class="img-fluid d-block mx-auto">
                               Buyers Presentation 
                             </button>  -->
                             <button class="impression_block" type="button" onclick="choose_presentation('seller');">
-                              <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/Sample.png" alt="..." class="img-fluid d-block mx-auto">
                               CMA + Marketing
                             </button>
                             <!-- <button class="impression_block" type="button" onclick="choose_presentation('sellerCma');">
@@ -22,11 +22,11 @@
                               CMA Only
                             </button> -->
                             <button class="impression_block" type="button" onclick="choose_presentation('marketUpdate');">
-                              <img src="<?php echo base_url(); ?>assets/new_site/img/market_update.png" alt="..." class="img-fluid d-block mx-auto">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/Sample2.png" alt="..." class="img-fluid d-block mx-auto">
                               Market Update
                             </button>
                             <button class="impression_block" type="button" onclick="choose_presentation('registry');">
-                              <img src="<?php echo base_url(); ?>assets/new_site/img/smart_registry.png" alt="..." class="img-fluid d-block mx-auto">
+                              <img src="<?php echo base_url(); ?>assets/new_site/img/Sample3.png" alt="..." class="img-fluid d-block mx-auto">
                               Smart Registry
                             </button>
                         </div>
