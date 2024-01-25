@@ -15,7 +15,7 @@
                             </button>  -->
                             <button class="impression_block" type="button" onclick="choose_presentation('seller');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample.png" alt="..." class="img-fluid d-block mx-auto">
-                              CMA + Marketing
+                              Market Analysis <span class="subtitle">Report</span>
                             </button>
                             <!-- <button class="impression_block" type="button" onclick="choose_presentation('sellerCma');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/seller_presentation.png" alt="..." class="img-fluid d-block mx-auto">
@@ -23,11 +23,11 @@
                             </button> -->
                             <button class="impression_block" type="button" onclick="choose_presentation('marketUpdate');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample2.png" alt="..." class="img-fluid d-block mx-auto">
-                              Market Update
+                              Market Update<span class="subtitle">Report</span>
                             </button>
                             <button class="impression_block" type="button" onclick="choose_presentation('registry');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample3.png" alt="..." class="img-fluid d-block mx-auto">
-                              Smart Registry
+                              Smart Registry<span class="subtitle">Report</span>
                             </button>
                         </div>
                     </div>
