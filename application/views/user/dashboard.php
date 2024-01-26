@@ -549,7 +549,7 @@
                                 <tfoot>
                                     <tr>
                                         <td colspan=""></td>
-                                        <td colspan="2">SUBTOTAL</td>
+                                        <td colspan="2">Sub Total</td>
                                         <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                     </tr>
                                     <tr id="coupandiscount" style="display:none">
@@ -558,8 +558,8 @@
                                         <td>$0.00</td>
                                     </tr>
                                     <tr id="totalInvoiceAmount">
-                                        <td colspan="" style="border-top:1px solid #fff;"></td>
-                                        <td colspan="2">GRAND TOTAL</td>
+                                        <td colspan="" style=""></td>
+                                        <td colspan="2">Total Due</td>
                                         <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
                                     </tr>
                                 </tfoot>
