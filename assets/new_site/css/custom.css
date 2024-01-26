@@ -552,10 +552,15 @@ footer a:hover{
 .stepContainer .content .input-group-btn {
     padding: 0 !important;
 }
-.stepContainer .content .input-group-btn .btn:hover,.stepContainer .content .input-group-btn .btn:active,.stepContainer .content .input-group-btn .btn:focus{
+.stepContainer .content .input-group-btn .btn:hover,.stepContainer .content .input-group-btn .btn:focus{
     background: #e0514b !important;
     color: #fff;
 }
+.stepContainer .content .input-group-btn .btn:active {
+	background: #F4F4FA !important;
+    color: #2f353e;
+}
+
 #report-type {
     float: none !important;
     padding: 0 !important;
@@ -603,7 +608,7 @@ footer a:hover{
 .btn-success {
     color: #fff;
     background-color: #00E676;
-    border-color: 1px solid #00E676;
+    border: 1px solid #00E676;
 }
 
 .btn-success:hover {
