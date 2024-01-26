@@ -664,9 +664,15 @@ td.totalodd { color: #2c3e50; font-size: 13px; font-weight: 300; font-family: 'O
 }
 
 a {
-    color: #cc9964;
+    color: #FF523C;
     text-decoration: none;
 }
+
+a:hover {
+    color: #be3e2e;
+    text-decoration: none;
+}
+
 
 .invoice {
     position: relative;
@@ -742,6 +748,7 @@ a {
     border-collapse: collapse;
     border-spacing: 0;
     margin-bottom: 60px;
+	background: #F4F4FA;
 }
 
 .invoice .invoice-table th,
@@ -769,42 +776,45 @@ a {
 }
 
 .invoice .invoice-table tbody td h3 {
-    color: #ffffff;
-    font-size: 1.2em;
+    color: #2F353E
+    font-size: 23px;
     font-weight: 600;
     margin: 0 0 0.2em 0;
+	background: #F4F4FA;
 }
 
 .invoice .invoice-table .no {
     font-size: 1.6em;
     /* //background: #E83435; */
-    background: rgba(255,255,255,0.65);
-    color: #fff;
+    background: #F4F4FA;
+    color: #2F353E
 }
 
 .invoice .invoice-table .desc {
     text-align: left;
-    background: rgba(255,255,255,0.65);
-    color: #fff;
+    background: #F4F4FA;
+    color: #2F353E
+	font-size: 18px;
 }
 
 .invoice .invoice-table .unit {
-   background: rgba(255,255,255,0.65);
-    color: #fff;
+   background: #F4F4FA;
+    color: #2F353E;
 }
 
 .invoice .invoice-table .qty {}
 
 .invoice .invoice-table .total {
     /* //background: #43909F none repeat scroll 0 0; */
-    background: rgba(255,255,255,0.65);
-    color: #fff;
+   
+    color: #2F353E;
 }
 
 .invoice .invoice-table td.unit,
 .invoice .invoice-table td.qty,
 .invoice .invoice-table td.total {
     font-size: 1.2em;
+	font-size:	18px;
 }
 
 .invoice .invoice-table tbody tr:last-child td {
@@ -817,10 +827,9 @@ a {
 
 .invoice .invoice-table tfoot td {
     padding: 10px 20px;
-    background: rgba(255,255,255,0.65);
-    color: #fff;
+    color: #2F353E;
     border-bottom: none;
-    font-size: 1.2em;
+    font-size: 18px;
     white-space: nowrap;
     /* //border-top: 1px solid #AAAAAA; */
 }
@@ -831,9 +840,11 @@ a {
 
 .invoice .invoice-table tfoot tr:last-child td {
     border-top: 1px solid #fff;
-    background: rgba(255,255,255,0.65);
-    color: #fff;
+    color: #2F353E;
     font-size: 1.4em;
+	padding-top: 25px;
+    padding-bottom: 25px;
+}
 }
 
 .invoice .invoice-table tfoot tr td:first-child {
@@ -903,6 +914,8 @@ a {
     border-radius: 0px;
     padding: 12px;
     white-space: nowrap;
+    border: 2px solid #582a82;
+    font-size: 18px
 }
 
 .btn-lp.btn-checkout:hover {

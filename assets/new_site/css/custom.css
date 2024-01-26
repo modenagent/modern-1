@@ -16,7 +16,7 @@ header.overlapping {
     padding: 0;
 }
 .menu-toggler img {
-    width: 25px;
+    width: 15px;
 }
 header.overlapping-down {
     background: #ECEFF1;
@@ -497,7 +497,7 @@ footer a:hover{
     margin: 20px 0 44px;
 }
 .stepContainer .content {
-    padding-top: 20px;
+    padding-top: 30px;
     margin: 0;
 }
 .stepContainer #step-1.content { 
@@ -511,6 +511,7 @@ footer a:hover{
 }
 .stepContainer #step-1.content input {
     height: 75px !important;
+	font-size: 18px;
 }
 .stepContainer .content input {
     height: 48px !important;
@@ -599,6 +600,18 @@ footer a:hover{
     content: "\f0d9";
 }
 
+
+.btn-success {
+    color: #fff;
+    background-color: #00E676;
+    border-color: 1px solid #00E676;
+}
+
+.btn-success:hover {
+    color: #fff;
+    background-color: transparent;
+    border-color: 1px solid #00E676;
+}
 
 
 
@@ -1186,7 +1199,7 @@ body.home.loaded.modal-open #steps {
 }
 #step-4 #details {
     display: flex;
-    margin-bottom: 120px;
+    margin-bottom: 30px;
 }
 #step-4 #details > *{
     margin-right: 70px;

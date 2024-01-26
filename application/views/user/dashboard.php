@@ -581,7 +581,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <hr>
+                        
                             <div class="clearfix" >
                             </div>
                         </article>
