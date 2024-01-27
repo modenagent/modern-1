@@ -718,7 +718,7 @@ class Reports
         $wkhtmltopdfPath = $CI->config->item('wkhtmltopdf_path');
         if ($turboMode && $presentationType == 'seller' && $reportLang == 'english') {
             $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
-        } else if ($_POST['seller_theme'] == 1) {
+        } else if ($_POST['seller_theme'] == 1 && $presentationType != 'marketUpdate') {
             $checkLastPages =  array_filter($data['pageList'], function($page) {
                 return in_array($page, [13,14,15,16,17,18,19,20]);
             });
