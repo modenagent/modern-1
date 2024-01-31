@@ -698,8 +698,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Adjust Parameter to Search Property</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="property_search_model_header" >
+                        <h5 class="modal-title text-center">Adjust Parameter to Search Property</h5>
+                        <p>Oops looks like your property did not return enough comparables. Use the controls below to expand the radius of your search. You can also increase the range for the Square Footage</p>
+                    </div>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
                 
                 <form class="form-horizontal" name="form" method="post" id="changes_req_params_property_search">
@@ -754,7 +757,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit"  class="btn btn-success">Search</button>
+                        <button type="submit"  class="btn btn-success">Update Search</button>
                     </div>
                     <div class="panel-footer">
                     </div>
