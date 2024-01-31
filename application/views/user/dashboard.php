@@ -693,6 +693,75 @@
         </div>
       </div>
     </div>
+    <!-- property_search_model -->
+    <div id="property_search_model" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Adjust Parameter to Search Property</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <form class="form-horizontal" name="form" method="post" id="changes_req_params_property_search">
+                    <div class="modal-body" >
+                        <div class="form-group clearfix">
+                            <label class="col-lg-3 control-label">APN</label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id = "apn" name = "apn" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="form-group clearfix">
+                            <label class="col-lg-3 control-label">Property</label>
+                            <div class="col-lg-9">
+                                <div class="input-group">
+                                    <input class="form-control" type="text" id="property_address" name="property_address" style readonly>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="form-group clearfix">
+                            <label class="col-lg-3  control-label">Square Feets</label>
+                            <div class="col-lg-9">
+                                <select class="form-control" id="sqft" name="sqft">
+                                    <option value="0.20">0.20 +/-</option>
+                                    <option value="0.40">0.40 +/-</option>
+                                    <option value="0.50">0.50 +/-</option>
+                                    <option value="0.60">0.60 +/-</option>
+                                    <option value="0.70">0.70 +/-</option>
+                                    <option value="0.80">0.80 +/-</option>
+                                    <option value="0.90">0.90 +/-</option>
+                                </select>
+                                <!-- <input class="form-control" type="text" id="sqft" name="sqft"> -->
+                            </div>
+                        </div>
+                        <div class="form-group clearfix">
+                            <label class="col-lg-3  control-label">Radius</label>
+                            <div class="col-lg-9">
+                                <select class="form-control" id="radious" name="radious">
+                                    <option value="0.25">0.25 mi</option>
+                                    <option value="0.50">0.50 mi</option>
+                                    <option value="0.75">0.75 mi</option>
+                                    <option value="1.00">1.00 mi</option>
+                                    <option value="1.25">1.25 mi</option>
+                                    <option value="1.50">1.50 mi</option>
+                                    <option value="1.75">1.75 mi</option>
+                                    <option value="2.00">2.00 mi</option>
+                                </select>
+                                <!-- <input class="form-control" type="text" id = "radious" name ="radious"> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit"  class="btn btn-success">Search</button>
+                    </div>
+                    <div class="panel-footer">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 <!-- Screenshots section -->
 <script src="https://js.stripe.com/v3"></script>
