@@ -713,12 +713,14 @@ function get187() {
                     });  
                     if(firstOpen) {
                         // If received list is not greater than min value than set our min value to received list length
-                        var pre_selected_options = $.trim($('#pre-selected-options').html());
-                        if (pre_selected_options!='') {
-                          if(_min>$('#pre-selected-options').val().length){
-                              _min = $('#pre-selected-options').val().length;
-                          }
-                        }
+                        // var pre_selected_options = $.trim($('#pre-selected-options').html());
+                        // if (pre_selected_options!='') {
+                        //     if(_min>$('#pre-selected-options').val().length){
+                                // console.log('_min ------------------------', _min);
+                                // _min = $('#pre-selected-options').val().length;
+                                // console.log('_min ******************------------------------', _min);
+                        //     }
+                        // }
                         firstOpen = false;
                     }
                 }
