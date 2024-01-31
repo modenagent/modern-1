@@ -728,7 +728,7 @@ function get187() {
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
 
-                if (all_comp.length  + sorted_comp.length < 5) {
+                if (all_comp.length  + sorted_comp.length < 4) {
                     $('#property_search_model').modal('show');
                     $('#changes_req_params_property_search #apn').val(dataObj.apn);
                     // $('#changes_req_params_property_search #property_address').val(dataObj.Address);

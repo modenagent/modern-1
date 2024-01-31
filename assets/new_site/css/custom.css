@@ -2097,4 +2097,11 @@ body.cma-body {
     margin: 20px 0px;
 }
 
+.property_search_model_header p {
+    font-size: 10px;
+    margin-top: 10px;
+    line-height: 12px;
+    margin-bottom: 0px;
+}
+
 /*BI*/
