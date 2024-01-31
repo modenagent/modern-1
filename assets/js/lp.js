@@ -56,6 +56,8 @@ $(document).ready(function() {
     // $(document).on('click', '.js-run-apn-button', apnData);
     activeRequest = false;
     pmaRes = {};
+    defaultSqft = "0.20";
+    defaultRadius = "0.75";
 
     $('#paynow').click(function(){
         $('.loader1').show();
@@ -521,7 +523,7 @@ function getAddress() {
 function data(address, locale,neighbourhood,retry) {
     dataObj.Address = address;
     dataObj.LastLine = locale.toString();
-    dataObj.ClientReference = '<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
+    dataObj.ClientReference = '<CustCompFilter><SQFT>'+defaultSqft+'</SQFT><Radius>'+defaultRadius+'</Radius></CustCompFilter>';
     dataObj.OwnerName = '';
     compileRequest(dataObj,neighbourhood,retry);
 }
@@ -534,7 +536,6 @@ function compileRequest(dataObj,neighbourhood,retry) {
     var request ='http://api.sitexdata.com/sitexapi/sitexapi.asmx/AddressSearch?'
     if(retry){
         dataObj.LastLine = neighbourhood.toString();
-        console.log(dataObj.LastLine);
     }
     request += $.param(dataObj);
     runQueries(request,dataObj,neighbourhood,retry);
@@ -542,8 +543,7 @@ function compileRequest(dataObj,neighbourhood,retry) {
 
 // run api query 
 function runQueries(request,dataObj,neighbourhood,retry) {
-    //console.log(request);
-    //console.log(base_url+'index.php?/lp/getSearchResults');
+
     $('.loader1').show();
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
@@ -559,7 +559,6 @@ function runQueries(request,dataObj,neighbourhood,retry) {
         .done(function(response, textStatus, jqXHR) {
 
             var responseStatus = $(response).find('StatusCode').text();
-            console.log(responseStatus);
             // $('.progress-bar').hide();
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
             
@@ -594,7 +593,6 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 $('.loader1').addClass('hidden');
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
-                
                 compileXmlUrls(response, '187');
                 get187();
                 // listResults(response);
@@ -620,8 +618,7 @@ function runQueries(request,dataObj,neighbourhood,retry) {
 
 // gets 187 for client-side parsing
 function get187() {
-    console.log('running 187',reportData.report187)
-    if(!getSordrtedProperties){
+    if(!getSordrtedProperties) {
         getSordrtedProperties = true;
         $.ajax({
             type: "GET",
@@ -699,7 +696,6 @@ function get187() {
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
                 if($('#pre-selected-options').length && ($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate")) {
-
                     // $('.buyer-cls').hide();
                     $('#pre-selected-options').multiSelect({
                       selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
@@ -725,12 +721,26 @@ function get187() {
                         }
                         firstOpen = false;
                     }
-                  }
+                }
                 activeRequest=false;
                 $('.loader1').hide();
                 $('.loader1').addClass('hidden');
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
+
+                if (all_comp.length  + sorted_comp.length < 5) {
+                    $('#property_search_model').modal('show');
+                    $('#changes_req_params_property_search #apn').val(dataObj.apn);
+                    // $('#changes_req_params_property_search #property_address').val(dataObj.Address);
+                    $('#changes_req_params_property_search select#sqft option[value="'+defaultSqft+'"]').attr("selected",true);
+                    $('#changes_req_params_property_search select#radious option[value="'+defaultRadius+'"]').attr("selected",true);
+                    // $("#property_search_model").modal("toggle");
+                    
+                    return false;
+                } else {
+                    $('#property_search_model').modal('hide');
+
+                }
             },
             error: function() {
                 console.log("An error occurred while processing data");
@@ -741,9 +751,19 @@ function get187() {
     }
 }
 
+$("#changes_req_params_property_search").submit(function(e){
+    e.preventDefault();
+    let apn = $('#changes_req_params_property_search #apn').val();
+    defaultSqft = $('#changes_req_params_property_search #sqft').val();
+    defaultRadius = $('#changes_req_params_property_search #radious').val();
+    dataObj.apn = apn;
+    dataObj.ClientReference = '<CustCompFilter><SQFT>'+defaultSqft+'</SQFT><Radius>'+defaultRadius+'</Radius></CustCompFilter>';
+    getSordrtedProperties = true;
+    $('.ms-container').remove();
+    compileAPNRequest(dataObj);
+});
 
 function parse187() {
-    console.log('success')
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
     if(ownerNamePrimary.indexOf(';') !== -1)
@@ -820,6 +840,7 @@ function compileXmlUrls(response, report) {
     // get the url for each report
     reportUrl = $(response).find('ReportURL').text();
     reportData.report187 = reportUrl;
+    console.log('compileXmlUrls reportData =========', reportData);
 }
 
 // list multiple APNs returned in address query
@@ -835,7 +856,6 @@ function multipleResults(response) { //console.log(response);
         var zip = $(this).find('ZIP').text();
         //var owner = $(this).find('PrimaryOwnerName').text();
         apnInfo[apn]['fips'] = $(this).find('FIPS').text();
-        console.log('fips1= ' + apnInfo[apn]['fips']);
         $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
         $('.search-result table > tbody').find('tr').eq(i).find('.result-apn').text(apn);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-unitNumber').text(unitNumber);
@@ -938,15 +958,13 @@ function apnData(e) {
     },400);
     
     isNewSearch=false;
-    console.log($(e).closest('tr').find('.result-apn').text());
     $('#lp_invoice .desc').html('<h3>'+$(e).closest('tr').find('.result-address').text()+'</h3>' + $(e).closest('tr').find('.result-apn').text()+ ' ' +$(e).closest('tr').find('.result-address').text()+' ' +$(e).closest('tr').find('.result-city').text());
     var apn = $(e).closest('tr').find('.result-apn').text();
     var fips = apnInfo[apn]['fips'];
-    console.log('fips2= ' + fips);
     dataObj = {};
     dataObj.apn = apn;
     dataObj.FIPS = fips;
-    dataObj.ClientReference = '<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
+    dataObj.ClientReference = '<CustCompFilter><SQFT>'+defaultSqft+'</SQFT><Radius>'+defaultRadius+'</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
 
     // $('.result-table > tbody').html('');
     // $('.result-table > tbody').hide();
@@ -1111,13 +1129,10 @@ function widgetRunPMA(agentPath, logoPath) {
     {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
-    console.log(presentation);
     if(presentation == 'seller')
     {
         query += '&' + 'use_rets_api=' + use_rets_api;
     }
-    // console.log(query);
-
     // Dynamic contents
     // config-page-modals
     $('.config-page-modals .more-page-config').each(function(i, obj) {

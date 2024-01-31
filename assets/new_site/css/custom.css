@@ -2085,5 +2085,16 @@ body.cma-body {
     }
 }
 
+#property_search_model .form-group input {
+    height: auto;
+}
+
+#property_search_model .form-control:disabled, .form-control[readonly] {
+    background-color: #fff;
+}
+
+#property_search_model .form-group {
+    margin: 20px 0px;
+}
 
 /*BI*/
