@@ -728,12 +728,14 @@
                             <div class="col-lg-9">
                                 <select class="form-control" id="sqft" name="sqft">
                                     <option value="0.20">0.20 +/-</option>
+                                    <option value="0.30">0.30 +/-</option>
                                     <option value="0.40">0.40 +/-</option>
                                     <option value="0.50">0.50 +/-</option>
                                     <option value="0.60">0.60 +/-</option>
                                     <option value="0.70">0.70 +/-</option>
                                     <option value="0.80">0.80 +/-</option>
                                     <option value="0.90">0.90 +/-</option>
+                                    <option value="1.00">1.00 +/-</option>
                                 </select>
                                 <!-- <input class="form-control" type="text" id="sqft" name="sqft"> -->
                             </div>

@@ -299,7 +299,7 @@
                   alert('Please select '+_min+' comparables');
                   // event.stopPropagation();
                   return false;
-              } else if ($('#pre-selected-options').val().length < _min){
+              } else if ($('#pre-selected-options').val().length < _min) {
                   alert('Please select '+_min+' comparables');
                   // event.stopPropagation();
                   return false;
