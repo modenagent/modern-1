@@ -257,7 +257,7 @@
     <script
         src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?= getGoogleMapKey(); ?>"></script>
 <?php } ?>
-<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.20") ?>"></script>
+<script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.30") ?>"></script>
 
 
 
