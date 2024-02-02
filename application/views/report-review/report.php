@@ -67,7 +67,6 @@
         <div class="tabs-container">
             <div class="tabs-block">
                 <div id="tabs-section" class="tabs">
-                    <img src="<?php echo base_url().'assets/new_site/img/hamburger_icon.png'; ?>" alt="humbergen" class="humberger" >
                     <ul class="tab-head">
                         <?php 
                         $firstPage = $pageList[0];
