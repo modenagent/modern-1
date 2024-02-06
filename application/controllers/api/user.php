@@ -1,11 +1,12 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
-require APPPATH.'/libraries/REST_Controller.php';
+require APPPATH . '/libraries/REST_Controller.php';
 
 class User extends REST_Controller
 {
     // Initialize Constructor Here
-    function __construct() {
+    public function __construct()
+    {
         parent::__construct();
         $this->load->helper('validation_helper');
         $this->load->helper('api_helper');
@@ -20,24 +21,25 @@ class User extends REST_Controller
      *  @author: Avtar Gaur <info@modernagent.io>
      *  @created: Jan 27, 2019
      *  @description: Login with username and password to get the access_token
-    */
-    public function login_post(){
+     */
+    public function login_post()
+    {
         $data = array();
-        $data   =   validate_my_params(
-                                        array(
-                                                'email'         =>  'required',
-                                                'password'      =>  'required'
-                                        )
-                                    );
+        $data = validate_my_params(
+            array(
+                'email' => 'required',
+                'password' => 'required',
+            )
+        );
 
-        if($data['status'] == 'success'){
+        if ($data['status'] == 'success') {
             $tableName = "lp_user_mst";
-            $user = $this->base_model->get_login_data($tableName, $data['data']['email'], $data['data']['password']); 
+            $user = $this->base_model->get_login_data($tableName, $data['data']['email'], $data['data']['password']);
 
             // if user is found
-            if($user){
+            if ($user) {
                 // user login
-                if($user->is_active == 'Y'){
+                if ($user->is_active == 'Y') {
                     //generate token
                     $token = generateToken($user->user_id_pk);
 
@@ -48,122 +50,125 @@ class User extends REST_Controller
                     unset($user->billing_zipcode);
                     unset($user->billing_name);
                     $resp = array(
-                                "status"=>"success",
-                                "message"=>"Login successful",
-                                "data"=> $user
-                            );
+                        "status" => "success",
+                        "message" => "Login successful",
+                        "data" => $user,
+                    );
 
                     $this->response($resp, 200);
-                }else{
+                } else {
                     $resp = array(
-                                "status"=>"error",
-                                "message"=>"User is inactive"
-                            );
+                        "status" => "error",
+                        "message" => "User is inactive",
+                    );
 
                     $this->response($resp, 400);
                 }
-            }else{
+            } else {
                 $resp = array(
-                            "status"=>"error",
-                            "message"=>"Wrong Email or Password"
-                        );
+                    "status" => "error",
+                    "message" => "Wrong Email or Password",
+                );
 
                 $this->response($resp, 400);
             }
-        }else{
+        } else {
             $resp = array(
-                        "status"=>"error",
-                        "message"=>"Email and Password are required"
-                    );
+                "status" => "error",
+                "message" => "Email and Password are required",
+            );
 
             $this->response($resp, 400);
         }
     }
 
-    public function validateToken_get(){
-        $this->response(validateToken('', TRUE), 200);
+    public function validateToken_get()
+    {
+        $this->response(validateToken('', true), 200);
     }
 
     // User Profile View Function
-    public function profileview_get(){
+    public function profileview_get()
+    {
         $userId = $this->get('userid');
-        if($userId){
+        if ($userId) {
             $result = $this->base_model->get_user_details($userId);
-            if($result){
+            if ($result) {
                 $resp = array(
-                    'status'=>'success',
-                    'data'=>$result
+                    'status' => 'success',
+                    'data' => $result,
                 );
-                echo $this->get('callback')."(".json_encode($resp).")";
+                echo $this->get('callback') . "(" . json_encode($resp) . ")";
             } else {
                 $resp = array(
-                    'status'=>'error',
-                    'data'=>'You are session expired.'
+                    'status' => 'error',
+                    'data' => 'You are session expired.',
                 );
-                echo $this->get('callback')."(".json_encode($resp).")";
-            }           
-        }else{
+                echo $this->get('callback') . "(" . json_encode($resp) . ")";
+            }
+        } else {
             $resp = array(
-                'status'=>'error',
-                'data'=>'You are not logged in.'
+                'status' => 'error',
+                'data' => 'You are not logged in.',
             );
-            echo $this->get('callback')."(".json_encode($resp).")";
+            echo $this->get('callback') . "(" . json_encode($resp) . ")";
         }
     }
     // profile edit
-    public function profileedit_get(){
+    public function profileedit_get()
+    {
         $userId = $this->get('userid');
-        if($userId){
+        if ($userId) {
             $fname = $this->get('fname');
             $lname = $this->get('lname');
             $uemail = $this->get('uemail');
-            $data = array(                 
+            $data = array(
                 'first_name' => $fname,
-                'last_name'=> $lname,
-                'primary_email'=> $uemail
+                'last_name' => $lname,
+                'primary_email' => $uemail,
             );
             $where = array(
-                'user_id_pk' => $userId
+                'user_id_pk' => $userId,
             );
-            $result = $this->base_model->update_record_by_id('att_user_mst',$data,$where);  
-            if($result){
+            $result = $this->base_model->update_record_by_id('att_user_mst', $data, $where);
+            if ($result) {
                 $resp = array(
-                    'status'=>'success',
-                    'message'=>'Profile is updated successfully.'
+                    'status' => 'success',
+                    'message' => 'Profile is updated successfully.',
                 );
-                echo $this->get('callback')."(".json_encode($resp).")";               
-            }else{
+                echo $this->get('callback') . "(" . json_encode($resp) . ")";
+            } else {
                 $resp = array(
-                    'status'=>'error',
-                    'message'=>'Profile could not be updated.'
+                    'status' => 'error',
+                    'message' => 'Profile could not be updated.',
                 );
-                echo $this->get('callback')."(".json_encode($resp).")"; 
+                echo $this->get('callback') . "(" . json_encode($resp) . ")";
             }
-        }else{
+        } else {
             $resp = array(
-                'status'=>'error',
-                'data'=>'You are not logged in.'
+                'status' => 'error',
+                'data' => 'You are not logged in.',
             );
-            echo $this->get('callback')."(".json_encode($resp).")";
+            echo $this->get('callback') . "(" . json_encode($resp) . ")";
         }
-    }  
+    }
     // Image Upload
-    public function imageupload_post(){
-        $userId = $this->post('userid');		//this line uncomment by vijay
-//        $userId = 1;		//this line comment by vijay
+    public function imageupload_post()
+    {
+        $userId = $this->post('userid'); //this line uncomment by vijay
+//        $userId = 1;        //this line comment by vijay
 //        $this->response($userId, 200);
 //        echo $this->get('callback')."(".json_encode($userId).")";
-        if($userId){
+        if ($userId) {
             $resp = user_image($userId);
-            echo $this->post('callback')."(".$resp.")";
-        }else{
+            echo $this->post('callback') . "(" . $resp . ")";
+        } else {
             $resp = array(
-                'status'=>'error',
-                'data'=>'You are not logged in.'
+                'status' => 'error',
+                'data' => 'You are not logged in.',
             );
-            echo $this->post('callback')."(".json_encode($resp).")";
+            echo $this->post('callback') . "(" . json_encode($resp) . ")";
         }
     }
     //Class ends here
 }
-?>

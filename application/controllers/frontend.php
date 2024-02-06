@@ -1,11 +1,13 @@
-<?php if (!defined('BASEPATH'))
+<?php if (!defined('BASEPATH')) {
     exit('No direct script access allowed');
+}
+
 ob_start();
 // require APPPATH.'/libraries/REST_Controller.php';
 class Frontend extends CI_Controller
 {
     // Initialize Constructor Here
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->load->helper('url');
@@ -25,11 +27,9 @@ class Frontend extends CI_Controller
 
         $this->load->library('session');
 
-
         $data['body_class'] = "home-all";
 
         $this->load->model('package_model');
-
 
         $package_prices = $this->package_model->get_by('package', 'buyer');
         $data['single_package'] = $package_prices->price_per_month;
@@ -42,7 +42,6 @@ class Frontend extends CI_Controller
         $this->load->view('frontend/index', $data);
         $this->load->view('frontend/footer', $data);
     }
-
 
     // frontend view
     public function login()
@@ -165,19 +164,15 @@ class Frontend extends CI_Controller
         $this->load->view('frontend/footer_login');
     }
 
-
-
-
-
-
-    function check_refcode($ref_code)
+    public function check_refcode($ref_code)
     {
-        if ($ref_code == '')
-            return true; //Allow blank ref code
+        if ($ref_code == '') {
+            return true;
+        }
+        //Allow blank ref code
         $parentId = (int) str_ireplace("REF", "", $ref_code);
         return $this->base_model->check_existent("lp_user_mst", array('user_id_pk' => $parentId));
     }
-
 
     // frontend view
     public function quick_pdf($code = '')
@@ -260,7 +255,6 @@ class Frontend extends CI_Controller
                 exit();
             }
 
-
             $this->load->model('user_package_subscription_model');
             $current_plans = $this->user_package_subscription_model->with('package')->get_many_by(['user_id' => $user->user_id_pk]);
             $this->load->library('Stripe_lib');
@@ -275,8 +269,6 @@ class Frontend extends CI_Controller
                     }
                 }
             }
-
-
 
             $canAvail = false;
             // $method = "";//suscription or coupon code of sales rep
@@ -315,8 +307,6 @@ class Frontend extends CI_Controller
 
             $theme = array('default_color' => $default_color, 'default_sub_type' => $default_sub_type);
 
-
-
             echo json_encode(array("status" => "success", "user" => $user, 'method' => '', 'theme' => $theme, 'subscribed' => $subscribed));
             exit();
             // } else {
@@ -330,7 +320,7 @@ class Frontend extends CI_Controller
     private function _cust_info_by_id($customerId)
     {
         $this->load->library('stripe');
-        $stripe = new Stripe(NULL);
+        $stripe = new Stripe(null);
         try {
             $response = json_decode($stripe->customer_info($customerId));
         } catch (Exception $e) {
@@ -389,7 +379,7 @@ class Frontend extends CI_Controller
         }
         foreach ($files as $file) {
             if (is_file($file)) {
-                if ($now - filemtime($file) >= $before_2_days && !in_array(basename($file), $images_array)) { // 
+                if ($now - filemtime($file) >= $before_2_days && !in_array(basename($file), $images_array)) { //
                     unlink($file);
                     echo '<br/>File deleted : ' . $file;
                 }
@@ -397,4 +387,3 @@ class Frontend extends CI_Controller
         }
     }
 }
-?>

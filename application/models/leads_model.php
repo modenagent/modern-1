@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 class Leads_model extends CI_Model
 {
@@ -17,10 +19,10 @@ class Leads_model extends CI_Model
         if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
             $value = trim($postData['search']['value']);
             $value = $this->db->escape($value);
-            $value = trim($value,"'");
-            $this->db->where("( phone_number LIKE '%".$value."%' 
-                OR CONCAT(TRIM(user.first_name), ' ', TRIM(user.last_name)) LIKE '%".$value."%'
-                 )", NULL, FALSE);
+            $value = trim($value, "'");
+            $this->db->where("( phone_number LIKE '%" . $value . "%'
+                OR CONCAT(TRIM(user.first_name), ' ', TRIM(user.last_name)) LIKE '%" . $value . "%'
+                 )", null, false);
         }
 
         $query = $this->db->get('lp_leads as lead');
@@ -40,13 +42,13 @@ class Leads_model extends CI_Model
         if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
             $value = trim($postData['search']['value']);
             $value = $this->db->escape($value);
-            $value = trim($value,"'");
-            $this->db->where("( phone_number LIKE '%".$value."%' 
-                OR CONCAT(TRIM(user.first_name), ' ', TRIM(user.last_name)) LIKE '%".$value."%'
-                 )", NULL, FALSE);
+            $value = trim($value, "'");
+            $this->db->where("( phone_number LIKE '%" . $value . "%'
+                OR CONCAT(TRIM(user.first_name), ' ', TRIM(user.last_name)) LIKE '%" . $value . "%'
+                 )", null, false);
         }
-        
-        if($postData['length'] != -1){
+
+        if ($postData['length'] != -1) {
             $this->db->limit($postData['length'], $postData['start']);
         } else {
             $this->db->limit(10, $postData['start']);
@@ -57,4 +59,3 @@ class Leads_model extends CI_Model
         return $query->result_array();
     }
 }
-?>

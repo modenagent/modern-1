@@ -1,16 +1,16 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-    var isNewSearch=false;
-    jQuery(".loaders").css({"opacity": "0","display":"none"});
-    jQuery(".loader-back").animate({"opacity": "1","display":"block"});
+    var isNewSearch = false;
+    jQuery(".loaders").css({ "opacity": "0", "display": "none" });
+    jQuery(".loader-back").animate({ "opacity": "1", "display": "block" });
     $('.buttonNext').addClass("buttonDisabled");
     $('.pma-table').hide();
     $('.file-change').hide();
     $('#search-btn').on('click', getAddress);
     $('.js-run-pma-button').hide();
 
-    $('#run-pma-form').submit(function(){
+    $('#run-pma-form').submit(function () {
         console.log(reportData);
         console.log("Submittting run-pma-form");
         return false;
@@ -39,7 +39,7 @@ $(document).ready(function() {
     // });
     pdfID = '';
     firstModal = true;
-    $(document).on('click', '.js-run-pma-button', function() {
+    $(document).on('click', '.js-run-pma-button', function () {
         $('#run-pma-dialog').dialog('open');
         pdfID = makeID();
     });
@@ -59,21 +59,21 @@ $(document).ready(function() {
     defaultSqft = "0.20";
     defaultRadius = "0.75";
 
-    $('#paynow').click(function(){
+    $('#paynow').click(function () {
         $('.loader1').show();
         $('.loader1').removeClass('hidden');
         $('.backwrap').show();
         $('.backwrap').removeClass('hidden');
         isPdfGenerated();
-    }); 
+    });
 });
 
 function initateCompSelection() {
-    $('#ms-pre-selected-options ul').each(function(idx, li) {
+    $('#ms-pre-selected-options ul').each(function (idx, li) {
         var cnt_idx = 1;
-        $(this).find('li') .each(function(idx, li) {
-            if($(this).css('display') != 'none') {
-                if(cnt_idx % 2 == 0) {
+        $(this).find('li').each(function (idx, li) {
+            if ($(this).css('display') != 'none') {
+                if (cnt_idx % 2 == 0) {
                     $(this).addClass('multi-select-even');
                 }
                 else {
@@ -81,24 +81,24 @@ function initateCompSelection() {
                 }
                 cnt_idx++;
             }
-            
+
         });
     });
 }
-function isPdfGenerated(){
-    setTimeout(function(){
-        if(activeRequest && !pdfGenerated){
+function isPdfGenerated() {
+    setTimeout(function () {
+        if (activeRequest && !pdfGenerated) {
             isPdfGenerated();
-        } else if(! pdfGenerated){
+        } else if (!pdfGenerated) {
             $('.loader1').hide();
             $('.backwrap').hide();
             $('#apply-coupan-alert').html("We did not process your payment as PDF Generation failed. Our team is looking into the matter. Please try again in a bit.").removeClass('alert-success').addClass('alert-danger').show();
             $('.loader1').hide();
             $('.backwrap').hide();
-        }else {
+        } else {
             $('#payment-form').submit();
         }
-    },1000);
+    }, 1000);
 }
 
 
@@ -106,9 +106,8 @@ function isPdfGenerated(){
 var xhr;
 var activeRequest = false;
 var pdfGenerated = false;
-function toTitleCase(str)
-{
-    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function (txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); });
 }
 
 function validateForm() {
@@ -141,7 +140,7 @@ function getDropItems() {
             task: 'fetchItems'
         }
     })
-        .done(function(response) {
+        .done(function (response) {
             var dropData = $.parseJSON(response);
             console.log(dropData[0]);
             console.log(dropData[1]);
@@ -152,7 +151,7 @@ function getDropItems() {
             textDropdown(realtors, '#lp-realtor-name');
             textDropdown(companies, '#lp-realtor-company');
         })
-        .fail(function() {})
+        .fail(function () { })
 }
 
 // Get archived company and agent dropdown info for customized info form
@@ -161,7 +160,7 @@ function textDropdown(dropArray, id) {
     var $input = $(id).autocomplete({
         source: dropArray,
         minLength: 0,
-        select: function(e, ui) {
+        select: function (e, ui) {
             retrieveFormData(id, e, ui);
         }
     }).addClass("ui-widget ui-widget-content ui-corner-left");
@@ -179,7 +178,7 @@ function textDropdown(dropArray, id) {
             })
             .removeClass("ui-corner-all")
             .addClass("ui-corner-right ui-button-icon lp-drop-button")
-            .click(function() {
+            .click(function () {
                 // close if already visible                         
                 if ($input.autocomplete("widget").is(":visible")) {
                     $input.autocomplete("close");
@@ -213,12 +212,12 @@ function retrieveFormData(id, e, ui) {
         type: 'GET',
         data: data
     })
-        .done(function(response) {
+        .done(function (response) {
             console.log(response)
             populateData(response);
 
         })
-        .fail(function() {})
+        .fail(function () { })
 }
 
 
@@ -296,70 +295,70 @@ function runPMA(agentPath, logoPath) {
 
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
-    query += '&' + formData;    
+    query += '&' + formData;
 
     query += '&' + 'pdfID=' + pdfID;
-    query +="&showpartner="+$('input.add-partner:checked').val();
-    if($('#addNewPartner').css('display')=='none'){
+    query += "&showpartner=" + $('input.add-partner:checked').val();
+    if ($('#addNewPartner').css('display') == 'none') {
         query += '&' + 'showpartner=off';
-    }else{
+    } else {
         query += '&' + 'showpartner=on';
     }
     query += '&' + 'theme=' + rgb2hex($('.custom-checkbox:checked').val());     //this line comment by vijay 
     // query += '&' + 'report_lang=' + $("select[name='report_lang']").val();
     var selectedPage = [];
     if ($('.page-checkbox:checked').length > 0) {
-        $('.page-checkbox:checked').each(function(){
+        $('.page-checkbox:checked').each(function () {
             selectedPage.push($(this).val());
         });
     }
     query += '&' + 'selected_pages=' + JSON.stringify(selectedPage);
-    query += '&' + 'pdf_page='+$('.registry_page:checked').val(); 
-    query += '&' + 'mu_theme='+$('.mu_radio:checked').val(); 
-    query += '&' + 'seller_theme='+$('#seller_default_theme').val(); 
-    query += '&' + 'buyer_theme='+$('.buyer_radio:checked').val(); 
+    query += '&' + 'pdf_page=' + $('.registry_page:checked').val();
+    query += '&' + 'mu_theme=' + $('.mu_radio:checked').val();
+    query += '&' + 'seller_theme=' + $('#seller_default_theme').val();
+    query += '&' + 'buyer_theme=' + $('.buyer_radio:checked').val();
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
-    query += '&' + 'selected_theme='+rgb2hex($('#report_color').val());
+    query += '&' + 'selected_theme=' + rgb2hex($('#report_color').val());
     var subscribe_temp = [];
     var i_index = 0;
-    $('.subscribe_temp:checked').each(function() {
-        query += '&' + 'subscribe_temp['+i_index+']='+this.value;
+    $('.subscribe_temp:checked').each(function () {
+        query += '&' + 'subscribe_temp[' + i_index + ']=' + this.value;
         i_index++;
-    }); 
+    });
 
     subscribe_temp
-    
-    if(activeRequest){
-        activeRequest=false;
+
+    if (activeRequest) {
+        activeRequest = false;
         xhr.abort();
     }
-    activeRequest=true;
+    activeRequest = true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
     console.log(query);
     xhr = $.ajax({
-        url: base_url+'lp/getPropertyData',
+        url: base_url + 'lp/getPropertyData',
         type: 'POST',
         data: query
     })
-        .done(function(response) {
+        .done(function (response) {
             var obj = JSON.parse(response);
             console.log(obj);
             manage_checkout_btn();
             try {
                 var obj = JSON.parse(response);
-                if(obj.status=='success'){
+                if (obj.status == 'success') {
                     pdfGenerated = true;
-                    pmaRes =  {status:"success"};
+                    pmaRes = { status: "success" };
                 }
             } catch (e) {
                 //return false;
             }
-            if(!pdfGenerated){
+            if (!pdfGenerated) {
                 $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
                 setTimeout(() => {
                     //SET TIME OUT because its add static error message from footer.php SO update exact error message after 1 second.
                     if (obj.msg != '') {
-                        if (typeof obj.showError !== 'undefined' && (obj.showError==true || obj.showError=='true')) { 
+                        if (typeof obj.showError !== 'undefined' && (obj.showError == true || obj.showError == 'true')) {
                             $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
                         }
                     }
@@ -368,24 +367,24 @@ function runPMA(agentPath, logoPath) {
                 $('.btn-lp.pay').hide();
                 if (obj.msg != '') {
                     // Error Message passed to CMA response.
-                    pmaRes =  {status:"failed",msg:obj.msg};
+                    pmaRes = { status: "failed", msg: obj.msg };
                 } else {
-                    pmaRes =  {status:"failed",msg:errorMsg};
+                    pmaRes = { status: "failed", msg: errorMsg };
                 }
             }
             // returnReport();
-            activeRequest=false;
+            activeRequest = false;
             // $('#step-4 .loader1').addClass('hidden');
             // $('#step-4 .backwrap').addClass('hidden');
         })
-        .fail(function() {
+        .fail(function () {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
             $('.btn-checkout').hide();
             $('.btn-lp.pay').hide();
-            pmaRes =  {status:"failed",msg:errorMsg};
+            pmaRes = { status: "failed", msg: errorMsg };
             //$('.pma-error').text('PDF Generation failed. Please try again.');
         })
-        .always(function() {
+        .always(function () {
             activeRequest = false;
         });
 
@@ -403,10 +402,10 @@ function recordFormData() {
         type: 'POST',
         data: query
     })
-        .done(function(response) {
+        .done(function (response) {
             console.log(response);
         })
-        .fail(function() {})
+        .fail(function () { })
 }
 
 
@@ -431,11 +430,11 @@ function dataTransfer(status) {
         type: 'POST',
         data: query
     })
-        .done(function(response) {
+        .done(function (response) {
             console.log(response)
             updateTally(response);
         })
-        .fail(function() {
+        .fail(function () {
             $('.pma-error').text('Problem updating database');
         })
 }
@@ -447,7 +446,7 @@ function updateTally(tallies) {
     $('.pma-total h5').text(tallyData.total);
     $('.accrued-cost h5').text(tallyData.cost);
     console.log(tallyData);
-    $('.rep-table tr').each(function() {
+    $('.rep-table tr').each(function () {
         var pctRep = $(this).find('td:nth-child(1)').text();
         if (tallyData[pctRep]) {
             var repTotal = tallyData[pctRep];
@@ -477,7 +476,7 @@ function updateTally(tallies) {
 // format user submitted address
 function getAddress() {
     // event.preventDefault ? event.preventDefault() : event.returnValue = false;
-    isNewSearch=true;
+    isNewSearch = true;
     address = $('#searchbox').val();
     address = $.trim(address);
 
@@ -500,8 +499,8 @@ function getAddress() {
     state = $('#state').val();
     state = $.trim(state);
     if (isNaN(locale[0])) {
-        if(state!==''){
-            locale += ', '+state;
+        if (state !== '') {
+            locale += ', ' + state;
         } else {
             locale += ', CA' // if locale is city rather than zip, add in state
         }
@@ -509,59 +508,59 @@ function getAddress() {
     neighbourhood = $('#neighbourhood').val();
     neighbourhood = $.trim(neighbourhood);
     if (isNaN(neighbourhood[0])) {
-        if(state!==''){
-            neighbourhood += ', '+state;
+        if (state !== '') {
+            neighbourhood += ', ' + state;
         } else {
             neighbourhood += ', CA' // if neighbourhood is city rather than zip, add in state
         }
     }
-    data(address, locale,neighbourhood,false);
+    data(address, locale, neighbourhood, false);
 }
 
 
 // compile data for API query
-function data(address, locale,neighbourhood,retry) {
+function data(address, locale, neighbourhood, retry) {
     dataObj.Address = address;
     dataObj.LastLine = locale.toString();
-    dataObj.ClientReference = '<CustCompFilter><SQFT>'+defaultSqft+'</SQFT><Radius>'+defaultRadius+'</Radius></CustCompFilter>';
+    dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>';
     dataObj.OwnerName = '';
-    compileRequest(dataObj,neighbourhood,retry);
+    compileRequest(dataObj, neighbourhood, retry);
 }
 
 
 
 // create url for API request
-function compileRequest(dataObj,neighbourhood,retry) {
+function compileRequest(dataObj, neighbourhood, retry) {
     // var request = 'http://api.sitexdata.com/sitexapi/sitexapi.asmx/AddressSearch?';
-    var request ='http://api.sitexdata.com/sitexapi/sitexapi.asmx/AddressSearch?'
-    if(retry){
+    var request = 'http://api.sitexdata.com/sitexapi/sitexapi.asmx/AddressSearch?'
+    if (retry) {
         dataObj.LastLine = neighbourhood.toString();
     }
     request += $.param(dataObj);
-    runQueries(request,dataObj,neighbourhood,retry);
+    runQueries(request, dataObj, neighbourhood, retry);
 }
 
 // run api query 
-function runQueries(request,dataObj,neighbourhood,retry) {
+function runQueries(request, dataObj, neighbourhood, retry) {
 
     $('.loader1').show();
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
     $('.backwrap').removeClass('hidden');
     $.ajax({
-        url: base_url+'index.php?/lp/getSearchResults?',
+        url: base_url + 'index.php?/lp/getSearchResults?',
         // url: 'http://cardbanana.net/demo/jerry/lp/lp/lp/proxy.php',
         data: {
             requrl: request + '&reportType=187'
         },
         dataType: 'xml'
     })
-        .done(function(response, textStatus, jqXHR) {
+        .done(function (response, textStatus, jqXHR) {
 
             var responseStatus = $(response).find('StatusCode').text();
             // $('.progress-bar').hide();
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
-            
+
             if (responseStatus == 'MM') {
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
                 $(".buttonNext").removeClass("buttonDisabled");
@@ -572,14 +571,14 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
 
-                
-            } else if (responseStatus != 'OK') {
-                if(!retry){
-                    $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
-                    data(dataObj.Address,dataObj.LastLine,neighbourhood,true);
 
-                    
-                }else {
+            } else if (responseStatus != 'OK') {
+                if (!retry) {
+                    $("#search-btn").parents("form").find(".search-loader").removeClass("hidden");
+                    data(dataObj.Address, dataObj.LastLine, neighbourhood, true);
+
+
+                } else {
                     displayError(responseStatus);
                 }
 
@@ -598,15 +597,15 @@ function runQueries(request,dataObj,neighbourhood,retry) {
                 // listResults(response);
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
                 $(".buttonNext").removeClass("buttonDisabled");
-                if(isNewSearch){
+                if (isNewSearch) {
                     multipleResults(response);
                 }
 
             }
 
-            
+
         })
-        .fail(function(err) {
+        .fail(function (err) {
             $('.pma-error').text('Unsuccessful Request');
             $(".buttonNext").addClass("buttonDisabled");
             $('.loader1').hide();
@@ -618,21 +617,21 @@ function runQueries(request,dataObj,neighbourhood,retry) {
 
 // gets 187 for client-side parsing
 function get187() {
-    if(!getSordrtedProperties) {
+    if (!getSordrtedProperties) {
         getSordrtedProperties = true;
         $.ajax({
             type: "GET",
             // url: "lp/xmlproxy.php",
-            url: base_url+'index.php?/lp/getSearchResults?',
+            url: base_url + 'index.php?/lp/getSearchResults?',
             data: {
                 requrl: reportData.report187,
             },
             dataType: "xml",
-            success: function(xml) {
+            success: function (xml) {
                 reportXML = xml;
                 parse187();
             },
-            error: function() {
+            error: function () {
                 console.log("An error occurred while processing XML file.");
             }
         });
@@ -641,19 +640,19 @@ function get187() {
         $('.loader1').removeClass('hidden');
         $('.backwrap').show();
         $('.backwrap').removeClass('hidden');
-        activeRequest=true;
+        activeRequest = true;
         $.ajax({
             type: "GET",
-            url: base_url+'index.php?/lp/getSearchResults?',
+            url: base_url + 'index.php?/lp/getSearchResults?',
             data: {
                 requrl: reportData.report187,
                 getsortedresults: getSordrtedProperties,
                 address: $('#state').val(),
-                presentation : $('#presentation').val(),
-                user_id : $("#user-id").val(),
+                presentation: $('#presentation').val(),
+                user_id: $("#user-id").val(),
             },
             dataType: "json",
-            success: function(data) {
+            success: function (data) {
                 all_comp = data.all;
                 sorted_comp = data.sorted;
                 $('#pre-selected-options').html('');
@@ -663,103 +662,103 @@ function get187() {
                 $('#use_rets').val(data.use_rets);
                 // $('#available-comparables-market-update tbody').html('');
 
-                $.each(all_comp, function(i, item) {                    
+                $.each(all_comp, function (i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address+" ("+item.Price+")"
+                        text: item.Address + " (" + item.Price + ")"
                     }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
                     );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address+" ("+item.Price+")"
+                        text: item.Address + " (" + item.Price + ")"
                     }));
-                    
+
                     // $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
                 });
-                
-               // $('#comparables-market-update tbody').html('');
-                $.each(sorted_comp, function(i, item) {
+
+                // $('#comparables-market-update tbody').html('');
+                $.each(sorted_comp, function (i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address+" ("+item.Price+")",
+                        text: item.Address + " (" + item.Price + ")",
                         selected: 'selected'
                     }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
                     );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address+" ("+item.Price+")",
+                        text: item.Address + " (" + item.Price + ")",
                         selected: 'selected'
                     }));
-                    
+
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                if($('#pre-selected-options').length && ($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate")) {
+                if ($('#pre-selected-options').length && ($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate")) {
                     // $('.buyer-cls').hide();
                     $('#pre-selected-options').multiSelect({
-                      selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
-                      selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
+                        selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
+                        selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
 
-                      afterInit: function(values){
-                        initateCompSelection();
-                      },
-                      afterSelect: function(values){
-                        initateCompSelection();
-                      },
-                      afterDeselect: function(values){
-                          initateCompSelection();
-                      }
-                    });  
-                    if(firstOpen) {
+                        afterInit: function (values) {
+                            initateCompSelection();
+                        },
+                        afterSelect: function (values) {
+                            initateCompSelection();
+                        },
+                        afterDeselect: function (values) {
+                            initateCompSelection();
+                        }
+                    });
+                    if (firstOpen) {
                         // If received list is not greater than min value than set our min value to received list length
                         // var pre_selected_options = $.trim($('#pre-selected-options').html());
                         // if (pre_selected_options!='') {
                         //     if(_min>$('#pre-selected-options').val().length){
-                                // console.log('_min ------------------------', _min);
-                                // _min = $('#pre-selected-options').val().length;
-                                // console.log('_min ******************------------------------', _min);
+                        // console.log('_min ------------------------', _min);
+                        // _min = $('#pre-selected-options').val().length;
+                        // console.log('_min ******************------------------------', _min);
                         //     }
                         // }
                         firstOpen = false;
                     }
                 }
-                activeRequest=false;
+                activeRequest = false;
                 $('.loader1').hide();
                 $('.loader1').addClass('hidden');
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
 
-                if (all_comp.length  + sorted_comp.length < 4) {
+                if (all_comp.length + sorted_comp.length < 4) {
                     $('#property_search_model').modal('show');
                     $('#changes_req_params_property_search #apn').val(dataObj.apn);
                     // $('#changes_req_params_property_search #property_address').val(dataObj.Address);
-                    $('#changes_req_params_property_search select#sqft option[value="'+defaultSqft+'"]').attr("selected",true);
-                    $('#changes_req_params_property_search select#radious option[value="'+defaultRadius+'"]').attr("selected",true);
+                    $('#changes_req_params_property_search select#sqft option[value="' + defaultSqft + '"]').attr("selected", true);
+                    $('#changes_req_params_property_search select#radious option[value="' + defaultRadius + '"]').attr("selected", true);
                     // $("#property_search_model").modal("toggle");
-                    
+
                     return false;
                 } else {
                     $('#property_search_model').modal('hide');
 
                 }
             },
-            error: function() {
+            error: function () {
                 console.log("An error occurred while processing data");
-                activeRequest=false;
+                activeRequest = false;
                 alert("An error occurred while processing data. Please refresh Page");
             }
         });
     }
 }
 
-$("#changes_req_params_property_search").submit(function(e){
+$("#changes_req_params_property_search").submit(function (e) {
     e.preventDefault();
     let apn = $('#changes_req_params_property_search #apn').val();
     defaultSqft = $('#changes_req_params_property_search #sqft').val();
     defaultRadius = $('#changes_req_params_property_search #radious').val();
     dataObj.apn = apn;
-    dataObj.ClientReference = '<CustCompFilter><SQFT>'+defaultSqft+'</SQFT><Radius>'+defaultRadius+'</Radius></CustCompFilter>';
+    dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>';
     getSordrtedProperties = true;
     $('.ms-container').remove();
     compileAPNRequest(dataObj);
@@ -768,11 +767,10 @@ $("#changes_req_params_property_search").submit(function(e){
 function parse187() {
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
-    if(ownerNamePrimary.indexOf(';') !== -1)
-      {
-      ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
-      ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));
-      }
+    if (ownerNamePrimary.indexOf(';') !== -1) {
+        ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
+        ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));
+    }
     ownerNamePrimary = $.trim(ownerNamePrimary);
     ownerNameSecondary = $.trim(ownerNameSecondary);
     ownerNamePrimary = toTitleCase(ownerNamePrimary);
@@ -788,14 +786,14 @@ function parse187() {
     $('.js-lp-seller-name').val(ownerNamePrimary + ownerNameSecondary);
     $('.search-result table .result-owner').html(ownerNamePrimary + ownerNameSecondary);
 
-    
-//    var comparables = $(reportXML).find("ComparableSalesReport").find("ComparableSales").find("ComparableSale");
-//    for(var i=0;i<comparables.length;i++){
-//        //console.log($(comparables[i]).find("SiteAddress").text().+' '+.$(comparables[i]).find("SiteCity").text());
-//        comparableData.push($(comparables[i]).find("SiteAddress").text()+' '+$(comparables[i]).find("SiteCity").text());
-//    }
-//    console.log(comparableData);
-//    console.log("I AM Called");
+
+    //    var comparables = $(reportXML).find("ComparableSalesReport").find("ComparableSales").find("ComparableSale");
+    //    for(var i=0;i<comparables.length;i++){
+    //        //console.log($(comparables[i]).find("SiteAddress").text().+' '+.$(comparables[i]).find("SiteCity").text());
+    //        comparableData.push($(comparables[i]).find("SiteAddress").text()+' '+$(comparables[i]).find("SiteCity").text());
+    //    }
+    //    console.log(comparableData);
+    //    console.log("I AM Called");
 }
 
 // run query for plat map report 
@@ -803,14 +801,14 @@ function getPlat() {
     var request = 'http://api.sitexdata.com/sitexapi/sitexapi.asmx/AddressSearch?';
     request += $.param(dataObj);
     $.ajax({
-        url: base_url+'index.php?/lp/getSearchResults?',
+        url: base_url + 'index.php?/lp/getSearchResults?',
         // url: 'http://cardbanana.net/demo/jerry/lp/lp/lp/proxy.php',
         data: {
             requrl: request + '?&reportType=111'
         },
         dataType: 'xml'
     })
-        .done(function(response, textStatus, jqXHR) {
+        .done(function (response, textStatus, jqXHR) {
             console.log(response);
             reportUrl = $(response).find('ReportURL').text();
             reportData.report111 = reportUrl;
@@ -828,7 +826,7 @@ function listResults(response) {
     var state = $(response).find('Locations').find('Location').find('State').text();
     var zip = $(response).find('Locations').find('Location').find('ZIP').text();
 
-    $('#lp_invoice .desc h3').html(address+','+ city+',' +state + ','+ zip);
+    $('#lp_invoice .desc h3').html(address + ',' + city + ',' + state + ',' + zip);
     addResultToRepData(address, city, state, zip, apn)
     // $('.result-apn').text(apn);
     // $('.result-address').text(address);
@@ -848,7 +846,7 @@ function compileXmlUrls(response, report) {
 // list multiple APNs returned in address query
 function multipleResults(response) { //console.log(response);
     $('.search-result table > tbody').html('');
-    $(response).find('Locations').children('Location').each(function(i) {
+    $(response).find('Locations').children('Location').each(function (i) {
         var address = $(this).find('Address').text();
         var unitNumber = $(this).find('UnitNumber').text();
         apn = $(this).find('APN').text();
@@ -869,52 +867,52 @@ function multipleResults(response) { //console.log(response);
     // $('html, body').animate({
     //     scrollTop: $(".search-result").offset().top
     // }, 500);
-    if($(".cma-step-2").length) {
+    if ($(".cma-step-2").length) {
         $(".cma-step-2").hide();
     }
-    if($("#cma-tbl-list").length) {
-         $('#cma-tbl-list').DataTable({
-              "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
-              aaSorting: [],
-                responsive: {
-                    details: {
-                        display: $.fn.dataTable.Responsive.display.childRowImmediate,
-                        type: 'none',
-                        target: ''
-                    }
-                },
-                'columnDefs': [ {
-                    'targets': [5], // column index (start from 0)
-                    'orderable': false, // set orderable false for selected columns
-                }],
-                searching: false, paging: false, info: false,
-                "initComplete": function () {
-                    // var input = $('.dataTables_filter input').unbind(),
-                    //     self = this.api(),
-                    //     $searchButton = $('<button class="btn_search" type="button">')
-                    //     .text('Search')
-                    //     .click(function () {
-                    //         self.search(input.val()).draw();
-                    //     }),
-                    //     $clearButton = $('<button class="btn_clear" type="button">')
-                    //     .text('Clear')
-                    //     .click(function () {
-                    //         input.val('');
-                    //         $searchButton.click();
-                    //     })
-                    // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
-                    // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
-                    // $('.dataTables_filter').append($searchButton, $clearButton);
+    if ($("#cma-tbl-list").length) {
+        $('#cma-tbl-list').DataTable({
+            "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
+            aaSorting: [],
+            responsive: {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.childRowImmediate,
+                    type: 'none',
+                    target: ''
+                }
+            },
+            'columnDefs': [{
+                'targets': [5], // column index (start from 0)
+                'orderable': false, // set orderable false for selected columns
+            }],
+            searching: false, paging: false, info: false,
+            "initComplete": function () {
+                // var input = $('.dataTables_filter input').unbind(),
+                //     self = this.api(),
+                //     $searchButton = $('<button class="btn_search" type="button">')
+                //     .text('Search')
+                //     .click(function () {
+                //         self.search(input.val()).draw();
+                //     }),
+                //     $clearButton = $('<button class="btn_clear" type="button">')
+                //     .text('Clear')
+                //     .click(function () {
+                //         input.val('');
+                //         $searchButton.click();
+                //     })
+                // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
+                // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
+                // $('.dataTables_filter').append($searchButton, $clearButton);
 
-                    
-                },
-                "language": {
-                    "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
-                    "emptyTable": "<div align='center'>Record(s) not found.</div>"
-                },
-         });
 
-         $('html, body').animate({
+            },
+            "language": {
+                "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
+                "emptyTable": "<div align='center'>Record(s) not found.</div>"
+            },
+        });
+
+        $('html, body').animate({
             scrollTop: $("#cma-tbl-list").offset().top
         }, 500);
 
@@ -955,18 +953,18 @@ function apnData(e) {
     // event.preventDefault ? event.preventDefault() : event.returnValue = false;
     // $('.progress-bar').progrlessbar("option", "value", false);
     // $('.progress-bar').show(); // show loading bar
-    setTimeout(function(){
+    setTimeout(function () {
         jQuery('.buttonNext').click();
-    },400);
-    
-    isNewSearch=false;
-    $('#lp_invoice .desc').html('<h3>'+$(e).closest('tr').find('.result-address').text()+'</h3>' + $(e).closest('tr').find('.result-apn').text()+ ' ' +$(e).closest('tr').find('.result-address').text()+' ' +$(e).closest('tr').find('.result-city').text());
+    }, 400);
+
+    isNewSearch = false;
+    $('#lp_invoice .desc').html('<h3>' + $(e).closest('tr').find('.result-address').text() + '</h3>' + $(e).closest('tr').find('.result-apn').text() + ' ' + $(e).closest('tr').find('.result-address').text() + ' ' + $(e).closest('tr').find('.result-city').text());
     var apn = $(e).closest('tr').find('.result-apn').text();
     var fips = apnInfo[apn]['fips'];
     dataObj = {};
     dataObj.apn = apn;
     dataObj.FIPS = fips;
-    dataObj.ClientReference = '<CustCompFilter><SQFT>'+defaultSqft+'</SQFT><Radius>'+defaultRadius+'</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
+    dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
 
     // $('.result-table > tbody').html('');
     // $('.result-table > tbody').hide();
@@ -1032,7 +1030,7 @@ function autoComplete() {
         bounds: defaultBounds
     };
     autocomplete = new google.maps.places.Autocomplete(input, options);
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
         var place = autocomplete.getPlace(); // get address, without city and state
         var latlng = new google.maps.LatLng(place.geometry.location.lat(), place.geometry.location.lng());
         /*
@@ -1047,21 +1045,21 @@ function autoComplete() {
               });
           }
           */
-        setTimeout(function() {
+        setTimeout(function () {
             $('#searchbox').val(place.name);
         }, 25); // just display street address
         for (var i = 0; i < place.address_components.length; i++) {
             //for (var j = 0; j < place.address_components[i].types.length; j++) {
-                if (place.address_components[i].types[0] === ("locality") && place.address_components[i].types.length>1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1
-                    var city = place.address_components[i].long_name;
-                    $('#searchboxcity').val(city);
-                } else if (place.address_components[i].types[0] === ("administrative_area_level_1") && place.address_components[i].types.length>1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1
-                    var state = place.address_components[i].short_name;
-                    $('#state').val(state);
-                } else if (place.address_components[i].types[0] === "neighborhood"  && place.address_components[i].types.length>1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1) {
-                    var neighborhood = place.address_components[i].long_name;
-                    $('#neighbourhood').val(neighborhood);
-                }
+            if (place.address_components[i].types[0] === ("locality") && place.address_components[i].types.length > 1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1
+                var city = place.address_components[i].long_name;
+                $('#searchboxcity').val(city);
+            } else if (place.address_components[i].types[0] === ("administrative_area_level_1") && place.address_components[i].types.length > 1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1
+                var state = place.address_components[i].short_name;
+                $('#state').val(state);
+            } else if (place.address_components[i].types[0] === "neighborhood" && place.address_components[i].types.length > 1 && place.address_components[i].types[1] === ("political")) { //administrative_area_level_1) {
+                var neighborhood = place.address_components[i].long_name;
+                $('#neighbourhood').val(neighborhood);
+            }
             //}
         }
     });
@@ -1082,14 +1080,14 @@ function widgetRunPMA(agentPath, logoPath) {
     // recordFormData();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
-    query += '&' + formData;    
+    query += '&' + formData;
 
     var testimonials = [];
     testimonials.push($("#testimonial-1").val());
     testimonials.push($("#testimonial-2").val());
     testimonials.push($("#testimonial-3").val());
     testimonials.push($("#testimonial-4").val());
-    
+
     query += '&testimonials=' + encodeURIComponent(JSON.stringify(testimonials));
 
     var testimonials_name = [];
@@ -1097,91 +1095,89 @@ function widgetRunPMA(agentPath, logoPath) {
     testimonials_name.push($("#testimonial-name-2").val());
     testimonials_name.push($("#testimonial-name-3").val());
     testimonials_name.push($("#testimonial-name-4").val());
-    
+
     query += '&testimonials_name=' + encodeURIComponent(JSON.stringify(testimonials_name));
     var bio = encodeURIComponent($("#agent-bio").val());
     query += '&bio=' + bio;
 
     var featured_homes = [];
-    if($("#update-featured").length > 0) {
+    if ($("#update-featured").length > 0) {
         for (var featured_i = 0; featured_i <= 3; featured_i++) {
             featured_homes[featured_i] = {}
-            featured_homes[featured_i].image = $("#featured_"+featured_i+"_image_val").val();
-            featured_homes[featured_i].price = $("#featured_"+featured_i+"_price").val();
-            featured_homes[featured_i].address = $("#featured_"+featured_i+"_address").val();
-            featured_homes[featured_i].city = $("#featured_"+featured_i+"_city").val();
+            featured_homes[featured_i].image = $("#featured_" + featured_i + "_image_val").val();
+            featured_homes[featured_i].price = $("#featured_" + featured_i + "_price").val();
+            featured_homes[featured_i].address = $("#featured_" + featured_i + "_address").val();
+            featured_homes[featured_i].city = $("#featured_" + featured_i + "_city").val();
         }
 
-        query += '&featured_homes='+JSON.stringify(featured_homes);
+        query += '&featured_homes=' + JSON.stringify(featured_homes);
     }
 
     query += '&' + 'pdfID=' + pdfID;
     var pages = $('#pdf_pages').val();
     query += '&' + 'pdfPages=' + pages;
-    query +="&showpartner="+$('input.add-partner:checked').val();
-    if($('#addNewPartner').css('display')=='none'){
+    query += "&showpartner=" + $('input.add-partner:checked').val();
+    if ($('#addNewPartner').css('display') == 'none') {
         query += '&' + 'showpartner=off';
-    }else{
+    } else {
         query += '&' + 'showpartner=on';
     }
-   
+
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
     var presentation = $("#presentation").val();
-    if($('#comparable-pre-selected-options').length && presentation == 'marketUpdate')
-    {
+    if ($('#comparable-pre-selected-options').length && presentation == 'marketUpdate') {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
-    if(presentation == 'seller')
-    {
+    if (presentation == 'seller') {
         query += '&' + 'use_rets_api=' + use_rets_api;
     }
     // Dynamic contents
     // config-page-modals
-    $('.config-page-modals .more-page-config').each(function(i, obj) {
-        if($(this).attr('name') && $(this).attr('name') != "") {
-                query += '&' + $(this).attr('name')+"=" + encodeURIComponent($(this).val());
-            
+    $('.config-page-modals .more-page-config').each(function (i, obj) {
+        if ($(this).attr('name') && $(this).attr('name') != "") {
+            query += '&' + $(this).attr('name') + "=" + encodeURIComponent($(this).val());
+
         }
         // console.log($(this).attr('name')+$(this).val());
     });
-    
-    if(activeRequest && xhr){
-        activeRequest=false;
+
+    if (activeRequest && xhr) {
+        activeRequest = false;
         xhr.abort();
     }
     // console.log(query); 
     // return;
-    activeRequest=true;
+    activeRequest = true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
 
     xhr = $.ajax({
-        url: base_url+'widget/getWidgetPropertyData',
+        url: base_url + 'widget/getWidgetPropertyData',
         type: 'POST',
         data: query
     })
-        .done(function(response) {
+        .done(function (response) {
             // console.log(response);
             pdfGenerated = false;
             var obj = JSON.parse(response);
             // console.log(obj);
             try {
                 var obj = JSON.parse(response);
-                if(obj.status=='success'){
+                if (obj.status == 'success') {
                     pdfGenerated = true;
-                    pmaRes =  {status:"success"};
-                    if(obj.project_id) {
+                    pmaRes = { status: "success" };
+                    if (obj.project_id) {
                         $("#payment-form #project_id").val(obj.project_id);;
-                    } 
+                    }
                 }
             } catch (e) {
                 //return false;
             }
-            if(!pdfGenerated){
+            if (!pdfGenerated) {
                 $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
                 setTimeout(() => {
                     //SET TIME OUT because its add static error message from footer.php SO update exact error message after 1 second.
                     if (obj.msg != '') {
-                        if (typeof obj.showError !== 'undefined' && (obj.showError==true || obj.showError=='true')) { 
+                        if (typeof obj.showError !== 'undefined' && (obj.showError == true || obj.showError == 'true')) {
                             $('#apply-coupan-alert').html(obj.msg).removeClass('alert-success').addClass('alert-danger').show();
                         }
                     }
@@ -1190,36 +1186,35 @@ function widgetRunPMA(agentPath, logoPath) {
                 $('.btn-lp.pay').hide();
                 if (obj.msg != '') {
                     // Error Message passed to CMA response.
-                    pmaRes =  {status:"failed",msg:obj.msg};
+                    pmaRes = { status: "failed", msg: obj.msg };
                 } else {
-                    pmaRes =  {status:"failed",msg:errorMsg};
+                    pmaRes = { status: "failed", msg: errorMsg };
                 }
             }
             // returnReport();
-            activeRequest=false;
+            activeRequest = false;
             // $('#step-4 .loader1').addClass('hidden');
             // $('#step-4 .backwrap').addClass('hidden');
             $('.loader1').hide();
             $('.backwrap').hide();
         })
-        .fail(function() {
+        .fail(function () {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
             $('.btn-checkout').hide();
             $('.btn-lp.pay').hide();
-            pmaRes =  {status:"failed",msg:errorMsg};
+            pmaRes = { status: "failed", msg: errorMsg };
             //$('.pma-error').text('PDF Generation failed. Please try again.');
             $('.loader1').hide();
             $('.backwrap').hide();
         })
-        .always(function() {
+        .always(function () {
             activeRequest = false;
         });
-        
+
 
 }
 
-function getRetsApiComparables(address,is_simply_rets) 
-{
+function getRetsApiComparables(address, is_simply_rets) {
     $('.loader1').show();
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
@@ -1227,26 +1222,26 @@ function getRetsApiComparables(address,is_simply_rets)
     var search_city = $("#searchboxcity").val();
 
     $.ajax({
-        url: base_url+'widget/getRetsApiComparablesData/'+is_simply_rets,
+        url: base_url + 'widget/getRetsApiComparablesData/' + is_simply_rets,
         type: 'POST',
-        data: {address:address,city:search_city}
+        data: { address: address, city: search_city }
     })
-        .done(function(response) {
+        .done(function (response) {
             var data = JSON.parse(response);
             all_comp = data.all;
             sorted_comp = data.sorted;
             $('#pre-selected-options').html('');
-            $.each(all_comp, function(i, item) {
+            $.each(all_comp, function (i, item) {
                 $('#pre-selected-options').append($('<option>', {
                     value: i,
-                    text: item.address +" ("+item.price+")"
+                    text: item.address + " (" + item.price + ")"
                 }));
             });
-            
-            $.each(sorted_comp, function(i, item) {
+
+            $.each(sorted_comp, function (i, item) {
                 $('#pre-selected-options').append($('<option>', {
                     value: i,
-                    text: item.address +" ("+item.price+")",
+                    text: item.address + " (" + item.price + ")",
                     selected: 'selected'
                 }));
             });
@@ -1254,30 +1249,29 @@ function getRetsApiComparables(address,is_simply_rets)
             $('.loader1').hide();
             $('.loader1').addClass('hidden');
             $('.backwrap').hide();
-            $('.backwrap').addClass('hidden');           
+            $('.backwrap').addClass('hidden');
         })
-        .fail(function() {            
+        .fail(function () {
         })
-        .always(function() {
+        .always(function () {
         });
 }
 
-function getRetsApiDataByMlsId(mlsId,is_simply_rets) 
-{
+function getRetsApiDataByMlsId(mlsId, is_simply_rets) {
     var dismis_alert = `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>`;
-    if(mlsId == '') {
-        var msg = '<div class="alert alert-warning">Please enter mlsId'+dismis_alert+'</div>';
+    if (mlsId == '') {
+        var msg = '<div class="alert alert-warning">Please enter mlsId' + dismis_alert + '</div>';
         $("#select-comps .msg-container").html(msg);
         return false;
     }
-    if($("#pre-selected-options option[value='"+mlsId+"']").length > 0) {
+    if ($("#pre-selected-options option[value='" + mlsId + "']").length > 0) {
 
 
-        var msg = '<div class="alert alert-warning">This property is already exist in the list'+dismis_alert+'</div>';
+        var msg = '<div class="alert alert-warning">This property is already exist in the list' + dismis_alert + '</div>';
         $("#select-comps .msg-container").html(msg);
-        
+
         return false;
     }
     else {
@@ -1293,67 +1287,67 @@ function getRetsApiDataByMlsId(mlsId,is_simply_rets)
         var mlsId_param = encodeURIComponent(mlsId);
 
         $.ajax({
-            url: base_url+'widget/getRetsApiDataByMlsId/'+mlsId_param+'/'+is_simply_rets,
+            url: base_url + 'widget/getRetsApiDataByMlsId/' + mlsId_param + '/' + is_simply_rets,
             type: 'GET',
         })
-            .done(function(response) {
+            .done(function (response) {
                 var data = JSON.parse(response);
                 all_comp = data.all;
                 sorted_comp = data.sorted;
                 $("#select-comps .msg-container").html('');
-                if($(sorted_comp).length > 0) {
+                if ($(sorted_comp).length > 0) {
 
                     var exist_list = added_in_list = '';
 
-                    $.each(sorted_comp, function(i, item) {
+                    $.each(sorted_comp, function (i, item) {
 
 
 
-                        if($("#pre-selected-options option[value='"+i+"']").length > 0) {
-                            exist_list += '<div>'+$("#pre-selected-options option[value='"+i+"']").text()+'</div>';
+                        if ($("#pre-selected-options option[value='" + i + "']").length > 0) {
+                            exist_list += '<div>' + $("#pre-selected-options option[value='" + i + "']").text() + '</div>';
                         }
                         else {
 
                             $('#pre-selected-options').append($('<option>', {
                                 value: i,
-                                text: item.address +" ("+item.price+")",
+                                text: item.address + " (" + item.price + ")",
                                 selected: 'selected'
                             }));
-                            added_in_list += '<div>'+item.address+'</div>';
-                            
+                            added_in_list += '<div>' + item.address + '</div>';
+
                         }
 
-                        
-                    });
-                    if(added_in_list != '') {
 
-                        var msg = '<div class="alert alert-success"> Following property added in comparables list: '+dismis_alert+added_in_list+'</div>';
+                    });
+                    if (added_in_list != '') {
+
+                        var msg = '<div class="alert alert-success"> Following property added in comparables list: ' + dismis_alert + added_in_list + '</div>';
                         $("#select-comps .msg-container").append(msg);
                     }
-                    if(exist_list != '') {
+                    if (exist_list != '') {
 
-                        var msg = '<div class="alert alert-warning"> Following property already exist in the list: '+dismis_alert+exist_list+'</div>';
+                        var msg = '<div class="alert alert-warning"> Following property already exist in the list: ' + dismis_alert + exist_list + '</div>';
                         $("#select-comps .msg-container").append(msg);
                     }
                     $("#pre-selected-options").multiSelect('refresh');
                 }
                 else {
-                    var msg = '<div class="alert alert-warning">No property found with Address Or Mls #  : '+mlsId+' '+dismis_alert+'</div>';
+                    var msg = '<div class="alert alert-warning">No property found with Address Or Mls #  : ' + mlsId + ' ' + dismis_alert + '</div>';
                     $("#select-comps .msg-container").html(msg);
-                    
-                }
-                
 
-                          
+                }
+
+
+
             })
-            .fail(function() {            
+            .fail(function () {
                 alert("Something went wrong");
             })
-            .always(function() {
+            .always(function () {
                 $('.loader1').hide();
                 $('.loader1').addClass('hidden');
                 $('.backwrap').hide();
-                $('.backwrap').addClass('hidden'); 
+                $('.backwrap').addClass('hidden');
                 $('#mls_search').prop('disabled', false);
 
             });

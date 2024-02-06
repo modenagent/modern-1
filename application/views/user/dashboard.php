@@ -11,7 +11,7 @@
                         <div class="impression_block_list">
                          <!--   <button class="impression_block" type="button" onclick="choose_presentation('buyer');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/buyer_presentation.png" alt="..." class="img-fluid d-block mx-auto">
-                              Buyers Presentation 
+                              Buyers Presentation
                             </button>  -->
                             <button class="impression_block" type="button" onclick="choose_presentation('seller');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample.png" alt="..." class="img-fluid d-block mx-auto">
@@ -35,7 +35,7 @@
             </div>
           </div>
       </div>
-        
+
         <div id="wizard" class="swMain loader-back wizard_block" style="display:none;">
             <ul>
                 <li id="step-1-link">
@@ -78,7 +78,7 @@
                                     <input type="hidden" id="state">
                                     <span class="input-group-btn">
                                     <button class="btn btn-lp" type="button" id="search-btn"> Search </button>
-                                    </span> 
+                                    </span>
                                 </div>
                             </div>
                             <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
@@ -106,7 +106,7 @@
             <!-- step 1 ends -->
             <div id="step-2" class="clearfix">
                 <div class="loader1 hidden">
-                    
+
                     <p class="loader-text">Please wait</p>
                 </div>
                 <div class="backwrap hidden"></div>
@@ -131,19 +131,18 @@
                                     <div class="col-md-3">
                                         <div class="leftpic"> <a href="javascript:;">
                                             <?php
-                                                if(empty($users[0]['profile_image'])){
-                                                ?>
+if (empty($users[0]['profile_image'])) {
+    ?>
                                             <i class="icon-camera"></i>
                                             <br>
                                             Upload Picture
                                             <?php
-                                                }
-                                                else{
-                                                ?>
-                                            <img  src="<?php echo base_url().$users[0]['profile_image']; ?>" width="100%" >
+} else {
+    ?>
+                                            <img  src="<?php echo base_url() . $users[0]['profile_image']; ?>" width="100%" >
                                             <?php
-                                                }
-                                                ?>
+}
+?>
                                             </a>
                                             <input type="file"  class="file-type hidden" >
                                             <input type="text" id="fileimage" class="hidden file-path" name="user[profile_image]" value="<?php echo $users[0]['profile_image']; ?>" >
@@ -151,7 +150,7 @@
                                     </div>
                                     <div class="col-md-9">
                                         <input type="hidden" class="form-control"   name="user_image"      id="user_image" value=""    />
-                                        <input type="text" class="form-control"   name="user[fullname]"   id="" placeholder="Name"    value="<?php echo $users[0]['first_name'].' '.$users[0]['last_name']; ?>" />
+                                        <input type="text" class="form-control"   name="user[fullname]"   id="" placeholder="Name"    value="<?php echo $users[0]['first_name'] . ' ' . $users[0]['last_name']; ?>" />
                                         <input type="text" class="form-control"   name="user[title]"      id="" placeholder="Title"   value="<?php echo $users[0]['title']; ?>"/>
                                         <input type="text" class="form-control"   name="user[phone]"      id="" placeholder="Phone"   value="<?php echo $users[0]['phone']; ?>"/>
                                         <input type="text" class="form-control"   name="user[email]"      id="" placeholder="Email"   value="<?php echo $users[0]['email']; ?>"/>
@@ -167,19 +166,18 @@
                                     <div class="col-md-3">
                                         <div class="rightpic"> <a href="javascript:;">
                                             <?php
-                                                if(empty($users[0]['company_logo'])){
-                                                ?>
+if (empty($users[0]['company_logo'])) {
+    ?>
                                             <i class="icon-camera"></i>
                                             <br>
                                             Upload Picture
                                             <?php
-                                                }
-                                                else{
-                                                ?>
-                                            <img  src="<?php echo base_url().$users[0]['company_logo']; ?>" width="100%" >
+} else {
+    ?>
+                                            <img  src="<?php echo base_url() . $users[0]['company_logo']; ?>" width="100%" >
                                             <?php
-                                                }
-                                                ?>
+}
+?>
                                             </a>
                                             <input type="file" class="file-type hidden">
                                             <input type="text" class="hidden file-path" name="user[company_logo]" value="<?php echo $users[0]['company_logo']; ?>" >
@@ -218,7 +216,7 @@
             <!-- step 2 ends-->
             <div id="step-3" class="clearfix">
                 <div class="loader1 hidden">
-                    
+
                     <p class="loader-text">Preparing list of comparable properties ...</p>
                 </div>
                 <div class="backwrap hidden"></div>
@@ -228,7 +226,7 @@
                             <h2>
                                 <strong class="common_cls">Choose Your Branding</strong>
                                 <strong class="subscribe_cls" style="display: none;">Preview Pages</strong>
-                                <span style="display: block; font-size: 12px; text-transform: initial;">Select theme from <a href="<?php echo base_url('user/myaccount/theme');?>">My Account</a></span>
+                                <span style="display: block; font-size: 12px; text-transform: initial;">Select theme from <a href="<?php echo base_url('user/myaccount/theme'); ?>">My Account</a></span>
                             </h2>
                         </div>
 
@@ -237,31 +235,31 @@
                             <div class="row  pull-right">
                                 <div class="col-sm-4" style="display: none !important">
                                     <div class="pull-right1 report_lang_div" style="">
-                                        Language: 
+                                        Language:
                                         <select name="report_lang" style="background-color:transparent; border:none;">
                                             <option  style="color:#000000;" value="english">English</option>
                                             <option style="color:#000000;" value="spanish">Spanish</option>
                                         </select>
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-sm-2" style="display: none !important">
-                                    <?php if($packages['buyer']['active'] == 1 || $packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                                    <?php if ($packages['buyer']['active'] == 1 || $packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1): ?>
                                         <div class="color-selection" >
                                             <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
                                                 <?php
-                                                if(count($reportTemplates)): ?>
+if (count($reportTemplates)): ?>
                                                     Color
                                                     <select id="report_color" name="report_color" style="background: transparent;">
-                                                        <?php foreach($reportTemplates as $key=>$reportTemplate): ?>
-                                                        <option <?php echo $key==0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
-                                                        <?php endforeach; ?>
+                                                        <?php foreach ($reportTemplates as $key => $reportTemplate): ?>
+                                                        <option <?php echo $key == 0 ? 'selected' : '' ?>  style="color:<?php echo $reportTemplate->template_color ?>;" value="<?php echo $reportTemplate->template_color ?>"> <?php echo $reportTemplate->template_name ?></option>
+                                                        <?php endforeach;?>
                                                     </select>
-                                                <?php endif; ?>
-                                               
+                                                <?php endif;?>
+
                                             </div>
                                         </div>
-                                    <?php endif; ?>
+                                    <?php endif;?>
                                 </div>
                                 <!-- <div class="col-sm-6">
                                     <a href="javascript:void(0);" id="config-comps-btn-a" class="comps" style="" target="_blank" data-bs-toggle="modal" data-bs-target="#select-comps" title="configure comparables" >Review Comparables</a>
@@ -275,89 +273,88 @@
                         <div  class="row preview_pages"></div>
                         <div style="display: none;" >
                             <div id="owl-example" class="owl-carousel" style="display: none;" >
-                            
-                                <?php 
-                                    foreach ($reportTemplates as $key => $report) {
-                                    if($report->template_color != '') { ?>
+
+                                <?php
+foreach ($reportTemplates as $key => $report) {
+    if ($report->template_color != '') {?>
                                 <div class="item">
-                                    <input type="radio" <?php if($report->report_templates_id_pk==$agentInfo->default_template) { echo 'checked'; } ?> class="custom-checkbox" id="def-temp-<?php echo $report->report_templates_id_pk; ?>" value="<?php echo $report->template_color; ?>" name="cover">
+                                    <input type="radio" <?php if ($report->report_templates_id_pk == $agentInfo->default_template) {echo 'checked';}?> class="custom-checkbox" id="def-temp-<?php echo $report->report_templates_id_pk; ?>" value="<?php echo $report->template_color; ?>" name="cover">
                                     <label class="user-heading alt gray-bg" for="def-temp-<?php echo $report->report_templates_id_pk; ?>">
-                                        <div class="text-center"> 
-                                            <?php if(!($packages['seller']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
-                                            <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="<?php echo $report->template_name; ?>"> 
-                                            <?php endif; ?>
-                                            <?php if(!($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
-                                            <img class="buyer_template" style="display:none;" src="<?php echo base_url().$report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
-                                            <?php endif; ?>
-                                            <?php if(!($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1)) : ?>
+                                        <div class="text-center">
+                                            <?php if (!($packages['seller']['active'] == 1 || $packages['all']['active'] == 1)): ?>
+                                            <img class="seller_template" src="<?php echo base_url() . $report->template_icon; ?>" alt="<?php echo $report->template_name; ?>">
+                                            <?php endif;?>
+                                            <?php if (!($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1)): ?>
+                                            <img class="buyer_template" style="display:none;" src="<?php echo base_url() . $report->template_icon_buyer; ?>" alt="<?php echo $report->template_name; ?>">
+                                            <?php endif;?>
+                                            <?php if (!($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1)): ?>
                                             <img class="marketUpdate_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
-                                            <?php endif; ?>
+                                            <?php endif;?>
                                             <img class="registry_template" style="display:none;" src="<?php echo base_url($report->template_icon_market); ?>" alt="<?php echo $report->template_name; ?>">
                                         </div>
-                                    </label> 
+                                    </label>
                                 </div>
-                                <?php 
-                                    }
-                                }
-                                ?>
+                                <?php
+}
+}
+?>
                             </div>
                         </div>
                     </div>
-                    <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                    <?php if ($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1): ?>
                     <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="marketUpdate" checked="" style="display: none !important">
                         <!-- <input type="hidden" class="mu_radio" id="mu_page_1" value="<?php echo $default_sub_type['mu']; ?>" name="cover_mu"> -->
                     <div class="carousel-container marketUpdate_template">
                         <div id="owl-example-marketUpdate" class="owl-carousel">
-                            <?php 
-                                for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
-                                ?>
+                            <?php
+for ($mu_i = 1; $mu_i <= 3; $mu_i++) {
+    ?>
                             <div class="item">
-                                <input type="radio"  
-                                    <?php 
-                                        if($mu_i == $default_sub_type['mu']){
-                                        echo 'checked';
-                                        }
-                                        ?> class="mu_radio" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
+                                <input type="radio"
+                                    <?php
+if ($mu_i == $default_sub_type['mu']) {
+        echo 'checked';
+    }
+    ?> class="mu_radio" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
                                 <label class="user-heading alt gray-bg" for="mu_page_<?php echo $mu_i; ?>">
                                     <div class="text-center">
                                         <img class="registry_template1" src="<?php echo base_url("assets/reports/english/marketUpdate/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
                                     </div>
                                 </label>
                             </div>
-                            <?php 
-                                } /*
-                                $type = 'marketUpdate';
-                                $sub_type = $default_sub_type['mu'];
-                                $check_dir = "assets/reports/english/$type/preview/$sub_type/";
-                                $load_dir = FCPATH.$check_dir;
+                            <?php
+} /*
+$type = 'marketUpdate';
+$sub_type = $default_sub_type['mu'];
+$check_dir = "assets/reports/english/$type/preview/$sub_type/";
+$load_dir = FCPATH.$check_dir;
 
-                                if(is_dir($load_dir)) :
+if(is_dir($load_dir)) :
 
-                                $images = glob($load_dir . "*.jpg");
+$images = glob($load_dir . "*.jpg");
 
-                                $count_imgs = count($images);
+$count_imgs = count($images);
 
-                                for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
 
-                                    <div class="item">
-                                        
-                                        <div class="text-center">
-                                            <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Market Update">
-                                        </div>
-                                        
-                                    </div>
+<div class="item">
 
-                                
-                                <?php
+<div class="text-center">
+<img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Market Update">
+</div>
 
-                                endfor;
-                                endif;
-                            */ ?>
+</div>
+
+<?php
+
+endfor;
+endif;
+ */?>
                         </div>
                     </div>
-                    <?php endif; ?>
+                    <?php endif;?>
 
-                    <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                    <?php if ($packages['seller']['active'] == 1 || $packages['all']['active'] == 1): ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="seller" checked="" style="display: none !important">
                         <!-- <input type="hidden" class="seller_radio" id="seller_page_1" value="<?php echo $default_sub_type['seller']; ?>" name="cover_seller"> -->
                     <div class="carousel-container seller_template" style="display: none">
@@ -365,135 +362,134 @@
                         <div style="display: none;" >
                             <div id="owl-example-seller" class="owl-carousel">
                                 <?php
-                                
-                                    for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
-                                    ?>
+
+for ($mu_i = 1; $mu_i <= 3; $mu_i++) {
+    ?>
                                 <div class="item">
-                                    <input type="radio"  
-                                        <?php 
-                                            if($mu_i == $default_sub_type['seller']){
-                                            echo 'checked';
-                                            }
-                                            ?> class="seller_radio" id="seller_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_seller">
+                                    <input type="radio"
+                                        <?php
+if ($mu_i == $default_sub_type['seller']) {
+        echo 'checked';
+    }
+    ?> class="seller_radio" id="seller_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_seller">
                                     <label class="user-heading alt gray-bg" for="seller_page_<?php echo $mu_i; ?>">
                                         <div class="text-center">
                                             <img class="registry_template1" src="<?php echo base_url("assets/reports/english/seller/preview/{$mu_i}.jpg"); ?>" alt="Seller Report Preview">
                                         </div>
                                     </label>
                                 </div>
-                                <?php 
-                                    } /*
-                                    $type = 'seller';
-                                    $sub_type = $default_sub_type['seller'];
-                                    $check_dir = "assets/reports/english/$type/preview/$sub_type/";
-                                    $load_dir = FCPATH.$check_dir;
+                                <?php
+} /*
+$type = 'seller';
+$sub_type = $default_sub_type['seller'];
+$check_dir = "assets/reports/english/$type/preview/$sub_type/";
+$load_dir = FCPATH.$check_dir;
 
-                                    if(is_dir($load_dir)) :
+if(is_dir($load_dir)) :
 
-                                    $images = glob($load_dir . "*.jpg");
+$images = glob($load_dir . "*.jpg");
 
-                                    $count_imgs = count($images);
+$count_imgs = count($images);
 
-                                    for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
 
-                                        <div class="item">
-                                            
-                                            <div class="text-center">
-                                                <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Seller">
-                                            </div>
-                                            
-                                        </div>
+<div class="item">
 
-                                    
-                                    <?php
+<div class="text-center">
+<img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Seller">
+</div>
 
-                                    endfor;
-                                    endif;
-                                    
-                                    */?>
+</div>
+
+<?php
+
+endfor;
+endif;
+
+ */?>
                             </div>
                         </div>
                     </div>
-                    <?php endif; ?>
+                    <?php endif;?>
 
-                    <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                    <?php if ($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1): ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="buyer" checked="" style="display: none !important">
                         <input type="hidden"  class="buyer_radio" id="buyer_page_1" value="<?php echo $default_sub_type['buyer']; ?>" name="cover_buyer">
                     <div class="carousel-container buyer_template">
                         <div id="owl-example-buyer" class="owl-carousel">
                             <?php
-                            /*
-                                for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
-                                ?>
-                            <div class="item">
-                                <input type="radio"  
-                                    <?php 
-                                        if($mu_i == 1){
-                                        echo 'checked';
-                                        }
-                                        ?> class="buyer_radio" id="buyer_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_buyer">
-                                <label class="user-heading alt gray-bg" for="buyer_page_<?php echo $mu_i; ?>">
-                                    <div class="text-center">
-                                        <img class="registry_template1" src="<?php echo base_url("assets/reports/english/buyer/preview/{$mu_i}.jpg"); ?>" alt="Buyer report">
-                                    </div>
-                                </label>
-                            </div>
-                            <?php 
-                                }
-                                */
-                                $type = 'buyer';
-                                $sub_type = $default_sub_type['buyer'];
-                                $check_dir = "assets/reports/english/$type/preview/$sub_type/";
-                                $load_dir = FCPATH.$check_dir;
+/*
+for ($mu_i=1; $mu_i <=3 ; $mu_i++) {
+?>
+<div class="item">
+<input type="radio"
+<?php
+if($mu_i == 1){
+echo 'checked';
+}
+?> class="buyer_radio" id="buyer_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_buyer">
+<label class="user-heading alt gray-bg" for="buyer_page_<?php echo $mu_i; ?>">
+<div class="text-center">
+<img class="registry_template1" src="<?php echo base_url("assets/reports/english/buyer/preview/{$mu_i}.jpg"); ?>" alt="Buyer report">
+</div>
+</label>
+</div>
+<?php
+}
+ */
+$type = 'buyer';
+$sub_type = $default_sub_type['buyer'];
+$check_dir = "assets/reports/english/$type/preview/$sub_type/";
+$load_dir = FCPATH . $check_dir;
 
-                                if(is_dir($load_dir)) :
+if (is_dir($load_dir)):
 
-                                $images = glob($load_dir . "*.jpg");
+    $images = glob($load_dir . "*.jpg");
 
-                                $count_imgs = count($images);
+    $count_imgs = count($images);
 
-                                for ($img_cnt=1; $img_cnt <= $count_imgs ; $img_cnt++) : ?>
+    for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
 
-                                    <div class="item">
-                                        
-                                        <div class="text-center">
-                                            <img class="registry_template1" src="<?php echo base_url($check_dir.$img_cnt.'.jpg'); ?>" alt="Seller">
-                                        </div>
-                                        
-                                    </div>
+	                                    <div class="item">
 
-                                
-                                <?php
+	                                        <div class="text-center">
+	                                            <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
+	                                        </div>
 
-                                endfor;
-                                endif;
-                                ?>
+	                                    </div>
+
+
+	                                <?php
+
+endfor;
+endif;
+?>
                         </div>
                     </div>
-                    <?php endif; ?>
+                    <?php endif;?>
 
 
                     <div class="carousel-container registry_template">
                         <div id="owl-example-registry" class="owl-carousel">
                             <?php
-                                for ($regsitry_i=1; $regsitry_i <=6 ; $regsitry_i++) {
-                                ?>
+for ($regsitry_i = 1; $regsitry_i <= 6; $regsitry_i++) {
+    ?>
                             <div class="item">
-                                <input type="radio"  
-                                    <?php 
-                                        if($regsitry_i == 1){
-                                        echo 'checked';
-                                        }
-                                        ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
+                                <input type="radio"
+                                    <?php
+if ($regsitry_i == 1) {
+        echo 'checked';
+    }
+    ?> class="registry_page" id="registry_page_<?php echo $regsitry_i; ?>" value="<?php echo $regsitry_i; ?>" name="cover_registry">
                                 <label class="user-heading alt gray-bg" for="registry_page_<?php echo $regsitry_i; ?>">
                                     <div class="text-center">
                                         <img class="" src="<?php echo base_url("assets/reports/english/registry/preview/{$regsitry_i}.jpg"); ?>" alt="<?php echo $report->template_name; ?>">
                                     </div>
                                 </label>
                             </div>
-                            <?php 
-                                }
-                                ?>
+                            <?php
+}
+?>
                         </div>
                     </div>
                 </div>
@@ -501,7 +497,7 @@
             <!-- step 3 ends-->
             <div id="step-4" class="clearfix">
                 <div class="loader1 hidden">
-                    
+
                     <p class="loader-text">Please wait</p>
                 </div>
                 <div class="backwrap hidden"></div>
@@ -520,8 +516,8 @@
                             <div id="details" class="clearfix">
                                 <div id="client">
                                     <div class="to">INVOICE TO:</div>
-                                    <h2 class="name"><?php  echo $users[0]['first_name'].' '.$users[0]['last_name']; ?></h2>
-                                    <div class="address"><?php echo $users[0]['address_line_1'].' '.$users[0]['state_code'].' '.$users[0]['country_code']; ?></div>
+                                    <h2 class="name"><?php echo $users[0]['first_name'] . ' ' . $users[0]['last_name']; ?></h2>
+                                    <div class="address"><?php echo $users[0]['address_line_1'] . ' ' . $users[0]['state_code'] . ' ' . $users[0]['country_code']; ?></div>
                                 </div>
                                 <div id="invoice">
                                     <div class="date invoice-date">Date of Invoice: <?php echo date("m-d-Y"); ?></div>
@@ -542,15 +538,15 @@
                                         <td class="desc">
                                             <h4 class="selected_pkg_title"></h4>
                                         </td>
-                                        <td class="unit" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
-                                        <td class="total" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
+                                        <td class="unit" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price, 2, ".", ""); ?></span></td>
+                                        <td class="total" style="text-align: right;">$<span class="selected_pkg_val"><?php echo number_format($report_price, 2, ".", ""); ?></span></td>
                                     </tr>
                                 </tbody>
                                 <tfoot>
                                     <tr>
                                         <td colspan=""></td>
                                         <td colspan="2">Sub Total</td>
-                                        <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
+                                        <td>$<span class="selected_pkg_val"><?php echo number_format($report_price, 2, ".", ""); ?></span></td>
                                     </tr>
                                     <tr id="coupandiscount" style="display:none">
                                         <td colspan=""></td>
@@ -560,7 +556,7 @@
                                     <tr id="totalInvoiceAmount">
                                         <td colspan="" style=""></td>
                                         <td colspan="2">Total Due</td>
-                                        <td>$<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></td>
+                                        <td>$<span class="selected_pkg_val"><?php echo number_format($report_price, 2, ".", ""); ?></span></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -581,7 +577,7 @@
                                     </div>
                                 </div>
                             </div>
-                        
+
                             <div class="clearfix" >
                             </div>
                         </article>
@@ -591,7 +587,7 @@
                     <table width="100%" border="0" style="background-color:transparent;" cellspacing="0" cellpadding="0">
                         <tr class="invoice-header">
                             <td width="45%" bgcolor=""><img src="<?php echo base_url(); ?>assets/new_site/img/logo.png"/></td>
-                            <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<span class="selected_pkg_val"><?php echo number_format($report_price,2,".",""); ?></span></strong></td>
+                            <td width="40%"  style="color:#ffffff;"  align="right" id="payment_total"><strong>Total: $<span class="selected_pkg_val"><?php echo number_format($report_price, 2, ".", ""); ?></span></strong></td>
                             <td width="15%" style="color:#ffffff;" class="text-right" ><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
                         </tr>
                     </table>
@@ -631,7 +627,7 @@
                     </div>
                     <div class="loaders" style="opacity:1!important;"></div>
                 </div>
-                
+
             </div>
             <!-- step 4 ends-->
         </div>
@@ -648,7 +644,7 @@
           <div class="col-md-12">
             <h1 class="main_title mb-4">Recently Created Presentations</h1>
             <p class="text-center">We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p>
-            
+
             <table id="user_transaction_table" class="table table-hover responsive nowrap" style="width:100%">
                 <thead>
                     <tr>
@@ -660,11 +656,11 @@
                     </tr>
                 </thead>
             </table>
-            
+
             <?php //$this->load->view('user/listing_table',array('reports'=>$reports)); ?>
           </div>
       </div>
-        
+
     </div>
     <div class="modal" tabindex="-1" id="map-modal">
       <div class="modal-dialog modal-lg">
@@ -704,7 +700,7 @@
                     </div>
                     <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 </div>
-                
+
                 <form class="form-horizontal" name="form" method="post" id="changes_req_params_property_search">
                     <div class="modal-body" >
                         <div class="form-group clearfix">
@@ -772,12 +768,12 @@
 <script src="https://js.stripe.com/v3"></script>
 <script type="text/javascript">
 
-   
+
 
     var default_color = '<?php echo json_encode($default_color); ?>';
     default_color = JSON.parse(default_color);
     $(document).ready(function(){
-        
+
       if ($('#user_transaction_table').length) {
         $('#user_transaction_table').DataTable({
             "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
@@ -825,7 +821,7 @@
                 "emptyTable": "<div align='center'>Record(s) not found.</div>"
             },
             //Set column definition initialisation properties
-            // "columnDefs": [{ 
+            // "columnDefs": [{
             //     "orderable": false,
             //     "targets": "no-sort"
             // }],
@@ -840,7 +836,7 @@
               });
       }
     });
-    var pkg_prices_str = '<?php echo json_encode($packages)?>';
+    var pkg_prices_str = '<?php echo json_encode($packages) ?>';
     pkg_prices = JSON.parse(pkg_prices_str);
     var stripe = Stripe('<?php echo getStripeKey(); ?>');
     function manage_checkout_btn() {
@@ -885,7 +881,7 @@
             $('.backwrap').hide();
             $('.backwrap').addClass('hidden');
         }
-        
+
     }
     function choose_presentation(presentation){
         console.log(pkg_prices);
@@ -900,7 +896,7 @@
                 $('.common_te.mplate').show();
                 $(".custom-checkbox[value='"+default_color.buyer+"']").prop("checked",true);
                 $(".custom-checkbox").iCheck('update');
-                <?php if($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                <?php if ($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1): ?>
                         $('.carousel-container.common_template').hide();
                         $('.report_lang_div').parent().hide();
                         $('#report_color').val(default_color.buyer);
@@ -908,18 +904,18 @@
                         $('.subscribe_cls').show();
                         // $('.color-selection').parent().show();
                         //
-                    <?php endif; ?>
-    
+                    <?php endif;?>
+
             });
 
-            
-    
+
+
         }else if(presentation === 'marketUpdate'){
             $("#presentation").val("marketUpdate");
             $('#wizard').smartWizard("marketUpdate");
             // adding class marketUpdate so that we can manipulate the visibility of different steps
             $('#wizard').addClass('marketUpdate');
-    
+
             $('.buyer_template').hide(function(){
                 $('.seller_template').hide();
                 $('.marketUpdate_template').show();
@@ -927,20 +923,20 @@
                 $('.common_template').show();
                 $(".custom-checkbox[value='"+default_color.mu+"']").prop("checked",true);
                 $(".custom-checkbox").iCheck('update');
-                <?php if($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+                <?php if ($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1): ?>
                     $('.carousel-container.common_template').hide();
                     $('.report_lang_div').parent().hide();
                     $('#report_color').val(default_color.mu);
                     $('.common_cls').hide();
                     $('.subscribe_cls').show();
                     // $('.color-selection').parent().show();
-                <?php endif; ?>
-    
+                <?php endif;?>
+
             });
-    
+
             $("#config-comps-btn").parent().show();
-            
-    
+
+
         }
         else if(presentation === 'registry') {
             // $("#presentation").val("marketUpdate");
@@ -948,18 +944,18 @@
             $('#wizard').smartWizard("registry");
             // adding class marketUpdate so that we can manipulate the visibility of different steps
             $('#wizard').addClass('marketUpdate');
-    
+
             $('.buyer_template').hide(function(){
                 $('.seller_template').hide();
                 $('.marketUpdate_template').hide();
                 $('.registry_template').show();
                 $('.common_template').hide();
-    
+
             });
             $("#config-comps-btn").parent().hide();
-            
-    
-    
+
+
+
         }
         else {
             $("#presentation").val("seller");
@@ -971,21 +967,21 @@
                 $('.common_template').show();
                 $(".custom-checkbox[value='"+default_color.seller+"']").prop("checked",true);
                 $(".custom-checkbox").iCheck('update');
-                
-                
-                <?php if($packages['seller']['active'] == 1 || $packages['all']['active'] == 1) : ?>
+
+
+                <?php if ($packages['seller']['active'] == 1 || $packages['all']['active'] == 1): ?>
                         $('.carousel-container.common_template').hide();
                         $('.report_lang_div').parent().hide();
                         $('#report_color').val(default_color.seller);
                         $('.common_cls').hide();
                         $('.subscribe_cls').show();
                         // $('.color-selection').parent().show();
-                    <?php endif; ?>
+                    <?php endif;?>
             });
             $("#config-comps-btn").parent().show();
 
-    
-    
+
+
         }
         //Set classes
         $("#search-btn").addClass(presentation);
@@ -993,9 +989,9 @@
             $('#wizard').show(function(){
                 $(".swMain ul.anchor li a").addClass(presentation);
             });
-        });    
+        });
     }
-    
+
     // Show the customer the error from Stripe if their card fails to charge
     var showError = function(errorMsgText) {
       loading(false);
@@ -1003,7 +999,7 @@
       $("#card-error").show();
       errorMsg.textContent = errorMsgText;
     };
-    
+
     // Show a spinner on payment submission
     var loading = function(isLoading) {
       if (isLoading) {
@@ -1060,18 +1056,18 @@
         $("#sel_prop_cnt").text($("#pre-selected-options :selected").length);
         $("#not_sel_prop_cnt").text($("#pre-selected-options :not(:selected)").length);
 
-      
+
        var selected_array = [];
         const image_selected = {
           // url: icon_map,
-          url : '<?php echo base_url()."assets/new_site/img/map-selected_small.png" ?>',
-          
+          url : '<?php echo base_url() . "assets/new_site/img/map-selected_small.png" ?>',
+
         };
 
         const image_not_selected = {
           // url: icon_map,
-          url : '<?php echo base_url()."assets/new_site/img/map-not-selected_small.png" ?>',
-          
+          url : '<?php echo base_url() . "assets/new_site/img/map-not-selected_small.png" ?>',
+
         };
         comp_options = [];
         var comp_temp_i = 1;
@@ -1088,7 +1084,7 @@
             ]
             comp_options.push(temp_comp_array);
         });
-        
+
         const shape = {
           coords: [1, 1, 1, 20, 18, 20, 18, 1],
           type: "poly",
@@ -1132,20 +1128,20 @@
             custom_val : comp_option[4],
             selected_comp : comp_option[5]
           });
-          
+
           google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
               return function() {
                 infowindow.setContent(comp_options[i][0]);
                 infowindow.open(map, marker);
               }
             })(marker, i));
-            
+
              google.maps.event.addListener(marker, 'click', (function(marker, i) {
               return function() {
                 var comp_sel_val = marker.custom_val;
                 if(marker.selected_comp) {
                     $('#pre-selected-options option[value="'+comp_sel_val+'"]').prop("selected", false);
-                    
+
                     marker.setIcon(image_not_selected);
                     marker.selected_comp = false;
                 }
@@ -1158,7 +1154,7 @@
                 $('#pre-selected-options').multiSelect('refresh');
                 $("#sel_prop_cnt").text($("#pre-selected-options :selected").length);
                 $("#not_sel_prop_cnt").text($("#pre-selected-options :not(:selected)").length);
-                
+
               }
             })(marker, i));
         }
