@@ -2,7 +2,7 @@
 /**
  * The Library for the operations related to Report Generation.
  *
- *    
+ *
  * Date: Nov 30, 2016
  */
 
@@ -39,7 +39,7 @@ class Reports
         $tmp_lot_size += $lotSize;
     }
 
-    function getPropertyData($callFromApi = 0, $reportData = array())
+    public function getPropertyData($callFromApi = 0, $reportData = array())
     {
         $CI = &get_instance();
         $errorMsg = "Unexpacted error occured while trying to create " . $_POST['report_lang'] . " " . $_POST['presentation'] . " Report PDF for user account " . $CI->session->userdata('user_email');
@@ -106,7 +106,6 @@ class Reports
                 }
             }
 
-
             if (!empty($data['partner'])) {
                 $data['user_id_fk'] = $CI->session->userdata('userid');
                 foreach ($data['partner'] as $_partner) {
@@ -117,19 +116,19 @@ class Reports
         }
         $ownerNamePrimary = (string) $report187->PropertyProfile->PrimaryOwnerName;
         $ownerNameSecondary = (string) $report187->PropertyProfile->SecondaryOwnerName;
-        if (strpos($ownerNamePrimary, ";") !== FALSE) {
+        if (strpos($ownerNamePrimary, ";") !== false) {
             $_primeNameArr = explode(";", $ownerNamePrimary);
             $ownerNamePrimary = ucwords(trim($_primeNameArr[0]));
             if ($ownerNameSecondary == '') {
                 $ownerNameSecondary = ucwords(trim($_primeNameArr[1]));
             }
         }
-        if (strpos($ownerNamePrimary, ",") !== FALSE) {
+        if (strpos($ownerNamePrimary, ",") !== false) {
             $_primeNameArr = explode(",", $ownerNamePrimary);
             //Setting Last name at last like for HERNANDEZ, GERARDO JOVANNI name will be GERARDO JOVANNI HERNANDEZ
             $ownerNamePrimary = ucwords(trim($_primeNameArr[1])) . ' ' . ucwords(trim($_primeNameArr[0]));
         }
-        if (strpos($ownerNameSecondary, ",") !== FALSE) {
+        if (strpos($ownerNameSecondary, ",") !== false) {
             $_secNameArr = explode(",", $ownerNameSecondary);
             //Setting Last name at last like for HERNANDEZ, GERARDO JOVANNI name will be GERARDO JOVANNI HERNANDEZ
             $ownerNameSecondary = ucwords(trim($_secNameArr[1])) . ' ' . ucwords(trim($_secNameArr[0]));
@@ -168,7 +167,7 @@ class Reports
                         $endPoint = '/' . $mls_id;
                         // $result = $this->make_request('GET', $endPoint);
                         $result = $CI->rets->callSimplyRets($user_name, $password, $endPoint);
-                        $response = json_decode($result, TRUE);
+                        $response = json_decode($result, true);
 
                         if (isset($response) && !empty($response)) {
                             $mls_comparables[$m_key]['mls_id'] = isset($mls_id) && !empty($mls_id) ? $mls_id : '';
@@ -240,12 +239,10 @@ class Reports
             $areaLotSizeMedian = number_format($salesAnalysis['tmp_lot_size'] / count($reportItems['comparable'])); //number_format(minMaxArray('LotSize', 'median', $reportItems['comparable']));
             $areaLotSizeHigh = number_format($salesAnalysis['max_lot_size']); // number_format(minMaxArray('LotSize', 'max', $reportItems['comparable']));
 
-
             $reportItems['areaLotSize'] = $areaLotSize;
             $reportItems['areaLotSizeLow'] = $areaLotSizeLow;
             $reportItems['areaLotSizeMedian'] = $areaLotSizeMedian;
             $reportItems['areaLotSizeHigh'] = $areaLotSizeHigh;
-
 
             $areaLivingAreaLow = number_format(minMaxArray('BuildingArea', 'min', $reportItems['comparable']));
             $areaLivingAreaMedian = number_format(minMaxArray('BuildingArea', 'median', $reportItems['comparable']));
@@ -298,15 +295,16 @@ class Reports
             $reportItems['areaMedianRadius'] = $medianRadius;
             $reportItems['areaMaxRadius'] = $maxRadius;
 
-
             $ChartArr = array();
             $tmp2 = array();
 
             $totalMonthsReport = 0;
             foreach ($reportItems['comparable'] as $key => $item) {
                 /*****************************************/
-                if ($key > 8)
+                if ($key > 8) {
                     break;
+                }
+
                 $date = date_create($item['Date']);
                 $tmepDate = date_format($date, "M'y");
                 $months[] = array('date' => $tmepDate, 'value' => $item['PriceRate']);
@@ -348,25 +346,25 @@ class Reports
         }
         // $data['seller_cma'] = isset($_POST['seller_cma']) ? $_POST['seller_cma'] : '';
         $pageList = [];
-        
+
         if (isset($_POST['selected_pages'])) {
             $pageList = json_decode($_POST['selected_pages']);
             if (empty($pageList)) {
                 if ($_POST['seller_theme'] == 3) {
-                    $pageList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
                 } else if ($_POST['seller_theme'] == 2) {
-                    $pageList = [1,2,3,4,5,6,7,8,9,10,21];
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
                 } else {
-                    $pageList = [1,2,3,4,5,6,7,8];
-                }    
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                }
             }
         } else {
             if ($_POST['seller_theme'] == 3) {
-                $pageList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
             } else if ($_POST['seller_theme'] == 2) {
-                $pageList = [1,2,3,4,5,6,7,8,9,10,21];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
             } else {
-                $pageList = [1,2,3,4,5,6,7,8];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
             }
         }
         $data['pageList'] = $pageList;
@@ -396,7 +394,7 @@ class Reports
                 'property_lat' => $CI->db->escape_str($report187->PropertyProfile->PropertyCharacteristics->Latitude),
                 'property_lng' => $CI->db->escape_str($report187->PropertyProfile->PropertyCharacteristics->Longitude),
                 'report_type' => $_POST['presentation'],
-                'pdf_data' => json_encode($data)
+                'pdf_data' => json_encode($data),
             );
 
             // if it is an api call then we mark it as active
@@ -418,18 +416,19 @@ class Reports
 
             }
 
-
             // if call is from api then we directly send the report link
-            if ($callFromApi == 1)
+            if ($callFromApi == 1) {
                 return array("status" => true, 'reportLink' => base_url($pdfFileName));
-            else
+            } else {
                 return array("status" => true);
+            }
+
         } else {
             return array("status" => false, "msg" => $errorMsg);
         }
     }
 
-    function get_all_properties($report187)
+    public function get_all_properties($report187)
     {
         $_comparableTemp = array();
         $index = 0;
@@ -471,7 +470,7 @@ class Reports
         }
         return $_comparableTemp;
     }
-    function sort_properties($report187, $_comparableTemp)
+    public function sort_properties($report187, $_comparableTemp)
     {
         $_maxLimit = 8;
         $comparable = array();
@@ -482,7 +481,7 @@ class Reports
         //$reportItems['comparableTempSold'] = array();
         $date = new DateTime();
         $currentdate = $date->format('m/d/Y');
-        // $months_diff  = monthsBetween(formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]),$currentdate); 
+        // $months_diff  = monthsBetween(formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]),$currentdate);
         $minBuildArea = (floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea) * 80 / 100); //-20%
         $maxBuildArea = (floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea) * 120 / 100); //+20%
         $maxBedrooms = (int) $report187->PropertyProfile->PropertyCharacteristics->Bedrooms + 1; //+1
@@ -495,8 +494,10 @@ class Reports
         $minPricePerSQFT = (floatval($report187->PropertyProfile->SaleLoanInfo->PricePerSQFT) * 80 / 100); //+20%
         $count = 0;
         foreach ($_comparableTemp as $key => $compareableProperty) {
-            if ($count++ > ($_maxLimit - 1))
+            if ($count++ > ($_maxLimit - 1)) {
                 break;
+            }
+
             $months_diff = monthsBetween($compareableProperty['Date'], $currentdate);
             $build_area = floatval(str_replace(",", "", $compareableProperty['BuildingArea']));
             $bedrooms = (int) $compareableProperty['Bedrooms'];
@@ -527,8 +528,10 @@ class Reports
                 ) {
                     array_push($comparable, $compareableProperty);
                     unset($_comparableTemp[$key]);
-                    if (++$_count == $_maxLimit)
+                    if (++$_count == $_maxLimit) {
                         break;
+                    }
+
                 }
             }
         }
@@ -541,8 +544,10 @@ class Reports
                 if ($months_diff <= 12 && ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) && ($minBedrooms <= $bedrooms && $maxBedrooms >= $bedrooms) && ($minPricePerSQFT <= $pricePerSQFT && $maxPricePerSQFT >= $pricePerSQFT)) {
                     array_push($comparable, $compareableProperty);
                     unset($_comparableTemp[$key]);
-                    if (++$_count == $_maxLimit)
+                    if (++$_count == $_maxLimit) {
                         break;
+                    }
+
                 }
             }
         }
@@ -554,8 +559,10 @@ class Reports
                 if ($months_diff <= 12 && ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) && ($minPricePerSQFT <= $pricePerSQFT && $maxPricePerSQFT >= $pricePerSQFT)) {
                     array_push($comparable, $compareableProperty);
                     unset($_comparableTemp[$key]);
-                    if (++$_count == $_maxLimit)
+                    if (++$_count == $_maxLimit) {
                         break;
+                    }
+
                 }
             }
         }
@@ -566,8 +573,10 @@ class Reports
                 if ($months_diff <= 12 && ($minPricePerSQFT <= $pricePerSQFT && $maxPricePerSQFT >= $pricePerSQFT)) {
                     array_push($comparable, $compareableProperty);
                     unset($_comparableTemp[$key]);
-                    if (++$_count == $_maxLimit)
+                    if (++$_count == $_maxLimit) {
                         break;
+                    }
+
                 }
             }
         }
@@ -577,8 +586,10 @@ class Reports
                 if ($months_diff <= 12) {
                     array_push($comparable, $compareableProperty);
                     unset($_comparableTemp[$key]);
-                    if (++$_count == $_maxLimit)
+                    if (++$_count == $_maxLimit) {
                         break;
+                    }
+
                 }
             }
         }
@@ -586,13 +597,15 @@ class Reports
             foreach ($_comparableTemp as $key => $compareableProperty) {
                 array_push($comparable, $compareableProperty);
                 unset($_comparableTemp[$key]);
-                if (++$_count == $_maxLimit)
+                if (++$_count == $_maxLimit) {
                     break;
+                }
+
             }
         }
         return array('sorted' => $comparable, 'all' => $_comparableTemp);
     }
-    function sales_analysis($sortedComps)
+    public function sales_analysis($sortedComps)
     {
         $firstTime = true;
         $tmp_property = 0;
@@ -615,7 +628,6 @@ class Reports
             $medianPrice = (($low + $high) / 2);
         }
 
-
         // Median price calculation
 
         foreach ($sortedComps as $compareableProperty) {
@@ -633,7 +645,7 @@ class Reports
      * @param $siteAddress string Property Address
      * @return array Generation Status and filepath/error message
      */
-    function preparePdf($reportLang, $data, $presentationType, $siteAddress)
+    public function preparePdf($reportLang, $data, $presentationType, $siteAddress)
     {
         $CI = &get_instance();
 
@@ -719,8 +731,8 @@ class Reports
         if ($turboMode && $presentationType == 'seller' && $reportLang == 'english') {
             $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
         } else if ($_POST['seller_theme'] == 1 && $presentationType != 'marketUpdate') {
-            $checkLastPages =  array_filter($data['pageList'], function($page) {
-                return in_array($page, [13,14,15,16,17,18,19,20]);
+            $checkLastPages = array_filter($data['pageList'], function ($page) {
+                return in_array($page, [13, 14, 15, 16, 17, 18, 19, 20]);
             });
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
             if (empty($checkLastPages)) {
@@ -740,7 +752,7 @@ class Reports
             'page-size' => 'Letter',
             'zoom' => $zoom,
             'load-error-handling' => 'ignore',
-            'load-media-error-handling' => 'ignore'
+            'load-media-error-handling' => 'ignore',
         ];
         $snappy->setTimeout(150);
         $output = $snappy->getOutputFromHtml(
@@ -749,7 +761,7 @@ class Reports
             200,
             array(
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="report.pdf"'
+                'Content-Disposition' => 'attachment; filename="report.pdf"',
             )
         );
         $pdfFileName = $pdfFileDynamic = 'temp/' . str_replace(" ", "_", $siteAddress) . '_' . md5(time() . rand()) . '.pdf';
@@ -758,7 +770,7 @@ class Reports
             return array(
                 'report_generated' => false,
                 'error_msg' => "Empty PDF generated while trying to create " . $reportLang . " " . $presentationType . " Report for user account " . $CI->session->userdata('user_email'),
-                'pdf_filename' => ''
+                'pdf_filename' => '',
             );
         }
         if ($turboMode) {
@@ -773,23 +785,22 @@ class Reports
             //Removing dynamic as it is not needed any more
             unlink($pdfFileDynamic);
         } /*else {
-         $pdfFileName = $pdfFileDynamic;
-         //$res = exec("qpdf  {$pdffFileDynamic} --pages {$pdfFileDynamic} 1 temp/S-2.pdf 1 {$pdfFileDynamic} 2-7 temp/S-9-20.pdf 1-12 -- {$pdfFileName}");
-     }*/
+        $pdfFileName = $pdfFileDynamic;
+        //$res = exec("qpdf  {$pdffFileDynamic} --pages {$pdfFileDynamic} 1 temp/S-2.pdf 1 {$pdfFileDynamic} 2-7 temp/S-9-20.pdf 1-12 -- {$pdfFileName}");
+        }*/
         return array(
             'report_generated' => true,
             'pdf_filename' => $pdfFileName,
-            'error_msg' => ''
+            'error_msg' => '',
         );
     }
 
-    function getPropertyDataForWidget($reportData = array())
+    public function getPropertyDataForWidget($reportData = array())
     {
         $CI = &get_instance();
         $errorMsg = "Unexpacted error occured while trying to create " . $_POST['report_lang'] . " " . $_POST['presentation'] . " Report PDF for user account " . $CI->session->userdata('user_email');
         // loading the required helper
         $CI->load->helper('dataapi');
-
 
         $rep111 = $_POST['report111'];
         $reportLang = isset($_POST['report_lang']) && !empty($_POST['report_lang']) ? strtolower($_POST['report_lang']) : '';
@@ -802,8 +813,8 @@ class Reports
             array(
                 'ssl' => array(
                     'verify_peer' => false,
-                    "verify_peer_name" => false
-                )
+                    "verify_peer_name" => false,
+                ),
             )
         );
 
@@ -831,7 +842,7 @@ class Reports
         }
 
         if ($data['user']['email'] != '') {
-            $CI =& get_instance();
+            $CI = &get_instance();
             $ref_code = $CI->db->select('ref_code')
                 ->where('email', $data['user']['email'])
                 ->get('lp_user_mst')
@@ -864,7 +875,6 @@ class Reports
                 }
             }
 
-
             if (!empty($data['partner'])) {
                 $data['user_id_fk'] = $CI->session->userdata('userid');
                 foreach ($data['partner'] as $_partner) {
@@ -875,19 +885,19 @@ class Reports
         }
         $ownerNamePrimary = (string) $report187->PropertyProfile->PrimaryOwnerName;
         $ownerNameSecondary = (string) $report187->PropertyProfile->SecondaryOwnerName;
-        if (strpos($ownerNamePrimary, ";") !== FALSE) {
+        if (strpos($ownerNamePrimary, ";") !== false) {
             $_primeNameArr = explode(";", $ownerNamePrimary);
             $ownerNamePrimary = ucwords(trim($_primeNameArr[0]));
             if ($ownerNameSecondary == '') {
                 $ownerNameSecondary = ucwords(trim($_primeNameArr[1]));
             }
         }
-        if (strpos($ownerNamePrimary, ",") !== FALSE) {
+        if (strpos($ownerNamePrimary, ",") !== false) {
             $_primeNameArr = explode(",", $ownerNamePrimary);
             //Setting Last name at last like for HERNANDEZ, GERARDO JOVANNI name will be GERARDO JOVANNI HERNANDEZ
             $ownerNamePrimary = ucwords(trim($_primeNameArr[1])) . ' ' . ucwords(trim($_primeNameArr[0]));
         }
-        if (strpos($ownerNameSecondary, ",") !== FALSE) {
+        if (strpos($ownerNameSecondary, ",") !== false) {
             $_secNameArr = explode(",", $ownerNameSecondary);
             //Setting Last name at last like for HERNANDEZ, GERARDO JOVANNI name will be GERARDO JOVANNI HERNANDEZ
             $ownerNameSecondary = ucwords(trim($_secNameArr[1])) . ' ' . ucwords(trim($_secNameArr[0]));
@@ -897,7 +907,6 @@ class Reports
 
         // if it is an api call then we get the user id from the token
         $currentUserId = $CI->session->userdata('userid');
-
 
         if (empty($currentUserId)) {
             $user_info_id = $CI->db->select(array('user_id_pk'))
@@ -949,14 +958,14 @@ class Reports
 
                         $mls_comparables = array();
 
-                        $mls_ids = json_decode(stripslashes($_POST['custom_comps']), TRUE);
+                        $mls_ids = json_decode(stripslashes($_POST['custom_comps']), true);
 
                         if (isset($mls_ids) && !empty($mls_ids) && $simply_rets) {
                             foreach ($mls_ids as $m_key => $m_value) {
                                 $mls_id = $m_value;
                                 $endPoint = 'properties/' . $mls_id;
                                 $result = $this->make_request('GET', $endPoint);
-                                $response = json_decode($result, TRUE);
+                                $response = json_decode($result, true);
 
                                 if (isset($response) && !empty($response)) {
                                     $mls_comparables[$m_key]['mls_id'] = isset($mls_id) && !empty($mls_id) ? $mls_id : '';
@@ -988,7 +997,7 @@ class Reports
                                     return array(
                                         'report_generated' => false,
                                         'error_msg' => "Comparable not found for $search_city",
-                                        'pdf_filename' => ''
+                                        'pdf_filename' => '',
                                     );
                                 }
                             }
@@ -1070,12 +1079,10 @@ class Reports
         $areaLotSizeMedian = number_format($salesAnalysis['tmp_lot_size'] / count($reportItems['comparable'])); //number_format(minMaxArray('LotSize', 'median', $reportItems['comparable']));
         $areaLotSizeHigh = number_format($salesAnalysis['max_lot_size']); // number_format(minMaxArray('LotSize', 'max', $reportItems['comparable']));
 
-
         $reportItems['areaLotSize'] = $areaLotSize;
         $reportItems['areaLotSizeLow'] = $areaLotSizeLow;
         $reportItems['areaLotSizeMedian'] = $areaLotSizeMedian;
         $reportItems['areaLotSizeHigh'] = $areaLotSizeHigh;
-
 
         $areaLivingAreaLow = number_format(minMaxArray('BuildingArea', 'min', $reportItems['comparable']));
         $areaLivingAreaMedian = number_format(minMaxArray('BuildingArea', 'median', $reportItems['comparable']));
@@ -1128,7 +1135,6 @@ class Reports
         $reportItems['areaMedianRadius'] = $medianRadius;
         $reportItems['areaMaxRadius'] = $maxRadius;
 
-
         $ChartArr = array();
         $tmp2 = array();
 
@@ -1138,7 +1144,7 @@ class Reports
             $ym_txt = date('My', strtotime($now . " -$x month"));
             $ChartArr[$ym] = array(
                 'label' => $ym_txt,
-                'val' => 0
+                'val' => 0,
             );
         }
         foreach ($comparableTemp as $comp_tmp_key => $comp_tmp_val) {
@@ -1150,7 +1156,6 @@ class Reports
         }
         $tmp2['date'] = implode('|', array_column($ChartArr, 'label'));
         $tmp2['series'] = implode(',', array_column($ChartArr, 'val'));
-
 
         $chart_color = !empty($CI->input->post('theme')) ? str_replace("#", "", $CI->input->post('theme')) : '082147';
         // $tmp2['color'] = str_replace("#", "", $CI->input->post('theme'));
@@ -1179,8 +1184,6 @@ class Reports
             }
         }
         /* testimonials */
-
-
 
         $data['pdfPages'] = isset($_POST['pdfPages']) && !empty($_POST['pdfPages']) ? explode(',', $_POST['pdfPages']) : array();
 
@@ -1258,7 +1261,6 @@ class Reports
         $reportGenerated = $PdfGenResponse['report_generated'];
         $errorMsg = $PdfGenResponse['error_msg'];
 
-
         if ($reportGenerated) {
             $insertPdfReport = array(
                 'project_name' => $CI->db->escape_str($report187->PropertyProfile->SiteAddress),
@@ -1272,8 +1274,6 @@ class Reports
                 'report_type' => $_POST['presentation'],
             );
 
-
-
             $CI->base_model->insert_one_row('lp_my_listing', $insertPdfReport);
             $project_id = $CI->base_model->get_last_insert_id();
             $CI->session->set_userdata('project_id', $project_id);
@@ -1281,13 +1281,12 @@ class Reports
             // if call is from api then we directly send the report link
             return array("status" => true, 'reportLink' => base_url($pdfFileName), 'project_id' => $project_id);
 
-
         } else {
             return array("status" => false, "msg" => $errorMsg);
         }
     }
 
-    function prepareWidgetPdf($reportLang, $data, $presentationType, $siteAddress)
+    public function prepareWidgetPdf($reportLang, $data, $presentationType, $siteAddress)
     {
         $CI = &get_instance();
 
@@ -1363,7 +1362,7 @@ class Reports
             'page-size' => 'Letter',
             'zoom' => $zoom,
             'load-error-handling' => 'ignore',
-            'load-media-error-handling' => 'ignore'
+            'load-media-error-handling' => 'ignore',
         ];
         $snappy->setTimeout(150);
         $output = $snappy->getOutputFromHtml(
@@ -1372,7 +1371,7 @@ class Reports
             200,
             array(
                 'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="report.pdf"'
+                'Content-Disposition' => 'attachment; filename="report.pdf"',
             )
         );
         $pdfFileName = $pdfFileDynamic = 'temp/' . str_replace(" ", "_", $siteAddress) . '_' . md5(time() . rand()) . '.pdf';
@@ -1381,14 +1380,14 @@ class Reports
             return array(
                 'report_generated' => false,
                 'error_msg' => "Empty PDF generated while trying to create " . $reportLang . " " . $presentationType . " Report for user account " . $CI->session->userdata('user_email'),
-                'pdf_filename' => ''
+                'pdf_filename' => '',
             );
         }
 
         return array(
             'report_generated' => true,
             'pdf_filename' => $pdfFileName,
-            'error_msg' => ''
+            'error_msg' => '',
         );
     }
 
@@ -1396,7 +1395,6 @@ class Reports
     {
         $login = $_ENV['RETS_API_USERNAME'];
         $password = $_ENV['RETS_API_PASSWORD'];
-
 
         $ch = curl_init($_ENV['RETS_API_ENDPOINT'] . $endpoint);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $http_method);
@@ -1409,7 +1407,7 @@ class Reports
             CURLOPT_HTTPHEADER,
             array(
                 'Content-Type: application/json',
-                'Content-Length: ' . strlen($body_params)
+                'Content-Length: ' . strlen($body_params),
             )
         );
 
@@ -1420,4 +1418,3 @@ class Reports
     }
 
 }
-?>
