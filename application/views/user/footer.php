@@ -20,7 +20,7 @@
       </div>
         <div class="row">
             <div class="col-md-12">
-                <p class="mb-0 copyright">© <?php echo date('Y');?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
+                <p class="mb-0 copyright">© <?php echo date('Y'); ?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </div>
@@ -43,12 +43,12 @@
                   <input type="email" class="form-control" required name="email_to">
               </div>
               <div class="form-group">
-                  <input type="checkbox" name="cc" id="cc_me"> 
+                  <input type="checkbox" name="cc" id="cc_me">
                   <label for="cc_me">CC to me</label>
               </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-lp external">Send</button>              
+                <button type="submit" class="btn btn-lp external">Send</button>
             </div>
         </form>
     </div>
@@ -73,7 +73,7 @@
               </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-lp external">Send</button>              
+                <button type="submit" class="btn btn-lp external">Send</button>
             </div>
         </form>
     </div>
@@ -102,7 +102,7 @@
 <!-- END Modals -->
 
 <style type="text/css">
-  
+
   input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: none !important;
       background-image: none;
@@ -119,28 +119,28 @@
   // Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
   Stripe.setPublishableKey("<?=getStripeKey()?>");
 
-  
+
   // ...
 </script>
 
-<!-- Bootstrap Core JavaScript --> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script> 
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.bootstrap4.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js?v=0.1"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js?v=0.1"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
 <script type="text/javascript">
   // run pre selected options
@@ -156,7 +156,7 @@
       // $('#pre-selected-options').multiSelect({
       //     selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
       //     selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-      // });  
+      // });
       // if(firstOpen) {
       //     // If received list is not greater than min value than set our min value to received list length
       //     var pre_selected_options = $.trim($('#pre-selected-options').html());
@@ -195,7 +195,7 @@
     //       event.stopPropagation();
     //       return false;
     //   }
-    // } 
+    // }
   });
 </script>
 <script type="text/javascript">
@@ -219,16 +219,16 @@
   }
 
   function selected_listing()
-  { 
+  {
     console.log(this.value);
   }
   var hexDigits = new Array
-          ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+          ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
 
   //Function to convert hex format to a rgb color
   function rgb2hex(rgb) {
     if(rgb != undefined) {
-      
+
      rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
      return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
     }
@@ -245,7 +245,7 @@
             map = new google.maps.Map(document.getElementById('map-canvas'), {
               zoom: 8,
               center: latlng
-            });    
+            });
             marker = new google.maps.Marker({
                 position: latlng,
                 map: map,
@@ -257,7 +257,7 @@
           zoom: 8,
           center: {lat: -34.397, lng: 150.644}
         });
-      
+
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   }
@@ -279,7 +279,7 @@
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
 
-    // Smart Wizard   
+    // Smart Wizard
     $('#wizard').smartWizard({
       onLeaveStep:function(obj){
         if(obj.attr('rel')==1){
@@ -314,7 +314,7 @@
               var theme_type = $("#select-theme-type").val();
               var defaultSubType = <?php echo json_encode($default_sub_type); ?>;
               var theme_sub_type = defaultSubType[presentation];
-              
+
               $.ajax({
                 url:base_url + 'user/getPreviews',
                 method:'POST',
@@ -360,7 +360,7 @@
           if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
 
             $('.buyer-cls').hide();
-            
+
           }
           else {
             $('.buyer-cls').show();
@@ -383,7 +383,7 @@
               method:'GET'
           })
             .success(function(resp){
-              
+
               runPMA('','');
             });
           // }
@@ -393,7 +393,7 @@
           $('.backwrap').removeClass('hidden');
           // check_subscription();
           // manage_checkout_btn();
-        } 
+        }
         if(obj.attr('rel')!=4){
           $(".actionBar").show("slow");
           $(".btn-checkout").show("slow");
@@ -487,11 +487,11 @@
               $(this).find('button').prop('disabled', true);
 
               // Stripe.card.createToken($form, stripeResponseHandler);
-              
+
               // Prevent the form from submitting with the default action
               return false;
     });
-    
+
     $('#apply_coupon').click(function(){
       $('.loader1').show();
       $('.loader1').removeClass('hidden');
@@ -533,12 +533,12 @@
           $('.loader1').hide();
           $('.backwrap').hide();
         }
-      }); 
+      });
     });
 
     function onFinishCallback(){
       $('#wizard').smartWizard('showMessage','Finish Clicked');
-    }     
+    }
 
     $('#addNewPartner').hide();
     $('.btn.add-partner').on('click', function (event) {
@@ -621,7 +621,7 @@
         //               if(data.company_plan !== undefined && data.company_plan){
         //                   $('#cancelBtnWrap').hide();
         //               }
-                      
+
         //           } else {
         //               $('#subscriptionForm-wraper').show();
         //               if(data.message !== undefined){
@@ -634,27 +634,27 @@
         // return true;
       }
     });
-    /** Tabs content was messedup for a second before smartTab initialization 
-     * So hide it initially and show it once smartTab initialized 
+    /** Tabs content was messedup for a second before smartTab initialization
+     * So hide it initially and show it once smartTab initialized
      */
     $('#tabs').show();
-    
-    $(".leftpic a").click(function() {    
-        console.log("trigger");                                            
+
+    $(".leftpic a").click(function() {
+        console.log("trigger");
           $(this).parents(".leftpic").find(".file-type").trigger("click");
     });
 
-    $(".rightpic a").click(function() {                                                
+    $(".rightpic a").click(function() {
           $(this).parents(".rightpic").find(".file-type").trigger("click");
     });
-    
-    $("#addNewPartner").on('click','.partnerpic a',function() {    
-        console.log("trigger partner");                                            
+
+    $("#addNewPartner").on('click','.partnerpic a',function() {
+        console.log("trigger partner");
           $(this).parents(".partnerpic").find(".file-type").trigger("click");
     });
 
-    $("#addNewPartner").on('click','.partner_companypic a',function() {    
-        console.log("trigger");                                            
+    $("#addNewPartner").on('click','.partner_companypic a',function() {
+        console.log("trigger");
           $(this).parents(".partner_companypic").find(".file-type").trigger("click");
     });
     $("#addNewPartner").on('change','.partnerpic .file-type',function(){
@@ -662,9 +662,9 @@
       var file_data = $(this).prop('files')[0];
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)
-      // alert(form_data);                             
+      // alert(form_data);
       $.ajax({
-          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script 
+          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script
           dataType: 'text', // what to expect back from the PHP script, if anything
           cache: false,
           contentType: false,
@@ -689,16 +689,16 @@
       var file_data = $(this).prop('files')[0];
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)
-      // alert(form_data);                             
+      // alert(form_data);
       $.ajax({
-          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script 
+          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script
           dataType: 'text', // what to expect back from the PHP script, if anything
           cache: false,
           contentType: false,
           processData: false,
           data: form_data,
           type: 'post',
-          success: function(php_script_response) { 
+          success: function(php_script_response) {
             console.log(JSON.parse(php_script_response));
             var object = JSON.parse(php_script_response);
             var picEle = $(ele).closest('.partner_companypic');
@@ -711,15 +711,15 @@
           }
       });
     });
-    
+
     $(".leftpic .file-type").change(function(){
       var ele = this;
       var file_data = $(this).prop('files')[0];
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)
-      // alert(form_data);                             
+      // alert(form_data);
       $.ajax({
-        url: '<?php echo base_url(); ?>index.php?/user/upload_file/profile-image', // point to server-side PHP script 
+        url: '<?php echo base_url(); ?>index.php?/user/upload_file/profile-image', // point to server-side PHP script
         dataType: 'text', // what to expect back from the PHP script, if anything
         cache: false,
         contentType: false,
@@ -740,7 +740,7 @@
               */
               var element = $(ele).closest('.leftpic' ).find('#fileimage');
               $(element[0]).val('<?php echo base_url(); ?>'+object.fileuri);
-              
+
               if($('#agent_profile_image')){
                 $('#agent_profile_image').attr('value',object.fileuri);
               }
@@ -754,9 +754,9 @@
     $(".rightpic .file-type").change(function(){
         var file_data = $(this).prop('files')[0];
           var form_data = new FormData();
-          form_data.append('fileToUpload', file_data)                   
+          form_data.append('fileToUpload', file_data)
           $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/upload_file/company-image', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/upload_file/company-image', // point to server-side PHP script
               dataType: 'text', // what to expect back from the PHP script, if anything
               cache: false,
               contentType: false,
@@ -767,7 +767,7 @@
                   var object = JSON.parse(php_script_response);
                   if (object.status=='success') {
                       $('.rightpic a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
-                      
+
                       if(object.status == 'success'){
                         $("#company_image").val(object.fileuri);
                       }else{
@@ -801,7 +801,7 @@
       }else{
         var form_data = $(this).serializeArray();
         $.ajax({
-                url: '<?php echo base_url(); ?>index.php?/user/update_password', // point to server-side PHP script 
+                url: '<?php echo base_url(); ?>index.php?/user/update_password', // point to server-side PHP script
                 // dataType: 'text', // what to expect back from the PHP script, if anything
                 // cache: false,
                 // contentType: false,
@@ -809,7 +809,7 @@
                 data: form_data,
                 method: 'post',
                 success: function(php_script_response) {
-                    
+
                     console.log(JSON.parse(php_script_response));
                     var object = JSON.parse(php_script_response);
                     if (object.status=="success") {
@@ -858,7 +858,7 @@
 
         var form_data = $(this).serializeArray();
         $.ajax({
-                url: '<?php echo base_url(); ?>index.php?/user/update_agentinfo', // point to server-side PHP script 
+                url: '<?php echo base_url(); ?>index.php?/user/update_agentinfo', // point to server-side PHP script
                 // dataType: 'text', // what to expect back from the PHP script, if anything
                 // cache: false,
                 // contentType: false,
@@ -866,7 +866,7 @@
                 data: form_data,
                 method: 'post',
                 success: function(php_script_response) {
-                    
+
                     console.log(JSON.parse(php_script_response));
                     var object = JSON.parse(php_script_response);
                     if (object.status=="success") {
@@ -911,11 +911,11 @@
     $('#companyInfoForm').submit(function(){
       var form_data = $(this).serializeArray();
       $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script
               data: form_data,
               method: 'post',
               success: function(php_script_response) {
-                  
+
                   console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
@@ -959,11 +959,11 @@
     $('#agentBillingInfo').submit(function(){
       var form_data = $(this).serializeArray();
       $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script
               data: form_data,
               method: 'post',
               success: function(php_script_response) {
-                  
+
                   console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
@@ -982,11 +982,11 @@
     $('#agentDefaultTheme').click(function(){
       console.log($('.custom-checkbox:checked').val());
       $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/update_defaulttheme', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/update_defaulttheme', // point to server-side PHP script
               data: {theme:$('.custom-checkbox:checked').val()},
               method: 'post',
               success: function(php_script_response) {
-                  
+
                   console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
@@ -1006,7 +1006,7 @@
       jQuery(".loader1").removeClass('hidden');
       jQuery(".backwrap").show();
       jQuery(".backwrap").removeClass('hidden');
-    
+
       Stripe.card.createToken($subs_form, stripeResponseHandlerSubs);
       // Prevent the form from submitting with the default action
       return false;
@@ -1034,7 +1034,7 @@
         $('#subscriptionForm').get(0).submit = function() {
             var form_data = $(this).serializeArray();
             $.ajax({
-                    url: '<?php echo site_url('user/pay_subscription'); ?>', // point to server-side PHP script 
+                    url: '<?php echo site_url('user/pay_subscription'); ?>', // point to server-side PHP script
                     data: form_data,
                     method: 'post',
                     dataType: 'json',
@@ -1066,7 +1066,7 @@
             });
         }
     }
-    
+
     $(".btn-checkout").click(function(){
       var isDirectDownload = parseInt($(this).data('download'));
       if(isDirectDownload){
@@ -1094,7 +1094,7 @@
         $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
         $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
         // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
-        
+
         if(!(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1)) {
 
             // $('.loader1').show();
@@ -1135,15 +1135,15 @@
               }
             });
 
-            
+
             document.getElementById("stripe-submit").disabled = true;
 
             const btn = document.querySelector('#stripe-submit');
             btn.addEventListener('click', async (e) => {
               e.preventDefault();
               loading(true);
-              let nameInput = '<?php echo $this->session->userdata('username')?>';
-              
+              let nameInput = '<?php echo $this->session->userdata('username') ?>';
+
               let coupon_id = $("#coupon-id").val();
               fetch('<?php echo base_url("user/createPaymentIntent"); ?>', {
                 method: 'POST',
@@ -1192,7 +1192,7 @@
               });
 
             });
-            
+
         }
 
         //$("#stripe_chk_btn").trigger("click");
@@ -1208,7 +1208,7 @@
       //   $(document).scrollTop(0);
       // },500);
     });
-    
+
     $(".btn-review").click(function(){
       $(this).parents("#step-4").find('.order-detail').show("slow");
       $(this).parents("#step-4").find('.order-summary').hide("slow");
@@ -1284,10 +1284,10 @@
   $(document).ready(function(){
       <?php if ($this->session->flashdata('success')): ?>
       Notify('Success', '<?php echo $this->session->flashdata('success') ?>', 'success');
-      <?php endif; ?>
-      <?php if ($this->session->flashdata('error')) : ?>
+      <?php endif;?>
+      <?php if ($this->session->flashdata('error')): ?>
       Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
-      <?php endif; ?>
+      <?php endif;?>
       $(".btn-user-logout-click").click(function() {
           $.ajax({
               url: '<?php echo site_url('auth/logout/format/json/'); ?>',
@@ -1327,7 +1327,7 @@
 
         if($('.myaccount  #preview_pages ').length) {
 
-          
+
           $('.myaccount .theme_selection_div .select_change').change(function() {
 
             if($(this).attr('id') == "select-theme-type") {

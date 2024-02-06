@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 class Report_model extends CI_Model
 {
@@ -7,83 +9,83 @@ class Report_model extends CI_Model
         parent::__construct();
     }
 
-    function getReportPages($language, $type)
+    public function getReportPages($language, $type)
     {
-    	$reports = [];
-    	$sql = 'SELECT page_no, page_title, page_path 
-    	FROM lp_user_report_content 
-    	WHERE user_id = 0 
-    	AND report_type = ? 
+        $reports = [];
+        $sql = 'SELECT page_no, page_title, page_path
+    	FROM lp_user_report_content
+    	WHERE user_id = 0
+    	AND report_type = ?
     	AND language = ?';
-    	$result = $this->db->query($sql, [$type, $language]);
-    	if ($result->num_rows()) {
-    		$data = $result->result();
-    		foreach ($data as $key => $row) {
-    			$reports['pages'][] = [
-    				'no' => $row->page_no,
-    				'title' => $row->page_title,
-    				'path' => $row->page_path,
-    			];
-    		}
-    		$reports['count'] = $result->num_rows();
-    		$reports['type'] = $type;
-    		$reports['language'] = $language;
-    	}
-    	return $reports;
+        $result = $this->db->query($sql, [$type, $language]);
+        if ($result->num_rows()) {
+            $data = $result->result();
+            foreach ($data as $key => $row) {
+                $reports['pages'][] = [
+                    'no' => $row->page_no,
+                    'title' => $row->page_title,
+                    'path' => $row->page_path,
+                ];
+            }
+            $reports['count'] = $result->num_rows();
+            $reports['type'] = $type;
+            $reports['language'] = $language;
+        }
+        return $reports;
     }
 
-    function getReportPageData($userId, $type, $language, $page)
+    public function getReportPageData($userId, $type, $language, $page)
     {
-    	$data = [];
-    	$sql = 'SELECT id, user_id, page_no, page_title, page_path, data 
-    	FROM lp_user_report_content 
-    	WHERE user_id = ? 
-    	AND report_type = ? 
-    	AND language = ? 
+        $data = [];
+        $sql = 'SELECT id, user_id, page_no, page_title, page_path, data
+    	FROM lp_user_report_content
+    	WHERE user_id = ?
+    	AND report_type = ?
+    	AND language = ?
     	AND page_no = ?';
-    	$result = $this->db->query($sql, [$userId, $type, $language, $page]);
-    	if ($result->num_rows()) {
-    		$data = $result->row_array();
-    	}
-    	return $data;
+        $result = $this->db->query($sql, [$userId, $type, $language, $page]);
+        if ($result->num_rows()) {
+            $data = $result->row_array();
+        }
+        return $data;
     }
 
-    function saveReportPageData($userId, $reportType, $language, $page, $reportDataToSave)
+    public function saveReportPageData($userId, $reportType, $language, $page, $reportDataToSave)
     {
-    	$defaultData = $this->getReportPageData(0, $reportType, $language, $page);
-    	$existingData = $this->getReportPageData($userId, $reportType, $language, $page);
-    	if (!empty($existingData)) {
-    		// Update
-    		$data = array(
-               'data' => json_encode($reportDataToSave),
-               'updated_at' => date('Y-m-d H:i:s'),
-               'updated_by' => $this->session->userdata('userid') 
+        $defaultData = $this->getReportPageData(0, $reportType, $language, $page);
+        $existingData = $this->getReportPageData($userId, $reportType, $language, $page);
+        if (!empty($existingData)) {
+            // Update
+            $data = array(
+                'data' => json_encode($reportDataToSave),
+                'updated_at' => date('Y-m-d H:i:s'),
+                'updated_by' => $this->session->userdata('userid'),
             );
 
-			$this->db->where('id', $existingData['id']);
-			$this->db->where('user_id', $userId);
-			$this->db->where('report_type', $reportType);
-			$this->db->where('language', $language);
-			$this->db->where('page_no', $page);
-			$this->db->update('lp_user_report_content', $data); 
+            $this->db->where('id', $existingData['id']);
+            $this->db->where('user_id', $userId);
+            $this->db->where('report_type', $reportType);
+            $this->db->where('language', $language);
+            $this->db->where('page_no', $page);
+            $this->db->update('lp_user_report_content', $data);
 
-    	} else {
-    		// Insert
-    		$data = array(
-		        'user_id' => $userId,
-		        'report_type' => strtolower($reportType),
-		        'language' => strtolower($language),
-		        'page_no' => $page,
-		        'page_title' => $defaultData['page_title'],
-		        'page_path' => $defaultData['page_path'],
-		        'data' => json_encode($reportDataToSave),
-		        'created_at' => date('Y-m-d H:i:s'),
-		        'updated_at' => date('Y-m-d H:i:s'),
-		        'updated_by' => $this->session->userdata('userid')
-			);
+        } else {
+            // Insert
+            $data = array(
+                'user_id' => $userId,
+                'report_type' => strtolower($reportType),
+                'language' => strtolower($language),
+                'page_no' => $page,
+                'page_title' => $defaultData['page_title'],
+                'page_path' => $defaultData['page_path'],
+                'data' => json_encode($reportDataToSave),
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+                'updated_by' => $this->session->userdata('userid'),
+            );
 
-			$this->db->insert('lp_user_report_content', $data);
-    	}	
+            $this->db->insert('lp_user_report_content', $data);
+        }
     }
 
     public function prepare_user_report_data($userId, $reportType, $language, $page)
@@ -121,13 +123,13 @@ class Report_model extends CI_Model
         return $data;
     }
 
-    function getWidgetReportPageData($type, $language, $page)
+    public function getWidgetReportPageData($type, $language, $page)
     {
         $data = [];
-        $sql = 'SELECT id, page_no, page_title, data 
-        FROM lp_widget_report_content 
-        WHERE report_type = ? 
-        AND language = ? 
+        $sql = 'SELECT id, page_no, page_title, data
+        FROM lp_widget_report_content
+        WHERE report_type = ?
+        AND language = ?
         AND page_no = ?';
         $result = $this->db->query($sql, [$type, $language, $page]);
         if ($result->num_rows()) {
@@ -136,4 +138,3 @@ class Report_model extends CI_Model
         return $data;
     }
 }
-?>

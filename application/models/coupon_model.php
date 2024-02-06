@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 class Coupon_model extends MY_Model
 {
@@ -13,18 +15,18 @@ class Coupon_model extends MY_Model
     public function get_coupon_count($postData)
     {
         $this->db->select("count(coupon_id_pk) as count");
-        $this->db->where('sales_rep_id',null);
+        $this->db->where('sales_rep_id', null);
 
         if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
             $value = trim($postData['search']['value']);
             $value = $this->db->escape($value);
-            $value = trim($value,"'");
-            
-            $this->db->where("( coupon_code LIKE '%".$value."%' 
-                OR coupon_name LIKE '%".$value."%'
-                OR coupons_applied_cnt LIKE '%".$value."%'
-                OR coupon_amt LIKE '%".$value."%'
-                 )", NULL, FALSE);
+            $value = trim($value, "'");
+
+            $this->db->where("( coupon_code LIKE '%" . $value . "%'
+                OR coupon_name LIKE '%" . $value . "%'
+                OR coupons_applied_cnt LIKE '%" . $value . "%'
+                OR coupon_amt LIKE '%" . $value . "%'
+                 )", null, false);
         }
 
         $query = $this->db->get('lp_coupon_mst');
@@ -38,22 +40,21 @@ class Coupon_model extends MY_Model
         $dir = $postData['order'][0]['dir'];
 
         $this->db->select("coupon_id_pk, coupon_code, coupon_name, start_date, end_date, coupons_applied_cnt, coupon_amt");
-        $this->db->where('sales_rep_id',null);
+        $this->db->where('sales_rep_id', null);
 
         if (isset($postData['search']['value']) && !empty($postData['search']['value'])) {
             $value = trim($postData['search']['value']);
             $value = $this->db->escape($value);
-            $value = trim($value,"'");
-            
+            $value = trim($value, "'");
 
-            $this->db->where("( coupon_code LIKE '%".$value."%' 
-                OR coupon_name LIKE '%".$value."%'
-                OR coupons_applied_cnt LIKE '%".$value."%'
-                OR coupon_amt LIKE '%".$value."%'
-                 )", NULL, FALSE);
+            $this->db->where("( coupon_code LIKE '%" . $value . "%'
+                OR coupon_name LIKE '%" . $value . "%'
+                OR coupons_applied_cnt LIKE '%" . $value . "%'
+                OR coupon_amt LIKE '%" . $value . "%'
+                 )", null, false);
         }
-        
-        if($postData['length'] != -1){
+
+        if ($postData['length'] != -1) {
             $this->db->limit($postData['length'], $postData['start']);
         } else {
             $this->db->limit(10, $postData['start']);
@@ -64,4 +65,3 @@ class Coupon_model extends MY_Model
         return $query->result_array();
     }
 }
-?>

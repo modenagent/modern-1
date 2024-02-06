@@ -1,4 +1,6 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 class Package_model extends MY_Model
 {
@@ -8,15 +10,15 @@ class Package_model extends MY_Model
         parent::__construct();
         // error_reporting(E_ALL ^ E_NOTICE);
     }
-    
+
     public function get_all_packages_price()
     {
         $packages = [];
         $sql = "SELECT package, price FROM lp_packages";
         $result = $this->db->query($sql);
-        if ($result->num_rows()>0) {
+        if ($result->num_rows() > 0) {
             $data = $result->result_array();
-            foreach($data as $row) {
+            foreach ($data as $row) {
                 $packages[$row['package']] = $row['price'];
             }
         }
@@ -41,8 +43,8 @@ class Package_model extends MY_Model
 
     public function set_package_price($package, $price, $userId)
     {
-        $update_sql = "UPDATE lp_packages 
-            SET price=?, updated_at=?, updated_by=? 
+        $update_sql = "UPDATE lp_packages
+            SET price=?, updated_at=?, updated_by=?
             WHERE package=?";
         $this->db->query($update_sql, [$price, date('Y-m-d H:i:s'), $userId, $package]);
     }
