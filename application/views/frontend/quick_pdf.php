@@ -18,7 +18,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="main_title">Generate Your Complimentary C.M.A.</h1>
+                <h1 class="main_title">Generate Your Complimentary <br> Market Analysis</h1>
+				<p class="quickpdf">This 8 page analyzes today's market and what the proposed selling value of it is. This report is for informational purposes soley. This report is made avaible to you at no cost.</p>
                 <!-- <p class="subline">Below you can update the following: Agent info, company info, set a default theme, and update your login info.</p> -->
             </div>
         </div>
@@ -32,10 +33,11 @@
                                     <img class="profile_img mb-2"
                                         src="https://dev.modernagent.io/<?= $agent->profile_image ?>">
                                     <div class="mb-2" ><?= $agent->first_name . ' ' . $agent->last_name; ?></div>
-                                    <div class="mb-2">Lic# <?= $agent->license_no; ?></div>
-                                    <div class="mb-2">Email# <?= $agent->email ; ?></div>
-                                    <div class="mb-2">Phone# <?= $agent->phone; ?></div>
-                                    <div class="mb-2">Contact Info# <?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></div>
+                                    <div class="mb-2">DRE# <?= $agent->license_no; ?></div>
+                                    <div class="mb-2">E: <?= $agent->email ; ?></div>
+                                    <div class="mb-2">P: <?= $agent->phone; ?></div>
+									<div class="mb-2"><?= $agentInfo->company_name; ?></div>
+                                    <div class="mb-2"><?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></div>
                                 </div>
 
                             </div>

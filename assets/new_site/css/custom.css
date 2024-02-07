@@ -2105,3 +2105,10 @@ body.cma-body {
 }
 
 /*BI*/
+
+p.quickpdf {
+	text-align:center;
+	padding-top: 15px;
+}
+
+<p class="quickpdf">This 8 page analyzes today's market and what the proposed selling value of it is. This report is for informational purposes soley. This report is made avaible to you at no cost.</p>
