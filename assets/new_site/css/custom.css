@@ -1287,7 +1287,7 @@ body.home.loaded.modal-open #steps {
         padding: 50px;
     }
     .myaccount {
-        padding: 180px 0 200px;
+        padding: 115px 0 200px;
     }
     .main_title {
         font-size: 42px;
@@ -1994,7 +1994,7 @@ body.cma-body {
 }
 
 .cma_form {
-    padding: 20px 20px;
+    padding: 0px 20px;
 }
 
 .cma_form.login_info_form .form-group {
@@ -2110,11 +2110,11 @@ p.quickpdf {
 	text-align:center;
 	padding-top: 15px;
 	font-size:13px;
-	line-height:10px;
+	line-height:15px;
 }
 p.subquick {
 	font-size: 16px;
-	line-height: 18px;
+	line-height: 8px;
 		
 }
 p.headquick {
