@@ -32,12 +32,12 @@
                                 <div class="profile-info">
                                     <img class="profile_img mb-2"
                                         src="https://dev.modernagent.io/<?= $agent->profile_image ?>">
-                                    <div class="mb-2" ><?= $agent->first_name . ' ' . $agent->last_name; ?></div>
-                                    <div class="mb-2">DRE# <?= $agent->license_no; ?></div>
-                                    <div class="mb-2">E: <?= $agent->email ; ?></div>
-                                    <div class="mb-2">P: <?= $agent->phone; ?></div>
-									<div class="mb-2"><?= $agent->company_name; ?></div>
-                                    <div class="mb-2"><?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></div>
+                                    <div class="mb-2" ><p class="headquick"><?= $agent->first_name . ' ' . $agent->last_name; ?></p></div>
+                                    <div class="mb-2"><p class="subquick">DRE# <?= $agent->license_no; ?></p></div>
+                                    <div class="mb-2"><p class="subquick">E: <?= $agent->email ; ?></p></div>
+                                    <div class="mb-2"><p class="subquick">P: <?= $agent->phone; ?></p></div>
+									<div class="mb-2"><p class="subquick"><?= $agent->company_name; ?></p></div>
+                                    <div class="mb-2"><p class="subquick"><?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></p></div>
                                 </div>
 
                             </div>
