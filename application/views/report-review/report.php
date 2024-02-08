@@ -57,8 +57,8 @@
         <div class="col-sm-12 article-container">
             <div class="article-block">
                 <div class="entry-content">
-                    <h1>Makeup Essentials</h1>
-                    <p>The ultimate guide to creating the ultimate makeup collection.</p>
+                    <h1>Comparitive Market Analysis</h1>
+                    <p>Below you can find the details to your report. </p>
                 </div>
             </div>
         </div>
@@ -241,6 +241,6 @@
         </div>
     </section>
     <footer>
-        <div class="credits"><a href="https://htmlcssfreebies.com/vertical-tabs-css/" target="_blank">Vertical Tabs CSS</a> by HTMLCSSFreebies.</div>
+        <div class="credits"><a href="www.modernagent.io" target="_blank">Modern Agent</a>All Rights Reserved.</div>
     </footer>
 </div>
