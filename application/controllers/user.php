@@ -202,11 +202,26 @@ class User extends CI_Controller
     {
         // show only when the user is logged in
         if ($this->session->userdata('userid')) {
+            $this->load->model('params_adjustment_model');
+            $this->load->model('package_model');
+            $this->load->model('user_package_subscription_model');
+            $this->load->model('user_default_templates_model');
+
             $data['title'] = "Dashboard";
             $data['current'] = "dashboard";
             $userId = $data['user_id'] = $this->session->userdata('userid');
-
             $userName = $data['user_name'] = $this->session->userdata('username');
+            $adjustmentParams = $this->params_adjustment_model->get_by('user_id', $userId);
+
+            $data['black_knight_radius'] = $data['rets_radius'] = "0.25";
+            $data['black_knight_sqft'] = $data['rets_sqft'] = "0.20";
+
+            if ($adjustmentParams) {
+                $data['black_knight_radius'] = $adjustmentParams->black_knight_radius ?? "0.25";
+                $data['black_knight_sqft'] = $adjustmentParams->black_knight_sqft ?? "0.20";
+                $data['rets_radius'] = $adjustmentParams->rets_radius ?? "0.25";
+                $data['rets_sqft'] = $adjustmentParams->rets_sqft ?? "0.20";
+            }
 
             $data['users'] = $this->base_model->get_record_result_array('lp_user_mst', array('user_id_pk' => $userId));
             $data['topReports'] = $this->base_model->get_all_record_by_id('lp_my_listing', array('user_id_fk' => $userId), 'project_date', 'desc');
@@ -229,14 +244,12 @@ class User extends CI_Controller
             if (is_array($data['reportTemplates']) && count($data['reportTemplates'])) {
                 $default_color['seller'] = $default_color['buyer'] = $default_color['mu'] = $data['reportTemplates'][0]->template_color;
             }
-            $this->load->model('package_model');
             $packages_all = $this->package_model->get_many_by(['title !=' => '']);
             $packages = array();
             foreach ($packages_all as $packages_all_key => $packages_all_value) {
                 $packages[$packages_all_value->package] = ['val' => number_format(floatval($packages_all_value->price), 2), 'title' => $packages_all_value->title, 'active' => 0, 'referral_status' => $packages_all_value->refferral_status];
             }
 
-            $this->load->model('user_package_subscription_model');
             $current_plans = $this->user_package_subscription_model->with('package')->get_many_by(['user_id' => $this->session->userdata('userid')]);
             $this->load->library('Stripe_lib');
             $stripe = new Stripe_lib();
@@ -253,8 +266,6 @@ class User extends CI_Controller
 
             $data['packages'] = $packages;
             $data['report_price'] = $this->package_model->get_reports_price();
-
-            $this->load->model('user_default_templates_model');
 
             $theme_data = $data['theme_data'] = $this->user_default_templates_model->with('theme_color_obj')->get_many_by('user_id', $userId);
             if ($theme_data) {
@@ -651,6 +662,36 @@ class User extends CI_Controller
         }
     }
 
+    public function adjust_params($active_tab = '')
+    {
+        $data['current'] = "adjust_parameter";
+        $data['title'] = "Parameter Adjustment";
+        if ($this->session->userdata('userid')) {
+            $user_id = $this->session->userdata('userid');
+
+            $data['sqft'] = $this->config->item('sqft');
+            $data['radiusAdjustment'] = $this->config->item('radius_adjustment');
+            //Check for active content
+            $valid_tabs = [
+                'black_knight', 'rets',
+            ];
+            if ($active_tab == '' || !in_array($active_tab, $valid_tabs)) {
+                $active_tab = 'black_knight';
+            }
+            $data['active_tab'] = $active_tab;
+
+            $this->load->model('params_adjustment_model');
+            $data['parameters'] = $this->params_adjustment_model->get_by('user_id', $user_id);
+            // echo "<pre>";
+            // print_r($params);die;
+            $this->load->view('user/header', $data);
+            $this->load->view('user/adjust_parameter', $data);
+            $this->load->view('user/footer');
+        } else {
+            redirect('frontend/index');
+        }
+    }
+
     // My Account
     public function myaccount($active_tab = '')
     {
@@ -778,6 +819,51 @@ class User extends CI_Controller
             redirect('frontend/index');
         }
     }
+
+    public function saveAdjustmentParams()
+    {
+
+        $userId = $this->session->userdata('userid');
+        if ($userId) {
+
+            $postData = $this->input->post();
+            // print_r($postData);die;
+            $data = array();
+            $data['user_id'] = $userId;
+            $this->load->model('params_adjustment_model');
+            $check_data = $this->params_adjustment_model->get_by($data);
+
+            if ($check_data && !empty($check_data->id)) {
+                $update_data = array();
+                if ($postData['req_type'] == 'black_knight') {
+                    $update_data['black_knight_radius'] = $this->input->post('black_knight_radius');
+                    $update_data['black_knight_sqft'] = $this->input->post('black_knight_sqft');
+                    $this->params_adjustment_model->update($check_data->id, $update_data);
+                } else if ($postData['req_type'] == 'rets') {
+                    $update_data['rets_radius'] = $this->input->post('rets_radius');
+                    $update_data['rets_sqft'] = $this->input->post('rets_sqft');
+                    $this->params_adjustment_model->update($check_data->id, $update_data);
+                }
+            } else {
+                if ($postData['req_type'] == 'black_knight') {
+                    $data['black_knight_radius'] = $this->input->post('black_knight_radius');
+                    $data['black_knight_sqft'] = $this->input->post('black_knight_sqft');
+                } else if ($postData['req_type'] == 'rets') {
+                    $data['rets_radius'] = $this->input->post('rets_radius');
+                    $data['rets_sqft'] = $this->input->post('rets_sqft');
+                }
+                $this->params_adjustment_model->insert($data);
+            }
+            $this->session->set_flashdata('success', 'Data stored succsessfully');
+
+            if ($postData['req_type'] == 'black_knight') {
+                redirect('user/adjust_params/black_knight');
+            } else {
+                redirect('user/adjust_params/rets');
+            }
+        }
+    }
+
     public function saveRetsDetails()
     {
         $userId = $this->session->userdata('userid');
