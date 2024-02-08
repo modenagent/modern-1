@@ -530,7 +530,7 @@
  }
  .main_title {
 	 text-align: start;
-	 color: #0088ff;
+	 color: #000;
 	 text-transform: capitalize;
 	 background: none;
 	 letter-spacing: 0;
@@ -538,7 +538,7 @@
  }
  
  .pdf5 .sold_count h3.main_title {
-	 color: #0088ff;
+	 color: #000;
 	 text-transform: capitalize;
 	 text-align: start;
 	 background: none;
@@ -930,9 +930,10 @@
 	 }
  
 	 .main_title {
-		 font-size: 18px;
-		 line-height: 25px;
-		 text-align: center;
+		 font-size: 28px;
+		 line-height: 12px;
+		 text-align: left;
+		 padding-top:50px;
 	 }
  
 	 .inner_main_title {
