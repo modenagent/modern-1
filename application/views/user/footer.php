@@ -203,7 +203,8 @@
   var base_url = '<?php echo base_url(); ?>';
   var map;
   var loc_marker;
-
+  defaultSqft = "<?php echo $black_knight_sqft; ?>";
+  defaultRadius = "<?php echo $black_knight_radius; ?>";
   function changeCaptcha(){
       $.ajax({
           url:'<?php echo base_url(); ?>index.php?/frontend/change_captcha?&',
