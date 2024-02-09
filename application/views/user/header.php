@@ -81,7 +81,7 @@ $is_enterprise_user = is_enterprise_user();
 if ($is_enterprise_user) {?>
                   <li class="<?php if ($current == 'customize') {echo 'current';}?>"> <a href="<?php echo site_url('user/customize'); ?>" class="nav-link">Report Customization</a> </li>
                   <?php }?>
-                <li class="<?php if ($current == 'adjust_parameter') {echo 'current';}?>"> <a href="<?php echo site_url('user/adjust_params'); ?>" class="nav-link">Parameter Adjustment</a> </li>
+                <li class="<?php if ($current == 'adjust_parameter') {echo 'current';}?>"> <a href="<?php echo site_url('user/adjust_params'); ?>" class="nav-link">Comps Settings</a> </li>
               </ul>
             </li>
             <li class="nav-item "> <a id="btn-logout" href="javascript:void(0);" class="nav-link logout-link btn-user-logout-click">Log Out</a> </li>

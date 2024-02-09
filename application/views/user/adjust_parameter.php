@@ -5,6 +5,11 @@
     .input-margin {
         margin: 0 auto;
     }
+
+    #retsForm .form-control, #blackKnightParamsForm .form-control {
+        appearance: auto;
+    }
+
 </style>
 <!-- My Account section -->
 <section class="myaccount">
@@ -48,7 +53,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             <?php endif;?>
-                            <h2 class="mini_title">Adjust Parameters Black Knight</h2>
+                            <h2 class="mini_title">Adjust Parameters</h2>
 
                             <div class="agent_info_form">
                                 <form id="blackKnightParamsForm"  action="<?php echo base_url('user/saveAdjustmentParams') ?>" method="post">
@@ -100,7 +105,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             <?php endif;?>
-                            <h2 class="mini_title">Adjust Parameters Rets</h2>
+                            <h2 class="mini_title">Adjust Parameters</h2>
 
                             <div class="agent_info_form">
                                 <form id="retsForm"  action="<?php echo base_url('user/saveAdjustmentParams') ?>" method="post">
