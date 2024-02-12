@@ -100,21 +100,21 @@ foreach ($pageList as $key => $val) {?>
 if ($seller_theme == 2) {
     $data = array();
 
-    if ($val == 11 || $val == 10) {
+    if ($val == 8 || $val == 9) {
         $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
         if (isset($comparable) && !empty($comparable)) {
             list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
-            if ($val == 10 && (isset($comparable_1) && !empty($comparable_1))) {
+            if ($val == 8 && (isset($comparable_1) && !empty($comparable_1))) {
                 $data['comparables'] = $comparable_1;
             }
 
-            if ($val == 11 && (isset($comparable_2) && !empty($comparable_2))) {
+            if ($val == 9 && (isset($comparable_2) && !empty($comparable_2))) {
                 $data['comparables'] = $comparable_2;
-                $val = 10;
+                $val = 8;
             }
         }
-    } elseif ($val == 11) {
+    } elseif ($val == 10) {
         $data = $rangeOfSales;
         // $this->load->view('reports/english/seller/2/pages/11', $data);
     }
