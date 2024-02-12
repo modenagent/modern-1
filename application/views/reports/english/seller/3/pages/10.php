@@ -1,97 +1,40 @@
-<div class="container no-padding">
-	<div class="section page10">
-	
-		<header>
-			<h2 class="underline title-bold">Who Pays What</h2>
-			<p>Payment & Financing Options</p>
-		</header>
-
-		<p class="page-tagline">The costs and charges of a Southern California real estate transaction are fully negotiable between the Buyer and Seller through their respective agents. The negotiated terms will be set forth accordingly in the Purchase Agreement.
-</p>
-
-		
-
-		<div class="row">
-			<div class="col-xs-5">
-			   <div class="agreement-col seller">
-				   
-				   <div class="row">
-						<div class="header">
-							<div class="col-xs-2">
-								<span class="icon"></span>
-							</div>
-							<div class="col-xs-10">
-								<p class="uppercase">The Seller</p>
-								<p>Can Generally Expect To Pay</p>
-							</div>
-						</div>
-				   </div>
-
-				   <ul class="points">
-				   		<li>Real Estate Broker's commission</li>
-				   		<li>Current Or past due Property Taxes</li>
-				   		<li>Prorated taxes, Interest, Rent, or HOA dues</li>
-				   		<li>Payoff of all loans, liens and judgments of
-record against the property</li>
-				   		<li>Loan fees required by Buyer's lender</li>
-				   		<li>Homeowners Association transfer fee,
-document fee and demand fee</li>
-				   		<li>Termite inspection reports and cost for repairs</li>
-				   		<li>Home warranty plan</li>
-				   		<li>Title insurance premium for Owner's Policy</li>
-				   		<li>Escrow fee (Seller's portion)</li>
-				   		<li>Document preparation fee for Grant Deed
-and other recordable document(s)</li>
-				   		<li>Notary Public fees</li>
-				   		<li>Documents recording charges</li>
-				   </ul>
-			   </div>
-			</div>
-			
-			<div class="col-xs-5 col-xs-offset-1">
-				
-				<div class="agreement-col buyer">
-				   
-				   <div class="row">
-						<div class="header">
-							<div class="col-xs-2">
-								<span class="icon"></span>
-							</div>
-							<div class="col-xs-10">
-								<p class="uppercase">The Buyer</p>
-								<p>Can Generally Expect To Pay</p>
-							</div>
-						</div>
-				   </div>
-
-				   <ul class="points">
-				   		<li>Real Estate Broker's commission</li>
-				   		<li>Current Or past due Property Taxes</li>
-				   		<li>Prorated taxes, Interest, Rent, or HOA dues</li>
-				   		<li>Payoff of all loans, liens and judgments of
-record against the property</li>
-				   		<li>Loan fees required by Buyer's lender</li>
-				   		<li>Homeowners Association transfer fee,
-document fee and demand fee</li>
-				   		<li>Termite inspection reports and cost for repairs</li>
-				   		<li>Home warranty plan</li>
-				   		<li>Title insurance premium for Owner's Policy</li>
-				   		<li>Escrow fee (Seller's portion)</li>
-				   		<li>Document preparation fee for Grant Deed
-and other recordable document(s)</li>
-				   		<li>Notary Public fees</li>
-				   		<li>Documents recording charges</li>
-				   </ul>
-			   </div>
-
-
-			</div>
-		</div>
-
-
-	</div>
-
-
-	<img src="<?php echo base_url("assets/reports/english/seller/images/10/bg.jpg")?>" class="img-responsive padding-top-small" width="100%" alt="">
-	
-</div>
+<page class="pdf11">
+    <div class="map_content">
+        <h1 class="main_title top_title">Range of Sales</h1>
+        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+        <div class="d-flex">
+            <div class="col-12">
+                <h4 class="mt-0 sub_title">Based on Recent Comparable Sales</h4>
+            </div>
+        </div>
+    </div>
+    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x350&maptype=satelite&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:0x082147%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg" alt="map" class="img-fluid d-block map_image">
+    <div class="map_content">
+        <ul class="stats">
+            <li>
+                <span><?php echo isset($avaiProperty) && !empty($avaiProperty) ? round($avaiProperty) : 0; ?></span>
+                Total Comps
+            </li>
+            <li>
+                <span><?php echo isset($sQFootage) && !empty($sQFootage) ? round($sQFootage) : 0; ?></span>
+                Avg. Soft
+            </li>
+            <li>
+                <span><?php echo isset($avgNoOfBeds) && !empty($avgNoOfBeds) ? round($avgNoOfBeds) : 0; ?></span>
+                Avg. # Beds
+            </li>
+            <li>
+                <span><?php echo isset($avgNoOfBaths) && !empty($avgNoOfBaths) ? round($avgNoOfBaths) : 0; ?></span>
+                Avg. # Baths
+            </li>
+        </ul>
+        <div id="slider"></div>
+        <p>
+            Above are the average property details for homes that are close in proximity to yours AND
+            have been sold within the last 12-months. The range represents the low AND the high
+            sales price for the properties that were sold in the last 12-months. Only the properties
+            that closely match yours were used. The factors that were analyzed were Square Footage,
+            No. Of Beds, No. of Baths, & Lot Size
+        </p>     
+    </div>
+</page>
