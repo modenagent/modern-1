@@ -665,7 +665,7 @@ class User extends CI_Controller
     public function adjust_params($active_tab = '')
     {
         $data['current'] = "adjust_parameter";
-        $data['title'] = "Parameter Adjustment";
+        $data['title'] = "Comps Settings";
         if ($this->session->userdata('userid')) {
             $user_id = $this->session->userdata('userid');
 

@@ -1010,7 +1010,7 @@ input[type="checkbox"]:checked + label::before{
     padding-top: 10px;
     padding-bottom: 10px;
 }
-}
+
 .search-loader {
     height: 100%;
     position: absolute;
@@ -2122,3 +2122,36 @@ p.headquick {
 	font-weight:800;
 	line-height:22px;
 }
+.leads-container #ref-code{
+    font-size:15px; 
+    font-weight:bold;
+}
+
+.leads-container .barcode-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.leads-container .barcode-wrapper .link-span{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.leads-container .barcode-wrapper .qr-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+
+.leads-container .barcode-wrapper .qr-wrapper .qr-text {
+    width: 150px;
+    margin-right: 50px;
+}
+
+.leads-container .barcode-wrapper .qr-wrapper .qr-code-container img{
+    width: 150px;
+}
+
+/*BI*/
