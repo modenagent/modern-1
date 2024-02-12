@@ -1,40 +1,44 @@
-<page class="pdf11">
-    <div class="map_content">
-        <h1 class="main_title top_title">Range of Sales</h1>
-        <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
-        <div class="d-flex">
-            <div class="col-12">
-                <h4 class="mt-0 sub_title">Based on Recent Comparable Sales</h4>
+<page class="pdf5">
+    <h1 class="main_title top_title">Accolades</h1>
+    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+    <div class="d-flex space_evenly mt-80 no-margin-top vertical-align res-text-center res-col-reverse">
+        <div class="col-50 responsive-100">
+            <h2 class="bigger_title">
+                Voted #1
+            </h2>
+            <p>
+               <b>Real Estate Firm</b> in<br>
+                Southern Maryland News<br>
+                Reader’s Approved Contest
+            </p><hr class="mt-20">
+            <div class="sold_count">
+                <h3 class="main_title inner_main_title m-0">Over 1.5 Million</h3>
+                <p class="m-0">
+                    Homes Sold Per Work Day
+                </p>
+            </div><hr>
+            <p class="mt-20"> Southern Maryland Born,<br>
+            Owned and Operated</p>
+            <div class="number_round">7</div>
+            <div class="location_text">
+                Locations<br>
+                Throughout<br>
+                Southern Maryland<br>
             </div>
         </div>
-    </div>
-    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x350&maptype=satelite&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:0x082147%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg" alt="map" class="img-fluid d-block map_image">
-    <div class="map_content">
-        <ul class="stats">
-            <li>
-                <span><?php echo isset($avaiProperty) && !empty($avaiProperty) ? round($avaiProperty) : 0; ?></span>
-                Total Comps
-            </li>
-            <li>
-                <span><?php echo isset($sQFootage) && !empty($sQFootage) ? round($sQFootage) : 0; ?></span>
-                Avg. Soft
-            </li>
-            <li>
-                <span><?php echo isset($avgNoOfBeds) && !empty($avgNoOfBeds) ? round($avgNoOfBeds) : 0; ?></span>
-                Avg. # Beds
-            </li>
-            <li>
-                <span><?php echo isset($avgNoOfBaths) && !empty($avgNoOfBaths) ? round($avgNoOfBaths) : 0; ?></span>
-                Avg. # Baths
-            </li>
-        </ul>
-        <div id="slider"></div>
-        <p>
-            Above are the average property details for homes that are close in proximity to yours AND
-            have been sold within the last 12-months. The range represents the low AND the high
-            sales price for the properties that were sold in the last 12-months. Only the properties
-            that closely match yours were used. The factors that were analyzed were Square Footage,
-            No. Of Beds, No. of Baths, & Lot Size
-        </p>     
+        <div class="col-50 text-center float-right responsive-100 ">
+            <img src="<?php echo base_url().'assets/reports/english/seller/images/3/maxresdefault.jpg'; ?>" alt="maxresdefault" class="img_view">
+            <h2  class="bigger_title">
+                $1.35 Billion
+            </h2>
+            <p>
+                In Homes Sold
+            </p>
+            <div class="big_hr"></div>
+            <div class="location_text">Southern Maryland’s Largest</div>
+            <p>
+                Independent Real Estate Brokerage
+            </p>
+        </div>
     </div>
 </page>
