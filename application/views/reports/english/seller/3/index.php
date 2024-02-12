@@ -215,7 +215,7 @@ for ($i = 1; $i <= 20; $i++) {
         // $report_id = $i + 2;
         // $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
 
-    } else if ($i == 11) {
+    } else if ($i == 10) {
         $data = $rangeOfSales;
         // $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
     }
