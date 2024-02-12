@@ -1,31 +1,55 @@
 <!-- Recent LP's section -->
 <section class="impression">
 
-  <div class="container">
+  <div class="container leads-container">
     <?php if ($this->session->flashdata('success')): ?>
       <div class="alert alert-success">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Success! </strong>
         <?php echo $this->session->flashdata('success') ?>
       </div>
-    <?php endif; ?>
+    <?php endif;?>
     <?php if ($this->session->flashdata('error')): ?>
       <div class="alert alert-danger">
         <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Error! </strong>
         <?php echo $this->session->flashdata('error') ?>
       </div>
-    <?php endif; ?>
+    <?php endif;?>
     <h1 class="main_title mb-4">Leads</h1>
-    <?php if ($ref_code): ?>
-      <p class="">Your unique referral code: <span style="font-size:15px; font-weight:bold;" id="ref-code">
+      <?php if ($ref_code): ?>
+      <p class="">Your unique referral code: <span id="ref-code">
           <?php echo $ref_code; ?>
-        </span></p><br>
-      <p class="">Put this link on your marketing material: <span
-          style="font-size:15px; font-weight:bold;">www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+        </span></p>
+        <div class="row barcode-wrapper">
+          <div class="col-md-6" >
+            <p class="">Put this link on your marketing material: <span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+          </div>
+          <div class="col-md-6 qr-wrapper ">
+            <div class="qr-text">
+              <p>
+                Use this QR code to direct your prospects to your landing page.
+              </p>
+            </div>
+            <div class="qr-code-container">
+<?php
+$url = urlencode(base_url("cma/" . $ref_code));
+list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
+$rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
+// echo "Hellooooooooo";
+// print_r($rgb_color_front);die;
+$rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
+$image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
+?>
+                  <img src="<?php echo $image; ?>">
+
+              </div>
+          </div>
+        </div>
     <?php else: ?>
       <p>This feature is not available to you.
-      <?php endif; ?>
+      <?php endif;?>
+
     <div class="table-responsive">
       <table class="table table-hover responsive nowrap" style="width:100%" id="leads-table-dt">
         <thead>
@@ -91,7 +115,7 @@
             "emptyTable": "<div align='center'>Record(s) not found.</div>"
           },
           //Set column definition initialisation properties
-          // "columnDefs": [{ 
+          // "columnDefs": [{
           //     "orderable": false,
           //     "targets": "no-sort"
           // }],
