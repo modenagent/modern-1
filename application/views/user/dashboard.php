@@ -247,8 +247,7 @@ if (empty($users[0]['company_logo'])) {
                                     <?php if ($packages['buyer']['active'] == 1 || $packages['marketupdate']['active'] == 1 || $packages['seller']['active'] == 1 || $packages['all']['active'] == 1): ?>
                                         <div class="color-selection" >
                                             <div class="pull-right1 mu-theme-default-color" id="mu_report_select">
-                                                <?php
-if (count($reportTemplates)): ?>
+                                                <?php if (count($reportTemplates)): ?>
                                                     Color
                                                     <select id="report_color" name="report_color" style="background: transparent;">
                                                         <?php foreach ($reportTemplates as $key => $reportTemplate): ?>
@@ -307,7 +306,7 @@ foreach ($reportTemplates as $key => $report) {
                     <div class="carousel-container marketUpdate_template">
                         <div id="owl-example-marketUpdate" class="owl-carousel">
                             <?php
-for ($mu_i = 1; $mu_i <= 3; $mu_i++) {
+for ($mu_i = 1; $mu_i <= 7; $mu_i++) {
     ?>
                             <div class="item">
                                 <input type="radio"
@@ -450,16 +449,16 @@ if (is_dir($load_dir)):
 
     for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
 
-	                                    <div class="item">
+				                                    <div class="item">
 
-	                                        <div class="text-center">
-	                                            <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
-	                                        </div>
+				                                        <div class="text-center">
+				                                            <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
+				                                        </div>
 
-	                                    </div>
+				                                    </div>
 
 
-	                                <?php
+				                                <?php
 
 endfor;
 endif;
