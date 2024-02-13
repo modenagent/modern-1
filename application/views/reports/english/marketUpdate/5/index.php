@@ -247,7 +247,7 @@ if (sizeof($areaSalesAnalysis['comparable']) > 0):
     $dataForReport['rangeOfSales'] = $rangeOfSales;
     $dataForReport['partner'] = $partner;
 
-    $this->load->view('reports/english/marketUpdate/3/pages/1', $dataForReport);
+    $this->load->view('reports/english/marketUpdate/5/pages/1', $dataForReport);
 
 endif;
 ?>
