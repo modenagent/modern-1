@@ -17,12 +17,14 @@
       </div>
     <?php endif;?>
     <h1 class="main_title mb-4">Leads</h1>
-      <?php if ($ref_code): ?>
+	<p class="subline">Below you can find your marketing code along with your leads and downloadable QR coded.</p>
+     
+        <div class="row barcode-wrapper">
+          <div class="col-md-6 padding-leads" >
+		   <?php if ($ref_code): ?>
       <p class="">Your unique referral code: <span id="ref-code">
           <?php echo $ref_code; ?>
         </span></p>
-        <div class="row barcode-wrapper">
-          <div class="col-md-6" >
             <p class="">Put this link on your marketing material: <span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
           </div>
           <div class="col-md-6 qr-wrapper ">

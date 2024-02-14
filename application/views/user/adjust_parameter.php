@@ -16,20 +16,22 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <h1 class="main_title">Adjust Parameters</h1>
-          <!-- <p class="subline">Below you can update the following: Agent info, company info, set a default theme, and update your login info.</p> -->
+        <h1 class="main_title mb-4">Adjust Parameters</h1>
+          <p class="subline">Below you can update the settings for the comparables that will be returned for past sales and current properties.</p>
       </div>
     </div>
     <div class="myaccount_tabs">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
                 <a class="nav-link <?php if ($active_tab == 'black_knight') {echo 'active';}?>" id="black_knight-tab" data-bs-toggle="tab" href="#black_knight" role="tab" aria-controls="black_knight" aria-selected="true">
-                    <b>Adjust Past Sales</b>
+                    <b>Adjust Comps County Data</b>
+					Sales that have been closed and confirmed.
                 </a>
             </li>
             <li class="nav-item" role="presentation">
                 <a class="nav-link <?php if ($active_tab == 'rets') {echo 'active';}?>" id="rets-tab" data-bs-toggle="tab" href="#rets" role="tab" aria-controls="rets" aria-selected="true">
-                    <b>Adjust Currently Listed.</b>
+                    <b>Adjust Comps CRMLS Listed Data</b>
+					This is on properties that are currently listed.
                 </a>
             </li>
         </ul>
