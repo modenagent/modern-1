@@ -119,172 +119,164 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
 
 <body>
     <?php
-    $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
-    $rangeOfSales['avaiProperty'] = 0;
-    $rangeOfSales['sQFootage'] = 0;
-    $rangeOfSales['avgNoOfBeds'] = 0;
-    $rangeOfSales['avgNoOfBaths'] = 0;
-    $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-    $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-    foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
-        if ($key > 8) {
-            break;
-        }
-        $rangeOfSales['avaiProperty']++;
-        $rangeOfSales['sQFootage'] += $cpmrebl['BuildingArea'];
-        $rangeOfSales['avgNoOfBeds'] += $cpmrebl['Beds'];
-        $rangeOfSales['avgNoOfBaths'] += $cpmrebl['Baths'];
-        if ($minRange > $cpmrebl['PriceRate']) {
-            $maxRange = $cpmrebl['PriceRate'];
-        }
-
-        if ($maxRange < $cpmrebl['PriceRate']) {
-            $maxRange = $cpmrebl['PriceRate'];
-        }
+$availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
+$rangeOfSales['avaiProperty'] = 0;
+$rangeOfSales['sQFootage'] = 0;
+$rangeOfSales['avgNoOfBeds'] = 0;
+$rangeOfSales['avgNoOfBaths'] = 0;
+$minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+$maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
+    if ($key > 8) {
+        break;
     }
-    $rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage'] / $rangeOfSales['avaiProperty'];
-    $rangeOfSales['avgNoOfBeds'] = $rangeOfSales['avgNoOfBeds'] / $rangeOfSales['avaiProperty'];
-    $rangeOfSales['avgNoOfBaths'] = $rangeOfSales['avgNoOfBaths'] / $rangeOfSales['avaiProperty'];
-
-
-
-    $no_of_pages = 0;
-
-    $no_of_pages = intval($availableCompareAble / 3);
-    if (($no_of_pages * 3) < $availableCompareAble) {
-        $no_of_pages++;
-    }
-    if ($no_of_pages > 3) {
-        $no_of_pages = 3;
-    } else {
-
-    }
-    $no_of_pages += 5;
-
-    $_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
-    $_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
-    $rangeDiff = (int) $_priceMaxRange - (int) $_priceMinRange;
-    $_sliderStartPoint = (int) $_priceMinRange - round($rangeDiff / 8);
-    $_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
-
-    $comparable = array();
-    if ($use_rets_api == 1) {
-        $comparable = $mls_comparables;
-    } else {
-        $comparable = $areaSalesAnalysis['comparable'];
+    $rangeOfSales['avaiProperty']++;
+    $rangeOfSales['sQFootage'] += $cpmrebl['BuildingArea'];
+    $rangeOfSales['avgNoOfBeds'] += $cpmrebl['Beds'];
+    $rangeOfSales['avgNoOfBaths'] += $cpmrebl['Baths'];
+    if ($minRange > $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
     }
 
-    ?>
+    if ($maxRange < $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
+    }
+}
+$rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage'] / $rangeOfSales['avaiProperty'];
+$rangeOfSales['avgNoOfBeds'] = $rangeOfSales['avgNoOfBeds'] / $rangeOfSales['avaiProperty'];
+$rangeOfSales['avgNoOfBaths'] = $rangeOfSales['avgNoOfBaths'] / $rangeOfSales['avaiProperty'];
+
+$no_of_pages = 0;
+
+$no_of_pages = intval($availableCompareAble / 3);
+if (($no_of_pages * 3) < $availableCompareAble) {
+    $no_of_pages++;
+}
+if ($no_of_pages > 3) {
+    $no_of_pages = 3;
+} else {
+
+}
+$no_of_pages += 5;
+
+$_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
+$_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
+$rangeDiff = (int) $_priceMaxRange - (int) $_priceMinRange;
+$_sliderStartPoint = (int) $_priceMinRange - round($rangeDiff / 8);
+$_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
+
+$comparable = array();
+if ($use_rets_api == 1) {
+    $comparable = $mls_comparables;
+} else {
+    $comparable = $areaSalesAnalysis['comparable'];
+}
+
+?>
 
     <?php
 
-    $pageList = array_map(function ($val) {
-        if ($val > 1) {
-            return $val + 2;
-        }
-        return $val;
-    }, $pageList);
-    // echo "Them 3";
-    // print_r($pageList);
-    // die;
-    $skip_pages = [2, 3];
-    for ($i = 1; $i <= 20; $i++) {
-        $report_id = $i;
-        if (!in_array($i, $pageList)) {
-            continue;
-        }
-        if ($i == 9 || $i == 10) {
-
-            $data = array();
-
-
-            $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
-
-            if (isset($comparable) && !empty($comparable)) {
-                // $comparable_chunk = array_chunk($comparable, 4, true);
-    
-                list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
-
-                if ($i == 9 && (isset($comparable_1) && !empty($comparable_1))) {
-                    $data['comparables'] = $comparable_1;
-
-                }
-
-                if ($i == 10 && (isset($comparable_2) && !empty($comparable_2))) {
-                    $data['comparables'] = $comparable_2;
-                    $report_id = 9;
-                }
-            }
-            // $report_id = $i + 2;
-            // $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
-    
-        } else if ($i == 11) {
-            $data = $rangeOfSales;
-            // $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
-        }
-        if ($i == 1) {
-            $this->load->view('reports/english/seller/3/pages/1', $data);
-    
-        } else {
-            $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
-        }
+$pageList = array_map(function ($val) {
+    if ($val > 1) {
+        return $val + 2;
     }
+    return $val;
+}, $pageList);
+// echo "Them 3";
+// print_r($pageList);
+// die;
+$skip_pages = [2, 3];
+for ($i = 1; $i <= 20; $i++) {
+    $report_id = $i;
+    if (!in_array($i, $pageList)) {
+        continue;
+    }
+    if ($i == 8 || $i == 9) {
 
+        $data = array();
 
-    // if(in_array('3', $pdfPages))
-    // {
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/3');
-    // }
-    
+        $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
 
+        if (isset($comparable) && !empty($comparable)) {
+            // $comparable_chunk = array_chunk($comparable, 4, true);
 
+            list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
 
+            if ($i == 8 && (isset($comparable_1) && !empty($comparable_1))) {
+                $data['comparables'] = $comparable_1;
 
-    // if(in_array('12', $pdfPages))
-    // {
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/12',$customization_pages_data['12']);
-    // }
-    // if(in_array('13', $pdfPages))
-    // {
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/13',$customization_pages_data['13']);
-    // }
-    
-    // if(in_array('14', $pdfPages))
-    // {
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/14',$customization_pages_data['14']);
-    // }
-    
-    // if(in_array('15', $pdfPages))
-    // {        
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/15',$customization_pages_data['15']);
-    // }
-    
-    // if(in_array('16', $pdfPages))
-    // {
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/16',$customization_pages_data['16']);
-    // }
-    
-    // if(in_array('17', $pdfPages))
-    // {        
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/17',$customization_pages_data['17']); 
-    // }
-    
-    // if(in_array('18', $pdfPages))
-    // {
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/18',$customization_pages_data['18']);
-    // }
-    
-    // if(in_array('19', $pdfPages))
-    // {          
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/19',$customization_pages_data['19']);    
-    // }  
-    
-    // if(in_array('20', $pdfPages))
-    // {
-    //     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/20');
-    // }
-    
-    ?>
+            }
+
+            if ($i == 9 && (isset($comparable_2) && !empty($comparable_2))) {
+                $data['comparables'] = $comparable_2;
+                $report_id = 8;
+            }
+        }
+        // $report_id = $i + 2;
+        // $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
+
+    } else if ($i == 10) {
+        $data = $rangeOfSales;
+        // $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
+    }
+    if ($i == 1) {
+        $this->load->view('reports/english/seller/3/pages/1', $data);
+
+    } else {
+        $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
+    }
+}
+
+// if(in_array('3', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/3');
+// }
+
+// if(in_array('12', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/12',$customization_pages_data['12']);
+// }
+// if(in_array('13', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/13',$customization_pages_data['13']);
+// }
+
+// if(in_array('14', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/14',$customization_pages_data['14']);
+// }
+
+// if(in_array('15', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/15',$customization_pages_data['15']);
+// }
+
+// if(in_array('16', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/16',$customization_pages_data['16']);
+// }
+
+// if(in_array('17', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/17',$customization_pages_data['17']);
+// }
+
+// if(in_array('18', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/18',$customization_pages_data['18']);
+// }
+
+// if(in_array('19', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/19',$customization_pages_data['19']);
+// }
+
+// if(in_array('20', $pdfPages))
+// {
+//     $this->load->view('reports/widget/'.$report_dir_name.'/seller/pages/20');
+// }
+
+?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"
         type="text/javascript"></script>

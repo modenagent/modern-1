@@ -203,7 +203,8 @@
   var base_url = '<?php echo base_url(); ?>';
   var map;
   var loc_marker;
-
+  defaultSqft = "<?php echo $black_knight_sqft; ?>";
+  defaultRadius = "<?php echo $black_knight_radius; ?>";
   function changeCaptcha(){
       $.ajax({
           url:'<?php echo base_url(); ?>index.php?/frontend/change_captcha?&',
@@ -1331,10 +1332,24 @@
           $('.myaccount .theme_selection_div .select_change').change(function() {
 
             if($(this).attr('id') == "select-theme-type") {
-              $("#select-theme option[value='2']").prop('disabled', false);
-              $("#select-theme option[value='3']").prop('disabled', false);
+              var $el = $("#select-theme");
+              $el.empty(); // remove old options
+
+              let newOptions = {
+                "Theme 1": "1",
+                "Theme 2": "2",
+                "Theme 3": "3"
+              };
+
+              $.each(newOptions, function(key,value) {
+                $el.append($("<option></option>")
+                  .attr("value", value).text(key));
+              });
+
               $(".subscribe_notice").hide();
               if($(this).val() == 'buyer') {
+                $("#select-theme option[value='2']").prop('disabled', false);
+                $("#select-theme option[value='3']").prop('disabled', false);
                 $("#select-theme").val(default_sub_type_buyer);
                 $("#select-color").val(default_color_buyer);
                 if(active_buyer == 0 && active_all == 0) {
@@ -1357,12 +1372,35 @@
                 }
               }
               else if($(this).val() == 'marketUpdate') {
+                let addOptions = {
+                  "Theme 4": "4",
+                  "Theme 5": "5",
+                  "Theme 6": "6",
+                  "Theme 7": "7"
+                };
+
+                $.each(addOptions, function(key,value) {
+                  $el.append($("<option></option>")
+                    .attr("value", value).text(key));
+                });
+
+                $("#select-theme option[value='2']").prop('disabled', false);
+                $("#select-theme option[value='3']").prop('disabled', false);
+                $("#select-theme option[value='4']").prop('disabled', false);
+                $("#select-theme option[value='5']").prop('disabled', false);
+                $("#select-theme option[value='6']").prop('disabled', false);
+                $("#select-theme option[value='7']").prop('disabled', false);
                 $("#select-theme").val(default_sub_type_mu);
                 $("#select-color").val(default_color_mu);
+
                 if(active_mu == 0 && active_all == 0) {
                   $("#select-theme").val(1);
                   $("#select-theme option[value='2']").prop('disabled', true);
                   $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#select-theme option[value='4']").prop('disabled', true);
+                  $("#select-theme option[value='5']").prop('disabled', true);
+                  $("#select-theme option[value='6']").prop('disabled', true);
+                  $("#select-theme option[value='7']").prop('disabled', true);
                   $("#rep_type").html('Market Update');
                   $(".subscribe_notice").show();
                 }

@@ -429,9 +429,9 @@ $config['seller_report_title'] = array(
         5 => 'Areal View',
         6 => 'Prospective Property',
         7 => 'Area Sales Analysis',
-        8 => 'Rang of Sales',
-        9 => 'Checklist',
-        10 => 'Sales comparables',
+        8 => 'Sales comparables',
+        10 => 'Rang of Sales',
+        11 => 'Checklist',
         12 => 'Qualified Agents',
         13 => 'Pricing your homes',
         14 => 'Pricing Correctly',
@@ -448,12 +448,12 @@ $config['seller_report_title'] = array(
     3 => array(
         1 => 'Sellers Report',
         4 => 'Our Mission',
-        5 => 'Accolades',
-        6 => 'Aerial View',
-        7 => 'Prospective Property',
-        8 => 'Area Sales Analysis',
-        9 => 'Sales comparables',
-        11 => 'Range of Sales',
+        5 => 'Aerial View',
+        6 => 'Prospective Property',
+        7 => 'Area Sales Analysis',
+        8 => 'Sales comparables',
+        10 => 'Range of Sales',
+        11 => 'Accolades',
         12 => 'Pricing Correctly',
         13 => 'Days on Market',
         14 => 'Digital Marketing Plan',
@@ -463,6 +463,29 @@ $config['seller_report_title'] = array(
         19 => 'Promise to Client',
         20 => 'Address',
     ),
+);
+
+$config['sqft'] = array(
+    "0.20" => '0.20 +/-',
+    "0.30" => '0.30 +/-',
+    "0.40" => '0.40 +/-',
+    "0.50" => '0.50 +/-',
+    "0.60" => '0.60 +/-',
+    "0.70" => '0.70 +/-',
+    "0.80" => '0.80 +/-',
+    "0.90" => '0.90 +/-',
+    "1.00" => '1.00 +/-',
+);
+
+$config['radius_adjustment'] = array(
+    "0.25" => '0.25 mi',
+    "0.50" => '0.50 mi',
+    "0.75" => '0.75 mi',
+    "1.00" => '1.00 mi',
+    "1.25" => '1.25 mi',
+    "1.50" => '1.50 mi',
+    "1.75" => '1.75 mi',
+    "2.00" => '2.00 mi',
 );
 
 /* End of file config.php */

@@ -28,7 +28,7 @@
   <link href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.min.css" rel="stylesheet" type="text/css" />
 
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey()?>"></script>
-  <!-- jQuery --> 
+  <!-- jQuery -->
   <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.js"></script>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
   <script src="<?php echo base_url(); ?>assets/js/mobile.js"></script>
@@ -64,31 +64,29 @@
               &times;
           </button>
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item <?php if($current=='dashboard'){echo 'current';} ?>"><a href="<?php echo site_url('user/dashboard'); ?>" class="active nav-link">Create New</a></li>
-            <li class="nav-item <?php if($current=='recentlp'){echo 'current';} ?>"> <a href="<?php echo site_url('user/recentlp'); ?>" class="nav-link">Recent</a> </li>
+            <li class="nav-item <?php if ($current == 'dashboard') {echo 'current';}?>"><a href="<?php echo site_url('user/dashboard'); ?>" class="active nav-link">Create New</a></li>
+            <li class="nav-item <?php if ($current == 'recentlp') {echo 'current';}?>"> <a href="<?php echo site_url('user/recentlp'); ?>" class="nav-link">Recent</a> </li>
 
-            <li class="nav-item <?php if($current=='leads'){echo 'current';} ?>"> <a href="<?php echo site_url('user/leads'); ?>" class="nav-link">My Leads</a> </li>
-            <li class="nav-item <?php if($current=='guests'){echo 'current';} ?>"> <a href="<?php echo site_url('user/guests'); ?>" class="nav-link">My Guests</a> </li>
+            <li class="nav-item <?php if ($current == 'leads') {echo 'current';}?>"> <a href="<?php echo site_url('user/leads'); ?>" class="nav-link">My Leads</a> </li>
+            <li class="nav-item <?php if ($current == 'guests') {echo 'current';}?>"> <a href="<?php echo site_url('user/guests'); ?>" class="nav-link">My Guests</a> </li>
 
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >Account <!-- <span class="caret"></span> --></a>
               <ul class="dropdown-menu">
-                <li class="<?php if($current=='billing'){echo 'current';} ?>"> <a href="<?php echo site_url('user/billing'); ?>" class="nav-link">Billing History</a> </li>
+                <li class="<?php if ($current == 'billing') {echo 'current';}?>"> <a href="<?php echo site_url('user/billing'); ?>" class="nav-link">Billing History</a> </li>
 
-                <li class="<?php if($current=='myaccount'){echo 'current';} ?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="nav-link">My Account</a> </li>
-                <?php 
-                $is_enterprise_user = is_enterprise_user();
-                if ($is_enterprise_user) {
-                  ?>
-                  <li class="<?php if($current=='customize'){echo 'current';} ?>"> <a href="<?php echo site_url('user/customize'); ?>" class="nav-link">Report Customization</a> </li>
-                  <?php
-                }
-                ?>
+                <li class="<?php if ($current == 'myaccount') {echo 'current';}?>"> <a href="<?php echo site_url('user/myaccount'); ?>" class="nav-link">My Account</a> </li>
+                <?php
+$is_enterprise_user = is_enterprise_user();
+if ($is_enterprise_user) {?>
+                  <li class="<?php if ($current == 'customize') {echo 'current';}?>"> <a href="<?php echo site_url('user/customize'); ?>" class="nav-link">Report Customization</a> </li>
+                  <?php }?>
+                <li class="<?php if ($current == 'adjust_parameter') {echo 'current';}?>"> <a href="<?php echo site_url('user/adjust_params'); ?>" class="nav-link">Comps Settings</a> </li>
               </ul>
             </li>
             <li class="nav-item "> <a id="btn-logout" href="javascript:void(0);" class="nav-link logout-link btn-user-logout-click">Log Out</a> </li>
           </ul>
-      </div> 
+      </div>
     </div>
     <!-- <style type="text/css">
       .nav .account-menu.open>a, .nav .account-menu.open>a:focus, .nav .account-menu.open>a:hover {

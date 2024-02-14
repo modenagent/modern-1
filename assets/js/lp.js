@@ -56,8 +56,7 @@ $(document).ready(function () {
     // $(document).on('click', '.js-run-apn-button', apnData);
     activeRequest = false;
     pmaRes = {};
-    defaultSqft = "0.20";
-    defaultRadius = "0.75";
+
 
     $('#paynow').click(function () {
         $('.loader1').show();
