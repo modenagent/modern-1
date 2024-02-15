@@ -81,6 +81,18 @@
                                         </div>
                                     </div>
                                     <div class="row">
+                                        <div class="col-md-8 input-margin">
+                                            <label for="exampleInputEmail1">Baths</label>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="baths" name="black_knight_baths" value="<?=$parameters->black_knight_baths?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 input-margin">
+                                            <label for="exampleInputEmail1">Bedrooms</label>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="bedrooms" name="black_knight_beds" value="<?=$parameters->black_knight_beds?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-12">
                                             <input type="submit" class="btn btn-lp save" id="" value="Save" />
                                             <div class="alert alert-success" style="display:none"></div>
@@ -132,6 +144,20 @@
                                             </select>
                                         </div>
                                     </div>
+
+                                    <div class="row">
+                                        <div class="col-md-8 input-margin">
+                                            <label for="exampleInputEmail1">Baths</label>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="baths" name="rets_baths" value="<?=$parameters->rets_baths?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-8 input-margin">
+                                            <label for="exampleInputEmail1">Bedrooms</label>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="bedrooms" name="rets_beds" value="<?=$parameters->rets_beds?>"/>
+                                        </div>
+                                    </div>
+
                                     <div class="row">
                                         <div class="col-md-12">
                                             <input type="submit" class="btn btn-lp save" id="" value="Save" />
