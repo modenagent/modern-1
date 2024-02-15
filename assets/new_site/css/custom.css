@@ -1988,7 +1988,7 @@ a.back-subscribe {
 }
 
 body.cma-body {
-    background-image: url(../img/cma-bg.jpg);
+    background-image: url(../img/cma-bg2.jpg);
     background-size: cover;
     background-repeat: no-repeat;
 }
@@ -2165,6 +2165,16 @@ p.headquick {
 }
 p.leads {
 	margin-bottom: 2px;
+}
+
+.cmalogo {
+	width: auto;
+    max-width: inherit;
+    max-height: 26px;
+}
+
+.cmawhite {
+	color:#ffffff;
 }
 
 /*BI*/
