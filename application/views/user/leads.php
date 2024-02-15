@@ -22,10 +22,10 @@
         <div class="row barcode-wrapper">
           <div class="col-md-6 padding-leads" >
 		   <?php if ($ref_code): ?>
-      <p class="">Your unique referral code: <span id="ref-code">
+      <p class="leads">Your unique referral code: <span id="ref-code">
           <?php echo $ref_code; ?>
         </span></p>
-            <p class="">Your Page: <span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+            <p class="">Landing Page: <span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
           </div>
           <div class="col-md-6 qr-wrapper ">
             <div class="qr-text">
