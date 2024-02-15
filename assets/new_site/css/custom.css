@@ -2141,8 +2141,8 @@ p.headquick {
 .leads-container .barcode-wrapper .qr-wrapper {
     display: flex;
     flex-direction: row;
-    align-items: baseline;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
 }
 
 .leads-container .barcode-wrapper .qr-wrapper .qr-text {
@@ -2155,7 +2155,9 @@ p.headquick {
 }
 
 .padding-leads {
-	padding-top: 60px;
+	padding-top: 46px;
+	border-right: 1px solid #707070;
+	padding-left: 20px;
 }
 
 /*BI*/
