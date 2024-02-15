@@ -25,7 +25,7 @@
       <p class="">Your unique referral code: <span id="ref-code">
           <?php echo $ref_code; ?>
         </span></p>
-            <p class="">Put this link on your marketing material: <span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+            <p class="">Your Page: <span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
           </div>
           <div class="col-md-6 qr-wrapper ">
             <div class="qr-text">
