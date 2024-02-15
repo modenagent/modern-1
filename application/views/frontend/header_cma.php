@@ -22,12 +22,11 @@
 </head>
 
 <body class="cma-body">
-    <header class="overlapping">
+   <!-- <header class="overlapping">
         <nav class="navbar navbar-expand-lg" >
           <div class="container">
             <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/frontend/images/LargeLogo.png" class="cmalogo" /></a>
              
             </div>
         </nav>
-        
-      </header>
+      </header> -->
