@@ -24,7 +24,7 @@
                             <div class="agent-info cmawhite">
                                 <div class="profile-info">
                                      <img class="profile_img mb-2"
-                                        src="https://dev.modernagent.io/<?= $agentInfo->company_logo ?>">
+                                        src="https://dev.modernagent.io/<?= $agent->company_logo ?>">
                                 </div>
                             </div> 
                         </form> 
@@ -48,8 +48,8 @@
                                     <div class="mb-2"><p class="subquick">DRE# <?= $agent->license_no; ?></p></div>
                                     <div class="mb-2"><p class="subquick">E: <?= $agent->email ; ?></p></div>
                                     <div class="mb-2"><p class="subquick">P: <?= $agent->phone; ?></p></div>
-									<div class="mb-2"><p class="subquick"><?= $agent->company_name; ?></p></div>
-                                    <div class="mb-2"><p class="subquick"><?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></p></div>
+							<!--		<div class="mb-2"><p class="subquick"><?= $agent->company_name; ?></p></div>
+                                    <div class="mb-2"><p class="subquick"><?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></p></div> -->
                                 </div>
 
                             </div>
