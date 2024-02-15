@@ -14,10 +14,22 @@
 <!-- <script src="<?php echo base_url(); ?>assets/js/scroll.js"></script> -->
 <!-- <script src="<?php echo base_url(); ?>assets/js/main.js"></script> -->
 
-<section class="myaccount cma-page">
+<section class="myaccount cma-page padtop">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+			<div class="login_info_form cma_form cma-step-1">
+                    <div class="">
+                        <form method="" id="ref-form">
+                            <div class="agent-info cmawhite">
+                                <div class="profile-info">
+                                     <img class="profile_img mb-2"
+                                        src="https://dev.modernagent.io/<?= $agentInfo->company_logo ?>">
+                                </div>
+                            </div> 
+                        </form> 
+                    </div>
+                </div>
                 <h1 class="main_title cmawhite">Generate Your Complimentary <br> Market Analysis</h1>
 				<!--<p class="quickpdf">This 8 page report analyzes today's market and what the proposed selling value of your home is.<br> This report is for informational purposes soley. This report is made avaible to you at no cost.</p>-->
                 <!-- <p class="subline">Below you can update the following: Agent info, company info, set a default theme, and update your login info.</p> -->
