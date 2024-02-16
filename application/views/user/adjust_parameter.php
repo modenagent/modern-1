@@ -124,7 +124,7 @@
                             <div class="agent_info_form">
                                 <form id="retsForm"  action="<?php echo base_url('user/saveAdjustmentParams') ?>" method="post">
                                     <input type="text" class="hidden" id="req_type" name="req_type" value="rets" />
-                                    <div class="row">
+                                    <!-- <div class="row">
                                         <div class="col-md-8 input-margin">
                                             <label for="exampleInputEmail1">Radius</label>
                                             <select class="form-control" id="radius" placeholder="Radius" name="rets_radius">
@@ -133,7 +133,7 @@
                                                 <?php endforeach;?>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="row">
                                         <div class="col-md-8 input-margin">
                                             <label for="exampleInputEmail1">Square Feets</label>

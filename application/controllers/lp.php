@@ -46,10 +46,24 @@ class Lp extends CI_Controller
             $this->load->model('user_rets_api_details_model');
             $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
             if ($rets_api_data && !empty($rets_api_data) && $check_presentaion && $check_presentaion == 'seller') {
+                $this->load->model('params_adjustment_model');
+                $retsRadius = "0.25";
+                $retsSqft = "0.20";
+                $data = array();
+                $data['user_id'] = $userId;
+                $adjustableParams = (array) $this->params_adjustment_model->get_by($data);
+                if ($adjustableParams) {
+                    $retsRadius = $adjustableParams['rets_radius'] ?? "0.25";
+                    $retsSqft = $adjustableParams['rets_sqft'] ?? "0.20";
+                }
+
                 $properties = $sorted = $all = array();
 
                 $properties['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $properties['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
+                $propertyBuildingArea = (int) $file->PropertyProfile->PropertyCharacteristics->BuildingArea;
+                $minPropertyBuildingArea = $propertyBuildingArea - $retsSqft;
+                $maxPropertyBuildingArea = $propertyBuildingArea + $retsSqft;
 
                 $address = $this->input->get('address');
                 $query = '?q=' . urlencode($address);
@@ -59,7 +73,8 @@ class Lp extends CI_Controller
                 $max_lat = (float) $properties['Lat'] + 0.02;
                 $max_long = (float) $properties['Long'] + 0.02;
                 $query .= '&limit=50';
-                $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long);
+                // $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long) . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
+                $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long); // . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
                 $this->load->library('rets');
                 $user_name = $rets_api_data->user_name;
                 $encrypted_password = $rets_api_data->user_password;
@@ -114,7 +129,7 @@ class Lp extends CI_Controller
                 $this->load->library('reports');
                 $allComparable = $this->reports->get_all_properties($file);
 
-                $comparables = $this->reports->sort_properties($file, $allComparable);
+                $comparables = $this->reports->sort_properties($file, $allComparable, true);
                 $comparables['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $comparables['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
                 $properties['use_rets'] = false;

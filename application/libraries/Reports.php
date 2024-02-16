@@ -470,8 +470,19 @@ class Reports
         }
         return $_comparableTemp;
     }
-    public function sort_properties($report187, $_comparableTemp)
+    public function sort_properties($report187, $_comparableTemp, $paramsAdjustment = false)
     {
+        $CI = &get_instance();
+        $adjustableParams = [];
+
+        $userId = $CI->session->userdata('userid');
+        if ($userId) {
+            $data = array();
+            $data['user_id'] = $userId;
+            $CI->load->model('params_adjustment_model');
+            $adjustableParams = (array) $CI->params_adjustment_model->get_by($data);
+        }
+
         $_maxLimit = 8;
         $comparable = array();
         // print_r($reportItems['comparableTemp']);
@@ -484,15 +495,25 @@ class Reports
         // $months_diff  = monthsBetween(formatDate($report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->RecordingDate[0]),$currentdate);
         $minBuildArea = (floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea) * 80 / 100); //-20%
         $maxBuildArea = (floatval($report187->PropertyProfile->PropertyCharacteristics->BuildingArea) * 120 / 100); //+20%
-        $maxBedrooms = (int) $report187->PropertyProfile->PropertyCharacteristics->Bedrooms + 1; //+1
-        $minBedrooms = (int) $report187->PropertyProfile->PropertyCharacteristics->Bedrooms - 1; //-1
-        $maxBaths = (int) $report187->PropertyProfile->PropertyCharacteristics->Baths + 1; //+1
-        $minBaths = (int) $report187->PropertyProfile->PropertyCharacteristics->Baths - 1; //-1
+        // $maxBedrooms = (int) $report187->PropertyProfile->PropertyCharacteristics->Bedrooms + 1; //+1
+        // $minBedrooms = (int) $report187->PropertyProfile->PropertyCharacteristics->Bedrooms - 1; //-1
+        // $maxBaths = (int) $report187->PropertyProfile->PropertyCharacteristics->Baths + 1; //+1
+        // $minBaths = (int) $report187->PropertyProfile->PropertyCharacteristics->Baths - 1; //-1
+
+        $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['black_knight_beds'])) ? $adjustableParams['black_knight_beds'] : $report187->PropertyProfile->PropertyCharacteristics->Bedrooms);
+        $maxBedrooms = $adjustedBedrooms + 1; //+1
+        $minBedrooms = $adjustedBedrooms - 1; //-1
+
+        $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['black_knight_baths'])) ? $adjustableParams['black_knight_baths'] : $report187->PropertyProfile->PropertyCharacteristics->Baths);
+        $maxBaths = $adjustedBaths + 1; //+1
+        $minBaths = $adjustedBaths - 1; //-1
+
         $maxLotSize = (floatval($report187->PropertyProfile->PropertyCharacteristics->LotSize) * 120 / 100); //+20%
         $minLotSize = (floatval($report187->PropertyProfile->PropertyCharacteristics->LotSize) * 20 / 100); //-20%
         $maxPricePerSQFT = (floatval($report187->PropertyProfile->SaleLoanInfo->PricePerSQFT) * 120 / 100); //+20%
         $minPricePerSQFT = (floatval($report187->PropertyProfile->SaleLoanInfo->PricePerSQFT) * 80 / 100); //+20%
         $count = 0;
+
         foreach ($_comparableTemp as $key => $compareableProperty) {
             if ($count++ > ($_maxLimit - 1)) {
                 break;
@@ -505,8 +526,12 @@ class Reports
             $lotSize = floatval(str_replace(",", "", $compareableProperty['LotSize']));
             $pricePerSQFT = floatval(str_replace(",", "", $compareableProperty['PricePerSQFT']));
             if (
-                $months_diff <= 12 && ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) && ($minBedrooms <= $bedrooms && $maxBedrooms >= $bedrooms) && ($minBaths <= $baths && $maxBaths >= $baths) &&
-                ($minLotSize <= $lotSize && $maxLotSize >= $lotSize) && ($minPricePerSQFT <= $pricePerSQFT && $maxPricePerSQFT >= $pricePerSQFT)
+                $months_diff <= 12 &&
+                ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) &&
+                (($paramsAdjustment && ($bedrooms >= $adjustedBedrooms) && ($baths >= $adjustedBaths)) ||
+                    (!$paramsAdjustment && ($minBedrooms <= $bedrooms && $maxBedrooms >= $bedrooms) && ($minBaths <= $baths && $maxBaths >= $baths))) &&
+                ($minLotSize <= $lotSize && $maxLotSize >= $lotSize) &&
+                ($minPricePerSQFT <= $pricePerSQFT && $maxPricePerSQFT >= $pricePerSQFT)
             ) {
                 array_push($comparable, $compareableProperty);
                 unset($_comparableTemp[$key]);
@@ -523,7 +548,10 @@ class Reports
                 $baths = (int) $compareableProperty['Baths'];
                 $pricePerSQFT = floatval(str_replace(",", "", $compareableProperty['PricePerSQFT']));
                 if (
-                    $months_diff <= 12 && ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) && ($minBedrooms <= $bedrooms && $maxBedrooms >= $bedrooms) && ($minBaths <= $baths && $maxBaths >= $baths) &&
+                    $months_diff <= 12 &&
+                    ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) &&
+                    (($paramsAdjustment && ($bedrooms >= $adjustedBedrooms) && ($baths >= $adjustedBaths)) ||
+                        (!$paramsAdjustment && ($minBedrooms <= $bedrooms && $maxBedrooms >= $bedrooms) && ($minBaths <= $baths && $maxBaths >= $baths))) &&
                     ($minPricePerSQFT <= $pricePerSQFT && $maxPricePerSQFT >= $pricePerSQFT)
                 ) {
                     array_push($comparable, $compareableProperty);
@@ -541,13 +569,17 @@ class Reports
                 $build_area = floatval(str_replace(",", "", $compareableProperty['BuildingArea']));
                 $bedrooms = (int) $compareableProperty['Bedrooms'];
                 $pricePerSQFT = floatval(str_replace(",", "", $compareableProperty['PricePerSQFT']));
-                if ($months_diff <= 12 && ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) && ($minBedrooms <= $bedrooms && $maxBedrooms >= $bedrooms) && ($minPricePerSQFT <= $pricePerSQFT && $maxPricePerSQFT >= $pricePerSQFT)) {
+                if ($months_diff <= 12 &&
+                    ($minBuildArea <= $build_area && $maxBuildArea >= $build_area) &&
+                    (($paramsAdjustment && $bedrooms >= $adjustedBedrooms) ||
+                        (!$paramsAdjustment && $minBedrooms <= $bedrooms && $maxBedrooms >= $bedrooms)) &&
+                    ($minPricePerSQFT <= $pricePerSQFT &&
+                        $maxPricePerSQFT >= $pricePerSQFT)) {
                     array_push($comparable, $compareableProperty);
                     unset($_comparableTemp[$key]);
                     if (++$_count == $_maxLimit) {
                         break;
                     }
-
                 }
             }
         }
