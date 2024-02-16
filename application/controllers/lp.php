@@ -52,16 +52,20 @@ class Lp extends CI_Controller
                 $data = array();
                 $data['user_id'] = $userId;
                 $adjustableParams = (array) $this->params_adjustment_model->get_by($data);
-                if ($adjustableParams) {
-                    $retsRadius = $adjustableParams['rets_radius'] ?? "0.25";
-                    $retsSqft = $adjustableParams['rets_sqft'] ?? "0.20";
-                }
+                $propertyBaths = 0;
+                $propertyBeds = 0;
 
                 $properties = $sorted = $all = array();
 
                 $properties['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $properties['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
                 $propertyBuildingArea = (int) $file->PropertyProfile->PropertyCharacteristics->BuildingArea;
+                if ($adjustableParams) {
+                    $retsRadius = $adjustableParams['rets_radius'] ?? "0.25";
+                    $retsSqft = $adjustableParams['rets_sqft'] ?? "0.20";
+                    $propertyBaths = $adjustableParams['rets_baths'] ?? 0;
+                    $propertyBeds = $adjustableParams['rets_beds'] ?? 0;
+                }
                 $minPropertyBuildingArea = $propertyBuildingArea - $retsSqft;
                 $maxPropertyBuildingArea = $propertyBuildingArea + $retsSqft;
 
@@ -73,8 +77,15 @@ class Lp extends CI_Controller
                 $max_lat = (float) $properties['Lat'] + 0.02;
                 $max_long = (float) $properties['Long'] + 0.02;
                 $query .= '&limit=50';
-                // $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long) . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
-                $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long); // . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
+                $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long) . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
+                if ($propertyBaths > 0) {
+                    $query_1 = $query_1 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
+                }
+                if ($propertyBeds > 0) {
+                    $query_1 = $query_1 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
+                }
+                // print_r($query_1);die;
+                // $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long); // . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
                 $this->load->library('rets');
                 $user_name = $rets_api_data->user_name;
                 $encrypted_password = $rets_api_data->user_password;
