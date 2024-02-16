@@ -264,6 +264,9 @@ $_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
 if (sizeof($areaSalesAnalysis['comparable']) > 0):
     $avaiProperty = 0;
     $areaSalesAnalysisChunk = $_areaSalesAnalysis = $areaSalesAnalysis['comparable'];
+    $dataForReport['propertyAddress'] = $property->PropertyProfile->SiteAddress;
+    $dataForReport['propertyCity'] = $property->PropertyProfile->SiteCity;
+    $dataForReport['propertyState'] = $property->PropertyProfile->SiteState;
     $dataForReport['zipCode'] = $property->PropertyProfile->SiteZip;
     $dataForReport['_comparables'] = $_areaSalesAnalysis;
     $dataForReport['rangeOfSales'] = $rangeOfSales;
