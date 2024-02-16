@@ -838,19 +838,27 @@ class User extends CI_Controller
                 if ($postData['req_type'] == 'black_knight') {
                     $update_data['black_knight_radius'] = $this->input->post('black_knight_radius');
                     $update_data['black_knight_sqft'] = $this->input->post('black_knight_sqft');
+                    $update_data['black_knight_baths'] = $this->input->post('black_knight_baths');
+                    $update_data['black_knight_beds'] = $this->input->post('black_knight_beds');
                     $this->params_adjustment_model->update($check_data->id, $update_data);
                 } else if ($postData['req_type'] == 'rets') {
                     $update_data['rets_radius'] = $this->input->post('rets_radius');
                     $update_data['rets_sqft'] = $this->input->post('rets_sqft');
+                    $update_data['rets_baths'] = $this->input->post('rets_baths');
+                    $update_data['rets_beds'] = $this->input->post('rets_beds');
                     $this->params_adjustment_model->update($check_data->id, $update_data);
                 }
             } else {
                 if ($postData['req_type'] == 'black_knight') {
                     $data['black_knight_radius'] = $this->input->post('black_knight_radius');
                     $data['black_knight_sqft'] = $this->input->post('black_knight_sqft');
+                    $data['black_knight_baths'] = $this->input->post('black_knight_baths');
+                    $data['black_knight_beds'] = $this->input->post('black_knight_beds');
                 } else if ($postData['req_type'] == 'rets') {
                     $data['rets_radius'] = $this->input->post('rets_radius');
                     $data['rets_sqft'] = $this->input->post('rets_sqft');
+                    $data['rets_baths'] = $this->input->post('rets_baths');
+                    $data['rets_beds'] = $this->input->post('rets_beds');
                 }
                 $this->params_adjustment_model->insert($data);
             }
