@@ -40,7 +40,7 @@ $i = 1;?>
                     </div>
                 </div>
                 <?php if ($i === 4): ?>
-                    <div  class="page-break" style="page-break-after:always"></div>
+                    <div  class="page-break"></div>
 
 
 
