@@ -39,6 +39,9 @@ $i = 1;?>
                         <?php endif;?>
                     </div>
                 </div>
+                <?php if ($i === 4): ?>
+                    <div style="page-break-after:always"></div>
+                <?php endif;?>
                 <?php $avaiProperty++;
 $i++;?>
                         <?php endforeach;?>
