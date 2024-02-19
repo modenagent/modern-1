@@ -211,6 +211,10 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         .mt-20{
             margin-top: 20px;
         }
+        .page_container
+        {
+            page-break-inside: auto;
+        }
     </style>
 </head>
 
