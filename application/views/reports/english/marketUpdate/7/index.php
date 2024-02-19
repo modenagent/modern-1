@@ -69,7 +69,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             margin-top: 20px;
         }
         .pdf_footer {
-            position: absolute;
+            /* position: absolute; */
             bottom: 0;
             left: 0;
             right: 0;
@@ -211,9 +211,18 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         .mt-20{
             margin-top: 20px;
         }
+
         .page_container
-        {
-            page-break-inside: auto;
+            {
+                page-break-before: always;
+            }
+        @media print {
+
+            /* Your print-specific styles here */
+            .page_container
+            {
+                page-break-before: always;
+            }
         }
     </style>
 </head>
@@ -276,7 +285,7 @@ if (sizeof($areaSalesAnalysis['comparable']) > 0):
     $dataForReport['rangeOfSales'] = $rangeOfSales;
     $dataForReport['partner'] = $partner;
 
-    $this->load->view('reports/english/marketUpdate/7/pages/1', $dataForReport);
+    $this->load->view('reports/english/marketUpdate/7/pages/2', $dataForReport);
 
 endif;
 ?>
