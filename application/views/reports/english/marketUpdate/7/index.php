@@ -212,16 +212,16 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             margin-top: 20px;
         }
 
-        .page_container
+        .page_container .page-break
             {
-                page-break-before: always;
+                page-break-after: always;
             }
         @media print {
 
             /* Your print-specific styles here */
-            .page_container
+            .page_container .page-break
             {
-                page-break-before: always;
+                page-break-after: always;
             }
         }
     </style>
