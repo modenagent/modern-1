@@ -43,6 +43,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             top: 50%;
             transform: translateY(-50%);
             width: 150px;
+            height: 120px;
         }
         .pdf_header h1 {
             font-size: 50px;
