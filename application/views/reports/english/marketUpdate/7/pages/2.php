@@ -2,14 +2,13 @@
     <div class="page_container">
         <div class="pdf_page size_letter">
             <div class="pdf_header">
-                <div style="width: 100%;">
-                    <h1>HOMES FOR SALE</h1>
-                    <div class="header-subtext">SURROUNDING: 1358 5TH ST,LA VERNE,CA</div>
-                </div>
-                <!-- <div class="header-subtext">SURROUNDING: <?php echo $propertyAddress . ',' . $propertyCity . ',' . $propertyState; ?></div> -->
-                <img src="<?php echo base_url() . $user['company_logo']; ?>" alt="companyname" border="0" class="pacific_logo" alt="sign-white">
+                <h1>HOMES FOR SALE</h1>
+                <!-- <div class="header-subtext">SURROUNDING: 1358 5TH ST,LA VERNE,CA</div> -->
+
+                <div class="header-subtext">SURROUNDING: <?php echo $propertyAddress . ',' . $propertyCity . ',' . $propertyState; ?></div>
+                <!-- <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/sign-white.png'); ?>" class="pacific_logo" alt="sign-white"> -->
                 <?php if (!empty($user['company_logo']) && is_file(FCPATH . '/' . $user['company_logo'])): ?>
-                    <!-- <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/sign-white.png'); ?>" class="pacific_logo" alt="sign-white"> -->
+                    <img src="<?php echo base_url() . $user['company_logo']; ?>" alt="companyname" border="0" class="pacific_logo" alt="sign-white">
                 <?php endif;?>
             </div>
             <div class="pdf_body">
