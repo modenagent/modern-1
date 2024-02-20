@@ -27,7 +27,8 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             position: relative;
         }
         .pdf_header {
-            position: absolute;
+            /* position: absolute; */
+            width: 100%;
             top: 0;
             left: 0;
             right: 0;
@@ -38,9 +39,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             background-position: center;
         }
         .pacific_logo {
-            position: absolute;
-            right: 40px;
-            top: 5%;
+            /* position: absolute; */
+            /* right: 40px; */
+            /* top: 5%; */
             /* transform: translateY(-50%); */
             width: 75px;
             height: 75px;
@@ -51,14 +52,14 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             color: #fff;
             line-height: 40px;
             margin: 0 0 5px;
-            width: 70%;
+            /* width: 70%; */
         }
         .header-subtext {
             color: #fff;
             font-size: 20px;
             font-weight: 700;
             font-family: 'calibri';
-            width: 70%;
+            /* width: 70%; */
         }
         .overview_text{
             font-size: 32px;
