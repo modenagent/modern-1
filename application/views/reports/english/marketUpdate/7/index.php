@@ -69,7 +69,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             margin-top: 20px;
         }
         .pdf_footer {
-            /* position: absolute; */
+            position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
@@ -282,6 +282,7 @@ if (sizeof($areaSalesAnalysis['comparable']) > 0):
     $dataForReport['propertyState'] = $property->PropertyProfile->SiteState;
     $dataForReport['zipCode'] = $property->PropertyProfile->SiteZip;
     $dataForReport['_comparables'] = $_areaSalesAnalysis;
+    $dataForReport['_comparablesChunk'] = array_chunk($_areaSalesAnalysis, 4);
     $dataForReport['rangeOfSales'] = $rangeOfSales;
     $dataForReport['partner'] = $partner;
 
