@@ -369,6 +369,7 @@ class Reports
         }
         $data['pageList'] = $pageList;
         $data['seller_theme'] = $_POST['seller_theme'] ?? 1;
+        $data['mu_theme'] = $_POST['mu_theme'] ?? 1;
 
         // echo "<pre>";
         // print_r($data);die;
@@ -770,7 +771,7 @@ class Reports
             if (empty($checkLastPages)) {
                 $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
             }
-        } else if ($presentationType == 'marketUpdate' && in_array($this->input->post('mu_theme'), [3, 4, 5, 6])) {
+        } else if ($presentationType == 'marketUpdate' && in_array($data['mu_theme'], [3, 4, 5, 6])) {
             $zoom = $CI->config->item('wkhtmltopdf_zoom_marketupdate');
         } else {
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
