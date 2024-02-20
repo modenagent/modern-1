@@ -51,12 +51,14 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             color: #fff;
             line-height: 40px;
             margin: 0 0 5px;
+            width: 70%;
         }
         .header-subtext {
             color: #fff;
             font-size: 20px;
             font-weight: 700;
             font-family: 'calibri';
+            width: 70%;
         }
         .overview_text{
             font-size: 32px;
