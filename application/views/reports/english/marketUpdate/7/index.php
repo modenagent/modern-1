@@ -40,8 +40,8 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         .pacific_logo {
             position: absolute;
             right: 40px;
-            top: 50%;
-            transform: translateY(-50%);
+            top: 5%;
+            /* transform: translateY(-50%); */
             width: 75px;
             height: 75px;
         }
