@@ -19,7 +19,7 @@
                         <div class="grid border-bottom">
                             <div class="col-6">
                                 <h5 class="count">SALES PRICE</h5>
-                                <h4>$<?php echo $item['Price']; ?></h4>
+                                <h4><?php echo $item['Price']; ?></h4>
                             </div>
                             <div class="col-6">
                                 <p><?php echo $item['Address']; ?><br> Los Angeles, CA</p>

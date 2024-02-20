@@ -770,10 +770,12 @@ class Reports
             if (empty($checkLastPages)) {
                 $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
             }
+        } else if ($presentationType == 'marketUpdate' && in_array($this->input->post('mu_theme'), [3, 4, 5, 6])) {
+            $zoom = $CI->config->item('wkhtmltopdf_zoom_marketupdate');
         } else {
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
         }
-        // print_r ($zoom);die;
+        // print_r($zoom);die;
         $snappy = new Pdf($wkhtmltopdfPath);
         //$snappy = new Pdf($this->binaryPath);
         $options = [
