@@ -20,18 +20,41 @@
 	<p class="subline">Below you can find your marketing code along with your leads and downloadable QR coded.</p>
      
         <div class="row barcode-wrapper">
-          <div class="col-md-6 padding-leads" >
-		   <?php if ($ref_code): ?>
+          <div class="col-md-6 qr-wrapper border-none ">
+            <div class="qr-text">
+              <p>
+                Use this QR code to direct your prospects to your Market Update landing page.
+              </p>
+			   <?php if ($ref_code): ?>
       <p class="leads">Your unique referral code: <span id="ref-code">
           <?php echo $ref_code; ?>
         </span></p>
-            <p class="">Landing Page: <span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+		<p class=""><span class="link-span" >www.modernagent.io/mkt/<?php echo $ref_code; ?></span></p>
+            </div>
+            <div class="qr-code-container">
+<?php
+$url = urlencode(base_url("cma/" . $ref_code));
+list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
+$rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
+// echo "Hellooooooooo";
+// print_r($rgb_color_front);die;
+$rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
+$image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
+?>
+                  <img src="<?php echo $image; ?>">
+
+              </div>
           </div>
           <div class="col-md-6 qr-wrapper ">
             <div class="qr-text">
               <p>
-                Use this QR code to direct your prospects to your landing page.
+                Use this QR code to direct your prospects to your CMA landing page.
               </p>
+			   <?php if ($ref_code): ?>
+      <p class="leads">Your unique referral code: <span id="ref-code">
+          <?php echo $ref_code; ?>
+        </span></p>
+		<p class=""><span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
             </div>
             <div class="qr-code-container">
 <?php

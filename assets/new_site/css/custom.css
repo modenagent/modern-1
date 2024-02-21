@@ -2125,6 +2125,7 @@ p.headquick {
 .leads-container #ref-code{
     font-size:15px; 
     font-weight:bold;
+	color: #2F353E;
 }
 
 .leads-container .barcode-wrapper {
@@ -2144,8 +2145,10 @@ p.headquick {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: left;
+    justify-content: space-around;
 	padding-left: 60px;
+	padding-right: 60px;
+	
 }
 
 .leads-container .barcode-wrapper .qr-wrapper .qr-text {
@@ -2179,6 +2182,10 @@ p.leads {
 
 .padtop {
 	padding-top: 50px;
+}
+
+.border-none {
+    border-right: 1px solid #707070;
 }
 
 
