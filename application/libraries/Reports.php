@@ -771,9 +771,11 @@ class Reports
             if (empty($checkLastPages)) {
                 $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
             }
-        } else if ($presentationType == 'marketUpdate' && in_array($data['mu_theme'], [4, 5, 6, 7])) {
-            $zoom = $CI->config->item('wkhtmltopdf_zoom_marketupdate');
-        } else {
+        }
+        // else if ($presentationType == 'marketUpdate' && in_array($data['mu_theme'], [4, 5, 6, 7])) {
+        //     $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
+        // }
+        else {
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
         }
         // print_r($zoom);die;
