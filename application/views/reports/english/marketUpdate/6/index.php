@@ -2,7 +2,7 @@
 list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,6 +40,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             width: 150px;
             display: block;
             margin: 30px auto 0;
+            max-height: 80px;
         }
         .pdf_header h1 {
             font-size: 50px;
@@ -270,8 +271,12 @@ $_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
 if (sizeof($areaSalesAnalysis['comparable']) > 0):
     $avaiProperty = 0;
     $areaSalesAnalysisChunk = $_areaSalesAnalysis = $areaSalesAnalysis['comparable'];
+    $dataForReport['propertyAddress'] = $property->PropertyProfile->SiteAddress;
+    $dataForReport['propertyCity'] = $property->PropertyProfile->SiteCity;
+    $dataForReport['propertyState'] = $property->PropertyProfile->SiteState;
     $dataForReport['zipCode'] = $property->PropertyProfile->SiteZip;
     $dataForReport['_comparables'] = $_areaSalesAnalysis;
+    $dataForReport['_comparablesChunk'] = array_chunk($_areaSalesAnalysis, 3);
     $dataForReport['rangeOfSales'] = $rangeOfSales;
     $dataForReport['partner'] = $partner;
 
