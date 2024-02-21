@@ -4,7 +4,7 @@
             <div class="pdf_header">
                 <div class="red_text">APRIL 2024</div>
                 <h1>MARKET UPDATE</h1>
-                <div class="red_text">ZIPCODE 98987</div>
+                <div class="red_text">ZIPCODE <?php echo $zipCode; ?></div>
             </div>
             <div class="pdf_body">
                 <div class="avg-sale">AVERAGES SALES PRICE</div>
@@ -56,7 +56,14 @@
                                 </p>
                             </div>
                             <div class="col-6 pr-20">
-                                <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/icon/barcode.png'); ?>" alt="barcode" class="barcode-img">
+                            <?php
+$url = urlencode(base_url("cma/" . $user['ref_code']));
+list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
+$rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
+$rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
+$image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);?>
+                                <img src="<?php echo $image; ?>"  alt="barcode" class="barcode-img">
+                                <!-- <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/icon/barcode.png'); ?>" alt="barcode" class="barcode-img"> -->
                             </div>
                         </div>
                     </div>
@@ -65,18 +72,37 @@
             </div>
             <div class="pdf_footer">
                 <div class="media-object">
-                    <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/ZoeNoelleSmall.png'); ?>" alt="">
+                    <!-- <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/ZoeNoelleSmall.png'); ?>" alt=""> -->
+                    <img src="<?php if ($callFromApi == 1) {echo $user['profile_image'];} else {echo base_url() . $user['profile_image'];}?>" alt="<?php echo $user['fullname']; ?>">
                     <div>
-                        <div class="zoe-name">Zoe Noelle</div>
+                        <?php if (isset($user['fullname']) && !empty($user['fullname'])) {?>
+                            <div class="zoe-name">
+                                <?php echo $user['fullname']; ?>
+                            </div>
+                        <?php }?>
                         <div class="contact-detail">
-                            DRE#2323434<br>
-                            <a href="tel:(000) 000-0000">(000) 000-0000</a>
-                            <a href="mailto:Zoe@zoenoelle.com">Zoe@zoenoelle.com</a>
+                            <?php if (isset($user['licenceno']) && !empty($user['licenceno'])) {?>
+                                <?php echo $user['licenceno']; ?>
+                            <?php }?>
+                            <br>
+                            <?php if (isset($user['phone']) && !empty($user['phone'])) {?>
+                                <a class="tel_number" href="tel:<?php echo $user['phone']; ?>">
+                                    <span><?php echo $user['phone']; ?></span>
+                                </a>
+                            <?php }?>
+                            <?php if (isset($user['email']) && !empty($user['email'])) {?>
+                                <a href="mailto:<?php echo $user['email']; ?>" class="contact_info">
+                                    <?php echo $user['email']; ?>
+                                </a>
+                            <?php }?>
                         </div>
                     </div>
                 </div>
                 <div class="sales-price">
-                    <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/sign-black.png'); ?>" alt="">
+                    <?php if (!empty($user['company_logo']) && is_file(FCPATH . '/' . $user['company_logo'])): ?>
+                        <img src="<?php echo base_url() . $user['company_logo']; ?>" alt="companyname" border="0" class="pacific_logo" alt="sign-white">
+                    <?php endif;?>
+                    <!-- <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/sign-black.png'); ?>" alt=""> -->
                 </div>
             </div>
         </div>
