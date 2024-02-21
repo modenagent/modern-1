@@ -45,7 +45,8 @@ class Lp extends CI_Controller
             }
             $this->load->model('user_rets_api_details_model');
             $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
-            if ($rets_api_data && !empty($rets_api_data) && $check_presentaion && $check_presentaion == 'seller') {
+            // print_r($rets_api_data);die;
+            if ($rets_api_data && !empty($rets_api_data) && $check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
                 $this->load->model('params_adjustment_model');
                 $retsRadius = "0.25";
                 $retsSqft = "0.20";
