@@ -790,7 +790,7 @@ class Reports
             'zoom' => $zoom,
             'load-error-handling' => 'ignore',
             'load-media-error-handling' => 'ignore',
-            'encoding ' => 'utf-8',
+            'encoding' => 'utf-8',
         ];
         $snappy->setTimeout(150);
         $output = $snappy->getOutputFromHtml(
