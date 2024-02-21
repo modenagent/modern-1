@@ -19,7 +19,7 @@
                 <div class="grid listing-grid">
                     <div class="col-9">
                         <div class="grid border-bottom">
-                            <div class="col-6">
+                            <div class="col-5">
                                 <h5 class="count">SALES PRICE</h5>
                                 <h4><?php echo $item['Price']; ?></h4>
                             </div>
