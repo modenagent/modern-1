@@ -26,14 +26,14 @@
                 Use this QR code to direct your prospects to your Market Update landing page.
               </p>
 			  
-      <p class="leads">Your unique referral code: 1746xx <span id="ref-code">
+      <p class="leads">Your unique referral code:<span id="ref-code">1746xx
          
         </span></p>
 		<p class=""><span class="link-span" >www.modernagent.io/mkt/1746xx</span></p>
             </div>
             <div class="qr-code-container">
 
-                  <img src="">
+                  <img src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/a2e8eeff-1b35-ab88-2ffd-ae0fadd6bbf2.png">
 
               </div>
           </div>
