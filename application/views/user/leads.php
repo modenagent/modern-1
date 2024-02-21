@@ -25,14 +25,23 @@
               <p>
                 Use this QR code to direct your prospects to your Market Update landing page.
               </p>
-			  
+			   <?php if ($ref_code): ?>
       <p class="leads">Your unique referral code: <span id="ref-code">
-          
+          <?php echo $ref_code; ?>
         </span></p>
-		<p class=""><span class="link-span" >www.modernagent.io/mkt/1746xx</span></p>
+		<p class=""><span class="link-span" >www.modernagent.io/mkt/<?php echo $ref_code; ?></span></p>
             </div>
             <div class="qr-code-container">
-                  <img src="">
+<?php
+$url = urlencode(base_url("cma/" . $ref_code));
+list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
+$rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
+// echo "Hellooooooooo";
+// print_r($rgb_color_front);die;
+$rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
+$image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
+?>
+                  <img src="<?php echo $image; ?>">
 
               </div>
           </div>
