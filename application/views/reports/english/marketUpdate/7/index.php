@@ -139,6 +139,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         .grid > .col-5 {
             float: left;
             width: 40%;
+            margin-left: 20px;
         }
         .grid > div:last-child {
             border-right: 0;
@@ -152,7 +153,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         .listing-grid p {
             margin-top: 0;
             margin-bottom: 25px;
-            font-size: 18px;
+            /* font-size: 18px; */
         }
         .listing-grid {
             font-family: 'calibri';
@@ -161,12 +162,12 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         }
         .listing-grid h4 {
             margin: 0;
-            font-size: 36px;
+            font-size: 28px;
             font-weight: 900;
             font-family: 'Montserrat', sans-serif;
         }
         .listing-grid h5 {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 700;
             line-height: 20px;
             font-family: 'calibri';
