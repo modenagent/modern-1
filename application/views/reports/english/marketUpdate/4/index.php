@@ -180,7 +180,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             margin-bottom: 30px;
         }
         .home-worth {
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             color: #2c2e35;
             margin-bottom: 5px;
@@ -210,6 +210,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         }
         .m-aside-40 {
             margin: 0 40px;
+        }
+        .fs-14 {
+            font-size: 14px;
         }
     </style>
 </head>
