@@ -31,7 +31,7 @@
                         <h4>New Listings</h4>
                     </div>
                 </div>
-                <div class="grid">
+                <div class="grid m-aside-40">
                     <div class="col-6">
                         <h4 class="home-worth">CURIOUS TO KNOW WHAT<br> YOUR HOME IS WORTH?</h4>
                         <p class="body-text max-w-350">
@@ -70,7 +70,7 @@ $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?ur
                 </div>
 
             </div>
-            <div class="pdf_footer">
+            <div class="pdf_footer m-aside-40">
                 <div class="media-object">
                     <!-- <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/ZoeNoelleSmall.png'); ?>" alt=""> -->
                     <img src="<?php if ($callFromApi == 1) {echo $user['profile_image'];} else {echo base_url() . $user['profile_image'];}?>" alt="<?php echo $user['fullname']; ?>">

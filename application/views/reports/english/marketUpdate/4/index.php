@@ -40,10 +40,10 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         }
         .pacific_logo {
             position: absolute;
-            right: 40px;
+            right: 0px;
             top: 25%;
             /* transform: translateY(-50%); */
-            width: 230px;
+            /* width: 230px; */
             max-height: 100px;
         }
         .pdf_header h1 {
@@ -207,6 +207,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         }
         .border-top .pr-20{
             padding-right: 20px;
+        }
+        .m-aside-40 {
+            margin: 0 40px;
         }
     </style>
 </head>
