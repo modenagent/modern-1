@@ -80,7 +80,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             font-size: 16px;
         }
         .pdf_footer .grid {
-            margin: 0px 0px 0px 40px;
+            margin: 0px 0px 30px 40px;
         }
         .pdf_footer .grid > .col-4
         {
