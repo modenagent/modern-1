@@ -42,7 +42,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             right: 40px;
             top: 25%;
             /* transform: translateY(-50%); */
-            width: 150px;
+            /* width: 150px; */
             max-height: 80px;
         }
         .pdf_header h1{
@@ -100,6 +100,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             bottom: 1.2in;
             left: 0;
             right: 0;
+        }
+        .pdf_body .listing-grid {
+            margin: 0 40px;
         }
         .grid::after{
             display: table;
@@ -189,6 +192,10 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         }
         .mt-20{
             margin-top: 20px;
+        }
+
+        .footer-margin {
+            margin: 0 40px 20px;
         }
     </style>
 </head>

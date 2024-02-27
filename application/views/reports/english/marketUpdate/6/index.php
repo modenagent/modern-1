@@ -37,7 +37,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             width: 200px;
         }
         .pacific_logo {
-            width: 150px;
+            /* width: 150px; */
             display: block;
             margin: 30px auto 0;
             max-height: 80px;
@@ -60,6 +60,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             width: 140px;
             margin: 30px auto;
             display: block;
+            border-radius: 50%;
         }
         .pdf_footer {
             position: absolute;
