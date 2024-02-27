@@ -79,6 +79,9 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             text-align: left;
             font-size: 16px;
         }
+        .pdf_footer .grid {
+            margin: 0px 0px 0px 40px;
+        }
         .pdf_footer .grid > .col-4
         {
             border: 0;
