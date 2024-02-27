@@ -190,6 +190,10 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         .mt-20{
             margin-top: 20px;
         }
+
+        .footer-margin {
+            margin: 0 40px 20px;
+        }
     </style>
 </head>
 

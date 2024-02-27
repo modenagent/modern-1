@@ -69,7 +69,7 @@
                 </p>
             </div>
             <div class="pdf_footer">
-                <div class="grid">
+                <div class="grid footer-margin">
                     <div class="col-6">
                         <div class="media-object">
                             <img src="<?php echo base_url('assets/reports/english/marketUpdate/assets/images/ZoeNoelleSmall.png'); ?> " alt="">

@@ -34,7 +34,7 @@
                 <div class="grid m-aside-40">
                     <div class="col-6">
                         <h4 class="home-worth">CURIOUS TO KNOW WHAT<br> YOUR HOME IS WORTH?</h4>
-                        <p class="body-text max-w-350">
+                        <p class="body-text max-w-350 fs-14">
                             Unlock Your Home’s Hidden Value! Scan this QR code
                             now to discover the current market value of your
                             property. Get the insights you need to make informed
