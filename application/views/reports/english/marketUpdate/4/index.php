@@ -209,7 +209,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             padding-right: 20px;
         }
         .m-aside-40 {
-            margin: 0 40px;
+            margin: 0 40px 30px;
         }
         .fs-14 {
             font-size: 14px;
