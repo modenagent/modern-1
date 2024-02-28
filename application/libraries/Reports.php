@@ -173,6 +173,7 @@ class Reports
                             $mls_comparables[$m_key]['mls_id'] = isset($mls_id) && !empty($mls_id) ? $mls_id : '';
                             $mls_comparables[$m_key]['img'] = isset($response['photos'][0]) && !empty($response['photos'][0]) ? $response['photos'][0] : '';
                             $mls_comparables[$m_key]['Address'] = isset($response['address']['full']) && !empty($response['address']['full']) ? $response['address']['full'] : '';
+                            $mls_comparables[$m_key]['cityState'] = isset($response['address']['city']) && !empty($response['address']['city']) ? $response['address']['city'] . ', ' . $response['address']['state'] : '';
                             $mls_comparables[$m_key]['Price'] = isset($response['listPrice']) && !empty($response['listPrice']) ? dollars(number_format((string) $response['listPrice'])) : '';
                             $mls_comparables[$m_key]['PriceRate'] = isset($response['listPrice']) && !empty($response['listPrice']) ? (float) $response['listPrice'] : 0.00;
                             $mls_comparables[$m_key]['Date'] = isset($response['listDate']) && !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
@@ -449,6 +450,7 @@ class Reports
                 $tmp['TotalRooms'] = (string) $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->TotalRooms[0];
 
                 $tmp['Address'] = properCase((string) $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteAddress[0] . ' ' . $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteCity[0]);
+                $tmp['cityState'] = properCase((string) $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->SiteCity[0]);
                 $tmp['Distance'] = floatval((string) $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Proximity[0]);
                 $tmp['Beds'] = number_format((string) $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->Bedrooms[0]);
                 $tmp['SquareFeet'] = number_format((string) $report187->ComparableSalesReport->ComparableSales->ComparableSale[$j]->BuildingArea[0]);
