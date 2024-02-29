@@ -30,7 +30,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
             top: 0;
             background: #2b2e34;
             padding: 15px;
-            height: 100%;
+            height: 100.7%;
             position: absolute;
             left: 0;
             bottom: 0;
