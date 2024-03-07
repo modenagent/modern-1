@@ -57,7 +57,8 @@ class Lp extends CI_Controller
                 $propertyBeds = 0;
 
                 $properties = $sorted = $all = array();
-
+                $postalCode = $file->PropertyProfile->SiteZip;
+                $citi = $file->PropertyProfile->SiteCity;
                 $properties['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $properties['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
                 $propertyBuildingArea = (int) $file->PropertyProfile->PropertyCharacteristics->BuildingArea;
@@ -71,19 +72,21 @@ class Lp extends CI_Controller
                 $maxPropertyBuildingArea = $propertyBuildingArea + $retsSqft;
 
                 $address = $this->input->get('address');
-                $query = '?q=' . urlencode($address);
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode;
+                // $query = '?postalCodes=' . $postalCode;
                 $min_lat = (float) $properties['Lat'] - 0.02;
                 $min_long = (float) $properties['Long'] - 0.02;
 
                 $max_lat = (float) $properties['Lat'] + 0.02;
                 $max_long = (float) $properties['Long'] + 0.02;
                 $query .= '&limit=50';
-                $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long) . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
+                $query_1 = $query . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
+                $query_2 = $query_1 . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
                 if ($propertyBaths > 0) {
-                    $query_1 = $query_1 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
+                    $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
                 }
                 if ($propertyBeds > 0) {
-                    $query_1 = $query_1 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
+                    $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
                 }
                 // print_r($query_1);die;
                 // $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long); // . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
@@ -92,15 +95,30 @@ class Lp extends CI_Controller
                 $encrypted_password = $rets_api_data->user_password;
                 $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
 
-                $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
+                $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
+                // echo "------------------ Query 2 <pre>";
+                // print_r($result);
+                // die;
                 // var_dump($result);
                 // echo $query_1;die;
                 $response = json_decode($result, true);
                 // var_dump($response);die;
+
+                if (empty($response) || count($response) <= 1) {
+                    $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
+                    $response = json_decode($result, true);
+                    // echo "------------------ query 1";
+                    // print_r($response);
+
+                }
+
                 if (empty($response) || count($response) <= 1) {
                     $result = $this->rets->callSimplyRets($user_name, $password, $query);
+                    // echo "------------------ query ";
                     $response = json_decode($result, true);
+                    // print_r($response);
                 }
+                // die;
 
                 if (isset($response) && !empty($response)) {
                     foreach ($response as $key => $value) {
