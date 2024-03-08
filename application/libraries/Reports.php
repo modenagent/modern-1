@@ -640,6 +640,142 @@ class Reports
         }
         return array('sorted' => $comparable, 'all' => $_comparableTemp);
     }
+
+    public function get_all_rets_properties($data)
+    {
+        $_comparableTemp = array();
+        $index = 0;
+        foreach ($data as $key => $val) {
+            $date = !empty($val['modified']) ? $val['modified'] : $val['listDate'];
+            // print_r((string) date('Y-m-d', strtotime($date)));die;
+            $date = (string) date('Y-m-d', strtotime($date));
+            $_comparableTemp[$index]['index'] = $val['mlsId'];
+
+            $_comparableTemp[$index]['Date'] = date('m/d/Y', strtotime($date)); //formatDate((string) $date);
+            $_comparableTemp[$index]['ChartLabelVal'] = date('Y-m', strtotime($date));
+            $_comparableTemp[$index]['Price'] = $this->dollars(number_format($val['listPrice']));
+            $_comparableTemp[$index]['PriceRate'] = (string) $val['listPrice'];
+            // $_comparableTemp[$index]['PricePerSQFT'] = $val['mlsId'];
+            // $_comparableTemp[$index]['TotalRooms'] = $val['mlsId'];
+            $_comparableTemp[$index]['Address'] = $val['address']['full'] . ' ' . $val['address']['city'];
+            $_comparableTemp[$index]['cityState'] = $val['address']['city'];
+            // $_comparableTemp[$index]['Distance'] = $val['mlsId'];
+            // $_comparableTemp[$index]['Beds'] = $val['property']['bedrooms'];
+            $_comparableTemp[$index]['SquareFeet'] = $val['property']['lotSizeArea'];
+            $_comparableTemp[$index]['BuildingArea'] = $val['property']['lotSizeArea'];
+            $_comparableTemp[$index]['Baths'] = (int) $val['property']['bathrooms'];
+            $_comparableTemp[$index]['Bedrooms'] = (int) $val['property']['bedrooms'];
+            $_comparableTemp[$index]['Year'] = $val['property']['yearBuilt'];
+            $_comparableTemp[$index]['LotSize'] = $val['property']['lotSize'];
+            $_comparableTemp[$index]['Latitude'] = $val['geo']['lat'];
+            $_comparableTemp[$index]['Longitude'] = $val['geo']['lng'];
+            $_comparableTemp[$index]['Pool'] = (isset($val['property']['pool']) && $val['property']['pool']) != 'None' ? 'Yes' : 'No';
+
+            $index++;
+        }
+
+        return $_comparableTemp;
+    }
+
+    public function sort_rets_properties($report187, $_comparableTemp, $paramsAdjustment = false)
+    {
+        $CI = &get_instance();
+        $adjustableParams = [];
+
+        $userId = $CI->session->userdata('userid');
+        if ($userId) {
+            $data = array();
+            $data['user_id'] = $userId;
+            $CI->load->model('params_adjustment_model');
+            $adjustableParams = (array) $CI->params_adjustment_model->get_by($data);
+        }
+
+        $_maxLimit = 8;
+        $comparable = array();
+
+        //********* COmpare ale property Sold in last 12 months ************/
+        //COmpare ale property +-20 % of build area
+
+        $date = new DateTime();
+        $currentdate = $date->format('m/d/Y');
+
+        $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_beds'])) ? $adjustableParams['rets_beds'] : $report187->PropertyProfile->PropertyCharacteristics->Bedrooms);
+        $maxBedrooms = $adjustedBedrooms + 1;
+        $minBedrooms = $adjustedBedrooms - 1;
+
+        $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_baths'])) ? $adjustableParams['rets_baths'] : $report187->PropertyProfile->PropertyCharacteristics->Baths);
+        $maxBaths = $adjustedBaths + 1;
+        $minBaths = $adjustedBaths - 1;
+
+        $count = 0;
+        $max = ($adjustedBedrooms > $adjustedBaths) ? $adjustedBedrooms : $adjustedBaths;
+
+        for ($i = $max; $max > 0; $i--) {
+            $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, $adjustedBaths);
+            $_comparableTemp = $res['comparableTemp'];
+            $comparable = $res['comparable'];
+            $count = count($comparable);
+            if ($count > ($_maxLimit - 1)) {
+                break;
+            }
+            $adjustedBedrooms = ($adjustedBedrooms > 1) ? $adjustedBedrooms - 1 : 1;
+            $adjustedBaths = ($adjustedBaths > 1) ? $adjustedBaths - 1 : 1;
+            $max--;
+        }
+
+        return array('sorted' => $comparable, 'all' => $_comparableTemp);
+    }
+
+    public function get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, $adjustedBaths)
+    {
+        $_maxLimit = 7;
+        foreach ($_comparableTemp as $key => $compareableProperty) {
+            if ($count > $_maxLimit) {
+                break;
+            }
+            $bedrooms = (int) $compareableProperty['Bedrooms'];
+            $baths = (int) $compareableProperty['Baths'];
+            if (((($bedrooms >= $adjustedBedrooms) && ($baths >= $adjustedBaths)))) {
+                array_push($comparable, $compareableProperty);
+                unset($_comparableTemp[$key]);
+                $count++;
+            }
+        }
+        return ['comparableTemp' => $_comparableTemp, 'comparable' => $comparable];
+    }
+
+    public function dollars($dollarAmount)
+    {
+        // Prepend '$' symbol to figures that represent price
+        if ((string) $dollarAmount == '') {
+            return '';
+        }
+        if ($dollarAmount == '0') {
+            return '0';
+        } else {
+            return '$' . $dollarAmount;
+        }
+    }
+
+    public function monthsBetween($startDate, $endDate)
+    {
+        $retval = "";
+
+        // Assume mm-dd-YYYY - as is common MYSQL format
+        $splitStart = explode('/', $startDate);
+        $splitEnd = explode('/', $endDate);
+
+        if (is_array($splitStart) && is_array($splitEnd)) {
+            $difYears = $splitEnd[2] - $splitStart[2];
+            $difMonths = $splitEnd[0] - $splitStart[0];
+            $difDays = $splitEnd[1] - $splitStart[1];
+
+            $retval = ($difDays > 0) ? $difMonths : $difMonths - 1;
+            $retval += $difYears * 12;
+        }
+        return $retval;
+    }
+
     public function sales_analysis($sortedComps)
     {
         $firstTime = true;
