@@ -96,58 +96,48 @@ class Lp extends CI_Controller
                 $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
 
                 $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
-                // echo "------------------ Query 2 <pre>";
-                // print_r($result);
-                // die;
-                // var_dump($result);
-                // echo $query_1;die;
+
                 $response = json_decode($result, true);
-                // var_dump($response);die;
 
                 if (empty($response) || count($response) <= 1) {
                     $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
                     $response = json_decode($result, true);
-                    // echo "------------------ query 1";
-                    // print_r($response);
-
                 }
 
                 if (empty($response) || count($response) <= 1) {
                     $result = $this->rets->callSimplyRets($user_name, $password, $query);
-                    // echo "------------------ query ";
                     $response = json_decode($result, true);
-                    // print_r($response);
                 }
-                // die;
 
                 if (isset($response) && !empty($response)) {
-                    foreach ($response as $key => $value) {
-                        if ($key <= 7) {
-                            $sorted[$value['mlsId']] = array(
-                                'index' => $value['mlsId'],
-                                'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
-                                'Price' => $value['listPrice'],
-                                'Latitude' => $value['geo']['lat'],
-                                'Longitude' => $value['geo']['lng'],
-                            );
-                        } else {
-                            $all[$value['mlsId']] = array(
-                                'index' => $value['mlsId'],
-                                'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
-                                'Price' => $value['listPrice'],
-                                'Latitude' => $value['geo']['lat'],
-                                'Longitude' => $value['geo']['lng'],
-                            );
-                        }
-
-                    }
+                    $retsData = $this->reports->get_all_rets_properties($response);
+                    $properties = $this->reports->sort_rets_properties($file, $retsData, true);
+                    // foreach ($response as $key => $value) {
+                    //     if ($key <= 7) {
+                    //         $sorted[$value['mlsId']] = array(
+                    //             'index' => $value['mlsId'],
+                    //             'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
+                    //             'Price' => $value['listPrice'],
+                    //             'Latitude' => $value['geo']['lat'],
+                    //             'Longitude' => $value['geo']['lng'],
+                    //         );
+                    //     } else {
+                    //         $all[$value['mlsId']] = array(
+                    //             'index' => $value['mlsId'],
+                    //             'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
+                    //             'Price' => $value['listPrice'],
+                    //             'Latitude' => $value['geo']['lat'],
+                    //             'Longitude' => $value['geo']['lng'],
+                    //         );
+                    //     }
+                    // }
                 }
                 // $file = simplexml_load_file($request);
                 // $file = json_decode(file_get_contents($req_send));
                 // echo($file);die;
 
-                $properties['all'] = $all;
-                $properties['sorted'] = $sorted;
+                // $properties['all'] = $all;
+                // $properties['sorted'] = $sorted;
 
                 $properties['use_rets'] = true;
                 echo json_encode($properties);
@@ -158,7 +148,6 @@ class Lp extends CI_Controller
                 $file = simplexml_load_file($request);
                 $this->load->library('reports');
                 $allComparable = $this->reports->get_all_properties($file);
-
                 $comparables = $this->reports->sort_properties($file, $allComparable, true);
                 $comparables['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $comparables['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
