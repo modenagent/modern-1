@@ -839,7 +839,6 @@ function compileXmlUrls(response, report) {
     // get the url for each report
     reportUrl = $(response).find('ReportURL').text();
     reportData.report187 = reportUrl;
-    console.log('compileXmlUrls reportData =========', reportData);
 }
 
 // list multiple APNs returned in address query

@@ -72,7 +72,7 @@ class Lp extends CI_Controller
                 $maxPropertyBuildingArea = $propertyBuildingArea + $retsSqft;
 
                 $address = $this->input->get('address');
-                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode;
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=Active';
                 // $query = '?postalCodes=' . $postalCode;
                 $min_lat = (float) $properties['Lat'] - 0.02;
                 $min_long = (float) $properties['Long'] - 0.02;
