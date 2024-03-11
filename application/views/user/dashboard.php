@@ -449,16 +449,16 @@ if (is_dir($load_dir)):
 
     for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
 
-				                                    <div class="item">
+	        <div class="item">
 
-				                                        <div class="text-center">
-				                                            <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
-				                                        </div>
+	            <div class="text-center">
+	                <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
+	            </div>
 
-				                                    </div>
+	        </div>
 
 
-				                                <?php
+	    <?php
 
 endfor;
 endif;
@@ -1114,9 +1114,11 @@ if ($regsitry_i == 1) {
             map_icon = image_not_selected;
           }
           var check_opt = checkValExist(comp_option[1],comp_option[2],existing_locations);
-          console.log(check_opt);
+          console.log('check_opt ===', check_opt);
           var new_lat = check_opt[0];
           var new_long = check_opt[1];
+          console.log('new_lat =', new_lat);
+          console.log('new_long =', new_long);
           existing_locations.push(new_lat+'_'+new_long);
           var marker = new google.maps.Marker({
             position: { lat: new_lat, lng: new_long },
@@ -1128,33 +1130,31 @@ if ($regsitry_i == 1) {
             selected_comp : comp_option[5]
           });
 
-          google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
-              return function() {
-                infowindow.setContent(comp_options[i][0]);
-                infowindow.open(map, marker);
-              }
+            google.maps.event.addListener(marker, 'mouseover', (function(marker, i) {
+                console.log('add listner ===', marker);
+                return function() {
+                    infowindow.setContent(comp_options[i][0]);
+                    infowindow.open(map, marker);
+                }
             })(marker, i));
 
-             google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
-                var comp_sel_val = marker.custom_val;
-                if(marker.selected_comp) {
-                    $('#pre-selected-options option[value="'+comp_sel_val+'"]').prop("selected", false);
-
-                    marker.setIcon(image_not_selected);
-                    marker.selected_comp = false;
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                console.log('test', marker);
+                return function() {
+                    var comp_sel_val = marker.custom_val;
+                    if(marker.selected_comp) {
+                        $('#pre-selected-options option[value="'+comp_sel_val+'"]').prop("selected", false);
+                        marker.setIcon(image_not_selected);
+                        marker.selected_comp = false;
+                    } else {
+                        $('#pre-selected-options option[value="'+comp_sel_val+'"]').prop("selected", true);
+                        marker.setIcon(image_selected);
+                        marker.selected_comp = true;
+                    }
+                    $('#pre-selected-options').multiSelect('refresh');
+                    $("#sel_prop_cnt").text($("#pre-selected-options :selected").length);
+                    $("#not_sel_prop_cnt").text($("#pre-selected-options :not(:selected)").length);
                 }
-                else {
-                    $('#pre-selected-options option[value="'+comp_sel_val+'"]').prop("selected", true);
-                     marker.setIcon(image_selected);
-                    marker.selected_comp = true;
-
-                }
-                $('#pre-selected-options').multiSelect('refresh');
-                $("#sel_prop_cnt").text($("#pre-selected-options :selected").length);
-                $("#not_sel_prop_cnt").text($("#pre-selected-options :not(:selected)").length);
-
-              }
             })(marker, i));
         }
     })

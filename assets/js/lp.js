@@ -664,13 +664,13 @@ function get187() {
                 $.each(all_comp, function (i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address + " (" + item.Price + ")"
+                        text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")"
                     }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
                     );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address + " (" + item.Price + ")"
+                        text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")"
                     }));
 
                     // $('#available-comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');
@@ -680,14 +680,14 @@ function get187() {
                 $.each(sorted_comp, function (i, item) {
                     $('#pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address + " (" + item.Price + ")",
+                        text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")",
                         selected: 'selected'
                     }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
                     );
 
                     $('#comparable-pre-selected-options').append($('<option>', {
                         value: item.index,
-                        text: item.Address + " (" + item.Price + ")",
+                        text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")",
                         selected: 'selected'
                     }));
 

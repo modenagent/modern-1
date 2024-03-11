@@ -2190,4 +2190,8 @@ p.leads {
 
 
 
+#run-pma-form div#config-comps-btn .ms-container {
+    max-width: 100%;
+}
+
 /*BI*/
