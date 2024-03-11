@@ -111,7 +111,9 @@ class Lp extends CI_Controller
 
                 if (isset($response) && !empty($response)) {
                     $retsData = $this->reports->get_all_rets_properties($response);
-                    $properties = $this->reports->sort_rets_properties($file, $retsData, true);
+                    $propertiesComparableData = $this->reports->sort_rets_properties($file, $retsData, true);
+                    $properties['all'] = $propertiesComparableData['all'];
+                    $properties['sorted'] = $propertiesComparableData['sorted'];
                     // foreach ($response as $key => $value) {
                     //     if ($key <= 7) {
                     //         $sorted[$value['mlsId']] = array(
