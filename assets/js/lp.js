@@ -624,6 +624,7 @@ function get187() {
         $('.loader1').removeClass('hidden');
         $('.backwrap').show();
         $('.backwrap').removeClass('hidden');
+        let propertyType = ($('#property-status').prop('checked') == true) ? 'Active' : 'Closed';
         activeRequest = true;
         $.ajax({
             type: "GET",
@@ -634,11 +635,13 @@ function get187() {
                 address: $('#state').val(),
                 presentation: $('#presentation').val(),
                 user_id: $("#user-id").val(),
+                propertyStatus: propertyType
             },
             dataType: "json",
             success: function (data) {
                 all_comp = data.all;
                 sorted_comp = data.sorted;
+                $('.multiselect-header').remove();
                 $('#pre-selected-options').html('');
                 $('#comparable-pre-selected-options').html('');
                 $('#main-prop-lat').val(data.Lat);
@@ -694,16 +697,18 @@ function get187() {
                             initateCompSelection();
                         }
                     });
-                    if (firstOpen) {
-                        // If received list is not greater than min value than set our min value to received list length
-                        // var pre_selected_options = $.trim($('#pre-selected-options').html());
-                        // if (pre_selected_options!='') {
-                        //     if(_min>$('#pre-selected-options').val().length){
-                        // _min = $('#pre-selected-options').val().length;
-                        //     }
-                        // }
-                        firstOpen = false;
-                    }
+
+                    $('#pre-selected-options').multiSelect('refresh');
+                    // if (firstOpen) {
+                    // If received list is not greater than min value than set our min value to received list length
+                    // var pre_selected_options = $.trim($('#pre-selected-options').html());
+                    // if (pre_selected_options!='') {
+                    //     if(_min>$('#pre-selected-options').val().length){
+                    // _min = $('#pre-selected-options').val().length;
+                    //     }
+                    // }
+                    //     firstOpen = false;
+                    // }
                 }
                 activeRequest = false;
                 $('.loader1').hide();
@@ -712,6 +717,7 @@ function get187() {
                 $('.backwrap').addClass('hidden');
 
                 if (all_comp.length + sorted_comp.length < 4) {
+                    // if (!data.use_rets && (all_comp.length + sorted_comp.length < 4)) {
                     $('#property_search_model').modal('show');
                     $('#changes_req_params_property_search #apn').val(dataObj.apn);
                     // $('#changes_req_params_property_search #property_address').val(dataObj.Address);
@@ -744,6 +750,10 @@ $("#changes_req_params_property_search").submit(function (e) {
     getSordrtedProperties = true;
     $('.ms-container').remove();
     compileAPNRequest(dataObj);
+});
+
+$('#property-status').change(function () {
+    get187();
 });
 
 function parse187() {

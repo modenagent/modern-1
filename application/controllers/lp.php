@@ -37,6 +37,7 @@ class Lp extends CI_Controller
             //Check user and api
             $file = simplexml_load_file($request);
             $check_presentaion = $this->input->get('presentation');
+            $propertyStatus = $this->input->get('propertyStatus');
 
             //RETS API
             $userId = $this->session->userdata('userid');
@@ -72,7 +73,7 @@ class Lp extends CI_Controller
                 $maxPropertyBuildingArea = $propertyBuildingArea + $retsSqft;
 
                 $address = $this->input->get('address');
-                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=Active';
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus;
                 // $query = '?postalCodes=' . $postalCode;
                 $min_lat = (float) $properties['Lat'] - 0.02;
                 $min_long = (float) $properties['Long'] - 0.02;

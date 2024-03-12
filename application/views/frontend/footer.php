@@ -12,30 +12,30 @@
 
 
 					<!-- FOOTER CONTENT -->
-					<div class="row">	
+					<div class="row">
 
 
 						<!-- FOOTER INFO -->
 						<div class="col-lg-3">
 							<div class="footer-info mb-40 mt-100">
-								<img class="footer-logo" src="<?php echo base_url();?>/assets/frontend/images/LargeLogoDark.png" alt="footer-logo">
-							</div>	
-						</div>	
+								<img class="footer-logo" src="<?php echo base_url(); ?>/assets/frontend/images/LargeLogoDark.png" alt="footer-logo">
+							</div>
+						</div>
 
 
 						<!-- FOOTER LINKS -->
 						<div class="col-sm-6 col-md-3 col-lg-2 col-lg-2 col-xl-2 offset-xl-1">
 							<div class="footer-links mb-40">
-							
+
 								<!-- Title -->
 								<h6 class="h6-xl">About</h6>
 
 								<!-- Footer Links -->
 								<ul class="foo-links text-secondary clearfix">
-									<li><p class="p-md"><a href="#">About Us</a></p></li>	
+									<li><p class="p-md"><a href="#">About Us</a></p></li>
 									<li><p class="p-md"><a href="#">Our Team</a></p></li>
 									<li><p class="p-md"><a href="#">Press & Media</a></p></li>
-														
+
 								</ul>
 
 							</div>
@@ -45,15 +45,15 @@
 						<!-- FOOTER LINKS -->
 						<div class="col-sm-6 col-md-3 col-lg-2">
 							<div class="footer-links mb-40">
-							
+
 								<!-- Title -->
 								<h6 class="h6-xl">Discover</h6>
 
 								<!-- Footer List -->
-								<ul class="foo-links text-secondary clearfix">							
-									<li><p class="p-md"><a href="#">Our Blog</a></p></li>										
+								<ul class="foo-links text-secondary clearfix">
+									<li><p class="p-md"><a href="#">Our Blog</a></p></li>
 									<li><p class="p-md"><a href="#">Plans & Pricing</a></p></li>
-									<li><p class="p-md"><a href="#">Cookie Policy</a></p></li>					
+									<li><p class="p-md"><a href="#">Cookie Policy</a></p></li>
 								</ul>
 
 							</div>
@@ -63,38 +63,38 @@
                         <!-- FOOTER LINKS -->
 						<div class="col-sm-6 col-md-3 col-lg-2">
 							<div class="footer-links mb-40">
-												
+
 								<!-- Title -->
 								<h6 class="h6-xl">Support</h6>
 
 								<!-- Footer List -->
 								<ul class="foo-links text-secondary clearfix">
 									<li><p class="p-md"><a href="#">FAQs</a></p></li>
-									<li><p class="p-md"><a href="#">Knowledge Base</a></p></li>							
-									<li><p class="p-md"><a href="#">Contact Us</a></p></li>								
+									<li><p class="p-md"><a href="#">Knowledge Base</a></p></li>
+									<li><p class="p-md"><a href="#">Contact Us</a></p></li>
 								</ul>
 
-							</div>	
-						</div>	
+							</div>
+						</div>
 
 
 						<!-- FOOTER LINKS -->
 						<div class="col-sm-6 col-md-3 col-lg-3 col-xl-2">
 							<div class="footer-links mb-40">
-												
+
 								<!-- Title -->
 								<h6 class="h6-xl">Connect With Us</h6>
 
-								<!-- Social Links -->	
-								<ul class="footer-socials text-secondary ico-25 text-center clearfix">		
+								<!-- Social Links -->
+								<ul class="footer-socials text-secondary ico-25 text-center clearfix">
 									<li><a href="#"><span class="flaticon-facebook"></span></a></li>
 									<li><a href="#"><span class="flaticon-twitter"></span></a></li>
 									<li><a href="#"><span class="flaticon-instagram"></span></a></li>
 									<li><a href="#"><span class="flaticon-youtube"></span></a></li>
 								</ul>
 
-							</div>	
-						</div>	 
+							</div>
+						</div>
 
 
                     </div>  <!-- END FOOTER CONTENT -->
@@ -131,34 +131,34 @@
 
                 </div>
             </footer>   <!-- FOOTER-4 -->
-            
 
 
 
-        </div>  <!-- END PAGE CONTENT --> 
+
+        </div>  <!-- END PAGE CONTENT -->
 
         <!-- EXTERNAL SCRIPTS
-        ============================================= -->   
-        <script src="<?php echo base_url();?>/assets/frontend/js/jquery-3.6.0.min.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/bootstrap.min.js"></script> 
-        <script src="<?php echo base_url();?>/assets/frontend/js/modernizr.custom.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.easing.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.appear.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.scrollto.js"></script>   
-        <script src="<?php echo base_url();?>/assets/frontend/js/menu.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/imagesloaded.pkgd.min.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/isotope.pkgd.min.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/owl.carousel.min.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.magnific-popup.min.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/quick-form.js"></script>    
-        <script src="<?php echo base_url();?>/assets/frontend/js/request-form.js"></script>  
-        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.validate.min.js"></script>
-        <script src="<?php echo base_url();?>/assets/frontend/js/jquery.ajaxchimp.min.js"></script>  
-        <script src="<?php echo base_url();?>/assets/frontend/js/wow.js"></script>
-                
-        <!-- Custom Script -->      
-        <script src="<?php echo base_url();?>/assets/frontend/js/custom.js"></script>
-         
+        ============================================= -->
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery-3.6.0.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/bootstrap.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/modernizr.custom.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.easing.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.appear.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.scrollto.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/menu.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/imagesloaded.pkgd.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/isotope.pkgd.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/owl.carousel.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.magnific-popup.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/quick-form.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/request-form.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.validate.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.ajaxchimp.min.js"></script>
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/wow.js"></script>
+
+        <!-- Custom Script -->
+        <script src="<?php echo base_url(); ?>/assets/frontend/js/custom.js"></script>
+
 <script type="text/javascript">
     // stopping form from submitting on enter key press
     $(document).ready(function() {
@@ -208,7 +208,7 @@
         $("#forgot_submit").click(function() {
             if ( !$("#forgot-form").valid() ) {
                 return false;
-            } else { 
+            } else {
                 $('#forgot_submit').val('Processing Request...');
                 $('#forgot_submit').attr('disabled',true);
 
@@ -226,7 +226,7 @@
                 .success(function(resp) {
                     var obj = resp;var msg = obj.msg;
                     if (obj.status == "success") {
-                        // submit button disable 
+                        // submit button disable
                         $('#login-form').show();
                         $('#forgot-form').hide();
                         $('#forgot-form').trigger("reset");
@@ -275,11 +275,10 @@
 
         // login form submit
         $("#login-form").submit(function(e) {
-            e.preventDefault(); 
-            console.log("clicked");
+            e.preventDefault();
             // if ( !$(this).valid() ) {
             //     return false;
-            // } else {   
+            // } else {
                 var uname = $("#uemail").val();
                 var upass = $("#upass").val();
                 if ($.trim(uname) == '' || $.trim(upass) == '') {
@@ -307,6 +306,6 @@
                 return false;
             // }
         });
-        
+
     });
 </script>
