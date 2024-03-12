@@ -11,8 +11,6 @@ $(document).ready(function () {
     $('.js-run-pma-button').hide();
 
     $('#run-pma-form').submit(function () {
-        console.log(reportData);
-        console.log("Submittting run-pma-form");
         return false;
     });
 
@@ -141,8 +139,6 @@ function getDropItems() {
     })
         .done(function (response) {
             var dropData = $.parseJSON(response);
-            console.log(dropData[0]);
-            console.log(dropData[1]);
             var realtors = dropData[0];
             var companies = dropData[1];
             realtors = realtors.sort();
@@ -155,7 +151,6 @@ function getDropItems() {
 
 // Get archived company and agent dropdown info for customized info form
 function textDropdown(dropArray, id) {
-    console.log(dropArray);
     var $input = $(id).autocomplete({
         source: dropArray,
         minLength: 0,
@@ -212,7 +207,6 @@ function retrieveFormData(id, e, ui) {
         data: data
     })
         .done(function (response) {
-            console.log(response)
             populateData(response);
 
         })
@@ -223,7 +217,6 @@ function retrieveFormData(id, e, ui) {
 // populate customized info form based on previously used agent or company
 function populateData(response) {
     var formItems = $.parseJSON(response);
-    console.log(formItems);
     var company = formItems.company;
     var agentpic = formItems.agentpic;
     var logo = formItems.logo;
@@ -266,8 +259,7 @@ function changeFile(event) {
     // event.preventDefault ? event.preventDefault() : event.returnValue = false;
     $(this).siblings().show();
     $(this).siblings('span').html('');
-    $(this).hide()
-    console.log(event)
+    $(this).hide();
 }
 
 // create a dropdown of agents
@@ -333,7 +325,6 @@ function runPMA(agentPath, logoPath) {
     }
     activeRequest = true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
-    console.log(query);
     xhr = $.ajax({
         url: base_url + 'lp/getPropertyData',
         type: 'POST',
@@ -341,7 +332,6 @@ function runPMA(agentPath, logoPath) {
     })
         .done(function (response) {
             var obj = JSON.parse(response);
-            console.log(obj);
             manage_checkout_btn();
             try {
                 var obj = JSON.parse(response);
@@ -395,7 +385,6 @@ function recordFormData() {
     var query = $('#run-pma-form').serialize();
     query += '&lp-realtor-picture=' + reportData.agentPath;
     query += '&lp-realtor-logo=' + reportData.logoPath;
-    console.log(query);
     $.ajax({
         url: 'lp/store-form.php',
         type: 'POST',
@@ -414,7 +403,6 @@ function returnReport() {
     // $('#searchboxcity').val('');
     // $('.progress-bar').hide(); // hide the loading bar
     var pdfLink = 'lp/files/listings/' + reportData.address + ' ' + pdfID + '.pdf'; // create link for PDF report
-    console.log("return report", pdfLink);
     reportData.link = pdfLink;
     dataTransfer('yes');
 }
@@ -423,14 +411,12 @@ function returnReport() {
 function dataTransfer(status) {
     var query = $.param(reportData);
     query += '&dataUpdate=' + status;
-    console.log(query);
     $.ajax({
         url: 'lp/lp-data.php',
         type: 'POST',
         data: query
     })
         .done(function (response) {
-            console.log(response)
             updateTally(response);
         })
         .fail(function () {
@@ -444,7 +430,6 @@ function updateTally(tallies) {
     tallyData = $.parseJSON(tallies);
     $('.pma-total h5').text(tallyData.total);
     $('.accrued-cost h5').text(tallyData.cost);
-    console.log(tallyData);
     $('.rep-table tr').each(function () {
         var pctRep = $(this).find('td:nth-child(1)').text();
         if (tallyData[pctRep]) {
@@ -714,9 +699,7 @@ function get187() {
                         // var pre_selected_options = $.trim($('#pre-selected-options').html());
                         // if (pre_selected_options!='') {
                         //     if(_min>$('#pre-selected-options').val().length){
-                        // console.log('_min ------------------------', _min);
                         // _min = $('#pre-selected-options').val().length;
-                        // console.log('_min ******************------------------------', _min);
                         //     }
                         // }
                         firstOpen = false;
@@ -788,11 +771,8 @@ function parse187() {
 
     //    var comparables = $(reportXML).find("ComparableSalesReport").find("ComparableSales").find("ComparableSale");
     //    for(var i=0;i<comparables.length;i++){
-    //        //console.log($(comparables[i]).find("SiteAddress").text().+' '+.$(comparables[i]).find("SiteCity").text());
     //        comparableData.push($(comparables[i]).find("SiteAddress").text()+' '+$(comparables[i]).find("SiteCity").text());
     //    }
-    //    console.log(comparableData);
-    //    console.log("I AM Called");
 }
 
 // run query for plat map report 
@@ -808,7 +788,6 @@ function getPlat() {
         dataType: 'xml'
     })
         .done(function (response, textStatus, jqXHR) {
-            console.log(response);
             reportUrl = $(response).find('ReportURL').text();
             reportData.report111 = reportUrl;
         });
@@ -842,7 +821,7 @@ function compileXmlUrls(response, report) {
 }
 
 // list multiple APNs returned in address query
-function multipleResults(response) { //console.log(response);
+function multipleResults(response) {
     $('.search-result table > tbody').html('');
     $(response).find('Locations').children('Location').each(function (i) {
         var address = $(this).find('Address').text();
@@ -924,8 +903,6 @@ function multipleResults(response) { //console.log(response);
     // $('[name=selected_apn]')
     // .on('ifChecked', function(event){
     //   // alert(event.type + ' callback');
-    //     // console.log($('[name=selected_apn]:checked').val(),event);
-    //     // console.log($(event.target.parentNode).closest('tr').find('.result-apn').text());
     //     apnData(event.target.parentNode);
     // })
     // .change(function(){
@@ -1136,14 +1113,12 @@ function widgetRunPMA(agentPath, logoPath) {
             query += '&' + $(this).attr('name') + "=" + encodeURIComponent($(this).val());
 
         }
-        // console.log($(this).attr('name')+$(this).val());
     });
 
     if (activeRequest && xhr) {
         activeRequest = false;
         xhr.abort();
     }
-    // console.log(query); 
     // return;
     activeRequest = true;
     var errorMsg = "PDF Generation failed. Our team is looking into the matter. Please try again in a bit.";
@@ -1154,10 +1129,8 @@ function widgetRunPMA(agentPath, logoPath) {
         data: query
     })
         .done(function (response) {
-            // console.log(response);
             pdfGenerated = false;
             var obj = JSON.parse(response);
-            // console.log(obj);
             try {
                 var obj = JSON.parse(response);
                 if (obj.status == 'success') {
