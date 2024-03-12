@@ -1,21 +1,21 @@
 
 
 <!-- jequery plugins -->
-<script src="<?php echo base_url();?>/assets/login/js/jquery.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/popper.min.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/jquery.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/popper.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/bootstrap.min.js"></script>
 
 
-<script src="<?php echo base_url();?>/assets/login/js/jquery.fancybox.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/appear.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/jquery.paroller.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/jquery.fancybox.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/appear.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/jquery.paroller.min.js"></script>
 
 <!-- main-js -->
-<script src="<?php echo base_url();?>/assets/login/js/script.js"></script>
-<!-- 
-<script src="<?php echo base_url();?>/assets/js/jquery-toastr/toastr.min.js"></script>
-<script src="<?php echo base_url();?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script> -->
-<script src="<?php echo base_url();?>/assets/frontend/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/script.js"></script>
+<!--
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/toastr.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script> -->
+<script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.validate.min.js"></script>
 
 <script type="text/javascript">
 	function Notify(title,message,type) {
@@ -81,7 +81,7 @@
         $("#forgot_submit").click(function() {
             if ( !$("#forgot-form").valid() ) {
                 return false;
-            } else { 
+            } else {
                 $('#forgot_submit').val('Processing Request...');
                 $('#forgot_submit').attr('disabled',true);
 
@@ -99,12 +99,12 @@
                 .success(function(resp) {
                     var obj = resp;var msg = obj.msg;
                     if (obj.status == "success") {
-                        // submit button disable 
+                        // submit button disable
                         // $('#login-form').show();
                         // $('#forgot-form').hide();
                         // $('#forgot-form').trigger("reset");
                         Notify('Password reset', msg, 'success');
-                        location.href="<?php echo base_url('frontend/login');?>";
+                        location.href="<?php echo base_url('frontend/login'); ?>";
                     }
                     if (obj.status == "error" || obj.status == "failed") {
                         var msg = obj.msg;
@@ -149,11 +149,10 @@
 
         // login form submit
         $("#login-form").submit(function(e) {
-            e.preventDefault(); 
-            console.log("clicked");
+            e.preventDefault();
             // if ( !$(this).valid() ) {
             //     return false;
-            // } else {   
+            // } else {
                 var uname = $("#uemail").val();
                 var upass = $("#upass").val();
                 if ($.trim(uname) == '' || $.trim(upass) == '') {
@@ -248,7 +247,7 @@
 	    $('.alphanumeric').on('input', function (event) {
 	        this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
 	    });
-        
+
     });
 </script>
 

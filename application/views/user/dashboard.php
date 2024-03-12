@@ -120,6 +120,16 @@
                                     <input type="hidden" name="use_rets" id="use_rets" value="0">
                                 </h2>
                             </div>
+                            <div id="toggle-switch">
+                                <label class='toggle-label pull-right'>
+                                    <input type='checkbox' id="property-status" checked/>
+                                    <span class='back'>
+                                        <span class='toggle'></span>
+                                        <span class='label on'>Active</span>
+                                        <span class='label off'>Sold</span>
+                                    </span>
+                                </label>
+                            </div>
                             <div class="col-sm-12" id="config-comps-btn">
                                 <select id='pre-selected-options' multiple='multiple'></select>
                             </div>
@@ -449,16 +459,16 @@ if (is_dir($load_dir)):
 
     for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
 
-								        <div class="item">
+	            <div class="item">
 
-								            <div class="text-center">
-								                <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
-								            </div>
+	                <div class="text-center">
+	                    <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
+	                </div>
 
-								        </div>
+	            </div>
 
 
-								    <?php
+	<?php
 
 endfor;
 endif;
@@ -852,7 +862,6 @@ if ($regsitry_i == 1) {
         if(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1) {
             var discount = parseFloat($('#invoice-amount').val());
             amount  =   0;
-            console.log(discount);
             $('#coupandiscount td:last').html('$'+discount.toFixed(2));
             $('#invoice-amount').val(amount);
             if ($('#order-amount').length) {
@@ -883,7 +892,6 @@ if ($regsitry_i == 1) {
 
     }
     function choose_presentation(presentation){
-        console.log(pkg_prices);
         if(presentation === 'buyer'){
             $("#config-comps-btn").parent().hide();
             $("#presentation").val("buyer");
