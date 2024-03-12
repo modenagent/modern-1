@@ -148,7 +148,6 @@
   var _min = 4;
   var firstOpen = true;
   $('#refresh').on('click', function(){
-      console.log("refreshing");
     $('#pre-selected-options').multiSelect('refresh');
     return false;
   });
@@ -221,7 +220,6 @@
 
   function selected_listing()
   {
-    console.log(this.value);
   }
   var hexDigits = new Array
           ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
@@ -284,7 +282,6 @@
     $('#wizard').smartWizard({
       onLeaveStep:function(obj){
         if(obj.attr('rel')==1){
-          console.log('Leaving page 1');
           setTimeout(function(){
             $(document).scrollTop(50);
           },500);
@@ -292,7 +289,6 @@
         }
         if(obj.attr('rel')==2) {
           var presentation = $("#presentation").val();
-          console.log('Leaving page 2');
           if(presentation == "seller" || presentation == "marketUpdate") {
             var pre_selected_options = $.trim($('#pre-selected-options').html());
             if (pre_selected_options!='') {
@@ -338,16 +334,12 @@
             $('.page-checkbox:checked').each(function(){
               selectedPage.push($(this).val());
             });
-            console.log('selectedPage ===', selectedPage);
-            console.log('selectedPage length =', selectedPage.length);
             if(selectedPage.length == 0){
               alert("Please select atleast one page");
               return false;
             }
           } else {
             var _theme = $('.custom-checkbox:checked').val();
-            console.log(_theme);
-            console.log(typeof _theme);
             if(typeof _theme==='undefined'){
                 alert("Please choose a theme");
                 return false;
@@ -419,7 +411,6 @@
     // function stripeResponseHandler(status, response) {
     //   if (response.error) {
     //     // Show the errors on the form
-    //     console.log(response.error);
     //     $form.find('.payment-errors').text(response.error.message).show();
     //     $form.find('button').prop('disabled', false);
     //     jQuery(".loader1").hide();
@@ -528,7 +519,6 @@
                 $('.btn-checkout').data("download",1);
             }
           }else{
-            console.log(resp);
             $('#apply-coupan-alert').html(resp.message).removeClass('alert-success').addClass('alert-danger').show();
           }
           $('.loader1').hide();
@@ -577,7 +567,6 @@
       $('#addNewPartner').append(itemHtml);
     });
     $('#addNewPartner').on('click','.remove-partner',function(){
-        console.log("Tru to remove");
         $(this).closest('div').remove();
     });
 
@@ -641,7 +630,6 @@
     $('#tabs').show();
 
     $(".leftpic a").click(function() {
-        console.log("trigger");
           $(this).parents(".leftpic").find(".file-type").trigger("click");
     });
 
@@ -650,12 +638,10 @@
     });
 
     $("#addNewPartner").on('click','.partnerpic a',function() {
-        console.log("trigger partner");
           $(this).parents(".partnerpic").find(".file-type").trigger("click");
     });
 
     $("#addNewPartner").on('click','.partner_companypic a',function() {
-        console.log("trigger");
           $(this).parents(".partner_companypic").find(".file-type").trigger("click");
     });
     $("#addNewPartner").on('change','.partnerpic .file-type',function(){
@@ -673,7 +659,6 @@
           data: form_data,
           type: 'post',
           success: function(php_script_response) {
-              console.log(JSON.parse(php_script_response));
               var object = JSON.parse(php_script_response);
               var picEle = $(ele).closest('.partnerpic');
               if(object.status == 'success'){
@@ -700,7 +685,6 @@
           data: form_data,
           type: 'post',
           success: function(php_script_response) {
-            console.log(JSON.parse(php_script_response));
             var object = JSON.parse(php_script_response);
             var picEle = $(ele).closest('.partner_companypic');
             if(object.status == 'success'){
@@ -810,8 +794,6 @@
                 data: form_data,
                 method: 'post',
                 success: function(php_script_response) {
-
-                    console.log(JSON.parse(php_script_response));
                     var object = JSON.parse(php_script_response);
                     if (object.status=="success") {
                         $('#loginInfoForm .alert').html(object.message).show();
@@ -852,7 +834,6 @@
     });
 
     $('#agentInfoForm').submit(function(){
-      // console.log($(this).serialize());
       if( !$(this).valid() ){
            return false;
       }else{
@@ -867,8 +848,6 @@
                 data: form_data,
                 method: 'post',
                 success: function(php_script_response) {
-
-                    console.log(JSON.parse(php_script_response));
                     var object = JSON.parse(php_script_response);
                     if (object.status=="success") {
                         $('#agentInfoForm .alert').html(object.message).show();
@@ -916,8 +895,6 @@
               data: form_data,
               method: 'post',
               success: function(php_script_response) {
-
-                  console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
                       $('#companyInfoForm .alert').html(object.message).show();
@@ -964,8 +941,6 @@
               data: form_data,
               method: 'post',
               success: function(php_script_response) {
-
-                  console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
                       $('#companyInfoForm .alert').html(object.message).show();
@@ -981,14 +956,11 @@
     });
 
     $('#agentDefaultTheme').click(function(){
-      console.log($('.custom-checkbox:checked').val());
       $.ajax({
               url: '<?php echo base_url(); ?>index.php?/user/update_defaulttheme', // point to server-side PHP script
               data: {theme:$('.custom-checkbox:checked').val()},
               method: 'post',
               success: function(php_script_response) {
-
-                  console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
                       $('#agentDefaultThemeForm .alert').html(object.message).show();
@@ -1015,7 +987,6 @@
     function stripeResponseHandlerSubs(status, response) {
       if (response.error) {
         // Show the errors on the form
-        console.log(response.error);
         $('#subscriptionForm .alert').html(response.error.message).show();
         setTimeout(function(){
           $('#subscriptionForm .alert').fadeOut(1500);
@@ -1198,7 +1169,6 @@
 
         //$("#stripe_chk_btn").trigger("click");
       }
-      // console.log("Bypassed");
       // $(this).parents("#step-4").find('.order-detail').hide("slow");
       // $(this).parents("#step-4").find('.order-summary').show("slow");
       // $(".actionBar").hide("slow");
@@ -1262,7 +1232,6 @@
               if(resp.status){
                   var discount = parseFloat($('#invoice-amount').val());
                   amount  =   0;
-                  console.log(discount);
                   $('#coupandiscount td:last').html('$'+discount.toFixed(2));
                   $('#invoice-amount').val(amount);
                   if ($('#order-amount').length) {
