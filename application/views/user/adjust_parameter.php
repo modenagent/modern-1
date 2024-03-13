@@ -10,6 +10,16 @@
         appearance: auto;
     }
 
+    .checkbox-flag {
+        width: 20%;
+        height: 20px !important;
+        display: block !important;
+    }
+
+    .display-flex {
+        display: flex;
+    }
+
 </style>
 <!-- My Account section -->
 <section class="myaccount">
@@ -61,9 +71,15 @@
                                 <form id="blackKnightParamsForm"  action="<?php echo base_url('user/saveAdjustmentParams') ?>" method="post">
                                     <input type="text" class="hidden" id="req_type" name="req_type" value="black_knight" />
                                     <div class="row">
+                                        <div class="col-md-8 input-margin display-flex">
+                                            <label for="exampleInputEmail1">Enable Parameter Adjustment: </label>
+                                            <input class="form-control checkbox-flag" type="checkbox" data-type="black-knight" id="black_knight_flag" name="black_knight_flag" <?=($parameters->black_knight_flag == 1) ? 'Checked' : ''?> />
+                                        </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="col-md-8 input-margin">
                                             <label for="exampleInputEmail1">Radius</label>
-                                            <select class="form-control" id="radius" placeholder="Radius" name="black_knight_radius">
+                                            <select class="form-control" id="radius" placeholder="Radius" name="black_knight_radius" <?=($parameters->black_knight_flag == 0) ? 'disabled' : ''?>>
                                                 <?php foreach ($radiusAdjustment as $key => $val): ?>
                                                 <option <?=(!empty($parameters) && !empty($parameters->black_knight_radius) && $key == $parameters->black_knight_radius) ? 'selected' : ''?> value="<?=$key?>" placeholder="Square Feets"><?=$val?></option>
                                                 <?php endforeach;?>
@@ -72,8 +88,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-8 input-margin">
-                                            <label for="exampleInputEmail1">Square Feets</label>
-                                            <select class="form-control" id="sqft" name="black_knight_sqft">
+                                            <label for="exampleInputEmail1">Square Feets (%)</label>
+                                            <select class="form-control" id="sqft" name="black_knight_sqft" <?=($parameters->black_knight_flag == 0) ? 'disabled' : ''?>>
                                                 <?php foreach ($sqft as $key => $val): ?>
                                                 <option <?=(!empty($parameters) && !empty($parameters->black_knight_sqft) && $key == $parameters->black_knight_sqft) ? 'selected' : ''?> value="<?=$key?>" placeholder="Square Feets"><?=$val?></option>
                                                 <?php endforeach;?>
@@ -83,18 +99,19 @@
                                     <div class="row">
                                         <div class="col-md-8 input-margin">
                                             <label for="exampleInputEmail1">Baths</label>
-                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="baths" name="black_knight_baths" value="<?=$parameters->black_knight_baths?>"/>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="baths" name="black_knight_baths" value="<?=$parameters->black_knight_baths?>" <?=($parameters->black_knight_flag == 0) ? 'readonly' : ''?>/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-8 input-margin">
                                             <label for="exampleInputEmail1">Bedrooms</label>
-                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="bedrooms" name="black_knight_beds" value="<?=$parameters->black_knight_beds?>"/>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="bedrooms" name="black_knight_beds" value="<?=$parameters->black_knight_beds?>" <?=($parameters->black_knight_flag == 0) ? 'readonly' : ''?>/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <input type="submit" class="btn btn-lp save" id="" value="Save" />
+                                            <!-- <input type="submit" class="btn btn-lp save" id="" value="Save" /> -->
+                                            <button type="submit" class="btn btn-lp save" > Save </button>
                                             <div class="alert alert-success" style="display:none"></div>
                                         </div>
                                     </div>
@@ -124,20 +141,17 @@
                             <div class="agent_info_form">
                                 <form id="retsForm"  action="<?php echo base_url('user/saveAdjustmentParams') ?>" method="post">
                                     <input type="text" class="hidden" id="req_type" name="req_type" value="rets" />
-                                    <!-- <div class="row">
-                                        <div class="col-md-8 input-margin">
-                                            <label for="exampleInputEmail1">Radius</label>
-                                            <select class="form-control" id="radius" placeholder="Radius" name="rets_radius">
-                                                <?php foreach ($radiusAdjustment as $key => $val): ?>
-                                                <option <?=(!empty($parameters) && !empty($parameters->rets_radius) && $key == $parameters->rets_radius) ? 'selected' : ''?> value="<?=$key?>" ><?=$val?></option>
-                                                <?php endforeach;?>
-                                            </select>
+
+                                    <div class="row">
+                                        <div class="col-md-8 input-margin display-flex">
+                                            <label for="exampleInputEmail1">Enable Parameter Adjustment: </label>
+                                            <input class="form-control checkbox-flag" type="checkbox" data-type="rets" id="rets_flag" name="rets_flag" <?=($parameters->rets_flag == 1) ? 'Checked' : ''?> />
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <div class="row">
                                         <div class="col-md-8 input-margin">
-                                            <label for="exampleInputEmail1">Square Feets</label>
-                                            <select class="form-control" id="sqft" name="rets_sqft">
+                                            <label for="exampleInputEmail1">Square Feets (%)</label>
+                                            <select class="form-control" id="sqft" name="rets_sqft" <?=($parameters->rets_flag == 0) ? 'disabled' : ''?>>
                                                 <?php foreach ($sqft as $key => $val): ?>
                                                 <option <?=(!empty($parameters) && !empty($parameters->rets_sqft) && $key == $parameters->rets_sqft) ? 'selected' : ''?> value="<?=$key?>" placeholder="Square Feets"><?=$val?></option>
                                                 <?php endforeach;?>
@@ -148,13 +162,13 @@
                                     <div class="row">
                                         <div class="col-md-8 input-margin">
                                             <label for="exampleInputEmail1">Baths</label>
-                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="baths" name="rets_baths" value="<?=$parameters->rets_baths?>"/>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="baths" name="rets_baths" value="<?=$parameters->rets_baths?>" <?=($parameters->rets_flag == 0) ? 'readonly' : ''?>/>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-8 input-margin">
                                             <label for="exampleInputEmail1">Bedrooms</label>
-                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="bedrooms" name="rets_beds" value="<?=$parameters->rets_beds?>"/>
+                                            <input class="form-control" type="number" onkeydown="if(event.key==='.'){event.preventDefault();}" id="bedrooms" name="rets_beds" value="<?=$parameters->rets_beds?>" <?=($parameters->rets_flag == 0) ? 'readonly' : ''?>/>
                                         </div>
                                     </div>
 
@@ -175,3 +189,24 @@
   </div>
 </section>
 <!-- My Account section -->
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.checkbox-flag', function(e) {
+            let flag = true;
+            if ($(this).data('type') == 'rets') {
+                if ($(this).prop('checked') == true) {
+                    flag = false;
+                }
+                $('#retsForm select').prop('disabled', flag);
+                $('#retsForm input').not(this).prop('readonly', flag);
+            } else {
+                if ($(this).prop('checked') == true) {
+                    flag = false;
+                }
+                $('#blackKnightParamsForm select').prop('disabled', flag);
+                $('#blackKnightParamsForm input').not(this).prop('readonly', flag);
+            }
+        });
+    });
+</script>

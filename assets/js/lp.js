@@ -635,7 +635,10 @@ function get187() {
                 address: $('#state').val(),
                 presentation: $('#presentation').val(),
                 user_id: $("#user-id").val(),
-                propertyStatus: propertyType
+                propertyStatus: propertyType,
+                sqft: defaultSqft,
+                radius: defaultRadius
+
             },
             dataType: "json",
             success: function (data) {

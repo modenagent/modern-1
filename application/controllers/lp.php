@@ -49,8 +49,8 @@ class Lp extends CI_Controller
             // print_r($rets_api_data);die;
             if ($rets_api_data && !empty($rets_api_data) && $check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
                 $this->load->model('params_adjustment_model');
-                $retsRadius = "0.25";
-                $retsSqft = "0.20";
+                $retsRadius = $this->input->get('radius') ?? "0.25";
+                $retsSqft = $this->input->get('sqft') ?? "0.20";
                 $data = array();
                 $data['user_id'] = $userId;
                 $adjustableParams = (array) $this->params_adjustment_model->get_by($data);
@@ -60,59 +60,66 @@ class Lp extends CI_Controller
                 $properties = $sorted = $all = array();
                 $postalCode = $file->PropertyProfile->SiteZip;
                 $citi = $file->PropertyProfile->SiteCity;
+                $address = $this->input->get('address');
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
                 $properties['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $properties['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
                 $propertyBuildingArea = (int) $file->PropertyProfile->PropertyCharacteristics->BuildingArea;
-                if ($adjustableParams) {
-                    $retsRadius = $adjustableParams['rets_radius'] ?? "0.25";
-                    $retsSqft = $adjustableParams['rets_sqft'] ?? "0.20";
-                    $propertyBaths = $adjustableParams['rets_baths'] ?? 0;
-                    $propertyBeds = $adjustableParams['rets_beds'] ?? 0;
-                }
-                $minPropertyBuildingArea = $propertyBuildingArea - $retsSqft;
-                $maxPropertyBuildingArea = $propertyBuildingArea + $retsSqft;
-
-                $address = $this->input->get('address');
-                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus;
-                // $query = '?postalCodes=' . $postalCode;
-                $min_lat = (float) $properties['Lat'] - 0.02;
-                $min_long = (float) $properties['Long'] - 0.02;
-
-                $max_lat = (float) $properties['Lat'] + 0.02;
-                $max_long = (float) $properties['Long'] + 0.02;
-                $query .= '&limit=50';
-                $query_1 = $query . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
-                $query_2 = $query_1 . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
-                if ($propertyBaths > 0) {
-                    $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
-                }
-                if ($propertyBeds > 0) {
-                    $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
-                }
-                // print_r($query_1);die;
-                // $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long); // . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
                 $this->load->library('rets');
+
                 $user_name = $rets_api_data->user_name;
                 $encrypted_password = $rets_api_data->user_password;
                 $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
+                if (!empty($adjustableParams) && $adjustableParams['rets_flag']) {
+                    // $retsRadius = $adjustableParams['rets_radius'] ?? "0.25";
+                    // $retsSqft = $adjustableParams['rets_sqft'] ?? "0.20";
+                    $propertyBaths = $adjustableParams['rets_baths'] ?? 1;
+                    $propertyBeds = $adjustableParams['rets_beds'] ?? 1;
 
-                $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
+                    $minPropertyBuildingArea = $propertyBuildingArea - ($propertyBuildingArea * $retsSqft);
+                    $maxPropertyBuildingArea = $propertyBuildingArea + ($propertyBuildingArea * $retsSqft);
 
-                $response = json_decode($result, true);
+                    $min_lat = (float) $properties['Lat'] - 0.02;
+                    $min_long = (float) $properties['Long'] - 0.02;
+                    $max_lat = (float) $properties['Lat'] + 0.02;
+                    $max_long = (float) $properties['Long'] + 0.02;
 
-                if (empty($response) || count($response) <= 1) {
-                    $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
+                    $query_1 = $query . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
+                    $query_2 = $query_1 . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
+
+                    if ($propertyBaths > 0) {
+                        $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
+                    }
+
+                    if ($propertyBeds > 0) {
+                        $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
+                    }
+
+                    $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
                     $response = json_decode($result, true);
+
+                    if (empty($response) || count($response) <= 1) {
+                        $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
+                        $response = json_decode($result, true);
+                    }
                 }
 
-                if (empty($response) || count($response) <= 1) {
+                if (!isset($response) || empty($response) || count($response) <= 1) {
                     $result = $this->rets->callSimplyRets($user_name, $password, $query);
                     $response = json_decode($result, true);
                 }
+                // print_r($response);
+                // die;
+                // $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long); // . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
 
                 if (isset($response) && !empty($response)) {
                     $retsData = $this->reports->get_all_rets_properties($response);
-                    $propertiesComparableData = $this->reports->sort_rets_properties($file, $retsData, true);
+                    usort($retsData, function ($a, $b) {
+                        return (int) $b['SquareFeet'] <=> (int) $a['SquareFeet'];
+                    });
+                    // echo "<pre>";
+                    $propertiesComparableData = $this->reports->sort_rets_properties($file, $retsData, $propertyBuildingArea, true);
+                    // print_r($propertiesComparableData);die;
                     $properties['all'] = $propertiesComparableData['all'];
                     $properties['sorted'] = $propertiesComparableData['sorted'];
                     // foreach ($response as $key => $value) {
