@@ -183,9 +183,10 @@ class Reports
                             $mls_comparables[$m_key]['Beds'] = isset($response['property']['bedrooms']) && !empty($response['property']['bedrooms']) ? number_format((string) $response['property']['bedrooms']) : '';
                             $mls_comparables[$m_key]['Baths'] = isset($response['property']['bathrooms']) && !empty($response['property']['bathrooms']) ? number_format((string) $response['property']['bathrooms']) : '';
                             $mls_comparables[$m_key]['Year'] = isset($response['property']['yearBuilt']) && !empty($response['property']['yearBuilt']) ? (string) $response['property']['yearBuilt'] : '';
-                            $mls_comparables[$m_key]['LotSize'] = isset($response['property']['lotSize']) && !empty($response['property']['lotSize']) ? number_format((string) $response['property']['lotSize']) : '';
                             $mls_comparables[$m_key]['Pool'] = isset($response['property']['pool']) && !empty($response['property']['pool']) ? (string) $response['property']['pool'] : '';
-                            $mls_comparables[$m_key]['BuildingArea'] = $mls_comparables[$m_key]['SquareFeet'];
+                            $lotSizeArea = isset($response['property']['lotSizeArea']) && !empty($response['property']['lotSizeArea']) ? number_format((string) $response['property']['lotSizeArea']) : '';
+                            $mls_comparables[$m_key]['LotSize'] = $lotSizeArea;
+                            $mls_comparables[$m_key]['BuildingArea'] = $lotSizeArea;
                         }
                     }
                 }
