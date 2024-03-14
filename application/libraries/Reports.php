@@ -661,7 +661,7 @@ class Reports
             $_comparableTemp[$index]['cityState'] = $val['address']['city'];
             // $_comparableTemp[$index]['Distance'] = $val['mlsId'];
             // $_comparableTemp[$index]['Beds'] = $val['property']['bedrooms'];
-            $_comparableTemp[$index]['SquareFeet'] = $val['property']['lotSizeArea'];
+            $_comparableTemp[$index]['SquareFeet'] = $val['property']['area'];
             $_comparableTemp[$index]['BuildingArea'] = $val['property']['lotSizeArea'];
             $_comparableTemp[$index]['Baths'] = (int) $val['property']['bathrooms'];
             $_comparableTemp[$index]['Bedrooms'] = (int) $val['property']['bedrooms'];
@@ -677,10 +677,20 @@ class Reports
         return $_comparableTemp;
     }
 
-    public function sort_rets_properties($report187, $_comparableTemp, $paramsAdjustment = false)
+    public function sort_rets_properties($report187, $_comparableTemp, $propertyArea, $paramsAdjustment = false)
     {
         $CI = &get_instance();
         $adjustableParams = [];
+        if (count($_comparableTemp) < 7) {
+            return array('sorted' => $_comparableTemp, 'all' => []);
+        }
+        $count = 0;
+        $comparable = array();
+        $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $propertyArea, 'sqft');
+
+        $_comparableTemp = $res['comparableTemp'];
+        $comparable = $res['comparable'];
+        $count = count($comparable);
 
         $userId = $CI->session->userdata('userid');
         if ($userId) {
@@ -690,43 +700,64 @@ class Reports
             $adjustableParams = (array) $CI->params_adjustment_model->get_by($data);
         }
 
-        $_maxLimit = 8;
-        $comparable = array();
-
-        //********* COmpare ale property Sold in last 12 months ************/
-        //COmpare ale property +-20 % of build area
-
-        $date = new DateTime();
-        $currentdate = $date->format('m/d/Y');
-
-        $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_beds'])) ? $adjustableParams['rets_beds'] : $report187->PropertyProfile->PropertyCharacteristics->Bedrooms);
-        $maxBedrooms = $adjustedBedrooms + 1;
-        $minBedrooms = $adjustedBedrooms - 1;
-
-        $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_baths'])) ? $adjustableParams['rets_baths'] : $report187->PropertyProfile->PropertyCharacteristics->Baths);
-        $maxBaths = $adjustedBaths + 1;
-        $minBaths = $adjustedBaths - 1;
-
-        $count = 0;
-        $max = ($adjustedBedrooms > $adjustedBaths) ? $adjustedBedrooms : $adjustedBaths;
-
-        for ($i = $max; $max > 0; $i--) {
-            $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, $adjustedBaths);
+        if ($count < 7) {
+            $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_beds'])) ? $adjustableParams['rets_beds'] : $report187->PropertyProfile->PropertyCharacteristics->Bedrooms);
+            $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, 'bedroom');
             $_comparableTemp = $res['comparableTemp'];
             $comparable = $res['comparable'];
             $count = count($comparable);
-            if ($count > ($_maxLimit - 1)) {
-                break;
+
+            if ($count < 7) {
+                $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_baths'])) ? $adjustableParams['rets_baths'] : $report187->PropertyProfile->PropertyCharacteristics->Baths);
+                $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBaths, 'bathroom');
+                $_comparableTemp = $res['comparableTemp'];
+                $comparable = $res['comparable'];
+                $count = count($comparable);
             }
-            $adjustedBedrooms = ($adjustedBedrooms > 1) ? $adjustedBedrooms - 1 : 1;
-            $adjustedBaths = ($adjustedBaths > 1) ? $adjustedBaths - 1 : 1;
-            $max--;
         }
+
+        // $_maxLimit = 8;
+
+        // $count = 0;
+        // $max = ($adjustedBedrooms > $adjustedBaths) ? $adjustedBedrooms : $adjustedBaths;
+
+        // for ($i = $max; $max > 0; $i--) {
+        //     $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, $adjustedBaths);
+        //     $_comparableTemp = $res['comparableTemp'];
+        //     $comparable = $res['comparable'];
+        //     $count = count($comparable);
+        //     if ($count > ($_maxLimit - 1)) {
+        //         break;
+        //     }
+        //     $adjustedBedrooms = ($adjustedBedrooms > 1) ? $adjustedBedrooms - 1 : 1;
+        //     $adjustedBaths = ($adjustedBaths > 1) ? $adjustedBaths - 1 : 1;
+        //     $max--;
+        // }
 
         return array('sorted' => $comparable, 'all' => $_comparableTemp);
     }
 
-    public function get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, $adjustedBaths)
+    public function get_rets_sorts($_comparableTemp, $comparable, $count, $variable, $type)
+    {
+        $_maxLimit = 7;
+        foreach ($_comparableTemp as $key => $compareableProperty) {
+            if ($count > $_maxLimit) {
+                break;
+            }
+            $bedrooms = (int) $compareableProperty['Bedrooms'];
+            $baths = (int) $compareableProperty['Baths'];
+            $sqft = (int) $compareableProperty['SquareFeet'];
+
+            if (($type == 'sqft' && ($sqft >= $variable)) || ($key == 'bedroom' && ($bedrooms >= $variable)) || ($key == 'bathroom' && ($baths >= $variable))) {
+                array_push($comparable, $compareableProperty);
+                unset($_comparableTemp[$key]);
+                $count++;
+            }
+        }
+        return ['comparableTemp' => $_comparableTemp, 'comparable' => $comparable];
+    }
+
+    public function get_rets_sortss($_comparableTemp, $comparable, $count, $adjustedBedrooms, $adjustedBaths)
     {
         $_maxLimit = 7;
         foreach ($_comparableTemp as $key => $compareableProperty) {

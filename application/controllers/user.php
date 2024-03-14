@@ -822,7 +822,6 @@ class User extends CI_Controller
 
     public function saveAdjustmentParams()
     {
-
         $userId = $this->session->userdata('userid');
         if ($userId) {
 
@@ -836,25 +835,30 @@ class User extends CI_Controller
             if ($check_data && !empty($check_data->id)) {
                 $update_data = array();
                 if ($postData['req_type'] == 'black_knight') {
+                    $update_data['black_knight_flag'] = isset($postData['black_knight_flag']) ? 1 : 0;
                     $update_data['black_knight_radius'] = $this->input->post('black_knight_radius');
                     $update_data['black_knight_sqft'] = $this->input->post('black_knight_sqft');
                     $update_data['black_knight_baths'] = $this->input->post('black_knight_baths');
                     $update_data['black_knight_beds'] = $this->input->post('black_knight_beds');
                     $this->params_adjustment_model->update($check_data->id, $update_data);
                 } else if ($postData['req_type'] == 'rets') {
+                    $update_data['rets_flag'] = isset($postData['rets_flag']) ? 1 : 0;
                     $update_data['rets_radius'] = $this->input->post('rets_radius');
                     $update_data['rets_sqft'] = $this->input->post('rets_sqft');
                     $update_data['rets_baths'] = $this->input->post('rets_baths');
                     $update_data['rets_beds'] = $this->input->post('rets_beds');
+                    // print_r($update_data);die;
                     $this->params_adjustment_model->update($check_data->id, $update_data);
                 }
             } else {
                 if ($postData['req_type'] == 'black_knight') {
+                    $data['black_knight_flag'] = isset($postData['black_knight_flag']) ? 1 : 0;
                     $data['black_knight_radius'] = $this->input->post('black_knight_radius');
                     $data['black_knight_sqft'] = $this->input->post('black_knight_sqft');
                     $data['black_knight_baths'] = $this->input->post('black_knight_baths');
                     $data['black_knight_beds'] = $this->input->post('black_knight_beds');
                 } else if ($postData['req_type'] == 'rets') {
+                    $data['rets_flag'] = isset($postData['rets_flag']) ? 1 : 0;
                     $data['rets_radius'] = $this->input->post('rets_radius');
                     $data['rets_sqft'] = $this->input->post('rets_sqft');
                     $data['rets_baths'] = $this->input->post('rets_baths');
