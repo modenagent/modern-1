@@ -69,7 +69,7 @@ if (!empty($value['img'])) {
                                 <td><?php echo isset($value['Beds']) && !empty($value['Beds']) ? $value['Beds'] : '-';
         echo isset($value['Baths']) && !empty($value['Baths']) ? '/' . $value['Baths'] : '-'; ?></td>
                                 <td><?php echo isset($value['Year']) && !empty($value['Year']) ? $value['Year'] : '-'; ?></td>
-                                <td><?php echo isset($value['lotSizeArea']) && !empty($value['lotSizeArea']) ? $value['lotSizeArea'] : '-'; ?></td>
+                                <td><?php echo isset($value['LotSize']) && !empty($value['LotSize']) ? $value['LotSize'] : '-'; ?></td>
                                 <td><?php echo isset($value['Pool']) && !empty($value['Pool']) ? $value['Pool'] : '-'; ?></td>
                             </tr>
                         </table>

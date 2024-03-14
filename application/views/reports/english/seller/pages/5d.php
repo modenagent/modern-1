@@ -67,7 +67,7 @@ else:
                                 <tr class="text-mybold">
                                         <td style="padding-right: 80px;"> <?php echo $item['Beds']; ?>/<?php echo $item['Baths']; ?> </td>
                                         <td><?php echo $item['Year']; ?></td>
-                                        <td><?php echo $item['lotSizeArea']; ?></td>
+                                        <td><?php echo $item['LotSize']; ?></td>
                                         <td><?php echo $item['Pool']; ?></td>
                                 </tr>
                             </tbody>

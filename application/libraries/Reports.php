@@ -666,7 +666,7 @@ class Reports
             $_comparableTemp[$index]['Baths'] = (int) $val['property']['bathrooms'];
             $_comparableTemp[$index]['Bedrooms'] = (int) $val['property']['bedrooms'];
             $_comparableTemp[$index]['Year'] = $val['property']['yearBuilt'];
-            $_comparableTemp[$index]['LotSize'] = $val['property']['lotSize'];
+            $_comparableTemp[$index]['LotSize'] = $val['property']['lotSizeArea'];
             $_comparableTemp[$index]['Latitude'] = $val['geo']['lat'];
             $_comparableTemp[$index]['Longitude'] = $val['geo']['lng'];
             $_comparableTemp[$index]['Pool'] = (isset($val['property']['pool']) && $val['property']['pool']) != 'None' ? 'Yes' : 'No';
