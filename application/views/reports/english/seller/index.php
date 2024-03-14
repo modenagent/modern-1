@@ -1,10 +1,10 @@
 <?php
 $default_theme = 1;
-if($this->input->post('seller_theme') >= 1 && $this->input->post('seller_theme') <= 3) {
-    $default_theme = (int)$this->input->post('seller_theme');
+if ($this->input->post('seller_theme') >= 1 && $this->input->post('seller_theme') <= 3) {
+    $default_theme = (int) $this->input->post('seller_theme');
 }
-if($default_theme > 1) :
-$this->load->view('reports/english/seller/'.$default_theme .'/index');
+if ($default_theme > 1):
+    $this->load->view('reports/english/seller/' . $default_theme . '/index');
 else: ?>
 <!DOCTYPE html>
 <html>
@@ -17,55 +17,52 @@ else: ?>
 </head>
 
 <body>
-<?php      
-    $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
-    $rangeOfSales['avaiProperty'] = 0;
-    $rangeOfSales['sQFootage']=0;
-    $rangeOfSales['avgNoOfBeds'] = 0;
-    $rangeOfSales['avgNoOfBaths'] = 0;
-    $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-    $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-    foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
-    if($key>8){
-    break;
+<?php
+$availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
+$rangeOfSales['avaiProperty'] = 0;
+$rangeOfSales['sQFootage'] = 0;
+$rangeOfSales['avgNoOfBeds'] = 0;
+$rangeOfSales['avgNoOfBaths'] = 0;
+$minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+$maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
+    if ($key > 8) {
+        break;
     }
     $rangeOfSales['avaiProperty']++;
-    $rangeOfSales['sQFootage']+=$cpmrebl['BuildingArea'];
-    $rangeOfSales['avgNoOfBeds']+=$cpmrebl['Beds'];
-    $rangeOfSales['avgNoOfBaths'] +=$cpmrebl['Baths'];
-    if($minRange> $cpmrebl['PriceRate']){
-    $maxRange= $cpmrebl['PriceRate'];
+    $rangeOfSales['sQFootage'] += $cpmrebl['BuildingArea'];
+    $rangeOfSales['avgNoOfBeds'] += $cpmrebl['Beds'];
+    $rangeOfSales['avgNoOfBaths'] += $cpmrebl['Baths'];
+    if ($minRange > $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
     }
 
-    if($maxRange< $cpmrebl['PriceRate']){
-    $maxRange= $cpmrebl['PriceRate'];
+    if ($maxRange < $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
     }
-    }
-    $rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage']/$rangeOfSales['avaiProperty'];
-    $rangeOfSales['avgNoOfBeds'] = $rangeOfSales['avgNoOfBeds']/$rangeOfSales['avaiProperty'];
-    $rangeOfSales['avgNoOfBaths'] = $rangeOfSales['avgNoOfBaths']/$rangeOfSales['avaiProperty'];
+}
+$rangeOfSales['sQFootage'] = $rangeOfSales['sQFootage'] / $rangeOfSales['avaiProperty'];
+$rangeOfSales['avgNoOfBeds'] = $rangeOfSales['avgNoOfBeds'] / $rangeOfSales['avaiProperty'];
+$rangeOfSales['avgNoOfBaths'] = $rangeOfSales['avgNoOfBaths'] / $rangeOfSales['avaiProperty'];
 
+$no_of_pages = 0;
 
-
-    $no_of_pages =0 ;
-
-    $no_of_pages =intval($availableCompareAble/3) ;
-    if(($no_of_pages*3)<$availableCompareAble){
+$no_of_pages = intval($availableCompareAble / 3);
+if (($no_of_pages * 3) < $availableCompareAble) {
     $no_of_pages++;
-    }
-    if($no_of_pages>3){
-    $no_of_pages=3;
-    }else{
+}
+if ($no_of_pages > 3) {
+    $no_of_pages = 3;
+} else {
 
-    }  
-    $no_of_pages+=5;
+}
+$no_of_pages += 5;
 
-    $_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
-    $_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
-    $rangeDiff= (int)$_priceMaxRange - (int)$_priceMinRange;
-    $_sliderStartPoint = (int)$_priceMinRange - round($rangeDiff/8);
-    $_sliderEndPoint = (int)$_priceMaxRange + round($rangeDiff/8);
-
+$_priceMinRange = round($areaSalesAnalysis['priceMinRange']);
+$_priceMaxRange = round($areaSalesAnalysis['priceMaxRange']);
+$rangeDiff = (int) $_priceMaxRange - (int) $_priceMinRange;
+$_sliderStartPoint = (int) $_priceMinRange - round($rangeDiff / 8);
+$_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
 
 ?>
 <style type="text/css">
@@ -78,19 +75,19 @@ else: ?>
         color: <?php echo $theme ?>;
     }
     .underline::after,.page9a .payment-table .left-col .progress-bar, .page9a .payment-table .right-col .progress-bar,.top-banner-left,.page10 .agreement-col .points li::before{
-        background-color: <?php echo $theme ?>;   
+        background-color: <?php echo $theme ?>;
     }
     .page6 .page-content .insights .right-insight .gender-block .perc, .page6 .page6-content .insights .right-insight .gender-block .perc,.page7 .two-grid-wrapper .text-block-condensed h2 span p,.page9a .payment-table .left-col .total-amount .dolla-sign, .page9a .payment-table .right-col .total-amount .dolla-sign{
-        color: <?php echo $theme ?>;   
+        color: <?php echo $theme ?>;
     }
     .sales-table-top.table > thead > tr > th{
-        border-color: <?php echo $theme ?>;   
+        border-color: <?php echo $theme ?>;
     }
     .monthly-table{
-        border-bottom-color:<?php echo $theme ?>;   
+        border-bottom-color:<?php echo $theme ?>;
     }
     .monthly-table2{
-        border-top-color:<?php echo $theme ?>;   
+        border-top-color:<?php echo $theme ?>;
     }
     .ui-slider-horizontal .ui-slider-range{
         background: <?php echo $theme ?> !important;
@@ -99,94 +96,94 @@ else: ?>
         border: 1px solid <?php echo $theme ?> !important;
         background: <?php echo $theme ?> !important;
     }
-</style>   
+</style>
  <style type="text/css" media="print">
     div.container
     {
         page-break-after: always;
         page-break-inside: avoid;
     }
-</style>   
+</style>
 
-<?php 
-    
-    if (in_array("1", $pageList)) {
-        if($partner && count($partner)>1) {
-            $this->load->view('reports/english/seller/pages/1');
-            $this->load->view('reports/english/seller/pages/1_multiagent');
-        } else if($partner && count($partner)==1) {
-            $this->load->view('reports/english/seller/pages/1_agent');
-        } else {
-            $this->load->view('reports/english/seller/pages/1');
-        }
+<?php
+
+if (in_array("1", $pageList)) {
+    if ($partner && count($partner) > 1) {
+        $this->load->view('reports/english/seller/pages/1');
+        $this->load->view('reports/english/seller/pages/1_multiagent');
+    } else if ($partner && count($partner) == 1) {
+        $this->load->view('reports/english/seller/pages/1_agent');
+    } else {
+        $this->load->view('reports/english/seller/pages/1');
     }
-    
-    if (in_array("2", $pageList)) {
-        $this->load->view('reports/english/seller/pages/2');
-    }
-    if (in_array("3", $pageList)) {
-        $this->load->view('reports/english/seller/pages/4');
-    }
-    if (in_array("4", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5');
-    }
-    if (in_array("5", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5b');
-    }
-    if (in_array("6", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5c');
-    }
-    if (in_array("8", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5e',$rangeOfSales);
-    }
-    if (in_array("9", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
-    }
-    if (in_array("10", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
-    }
-    if (in_array("11", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
-    }
-    if (in_array("12", $pageList)) {
-        $this->load->view('reports/english/seller/pages/5k', $customization_pages_data['12']);
-    }
-    if (in_array("13", $pageList) || in_array("14", $pageList) || in_array("15", $pageList) ) {
-        $this->load->view('reports/english/seller/pages/6');
-    }
-    if (in_array("13", $pageList)) {
-        $this->load->view('reports/english/seller/pages/6c', $customization_pages_data['13']);
-    }
-    if (in_array("14", $pageList)) {
-        $this->load->view('reports/english/seller/pages/6d', $customization_pages_data['14']);
-    }
-    if (in_array("15", $pageList)) {
-        $this->load->view('reports/english/seller/pages/6e', $customization_pages_data['15']);
-    }
-    if (in_array("16", $pageList)) {
-        $this->load->view('reports/english/seller/pages/6f', $customization_pages_data['16']);
-    }
-    if (in_array("17", $pageList)) {
-        $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']);
-    }
-    if (in_array("18", $pageList)) {
-        $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
-    }
-    if (in_array("19", $pageList)) {
-        $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
-    }
-    if (in_array("20", $pageList)) {
-        $this->load->view('reports/english/seller/pages/15');
-    }
-    
+}
+
+if (in_array("2", $pageList)) {
+    $this->load->view('reports/english/seller/pages/2');
+}
+if (in_array("3", $pageList)) {
+    $this->load->view('reports/english/seller/pages/4');
+}
+if (in_array("4", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5');
+}
+if (in_array("5", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5b');
+}
+if (in_array("6", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5c');
+}
+if (in_array("8", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5e', $rangeOfSales);
+}
+if (in_array("9", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5h', $customization_pages_data['9']);
+}
+if (in_array("10", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5f', $customization_pages_data['10']);
+}
+if (in_array("11", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5g', $customization_pages_data['11']);
+}
+if (in_array("12", $pageList)) {
+    $this->load->view('reports/english/seller/pages/5k', $customization_pages_data['12']);
+}
+if (in_array("13", $pageList) || in_array("14", $pageList) || in_array("15", $pageList)) {
+    $this->load->view('reports/english/seller/pages/6');
+}
+if (in_array("13", $pageList)) {
+    $this->load->view('reports/english/seller/pages/6c', $customization_pages_data['13']);
+}
+if (in_array("14", $pageList)) {
+    $this->load->view('reports/english/seller/pages/6d', $customization_pages_data['14']);
+}
+if (in_array("15", $pageList)) {
+    $this->load->view('reports/english/seller/pages/6e', $customization_pages_data['15']);
+}
+if (in_array("16", $pageList)) {
+    $this->load->view('reports/english/seller/pages/6f', $customization_pages_data['16']);
+}
+if (in_array("17", $pageList)) {
+    $this->load->view('reports/english/seller/pages/6g', $customization_pages_data['17']);
+}
+if (in_array("18", $pageList)) {
+    $this->load->view('reports/english/seller/pages/9d', $customization_pages_data['18']);
+}
+if (in_array("19", $pageList)) {
+    $this->load->view('reports/english/seller/pages/11b', $customization_pages_data['19']);
+}
+if (in_array("20", $pageList)) {
+    $this->load->view('reports/english/seller/pages/15');
+}
+
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script>
- 
+
 <link rel="stylesheet" type="text/css" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css">
 <script>
-            
+
             function collision($div1, $div2) {
       var x1 = $div1.offset().left;
       var w1 = 40;
@@ -194,40 +191,40 @@ else: ?>
       var x2 = $div2.offset().left;
       var w2 = 40;
       var r2 = x2 + w2;
-        
+
       if (r1 < x2 || x1 > r2) return false;
       return true;
-      
+
     }
 $('#slider').slider({
     range: true,
-    min: <?php echo  $_sliderStartPoint ?>,
+    min: <?php echo $_sliderStartPoint ?>,
     max: <?php echo $_sliderEndPoint ?>,
     values: [ <?php echo $_priceMinRange; ?>, <?php echo $_priceMaxRange; ?> ],
     slide: function(event, ui) {
-        
+
         $('.ui-slider-handle:eq(0) .price-range-min').html('$' + ui.values[ 0 ]+'K');
         $('.ui-slider-handle:eq(1) .price-range-max').html('$' + ui.values[ 1 ])+'K';
         $('.price-range-both').html('<i>$' + ui.values[ 0 ] + ' - </i>$' + ui.values[ 1 ]+'K' );
-        
+
         //
-        
+
     if ( ui.values[0] == ui.values[1] ) {
       $('.price-range-both i').css('display', 'none');
     } else {
       $('.price-range-both i').css('display', 'inline');
     }
-        
+
         //
-        
+
         if (collision($('.price-range-min'), $('.price-range-max')) == true) {
-            $('.price-range-min, .price-range-max').css('opacity', '0');    
-            $('.price-range-both').css('display', 'block');     
+            $('.price-range-min, .price-range-max').css('opacity', '0');
+            $('.price-range-both').css('display', 'block');
         } else {
-            $('.price-range-min, .price-range-max').css('opacity', '1');    
-            $('.price-range-both').css('display', 'none');      
+            $('.price-range-min, .price-range-max').css('opacity', '1');
+            $('.price-range-both').css('display', 'none');
         }
-        
+
     }
 });
 var _minValue = $('#slider').slider('values', 0 );
@@ -254,7 +251,7 @@ $('.ui-slider-handle:eq(1)').append('<span class="price-range-max value">$' + _m
 </html>
 <?php
 endif;
-if($this->input->post('show_html') == 1) {
- die;
+if ($this->input->post('show_html') == 1) {
+    die;
 }
 ?>

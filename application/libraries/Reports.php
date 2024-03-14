@@ -661,7 +661,7 @@ class Reports
             $_comparableTemp[$index]['cityState'] = $val['address']['city'];
             // $_comparableTemp[$index]['Distance'] = $val['mlsId'];
             // $_comparableTemp[$index]['Beds'] = $val['property']['bedrooms'];
-            $_comparableTemp[$index]['SquareFeet'] = $val['property']['lotSizeArea'];
+            $_comparableTemp[$index]['SquareFeet'] = $val['property']['area'];
             $_comparableTemp[$index]['BuildingArea'] = $val['property']['lotSizeArea'];
             $_comparableTemp[$index]['Baths'] = (int) $val['property']['bathrooms'];
             $_comparableTemp[$index]['Bedrooms'] = (int) $val['property']['bedrooms'];
