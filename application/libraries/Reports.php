@@ -656,7 +656,7 @@ class Reports
             $_comparableTemp[$index]['ChartLabelVal'] = date('Y-m', strtotime($date));
             $_comparableTemp[$index]['Price'] = $this->dollars(number_format($val['listPrice']));
             $_comparableTemp[$index]['PriceRate'] = (string) $val['listPrice'];
-            $_comparableTemp[$index]['PricePerSQFT'] = $val['listPrice'] / $val['property']['area'];
+            $_comparableTemp[$index]['PricePerSQFT'] = round($val['listPrice'] / $val['property']['area'], 2);
             // $_comparableTemp[$index]['TotalRooms'] = $val['mlsId'];
             $_comparableTemp[$index]['Address'] = $val['address']['full'] . ' ' . $val['address']['city'];
             $_comparableTemp[$index]['cityState'] = $val['address']['city'];
