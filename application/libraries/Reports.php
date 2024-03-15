@@ -179,7 +179,7 @@ class Reports
                             $mls_comparables[$m_key]['Date'] = isset($response['listDate']) && !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
                             $mls_comparables[$m_key]['Distance'] = 0;
                             $mls_comparables[$m_key]['SquareFeet'] = isset($response['property']['area']) && !empty($response['property']['area']) ? number_format((string) $response['property']['area']) : '';
-                            $mls_comparables[$m_key]['PricePerSQFT'] = round($val['listPrice'] / $val['property']['area'], 2);
+                            $mls_comparables[$m_key]['PricePerSQFT'] = isset($response['property']['area']) && !empty($response['property']['area']) ? round($val['listPrice'] / $val['property']['area'], 2) : '-';
                             $mls_comparables[$m_key]['Beds'] = isset($response['property']['bedrooms']) && !empty($response['property']['bedrooms']) ? number_format((string) $response['property']['bedrooms']) : '';
                             $mls_comparables[$m_key]['Baths'] = isset($response['property']['bathrooms']) && !empty($response['property']['bathrooms']) ? number_format((string) $response['property']['bathrooms']) : '';
                             $mls_comparables[$m_key]['Year'] = isset($response['property']['yearBuilt']) && !empty($response['property']['yearBuilt']) ? (string) $response['property']['yearBuilt'] : '';
