@@ -179,7 +179,7 @@ class Reports
                             $mls_comparables[$m_key]['Date'] = isset($response['listDate']) && !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
                             $mls_comparables[$m_key]['Distance'] = 0;
                             $mls_comparables[$m_key]['SquareFeet'] = isset($response['property']['area']) && !empty($response['property']['area']) ? number_format((string) $response['property']['area']) : '';
-                            $mls_comparables[$m_key]['PricePerSQFT'] = (float) 0.00;
+                            $mls_comparables[$m_key]['PricePerSQFT'] = round($val['listPrice'] / $val['property']['area'], 2);
                             $mls_comparables[$m_key]['Beds'] = isset($response['property']['bedrooms']) && !empty($response['property']['bedrooms']) ? number_format((string) $response['property']['bedrooms']) : '';
                             $mls_comparables[$m_key]['Baths'] = isset($response['property']['bathrooms']) && !empty($response['property']['bathrooms']) ? number_format((string) $response['property']['bathrooms']) : '';
                             $mls_comparables[$m_key]['Year'] = isset($response['property']['yearBuilt']) && !empty($response['property']['yearBuilt']) ? (string) $response['property']['yearBuilt'] : '';
@@ -660,10 +660,10 @@ class Reports
             // $_comparableTemp[$index]['TotalRooms'] = $val['mlsId'];
             $_comparableTemp[$index]['Address'] = $val['address']['full'] . ' ' . $val['address']['city'];
             $_comparableTemp[$index]['cityState'] = $val['address']['city'];
-            $_comparableTemp[$index]['State'] = $val['address']['state'];
+            // $_comparableTemp[$index]['State'] = $val['address']['state'];
             // $_comparableTemp[$index]['Distance'] = $val['mlsId'];
             // $_comparableTemp[$index]['Beds'] = $val['property']['bedrooms'];
-            $_comparableTemp[$index]['SquareFeet'] = $val['property']['area'];
+            $_comparableTemp[$index]['SquareFeet'] = number_format($val['property']['area']);
             $_comparableTemp[$index]['BuildingArea'] = $val['property']['lotSizeArea'];
             $_comparableTemp[$index]['Baths'] = (int) $val['property']['bathrooms'];
             $_comparableTemp[$index]['Bedrooms'] = (int) $val['property']['bedrooms'];
