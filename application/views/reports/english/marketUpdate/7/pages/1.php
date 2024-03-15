@@ -23,7 +23,7 @@ $i = 1;?>
                                 <h4>$<?php echo $item['Price']; ?></h4>
                             </div>
                             <div class="col-6">
-                                <p><?php echo $item['Address']; ?><br> Los Angeles, CA</p>
+                            <p><?php echo $item['Address']; ?><br> <?php echo $item['cityState']; ?>,<?php echo isset($item['state']) ? $item['state'] : ''; ?></p>
                                 <h5>
                                     <?php echo $item['Beds']; ?> BEDS | <?php echo $item['Baths']; ?> BATHS | <?php echo $item['SquareFeet']; ?>SQFT
                                 </h5>

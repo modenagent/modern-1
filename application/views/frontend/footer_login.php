@@ -12,9 +12,9 @@
 
 <!-- main-js -->
 <script src="<?php echo base_url(); ?>/assets/login/js/script.js"></script>
-<!--
+
 <script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/toastr.min.js"></script>
-<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script> -->
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script>
 <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.validate.min.js"></script>
 
 <script type="text/javascript">

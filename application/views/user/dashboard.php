@@ -764,7 +764,7 @@ if ($regsitry_i == 1) {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="submit"  class="btn btn-success">Update Search</button>
+                        <button type="submit"  class="btn btn-success submit-btn">Update Search</button>
                     </div>
                     <div class="panel-footer">
                     </div>

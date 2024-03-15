@@ -720,6 +720,8 @@ function get187() {
                 $('.backwrap').addClass('hidden');
 
                 if (all_comp.length + sorted_comp.length < 4) {
+                    $('#changes_req_params_property_search .submit-btn').prop('disabled', false);
+                    Notify('Warning', 'Less then 4 comparable found, please change the setting and try again.', 'warning');
                     // if (!data.use_rets && (all_comp.length + sorted_comp.length < 4)) {
                     $('#property_search_model').modal('show');
                     $('#changes_req_params_property_search #apn').val(dataObj.apn);
@@ -744,12 +746,15 @@ function get187() {
 }
 
 $("#changes_req_params_property_search").submit(function (e) {
+    $('#changes_req_params_property_search .submit-btn').prop('disabled', true);
     e.preventDefault();
     let apn = $('#changes_req_params_property_search #apn').val();
     defaultSqft = $('#changes_req_params_property_search #sqft').val();
     defaultRadius = $('#changes_req_params_property_search #radious').val();
     dataObj.apn = apn;
-    dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>';
+    if (defaultBKFlag == 1) {
+        dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>';
+    }
     getSordrtedProperties = true;
     $('.ms-container').remove();
     compileAPNRequest(dataObj);
