@@ -85,7 +85,8 @@ class Lp extends CI_Controller
                     $max_long = (float) $properties['Long'] + 0.02;
 
                     $query_1 = $query . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
-                    $query_2 = $query_1 . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
+                    // $query_2 = $query_1 . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
+                    $query_2 = $query_1;
 
                     if ($propertyBaths > 0) {
                         $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
@@ -110,8 +111,6 @@ class Lp extends CI_Controller
                 }
                 // print_r($response);
                 // die;
-                // $query_1 = $query . '&points=' . urlencode($min_lat . ',' . $min_long) . '&points=' . urlencode($max_lat . ',' . $max_long); // . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
-
                 if (isset($response) && !empty($response)) {
                     $retsData = $this->reports->get_all_rets_properties($response);
                     usort($retsData, function ($a, $b) {

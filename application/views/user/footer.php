@@ -140,6 +140,8 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js?v=0.1"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/toastr.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
 <script type="text/javascript">
@@ -204,6 +206,7 @@
   var loc_marker;
   defaultSqft = "<?php echo $black_knight_sqft; ?>";
   defaultRadius = "<?php echo $black_knight_radius; ?>";
+  defaultBKFlag = "<?php echo $black_knight_flag; ?>";
   function changeCaptcha(){
       $.ajax({
           url:'<?php echo base_url(); ?>index.php?/frontend/change_captcha?&',

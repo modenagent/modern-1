@@ -221,6 +221,8 @@ class User extends CI_Controller
                 $data['black_knight_sqft'] = $adjustmentParams->black_knight_sqft ?? "0.20";
                 $data['rets_radius'] = $adjustmentParams->rets_radius ?? "0.25";
                 $data['rets_sqft'] = $adjustmentParams->rets_sqft ?? "0.20";
+                $data['black_knight_flag'] = $adjustmentParams->black_knight_flag ?? 0;
+                $data['rets_flag'] = $adjustmentParams->rets_flag ?? 0;
             }
 
             $data['users'] = $this->base_model->get_record_result_array('lp_user_mst', array('user_id_pk' => $userId));
