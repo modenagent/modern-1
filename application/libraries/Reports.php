@@ -183,7 +183,7 @@ class Reports
                             $mls_comparables[$m_key]['Beds'] = isset($response['property']['bedrooms']) && !empty($response['property']['bedrooms']) ? number_format((string) $response['property']['bedrooms']) : '';
                             $mls_comparables[$m_key]['Baths'] = isset($response['property']['bathrooms']) && !empty($response['property']['bathrooms']) ? number_format((string) $response['property']['bathrooms']) : '';
                             $mls_comparables[$m_key]['Year'] = isset($response['property']['yearBuilt']) && !empty($response['property']['yearBuilt']) ? (string) $response['property']['yearBuilt'] : '';
-                            $mls_comparables[$m_key]['Pool'] = isset($response['property']['pool']) && !empty($response['property']['pool']) ? (string) $response['property']['pool'] : '';
+                            $mls_comparables[$m_key]['Pool'] = isset($response['property']['pool']) && !empty($response['property']['pool']) && $response['property']['pool'] != 'None' ? 'Yes' : 'No';
                             $lotSizeArea = isset($response['property']['lotSizeArea']) && !empty($response['property']['lotSizeArea']) ? number_format((string) $response['property']['lotSizeArea']) : '';
                             $mls_comparables[$m_key]['LotSize'] = $lotSizeArea;
                             $mls_comparables[$m_key]['BuildingArea'] = $lotSizeArea;
@@ -671,7 +671,7 @@ class Reports
             $_comparableTemp[$index]['LotSize'] = $val['property']['lotSizeArea'];
             $_comparableTemp[$index]['Latitude'] = $val['geo']['lat'];
             $_comparableTemp[$index]['Longitude'] = $val['geo']['lng'];
-            $_comparableTemp[$index]['Pool'] = (isset($val['property']['pool']) && $val['property']['pool']) != 'None' ? 'Yes' : 'No';
+            $_comparableTemp[$index]['Pool'] = (isset($val['property']['pool']) && $val['property']['pool'] != 'None') ? 'Yes' : 'No';
 
             $index++;
         }
