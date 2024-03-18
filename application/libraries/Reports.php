@@ -679,7 +679,7 @@ class Reports
         return $_comparableTemp;
     }
 
-    public function sort_rets_properties($report187, $_comparableTemp, $propertyArea, $paramsAdjustment = false)
+    public function sort_rets_properties($_comparableTemp, $propertyArea, $paramsAdjustment = false)
     {
         $CI = &get_instance();
         $adjustableParams = [];
@@ -751,24 +751,6 @@ class Reports
             $sqft = (int) $compareableProperty['SquareFeet'];
 
             if (($type == 'sqft' && ($sqft >= $variable)) || ($key == 'bedroom' && ($bedrooms >= $variable)) || ($key == 'bathroom' && ($baths >= $variable))) {
-                array_push($comparable, $compareableProperty);
-                unset($_comparableTemp[$key]);
-                $count++;
-            }
-        }
-        return ['comparableTemp' => $_comparableTemp, 'comparable' => $comparable];
-    }
-
-    public function get_rets_sortss($_comparableTemp, $comparable, $count, $adjustedBedrooms, $adjustedBaths)
-    {
-        $_maxLimit = 7;
-        foreach ($_comparableTemp as $key => $compareableProperty) {
-            if ($count > $_maxLimit) {
-                break;
-            }
-            $bedrooms = (int) $compareableProperty['Bedrooms'];
-            $baths = (int) $compareableProperty['Baths'];
-            if (((($bedrooms >= $adjustedBedrooms) && ($baths >= $adjustedBaths)))) {
                 array_push($comparable, $compareableProperty);
                 unset($_comparableTemp[$key]);
                 $count++;
