@@ -224,7 +224,8 @@ class User extends CI_Controller
                 $data['black_knight_flag'] = $adjustmentParams->black_knight_flag ?? 0;
                 $data['rets_flag'] = $adjustmentParams->rets_flag ?? 0;
             }
-
+            // echo "<pre>";
+            // print_r($data);die;
             $data['users'] = $this->base_model->get_record_result_array('lp_user_mst', array('user_id_pk' => $userId));
             $data['topReports'] = $this->base_model->get_all_record_by_id('lp_my_listing', array('user_id_fk' => $userId), 'project_date', 'desc');
             $data['reports'] = $this->base_model->get_all_record_by_id('lp_my_listing',
@@ -850,6 +851,7 @@ class User extends CI_Controller
                     $update_data['rets_baths'] = $this->input->post('rets_baths');
                     $update_data['rets_beds'] = $this->input->post('rets_beds');
                     // print_r($update_data);die;
+                    $this->session->set_flashdata('success', 'Data updated succsessfully');
                     $this->params_adjustment_model->update($check_data->id, $update_data);
                 }
             } else {
@@ -866,9 +868,9 @@ class User extends CI_Controller
                     $data['rets_baths'] = $this->input->post('rets_baths');
                     $data['rets_beds'] = $this->input->post('rets_beds');
                 }
+                $this->session->set_flashdata('success', 'Data stored succsessfully');
                 $this->params_adjustment_model->insert($data);
             }
-            $this->session->set_flashdata('success', 'Data stored succsessfully');
 
             if ($postData['req_type'] == 'black_knight') {
                 redirect('user/adjust_params/black_knight');
@@ -912,12 +914,13 @@ class User extends CI_Controller
                 $update_data['user_name'] = $rets_user;
                 $update_data['user_password'] = $ciphertext;
                 $this->user_rets_api_details_model->update($check_data->id, $update_data);
+                $this->session->set_flashdata('success', 'Data updated succsessfully');
             } else {
                 $data['user_name'] = $rets_user;
                 $data['user_password'] = $ciphertext;
                 $this->user_rets_api_details_model->insert($data);
+                $this->session->set_flashdata('success', 'Data stored succsessfully');
             }
-            $this->session->set_flashdata('success', 'Data stored succsessfully');
             redirect('user/myaccount/retsapi');
         } else {
             redirect('frontend/login');
