@@ -16,42 +16,19 @@ $(document).ready(function () {
 
     autoComplete();
     dataObj = {};
-    // create dialog to plug in realtor info prior to generating report
-    // $('.progress-bar').progressbar({
-    //     value: false
-    // });
-    // $('.progress-bar').hide();
-    // $('#run-pma-dialog').dialog({
-    //     autoOpen: false,
-    //     height: 610,
-    //     width: 580,
-    //     resizable: false,
-    //     draggable: false,
-    //     closeOnEscape: true,
-    //     position: ['center', 80],
-    //     modal: true
-    // });
-    // $(".ui-dialog-titlebar").hide();
-    // $(".ui-widget-overlay").on("click", function() {
-    //     $('#run-pma-dialog').dialog("close");
-    // });
     pdfID = '';
     firstModal = true;
     $(document).on('click', '.js-run-pma-button', function () {
         $('#run-pma-dialog').dialog('open');
         pdfID = makeID();
     });
-    // $('.recent-listings tr').hide();
-    // $('.file-change').on('click', changeFile);
     reportXML = '';
     comparableData = [];
     all_comp = [];
     sorted_comp = [];
     reportData = {};
     getSordrtedProperties = false;
-    // dataTransfer('no');
     apnInfo = {};
-    // $(document).on('click', '.js-run-apn-button', apnData);
     activeRequest = false;
     pmaRes = {};
 
@@ -228,8 +205,6 @@ function populateData(response) {
     var state = formItems.state;
     var zip = formItems.zip;
 
-    //$('#lp-realtor-picture').val(agentpic);
-
     $('#lp-realtor-company').val(company);
     $('#lp-realtor-address').val(address);
     $('#lp-realtor-phone').val(phone);
@@ -361,17 +336,13 @@ function runPMA(agentPath, logoPath) {
                     pmaRes = { status: "failed", msg: errorMsg };
                 }
             }
-            // returnReport();
             activeRequest = false;
-            // $('#step-4 .loader1').addClass('hidden');
-            // $('#step-4 .backwrap').addClass('hidden');
         })
         .fail(function () {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
             $('.btn-checkout').hide();
             $('.btn-lp.pay').hide();
             pmaRes = { status: "failed", msg: errorMsg };
-            //$('.pma-error').text('PDF Generation failed. Please try again.');
         })
         .always(function () {
             activeRequest = false;
@@ -398,10 +369,6 @@ function recordFormData() {
 
 
 function returnReport() {
-    //event.preventDefault();
-    // $('#searchbox').val('');
-    // $('#searchboxcity').val('');
-    // $('.progress-bar').hide(); // hide the loading bar
     var pdfLink = 'lp/files/listings/' + reportData.address + ' ' + pdfID + '.pdf'; // create link for PDF report
     reportData.link = pdfLink;
     dataTransfer('yes');
@@ -542,7 +509,6 @@ function runQueries(request, dataObj, neighbourhood, retry) {
         .done(function (response, textStatus, jqXHR) {
 
             var responseStatus = $(response).find('StatusCode').text();
-            // $('.progress-bar').hide();
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
 
             if (responseStatus == 'MM') {
@@ -785,12 +751,6 @@ function parse187() {
     }
     $('.js-lp-seller-name').val(ownerNamePrimary + ownerNameSecondary);
     $('.search-result table .result-owner').html(ownerNamePrimary + ownerNameSecondary);
-
-
-    //    var comparables = $(reportXML).find("ComparableSalesReport").find("ComparableSales").find("ComparableSale");
-    //    for(var i=0;i<comparables.length;i++){
-    //        comparableData.push($(comparables[i]).find("SiteAddress").text()+' '+$(comparables[i]).find("SiteCity").text());
-    //    }
 }
 
 // run query for plat map report 
@@ -823,11 +783,7 @@ function listResults(response) {
     var zip = $(response).find('Locations').find('Location').find('ZIP').text();
 
     $('#lp_invoice .desc h3').html(address + ',' + city + ',' + state + ',' + zip);
-    addResultToRepData(address, city, state, zip, apn)
-    // $('.result-apn').text(apn);
-    // $('.result-address').text(address);
-    // $('.result-city').text(city);
-    // $('.js-run-pma-button').show();
+    addResultToRepData(address, city, state, zip, apn);
     getDropItems();
 }
 
@@ -849,19 +805,14 @@ function multipleResults(response) {
         var city = $(this).find('City').text();
         var state = $(this).find('State').text();
         var zip = $(this).find('ZIP').text();
-        //var owner = $(this).find('PrimaryOwnerName').text();
         apnInfo[apn]['fips'] = $(this).find('FIPS').text();
         $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
         $('.search-result table > tbody').find('tr').eq(i).find('.result-apn').text(apn);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-unitNumber').text(unitNumber);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-address').text(address);
-        //$('.search-result table > tbody').find('tr').eq(i).find('.result-owner').text(address);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-city').text(city);
-        // $('.js-run-apn-button').show();
     });
-    // $('html, body').animate({
-    //     scrollTop: $(".search-result").offset().top
-    // }, 500);
+
     if ($(".cma-step-2").length) {
         $(".cma-step-2").hide();
     }
@@ -882,23 +833,6 @@ function multipleResults(response) {
             }],
             searching: false, paging: false, info: false,
             "initComplete": function () {
-                // var input = $('.dataTables_filter input').unbind(),
-                //     self = this.api(),
-                //     $searchButton = $('<button class="btn_search" type="button">')
-                //     .text('Search')
-                //     .click(function () {
-                //         self.search(input.val()).draw();
-                //     }),
-                //     $clearButton = $('<button class="btn_clear" type="button">')
-                //     .text('Clear')
-                //     .click(function () {
-                //         input.val('');
-                //         $searchButton.click();
-                //     })
-                // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
-                // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
-                // $('.dataTables_filter').append($searchButton, $clearButton);
-
 
             },
             "language": {
@@ -912,20 +846,7 @@ function multipleResults(response) {
         }, 500);
 
     }
-    // $('input[type="radio"]').iCheck({
-    //   // checkboxClass: 'icheckbox_minimal-grey',
-    //   radioClass: 'icheckbox_minimal-grey',
-    //   increaseArea: '20%' // optional
-    // });
 
-    // $('[name=selected_apn]')
-    // .on('ifChecked', function(event){
-    //   // alert(event.type + ' callback');
-    //     apnData(event.target.parentNode);
-    // })
-    // .change(function(){
-    //     // apnData($('.custom-checkbox:checked'));
-    // });
 }
 
 // add info on returned property to reportData object
@@ -943,9 +864,6 @@ function addResultToRepData(address, city, state, zip, apn) {
 // compile data for APN search
 function apnData(e) {
 
-    // event.preventDefault ? event.preventDefault() : event.returnValue = false;
-    // $('.progress-bar').progrlessbar("option", "value", false);
-    // $('.progress-bar').show(); // show loading bar
     setTimeout(function () {
         jQuery('.buttonNext').click();
     }, 400);
@@ -959,9 +877,6 @@ function apnData(e) {
     dataObj.FIPS = fips;
     dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
 
-    // $('.result-table > tbody').html('');
-    // $('.result-table > tbody').hide();
-    // $('.result-table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-address"></span></td><td><span class="result-city"></span></td><td><a class="button blueButton js-run-pma-button" href="#">Run Listing</a></td></tr>');
     compileAPNRequest(dataObj);
 }
 
@@ -1060,17 +975,12 @@ function autoComplete() {
 
 function widgetRunPMA(agentPath, logoPath) {
     firstModal = false;
-    // $('#run-pma-dialog').dialog('close');
-    // $('.progress-bar').progressbar("option", "value", false);
-    // $('.progress-bar').show();
-    // reportData.rep = $('#lp-rep-name option:selected').val();
     if (agentPath) {
         reportData.agentPath = agentPath;
     }
     if (logoPath) {
         reportData.logoPath = logoPath;
     }
-    // recordFormData();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
     query += '&' + formData;
@@ -1180,10 +1090,8 @@ function widgetRunPMA(agentPath, logoPath) {
                     pmaRes = { status: "failed", msg: errorMsg };
                 }
             }
-            // returnReport();
+
             activeRequest = false;
-            // $('#step-4 .loader1').addClass('hidden');
-            // $('#step-4 .backwrap').addClass('hidden');
             $('.loader1').hide();
             $('.backwrap').hide();
         })
@@ -1192,7 +1100,6 @@ function widgetRunPMA(agentPath, logoPath) {
             $('.btn-checkout').hide();
             $('.btn-lp.pay').hide();
             pmaRes = { status: "failed", msg: errorMsg };
-            //$('.pma-error').text('PDF Generation failed. Please try again.');
             $('.loader1').hide();
             $('.backwrap').hide();
         })
