@@ -204,9 +204,17 @@
   var base_url = '<?php echo base_url(); ?>';
   var map;
   var loc_marker;
-  defaultSqft = "<?php echo $black_knight_sqft; ?>";
-  defaultRadius = "<?php echo $black_knight_radius; ?>";
+  defaultSqft = "0.20";
+  defaultRadius = "0.25";
   defaultBKFlag = "<?php echo $black_knight_flag; ?>";
+  defaultRetsFlag = "<?php echo $rets_flag; ?>";
+  if (defaultBKFlag == 1) {
+    defaultSqft = "<?php echo $black_knight_sqft; ?>";
+    defaultRadius = "<?php echo $black_knight_radius; ?>";
+  } else if (defaultRetsFlag == 1) {
+    defaultSqft = "<?php echo $rets_sqft; ?>";
+  }
+
   function changeCaptcha(){
       $.ajax({
           url:'<?php echo base_url(); ?>index.php?/frontend/change_captcha?&',
