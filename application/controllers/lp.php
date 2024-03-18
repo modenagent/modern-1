@@ -49,7 +49,7 @@ class Lp extends CI_Controller
             // print_r($rets_api_data);die;
             if ($rets_api_data && !empty($rets_api_data) && $check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
                 $this->load->model('params_adjustment_model');
-                $retsRadius = $this->input->get('radius') ?? "0.25";
+                // $retsRadius = $this->input->get('radius') ?? "0.25";
                 $retsSqft = $this->input->get('sqft') ?? "0.20";
                 $data = array();
                 $data['user_id'] = $userId;
@@ -79,10 +79,10 @@ class Lp extends CI_Controller
                     $minPropertyBuildingArea = $propertyBuildingArea - ($propertyBuildingArea * $retsSqft);
                     $maxPropertyBuildingArea = $propertyBuildingArea + ($propertyBuildingArea * $retsSqft);
 
-                    $min_lat = (float) $properties['Lat'] - 0.02;
-                    $min_long = (float) $properties['Long'] - 0.02;
-                    $max_lat = (float) $properties['Lat'] + 0.02;
-                    $max_long = (float) $properties['Long'] + 0.02;
+                    // $min_lat = (float) $properties['Lat'] - 0.02;
+                    // $min_long = (float) $properties['Long'] - 0.02;
+                    // $max_lat = (float) $properties['Lat'] + 0.02;
+                    // $max_long = (float) $properties['Long'] + 0.02;
 
                     $query_1 = $query . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
                     // $query_2 = $query_1 . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
@@ -95,17 +95,23 @@ class Lp extends CI_Controller
                     if ($propertyBeds > 0) {
                         $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
                     }
-
+                    // print_r($query_2);
+                    // echo '<br> ----------------------------------------------------------------';
                     $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
                     $response = json_decode($result, true);
-
                     if (empty($response) || count($response) <= 1) {
+                        // print_r($query_1);
+                        // echo '<br> ----------------------------------------------------------------';
                         $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
                         $response = json_decode($result, true);
                     }
+                    // echo "<pre>";
+                    // print_r($response);die;
                 }
 
                 if (!isset($response) || empty($response) || count($response) <= 1) {
+                    // print_r($query);
+                    // echo '<br> ----------------------------------------------------------------';
                     $result = $this->rets->callSimplyRets($user_name, $password, $query);
                     $response = json_decode($result, true);
                 }

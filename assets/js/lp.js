@@ -602,8 +602,7 @@ function get187() {
                 presentation: $('#presentation').val(),
                 user_id: $("#user-id").val(),
                 propertyStatus: propertyType,
-                sqft: defaultSqft,
-                radius: defaultRadius
+                sqft: defaultSqft
 
             },
             dataType: "json",
