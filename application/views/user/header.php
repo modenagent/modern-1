@@ -5,7 +5,7 @@
   <title>Modern Agent - Personalized Real Estate Presentations</title>
   <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
   <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/frontend/images/favicon.ico" type="image/x-icon" />
 
   <!-- Custom Fonts -->
   <link href="<?php echo base_url(); ?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">

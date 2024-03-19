@@ -702,6 +702,10 @@ function get187() {
                 }
             },
             error: function () {
+                $('.loader1').hide();
+                $('.loader1').addClass('hidden');
+                $('.backwrap').hide();
+                $('.backwrap').addClass('hidden');
                 console.log("An error occurred while processing data");
                 activeRequest = false;
                 alert("An error occurred while processing data. Please refresh Page");
