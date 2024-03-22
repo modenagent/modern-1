@@ -2235,22 +2235,22 @@ p.leads {
     width: 50%; 
     height: 100%;
     transition: margin 150ms linear;
-    border: 1px solid #808080;
-    border-radius: 0;
+    border-radius:3px;
 }
 
 .toggle-label input[type=checkbox]:checked+.back .toggle {
-    margin-left: 50px;
+    margin-left: 60px;
 }
 
 .toggle-label .label {
     display: block;
     position: absolute;
-    width: 50%;
+    width: 53%;
     color: #ddd;
     line-height: 40px;
     text-align: center;
     font-size: 1em;
+	
 }
 .toggle-label .label.on { left: 0px; }
 .toggle-label .label.off { right: 0px; }
