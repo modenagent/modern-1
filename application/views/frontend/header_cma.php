@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/responsive.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/dataTables.bootstrap4.min.css">
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.7">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.12">
 
 </head>
 
@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-lg" >
           <div class="container">
             <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/frontend/images/LargeLogo.png" class="cmalogo" /></a>
-             
+
             </div>
         </nav>
       </header> -->
