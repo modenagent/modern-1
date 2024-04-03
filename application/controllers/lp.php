@@ -123,7 +123,7 @@ class Lp extends CI_Controller
                         return (int) $b['SquareFeet'] <=> (int) $a['SquareFeet'];
                     });
                     // echo "<pre>";
-                    $propertiesComparableData = $this->reports->sort_rets_properties($file, $retsData, $propertyBuildingArea, true);
+                    $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
                     // print_r($propertiesComparableData);die;
                     $properties['all'] = $propertiesComparableData['all'];
                     $properties['sorted'] = $propertiesComparableData['sorted'];
