@@ -2201,10 +2201,9 @@ p.leads {
 .toggle-label {
     position: relative;
     display: block;
-    width: 100px;
+    width: 123px;
     height: 40px;
     margin-top: 8px;
-    border: 1px solid #808080;
     margin: 20px auto;
 }
 
@@ -2232,10 +2231,11 @@ p.leads {
     position: absolute;
     content: ' ';
     background: #fff;
-    width: 50%; 
+    width: 52%; 
     height: 100%;
     transition: margin 150ms linear;
-    border-radius:3px;
+	border: dashed 2px #ECEFF1;
+    
 }
 
 .toggle-label input[type=checkbox]:checked+.back .toggle {
@@ -2245,8 +2245,8 @@ p.leads {
 .toggle-label .label {
     display: block;
     position: absolute;
-    width: 53%;
-    color: #ddd;
+    width: 50%;
+    color: #2F353E;
     line-height: 40px;
     text-align: center;
     font-size: 1em;
