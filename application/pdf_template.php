@@ -68,12 +68,12 @@
   <body>
     <div class="pdf-wrapper">
                 <!-- Intro -->
-                <h2>LISTING PROPOSAL<br><b><?php echo $property->PropertyProfile->SiteAddress ; ?></b><br><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></h2>
+                <h2>LISTING PROPOSAL<br><b><?php echo $property->PropertyProfile->SiteAddress; ?></b><br><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState; ?> <?php echo $property->PropertyProfile->SiteZip; ?></h2>
                 <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/map-top.jpg" alt=""/></div>
                 <div class="agent-info-wrapper">
                   <div class="agent-details">
                     <div class="agent-pic">
-                      <img src="<?php echo base_url().$user['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
+                      <img src="<?php echo base_url() . $user['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
                     </div>
                     <div class="agent-info">
                       <b><?php echo $user['fullname']; ?></b><br>
@@ -85,10 +85,10 @@
                     </div>
                     <div class="clearfix"></div>
                   </div>
-                  
+
                   <div class="agent-details">
                       <div class="agent-pic">
-                        <img src="<?php echo base_url().$user['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
+                        <img src="<?php echo base_url() . $user['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
                       </div>
                       <div class="agent-info">
                         <b><?php echo $user['fullname']; ?></b><br>
@@ -105,7 +105,7 @@
                 </div>
                 <pagebreak type="NEXT-EVEN" pagenumstyle="1" />
                 <!-- Intro End -->
-          
+
                 <!-- Page 2 -->
                 <div class="index-content">
                   <h1>CONTENTS</h1>
@@ -128,7 +128,7 @@
                   <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 2 end -->
-          
+
                 <!-- page 3 -->
                 <div class="aerial-view">
                   <h1>AERIAL VIEW</h1>
@@ -141,26 +141,26 @@
                   <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 3 end -->
-            
+
                 <!-- page 4 -->
                 <div class="your-property">
                   <h1>YOUR PROPERTY </h1>
                   <div class="sub-head">Overview of your property</div>
                   <div class="inner-content">
-                    
+
                     <h4>OWNER, ADDRESS &amp; LEGAL DESCRIPTION</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="list-table">
                       <tr>
-                          <td colspan="2">Primary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName ; ?></td>
+                          <td colspan="2">Primary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName; ?></td>
                       </tr>
                       <tr bgcolor="#f8f8f8 ">
-                          <td colspan="2" bgcolor="#f8f8f8">Secondary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName ; ?></td>
+                          <td colspan="2" bgcolor="#f8f8f8">Secondary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName; ?></td>
                       </tr>
                       <tr>
-                          <td colspan="2">Site Address: <?php echo $property->PropertyProfile->SiteAddress.', '. $property->PropertyProfile->SiteCity.', '. $property->PropertyProfile->SiteState ; ?></td>
+                          <td colspan="2">Site Address: <?php echo $property->PropertyProfile->SiteAddress . ', ' . $property->PropertyProfile->SiteCity . ', ' . $property->PropertyProfile->SiteState; ?></td>
                       </tr>
                       <tr bgcolor="#f8f8f8">
-                          <td colspan="2" bgcolor="#f8f8f8">Mailing Address: <?php echo $property->PropertyProfile->MailAddress.', '. $property->PropertyProfile->MailCity.', '. $property->PropertyProfile->MailState ; ?></td>
+                          <td colspan="2" bgcolor="#f8f8f8">Mailing Address: <?php echo $property->PropertyProfile->MailAddress . ', ' . $property->PropertyProfile->MailCity . ', ' . $property->PropertyProfile->MailState; ?></td>
                       </tr>
                       <tr>
                           <td width="50%">APN: <?php echo $property->PropertyProfile->APN; ?> </td>
@@ -180,7 +180,7 @@
                           <p>&nbsp;</p></td>
                       </tr>
                     </table>
-                    
+
                     <h4>BEDS, BATHS, &amp; SQUARE FOOTAGE</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="list-table">
                         <tr>
@@ -210,7 +210,7 @@
                             <td colspan="3" bgcolor="#f8f8f8">Use Code: <?php echo $property->PropertyProfile->PropertyCharacteristics->UseCode; ?></td>
                         </tr>
                     </table>
-                      
+
                     <h4>ASSESSED VALUE &amp; TAX DETAILS</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="list-table">
                         <tr>
@@ -235,13 +235,28 @@
                     <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 4 end -->
-                
+
                 <!-- page 5 -->
                 <div class="area-sales-analysis">
                   <h1>AREA SALES ANALYSIS</h1>
                   <div class="sub-head">Sales in the past 12 months</div>
                   <div class="inner-content">
-                    <div class="full-img"><img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=60&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:3.31in;" /></div>
+                    <div class="full-img">
+                    <?php
+$series = $areaSalesAnalysis['chart']['series'];
+$date = $areaSalesAnalysis['chart']['date'];
+$color = $areaSalesAnalysis['chart']['color'];
+$chartImageUrl = "https://quickchart.io/chart?cht=bvs&chd=t:$series&chs=700x400&chl=$date&chbh=40,30,45&chco=$color&chds=a&chxt=y";
+/** Check chart image exist or not */
+$headers = get_headers($chartImageUrl);
+$httpStatus = intval(substr($headers[0], 9, 3));
+
+// Check if the HTTP status code indicates success (200 OK)
+if ($httpStatus === 200) {?>
+    <img src="<?=$chartImageUrl?>"  alt="graph" style="margin:auto; width:100%; height:3.31in;">
+<?php }?>
+                    <!-- Google chart image api deprecated so we have implemented quickchart.io as an alternative  -->
+                    <!-- <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=60&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:3.31in;" /></div> -->
                     <h4 style="text-align:center;">MONTHLY SALES OVERVIEW</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6">
                       <tr>
@@ -251,7 +266,7 @@
                         <td width="20%" class="red-title">MEDIAN</td>
                         <td width="20%" class="red-title">HIGH</td>
                       </tr>
-                      
+
 
 
                       <tr class="grey-t-border">
@@ -330,7 +345,7 @@
                   <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 5 end -->
-                  
+
                 <!-- page 6 -->
                 <div class="sales-comparables">
                     <h1>SALES COMPARABLES</h1>
@@ -339,63 +354,63 @@
                       <table width="100%" border="0" cellspacing="0" cellpadding="8">
                         <?php
 
-                          foreach ($areaSalesAnalysis['comparable'] as $key => $item) {
-                        ?>
-                          
+foreach ($areaSalesAnalysis['comparable'] as $key => $item) {
+    ?>
+
                           <tr>
                             <td width="40%">
-                            
+
                             <table width="100%" border="0" cellspacing="5" cellpadding="5" style="font-family:Helvetica, Arial, sans-serif; font-size:14px;">
-                  
+
                               <tr>
                                   <td colspan="2">
-                                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=250x80&maptype=satellite&markers=color:yellow%7Clabel:S%7C<?php echo $item['Latitude'].','.$item['Longitude']; ?>" width="250" height="80"  alt=""/>
+                                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=18&size=250x80&maptype=satellite&markers=color:yellow%7Clabel:S%7C<?php echo $item['Latitude'] . ',' . $item['Longitude']; ?>" width="250" height="80"  alt=""/>
                                   </td>
                               </tr>
                               <tr>
                                   <td style="-webkit-print-color-adjust: exact; background:#f15d3e -webkit-print-color-adjust: exact; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
                                   <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;"><?php echo $item['Price']; ?></td>
-                                
+
                               </tr>
                             </table>
 
                             </td>
                             <td width="60%">
-                              
+
                             <table width="100%" border="0" cellspacing="5" cellpadding="5" style="font-family:Helvetica, Arial, sans-serif; font-size:14px;">
-                  
+
                                    <tr>
-                                      
+
                                       <td bgcolor="#f8f8f8">Unit Type</td>
                                       <td bgcolor="#f8f8f8">Dist.</td>
                                       <td bgcolor="#f8f8f8">Sqft.</td>
                                       <td bgcolor="#f8f8f8">$/Sqft</td>
                                     </tr>
                                     <tr>
-                                      
+
                                       <td>N/A</td>
                                       <td><?php echo $item['Distance']; ?></td>
                                       <td><?php echo $item['SquareFeet']; ?></td>
                                       <td>$<?php echo $item['Price']; ?></td>
-                                      
+
                                     </tr>
                                     <tr>
-                                      
+
                                       <td bgcolor="#f8f8f8">Bed/Bath</td>
                                       <td bgcolor="#f8f8f8">Year Blt</td>
                                       <td bgcolor="#f8f8f8">Lot Area</td>
                                       <td bgcolor="#f8f8f8">Pool</td>
                                     </tr>
                                     <tr>
-                                     
+
                                       <td><?php echo $item['Beds']; ?>/<?php echo $item['Baths']; ?></td>
                                       <td><?php echo $item['Year']; ?></td>
                                       <td><?php echo $item['LotSize']; ?></td>
                                       <td><?php echo $item['Pool']; ?></td>
                                     </tr>
-                                    
-                                  
-                                
+
+
+
                               </table>
                             </td>
                           </tr>
@@ -409,30 +424,30 @@
                                       <td width="20%"style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
                                       <td width="20%" style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
                                       <td width="10%">&nbsp;</td>
-                                  
+
                                 </table>
                               </td>
-                                      
-                          </tr>
-                                    
-                         
-                        <?php
-                          }
 
-                        ?>
+                          </tr>
+
+
+                        <?php
+}
+
+?>
 
                       </table>
                     </div>
                     <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 6 end -->
-                    
+
                 <!-- page 7  Reated Data Removed page 7-->
                 <!-- page 7 end -->
-                      
+
                 <!-- page 8 -->
                 <!-- page 8 end -->
-                        
+
                 <!-- page 9 -->
                 <div class="estimated-value-range">
                           <h1>ESTIMATED VALUE RANGE</h1>
@@ -454,12 +469,12 @@
                           <div class="sub-head">Does it help?</div>
                           <div class="inner-content">
                             <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/wht-next.png" alt="" style="width:100%; " /></div>
-                            
+
                           </div>
                           <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 10 end -->
-                        
+
                 <!-- page 11 -->
                 <div class="HOW-BUYERS-FIND-A-HOME ">
                           <h1>HOW BUYERS FIND A HOME </h1>
@@ -467,9 +482,9 @@
                           <div class="inner-content">
                             <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/fnd-a-home.png" alt="" style="width:100%; height:4.447in; " /></div>
                             <p >Most buyers now begin their search online either at home, on their break at work, but more often than not on their mobile device.  Since more than 80% of buyers begin their home search online they are simultaneously taking the opportunity to educate themselves on the buying process. So today’s buyer is now more informed than every but will still rely on a realtor to guide them through the transaction. The typical home buyer takes about 3 months to purchase his home which means they have been looking for 2 months before your decided to sell your home</p>
-                     
+
                             <table width="100%" border="0" cellspacing="0" cellpadding="8" valign="top">
-                              
+
                               <tbody>
                                 <tr>
                                   <td width="60%">
@@ -481,7 +496,7 @@
                                         <tbody>
                                         <tr>
                                         <td align="left" valign="top">
-                                
+
                                      <img src="<?php echo base_url(); ?>pdf/images/place-2.png" alt=""  style="margin-bottom:-150px" />
                                       <br>
                                       <table width="90%" align="center"  cellspacing="5" cellpadding="5" border="0" valign="top" >
@@ -496,17 +511,17 @@
                                         </tbody>
 
                                       </table>
-  
+
                                       </td></tr>
                                       </tbody></table>
 
-                                     
-                                  
+
+
                                   </td>
                                 </tr>
                               </tbody>
                             </table>
-                              
+
                           </div>
                           <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
@@ -520,9 +535,9 @@
                               <p>Days on market has a direct correlation with a buyers interest level in your property. Depending on the geographic area of your home the number of days that your home is on the market can vary. Currently the market is in an upswing and the shortage of inventory is leading to homes flying off the market. Currently the market is in an upswing and the shortage of inventory is leading to homes flying off the market. Currently the market is in an upswing and the shortage of inventory is leading to homes flying off the market.
                               </p>
                               <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/pricing-money.png" alt="" style="width:100%;  " /></div><br>
-                              
+
                               <table width="100%" border="0" cellspacing="0" cellpadding="8">
-                                
+
                                 <tbody>
                                   <tr>
                                     <td width="50%">
@@ -533,11 +548,11 @@
                                       <h4><b >2. DOES IT HELP?</b></h4>
                                       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and industry, </p>
                                     </td>
-                                    
+
                                   </tr>
                                 </tbody>
                               </table>
-                              
+
                             </div>
                             <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
@@ -551,11 +566,11 @@
 
 
                               <table width="100%" cellspacing="0" cellpadding="8" border="0" style="margin-bottom:-20px;">
-                                
+
                                 <tbody>
                                   <tr>
                                     <td width="40%" align="center" valign="top" >
-                                      
+
                                       <table width="100%" cellspacing="0" cellpadding="0" border="0" valign="top" >
                                         <tr>
                                           <td align="center" valign="top" height="250px"><img src="<?php echo base_url(); ?>pdf/images/bg-round.png" style="margin-bottom:-200px;">
@@ -567,14 +582,14 @@
                                       <h4>Avg. Days On Market</h4>
                                       </td></tr>
                                       </table>
-                                    
-                                       
-                                      
-                                     
+
+
+
+
                                     </td>
                                     <td width="60%">
                                     <p>Days on market has a direct correlation with a buyers interest level in your property. Depending on the geographic area of your home the number of days that your home is on the market can vary. Currently the market is in an upswing and the shortage of inventory is leading to homes flying off the market.<br>
-                                    There are a few factors that come into play when attempting to determine how long it will take these factors are: 
+                                    There are a few factors that come into play when attempting to determine how long it will take these factors are:
                                     <br>     <br>
                                    </p><table width="100%" cellspacing="0" cellpadding="8" border="0">
                                       <thead style=" -webkit-print-color-adjust: exact; color:#4c4d4f; font-weight: bold;">
@@ -596,17 +611,17 @@
                                         </tr>
                                       </tbody>
                                     </table>
-                                          <p></p> 
+                                          <p></p>
                                     </td>
-                                    
+
                                   </tr>
                                 </tbody>
                               </table>
 
                               <div class="full-img" style=" position:relative;"><img src="<?php echo base_url(); ?>pdf/images/day-market.png" alt="" style="width:100%;  " /></div><br>
-                              
-                          
-                              
+
+
+
                             </div>
                             <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
@@ -619,12 +634,12 @@
                             <div class="inner-content">
 
 
-                             
+
 
                               <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/action-plan.png" alt="" style="width:100%;  " /></div><br>
-                              
-                          
-                              
+
+
+
                             </div>
                             <pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
@@ -639,11 +654,11 @@
 
                               <p>Reducing the price on your home is never an easy call but often time is a necessary one might need to be made in order to get your home sold. Many homeowners feel that they are giving up hard won equity that they have built but a slight reduction can help avoid problems down the line. The question is – When is the best time? How long do you wait from the time your home is placed on the market until you consider adjusting the sales price. The rule of thumb is about 30-45 days. </p>
 
-                             
+
 
                               <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/listing-ex.png" alt="" style="width:100%;  " /></div><br>
-                              
-                          
+
+
                               <p>Joe and Jane went from being very competitively priced to being the highest property in their price range. From a buyer’s perspective, their home now offers the worst value proposition in the marketplace.
                               </p>
                             </div>
@@ -658,11 +673,11 @@
                             <div class="inner-content">
 
                                 <table width="100%" cellspacing="0" cellpadding="8" border="0">
-                                  
+
                                   <tbody>
                                     <tr>
                                       <td width="60%">
-                                        
+
                                       <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
                                         </p>
                                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
@@ -689,7 +704,7 @@
                             <div class="sub-head">Does it help?</div>
                             <div class="inner-content">
                               <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/typ-trans.png" alt="" style="width:100%;  " /></div>
-                                
+
 
                             </div>
                             <pagebreak type="NEXT-ODD" pagenumstyle="1" />
@@ -706,10 +721,10 @@
                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and </p>
 
                                <p align="right"><img src="<?php echo base_url(); ?>pdf/images/sign.png" width="50%"  /></p>
-                                      
+
 
                             </div>
-                       
+
                 </div>
                 <!-- page 16 end -->
 

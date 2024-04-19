@@ -8,8 +8,9 @@ $series = $areaSalesAnalysis['chart']['series'];
 $date = $areaSalesAnalysis['chart']['date'];
 $color = $areaSalesAnalysis['chart']['color'];
 $chartImageUrl = "https://quickchart.io/chart?cht=bvs&chd=t:$series&chs=620x350&chl=$date&chbh=40,30,45&chco=$color&chds=a&chxt=y";
-$headers = get_headers($chartImageUrl);
 
+/** Check chart image exist or not */
+$headers = get_headers($chartImageUrl);
 $httpStatus = intval(substr($headers[0], 9, 3));
 
 // Check if the HTTP status code indicates success (200 OK)

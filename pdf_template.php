@@ -1,45 +1,40 @@
-<?php 
+<?php
 
-echo "<pre>";
-print_r($areaSalesAnalysis);
-echo "</pre>";die;
-  $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
-                          $sQFootage=0;
-                          $avgNoOfBeds = 0;
-                          $avgNoOfBaths = 0;
-                          $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-                          $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-                          foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
-                            if($key>8){
-                              break;
-                            }
+$availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
+$sQFootage = 0;
+$avgNoOfBeds = 0;
+$avgNoOfBaths = 0;
+$minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+$maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
+    if ($key > 8) {
+        break;
+    }
 
-                            if($minRange> $cpmrebl['PriceRate']){
-                              $maxRange= $cpmrebl['PriceRate'];
-                            }
+    if ($minRange > $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
+    }
 
-                            if($maxRange< $cpmrebl['PriceRate']){
-                              $maxRange= $cpmrebl['PriceRate'];
-                            }
-                          }
-                          
-  $priceMinRange = ($minRange-round(($minRange*5/100),2)/1000);
-  $priceMaxRange = ($maxRange+round(($maxRange*5/100),2)/1000);
+    if ($maxRange < $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
+    }
+}
 
-  $no_of_pages =0 ;
-  
-  $no_of_pages =intval($availableCompareAble/3) ;
-  if(($no_of_pages*3)<$availableCompareAble){
+$priceMinRange = ($minRange - round(($minRange * 5 / 100), 2) / 1000);
+$priceMaxRange = ($maxRange + round(($maxRange * 5 / 100), 2) / 1000);
+
+$no_of_pages = 0;
+
+$no_of_pages = intval($availableCompareAble / 3);
+if (($no_of_pages * 3) < $availableCompareAble) {
     $no_of_pages++;
-  }
-  if($no_of_pages>3){
-    $no_of_pages=3;
-  }else{
+}
+if ($no_of_pages > 3) {
+    $no_of_pages = 3;
+} else {
 
-  }  
-  $no_of_pages+=5;
-
-
+}
+$no_of_pages += 5;
 
 ?>
 <!doctype html>
@@ -113,16 +108,16 @@ img{max-width:100%;}
   <body>
 
     <htmlpagefooter name="MyFooter1">
-  
+
     <table width="100%" border="0"   cellspacing="0" cellpadding="0" align="center" style=" background-color:#f15d3e; ">
       <tr>
         <td bg="#f15d3e" >
           <table width="89%" border="0" cellspacing="0" cellpadding="15" style="max;height:50px;overflow:hidden; " align="center">
             <tr>
               <td align="left" width="50%" bgcolor="#f15d3e" style="font-ize:38px;color:#fff;">
-                <strong >Listing Proposal</strong> 
-                 
-                <div style=" position:relative; left:10;"><?php echo $property->PropertyProfile->SiteAddress ; ?></div>
+                <strong >Listing Proposal</strong>
+
+                <div style=" position:relative; left:10;"><?php echo $property->PropertyProfile->SiteAddress; ?></div>
               </td>
               <td align="right" bgcolor="#f15d3e" style="color:#fff; margin-right:90px;  overflow:hidden;">
                 Page {PAGENO}
@@ -136,9 +131,9 @@ img{max-width:100%;}
   </htmlpagefooter>
 
   <htmlpagefooter name="MyFooter2">
-  
+
     <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" style="background-color:#084887; display:none;">
-      
+
     </table>
 
   </htmlpagefooter>
@@ -146,10 +141,10 @@ img{max-width:100%;}
 
     <div class="pdf-wrapper">
                 <!-- Intro -->
-                <h2>LISTING PROPOSAL<br><b><?php echo $property->PropertyProfile->SiteAddress ; ?></b><br><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></h2>
+                <h2>LISTING PROPOSAL<br><b><?php echo $property->PropertyProfile->SiteAddress; ?></b><br><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState; ?> <?php echo $property->PropertyProfile->SiteZip; ?></h2>
                 <div class="full-img">
                   <img src="<?php echo base_url(); ?>pdf/images/map-top.jpg" alt="" style="width:100%"/>
-                  
+
                 </div>
                 <div class="map-marker" style="position:relative;width: 100%;margin-top: -340px; margin-bottom: 220px;text-align: center;"><svg version="1.0" xmlns="http://www.w3.org/2000/svg"
                    width="90px" height="110px" viewBox="0 0 300.000000 416.000000"
@@ -171,7 +166,7 @@ img{max-width:100%;}
                 <div class="agent-info-wrapper">
                   <div class="agent-details">
                     <div class="agent-pic">
-                      <img src="<?php echo base_url().$user['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
+                      <img src="<?php echo base_url() . $user['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
                     </div>
                     <div class="agent-info">
                       <b><?php echo $user['fullname']; ?></b><br>
@@ -183,11 +178,11 @@ img{max-width:100%;}
                     </div>
                     <div class="clearfix"></div>
                   </div>
-                  <?php if($partner){ ?>
+                  <?php if ($partner) {?>
 
                   <div class="agent-details">
                       <div class="agent-pic">
-                        <img src="<?php echo base_url().$partner['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
+                        <img src="<?php echo base_url() . $partner['profile_image']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
                       </div>
                       <div class="agent-info">
                         <b><?php echo $partner['fullname']; ?></b><br>
@@ -199,19 +194,19 @@ img{max-width:100%;}
                       </div>
                       <div class="clearfix"></div>
                   </div>
-                    
-                  <?php }else{
-                  ?>
+
+                  <?php } else {
+    ?>
 
                   <div class="agent-details">
                       <div class="agent-pic" style="margin-left:130px;">
-                        <img src="<?php echo base_url().$user['company_logo']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
+                        <img src="<?php echo base_url() . $user['company_logo']; ?>" width="125" style="width:125px; height:auto;" alt=""/>
                       </div>
                       <div class="clearfix"></div>
                   </div>
 
                   <?php
-                    } ?>
+}?>
 
                   <div class="clearfix"></div>
                 </div>
@@ -219,132 +214,132 @@ img{max-width:100%;}
                 <sethtmlpagefooter name="MyFooter2" value="on"  show-this-page="0"/>
                 <pagebreak type="NEXT-EVEN" pagenumstyle="1" />
                 <!-- Intro End -->
-          
+
                 <!-- Page 2 -->
                 <div class="index-content">
                   <h1>CONTENTS</h1>
-                  <div class="sub-head">What is in your listing proposal <?php echo $minRange.'&nbsp;&nbsp;&nbsp;'.$maxRange; ?></div>
+                  <div class="sub-head">What is in your listing proposal <?php echo $minRange . '&nbsp;&nbsp;&nbsp;' . $maxRange; ?></div>
 
                   <table width="50%" align="right" cellpadding="10" cellspacing="0 ">
                     <tr class="index">
                       <td width7"60%" align="right"> aerial snaphot</td>
-                     
+
                       <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; 3</span></td>
                     </tr>
                      <tr class="index">
                      <td width="70%" align="right">property information</td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; 4</span></td>
                     </tr>
 
                       <tr class="index">
                      <td width="70%" align="right"> area sales analysis </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; 5</span></td>
                     </tr>
 
                       <tr class="index">
                      <td width="70%" align="right"> sales comparables </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; 6-<?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
                       <tr class="index">
                      <td width="70%" align="right"> estimated sales price </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
                       <tr class="index">
                      <td width="70%" align="right">selling roadmap</td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
                       <tr class="index">
                      <td width="70%" align="right"> how buyers find homes </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
                       <tr class="index">
                      <td width="70%" align="right"> pricing correctly </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
                       <tr class="index">
                      <td width="70%" align="right">average days on market </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
       <tr class="index">
                      <td width="70%" align="right"> marketing action plan </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
       <tr class="index">
                      <td width="70%" align="right"> analyze & optimize </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
       <tr class="index">
                      <td width="70%" align="right"> negotiating offers </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
       <tr class="index">
                      <td width="70%" align="right"> committment to you </td>
-                     
+
                        <td width="30%">&nbsp;&nbsp;<span style="padding-left: 20px;border-left: 2px solid #f15d3e;" >&nbsp;&nbsp; <?php echo $no_of_pages++; ?></span></td>
                     </tr>
 
 
 
                   </table>
-                  
+
                   <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 2 end -->
-          
+
                 <!-- page 3 -->
                 <div class="aerial-view">
                   <h1>AERIAL VIEW</h1>
                   <div class="sub-head">Area we analyzed</div>
                   <div class="inner-content">
                     <div class="full-img">
-                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x519&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:6.9in; height:5.4in;" /></div>
+                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x519&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:6.9in; height:5.4in;" /></div>
                     <h3><b>Why a 2-Mile Radius?</b></h3>
-                    https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x519&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>
+                    https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x519&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>
                     <p>A 2-Mile radius gives the ideal range to accurately research properties that either have been sold or are actively listed and are similar to yours in regards to the number of bedrooms, bathrooms, living area (sqft), and property lot size.</p>
                   </div>
                   <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 3 end -->
-            
+
                 <!-- page 4 -->
                 <div class="your-property">
                   <h1>YOUR PROPERTY </h1>
                   <div class="sub-head">Overview of your property</div>
                   <div class="inner-content">
-                    
+
                     <h4>OWNER, ADDRESS &amp; LEGAL DESCRIPTION</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="list-table">
                       <tr>
-                          <td colspan="2">Primary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName ; ?></td>
+                          <td colspan="2">Primary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName; ?></td>
                       </tr>
                       <tr bgcolor="#f8f8f8 ">
-                          <td colspan="2" bgcolor="#f8f8f8">Secondary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName ; ?></td>
+                          <td colspan="2" bgcolor="#f8f8f8">Secondary Owner: <?php echo $property->PropertyProfile->PrimaryOwnerName; ?></td>
                       </tr>
                       <tr>
-                          <td colspan="2">Site Address: <?php echo $property->PropertyProfile->SiteAddress.', '. $property->PropertyProfile->SiteCity.', '. $property->PropertyProfile->SiteState ; ?></td>
+                          <td colspan="2">Site Address: <?php echo $property->PropertyProfile->SiteAddress . ', ' . $property->PropertyProfile->SiteCity . ', ' . $property->PropertyProfile->SiteState; ?></td>
                       </tr>
                       <tr bgcolor="#f8f8f8">
-                          <td colspan="2" bgcolor="#f8f8f8">Mailing Address: <?php echo $property->PropertyProfile->MailAddress.', '. $property->PropertyProfile->MailCity.', '. $property->PropertyProfile->MailState ; ?></td>
+                          <td colspan="2" bgcolor="#f8f8f8">Mailing Address: <?php echo $property->PropertyProfile->MailAddress . ', ' . $property->PropertyProfile->MailCity . ', ' . $property->PropertyProfile->MailState; ?></td>
                       </tr>
                       <tr>
                           <td width="50%">APN: <?php echo $property->PropertyProfile->APN; ?> </td>
@@ -364,7 +359,7 @@ img{max-width:100%;}
                           <p>&nbsp;</p></td>
                       </tr>
                     </table>
-                    
+
                     <h4>BEDS, BATHS, &amp; SQUARE FOOTAGE</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="list-table">
                         <tr>
@@ -394,7 +389,7 @@ img{max-width:100%;}
                             <td colspan="3" bgcolor="#f8f8f8">Use Code: <?php echo $property->PropertyProfile->PropertyCharacteristics->UseCode; ?></td>
                         </tr>
                     </table>
-                      
+
                     <h4>ASSESSED VALUE &amp; TAX DETAILS</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6" class="list-table">
                         <tr>
@@ -419,14 +414,31 @@ img{max-width:100%;}
                     <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 4 end -->
-                
+
                 <!-- page 5 -->
                 <div class="area-sales-analysis">
                   <h1>AREA SALES ANALYSIS</h1>
                   <div class="sub-head">Sales in the past <?php echo $areaSalesAnalysis['totalMonthsReport']; ?> months</div>
                   <div class="inner-content">
-                    <div class="full-img"><img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=30,20,35&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:3.31in;" /></div>
-                    
+                    <div class="full-img">
+<?php
+$series = $areaSalesAnalysis['chart']['series'];
+$date = $areaSalesAnalysis['chart']['date'];
+$color = $areaSalesAnalysis['chart']['color'];
+$chartImageUrl = "https://quickchart.io/chart?cht=bvs&chd=t:$series&chs=700x400&chl=$date&chbh=40,30,45&chco=$color&chds=a&chxt=y";
+
+/** Check chart image exist or not */
+$headers = get_headers($chartImageUrl);
+$httpStatus = intval(substr($headers[0], 9, 3));
+
+// Check if the HTTP status code indicates success (200 OK)
+if ($httpStatus === 200) {?>
+    <img src="<?=$chartImageUrl?>"  alt="graph" style="margin:auto; width:100%; height:3.31in;">
+<?php }?>
+                      <!-- Google chart image api deprecated so we have implemented quickchart.io as an alternative  -->
+                      <!-- <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=30,20,35&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:3.31in;" /> -->
+                    </div>
+
                     <h4 style="text-align:center;">MONTHLY SALES OVERVIEW</h4>
                     <table width="100%" border="0" cellspacing="0" cellpadding="6">
                       <tr>
@@ -436,7 +448,7 @@ img{max-width:100%;}
                         <td width="20%" class="red-title">MEDIAN</td>
                         <td width="20%" class="red-title">HIGH</td>
                       </tr>
-                      
+
 
 
                       <tr class="grey-t-border">
@@ -515,7 +527,7 @@ img{max-width:100%;}
                   <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 5 end -->
-                  
+
                 <!-- page 6 -->
                <!--  <div class="sales-comparables">
                     <h1>SALES COMPARABLES</h1>
@@ -524,45 +536,45 @@ img{max-width:100%;}
                       <table width="100%" border="0" cellspacing="0" cellpadding="8"> -->
                         <?php
 
-                          $avaiProperty = 0;
-                          foreach ($areaSalesAnalysis['comparable'] as $key => $item) {
-                            $sQFootage+=$item['SquareFeet'];
-                            $avgNoOfBeds+=$item['Beds'];
-                            $avgNoOfBaths +=$item['Baths'];
-                            if($key>8){
-                              break;
-                            }
-                        ?>
+$avaiProperty = 0;
+foreach ($areaSalesAnalysis['comparable'] as $key => $item) {
+    $sQFootage += $item['SquareFeet'];
+    $avgNoOfBeds += $item['Beds'];
+    $avgNoOfBaths += $item['Baths'];
+    if ($key > 8) {
+        break;
+    }
+    ?>
 
                         <?php
-                          if(($key%3)==0 && $key>0){
+if (($key % 3) == 0 && $key > 0) {
 
-                                   echo  '</table>
+        echo '</table>
                                                                 </div>
                                                                 <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                                                 </div>
 
                                                                 ';
-                          }
-                          if(($key%3)==0){
+    }
+    if (($key % 3) == 0) {
 
-                            echo '<div class="sales-comparables">
+        echo '<div class="sales-comparables">
                                                       <h1>SALES COMPARABLES</h1>
                                                       <div class="sub-head">Properties that have recently sold.</div>
                                                       <div class="inner-content">
                                                         <table width="100%" border="0" cellspacing="0" cellpadding="8">
                                                   ';
-                          }
-                        ?>
-                          
+    }
+    ?>
+
                           <tr>
                             <td width="30%">
-                            
+
                             <table width="100%" border="0" cellspacing="2" cellpadding="2" style="font-family:Helvetica, Arial, sans-serif; font-size:14px;">
-                  
+
                               <tr>
                                   <td colspan="2">
-                                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=180x100&maptype=roadmap&markers=color:f15d3e%7Clabel:S%7C<?php echo $item['Latitude'].','.$item['Longitude']; ?>" 
+                                    <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=12&size=180x100&maptype=roadmap&markers=color:f15d3e%7Clabel:S%7C<?php echo $item['Latitude'] . ',' . $item['Longitude']; ?>"
                                     style="width:2.23in; height:1.3in;"   alt=""/>
 
                                   </td>
@@ -570,105 +582,105 @@ img{max-width:100%;}
                               <tr>
                                   <td style="-webkit-print-color-adjust: exact; background:#f15d3e -webkit-print-color-adjust: exact; color:#fff; font-size:12px;  height:0.30in; " bgcolor="#f15d3e"> &nbsp;&nbsp;Sale Price:</td>
                                   <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:12px;"><?php echo $item['Price']; ?></td>
-                                
+
                               </tr>
                             </table>
 
                             </td>
                             <td width="70%" >
-                              
+
                             <table width="100%" border="0" cellspacing="2" cellpadding="5" style=" font-size:18px; text-align:center;" >
                                   <tr>
                                       <td align="left" colspan="4"><b><?php echo $item['Address']; ?></b></td>
                                   </tr>
                                    <tr>
-                                      
+
                                       <td bgcolor="#f8f8f8">Unit Type</td>
                                       <td bgcolor="#f8f8f8">Dist.</td>
                                       <td bgcolor="#f8f8f8">Sqft.</td>
                                       <td bgcolor="#f8f8f8">$/Sqft</td>
                                     </tr>
                                     <tr>
-                                      
+
                                       <td>N/A</td>
                                       <td><?php echo $item['Distance']; ?></td>
                                       <td><?php echo $item['SquareFeet']; ?></td>
                                       <td>$<?php echo $item['Price']; ?></td>
-                                      
+
                                     </tr>
                                     <tr>
-                                      
+
                                       <td bgcolor="#f8f8f8">Bed/Bath</td>
                                       <td bgcolor="#f8f8f8">Year Blt</td>
                                       <td bgcolor="#f8f8f8">Lot Area</td>
                                       <td bgcolor="#f8f8f8">Pool</td>
                                     </tr>
                                     <tr>
-                                     
+
                                       <td><?php echo $item['Beds']; ?>/<?php echo $item['Baths']; ?></td>
                                       <td><?php echo $item['Year']; ?></td>
                                       <td><?php echo $item['LotSize']; ?></td>
                                       <td><?php echo $item['Pool']; ?></td>
                                     </tr>
-                                    
-                                
+
+
                               </table>
                             </td>
                           </tr>
 
-                          
+
                           <tr>
                                         <td  width="100%" colspan="2">
                                           <table  width="100%" border="0" cellspacing="2" cellpadding="5" >
                                             <tr>
                                               <td width="3%"></td>
-                                              <td class="red-b-border" style="line-height: 0.5;" width="94%"  ></td>                                              
+                                              <td class="red-b-border" style="line-height: 0.5;" width="94%"  ></td>
                                               <td width="3%"></td>
                                             </tr>
                                           </table>
                                         </td>
 
                           </tr>
-                                    
-                         
+
+
                         <?php
 
-                            $avaiProperty++;
-                          }
-                          $sQFootage = $sQFootage/$avaiProperty;
+    $avaiProperty++;
+}
+$sQFootage = $sQFootage / $avaiProperty;
 
-                          $avgNoOfBeds = $avgNoOfBeds/$avaiProperty;
-                          $avgNoOfBaths = $avgNoOfBaths/$avaiProperty;
-                        ?>
+$avgNoOfBeds = $avgNoOfBeds / $avaiProperty;
+$avgNoOfBaths = $avgNoOfBaths / $avaiProperty;
+?>
 
                       </table>
                     </div>
                     <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                 </div>
                 <!-- page 6 end -->
-                    
+
                 <!-- page 7  Reated Data Removed page 7-->
                 <!-- page 7 end -->
-                      
+
                 <!-- page 8 -->
                 <!-- page 8 end -->
-                        
+
                 <!-- page 9 -->
                 <div class="estimated-value-range">
                           <h1>ESTIMATED VALUE RANGE</h1>
                           <div class="sub-head">Based on recent comparable sales</div>
                           <div class="inner-content">
-                            <div class="full-img"><img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x420&maptype=satelite&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:100%; height:3.31in;" /></div><br><br>
+                            <div class="full-img"><img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x420&maptype=satelite&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:100%; height:3.31in;" /></div><br><br>
                             <p style="text-align:center;">A FEW FACTORS THAT HELP DETERMINE YOUR HOMES SALES PRICE</p>
                             <div style='background: url("<?php echo base_url(); ?>pdf/images/factor.png") 50% 0 no-repeat;'>
                             <img src="<?php echo base_url(); ?>pdf/images/factor.png" width="100%" alt=""/>
                             <table width="100%" cellspacing="0" cellpadding="8" border="0" style="margin-top:-100px;">
                               <tbody>
                                 <tr>
-                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($availableCompareAble,2); ?></h3></td>
-                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($sQFootage,2); ?></h3></td>
-                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($avgNoOfBeds,2); ?></h3></td>
-                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($avgNoOfBaths,2); ?></h3></td>
+                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($availableCompareAble, 2); ?></h3></td>
+                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($sQFootage, 2); ?></h3></td>
+                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($avgNoOfBeds, 2); ?></h3></td>
+                                  <td align="center" width="33%"><h3 style="font-size:48px; font-weight:bold; color:#fff;"><?php echo round($avgNoOfBaths, 2); ?></h3></td>
                                 </tr>
                               </tbody>
                             </table>
@@ -679,16 +691,16 @@ img{max-width:100%;}
                               <tbody>
                                 <tr>
                                   <td align="left" width="50%"><h3 style="font-size:35px; font-weight:bold; color:#f15d3e;">
-                                    $<?php 
-                                    
-                                      echo $priceMinRange.'K'; ?></h3>
+                                    $<?php
+
+echo $priceMinRange . 'K'; ?></h3>
                                   </td>
                                   <td align="right" width="50%">
                                     <h3 style="font-size:35px; font-weight:bold; color:#f15d3e;">
-                                      $<?php 
-                                       
-                                        echo $priceMaxRange.'K'; 
-                                      ?>
+                                      $<?php
+
+echo $priceMaxRange . 'K';
+?>
                                     </h3>
                                   </td>
                                 </tr>
@@ -706,12 +718,12 @@ img{max-width:100%;}
                         <div class="sub-head">Presentation road map</div>
                         <div class="inner-content">
                           <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/wht-next.png" alt="" style="width:100%; " /></div>
-                          
+
                         </div>
                         <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                         </div>
                         <!-- page 10 end -->
-                        
+
                         <!-- page 11 -->
                         <div class="HOW-BUYERS-FIND-A-HOME ">
                           <h1>HOW BUYERS FIND A HOME </h1>
@@ -719,9 +731,9 @@ img{max-width:100%;}
                           <div class="inner-content">
                             <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/fnd-a-home.png" alt="" style="width:100%; height:4.447in; " /></div>
                             <p >Most buyers now begin their search online either at home, on their break at work, but more often than not on their mobile device.  Since more than 80% of buyers begin their home search online they are simultaneously taking the opportunity to educate themselves on the buying process. So today’s buyer is now more informed than every but will still rely on a realtor to guide them through the transaction. The typical home buyer takes about 3 months to purchase his home which means they have been looking for 2 months before your decided to sell your home</p>
-                            
+
                             <table width="100%" border="0" cellspacing="0" cellpadding="8" valign="top">
-                              
+
                               <tbody>
                                 <tr>
                                   <td width="60%">
@@ -733,7 +745,7 @@ img{max-width:100%;}
                                         <tbody>
                                           <tr>
                                             <td align="left" valign="top">
-                                              
+
                                               <img src="<?php echo base_url(); ?>pdf/images/place-2.png" alt=""  style="margin-bottom:-150px" />
                                               <br>
                                               <table width="90%" align="center"  cellspacing="5" cellpadding="5" border="0" valign="top" >
@@ -747,16 +759,16 @@ img{max-width:100%;}
                                                   </p></td></tr>
                                                 </tbody>
                                               </table>
-                                              
+
                                             </td></tr>
                                           </tbody></table>
-                                          
-                                          
+
+
                                         </td>
                                       </tr>
                                     </tbody>
                                   </table>
-                                  
+
                                 </div>
                                 <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                 </div>
@@ -770,9 +782,9 @@ img{max-width:100%;}
                                     want to make sure to help you attract as many buyers as possible. One thing that can hinder this is setting the price too high. The key to getting your home sold as quickly as possible is to price it correctly from day 1. Many sellers have the tendency to want to list their home at a higher sales price than advised because; they hope to increase their profit or they assume that buyers always make low offers so it’s good to start high.
                                     </p>
                                     <div class="full-img" align="center"><img src="<?php echo base_url(); ?>pdf/images/pricing-money.png" alt="" style="width:90%;  " /></div><br>
-                                    
+
                                     <table width="100%" border="0" cellspacing="0" cellpadding="8">
-                                      
+
                                       <tbody>
                                         <tr>
                                           <td width="50%">
@@ -785,7 +797,7 @@ img{max-width:100%;}
                                             <p>Time lost in waiting for an offer can be time spent accepting
                                               offers, conducting inspections & opening escrow.</p>
                                           </td>
-                                          
+
                                         </tr>
 
                                         <tr>
@@ -799,11 +811,11 @@ img{max-width:100%;}
                                             <p>As buyers see the property advertised over and over again,
 they will start wondering if there’s something wrong with it.</p>
                                           </td>
-                                          
+
                                         </tr>
                                       </tbody>
                                     </table>
-                                    
+
                                   </div>
                                   <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                   </div>
@@ -814,11 +826,11 @@ they will start wondering if there’s something wrong with it.</p>
                                     <div class="sub-head">How long will it take to sell your home.</div>
                                     <div class="inner-content">
                                       <table width="100%" cellspacing="0" cellpadding="8" border="0" style="margin-top:-20px;">
-                                        
+
                                         <tbody>
                                           <tr>
                                             <td width="40%" align="center" valign="top" >
-                                              
+
                                               <table width="100%" cellspacing="0" cellpadding="0" border="0" valign="top" >
                                                 <tr>
                                                   <td align="center" valign="top" height="250px"><img src="<?php echo base_url(); ?>pdf/images/bg-round.png" style="margin-bottom:-200px;">
@@ -830,10 +842,10 @@ they will start wondering if there’s something wrong with it.</p>
                                                       <h4>Avg. Days On Market</h4>
                                                     </td></tr>
                                                   </table>
-                                                  
-                                                  
-                                                  
-                                                  
+
+
+
+
                                                 </td>
                                                 <td width="60%">
                                                   <p>Days on market has a direct correlation with a buyers interest level
@@ -841,9 +853,9 @@ they will start wondering if there’s something wrong with it.</p>
                                                       the number of days that your home is on the market can vary.
                                                       Currently the market is in an upswing and the shortage of
                                                       inventory is leading to homes flying off the market
-                                                    <br>         <br> 
+                                                    <br>         <br>
                                                     There are a few factors that come into play when attempting to
-                                                    determine how long it will take these factors are    <br>      <br> 
+                                                    determine how long it will take these factors are    <br>      <br>
                                                   </p><table width="100%" cellspacing="0" cellpadding="8" border="0">
                                                   <thead style=" -webkit-print-color-adjust: exact; color:#4c4d4f; font-weight: bold;">
                                                     <tr bgcolor="#e7e7e8">
@@ -864,14 +876,14 @@ they will start wondering if there’s something wrong with it.</p>
                                                 </table>
                                                 <p></p>
                                               </td>
-                                              
+
                                             </tr>
                                           </tbody>
                                         </table>
                                         <div class="full-img" style=" position:relative;"><img src="<?php echo base_url(); ?>pdf/images/day-market.png" alt="" style="width:90%; margin-top:-47px;" /></div><br>
-                                        
-                                        
-                                        
+
+
+
                                       </div>
                                       <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                       </div>
@@ -1036,11 +1048,11 @@ they will start wondering if there’s something wrong with it.</p>
 
 
       </div>
-                                        
-                                      
-                                        
-                                        
-                                        
+
+
+
+
+
                                       </div>
                                       <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                       </div>
@@ -1053,10 +1065,10 @@ they will start wondering if there’s something wrong with it.</p>
                                           <p>When your property first hits the market the entire audience which consists of realtors, prospective buyers, and  sellers all place eyes on your listing. They all make rapid judgements to as to it’s price, condition, and location. How they first perceive it will determine the viewing activity over the next few weeks. If we receive no viewings  we are facing the possibility that that market as a whole is rejecting the value proposition of your listing. Our
                                           solution? Reduce the price.</p>
                                           <p>Reducing the price on your home is never an easy call but often time is a necessary one might need to be made in order to get your home sold. Many homeowners feel that they are giving up hard won equity that they have built but a slight reduction can help avoid problems down the line. The question is – When is the best time? How long do you wait from the time your home is placed on the market until you consider adjusting the sales price. The rule of thumb is about 30-45 days. </p>
-                                          
+
                                           <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/listing-ex.png" alt="" style="width:100%;  " /></div><br>
-                                          
-                                          
+
+
                                           <p>Joe and Jane went from being very competitively priced to being the highest property in their price range. From a buyer’s perspective, their home now offers the worst value proposition in the marketplace.
                                           </p>
                                         </div>
@@ -1069,11 +1081,11 @@ they will start wondering if there’s something wrong with it.</p>
                                           <div class="sub-head">Keeping things on your terms.</div>
                                           <div class="inner-content">
                                             <table width="100%" cellspacing="0" cellpadding="8" border="0" style="font-size:16px;">
-                                              
+
                                               <tbody>
                                                 <tr>
                                                  <!--  <td width="60%" valign="top">
-                                                    
+
                                                     <p style="font-size:16px;">In a perfect world, every homebuyer and every home seller would get exactly the deal they want for their real estate transaction. In reality, the best deals are the ones in which each side feels they got most of what they wanted and didn’t have to up too much
                                                     </p>
                                                     <br>
@@ -1107,7 +1119,7 @@ they will start wondering if there’s something wrong with it.</p>
                                             <div class="sub-head">What you should expect moving forward.</div>
                                             <div class="inner-content">
                                               <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/typ-trans.png" alt="" style="width:100%;  " /></div>
-                                              
+
                                             </div>
                                             <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                             </div>
@@ -1135,9 +1147,9 @@ that is entrusted to you. This duty compels me to safeguard any money, deeds, or
 documents entrusted to me that relate to your transactions or affairs.</p>
 
                                                 <p align="right"><img src="<?php echo base_url(); ?>pdf/images/sign.png" width="30%"  /></p>
-                                                
+
                                               </div>
-                                              
+
                                             </div>
                                             <!-- page 16 end -->
                                           </div>
