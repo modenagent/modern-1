@@ -232,11 +232,12 @@
 	        }
 	    });
 
-	    $('#register-form').submit(function() {
-	        if ( !$(this).valid() ) {
+	    $('#create-account').click(function() {
+	        if ( !$('#register-form').valid() ) {
 	            return false;
 	        } else {
-	            $(this).submit();
+                console.log('Register stat');
+	            $('#register-form').submit();
 	        }
 	    });
 
