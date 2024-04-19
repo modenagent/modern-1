@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="section page5">
-	
+
 		<header>
 			<h2 class="underline title-bold">Area Sales Analysis</h2>
 			<p>Sales in the past 12 months</p>
@@ -12,7 +12,24 @@
 
                 <div class="col-sm-12">
 
-                    <div class="full-img"><img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=620x350&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:5.15in;" /></div>
+                    <div class="full-img">
+<?php
+$series = $areaSalesAnalysis['chart']['series'];
+$date = $areaSalesAnalysis['chart']['date'];
+$color = $areaSalesAnalysis['chart']['color'];
+$chartImageUrl = "https://quickchart.io/chart?cht=bvs&chd=t:$series&chs=620x350&chl=$date&chbh=40,30,45&chco=$color&chds=a&chxt=y";
+
+/** Check chart image exist or not */
+$headers = get_headers($chartImageUrl);
+$httpStatus = intval(substr($headers[0], 9, 3));
+
+// Check if the HTTP status code indicates success (200 OK)
+if ($httpStatus === 200) {?>
+    <img src="<?=$chartImageUrl?>"  alt="graph" style="margin:auto; width:100%; height:5.15in;">
+<?php }?>
+						<!-- Google chart image api deprecated so we have implemented quickchart.io as an alternative  -->
+						<!-- <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=620x350&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:5.15in;" /> -->
+					</div>
 
                </div>
             </div>
@@ -20,28 +37,28 @@
         </div>
 
 		<div class="table-wrapper"  style="margin-top:100px;padding-bottom: 75px;">
-			
+
 			<table class="table sales-table-top">
-				
+
 				<thead class="monthly-table">
-					
+
 					<tr>
 						<th>monthly sales overview </th>
-		
+
 						<th>piq</th>
-			   
+
 						<th>low</th>
-					
+
     					<th>median</th>
-							    
+
 						<th>high</th>
-				
+
 					</tr>
 			    </thead>
-				
+
 
 				<tbody class="data-space">
-					
+
 					<tr>
 						<td>distance</td>
 					    <td>0</td>
@@ -113,21 +130,21 @@
 					    <td><?php echo $areaSalesAnalysis['propertyPoolHign']; ?></td>
 					</tr>
 				</tbody>
-                
+
                 <thead class="monthly-table2">
-					
+
 					<tr>
                                             <th>Sales price </th>
-                                            <th><?php echo ($areaSalesAnalysis['propertySalePrice']  != '')?"$".$areaSalesAnalysis['propertySalePrice']:''; ?></th>
+                                            <th><?php echo ($areaSalesAnalysis['propertySalePrice'] != '') ? "$" . $areaSalesAnalysis['propertySalePrice'] : ''; ?></th>
 					    <th>$<?php echo trim($areaSalesAnalysis['propertySalePriceLow']); ?></th>
 					    <th>$<?php echo trim($areaSalesAnalysis['propertySalePriceMedian']); ?></th>
 					    <th>$<?php echo trim($areaSalesAnalysis['propertySalePriceLowHigh']); ?></th>
 					</tr>
 			    </thead>
-				
 
-			</table>	
-			
+
+			</table>
+
 		<!-- </div> --> <!-- .table-wrapper -->
 
 	</div>

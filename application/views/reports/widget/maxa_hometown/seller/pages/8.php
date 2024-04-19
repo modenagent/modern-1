@@ -1,14 +1,29 @@
 <page class="pdf8">
     <h1 class="main_title top_title">Area Sales Analysis</h1>
-    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+    <img src="<?php echo base_url() . 'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
     <div class="d-flex">
         <div class="col-12">
             <h4 class="mt-0 sub_title">Sales in the Past 12 Months</h4>
         </div>
     </div>
-    <!-- <div class="d-flex mt-20">    
+    <!-- <div class="d-flex mt-20">
         <div class="col-12"> -->
-            <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="Area Sales Analysis" class="img-fluid mx-auto w90">
+<?php
+$series = $areaSalesAnalysis['chart']['series'];
+$date = $areaSalesAnalysis['chart']['date'];
+$color = $areaSalesAnalysis['chart']['color'];
+$chartImageUrl = "https://quickchart.io/chart?cht=bvs&chd=t:$series&chs=700x400&chl=$date&chbh=40,30,45&chco=$color&chds=a&chxt=y";
+
+/** Check chart image exist or not */
+$headers = get_headers($chartImageUrl);
+$httpStatus = intval(substr($headers[0], 9, 3));
+
+// Check if the HTTP status code indicates success (200 OK)
+if ($httpStatus === 200) {?>
+    <img src="<?=$chartImageUrl?>"  alt="graph" class="img-fluid mx-auto w90">
+<?php }?>
+            <!-- Google chart image api deprecated so we have implemented quickchart.io as an alternative  -->
+            <!-- <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="Area Sales Analysis" class="img-fluid mx-auto w90"> -->
             <table class="mt-60">
                 <thead>
                     <tr>
@@ -36,10 +51,10 @@
                     </tr>
                     <tr>
                         <td>Price Per Soft</td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFoot']) && !empty($areaSalesAnalysis['areaPriceFoot']) ? '$'.$areaSalesAnalysis['areaPriceFoot'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootLow']) && !empty($areaSalesAnalysis['areaPriceFootLow']) ? '$'.$areaSalesAnalysis['areaPriceFootLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootMedian']) && !empty($areaSalesAnalysis['areaPriceFootMedian']) ? '$'.$areaSalesAnalysis['areaPriceFootMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootHigh']) && !empty($areaSalesAnalysis['areaPriceFootHigh']) ? '$'.$areaSalesAnalysis['areaPriceFootHigh'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['areaPriceFoot']) && !empty($areaSalesAnalysis['areaPriceFoot']) ? '$' . $areaSalesAnalysis['areaPriceFoot'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootLow']) && !empty($areaSalesAnalysis['areaPriceFootLow']) ? '$' . $areaSalesAnalysis['areaPriceFootLow'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootMedian']) && !empty($areaSalesAnalysis['areaPriceFootMedian']) ? '$' . $areaSalesAnalysis['areaPriceFootMedian'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['areaPriceFootHigh']) && !empty($areaSalesAnalysis['areaPriceFootHigh']) ? '$' . $areaSalesAnalysis['areaPriceFootHigh'] : 0; ?></td>
                     </tr>
                     <tr>
                         <td>Year Built</td>
@@ -87,13 +102,13 @@
                 <tfoot>
                     <tr>
                         <td>Sales Price</td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePrice']) && !empty($areaSalesAnalysis['propertySalePrice']) ? '$'.$areaSalesAnalysis['propertySalePrice'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceLow']) && !empty($areaSalesAnalysis['propertySalePriceLow']) ? '$'.$areaSalesAnalysis['propertySalePriceLow'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceMedian']) && !empty($areaSalesAnalysis['propertySalePriceMedian']) ? '$'.$areaSalesAnalysis['propertySalePriceMedian'] : 0; ?></td>
-                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceLowHigh']) && !empty($areaSalesAnalysis['propertySalePriceLowHigh']) ? '$'.$areaSalesAnalysis['propertySalePriceLowHigh'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['propertySalePrice']) && !empty($areaSalesAnalysis['propertySalePrice']) ? '$' . $areaSalesAnalysis['propertySalePrice'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceLow']) && !empty($areaSalesAnalysis['propertySalePriceLow']) ? '$' . $areaSalesAnalysis['propertySalePriceLow'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceMedian']) && !empty($areaSalesAnalysis['propertySalePriceMedian']) ? '$' . $areaSalesAnalysis['propertySalePriceMedian'] : 0; ?></td>
+                        <td><?php echo isset($areaSalesAnalysis['propertySalePriceLowHigh']) && !empty($areaSalesAnalysis['propertySalePriceLowHigh']) ? '$' . $areaSalesAnalysis['propertySalePriceLowHigh'] : 0; ?></td>
                     </tr>
                 </tfoot>
-            </table> 
+            </table>
         <!-- </div>
     </div> -->
 </page>
