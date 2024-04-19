@@ -712,7 +712,7 @@ if ($regsitry_i == 1) {
 
                 <form class="form-horizontal" name="form" method="post" id="changes_req_params_property_search">
                     <div class="modal-body" >
-                        <div class="form-group clearfix">
+                        <div class="form-group clearfix hide">
                             <label class="col-lg-3 control-label">APN</label>
                             <div class="col-lg-9">
                                 <div class="input-group">
