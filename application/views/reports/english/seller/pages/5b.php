@@ -12,8 +12,7 @@
 
                 <div class="col-sm-12">
 
-                    <div class="full-img">
-<?php
+				<?php
 $series = $areaSalesAnalysis['chart']['series'];
 $date = $areaSalesAnalysis['chart']['date'];
 $color = $areaSalesAnalysis['chart']['color'];
@@ -30,8 +29,6 @@ if ($httpStatus === 200) {?>
 						<!-- Google chart image api deprecated so we have implemented quickchart.io as an alternative  -->
 						<!-- <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=620x350&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:5.15in;" /> -->
 					</div>
-
-               </div>
             </div>
 
         </div>

@@ -12,8 +12,7 @@
 
                 <div class="col-sm-12">
 
-                    <div class="full-img">
-<?php
+				<?php
 $series = $areaSalesAnalysis['chart']['series'];
 $date = $areaSalesAnalysis['chart']['date'];
 $color = $areaSalesAnalysis['chart']['color'];

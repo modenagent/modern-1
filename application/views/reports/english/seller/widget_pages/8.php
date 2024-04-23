@@ -8,7 +8,7 @@
     </div>
     <!-- <div class="d-flex mt-20">
         <div class="col-12"> -->
-<?php
+        <?php
 $series = $areaSalesAnalysis['chart']['series'];
 $date = $areaSalesAnalysis['chart']['date'];
 $color = $areaSalesAnalysis['chart']['color'];
