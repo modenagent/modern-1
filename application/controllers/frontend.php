@@ -177,6 +177,7 @@ class Frontend extends CI_Controller
     // frontend view
     public function quick_pdf($code = '')
     {
+        $this->load->model('params_adjustment_model');
         if ($this->input->post()) {
             $form = $this->input->post('form-name');
             if ($form == 'ref-form') {
@@ -191,15 +192,31 @@ class Frontend extends CI_Controller
                 $data['user'] = $user;
             }
         }
+        $userId = null;
         if (!empty($code)) {
             $user = $this->user_model->get_user_by_ref($code);
             // print_r($user);die;
             if (!empty($user) && isset($user->agent) && !empty($user->agent)) {
                 $data['agent'] = $user->agent;
+                $userId = $user->user_id_pk;
             }
         }
+
         $data['title'] = "Moder Agent";
         $data['code'] = $code;
+        $adjustmentParams = $this->params_adjustment_model->get_by('user_id', $user->user_id_pk);
+
+        $data['black_knight_radius'] = $data['rets_radius'] = "0.25";
+        $data['black_knight_sqft'] = $data['rets_sqft'] = "0.20";
+        $data['black_knight_flag'] = $data['rets_flag'] = 0;
+        if ($adjustmentParams) {
+            $data['black_knight_radius'] = $adjustmentParams->black_knight_radius ?? "0.25";
+            $data['black_knight_sqft'] = $adjustmentParams->black_knight_sqft ?? "0.20";
+            $data['rets_radius'] = $adjustmentParams->rets_radius ?? "0.25";
+            $data['rets_sqft'] = $adjustmentParams->rets_sqft ?? "0.20";
+            $data['black_knight_flag'] = $adjustmentParams->black_knight_flag ?? 0;
+            $data['rets_flag'] = $adjustmentParams->rets_flag ?? 0;
+        }
         // echo "<pre>";
         // print_r($data);die;
         $this->load->library('session');

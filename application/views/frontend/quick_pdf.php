@@ -24,10 +24,10 @@
                             <div class="agent-info cmawhite">
                                 <div class="profile-info">
                                      <img class="profile_img mb-2"
-                                        src="https://dev.modernagent.io/<?= $agent->company_logo ?>">
+                                        src="https://dev.modernagent.io/<?=$agent->company_logo?>">
                                 </div>
-                            </div> 
-                        </form> 
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <h1 class="main_title cmawhite">Generate Your Complimentary <br> Market Analysis</h1>
@@ -43,13 +43,13 @@
                             <div class="agent-info cmawhite">
                                 <div class="profile-info">
                                     <img class="profile_img mb-2"
-                                        src="https://dev.modernagent.io/<?= $agent->profile_image ?>">
-                                    <div class="mb-2" ><p class="headquick"><?= $agent->first_name . ' ' . $agent->last_name; ?></p></div>
-                                    <div class="mb-2"><p class="subquick">DRE# <?= $agent->license_no; ?></p></div>
-                                    <div class="mb-2"><p class="subquick">E: <?= $agent->email ; ?></p></div>
-                                    <div class="mb-2"><p class="subquick">P: <?= $agent->phone; ?></p></div>
-							<!--		<div class="mb-2"><p class="subquick"><?= $agent->company_name; ?></p></div>
-                                    <div class="mb-2"><p class="subquick"><?= $agent->company_add .', ' . $agent->company_city .', ' . $agent->company_state .', ' . $agent->comapny_zip ; ?></p></div> -->
+                                        src="https://dev.modernagent.io/<?=$agent->profile_image?>">
+                                    <div class="mb-2" ><p class="headquick"><?=$agent->first_name . ' ' . $agent->last_name;?></p></div>
+                                    <div class="mb-2"><p class="subquick">DRE# <?=$agent->license_no;?></p></div>
+                                    <div class="mb-2"><p class="subquick">E: <?=$agent->email;?></p></div>
+                                    <div class="mb-2"><p class="subquick">P: <?=$agent->phone;?></p></div>
+							<!--		<div class="mb-2"><p class="subquick"><?=$agent->company_name;?></p></div>
+                                    <div class="mb-2"><p class="subquick"><?=$agent->company_add . ', ' . $agent->company_city . ', ' . $agent->company_state . ', ' . $agent->comapny_zip;?></p></div> -->
                                 </div>
 
                             </div>
@@ -63,7 +63,7 @@
                             <div class="form-group email_field">
                                 <div class="cma_label">Enter Valid Phone Number</div>
                                 <input type="text" class="form-control" name="phone_number" id="phone_number"
-                                    placeholder="10 Digit Phone Number" value="<?= $agent->phone; ?>" required>
+                                    placeholder="10 Digit Phone Number" value="<?=$agent->phone;?>" required>
                             </div>
                             <div>
                                 <input class="btn btn-lp save" name="ref-submit" id="ref-submit" type="submit"
@@ -131,15 +131,15 @@
                     <div class="row">
                         <div class="col-md-2">
                             <?php
-                            $marketPresentation = '';
-                            $sellerPresentation = '';
-                            $currentUrl = $this->uri->uri_string();
-                            if (strpos(strtolower($currentUrl), 'market') !== false) {
-                                $marketPresentation = 'selected';
-                            } else {
-                                $sellerPresentation = 'selected';
-                            }
-                            ?>
+$marketPresentation = '';
+$sellerPresentation = '';
+$currentUrl = $this->uri->uri_string();
+if (strpos(strtolower($currentUrl), 'market') !== false) {
+    $marketPresentation = 'selected';
+} else {
+    $sellerPresentation = 'selected';
+}
+?>
                             <select id="presentation" name="presentation" class="cma hidden" style="color:black">
                                 <option value="marketUpdate" <?php echo $marketPresentation; ?>>Market Update</option>
                                 <option value="seller" <?php echo $sellerPresentation; ?>>Seller</option>
@@ -153,12 +153,17 @@
                                 <option value="spanish">Spanish</option>
                             </select>
                         </div>
+                        <div class="col-sm-12 hidden" id="config-comps-btn">
+                                <select id='cma-pre-selected-options' multiple='multiple'></select>
+                            </div>
                     </div>
+                    <input type="hidden" name="use_rets" id="use_rets" value="0">
+                    <input type="hidden" name="req_from" id="req_from" value="cma">
                     <input id="profile_image" name="user[profile_image]" value="<?php echo $agentInfo->profile_image ?>"
                         type="hidden">
                     <input id="u-image" name="user_image" value="<?php echo $agentInfo->profile_image ?>" type="hidden">
                     <input name="user[fullname]" id="u-fullname"
-                        value="<?php echo $agentInfo->first_name . " " . $agentInfo->last_name ?>" type="hidden">
+                    value="<?php echo $agentInfo->first_name . " " . $agentInfo->last_name ?>" type="hidden">
                     <input name="user[title]" id="u-title" value="<?php echo $agentInfo->title ?>" type="hidden">
                     <input name="user[phone]" id="u-phone" value="<?php echo $agentInfo->phone ?>" type="hidden">
                     <input name="user[email]" id="u-email" value="<?php echo $agentInfo->email ?>" type="hidden">
@@ -184,7 +189,7 @@
                     <input type="checkbox" checked id="subscribe_temp" class="subscribe_temp" value="0"
                         style="display: none !important">
                     <div id="addNewPartner" style="display:none"></div>
-                    <input type="hidden" name="use_rets" id="use_rets" value="0">
+                    <!-- <input type="hidden" name="use_rets" id="use_rets" value="0"> -->
                     <!-- END -->
 
                 </form>
@@ -225,22 +230,22 @@
 <!-- <div id="login-pag" class="containe cma-wraper">
     <div class="row">
     <div class="col-md-10 col-md-offset-1">
-            
-                                
-                               
-                                
+
+
+
+
                                 <div id="step-1">
                                     <div class="col-md-10 col-md-offset-1">
                                 <div class="step-1-content clearfix" style="display:none;position:relative;">
-                                    
-                                    
-                                    
+
+
+
                                 </div>
                                 </div>
                                 </div>
                                 <br/><div style="color:white;clear:both;margin:10px;">Powered By <a href="<?php echo site_url(); ?>" target="_blank">ModernAgent.io</a></div>
                             </div>
-        
+
     </div>
     <div id="progress" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="progress" aria-hidden="true" style="z-index:5000;">
         <div class="modal-dialog">
@@ -252,48 +257,64 @@
                     <p>Please wait while report is being generated...</p><br/>
                     <div id="percent_progress_wrap">
                         <p>Preparing content</p>
-                        <div id="percent_progress"><div class="progress-label" id="percent_progress_label">0%</div></div> 
+                        <div id="percent_progress"><div class="progress-label" id="percent_progress_label">0%</div></div>
                     </div>
                     <br/>
                     <div id="page_progress_wrap">
                         <p>Preparing pages</p>
-                        <div id="page_progress"><div class="progress-label" id="page_progress_label"></div></div> 
+                        <div id="page_progress"><div class="progress-label" id="page_progress_label"></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    
+
 </div> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
+
 <script src="<?php echo base_url("assets/js/jquery-ui.1.11.2.min.js") ?>" type="text/javascript"></script>
-<?php if (!isset($isWidget)) { ?>
+<?php if (!isset($isWidget)) {?>
     <script
-        src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?= getGoogleMapKey(); ?>"></script>
-<?php } ?>
+        src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
+<?php }?>
+<!-- toastr js -->
+<script src="<?php echo base_url('assets/js/jquery-toastr/toastr.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery-toastr/ui-toastr-notifications.js'); ?>"></script>
+<script>
+defaultSqft = "0.20";
+defaultRadius = "0.25";
+defaultBKFlag = "<?php echo $black_knight_flag; ?>";
+defaultRetsFlag = "<?php echo $rets_flag; ?>";
+if (defaultBKFlag == 1) {
+    defaultSqft = "<?php echo $black_knight_sqft; ?>";
+    defaultRadius = "<?php echo $black_knight_radius; ?>";
+} else if (defaultRetsFlag == 1) {
+    defaultSqft = "<?php echo $rets_sqft; ?>";
+}
+</script>
 <script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.30") ?>"></script>
 
 
 
 
 <!-- Bootstrap Core JavaScript -->
-<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
+<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script> -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.bootstrap4.js"></script>
 
-<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
+<!-- <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script> -->
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
@@ -387,7 +408,7 @@
         $("#ref-submit").val("Please wait...");
         var form_data = $(this).serializeArray();
         $.ajax({
-            url: '<?php echo base_url(); ?>frontend/get_user_by_ref', // point to server-side PHP script 
+            url: '<?php echo base_url(); ?>frontend/get_user_by_ref', // point to server-side PHP script
             data: form_data,
             method: 'post',
             success: function (php_script_response) {
@@ -444,7 +465,7 @@
         } else {
             var form_data = $(this).serializeArray();
             $.ajax({
-                url: '<?php echo site_url("user/cart_payment") ?>', // point to server-side PHP script 
+                url: '<?php echo site_url("user/cart_payment") ?>', // point to server-side PHP script
                 data: form_data,
                 method: 'post',
                 success: function (php_script_response) {
@@ -506,13 +527,12 @@
     }
     function doSubmit() {
 
-        <?php
-        $report = '';
-        $currentUrl = $this->uri->uri_string();
-        if (strpos(strtolower($currentUrl), 'market') !== false) {
-            $report = 'market';
-        }
-        ?>
+<?php
+$report = '';
+$currentUrl = $this->uri->uri_string();
+if (strpos(strtolower($currentUrl), 'market') !== false) {
+    $report = 'market';
+}?>
 
         if (activeRequest) {
             setTimeout(function () {
@@ -620,10 +640,10 @@
     $(document).ready(function () {
         <?php if ($this->session->flashdata('success')): ?>
             Notify('Success', '<?php echo $this->session->flashdata('success') ?>', 'success');
-        <?php endif; ?>
+        <?php endif;?>
         <?php if ($this->session->flashdata('error')): ?>
             Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
-        <?php endif; ?>
+        <?php endif;?>
     });
 
 </script>

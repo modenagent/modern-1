@@ -258,7 +258,7 @@ function runPMA(agentPath, logoPath) {
     if (logoPath) {
         reportData.logoPath = logoPath;
     }
-
+    var req_from = $('#req_from').val();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
     query += '&' + formData;
@@ -283,7 +283,11 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'mu_theme=' + $('.mu_radio:checked').val();
     query += '&' + 'seller_theme=' + $('#seller_default_theme').val();
     query += '&' + 'buyer_theme=' + $('.buyer_radio:checked').val();
-    query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    if (req_from === 'cma') {
+        query += '&' + 'custom_comps=' + JSON.stringify($('#cma-pre-selected-options').val());
+    } else {
+        query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    }
     query += '&' + 'selected_theme=' + rgb2hex($('#report_color').val());
     var subscribe_temp = [];
     var i_index = 0;
@@ -618,7 +622,7 @@ function get187() {
                 // $('#available-comparables-market-update tbody').html('');
 
                 $.each(all_comp, function (i, item) {
-                    $('#pre-selected-options').append($('<option>', {
+                    $('#pre-selected-options, #cma-pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")"
                     }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
@@ -634,7 +638,7 @@ function get187() {
 
                 // $('#comparables-market-update tbody').html('');
                 $.each(sorted_comp, function (i, item) {
-                    $('#pre-selected-options').append($('<option>', {
+                    $('#pre-selected-options, #cma-pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")",
                         selected: 'selected'
@@ -698,7 +702,6 @@ function get187() {
                     return false;
                 } else {
                     $('#property_search_model').modal('hide');
-
                 }
             },
             error: function () {
