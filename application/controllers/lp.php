@@ -597,8 +597,7 @@ class Lp extends CI_Controller
         // $last_row = array_pop($rows);
         // $row = str_getcsv($last_row);
         $data = null;
-        $data = $row = "Page 1 of 1
-Done";
+        $data = $row = "Page 1 of 1 Done";
         /*if(!empty($row)){
         $data = $row[0];
         }*/
