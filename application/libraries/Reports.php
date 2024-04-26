@@ -142,8 +142,22 @@ class Reports
             $rets_pasword = '';
             if ($user_info) {
                 $userId = $user_info['user_id_pk'];
+                $CI->load->model('user_default_templates_model');
                 $CI->load->model('user_rets_api_details_model');
                 $rets_api_data = $CI->user_rets_api_details_model->get_by('user_id', $userId);
+
+                $theme_data = $CI->user_default_templates_model->with('theme_color_obj')->get_many_by('user_id', $userId);
+                $default_color['seller'] = $default_color['buyer'] = $default_color['mu'] = null;
+                $default_sub_type['seller'] = $default_sub_type['buyer'] = $default_sub_type['mu'] = 1;
+                if ($theme_data) {
+                    foreach ($theme_data as $theme_data_val) {
+                        if ($theme_data_val->theme_type == 'marketUpdate') {
+                            $theme_data_val->theme_type = 'mu';
+                        }
+                        $default_color[$theme_data_val->theme_type] = $theme_data_val->theme_color_obj->template_color;
+                        $default_sub_type[$theme_data_val->theme_type] = $theme_data_val->theme_sub_type;
+                    }
+                }
             }
 
             if ($CI->input->post('use_rets') && ($CI->input->post('use_rets') == 1 || $CI->input->post('use_rets') == 'true') && $rets_api_data && !empty($rets_api_data)) {
@@ -374,9 +388,10 @@ class Reports
             }
         }
         $data['pageList'] = $pageList;
-        $data['seller_theme'] = (!empty($_POST['seller_theme']) && $_POST['seller_theme'] != 'undefined') ? $_POST['seller_theme'] : 1;
-        $data['mu_theme'] = (!empty($_POST['mu_theme']) && $_POST['mu_theme'] != 'undefined') ? $_POST['mu_theme'] : 1;
-        // $data['mu_theme'] = $_POST['mu_theme'] ?? 1;
+        // $data['seller_theme'] = (!empty($_POST['seller_theme']) && $_POST['seller_theme'] != 'undefined') ? $_POST['seller_theme'] : 1;
+        // $data['mu_theme'] = (!empty($_POST['mu_theme']) && $_POST['mu_theme'] != 'undefined') ? $_POST['mu_theme'] : 1;
+        $data['seller_theme'] = (!empty($default_sub_type['seller'])) ? $default_sub_type['seller'] : 1;
+        $data['mu_theme'] = (!empty($default_sub_type['mu'])) ? $default_sub_type['mu'] : 1;
 
         // echo "<pre>";
         // print_r($data);die;
