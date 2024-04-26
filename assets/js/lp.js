@@ -283,7 +283,11 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'mu_theme=' + $('.mu_radio:checked').val();
     query += '&' + 'seller_theme=' + $('#seller_default_theme').val();
     query += '&' + 'buyer_theme=' + $('.buyer_radio:checked').val();
-    query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    if (req_from === 'cma') {
+        query += '&' + 'custom_comps=' + JSON.stringify($('#cma-pre-selected-options').val());
+    } else {
+        query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    }
     query += '&' + 'selected_theme=' + rgb2hex($('#report_color').val());
     var subscribe_temp = [];
     var i_index = 0;
