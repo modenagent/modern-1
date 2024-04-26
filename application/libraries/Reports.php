@@ -930,9 +930,16 @@ class Reports
         //     $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
         // }
         else {
+            // $zoom = $CI->config->item('wkhtmltopdf_zoom');
+            $checkLastPages = array_filter($data['pageList'], function ($page) {
+                return in_array($page, [13, 14, 15, 16, 17, 18, 19, 20]);
+            });
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
+            if (empty($checkLastPages)) {
+                $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
+            }
         }
-        // print_r($zoom);die;
+
         $snappy = new Pdf($wkhtmltopdfPath);
         //$snappy = new Pdf($this->binaryPath);
         $options = [
