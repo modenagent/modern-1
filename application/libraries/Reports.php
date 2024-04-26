@@ -364,9 +364,11 @@ class Reports
             if ($_POST['seller_theme'] == 3) {
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
             } else if ($_POST['seller_theme'] == 2) {
-                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
+                // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
             } else {
-                $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                // $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
             }
         }
         $data['pageList'] = $pageList;
@@ -930,14 +932,14 @@ class Reports
         //     $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
         // }
         else {
-            // $zoom = $CI->config->item('wkhtmltopdf_zoom');
-            $checkLastPages = array_filter($data['pageList'], function ($page) {
-                return in_array($page, [13, 14, 15, 16, 17, 18, 19, 20]);
-            });
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
-            if (empty($checkLastPages)) {
-                $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
-            }
+            // $checkLastPages = array_filter($data['pageList'], function ($page) {
+            //     return in_array($page, [13, 14, 15, 16, 17, 18, 19, 20]);
+            // });
+            // $zoom = $CI->config->item('wkhtmltopdf_zoom');
+            // if (empty($checkLastPages)) {
+            //     $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
+            // }
         }
 
         $snappy = new Pdf($wkhtmltopdfPath);
