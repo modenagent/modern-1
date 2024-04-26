@@ -1,7 +1,7 @@
 <?php
 $default_theme = 1;
-if ($this->input->post('seller_theme') >= 1 && $this->input->post('seller_theme') <= 3) {
-    $default_theme = (int) $this->input->post('seller_theme');
+if ($seller_theme >= 1 && $seller_theme <= 3) {
+    $default_theme = (int) $seller_theme;
 }
 if ($default_theme > 1):
     $this->load->view('reports/english/seller/' . $default_theme . '/index');
