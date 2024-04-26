@@ -258,7 +258,7 @@ function runPMA(agentPath, logoPath) {
     if (logoPath) {
         reportData.logoPath = logoPath;
     }
-
+    var req_from = $('#req_from').val();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
     query += '&' + formData;
@@ -618,7 +618,7 @@ function get187() {
                 // $('#available-comparables-market-update tbody').html('');
 
                 $.each(all_comp, function (i, item) {
-                    $('#pre-selected-options').append($('<option>', {
+                    $('#pre-selected-options, #cma-pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")"
                     }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
@@ -634,7 +634,7 @@ function get187() {
 
                 // $('#comparables-market-update tbody').html('');
                 $.each(sorted_comp, function (i, item) {
-                    $('#pre-selected-options').append($('<option>', {
+                    $('#pre-selected-options, #cma-pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")",
                         selected: 'selected'
@@ -698,7 +698,6 @@ function get187() {
                     return false;
                 } else {
                     $('#property_search_model').modal('hide');
-
                 }
             },
             error: function () {

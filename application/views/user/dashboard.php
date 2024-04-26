@@ -118,6 +118,7 @@
                                     <strong>Select Minimum 4 and up to 8 Comparables</strong>
                                     <div class="pull-right"><button type="button" class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#map-modal">VIEW ON MAP</button></div>
                                     <input type="hidden" name="use_rets" id="use_rets" value="0">
+                                    <input type="hidden" name="req_from" id="req_from" value="wizard">
                                 </h2>
                             </div>
                             <div id="toggle-switch">
@@ -855,8 +856,7 @@ if ($regsitry_i == 1) {
         // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
         if(pkg_prices[presentation_type].referral_status == 1) {
             $('.coupon_div').show();
-        }
-        else {
+        } else {
             $('.coupon_div').hide();
         }
         if(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1) {
