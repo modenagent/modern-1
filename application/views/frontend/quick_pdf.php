@@ -499,7 +499,7 @@ if (defaultBKFlag == 1) {
         $('#create-report').addClass('disabled');
 
         pmaRes = runPMA('', '');
-        // doSubmit();
+        doSubmit();
 
     });
     function manage_checkout_btn() { }
