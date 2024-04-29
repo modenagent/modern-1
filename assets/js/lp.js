@@ -341,6 +341,7 @@ function runPMA(agentPath, logoPath) {
                 }
             }
             activeRequest = false;
+            $('#create-report').removeClass('disabled');
         })
         .fail(function () {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
@@ -687,7 +688,15 @@ function get187() {
                 $('.loader1').addClass('hidden');
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
-
+                var req_from = $('#req_from').val();
+                if (req_from === 'cma') {
+                    $("#cma-tbl-list tbody td a").html("CHOOSE");
+                    $("#create-report").show();
+                    $("#run-pma-form").show();
+                    $('html, body').animate({
+                        scrollTop: $("#create-report").offset().top
+                    }, 500);
+                }
                 if (all_comp.length + sorted_comp.length < 4) {
                     $('#changes_req_params_property_search .submit-btn').prop('disabled', false);
                     Notify('Warning', 'Less then 4 comparable found, please change the setting and try again.', 'warning');

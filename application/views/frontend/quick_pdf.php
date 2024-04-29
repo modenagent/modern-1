@@ -406,6 +406,7 @@ if (defaultBKFlag == 1) {
         //         return false;
         //    }else{
         $("#ref-submit").val("Please wait...");
+        $("input#ref-submit").prop('disabled', true);
         var form_data = $(this).serializeArray();
         $.ajax({
             url: '<?php echo base_url(); ?>frontend/get_user_by_ref', // point to server-side PHP script
@@ -418,7 +419,7 @@ if (defaultBKFlag == 1) {
                     $("#user-details").show();
                     $(".cma-step-2").show();
                     $(".cma-step-1").hide();
-
+                    $("input#ref-submit").prop('disabled', false);
                     $("#profile_image").val(object.user.agent.profile_image);
                     $("#u-image").val(object.user.agent.profile_image);
                     $("#u-fullname").val(object.user.agent.first_name + " " + object.user.agent.last_name);
@@ -491,13 +492,14 @@ if (defaultBKFlag == 1) {
         $('.loader1').removeClass('hidden');
         $('.backwrap').show();
         $('.backwrap').removeClass('hidden');
-        isActive();
+        // isActive();
     });
     var pmaRes = {};
     $("#create-report").click(function () {
+        $('#create-report').addClass('disabled');
 
         pmaRes = runPMA('', '');
-        doSubmit();
+        // doSubmit();
 
     });
     function manage_checkout_btn() { }
@@ -526,6 +528,7 @@ if (defaultBKFlag == 1) {
         }
     }
     function doSubmit() {
+        // return;
 
 <?php
 $report = '';
