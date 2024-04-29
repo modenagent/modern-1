@@ -494,12 +494,14 @@ if (defaultBKFlag == 1) {
         $('.backwrap').removeClass('hidden');
         // isActive();
     });
+
     var pmaRes = {};
+
     $("#create-report").click(function () {
         $('#create-report').addClass('disabled');
 
         pmaRes = runPMA('', '');
-        doSubmit();
+        // doSubmit();
 
     });
     function manage_checkout_btn() { }
