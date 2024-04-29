@@ -120,11 +120,11 @@
                 <form id="run-pma-form" style="display:none;">
                     <div class="row">
                         <div class="col-md-2">
-                            <?php
+<?php
 $marketPresentation = '';
 $sellerPresentation = '';
 $currentUrl = $this->uri->uri_string();
-if (strpos(strtolower($currentUrl), 'market') !== false) {
+if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($currentUrl), 'mkt') !== false) {
     $marketPresentation = 'selected';
 } else {
     $sellerPresentation = 'selected';

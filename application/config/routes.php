@@ -45,6 +45,8 @@ $route['default_controller'] = "frontend";
 $route['404_override'] = '';
 $route['cma'] = "frontend/quick_pdf";
 $route['cma/(:any)'] = "frontend/quick_pdf/$1";
+$route['mkt'] = "frontend/quick_pdf";
+$route['mkt/(:any)'] = "frontend/quick_pdf/$1";
 $route['market'] = "frontend/quick_pdf";
 $route['user/report-review/(:any)'] = "user/reportReview/$1";
 
