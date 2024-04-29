@@ -475,7 +475,7 @@ if (defaultBKFlag == 1) {
                     var object = JSON.parse(php_script_response);
                     if (object.status == "success") {
                         alert("Sent report link in sms to your phone");
-
+                        location.reload();
                     } else {
                         alert(object.msg);
                     }
