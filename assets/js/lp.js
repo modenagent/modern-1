@@ -261,6 +261,7 @@ function runPMA(agentPath, logoPath) {
     var req_from = $('#req_from').val();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
+
     query += '&' + formData;
 
     query += '&' + 'pdfID=' + pdfID;
@@ -317,6 +318,9 @@ function runPMA(agentPath, logoPath) {
                 if (obj.status == 'success') {
                     pdfGenerated = true;
                     pmaRes = { status: "success" };
+                    if (req_from === 'cma') {
+                        $('#payment-form').submit();
+                    }
                 }
             } catch (e) {
                 //return false;
@@ -333,11 +337,17 @@ function runPMA(agentPath, logoPath) {
                 }, 1000);
                 $('.btn-checkout').hide();
                 $('.btn-lp.pay').hide();
+                let errMsg = '';
                 if (obj.msg != '') {
-                    // Error Message passed to CMA response.
-                    pmaRes = { status: "failed", msg: obj.msg };
+                    errMsg = errMsg;
                 } else {
-                    pmaRes = { status: "failed", msg: errorMsg };
+                    errMsg = errorMsg;
+                }
+                pmaRes = { status: "failed", msg: errMsg };
+
+                if (req_from === 'cma') {
+                    alert(errMsg);
+                    location.reload();
                 }
             }
             activeRequest = false;
@@ -348,6 +358,10 @@ function runPMA(agentPath, logoPath) {
             $('.btn-checkout').hide();
             $('.btn-lp.pay').hide();
             pmaRes = { status: "failed", msg: errorMsg };
+            if (req_from === 'cma') {
+                alert(pmaRes.msg);
+                location.reload();
+            }
         })
         .always(function () {
             activeRequest = false;
