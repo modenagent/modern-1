@@ -152,6 +152,7 @@ list($r, $g, $b) = sscanf($theme, "#%02x%02x%02x");
         }
         .listing-grid > div img {
             width: 100%;
+            height: 145px;
         }
         .listing-grid p {
             margin-top: 0;
