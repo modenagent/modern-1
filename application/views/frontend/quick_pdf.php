@@ -31,8 +31,6 @@
                     </div>
                 </div>
                 <h1 class="main_title cmawhite">Generate Your Complimentary <br> Market Analysis</h1>
-				<!--<p class="quickpdf">This 8 page report analyzes today's market and what the proposed selling value of your home is.<br> This report is for informational purposes soley. This report is made avaible to you at no cost.</p>-->
-                <!-- <p class="subline">Below you can update the following: Agent info, company info, set a default theme, and update your login info.</p> -->
             </div>
         </div>
         <div class="row">
@@ -48,18 +46,12 @@
                                     <div class="mb-2"><p class="subquick">DRE# <?=$agent->license_no;?></p></div>
                                     <div class="mb-2"><p class="subquick">E: <?=$agent->email;?></p></div>
                                     <div class="mb-2"><p class="subquick">P: <?=$agent->phone;?></p></div>
-							<!--		<div class="mb-2"><p class="subquick"><?=$agent->company_name;?></p></div>
-                                    <div class="mb-2"><p class="subquick"><?=$agent->company_add . ', ' . $agent->company_city . ', ' . $agent->company_state . ', ' . $agent->comapny_zip;?></p></div> -->
                                 </div>
 
                             </div>
                             <input type="hidden" class="form-control" name="ref_code" value="<?php echo $code; ?>">
                             <input type="hidden" class="form-control" name="form-name" value="ref-form">
-                            <!-- <div class="form-group email_field">
-                                <div class="cma_label">Enter Your Reference Code</div>
-                                <input type="text" class="form-control " name="ref_code" id="ref_code"
-                                    placeholder="Reference code" value="<?php echo $code; ?>" required>
-                            </div> -->
+
                             <div class="form-group email_field">
                                 <div class="cma_label">Enter Valid Phone Number</div>
                                 <input type="text" class="form-control" name="phone_number" id="phone_number"
@@ -70,7 +62,6 @@
                                     value="Proceed">
                             </div>
                             <div class="alert alert-success" style="display:none"></div>
-                            <!-- <button type="submit" class="btn btn-lp save">Save</button> -->
                         </form>
                         <div id="user-details" style="display:none;" class="hidden">
                             <p>Here are the details of user</p>
@@ -109,7 +100,6 @@
 
                     <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
                     <div class="search-result hidden cma-step-3">
-                        <!-- <div class="search-loader"></div> -->
                         <table id="cma-tbl-list" class="table table-hover responsive nowrap" style="width: 100%">
                             <thead>
                                 <tr>
@@ -189,7 +179,6 @@ if (strpos(strtolower($currentUrl), 'market') !== false) {
                     <input type="checkbox" checked id="subscribe_temp" class="subscribe_temp" value="0"
                         style="display: none !important">
                     <div id="addNewPartner" style="display:none"></div>
-                    <!-- <input type="hidden" name="use_rets" id="use_rets" value="0"> -->
                     <!-- END -->
 
                 </form>
@@ -387,7 +376,6 @@ if (defaultBKFlag == 1) {
                 marker = new google.maps.Marker({
                     position: latlng,
                     map: map,
-                    // title: 'Hello World!'
                 });
             });
         } else {
@@ -402,9 +390,6 @@ if (defaultBKFlag == 1) {
 
 
     $(document.body).on('submit', '#ref-form', function () {
-        //     if( !$(this).valid() ){
-        //         return false;
-        //    }else{
         $("#ref-submit").val("Please wait...");
         $("input#ref-submit").prop('disabled', true);
         var form_data = $(this).serializeArray();
@@ -457,7 +442,6 @@ if (defaultBKFlag == 1) {
                 $("#ref-submit").val("Proceed");
             }
         });
-        //}
         return false;
     });
     $('#payment-form').submit(function () {
@@ -529,8 +513,7 @@ if (defaultBKFlag == 1) {
             $('.backwrap').addClass('hidden');
         }
     }
-    function doSubmit() {
-        // return;
+function doSubmit() {
 
 <?php
 $report = '';
