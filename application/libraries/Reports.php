@@ -692,6 +692,7 @@ class Reports
             $_comparableTemp[$index]['Latitude'] = $val['geo']['lat'];
             $_comparableTemp[$index]['Longitude'] = $val['geo']['lng'];
             $_comparableTemp[$index]['Pool'] = (isset($val['property']['pool']) && $val['property']['pool'] != 'None') ? 'Yes' : 'No';
+            $_comparableTemp[$index]['subTypeText'] = $val['property']['subTypeText'];
 
             $index++;
         }
