@@ -65,10 +65,12 @@ class Lp extends CI_Controller
                 $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '?type=residential&type=rental&type=multifamil' . '&limit=50';
                 if (!empty($residentialType)) {
                     $subType = 'singlefamilyresidence';
-                    if ($residentialType == 'Single Family Residential') {
+                    if (strtolower($residentialType) == 'single family residential') {
                         $subType = 'singlefamilyresidence';
-                    } else if ($residentialType == '') {
+                    } else if (strtolower($residentialType) == 'condominium' || strtolower($residentialType) == 'condo') {
                         $subType = 'condominium';
+                    } else if (strtolower($residentialType) == 'townhouse') {
+                        $subType = 'townhouse';
                     }
                     $query = $query . '&subtype=' . $subType;
                 }
