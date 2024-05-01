@@ -460,13 +460,13 @@ if (is_dir($load_dir)):
 
     for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
 
-	            <div class="item">
+	        <div class="item">
 
-	                <div class="text-center">
-	                    <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
-	                </div>
-
+	            <div class="text-center">
+	                <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
 	            </div>
+
+	        </div>
 
 
 	<?php endfor;
@@ -698,7 +698,7 @@ if ($regsitry_i == 1) {
       </div>
     </div>
     <!-- property_search_model -->
-    <div id="property_search_model" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="property_search_model" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

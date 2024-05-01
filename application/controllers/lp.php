@@ -64,7 +64,7 @@ class Lp extends CI_Controller
                 // $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
                 $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '?type=residential&type=rental&type=multifamil' . '&limit=50';
                 if (!empty($residentialType)) {
-                    $subType = 'singlefamilyresidence';
+                    $subType = null;
                     if (strtolower($residentialType) == 'single family residential') {
                         $subType = 'singlefamilyresidence';
                     } else if (strtolower($residentialType) == 'condominium' || strtolower($residentialType) == 'condo') {
@@ -72,7 +72,13 @@ class Lp extends CI_Controller
                     } else if (strtolower($residentialType) == 'townhouse') {
                         $subType = 'townhouse';
                     }
-                    $query = $query . '&subtype=' . $subType;
+
+                    if (str_contains(strtolower($residentialType), 'commercial')) {
+                        $subType = 'warehouse';
+                    }
+                    if (!empty($subType)) {
+                        $query = $query . '&subtype=' . $subType;
+                    }
                 }
                 $properties['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $properties['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;

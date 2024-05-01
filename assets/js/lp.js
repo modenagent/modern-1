@@ -718,6 +718,7 @@ function get187() {
                     $('#changes_req_params_property_search .submit-btn').prop('disabled', false);
                     Notify('Warning', 'Less then 4 comparable found, please change the setting and try again.', 'warning');
                     // if (!data.use_rets && (all_comp.length + sorted_comp.length < 4)) {
+                    $('#property_search_model').modal({ backdrop: 'static', keyboard: false })
                     $('#property_search_model').modal('show');
                     $('#changes_req_params_property_search #apn').val(dataObj.apn);
                     // $('#changes_req_params_property_search #property_address').val(dataObj.Address);
