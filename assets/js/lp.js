@@ -28,6 +28,7 @@ $(document).ready(function () {
     sorted_comp = [];
     reportData = {};
     getSordrtedProperties = false;
+    residentialType = null;
     apnInfo = {};
     activeRequest = false;
     pmaRes = {};
@@ -598,6 +599,7 @@ function get187() {
             dataType: "xml",
             success: function (xml) {
                 reportXML = xml;
+                console.log('xml ===', xml);
                 parse187();
             },
             error: function () {
@@ -621,7 +623,8 @@ function get187() {
                 presentation: $('#presentation').val(),
                 user_id: $("#user-id").val(),
                 propertyStatus: propertyType,
-                sqft: defaultSqft
+                sqft: defaultSqft,
+                residentialType: residentialType
 
             },
             dataType: "json",
@@ -762,6 +765,7 @@ $('#property-status').change(function () {
 function parse187() {
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
+    residentialType = $(reportXML).find("PropertyProfile").find("PropertyCharacteristics").find("UseCode").text();
     if (ownerNamePrimary.indexOf(';') !== -1) {
         ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
         ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));
