@@ -73,7 +73,7 @@ class Lp extends CI_Controller
                         $subType = 'townhouse';
                     }
 
-                    if (str_contains(strtolower($residentialType), 'commercial')) {
+                    if (str_contains(strtolower($residentialType), 'commercial') || str_contains(strtolower($residentialType), 'warehouse')) {
                         $subType = 'warehouse';
                     }
                     if (!empty($subType)) {
