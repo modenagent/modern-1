@@ -20,7 +20,7 @@ class Lp extends CI_Controller
         $request .= '&key=' . getSitexKey();
 
         $getsortedresults = isset($_GET['getsortedresults']) ? $_GET['getsortedresults'] : 'false';
-
+        $residentialType = isset($_GET['residentialType']) ? $_GET['residentialType'] : false;
         // if($getsortedresults != 'true') {
 
         //     $req_send= "https://dev.modernagent.io/index.php?/lp/getSearchResults?&requrl=".urlencode($request);
@@ -61,7 +61,17 @@ class Lp extends CI_Controller
                 $postalCode = $file->PropertyProfile->SiteZip;
                 $citi = $file->PropertyProfile->SiteCity;
                 $address = $this->input->get('address');
-                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
+                // $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '?type=residential&type=rental&type=multifamil' . '&limit=50';
+                if (!empty($residentialType)) {
+                    $subType = 'singlefamilyresidence';
+                    if ($residentialType == 'Single Family Residential') {
+                        $subType = 'singlefamilyresidence';
+                    } else if ($residentialType == '') {
+                        $subType = 'condominium';
+                    }
+                    $query = $query . '&subtype=' . $subType;
+                }
                 $properties['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $properties['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
                 $propertyBuildingArea = (int) $file->PropertyProfile->PropertyCharacteristics->BuildingArea;
