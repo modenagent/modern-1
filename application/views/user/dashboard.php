@@ -469,9 +469,7 @@ if (is_dir($load_dir)):
 	            </div>
 
 
-	<?php
-
-endfor;
+	<?php endfor;
 endif;
 ?>
                         </div>
@@ -764,7 +762,7 @@ if ($regsitry_i == 1) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary close-parameter-model" onclick="location.reload();" data-bs-dismiss="modal">Close</button>
                         <button type="submit"  class="btn btn-success submit-btn">Update Search</button>
                     </div>
                     <div class="panel-footer">
