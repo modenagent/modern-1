@@ -509,6 +509,12 @@ img{
   z-index: 1;
 }
 
+.login-page-section .main-content-box .outer-container .right-column .inner-box .form-group label.error {
+  left: 0;
+  top: 60px;
+  color: #dc3545;
+}
+
 .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='text'],
 .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='email'], 
 .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='password']{
