@@ -71,10 +71,12 @@ foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
     }
     $rangeOfSales['avaiProperty']++;
     $buildingArea = ($cpmrebl['BuildingArea']) ? $cpmrebl['BuildingArea'] : 0;
+    $bed = ($cpmrebl['Beds']) ? $cpmrebl['Beds'] : 0;
+    $baths = ($cpmrebl['Baths']) ? $cpmrebl['Baths'] : 0;
     // $rangeOfSales['sQFootage'] += $cpmrebl['BuildingArea'];
     $rangeOfSales['sQFootage'] += str_replace(',', '', $buildingArea);
-    $rangeOfSales['avgNoOfBeds'] += $cpmrebl['Beds'];
-    $rangeOfSales['avgNoOfBaths'] += $cpmrebl['Baths'];
+    $rangeOfSales['avgNoOfBeds'] += $bed;
+    $rangeOfSales['avgNoOfBaths'] += $baths;
     if ($minRange > $cpmrebl['PriceRate']) {
         $maxRange = $cpmrebl['PriceRate'];
     }
