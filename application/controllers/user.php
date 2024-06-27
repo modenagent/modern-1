@@ -804,7 +804,15 @@ class User extends CI_Controller
             //RETS API
             $this->load->model('user_rets_api_details_model');
             $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
-            $data['rets_api_data'] = (object) $rets_api_data;
+
+            if ($rets_api_data && !empty($rets_api_data)) {
+                $rets_api_data = (array) $rets_api_data;
+            } else {
+                $rets_api_data['user_name'] = $_ENV['RETS_API_USERNAME'];
+                $rets_api_data['user_password'] = openssl_encrypt($_ENV['RETS_API_PASSWORD'], "AES-128-ECB", $this->config->item('encryption_key'));
+            }
+
+            $data['rets_api_data'] = $rets_api_data;
             //Check for active content
             $valid_tabs = [
                 'login', 'agent', 'company', 'theme', 'membership', 'retsapi',
