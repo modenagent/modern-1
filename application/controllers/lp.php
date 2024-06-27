@@ -44,10 +44,8 @@ class Lp extends CI_Controller
             if (empty($userId)) {
                 $userId = $this->input->get('user_id');
             }
-            $this->load->model('user_rets_api_details_model');
-            $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
-            // print_r($rets_api_data);die;
-            if ($rets_api_data && !empty($rets_api_data) && $check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
+
+            if ($check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
                 $this->load->model('params_adjustment_model');
                 // $retsRadius = $this->input->get('radius') ?? "0.25";
                 $retsSqft = $this->input->get('sqft') ?? "0.20";
@@ -85,9 +83,21 @@ class Lp extends CI_Controller
                 $propertyBuildingArea = (int) $file->PropertyProfile->PropertyCharacteristics->BuildingArea;
                 $this->load->library('rets');
 
-                $user_name = $rets_api_data->user_name;
-                $encrypted_password = $rets_api_data->user_password;
-                $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
+                $user_name = $_ENV['RETS_API_USERNAME'];
+                $password = $_ENV['RETS_API_PASSWORD'];
+
+                $this->load->model('user_rets_api_details_model');
+                $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
+                if ($rets_api_data && !empty($rets_api_data)) {
+                    $user_name = $rets_api_data->user_name;
+                    $encrypted_password = $rets_api_data->user_password;
+                    $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $CI->config->item('encryption_key'));
+                }
+
+                // $user_name = $rets_api_data->user_name;
+                // $encrypted_password = $rets_api_data->user_password;
+                // $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
+
                 if (!empty($adjustableParams) && $adjustableParams['rets_flag']) {
                     // $retsRadius = $adjustableParams['rets_radius'] ?? "0.25";
                     // $retsSqft = $adjustableParams['rets_sqft'] ?? "0.20";

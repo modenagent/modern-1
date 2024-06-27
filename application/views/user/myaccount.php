@@ -309,11 +309,11 @@ if ($show_api_form):
               <form id="retsApiForm" action="<?php echo base_url('user/saveRetsDetails') ?>" method="post">
                 <div class="row">
                   <div class="col-sm-6">
-                    <input autocomplete=off placeholder="User Name" type="text" name="rets_user" id="rets_user" class="form-control" required value="<?php echo $rets_api_data->user_name; ?>" >
+                    <input autocomplete=off placeholder="User Name" type="text" name="rets_user" id="rets_user" class="form-control" required value="<?php echo $rets_api_data['user_name']; ?>" >
                   </div>
 
                   <div class="col-sm-6">
-                    <input autocomplete=off placeholder="Password"  type="password" name="rets_password" id="rets_password" class="form-control" required value="<?php echo !empty($rets_api_data->user_password) ? openssl_decrypt($rets_api_data->user_password, "AES-128-ECB", $this->config->item('encryption_key')) : ''; ?>">
+                    <input autocomplete=off placeholder="Password"  type="password" name="rets_password" id="rets_password" class="form-control" required value="<?php echo !empty($rets_api_data['user_password']) ? openssl_decrypt($rets_api_data['user_password'], "AES-128-ECB", $this->config->item('encryption_key')) : ''; ?>">
                   </div>
                 </div>
                 <div class="row">

@@ -160,12 +160,16 @@ class Reports
                 }
             }
 
-            if ($CI->input->post('use_rets') && ($CI->input->post('use_rets') == 1 || $CI->input->post('use_rets') == 'true') && $rets_api_data && !empty($rets_api_data)) {
+            if ($CI->input->post('use_rets') && ($CI->input->post('use_rets') == 1 || $CI->input->post('use_rets') == 'true')) {
                 //Start RETS
+                $user_name = $_ENV['RETS_API_USERNAME'];
+                $password = $_ENV['RETS_API_PASSWORD'];
 
-                $user_name = $rets_api_data->user_name;
-                $encrypted_password = $rets_api_data->user_password;
-                $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $CI->config->item('encryption_key'));
+                if ($rets_api_data && !empty($rets_api_data)) {
+                    $user_name = $rets_api_data->user_name;
+                    $encrypted_password = $rets_api_data->user_password;
+                    $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $CI->config->item('encryption_key'));
+                }
 
                 // $comparables = $this->sort_properties($report187, $comparableTemp);
                 // $reportItems['comparable'] = $comparables['sorted'];
