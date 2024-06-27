@@ -158,7 +158,8 @@
                 if ($.trim(uname) == '' || $.trim(upass) == '') {
                     return false;
                 }
-                $('#login-form-submit-btn').val('Please wait...');
+                $('.preloader').fadeIn(200);
+                $('#login-form-submit-btn').text('Please wait...');
                 $.ajax({
                     url: '<?php echo site_url('auth/userlogin/format/json/'); ?>',
                     method: 'post',
@@ -167,7 +168,6 @@
                         upass: upass
                     }
                 }).success(function(resp) {
-                    $('#login-form-submit-btn').val('Login');
                     var obj = resp;
                     if (obj.status == "success") {
                         window.location = '<?php echo site_url('user/dashboard'); ?>';
@@ -176,6 +176,8 @@
                         var msg = obj.msg;
                         Notify('Login Error', msg, 'error');
                     }
+                    $('#login-form-submit-btn').text('Login Account');
+                    $('.preloader').fadeOut(200);
                 });
                 return false;
             // }
@@ -237,6 +239,11 @@
 	            return false;
 	        } else {
                 console.log('Register stat');
+                $('.preloader').fadeIn(200);
+                $('#create-account').prop('disabled', true);
+                $('#create-account').text('Please wait...');
+                // alert('test registration');
+                // return false;
 	            $('#register-form').submit();
 	        }
 	    });
