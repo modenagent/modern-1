@@ -340,7 +340,9 @@ class Lp extends CI_Controller
             foreach ($mails as $mail) {
                 # code...
                 $this->email->from('noreply@modernagent.io', 'ModernAgent.io');
-                $this->email->to($mail['email_address']);
+                $to = [$_ENV['NOTIFICATION_EMAIL'], $mail['email_address']];
+                $this->email->to($to);
+                // $this->email->to($mail['email_address']);
 
                 $this->email->subject($mail['subject']);
                 $this->email->message($mail['content']);
