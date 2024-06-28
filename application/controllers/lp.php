@@ -88,10 +88,11 @@ class Lp extends CI_Controller
 
                 $this->load->model('user_rets_api_details_model');
                 $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
+
                 if ($rets_api_data && !empty($rets_api_data)) {
                     $user_name = $rets_api_data->user_name;
                     $encrypted_password = $rets_api_data->user_password;
-                    $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $CI->config->item('encryption_key'));
+                    $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
                 }
 
                 // $user_name = $rets_api_data->user_name;
