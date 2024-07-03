@@ -260,7 +260,7 @@ class Lp extends CI_Controller
         if (!empty($_ENV['ENV_MODE'])) {
             $env_mode = trim($_ENV['ENV_MODE']);
         }
-        if (strtolower($env_mode) == 'development') {
+        if (strtolower($env_mode) == 'production') {
             $this->load->library('mandrill');
             $mandrill_ready = null;
             try {
