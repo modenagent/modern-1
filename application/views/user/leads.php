@@ -17,39 +17,47 @@
       </div>
     <?php endif;?>
     <h1 class="main_title mb-4">Leads</h1>
-	<p class="subline">Below you can find your marketing code along with your leads and downloadable QR coded.</p>
-     
+	    <p class="subline">Below you can find your marketing code along with your leads and downloadable QR coded.</p>
+
         <div class="row barcode-wrapper">
           <div class="col-md-6 qr-wrapper border-none ">
             <div class="qr-text">
-              <p>
-                Use this QR code to direct your prospects to your Market Update landing page.
-              </p>
-			  
-      <p class="leads">Your unique referral code:<span id="ref-code">1746xx
-         
-        </span></p>
-		<p class=""><span class="link-span" >www.modernagent.io/mkt/1746xx</span></p>
+              <p> Use this QR code to direct your prospects to your Market Update landing page.</p>
+
+              <?php if ($ref_code): ?>
+              <p class="leads">Your unique referral code: <span id="ref-code"> <?php echo $ref_code; ?></span></p>
+		          <p class=""><span class="link-span" >www.modernagent.io/mkt/<?php echo $ref_code; ?></span></p>
+              <?php endif;?>
             </div>
+
+            <?php if ($ref_code): ?>
             <div class="qr-code-container">
-
-                  <img src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/a2e8eeff-1b35-ab88-2ffd-ae0fadd6bbf2.png">
-
-              </div>
+              <?php
+$url = urlencode(base_url("mkt/" . $ref_code));
+list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
+$rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
+$rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
+$image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
+?>
+                <!-- <img src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/a2e8eeff-1b35-ab88-2ffd-ae0fadd6bbf2.png"> -->
+                <img src="<?php echo $image; ?>">
+            </div>
+              <?php else: ?>
+                <p>This feature is not available to you.
+              <?php endif;?>
           </div>
+
           <div class="col-md-6 qr-wrapper ">
             <div class="qr-text">
-              <p>
-                Use this QR code to direct your prospects to your CMA landing page.
-              </p>
-			   <?php if ($ref_code): ?>
-      <p class="leads">Your unique referral code: <span id="ref-code">
-          <?php echo $ref_code; ?>
-        </span></p>
-		<p class=""><span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+              <p> Use this QR code to direct your prospects to your CMA landing page.</p>
+              <?php if ($ref_code): ?>
+              <p class="leads">Your unique referral code: <span id="ref-code"> <?php echo $ref_code; ?></span></p>
+		          <p class=""><span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+              <?php endif;?>
             </div>
+            <?php if ($ref_code): ?>
             <div class="qr-code-container">
-<?php
+                <?php
 $url = urlencode(base_url("cma/" . $ref_code));
 list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
 $rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
@@ -58,14 +66,13 @@ $rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
 $rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
 $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
 ?>
-                  <img src="<?php echo $image; ?>">
-
-              </div>
+                <img src="<?php echo $image; ?>">
+            </div>
+              <?php else: ?>
+                <p>This feature is not available to you.
+              <?php endif;?>
           </div>
         </div>
-    <?php else: ?>
-      <p>This feature is not available to you.
-      <?php endif;?>
 
     <div class="table-responsive">
       <table class="table table-hover responsive nowrap" style="width:100%" id="leads-table-dt">
