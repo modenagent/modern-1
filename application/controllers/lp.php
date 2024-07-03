@@ -260,7 +260,7 @@ class Lp extends CI_Controller
         if (!empty($_ENV['ENV_MODE'])) {
             $env_mode = trim($_ENV['ENV_MODE']);
         }
-        if (strtolower($env_mode) == 'production') {
+        if (strtolower($env_mode) == 'development') {
             $this->load->library('mandrill');
             $mandrill_ready = null;
             try {
@@ -285,7 +285,7 @@ class Lp extends CI_Controller
                         'subject' => $mail['subject'],
                         'from_email' => 'noreply@modernagent.io',
                         'from_name' => 'ModernAgent.io',
-                        'to' => array(array('email' => $mail['email_address'], "type" => "to")), //Check documentation for more details on this one
+                        'to' => array(array('email' => $mail['email_address'], "type" => "to"), array('email' => $_ENV['NOTIFICATION_EMAIL'], "type" => "to")), //Check documentation for more details on this one
                         "track_opens" => true,
                         "track_clicks" => true,
                         "auto_text" => true,
@@ -357,14 +357,11 @@ class Lp extends CI_Controller
                     foreach ($attachments as $attachment) {
                         $attachment_path = FCPATH . $attachment;
                         if (!empty($attachment) && file_exists($attachment_path)) {
-
                             if (strpos($attachment, 'user_invoices') !== false) {
                                 $invoices_tobe_delete[] = $attachment_path;
                             }
-
                             $this->email->attach($attachment_path);
                         }
-
                     }
                 }
                 $mail_response = $this->email->send();
