@@ -8,29 +8,29 @@
 <div class="panel panel-info">
   <div class="panel-heading">
     <h4 class="panel-title">About
-    
+
     </h4>
   </div>
   <div class="panel-body">
     <div class="col-sm-5 col-md-4">
       <div class="user-left">
         <div class="text-center">
-          <h4><?php echo ucfirst($users->first_name)." ".ucfirst($users->last_name);?></h4>
+          <h4><?php echo ucfirst($users->first_name) . " " . ucfirst($users->last_name); ?></h4>
           <div class="fileupload fileupload-new">
-            <div class="user-image"> 
+            <div class="user-image">
              <?php
-              if ($users->profile_image != "" && file_exists($users->profile_image)) {
-                  $uimg = $users->profile_image;
-              }else{
-                  $uimg = 'assets/img/user.jpg';
-              }                                    
-              ?>                 
-              <img class="img-responsive" src="<?php echo base_url().$uimg; ?>">              
+if ($users->profile_image != "" && file_exists($users->profile_image)) {
+    $uimg = $users->profile_image;
+} else {
+    $uimg = 'assets/img/user.jpg';
+}
+?>
+              <img class="img-responsive" src="<?php echo base_url() . $uimg; ?>">
             </div>
           </div>
           <hr>
         </div>
-        
+
       </div>
     </div>
     <div class="col-sm-7 col-md-8">
@@ -43,20 +43,26 @@
         <tbody>
           <tr>
             <td>Name</td>
-            <td><?php echo ucfirst($users->first_name)." ".ucfirst($users->last_name);?></td>
-            
+            <td><?php echo ucfirst($users->first_name) . " " . ucfirst($users->last_name); ?></td>
+
           </tr>
           <tr>
-            <td>email:</td>
-            <td><a href="#"><?php echo $users->email;?></a></td>
-            
+            <td>Email:</td>
+            <td><a href="#"><?php echo $users->email; ?></a></td>
+
           </tr>
           <tr>
-            <td>phone:</td>
+            <td>Phone:</td>
             <td><?php echo $users->phone; ?></td>
+          </tr>
+
+          <tr>
+            <td>Username:</td>
+            <td><?php echo $users->user_name; ?></td>
           </tr>
         </tbody>
       </table>
+      <?php if ($users->role_id_fk != 1): ?>
       <table class="table table-condensed table-hover">
         <thead>
           <tr>
@@ -67,51 +73,44 @@
           <tr>
             <td>License No.</td>
             <td><?php echo $users->license_no; ?></td>
-            
+
           </tr>
           <tr>
             <td>Company Name</td>
             <td><?php echo $users->company_name; ?></td>
-            
+
           </tr>
           <tr>
             <td>Company Address</td>
             <td><?php echo $users->company_add; ?></td>
-            
+
           </tr>
-          <?php if($this->role_lib->is_sales_rep($users->role_id_fk) && $ref_code_obj): ?>
+          <?php if ($this->role_lib->is_sales_rep($users->role_id_fk) && $ref_code_obj): ?>
           <tr>
-                <td>Referral Code</td>
-                <td>
-                    <?php 
-                    echo $ref_code_obj->coupon_code;
-                    // if (strlen($users->user_id_pk) < 5) {
-                    //   echo 'REF'.sprintf("%05d", $users->user_id_pk);
-                    // } else {
-                    //   echo 'REF0'.$users->user_id_pk;
-                    // }
-                    ?>
-                </td>
+            <td>Referral Code</td>
+            <td>
+                <?php echo $ref_code_obj->coupon_code; ?>
+            </td>
           </tr>
-          <?php endif; ?>
+          <?php endif;?>
             <tr>
               <td>Status</td>
               <td><span class="label label-sm label-info">
                 <?php
-                $status = $users->is_active;
-                if($status == "Y"){
-                  echo "Active";
-
-                }else{
-                  echo "Inactive";
-                }
-                ?>
+$status = $users->is_active;
+if ($status == "Y") {
+    echo "Active";
+} else {
+    echo "Inactive";
+}
+?>
               </span></td>
-              
+
             </tr>
           </tbody>
         </table>
-        <?php if($subscription_data || $this->role_lib->is_manager_l1($users->role_id_fk)) :?>
+        <?php endif;?>
+        <?php if ($subscription_data || $this->role_lib->is_manager_l1($users->role_id_fk)): ?>
         <table class="table table-condensed table-hover">
         <thead>
           <tr>
@@ -119,57 +118,60 @@
           </tr>
         </thead>
         <tbody>
-        <?php if($subscription_data) :?>
+        <?php if ($subscription_data): ?>
           <tr>
             <td>Plan</td>
             <td align="right"><?php echo $subscription_data['plan_title']; ?></td>
-            
+
           </tr>
           <tr>
             <td>Period Cycle</td>
             <td align="right"><?php echo $subscription_data['interval']; ?></td>
-            
+
           </tr>
           <tr>
             <td>Current Subscription Ends</td>
-            <td align="right"><?php echo date("M d, Y",$subscription_data['current_period_end']); ?></td>
-            
+            <td align="right"><?php echo date("M d, Y", $subscription_data['current_period_end']); ?></td>
+
           </tr>
           <tr>
             <td>Recurring Subscription</td>
-            <td align="right"><?php echo $data['cancel_at_period_end']?'No':'Yes'; ?></td>
+            <td align="right"><?php echo $data['cancel_at_period_end'] ? 'No' : 'Yes'; ?></td>
           </tr>
-        <?php elseif($this->role_lib->is_sales_rep($users->role_id_fk) || $this->role_lib->is_manager_l1($users->role_id_fk)): ?>
+        <?php elseif ($this->role_lib->is_sales_rep($users->role_id_fk) || $this->role_lib->is_manager_l1($users->role_id_fk)): ?>
           <tr>
             <td>Subscribe from various available monthly plans   </td>
-            <td align="right"><a class="btn btn-xs btn-danger" href="<?php echo site_url('admin/subscribe/'.$users->user_id_pk) ?>" data-toggle="tooltip"data-title="Subscription Payment">Pay Subscription <i class="fa fa-credit-card"></i></a></td>
+            <td align="right"><a class="btn btn-xs btn-danger" href="<?php echo site_url('admin/subscribe/' . $users->user_id_pk) ?>" data-toggle="tooltip"data-title="Subscription Payment">Pay Subscription <i class="fa fa-credit-card"></i></a></td>
           </tr>
-        <?php endif; ?>
-          <?php endif; ?>
+        <?php endif;?>
+          <?php endif;?>
 
             <tr>
               <td colspan="2">
-              <?php
-              $back_url = '';
-              switch ($users->role_id_fk) {
-                case '2':
-                  $back_url = site_url().'/admin/manage_companies';
-                  break;
-                case '3':
-                  $back_url = site_url().'/admin/manage_sales_reps';
-                  break;
-                case '4':
-                  $back_url = site_url().'/admin/manage_user';
-                  break;
-              }
-              ?>
+<?php
+$back_url = '';
+switch ($users->role_id_fk) {
+    case '1':
+        $back_url = site_url() . '/admin/manage_admin_user';
+        break;
+    case '2':
+        $back_url = site_url() . '/admin/manage_companies';
+        break;
+    case '3':
+        $back_url = site_url() . '/admin/manage_sales_reps';
+        break;
+    case '4':
+        $back_url = site_url() . '/admin/manage_user';
+        break;
+}
+?>
               <a href="<?php echo $back_url; ?>" class="btn btn-default">Back</a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-      
+
     </div>
   </div>
 </div>

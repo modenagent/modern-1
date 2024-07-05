@@ -372,7 +372,6 @@ MSG;
     public function manage_user()
     {
         hasAccess('view_all_user');
-        // die;
         $data['title'] = "Manage Users";
         $data['add_title'] = "Create User";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
@@ -401,6 +400,45 @@ MSG;
             $data['companies'] = json_encode($companies);
             $this->load->view('admin/header', $data);
             $this->load->view('admin/manage_user', $data);
+            $this->load->view('admin/footer', $data);
+        } else {
+            redirect('admin/index');
+        }
+
+    }
+
+    // manage admin user
+    public function manage_admin_user()
+    {
+        hasAccess('view_all_admin_user');
+        $data['title'] = "Manage Admin Users";
+        $data['add_title'] = "Create Admin User";
+        $adminId = $data['admin_id'] = $this->session->userdata('adminid');
+        if ($adminId) {
+            $data['newUserRoleId'] = 1;
+            $data['refferalCode'] = "REF" . $adminId;
+            $_isAdmin = $this->role_lib->is_admin();
+            $_isManager = $this->role_lib->is_manager_l1();
+            $this->load->model('role_model');
+            $data['user_role'] = '';
+            $data['add_form'] = 'end_user';
+            if ($_isAdmin) {
+                $data['parents'] = $this->role_model->get_sales_reps(null, 'Y');
+                $data['choose'] = 'Sales Rep';
+            } else if ($_isManager) {
+                $data['parents'] = $this->role_model->get_sales_reps($adminId, 'Y');
+                $data['choose'] = 'Sales Rep';
+            }
+            $companies = array();
+            if (isset($data['parents'])) {
+                foreach ($data['parents'] as $_company) {
+                    $companies[$_company['user_id_pk']]['cadd'] = $_company['company_add'];
+                    $companies[$_company['user_id_pk']]['cname'] = $_company['company_name'];
+                }
+            }
+            $data['companies'] = json_encode($companies);
+            $this->load->view('admin/header', $data);
+            $this->load->view('admin/manage_admin_user', $data);
             $this->load->view('admin/footer', $data);
         } else {
             redirect('admin/index');
@@ -657,7 +695,6 @@ MSG;
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
         $adminDetails = $this->base_model->get_record_by_id('lp_user_mst', array('user_id_pk' => $adminId));
         if ($adminDetails) {
-
             $user = $this->base_model->get_record_by_id('lp_user_mst', array('user_id_pk' => $uid));
             if (empty($user)) {
                 redirect('admin/index');
@@ -690,12 +727,9 @@ MSG;
                     $ref_code_obj = $this->coupon_model->get_by($get_by_array);
                     if (!$ref_code_obj) {
                         //Create
-
                         $this->admin_model->add_referral_code($uid);
-
                         $ref_code_obj = $this->coupon_model->get_by('sales_rep_id', $uid);
                     }
-
                 }
             }
             $data['ref_code_obj'] = $ref_code_obj;
@@ -714,8 +748,12 @@ MSG;
         hasAccess('edit_user_info');
         $data['title'] = "Profile Edit";
         $adminId = $data['admin_id'] = $this->session->userdata('adminid');
+
         if ($adminId) {
             $data['user'] = $this->base_model->get_record_by_id('lp_user_mst', array('user_id_pk' => $uid));
+            if ($data['user']->role_id_fk == 1) {
+                hasAccess('edit_admin_user');
+            }
             $this->_isCreator($data['user'], 'admin/manage_user', 'parent_id');
             $data['roles'] = $this->base_model->all_records('lp_role');
             $_isAdmin = $this->role_lib->is_admin();
@@ -788,6 +826,7 @@ MSG;
         }
 
     }
+
     // prifile edit
     public function user_edit()
     {
@@ -844,12 +883,6 @@ MSG;
                         if ($this->role_lib->is_sales_rep($parent_user_details->role_id_fk) && $roleId == '4') {
                             $referralCode = (!empty($this->input->post('ref_code'))) ? $this->input->post('ref_code') : $this->user_model->setRefCode($uid);
                         }
-
-                        //If Sales Reprensentative
-                        // if ($roleId == '3') {
-                        //     // $cname = $parent_user_details->company_name;
-                        //     // $cadd = $parent_user_details->company_add;
-                        // }
                     }
                 }
 
@@ -859,11 +892,16 @@ MSG;
                     'last_name' => $lname,
                     'email' => $email,
                     'phone' => $phone,
-                    'license_no' => $license,
-                    'company_name' => $cname,
-                    'company_add' => $cadd,
-                    'is_enterprise_user' => $enterpriseFlag,
+                    'role_id_fk' => $roleId,
                 );
+
+                if ($roleId != 1) {
+                    $data['license_no'] = $license;
+                    $data['company_name'] = $cname;
+                    $data['company_add'] = $cadd;
+                    $data['is_enterprise_user'] = $enterpriseFlag;
+                }
+
                 if (isset($ccity)) {
                     $data['company_city'] = $ccity;
                 }
@@ -894,20 +932,7 @@ MSG;
                 if (isset($widget_bg_color)) {
                     $data['widget_bg_color'] = $widget_bg_color;
                 }
-                $resultCheck = false;
-                // USER NAME CAN NOT BE CHANGED ONCE CREATED
-                // if($username!='') {
-                //     $resultCheck = $this->base_model->check_existent($table,array("user_name = '$username' && user_id_pk!="=>$uid));
-                //     $data['user_name'] = $username;
-                // }
-                // if($resultCheck) {
-                //     $resp = array(
-                //         'status'=>'error',
-                //         'msg'=>'Username taken.'
-                //         );
-                //     echo json_encode($resp);
-                //     exit;
-                // }
+
                 $resultCheck = $this->base_model->check_existent($table, array("email = '$email' && user_id_pk!=" => $uid));
                 if ($resultCheck) {
                     $resp = array(
@@ -917,9 +942,7 @@ MSG;
                     echo json_encode($resp);
                     exit;
                 }
-                if (isset($roleId)) {
-                    $data['role_id_fk'] = $roleId;
-                }
+
                 if (isset($parentId)) {
                     $data['parent_id'] = $parentId;
                 }
@@ -984,8 +1007,6 @@ MSG;
 
     public function sso_edit()
     {
-        // echo "<pre>";
-        // print_r($this->input->post());die;
         $data_update = array();
 
         //get existing ids
@@ -998,14 +1019,11 @@ MSG;
                 $existing_ids[$existing_reord->id] = $existing_reord->id;
             }
         }
-        // $data_update['metadata_url'] = $this->input->post('metadata_url');
+
         $form_data = $this->input->post('data');
 
         foreach ($form_data as $data) {
-
             $sso = $data['sso'];
-
-            // $fields = $data['fields'];
             $fields = $data['field'];
 
             if (!empty($sso['metadata_url'])) {
@@ -1017,7 +1035,6 @@ MSG;
                 $data_update['first_name'] = $fields['first_name'];
                 $data_update['last_name'] = $fields['last_name'];
                 $data_update['phone'] = $fields['phone'];
-                // $data_update['sales_rep'] = $fields['sales_rep'];
                 $data_update['username'] = $fields['username'];
                 $data_update['image'] = $fields['image'];
 

@@ -260,7 +260,7 @@ class Lp extends CI_Controller
         if (!empty($_ENV['ENV_MODE'])) {
             $env_mode = trim($_ENV['ENV_MODE']);
         }
-        if (strtolower($env_mode) == 'production') {
+        if (strtolower($env_mode) == 'development') {
             $this->load->library('mandrill');
             $mandrill_ready = null;
             try {
@@ -279,13 +279,19 @@ class Lp extends CI_Controller
                     $this->db->where('mail_cron_id', $mail['mail_cron_id']);
                     $this->db->update('lp_mail_cron', array('status' => 'queued'));
                 }
+
                 foreach ($mails as $key => $mail) {
+                    $default = $_ENV['NOTIFICATION_EMAIL'];
+                    if ($mail['subject'] == 'Modern Agent Reset Password') {
+                        $default = 'info@modernagent.io';
+                    }
+                    $default = 'piyush-crest@yopmail.com';
                     $mailData = array(
                         'html' => $mail['content'], //Consider using a view file
                         'subject' => $mail['subject'],
                         'from_email' => 'noreply@modernagent.io',
                         'from_name' => 'ModernAgent.io',
-                        'to' => array(array('email' => $mail['email_address'], "type" => "to"), array('email' => $_ENV['NOTIFICATION_EMAIL'], "type" => "to")), //Check documentation for more details on this one
+                        'to' => array(array('email' => $mail['email_address'], "type" => "to"), array('email' => $default, "type" => "to")), //Check documentation for more details on this one
                         "track_opens" => true,
                         "track_clicks" => true,
                         "auto_text" => true,
@@ -295,7 +301,6 @@ class Lp extends CI_Controller
                     $attachments = json_decode($mail['attachments']);
                     if (is_array($attachments)) {
                         foreach ($attachments as $attachment) {
-
                             if (strpos($attachment, 'user_invoices') !== false) {
                                 $invoices_tobe_delete[] = $attachment;
                             }
@@ -305,7 +310,7 @@ class Lp extends CI_Controller
                             $mailData['attachments'][] = array(
                                 'path' => base_url($attachment),
                                 'type' => "application/pdf",
-                                'name' => "document" . $i++ . ".pdf",
+                                'name' => basename($attachment),
                                 'content' => $attachment_encoded,
                             );
                         }
@@ -339,9 +344,12 @@ class Lp extends CI_Controller
             $this->load->library('email');
 
             foreach ($mails as $mail) {
-                # code...
+                $default = $_ENV['NOTIFICATION_EMAIL'];
+                if ($mail['subject'] == 'Modern Agent Registration') {
+                    $default = 'info@modernagent.io';
+                }
                 $this->email->from('noreply@modernagent.io', 'ModernAgent.io');
-                $to = [$_ENV['NOTIFICATION_EMAIL'], $mail['email_address']];
+                $to = [$default, $mail['email_address']];
                 $this->email->to($to);
                 // $this->email->to($mail['email_address']);
 
@@ -365,8 +373,6 @@ class Lp extends CI_Controller
                     }
                 }
                 $mail_response = $this->email->send();
-
-                // die;
 
                 if ($mail_response) {
                     $updatedData = array('status' => 'finished', 'delivered_at' => date('Y-m-d H:i:s'));
