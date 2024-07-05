@@ -987,7 +987,7 @@ class User extends CI_Controller
         $this->load->library('Stripe_lib');
         $this->load->model('package_model');
         $stripe = new Stripe_lib();
-        $userId = $this->session->userdata('userid');
+        // $userId = $this->session->userdata('userid');
         $post_data = json_decode(file_get_contents('php://input'));
         if (!$post_data || empty($post_data->priceId) || empty($post_data->customerId) /*|| empty($post_data->paymentMethodId)*/) {
             $reponse_array['message'] = 'Invalid data';
@@ -1049,6 +1049,14 @@ class User extends CI_Controller
                     }
                 }
             }
+
+            $data = array(
+                'user_id_pk' => $userId,
+            );
+            $table = "lp_user_mst";
+            $result = $this->base_model->get_record_by_id($table, $data);
+            $message = $this->load->view('mails/registration_success', $result, true);
+            $this->base_model->queue_mail($result->email, 'User Subscribed Successfully', $message);
         }
         echo json_encode($reponse_array);exit();
 
