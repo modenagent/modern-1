@@ -53,7 +53,7 @@
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <img class="user-top img-circle" src="<?php echo base_url('assets/admin/images/chat-avatar2.jpg'); ?>" alt="">
-                                        <span class="username"> Hi <?php echo $this->session->userdata('name') . ','; //$user_name ?> </span>
+                                        <span class="username"> Hi <?php echo $this->session->userdata('name') . ','; //$user_name      ?> </span>
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu extended logout">
@@ -108,6 +108,9 @@ switch ($title) {
     case 'Manage Packages':
         $active11 = "active";
         break;
+    case 'Manage Admin Users':
+        $active12 = "active";
+        break;
 }
 ?>
             <div class="sidebar-left">
@@ -130,7 +133,7 @@ switch ($title) {
 
 </li>
  */?>
-                         <?php if ($this->role_lib->has_access('manage_companies')): ?>
+                        <?php if ($this->role_lib->has_access('manage_companies')): ?>
                         <li class="list-group-item <?php echo ($title == 'Manage Companies') ? 'active' : ''; ?>">
                             <a class="" href="<?php echo site_url('admin/manage_companies'); ?>">
                             <i class="fa fa-building-o icon-sidebar"></i>
@@ -154,6 +157,15 @@ switch ($title) {
                             <i class="fa fa-users icon-sidebar"></i>
                             <i class="fa fa-angle-right chevron-icon-sidebar"></i>
                                 <span class="isw-mail"></span><span class="text">Users</span>
+                            </a>
+                        </li>
+                        <?php endif;?>
+                        <?php if ($this->role_lib->has_access('view_all_admin_user')): ?>
+                        <li class="list-group-item <?php echo $active12; ?>">
+                            <a class="" href="<?php echo site_url('admin/manage_admin_user'); ?>">
+                            <i class="fa fa-users icon-sidebar"></i>
+                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
+                                <span class="isw-mail"></span><span class="text">Admin Users</span>
                             </a>
                         </li>
                         <?php endif;?>

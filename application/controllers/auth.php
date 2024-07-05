@@ -82,7 +82,6 @@ class Auth extends REST_Controller
     // user register api
     public function userregister_post()
     {
-
         $table = "lp_user_mst";
         $email = $this->post('uemail');
         $where = array('email' => $email);
@@ -109,23 +108,26 @@ class Auth extends REST_Controller
                 $roleId = 4;
             }
             $ref_code = $this->post('ref_code');
-            $parentId = str_ireplace("REF", "", $ref_code);
-            if ($ref_code != '') {
-                $parentId = (int) $parentId;
-                $resultCheck = $this->base_model->check_existent($table, array('user_id_pk' => $parentId));
-                if (!$resultCheck) {
-                    $resp = array(
-                        'status' => 'error',
-                        'msg' => 'Invalid Referral Code.',
-                    );
-                    if ($this->get('callback')) {
-                        echo $this->get('callback') . "(" . json_encode($resp) . ")";
-                    } else {
-                        $this->response($resp, 200);
+            $parentId = 0;
+            if ($roleId != 1) {
+                $parentId = str_ireplace("REF", "", $ref_code);
+                if ($ref_code != '') {
+                    $parentId = (int) $parentId;
+                    $resultCheck = $this->base_model->check_existent($table, array('user_id_pk' => $parentId));
+                    if (!$resultCheck) {
+                        $resp = array(
+                            'status' => 'error',
+                            'msg' => 'Invalid Referral Code.',
+                        );
+                        if ($this->get('callback')) {
+                            echo $this->get('callback') . "(" . json_encode($resp) . ")";
+                        } else {
+                            $this->response($resp, 200);
+                        }
                     }
+                } else {
+                    $parentId = (int) $this->get('parent_id') ? (int) $this->get('parent_id') : (int) $this->post('parent_id');
                 }
-            } else {
-                $parentId = (int) $this->get('parent_id') ? (int) $this->get('parent_id') : (int) $this->post('parent_id');
             }
             $password = $this->post('user_pass') ? $this->post('user_pass') : $this->post('upass');
             $encrypted_password = password_hash($password, PASSWORD_DEFAULT);
@@ -138,19 +140,31 @@ class Auth extends REST_Controller
                 'phone' => $this->post('uphone'),
                 'parent_id' => $parentId,
                 'role_id_fk' => (int) $roleId,
-                'license_no' => $this->post('ulicence'),
-                'company_name' => $this->post('cname'),
-                'company_add' => $this->post('caddress'),
-                'company_city' => $this->post('ccity'),
-                'comapny_zip' => $this->post('czipcode'),
+                'registered_date' => date('Y-m-d H:i:s', time()),
+                'is_active' => 'Y',
                 'company_logo' => '',
                 'company_phone' => '',
                 'company_suite' => '',
                 'company_state' => '',
+                'company_city' => '',
+                'comapny_zip' => '',
                 'user_credits' => '0',
-                'registered_date' => date('Y-m-d H:i:s', time()),
-                'is_active' => 'Y',
+                // 'license_no' => $this->post('ulicence'),
+                // 'company_name' => $this->post('cname'),
+                // 'company_add' => $this->post('caddress'),
+                // 'company_city' => $this->post('ccity'),
+                // 'comapny_zip' => $this->post('czipcode'),
             );
+
+            if ($roleId != 1) {
+                $user['license_no'] = $this->post('ulicence');
+                $user['company_name'] = $this->post('cname');
+                $user['company_add'] = $this->post('caddress');
+                $user['company_city'] = $this->post('ccity');
+                $user['comapny_zip'] = $this->post('czipcode');
+                $user['user_credits'] = '0';
+            }
+
             if (!empty($this->post('company_url'))) {
                 $user['company_url'] = $this->post('company_url');
             }
@@ -182,14 +196,16 @@ class Auth extends REST_Controller
                 $sessionData = $this->session->set_userdata($newdata);
                 $userName = $this->input->post('fname') . ' ' . $this->input->post('lname');
                 $name = 'Administrator';
-                $mail_data = array();
-                $mail_data['email'] = $this->input->post('uemail');
-                $mail_data['first_name'] = $this->input->post('fname');
-                $mail_data['last_name'] = $this->input->post('lname');
-                $mail_data['phone'] = $this->input->post('uphone');
-                $message = $this->load->view('mails/registration_success', $mail_data, true);
+                if ($roleId != 1) {
+                    $mail_data = array();
+                    $mail_data['email'] = $this->input->post('uemail');
+                    $mail_data['first_name'] = $this->input->post('fname');
+                    $mail_data['last_name'] = $this->input->post('lname');
+                    $mail_data['phone'] = $this->input->post('uphone');
+                    $message = $this->load->view('mails/registration_success', $mail_data, true);
 
-                $send = $this->base_model->queue_mail($this->input->post('uemail'), 'Modern Agent Registration', $message);
+                    $send = $this->base_model->queue_mail($this->input->post('uemail'), 'Modern Agent Registration', $message);
+                }
                 $response = array(
                     'status' => 'success',
                     'msg' => 'User added successfully.',
