@@ -139,14 +139,14 @@
                         <tbody>
                             <tr>
                                 <td align="center" class="img-responsive container-padding">
-                                    <img class="auto-width" style="display:block;width:100%;max-width:100%;border:0px;" width="800" src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/158fef30-5e09-1527-1566-0c738b00f52c.jpg" border="0" alt="picture">
+                                    <img class="auto-width" style="display:block;width:100%;max-width:100%;border:0px;" width="800" src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/2cca4268-6d91-6804-afe9-48c3da339942.jpg" border="0" alt="picture">
                                 </td>
                             </tr>
                             <!-- blue-header -->
                         </tbody>
                     </table>
                     <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="640" style="width:800px;max-width:800px;">
-                        <!-- blue-preface-13 -->
+                        <!-- blue-preface-4 -->
                         <tbody>
                             <tr>
                                 <td align="center" bgcolor="#FFFFFF" class="container-padding">
@@ -164,7 +164,7 @@
                                                                 <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:14px;line-height:24px;font-weight:900;font-style:normal;color:rgb(88, 42, 130);text-decoration:none;letter-spacing:1px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
-                                                                        ORDER PLACED
+                                                                        DON'T WORRY, WE ALWAYS FORGET THINGS
                                                                     </div>
 
                                                                 </td>
@@ -173,9 +173,7 @@
                                                                 <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:48px;line-height:54px;font-weight:900;font-style:normal;color:#222222;text-decoration:none;letter-spacing:0px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
-                                                                        <p style="margin: 0px; padding: 0px;">
-                                                                            Thank You for your order!
-                                                                        </p>
+                                                                        LET'S CREATE A NEW PASSWORD
                                                                     </div>
 
                                                                 </td>
@@ -183,130 +181,64 @@
                                                             <tr>
                                                                 <td height="15" style="font-size:15px;line-height:15px;">&nbsp;</td>
                                                             </tr>
-                                                            <tr style="">
+                                                            <tr>
                                                                 <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
+                                                                        <p style="margin: 0px; padding: 0px;">We received a request to reset your password for your ModernAgent.io account. If you did not make this request, you can ignore this email.</p>
                                                                         <p style="margin: 0px; padding: 0px;">
-                                                                            For your convenience we have also attached your report and your invoice.</p>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">To reset your password, please click on the button below:</p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">This link will expire in 24 hours. If it expires, you can request a new password reset.</p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">For your security, if you did not request a password reset, please contact our support team immediately.</p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
                                                                     </div>
 
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
-
-                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                        <p style="margin: 0px; padding: 0px;">
-                                                                            [ Your Report # Here ]</p>
-                                                                    </div>
-
-                                                                </td>
+                                                                <td height="25" style="font-size:25px;line-height:25px;">&nbsp;</td>
                                                             </tr>
                                                             <tr>
                                                                 <td align="center">
-                                                                    <img style="display:block;width:100%;max-width:32px;border:0px;" width="32" src="https://modulescomposer.s3.us-east-2.amazonaws.com/blue/arrow-bl.png" border="0" alt="icon">
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td align="center">
-                                                                    <a href="<?php echo $report_url; ?>">
-                                                                    <!-- Use Code -->
-                                                                    <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center" class="row" width="80%" style="width:80%;max-width:80%;">
+                                                                    <!-- Button -->
+                                                                    <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center" class="center-float">
                                                                         <tbody>
                                                                             <tr>
-                                                                                <td align="center" bgcolor="#F8F8F8" style="border-radius:0px;">
-                                                                                    <!-- Content -->
-                                                                                    <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center" class="row" width="100%" style="width:100%;max-width:100%;">
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:22px;line-height:26px;font-weight:700;font-style:normal;color:rgb(255, 82, 61);text-decoration:none;letter-spacing:4px;">
+                                                                                <td align="center" bgcolor="#ff523d" style="border-radius:0px;">
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+              <table border="0" cellpadding="0" cellspacing="0" align="center">
+                <tr>
+                  <td align="center" width="35"></td>
+                  <td align="center" height="50" style="height:50px;">
+                  <![endif]-->
 
-                                                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                                                        <p style="margin: 0px; padding: 0px;">
-                                                                                                            DOWNLOAD REPORT</p>
-                                                                                                    </div>
+                                                                                    <a href="<?php echo $reset_password_link; ?>" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:15px 35px 15px 35px;display:inline-block;"><span>RESET PASSWORD</span></a>
 
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                    <!-- Content -->
+                                                                                    <!--[if (gte mso 9)|(IE)]>
+                  </td>
+                  <td align="center" width="35"></td>
+                </tr>
+              </table>
+            <![endif]-->
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>
                                                                     </table>
-                                                                    </a>
-                                                                    <!-- User Code -->
+                                                                    <!-- Buttons -->
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td height="60" style="font-size:60px;line-height:60px;">&nbsp;</td>
-                                                            </tr>
-                                                            <tr style="">
-                                                                <td align="center">
-                                                                    <!-- rwd-col -->
-                                                                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="container-padding" width="100%" style="width:100%;max-width:100%;">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td class="rwd-col" align="center" valign="top" width="31.03%" style="width:31.03%;max-width:31.03%;">
-                                                                                    <!-- column -->
-                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="center-text" align="right" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:20px;line-height:24px;font-weight:700;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
-
-                                                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                                                        <p style="margin: 0px; padding: 0px;">Property Details
-                                                                                                        </p>
-                                                                                                    </div>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                    <!-- column -->
-                                                                                </td>
-                                                                                <td class="rwd-col" align="center" width="3.45%" height="10" style="width:3.45%;max-width:3.45%;height:10px;">&nbsp;</td>
-                                                                                <td class="rwd-col" align="center" valign="top" width="65.52%" style="width:65.52%;max-width:65.52%;">
-                                                                                    <!-- column -->
-                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="hide-mobile" align="center" width="20" style="width:20px;max-width:20px;border-left:1px solid #000000;"></td>
-                                                                                                <td class="center-text" align="left" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
-
-                                                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                                                        <p style="margin: 0px; padding: 0px;">
-                                                                                                        <?php echo $address; ?>
-                                                                                                        </p>
-                                                                                                    </div>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                    <!-- column -->
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <!-- rwd-col -->
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="">
-                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-                                                            </tr>
-
                                                         </tbody>
                                                     </table>
                                                     <!-- content -->
@@ -319,7 +251,7 @@
                                     </table>
                                 </td>
                             </tr>
-                            <!-- blue-preface-13 -->
+                            <!-- blue-preface-4 -->
                         </tbody>
                     </table>
                     <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">

@@ -250,162 +250,257 @@ class Auth extends REST_Controller
     // forgot password api
     public function userforgotpass_post()
     {
-        $data = array(
-            'email' => $this->post('uemail'),
-        );
-        $table = "lp_user_mst";
-        $result = $this->base_model->get_record_by_id($table, $data);
+        // load form helper and validation library
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
-        if ($result) {
-            $userId = $result->user_id_pk;
-            $userName = $result->first_name;
-            $pemail = $result->email;
-            $mobileNumber = clean_phone($result->phone);
-            $random_password = $this->generateRandomString();
-            $data = array(
-                'password' => password_hash($random_password, PASSWORD_DEFAULT),
-            );
-            $where = array(
-                'user_id_pk' => $userId,
-            );
-
-            $result2 = $this->base_model->update_record_by_id($table, $data, $where);
-
-            $env_mode = 'devlopment'; //Set default value
-            if (!empty(!$_ENV['ENV_MODE'])) {
-                $env_mode = $_ENV['ENV_MODE'];
-            }
-            if (strtolower($env_mode) == 'production') {
-
-                // send sms until we have the mail running
-                // Your Account SID and Auth Token from twilio.com/console
-                $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
-                $token = 'd33346194bc839d2c495c6b35c2c5a64';
-                $client = new Client($sid, $token);
-
-                // Use the client to do fun stuff like send text messages!
-                $smsText = "Your New Password is: {$random_password}. \n Regards, \n Modern Agent Team";
-                try {
-                    $smsRes = $client->messages->create(
-                        // the number you'd like to send the message to
-                        '+1' . $mobileNumber,
-                        array(
-                            // A Twilio phone number you purchased at twilio.com/console
-                            'from' => '+14243519064',
-                            // the body of the text message you'd like to send
-                            'body' => $smsText,
-                        )
-                    );
-                } catch (Exception $e) {
-                    // var_dump($e);
-                    echo json_encode(array("status" => "failed", 'msg' => 'SMS could not be sent on this number.', "sms" => $smsText));
-                    exit();
-                }
-            }
-
-            if ($result2) {
-                $name = 'Administrator';
-                $message = '<table cellpadding="0" cellspacing="0" border="0"  width="100%" style="" >
-                              <tr>
-                                <td style="padding:0 20px; font-family:Montserrat; padding-top:100px;">
-                                    <table width="100%" cellpadding="5">
-                                        <tr>
-                                            <td style="text-align:center;"><img src="https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/cd5747f7-7929-4386-acc5-7f74a816fc10.png" width="400px" style="padding:10px;" /></td>
-
-                                        </tr>
-
-                                    </table>
-                                </td>
-                              </tr>
-
-                              <tr>
-                                    <td style=" padding:5px 20px;">
-                                        <table width="90%" cellpadding="10" cellspacing="0" style="font-size:13px; margin:0 auto; text-align:center; font-family:Helvetica; color:#666666; background:#ffffff;">
-                                                <tr><td style="color: #000; font-weight: bold;font-family:Montserrat; padding-bottom:40px;"><span style="font-size: 26px;">Temporary Password</span></td></tr>
-                                                <tr>
-                                                <td>
-                                                <table cellpadding="10" cellspacing="0" width="100%" style="font-size:14px; text-align:center; font-family:Helvetica; color:#666666; margin-top:-15px;">
-                                                   <tr>
-                                                       <td style="font-size:12px; text-align:center; color:#000; https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/cd5747f7-7929-4386-acc5-7f74a816fc10.png">Forgot your password? Not a problem we got your back. We have created a temporary password <br>that you can use.  You can change this at anytime by going to your account settings.</td>
-                                                   </tr>
-                                                   <tr><td style="padding-bottom:20px;">Your New Password is: <strong>' . $random_password . '</strong><br><br></td></tr>
-                                                   <tr>
-                                                    <td>
-                                                      <a href="' . site_url() . '" style="background:#000000; padding:10px 100px; border-radius:0px; text-decoration:none; color:#fff; font-size:20px; outline:none; font-weight:bold; font-family:Montserrat;">Log in</a>
-                                                    </td>
-                                                </tr>
-                                                    <tr>
-                                                  <td style="font-size:12px; text-align:center; line-height:20px;">Warm Regards,<br>
-                                                    Modern Agent Team <br>
-                                                    <a href="#" style="color:#666;">' . site_url() . '</a></td>
-                                                  <td></td>
-                                                </tr>
-                                               </table>
-                                               </td>
-                                           </tr>
-                                    </table>
-                                </td>
-                              </tr>
-
-                        <!--     <tr>
-                                <td>
-                                    <table width="90%" cellspacing="5" cellpadding="5" style=" font-size:11px; font-family:Helvetica; color:#999; padding:0px; margin: auto">
-                                        <tr>
-                                          <td>
-                                            <a href="javascript:;" style="color:#999; border-right:1px solid #999; padding:0px 15px;">Privacy</a>
-                                            <a href="javascript:;" style="color:#999; border-right:1px solid #999; padding:0px 15px;">About us</a>
-                                            <a href="javascript:;" style="color:#999; padding:0 15px;">FAQ</a>
-                                          </td>
-                                          <td>&copy; 2015 - All Rights Reserved.</td>
-
-                                        </tr>
-                                    </table>
-                                 </td>
-                              </tr> -->
-                              </tr>
-                            </table>';
-                $send = $this->base_model->queue_mail($pemail, 'Modern Agent Reset Password', $message);
-
-                if ($send) {
-                    $resp = array(
-                        'status' => 'success',
-                        'msg' => 'Password has been sent to your registered email.',
-                    );
-                    if ($this->get('callback')) {
-                        echo $this->get('callback') . "(" . json_encode($resp) . ")";
-                    } else {
-                        $this->response($resp, 200);
-                    }
-                } else {
-                    $resp = array(
-                        'status' => 'error',
-                        'msg' => 'Reset password could not be sent. Please try again.',
-                    );
-                    if ($this->get('callback')) {
-                        echo $this->get('callback') . "(" . json_encode($resp) . ")";
-                    } else {
-                        $this->response($resp, 200);
-                    }
-                }
-            }
+        if (!$this->form_validation->run()) {
+            $status = 'error';
+            $msg = 'Email does not exists.';
+            $this->responseFormat($status, $msg);
+            // $resp = array(
+            //     'status' => 'error',
+            //     'msg' => 'Email does not exists.',
+            // );
+            // if ($this->get('callback')) {
+            //     echo $this->get('callback') . "(" . json_encode($resp) . ")";
+            // } else {
+            //     $this->response($resp, 200);
+            // }
         } else {
-            $resp = array(
-                'status' => 'error',
-                'msg' => 'Email does not exists.',
+            $data = array(
+                'email' => $this->post('email'),
             );
-            if ($this->get('callback')) {
-                echo $this->get('callback') . "(" . json_encode($resp) . ")";
+            $table = "lp_user_mst";
+            $result = $this->base_model->get_record_by_id($table, $data);
+            if ($result) {
+                $userId = $result->user_id_pk;
+                $userName = $result->first_name;
+                $pemail = $result->email;
+                $mobileNumber = clean_phone($result->phone);
+                $random_password = $this->generateRandomString();
+                $this->base_model->delete_record_by_id('lp_reset_password_token', array('user_id' => $userId));
+
+                $token = bin2hex(random_bytes(50));
+                $result2 = $this->db->insert('lp_reset_password_token', ['user_id' => $userId, 'token' => $token]);
+
+                // $data = array(
+                //     'token' => $token,
+                // );
+                // $data = array(
+                //     'password' => password_hash($random_password, PASSWORD_DEFAULT),
+                // );
+                // $where = array(
+                //     'user_id_pk' => $userId,
+                // );
+
+                // $result2 = $this->base_model->update_record_by_id($table, $data, $where);
+
+                $env_mode = 'devlopment'; //Set default value
+                if (!empty(!$_ENV['ENV_MODE'])) {
+                    $env_mode = $_ENV['ENV_MODE'];
+                }
+                if (strtolower($env_mode) == 'production') {
+
+                    // send sms until we have the mail running
+                    // Your Account SID and Auth Token from twilio.com/console
+                    $sid = 'AC29e21e9430aaac14af1cc7da1b01a57e';
+                    $token = 'd33346194bc839d2c495c6b35c2c5a64';
+                    $client = new Client($sid, $token);
+
+                    // Use the client to do fun stuff like send text messages!
+                    $smsText = "Your New Password is: {$random_password}. \n Regards, \n Modern Agent Team";
+                    try {
+                        $smsRes = $client->messages->create(
+                            // the number you'd like to send the message to
+                            '+1' . $mobileNumber,
+                            array(
+                                // A Twilio phone number you purchased at twilio.com/console
+                                'from' => '+14243519064',
+                                // the body of the text message you'd like to send
+                                'body' => $smsText,
+                            )
+                        );
+                    } catch (Exception $e) {
+                        // var_dump($e);
+                        echo json_encode(array("status" => "failed", 'msg' => 'SMS could not be sent on this number.', "sms" => $smsText));
+                        exit();
+                    }
+                }
+
+                if ($result2) {
+                    $name = 'Administrator';
+                    /*$message = '<table cellpadding="0" cellspacing="0" border="0"  width="100%" style="" >
+                    <tr>
+                    <td style="padding:0 20px; font-family:Montserrat; padding-top:100px;">
+                    <table width="100%" cellpadding="5">
+                    <tr>
+                    <td style="text-align:center;"><img src="https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/cd5747f7-7929-4386-acc5-7f74a816fc10.png" width="400px" style="padding:10px;" /></td>
+
+                    </tr>
+
+                    </table>
+                    </td>
+                    </tr>
+
+                    <tr>
+                    <td style=" padding:5px 20px;">
+                    <table width="90%" cellpadding="10" cellspacing="0" style="font-size:13px; margin:0 auto; text-align:center; font-family:Helvetica; color:#666666; background:#ffffff;">
+                    <tr><td style="color: #000; font-weight: bold;font-family:Montserrat; padding-bottom:40px;"><span style="font-size: 26px;">Temporary Password</span></td></tr>
+                    <tr>
+                    <td>
+                    <table cellpadding="10" cellspacing="0" width="100%" style="font-size:14px; text-align:center; font-family:Helvetica; color:#666666; margin-top:-15px;">
+                    <tr>
+                    <td style="font-size:12px; text-align:center; color:#000; https://gallery.mailchimp.com/b10d88eb10799345e0303a43d/images/cd5747f7-7929-4386-acc5-7f74a816fc10.png">Forgot your password? Not a problem we got your back. We have created a temporary password <br>that you can use.  You can change this at anytime by going to your account settings.</td>
+                    </tr>
+                    <tr><td style="padding-bottom:20px;">Your New Password is: <strong>' . $random_password . '</strong><br><br></td></tr>
+                    <tr>
+                    <td>
+                    <a href="' . site_url() . '" style="background:#000000; padding:10px 100px; border-radius:0px; text-decoration:none; color:#fff; font-size:20px; outline:none; font-weight:bold; font-family:Montserrat;">Log in</a>
+                    </td>
+                    </tr>
+                    <tr>
+                    <td style="font-size:12px; text-align:center; line-height:20px;">Warm Regards,<br>
+                    Modern Agent Team <br>
+                    <a href="#" style="color:#666;">' . site_url() . '</a></td>
+                    <td></td>
+                    </tr>
+                    </table>
+                    </td>
+                    </tr>
+                    </table>
+                    </td>
+                    </tr>
+                    </tr>
+                    </table>';*/
+                    $reset_password_link = site_url() . '/frontend/reset_password/' . $token;
+                    $mail_data = ['reset_password_link' => $reset_password_link];
+                    $message = $this->load->view('mails/reser_password', $mail_data, true);
+                    $send = $this->base_model->queue_mail($pemail, 'Modern Agent Reset Password', $message);
+                    if ($send) {
+                        $status = 'success';
+                        $msg = 'Password has been sent to your registered email.';
+                        $this->responseFormat($status, $msg);
+                        // $resp = array(
+                        //     'status' => 'success',
+                        //     'msg' => 'Password has been sent to your registered email.',
+                        // );
+                        // if ($this->get('callback')) {
+                        //     echo $this->get('callback') . "(" . json_encode($resp) . ")";
+                        // } else {
+                        //     $this->response($resp, 200);
+                        // }
+                    } else {
+                        $status = 'error';
+                        $msg = 'Reset password could not be sent. Please try again';
+                        $this->responseFormat($status, $msg);
+                        // $resp = array(
+                        //     'status' => 'error',
+                        //     'msg' => 'Reset password could not be sent. Please try again.',
+                        // );
+                        // if ($this->get('callback')) {
+                        //     echo $this->get('callback') . "(" . json_encode($resp) . ")";
+                        // } else {
+                        //     $this->response($resp, 200);
+                        // }
+                    }
+                }
             } else {
-                $this->response($resp, 200);
+                $status = 'error';
+                $msg = 'Email does not exists.';
+                $this->responseFormat($status, $msg);
+                // $resp = array(
+                //     'status' => 'error',
+                //     'msg' => 'Email does not exists.',
+                // );
+                // if ($this->get('callback')) {
+                //     echo $this->get('callback') . "(" . json_encode($resp) . ")";
+                // } else {
+                //     $this->response($resp, 200);
+                // }
             }
         }
+    }
 
-    }
-    // reset password api
-    public function resetpassword_get()
+    public function resetpassword_post()
     {
-        // abondoned
+        $token = $this->post('token');
+        if (!$token) {
+            $status = 'error';
+            $msg = 'Invalide request, Please contact administrator';
+            $this->responseFormat($status, $msg);
+            // $resp = array(
+            //     'status' => 'error',
+            //     'msg' => 'Invalide request, Please contact administrator',
+            // );
+            // if ($this->get('callback')) {
+            //     echo $this->get('callback') . "(" . json_encode($resp) . ")";
+            // } else {
+            //     $this->response($resp, 200);
+            // }
+        }
+        // $user_id = $this->user_model->get_user_by_token($token);
+        $data = array(
+            'token' => $token,
+        );
+
+        $result = $this->base_model->get_record_by_id('lp_reset_password_token', $data);
+
+        if ($result) {
+            $this->form_validation->set_rules('password', 'Password', 'required');
+            $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'required|matches[password]');
+
+            if (!$this->form_validation->run()) {
+                $status = 'error';
+                $msg = validation_errors();
+                $this->responseFormat($status, $msg);
+
+            } else {
+                $password = $this->input->post('password');
+                $data = array(
+                    'password' => password_hash($password, PASSWORD_DEFAULT),
+                );
+                $where = array(
+                    'user_id_pk' => $result->user_id,
+                );
+
+                $result2 = $this->base_model->update_record_by_id('lp_user_mst', $data, $where);
+                $this->base_model->delete_record_by_id('lp_reset_password_token', array('user_id' => $userId));
+                $status = 'success';
+                $msg = 'Password has updated successfully.';
+                $this->responseFormat($status, $msg);
+
+            }
+        } else {
+            $status = 'error';
+            $msg = 'Invalide request, Please contact administrator';
+            $this->responseFormat($status, $msg);
+            // $resp = array(
+            //     'status' => 'error',
+            //     'msg' => 'Invalide request, Please contact administrator',
+            // );
+            // if ($this->get('callback')) {
+            //     echo $this->get('callback') . "(" . json_encode($resp) . ")";
+            // } else {
+            //     $this->response($resp, 200);
+            // }
+        }
     }
+
+    public function responseFormat($status, $msg)
+    {
+        $resp = array(
+            'status' => $status,
+            'msg' => $msg,
+        );
+        if ($this->get('callback')) {
+            echo $this->get('callback') . "(" . json_encode($resp) . ")";
+        } else {
+            $this->response($resp, 200);
+        }
+    }
+
     // change password
     public function changepassword_get()
     {

@@ -76,6 +76,16 @@ class Frontend extends CI_Controller
         $this->load->view('frontend/footer_login');
     }
 
+    public function reset_password($token)
+    {
+        if (!$token) {
+            redirect(base_url() . 'login');
+        }
+        $this->load->view('frontend/header_login');
+        $this->load->view('frontend/reset_password', ['token' => $token]);
+        $this->load->view('frontend/footer_login');
+    }
+
     // frontend view
     public function register($package = 0)
     {
