@@ -64,13 +64,13 @@
 
         $("#forgot-form").validate({
             rules:{
-                f_uemail:{
+                email:{
                     required:true,
                     email: true
                 }
             },
             messages:{
-                f_uemail: {
+                email: {
                     required: "Please enter email address",
                     email: "Please enter valid email address"
                 }
@@ -86,14 +86,14 @@
                 $('#forgot_submit').attr('disabled',true);
 
                 var postData = $('#forgot-form').serialize();
-                var user_email = $("#f_uemail").val();
+                var user_email = $("#email").val();
 
                 $.ajax ({
                     url: "<?php echo site_url('auth/userforgotpass/format/json/'); ?>",
                     method: 'post',
                     dataType: "json",
                     data: {
-                        uemail: user_email
+                        email: user_email
                     }
                 })
                 .success(function(resp) {
@@ -104,7 +104,9 @@
                         // $('#forgot-form').hide();
                         // $('#forgot-form').trigger("reset");
                         Notify('Password reset', msg, 'success');
-                        location.href="<?php echo base_url('frontend/login'); ?>";
+                        setTimeout(() => {
+                            // location.href="<?php echo base_url('frontend/login'); ?>";
+                        }, 2000);
                     }
                     if (obj.status == "error" || obj.status == "failed") {
                         var msg = obj.msg;
@@ -112,6 +114,56 @@
                     }
                     $('#forgot_submit').val('Recover Password');
                     $('#forgot_submit').attr('disabled',false);
+                    $('.preloader').fadeOut(200);
+                });
+
+                return false;
+            }
+        });
+
+        // forgot form submit
+        $("#reset-password-submit-btn").click(function() {
+            if ( !$("#reset-password-submit-btn").valid() ) {
+                return false;
+            } else {
+                $('#reset-password-submit-btn').val('Processing Request...');
+                $('#reset-password-submit-btn').attr('disabled',true);
+
+                var password = $("#password").val();
+                var confirm_password = $("#confirm_password").val();
+                if ($.trim(password) == '' || $.trim(confirm_password) == '') {
+                    return false;
+                }
+                $('.preloader').fadeIn(200);
+
+                var postData = $('#reset-password-form').serialize();
+                var token = $("#token").val();
+
+                $.ajax ({
+                    url: "<?php echo site_url('auth/resetpassword/format/json/'); ?>",
+                    method: 'post',
+                    dataType: "json",
+                    data: {
+                        token: token,
+                        password: password,
+                        confirm_password: confirm_password
+                    }
+                })
+                .success(function(resp) {
+                    var obj = resp;var msg = obj.msg;
+                    if (obj.status == "success") {
+                        Notify('Password reset', msg, 'success');
+                        setTimeout(() => {
+                            location.href="<?php echo base_url('frontend/login'); ?>";
+                        }, 2000);
+                    }
+                    if (obj.status == "error" || obj.status == "failed") {
+                        var msg = obj.msg;
+                        Notify('Error', msg, 'error');
+                    }
+                    $('#reset-password-submit-btn').text('Update Password');
+                    $('#reset-password-submit-btn').attr('disabled',false);
+                    $('.preloader').fadeOut(200);
                 });
 
                 return false;
@@ -150,9 +202,7 @@
         // login form submit
         $("#login-form").submit(function(e) {
             e.preventDefault();
-            // if ( !$(this).valid() ) {
-            //     return false;
-            // } else {
+
                 var uname = $("#uemail").val();
                 var upass = $("#upass").val();
                 if ($.trim(uname) == '' || $.trim(upass) == '') {

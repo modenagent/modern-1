@@ -139,21 +139,21 @@
                         <tbody>
                             <tr>
                                 <td align="center" class="img-responsive container-padding">
-                                    <img class="auto-width" style="display:block;width:100%;max-width:100%;border:0px;" width="800" src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/dd58a210-79b2-fffd-1c7e-573066701e45.jpg" border="0" alt="picture">
+                                    <img class="auto-width" style="display:block;width:100%;max-width:100%;border:0px;" width="800" src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/2cca4268-6d91-6804-afe9-48c3da339942.jpg" border="0" alt="picture">
                                 </td>
                             </tr>
                             <!-- blue-header -->
                         </tbody>
                     </table>
-                    <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="800" style="width:800px;max-width:800px;">
-                        <!-- blue-preface-1 -->
+                    <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="640" style="width:800px;max-width:800px;">
+                        <!-- blue-preface-4 -->
                         <tbody>
                             <tr>
                                 <td align="center" bgcolor="#FFFFFF" class="container-padding">
                                     <table data-inner-table="" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="inner-table row" width="580" style="width:580px;max-width:580px;">
                                         <tbody>
                                             <tr>
-                                                <td height="60" style="font-size:40px;line-height:60px;">&nbsp;</td>
+                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
                                             </tr>
                                             <tr>
                                                 <td align="center" bgcolor="#FFFFFF">
@@ -164,7 +164,7 @@
                                                                 <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:14px;line-height:24px;font-weight:900;font-style:normal;color:rgb(88, 42, 130);text-decoration:none;letter-spacing:1px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
-                                                                        THANKS FOR JOINING US
+                                                                        DON'T WORRY, WE ALWAYS FORGET THINGS
                                                                     </div>
 
                                                                 </td>
@@ -173,7 +173,7 @@
                                                                 <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:48px;line-height:54px;font-weight:900;font-style:normal;color:#222222;text-decoration:none;letter-spacing:0px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
-                                                                        Welcome aboard!
+                                                                        LET'S CREATE A NEW PASSWORD
                                                                     </div>
 
                                                                 </td>
@@ -185,8 +185,24 @@
                                                                 <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
+                                                                        <p style="margin: 0px; padding: 0px;">We received a request to reset your password for your ModernAgent.io account. If you did not make this request, you can ignore this email.</p>
                                                                         <p style="margin: 0px; padding: 0px;">
-                                                                            Thank you for signing up with Moder Agent. We look forward to having our reports and tools help you achieve your real estate goals.</p>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">To reset your password, please click on the button below:</p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">This link will expire in 24 hours. If it expires, you can request a new password reset.</p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
+                                                                        <p style="margin: 0px; padding: 0px;">For your security, if you did not request a password reset, please contact our support team immediately.</p>
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            <br>
+                                                                        </p>
                                                                     </div>
 
                                                                 </td>
@@ -208,7 +224,7 @@
                   <td align="center" height="50" style="height:50px;">
                   <![endif]-->
 
-                                                                                    <a href="#" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:15px 35px 15px 35px;display:inline-block;"><span>GET STARTED</span></a>
+                                                                                    <a href="<?php echo $reset_password_link; ?>" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:15px 35px 15px 35px;display:inline-block;"><span>RESET PASSWORD</span></a>
 
                                                                                     <!--[if (gte mso 9)|(IE)]>
                   </td>
@@ -229,13 +245,13 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td height="60" style="font-size:40px;line-height:60px;">&nbsp;</td>
+                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </td>
                             </tr>
-                            <!-- blue-preface-1 -->
+                            <!-- blue-preface-4 -->
                         </tbody>
                     </table>
                     <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
