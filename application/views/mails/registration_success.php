@@ -201,21 +201,7 @@
                                                                         <tbody>
                                                                             <tr>
                                                                                 <td align="center" bgcolor="#ff523d" style="border-radius:0px;">
-                                                                                    <!--[if (gte mso 9)|(IE)]>
-              <table border="0" cellpadding="0" cellspacing="0" align="center">
-                <tr>
-                  <td align="center" width="35"></td>
-                  <td align="center" height="50" style="height:50px;">
-                  <![endif]-->
-
-                                                                                    <a href="#" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:15px 35px 15px 35px;display:inline-block;"><span>GET STARTED</span></a>
-
-                                                                                    <!--[if (gte mso 9)|(IE)]>
-                  </td>
-                  <td align="center" width="35"></td>
-                </tr>
-              </table>
-            <![endif]-->
+                                                                                    <a href="<?php echo base_url('frontend/login'); ?>" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:20px;font-weight:700;font-style:normal;color:#FFFFFF;text-decoration:none;letter-spacing:0px;padding:15px 35px 15px 35px;display:inline-block;"><span>GET STARTED</span></a>
                                                                                 </td>
                                                                             </tr>
                                                                         </tbody>

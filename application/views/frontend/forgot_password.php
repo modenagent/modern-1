@@ -24,7 +24,6 @@
                                 </div>
 
                                 <div class="form-group">
-
                                     <div class="">
                                         <button id="forgot_submit" type="button" class="theme-btn">Recover Password</button>
                                     </div>
