@@ -49,6 +49,11 @@
                 $("header.overlapping").removeClass("overlapping-down");
             }
         });
+
+        $(document).on('blur', '#uphone', function(e) {
+            var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+            e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
+        });
     });
     // show the forgot password form
     $('.fp-link').click(function(){
@@ -246,7 +251,7 @@
 	                required: true,
 	                number:true,
 	                minlength: 10,
-	                maxlength: 12
+	                maxlength: 10
 	            },
 	            uemail:{
 	                required: true,
