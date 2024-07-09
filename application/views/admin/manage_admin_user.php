@@ -85,7 +85,7 @@
             <tr>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Company</th>
+                <th><?php echo ($newUserRoleId == 1) ? 'UserName' : 'Company'; ?></th>
                 <th>Creation Date</th>
                 <th class="no-sort">Actions</th>
             </tr>
