@@ -458,11 +458,12 @@ class Auth extends REST_Controller
 
             } else {
                 $password = $this->input->post('password');
+                $userId = $result->user_id;
                 $data = array(
                     'password' => password_hash($password, PASSWORD_DEFAULT),
                 );
                 $where = array(
-                    'user_id_pk' => $result->user_id,
+                    'user_id_pk' => $userId,
                 );
 
                 $result2 = $this->base_model->update_record_by_id('lp_user_mst', $data, $where);
