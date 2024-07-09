@@ -620,7 +620,7 @@ MSG;
                 $data[] = [
                     $user['first_name'] . ' ' . $user['last_name'],
                     $user['email'],
-                    $user['company_name'],
+                    ($roleId == 1) ? $user['user_name'] : $user['company_name'],
                     $registeredDate,
                     $action,
                 ];
