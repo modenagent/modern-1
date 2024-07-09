@@ -258,7 +258,7 @@ if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($cu
 </div> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js" type="text/javascript"></script> -->
 
-<script src="<?php echo base_url(" assets/js/jquery-ui.1.11.2.min.js ") ?>" type="text/javascript"></script>
+<script src="<?php echo base_url("assets/js/jquery-ui.1.11.2.min.js") ?>" type="text/javascript"></script>
 <?php if (!isset($isWidget)) {?>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true&libraries=places&key=<?=getGoogleMapKey();?>"></script>
     <?php }?>
@@ -277,7 +277,7 @@ if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($cu
                 defaultSqft = "<?php echo $rets_sqft; ?>";
             }
         </script>
-        <script type="text/javascript" src="<?php echo base_url(" assets/js/lp.js?v=0.30 ") ?>"></script>
+        <script type="text/javascript" src="<?php echo base_url("assets/js/lp.js?v=0.30") ?>"></script>
 
 
 
