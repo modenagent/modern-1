@@ -106,13 +106,12 @@ class Frontend extends CI_Controller
         $this->form_validation->set_rules('caddress', 'Company Address', 'trim');
         $this->form_validation->set_rules('ccity', 'Company City', 'trim');
         $this->form_validation->set_rules('czipcode', 'Company Zipcode', 'trim');
-        $this->form_validation->set_rules('uphone', 'Phone no.', 'trim|required|numeric|min_length[10]|max_length[12]');
+        $this->form_validation->set_rules('uphone', 'Phone no.', 'trim|required|min_length[10]|max_length[14]');
         $this->form_validation->set_rules('uemail', 'Email Address', 'trim|required|valid_email|is_unique[lp_user_mst.email]');
         $this->form_validation->set_rules('lname', 'Last Name', 'trim|required');
         $this->form_validation->set_rules('user_pass', 'Password', 'required');
         $this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|matches[user_pass]');
         $this->form_validation->set_error_delimiters('', '');
-
         if ($this->form_validation->run()) {
             // set variables from the form
             $ref_code = $this->input->post('ref_code');
@@ -128,7 +127,7 @@ class Frontend extends CI_Controller
                 'first_name' => $this->input->post('fname'),
                 'last_name' => $this->input->post('lname'),
                 'email' => $this->input->post('uemail'),
-                'phone' => $this->input->post('uphone'),
+                'phone' => unmask_phone_number($this->input->post('uphone')),
                 'parent_id' => $parentId,
                 'company_logo' => '',
                 'company_phone' => '',
@@ -264,7 +263,7 @@ class Frontend extends CI_Controller
         $form = $this->input->post('form-name');
         if ($form == 'ref-form') {
             //Checking Valid 10 digit phone number
-            $phoneNumber = $this->input->post('phone_number');
+            $phoneNumber = unmask_phone_number($this->input->post('phone_number'));
             $phoneNumber = str_replace(" ", "", $phoneNumber);
             $phoneNumber = str_replace("-", "", $phoneNumber);
             if (!is_numeric($phoneNumber) || strlen((string) $phoneNumber) !== 10) {

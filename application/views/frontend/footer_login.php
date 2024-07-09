@@ -16,6 +16,7 @@
 <script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/toastr.min.js"></script>
 <script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script>
 <script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/frontend/js/jasny-bootstrap.min.js"></script>
 
 <script type="text/javascript">
 	function Notify(title,message,type) {
@@ -33,6 +34,7 @@
 		  }
 		}, 5000);
 	}
+
     // stopping form from submitting on enter key press
     $(document).ready(function() {
         $(window).keydown(function(event){
@@ -50,12 +52,55 @@
             }
         });
 
-        $(document).on('blur', '#uphone', function(e) {
-            var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
-            e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
-        });
+        // $("input[name='uphone']").keyup(function() {
+        //     $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
+        // });
+        // $(document).on('keypress', '#uphone', function(e) {
+        //     console.log('Test');
+        //     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //         return false;
+        //     }
+        //     var curchr = this.value.length;
+        //     var curval = $(this).val();
+        //     console.log('curchr ==', curchr);
+        //     console.log('curval ==', curval);
+        //     if (curchr == 3 && curval.indexOf("(") <= -1) {
+        //         $(this).val("(" + curval + ")" + "-");
+        //         console.log('in first if');
+        //     } else if (curchr == 4 && curval.indexOf("(") > -1) {
+        //         $(this).val(curval + ")-");
+        //     } else if (curchr == 5 && curval.indexOf(")") > -1) {
+        //         $(this).val(curval + "-");
+        //     } else if (curchr == 9) {
+        //         $(this).val(curval + "-");
+        //         $(this).attr('maxlength', '14');
+        //     }
+        // });
+
+        // $(document).on('blur', '#uphone', function(e) {
+            //     var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+            //     e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
+            // });
     });
-    // show the forgot password form
+
+    $("#uphone").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        return false;
+        }
+        var curchr = this.value.length;
+        var curval = $(this).val();
+        if (curchr == 3 && curval.indexOf("(") <= -1) {
+        $(this).val("(" + curval + ")" + "-");
+        } else if (curchr == 4 && curval.indexOf("(") > -1) {
+        $(this).val(curval + ")-");
+        } else if (curchr == 5 && curval.indexOf(")") > -1) {
+        $(this).val(curval + "-");
+        } else if (curchr == 9) {
+        $(this).val(curval + "-");
+        $(this).attr('maxlength', '14');
+        }
+    });
+        // show the forgot password form
     $('.fp-link').click(function(){
         $('#login-form').hide();
         $('#forgot-form').show();
@@ -249,9 +294,9 @@
 	            },
 	            uphone:{
 	                required: true,
-	                number:true,
+	                number:false,
 	                minlength: 10,
-	                maxlength: 10
+	                maxlength: 14
 	            },
 	            uemail:{
 	                required: true,
