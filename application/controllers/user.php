@@ -1025,11 +1025,6 @@ class User extends CI_Controller
                 'is_live' => $subscription_response->livemode,
             );
             $this->user_package_subscription_model->insert($subscription_data);
-            // echo "<pre>";
-            // print_r($package);
-            // print_r($subscription_response);
-
-            // print_r($subscription_data);die;
             $reponse_array = [
                 'subscriptionId' => $subscription_response->id,
                 'clientSecret' => $subscription_response->latest_invoice->payment_intent->client_secret,
