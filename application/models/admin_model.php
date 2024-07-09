@@ -179,7 +179,7 @@ class Admin_model extends CI_Model
         $order = $columns[$postData['order'][0]['column']];
         $dir = $postData['order'][0]['dir'];
 
-        $this->db->select('main.user_id_pk, main.first_name, main.last_name, main.email, main.company_name,main.user_name, main.registered_date, main.is_active');
+        $this->db->select('main.user_id_pk, main.first_name, main.last_name, main.email, main.company_name, main.user_name, main.registered_date, main.is_active');
         if (!is_null($adminId)) {
             $this->load->library('role_lib');
             if ($roleId == 4 && $this->role_lib->is_manager_l1()) {
