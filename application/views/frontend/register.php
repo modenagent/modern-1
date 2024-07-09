@@ -37,7 +37,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="uphone">Phone</label>
-                                <input type="text" maxlength="10" class="numeric"  name="uphone" id="uphone" placeholder="Phone no." value="<?=set_value('uphone');?>">
+                                <input type="text" maxlength="14" class="numeric"  name="uphone" id="uphone" placeholder="Phone no." data-mask="(999) 999-9999" value="<?=set_value('uphone');?>">
                                 <span class="register-alert-danger"><?=form_error('uphone');?></span>
                             </div>
                             <div class="form-group">
