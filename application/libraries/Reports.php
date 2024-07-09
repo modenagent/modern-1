@@ -394,8 +394,8 @@ class Reports
         $data['pageList'] = $pageList;
         // $data['seller_theme'] = (!empty($_POST['seller_theme']) && $_POST['seller_theme'] != 'undefined') ? $_POST['seller_theme'] : 1;
         // $data['mu_theme'] = (!empty($_POST['mu_theme']) && $_POST['mu_theme'] != 'undefined') ? $_POST['mu_theme'] : 1;
-        $data['seller_theme'] = (!empty($default_sub_type['seller'])) ? $default_sub_type['seller'] : 1;
-        $data['mu_theme'] = (!empty($default_sub_type['mu'])) ? $default_sub_type['mu'] : 1;
+        $data['seller_theme'] = ((!empty($_POST['seller_theme']) && $_POST['seller_theme'] != 'undefined') ? $_POST['seller_theme'] : ((!empty($default_sub_type['seller'])) ? $default_sub_type['seller'] : 1));
+        $data['mu_theme'] = ((!empty($_POST['mu_theme']) && $_POST['mu_theme'] != 'undefined') ? $_POST['mu_theme'] : ((!empty($default_sub_type['mu'])) ? $default_sub_type['mu'] : 1));
 
         // echo "<pre>";
         // print_r($data);die;
