@@ -60,7 +60,7 @@ class Lp extends CI_Controller
                 $citi = $file->PropertyProfile->SiteCity;
                 $address = $this->input->get('address');
                 // $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
-                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '?type=residential&type=rental&type=multifamil' . '&limit=50';
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&type=residential&type=rental&type=multifamil' . '&limit=50';
                 if (!empty($residentialType)) {
                     $subType = null;
                     if (strtolower($residentialType) == 'single family residential') {
