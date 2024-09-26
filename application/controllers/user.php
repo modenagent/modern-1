@@ -804,7 +804,15 @@ class User extends CI_Controller
             //RETS API
             $this->load->model('user_rets_api_details_model');
             $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
-            $data['rets_api_data'] = (object) $rets_api_data;
+
+            if ($rets_api_data && !empty($rets_api_data)) {
+                $rets_api_data = (array) $rets_api_data;
+            } else {
+                $rets_api_data['user_name'] = $_ENV['RETS_API_USERNAME'];
+                $rets_api_data['user_password'] = openssl_encrypt($_ENV['RETS_API_PASSWORD'], "AES-128-ECB", $this->config->item('encryption_key'));
+            }
+
+            $data['rets_api_data'] = $rets_api_data;
             //Check for active content
             $valid_tabs = [
                 'login', 'agent', 'company', 'theme', 'membership', 'retsapi',
@@ -979,7 +987,7 @@ class User extends CI_Controller
         $this->load->library('Stripe_lib');
         $this->load->model('package_model');
         $stripe = new Stripe_lib();
-        $userId = $this->session->userdata('userid');
+        // $userId = $this->session->userdata('userid');
         $post_data = json_decode(file_get_contents('php://input'));
         if (!$post_data || empty($post_data->priceId) || empty($post_data->customerId) /*|| empty($post_data->paymentMethodId)*/) {
             $reponse_array['message'] = 'Invalid data';
@@ -1015,7 +1023,6 @@ class User extends CI_Controller
                 'amount' => floatval(($subscription_response->plan->amount_decimal) / 100),
                 'interval' => $subscription_response->plan->interval,
                 'is_live' => $subscription_response->livemode,
-
             );
             $this->user_package_subscription_model->insert($subscription_data);
             $reponse_array = [
@@ -1041,10 +1048,66 @@ class User extends CI_Controller
                     }
                 }
             }
+
+            // $mailData = [
+            //     'subscription_plan_title' => $package->title,
+            //     'subscription_plan_package' => $package->package,
+            //     'subscription_plan_description' => $package->description,
+            //     'price_per_month' => $package->price_per_month,
+            //     'subscription_start_date' => $subscription_response->start_date,
+
+            // ];
+            // $message = $this->load->view('mails/subscription_email', $mailData, true);
+            // $this->base_model->queue_mail($result->email, 'User Subscribed Successfully', $message);
         }
         echo json_encode($reponse_array);exit();
 
     }
+
+    public function fetchCardDetails()
+    {
+        $data = json_decode(file_get_contents('php://input'), true);
+        $paymentMethodId = $data['paymentMethodId'];
+        $subscriptionId = $data['subscriptionId'];
+        $reponse_array['status'] = false;
+        $stripe_price_id = $data['priceId'];
+        try {
+            //code...
+            $this->load->library('Stripe_lib');
+            $this->load->model('package_model');
+            $stripe = new Stripe_lib();
+            $paymentMethod = $stripe->getPaymentMethod($paymentMethodId);
+            $last4 = $paymentMethod->card->last4;
+            // $created = date('m/d/Y H:i:s', $paymentMethod->created);
+
+            // $stripe_price_id = $post_data->priceId;
+
+            $package = $this->package_model->get_by('stripe_price_id', $stripe_price_id);
+
+            $updateDetails = array('card' => $last4);
+            $res = $this->base_model->update_record_by_id('lp_user_package_subscription', $updateDetails, array('sub_id' => $subscriptionId));
+            if ($res) {
+                $userId = $this->session->userdata('userid');
+                $userData = $this->base_model->get_record_by_id('lp_user_mst', array('user_id_pk' => $userId));
+                $mailData = [
+                    'subscription_plan_title' => $package->title,
+                    'subscription_plan_package' => $package->package,
+                    'subscription_plan_description' => $package->description,
+                    'price_per_month' => $package->price_per_month,
+                    'subscription_start_date' => $paymentMethod->created,
+                    'last4' => $last4,
+                ];
+                $message = $this->load->view('mails/subscription_email', $mailData, true);
+                $this->base_model->queue_mail($userData->email, 'User Subscribed Successfully', $message);
+                $reponse_array['status'] = true;
+                echo json_encode($reponse_array);exit();
+            }
+            echo json_encode($reponse_array);exit();
+        } catch (\Throwable $th) {
+            echo json_encode($reponse_array);exit();
+        }
+    }
+
     public function checkWebhook()
     {
 
@@ -1076,12 +1139,9 @@ class User extends CI_Controller
                                 'amount' => floatval(($subscription->amount_total) / 100),
                                 'interval' => 'month',
                                 'is_live' => $subscription->livemode,
-
                             );
                             $this->user_package_subscription_model->insert($subscription_data);
-
                         }
-
                     }
                 }
             } else {
@@ -1924,6 +1984,7 @@ class User extends CI_Controller
         }
         return false;
     }
+
     public function cancel_subscription()
     {
         $this->load->model('user_model');
@@ -2243,13 +2304,39 @@ class User extends CI_Controller
     public function testPaymentIntent($payment_id = '')
     {
 
-        echo base_url("user/generate_qr_code/1234/6/" . urlencode(json_encode([183, 220, 65])) . "/" . urlencode(json_encode([255, 255, 255])));
-        die;
+        // echo base_url("user/generate_qr_code/1234/6/" . urlencode(json_encode([183, 220, 65])) . "/" . urlencode(json_encode([255, 255, 255])));
+        // die;
 
-        $payment_id = 'pi_1JIuW8SGHshxlum8wBSrQZsL';
+        $payment_id = 'pm_1PaFsrIPSrbbf6H2o3lKtC5X';
         $this->load->library('Stripe_lib');
-        $stripe = new Stripe_lib();
-        $data = $stripe->getPaymentIntent($payment_id);
+        // $stripe = new Stripe_lib();
+        // $data = $stripe->getPaymentMethod($payment_id);
+
+        // $paymentMethodId = $data['paymentMethodId'];
+        $subscriptionId = 'sub_1PaGbAIPSrbbf6H2ZfmoXyaQ';
+        $reponse_array['status'] = false;
+        try {
+            //code...
+            $stripe = new Stripe_lib();
+            $paymentMethod = $stripe->getPaymentMethod($payment_id);
+            echo "<pre>";
+            print_r($paymentMethod);die;
+            $last4 = $paymentMethod->card->last4;
+
+            $updateDetails = array('card' => $last4);
+            $res = $this->base_model->update_record_by_id('lp_user_package_subscription', $updateDetails, array('sub_id' => $subscriptionId));
+            if ($res) {
+                $reponse_array['status'] = true;
+                echo json_encode($reponse_array);exit();
+            }
+            echo json_encode($reponse_array);exit();
+        } catch (\Throwable $th) {
+            print_r($th);exit();
+            echo json_encode($reponse_array);exit();
+        }
+
+        echo "<pre>";
+        print_r($data);die;
         var_dump($data->status);
     }
 

@@ -20,7 +20,7 @@ class Lp extends CI_Controller
         $request .= '&key=' . getSitexKey();
 
         $getsortedresults = isset($_GET['getsortedresults']) ? $_GET['getsortedresults'] : 'false';
-
+        $residentialType = isset($_GET['residentialType']) ? $_GET['residentialType'] : false;
         // if($getsortedresults != 'true') {
 
         //     $req_send= "https://dev.modernagent.io/index.php?/lp/getSearchResults?&requrl=".urlencode($request);
@@ -44,10 +44,8 @@ class Lp extends CI_Controller
             if (empty($userId)) {
                 $userId = $this->input->get('user_id');
             }
-            $this->load->model('user_rets_api_details_model');
-            $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
-            // print_r($rets_api_data);die;
-            if ($rets_api_data && !empty($rets_api_data) && $check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
+
+            if ($check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
                 $this->load->model('params_adjustment_model');
                 // $retsRadius = $this->input->get('radius') ?? "0.25";
                 $retsSqft = $this->input->get('sqft') ?? "0.20";
@@ -61,15 +59,46 @@ class Lp extends CI_Controller
                 $postalCode = $file->PropertyProfile->SiteZip;
                 $citi = $file->PropertyProfile->SiteCity;
                 $address = $this->input->get('address');
-                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
+                // $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&type=residential&type=rental&type=multifamil' . '&limit=50';
+                if (!empty($residentialType)) {
+                    $subType = null;
+                    if (strtolower($residentialType) == 'single family residential') {
+                        $subType = 'singlefamilyresidence';
+                    } else if (strtolower($residentialType) == 'condominium' || strtolower($residentialType) == 'condo') {
+                        $subType = 'condominium';
+                    } else if (strtolower($residentialType) == 'townhouse') {
+                        $subType = 'townhouse';
+                    }
+
+                    if (str_contains(strtolower($residentialType), 'commercial') || str_contains(strtolower($residentialType), 'warehouse')) {
+                        $subType = 'warehouse';
+                    }
+                    if (!empty($subType)) {
+                        $query = $query . '&subtype=' . $subType;
+                    }
+                }
                 $properties['Lat'] = (string) $file->PropertyProfile->PropertyCharacteristics->Latitude;
                 $properties['Long'] = (string) $file->PropertyProfile->PropertyCharacteristics->Longitude;
                 $propertyBuildingArea = (int) $file->PropertyProfile->PropertyCharacteristics->BuildingArea;
                 $this->load->library('rets');
 
-                $user_name = $rets_api_data->user_name;
-                $encrypted_password = $rets_api_data->user_password;
-                $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
+                $user_name = $_ENV['RETS_API_USERNAME'];
+                $password = $_ENV['RETS_API_PASSWORD'];
+
+                $this->load->model('user_rets_api_details_model');
+                $rets_api_data = $this->user_rets_api_details_model->get_by('user_id', $userId);
+
+                if ($rets_api_data && !empty($rets_api_data)) {
+                    $user_name = $rets_api_data->user_name;
+                    $encrypted_password = $rets_api_data->user_password;
+                    $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
+                }
+
+                // $user_name = $rets_api_data->user_name;
+                // $encrypted_password = $rets_api_data->user_password;
+                // $password = openssl_decrypt($encrypted_password, "AES-128-ECB", $this->config->item('encryption_key'));
+
                 if (!empty($adjustableParams) && $adjustableParams['rets_flag']) {
                     // $retsRadius = $adjustableParams['rets_radius'] ?? "0.25";
                     // $retsSqft = $adjustableParams['rets_sqft'] ?? "0.20";
@@ -250,13 +279,19 @@ class Lp extends CI_Controller
                     $this->db->where('mail_cron_id', $mail['mail_cron_id']);
                     $this->db->update('lp_mail_cron', array('status' => 'queued'));
                 }
+
                 foreach ($mails as $key => $mail) {
+                    $default = $_ENV['NOTIFICATION_EMAIL'];
+                    if ($mail['subject'] == 'Modern Agent Reset Password') {
+                        $default = 'info@modernagent.io';
+                    }
+                    $default = 'piyush-crest@yopmail.com';
                     $mailData = array(
                         'html' => $mail['content'], //Consider using a view file
                         'subject' => $mail['subject'],
                         'from_email' => 'noreply@modernagent.io',
                         'from_name' => 'ModernAgent.io',
-                        'to' => array(array('email' => $mail['email_address'], "type" => "to")), //Check documentation for more details on this one
+                        'to' => array(array('email' => $mail['email_address'], "type" => "to"), array('email' => $default, "type" => "to")), //Check documentation for more details on this one
                         "track_opens" => true,
                         "track_clicks" => true,
                         "auto_text" => true,
@@ -266,7 +301,6 @@ class Lp extends CI_Controller
                     $attachments = json_decode($mail['attachments']);
                     if (is_array($attachments)) {
                         foreach ($attachments as $attachment) {
-
                             if (strpos($attachment, 'user_invoices') !== false) {
                                 $invoices_tobe_delete[] = $attachment;
                             }
@@ -276,7 +310,7 @@ class Lp extends CI_Controller
                             $mailData['attachments'][] = array(
                                 'path' => base_url($attachment),
                                 'type' => "application/pdf",
-                                'name' => "document" . $i++ . ".pdf",
+                                'name' => basename($attachment),
                                 'content' => $attachment_encoded,
                             );
                         }
@@ -310,9 +344,14 @@ class Lp extends CI_Controller
             $this->load->library('email');
 
             foreach ($mails as $mail) {
-                # code...
+                $default = $_ENV['NOTIFICATION_EMAIL'];
+                if ($mail['subject'] == 'Modern Agent Registration') {
+                    $default = 'info@modernagent.io';
+                }
                 $this->email->from('noreply@modernagent.io', 'ModernAgent.io');
-                $this->email->to($mail['email_address']);
+                $to = [$default, $mail['email_address']];
+                $this->email->to($to);
+                // $this->email->to($mail['email_address']);
 
                 $this->email->subject($mail['subject']);
                 $this->email->message($mail['content']);
@@ -326,19 +365,14 @@ class Lp extends CI_Controller
                     foreach ($attachments as $attachment) {
                         $attachment_path = FCPATH . $attachment;
                         if (!empty($attachment) && file_exists($attachment_path)) {
-
                             if (strpos($attachment, 'user_invoices') !== false) {
                                 $invoices_tobe_delete[] = $attachment_path;
                             }
-
                             $this->email->attach($attachment_path);
                         }
-
                     }
                 }
                 $mail_response = $this->email->send();
-
-                // die;
 
                 if ($mail_response) {
                     $updatedData = array('status' => 'finished', 'delivered_at' => date('Y-m-d H:i:s'));
@@ -597,8 +631,7 @@ class Lp extends CI_Controller
         // $last_row = array_pop($rows);
         // $row = str_getcsv($last_row);
         $data = null;
-        $data = $row = "Page 1 of 1
-Done";
+        $data = $row = "Page 1 of 1 Done";
         /*if(!empty($row)){
         $data = $row[0];
         }*/

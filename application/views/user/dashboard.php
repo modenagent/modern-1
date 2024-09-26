@@ -25,10 +25,10 @@
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample2.png" alt="..." class="img-fluid d-block mx-auto">
                               Market Update<span class="subtitle">Report</span>
                             </button>
-                         <!--   <button class="impression_block" type="button" onclick="choose_presentation('registry');">
+                            <button class="impression_block" type="button" onclick="choose_presentation('registry');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample3.png" alt="..." class="img-fluid d-block mx-auto">
                               Smart Registry<span class="subtitle">Report<span class="beta"> (Beta)</span></span>
-                            </button>-->
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -118,6 +118,7 @@
                                     <strong>Select Minimum 4 and up to 8 Comparables</strong>
                                     <div class="pull-right"><button type="button" class="btn btn-lg btn-success" data-bs-toggle="modal" data-bs-target="#map-modal">VIEW ON MAP</button></div>
                                     <input type="hidden" name="use_rets" id="use_rets" value="0">
+                                    <input type="hidden" name="req_from" id="req_from" value="wizard">
                                 </h2>
                             </div>
                             <div id="toggle-switch">
@@ -310,21 +311,18 @@ foreach ($reportTemplates as $key => $report) {
                             </div>
                         </div>
                     </div>
-                    <?php if ($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1): ?>
+                    <?php //if ($packages['marketupdate']['active'] == 1 || $packages['all']['active'] == 1): ?>
                     <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="marketUpdate" checked="" style="display: none !important">
                         <!-- <input type="hidden" class="mu_radio" id="mu_page_1" value="<?php echo $default_sub_type['mu']; ?>" name="cover_mu"> -->
                     <div class="carousel-container marketUpdate_template">
                         <div id="owl-example-marketUpdate" class="owl-carousel">
-                            <?php
-for ($mu_i = 1; $mu_i <= 7; $mu_i++) {
-    ?>
+                            <?php for ($mu_i = 1; $mu_i <= 7; $mu_i++) {?>
                             <div class="item">
                                 <input type="radio"
                                     <?php
 if ($mu_i == $default_sub_type['mu']) {
-        echo 'checked';
-    }
-    ?> class="mu_radio" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
+    echo 'checked';
+}?> class="mu_radio" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
                                 <label class="user-heading alt gray-bg" for="mu_page_<?php echo $mu_i; ?>">
                                     <div class="text-center">
                                         <img class="registry_template1" src="<?php echo base_url("assets/reports/english/marketUpdate/preview/{$mu_i}.jpg"); ?>" alt="Market Update">
@@ -332,7 +330,8 @@ if ($mu_i == $default_sub_type['mu']) {
                                 </label>
                             </div>
                             <?php
-} /*
+}
+/*
 $type = 'marketUpdate';
 $sub_type = $default_sub_type['mu'];
 $check_dir = "assets/reports/english/$type/preview/$sub_type/";
@@ -361,9 +360,9 @@ endif;
  */?>
                         </div>
                     </div>
-                    <?php endif;?>
+                    <?php //endif;?>
 
-                    <?php if ($packages['seller']['active'] == 1 || $packages['all']['active'] == 1): ?>
+                    <?php //if ($packages['seller']['active'] == 1 || $packages['all']['active'] == 1): ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="seller" checked="" style="display: none !important">
                         <!-- <input type="hidden" class="seller_radio" id="seller_page_1" value="<?php echo $default_sub_type['seller']; ?>" name="cover_seller"> -->
                     <div class="carousel-container seller_template" style="display: none">
@@ -419,7 +418,7 @@ endif;
                             </div>
                         </div>
                     </div>
-                    <?php endif;?>
+                    <?php //endif;?>
 
                     <?php if ($packages['buyer']['active'] == 1 || $packages['all']['active'] == 1): ?>
                         <input type="checkbox" class="subscribe_temp" name="subscribe_temp" value="buyer" checked="" style="display: none !important">
@@ -459,18 +458,16 @@ if (is_dir($load_dir)):
 
     for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
 
-	            <div class="item">
+							        <div class="item">
 
-	                <div class="text-center">
-	                    <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
-	                </div>
+							            <div class="text-center">
+							                <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
+							            </div>
 
-	            </div>
+							        </div>
 
 
-	<?php
-
-endfor;
+							<?php endfor;
 endif;
 ?>
                         </div>
@@ -699,7 +696,7 @@ if ($regsitry_i == 1) {
       </div>
     </div>
     <!-- property_search_model -->
-    <div id="property_search_model" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="property_search_model" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -763,7 +760,7 @@ if ($regsitry_i == 1) {
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary close-parameter-model" onclick="location.reload();" data-bs-dismiss="modal">Close</button>
                         <button type="submit"  class="btn btn-success submit-btn">Update Search</button>
                     </div>
                     <div class="panel-footer">
@@ -855,8 +852,7 @@ if ($regsitry_i == 1) {
         // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
         if(pkg_prices[presentation_type].referral_status == 1) {
             $('.coupon_div').show();
-        }
-        else {
+        } else {
             $('.coupon_div').hide();
         }
         if(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1) {

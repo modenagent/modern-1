@@ -28,6 +28,7 @@ $(document).ready(function () {
     sorted_comp = [];
     reportData = {};
     getSordrtedProperties = false;
+    residentialType = null;
     apnInfo = {};
     activeRequest = false;
     pmaRes = {};
@@ -258,9 +259,10 @@ function runPMA(agentPath, logoPath) {
     if (logoPath) {
         reportData.logoPath = logoPath;
     }
-
+    var req_from = $('#req_from').val();
     var query = $.param(reportData);
     var formData = $('#run-pma-form').serialize();
+
     query += '&' + formData;
 
     query += '&' + 'pdfID=' + pdfID;
@@ -283,7 +285,11 @@ function runPMA(agentPath, logoPath) {
     query += '&' + 'mu_theme=' + $('.mu_radio:checked').val();
     query += '&' + 'seller_theme=' + $('#seller_default_theme').val();
     query += '&' + 'buyer_theme=' + $('.buyer_radio:checked').val();
-    query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    if (req_from === 'cma') {
+        query += '&' + 'custom_comps=' + JSON.stringify($('#cma-pre-selected-options').val());
+    } else {
+        query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
+    }
     query += '&' + 'selected_theme=' + rgb2hex($('#report_color').val());
     var subscribe_temp = [];
     var i_index = 0;
@@ -313,6 +319,9 @@ function runPMA(agentPath, logoPath) {
                 if (obj.status == 'success') {
                     pdfGenerated = true;
                     pmaRes = { status: "success" };
+                    if (req_from === 'cma') {
+                        $('#payment-form').submit();
+                    }
                 }
             } catch (e) {
                 //return false;
@@ -329,20 +338,31 @@ function runPMA(agentPath, logoPath) {
                 }, 1000);
                 $('.btn-checkout').hide();
                 $('.btn-lp.pay').hide();
+                let errMsg = '';
                 if (obj.msg != '') {
-                    // Error Message passed to CMA response.
-                    pmaRes = { status: "failed", msg: obj.msg };
+                    errMsg = errMsg;
                 } else {
-                    pmaRes = { status: "failed", msg: errorMsg };
+                    errMsg = errorMsg;
+                }
+                pmaRes = { status: "failed", msg: errMsg };
+
+                if (req_from === 'cma') {
+                    alert(errMsg);
+                    location.reload();
                 }
             }
             activeRequest = false;
+            $('#create-report').removeClass('disabled');
         })
         .fail(function () {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
             $('.btn-checkout').hide();
             $('.btn-lp.pay').hide();
             pmaRes = { status: "failed", msg: errorMsg };
+            if (req_from === 'cma') {
+                alert(pmaRes.msg);
+                location.reload();
+            }
         })
         .always(function () {
             activeRequest = false;
@@ -579,6 +599,7 @@ function get187() {
             dataType: "xml",
             success: function (xml) {
                 reportXML = xml;
+                console.log('xml ===', xml);
                 parse187();
             },
             error: function () {
@@ -602,7 +623,8 @@ function get187() {
                 presentation: $('#presentation').val(),
                 user_id: $("#user-id").val(),
                 propertyStatus: propertyType,
-                sqft: defaultSqft
+                sqft: defaultSqft,
+                residentialType: residentialType
 
             },
             dataType: "json",
@@ -618,7 +640,7 @@ function get187() {
                 // $('#available-comparables-market-update tbody').html('');
 
                 $.each(all_comp, function (i, item) {
-                    $('#pre-selected-options').append($('<option>', {
+                    $('#pre-selected-options, #cma-pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")"
                     }).attr('data-lat', item.Latitude).attr('data-long', item.Longitude)
@@ -634,7 +656,7 @@ function get187() {
 
                 // $('#comparables-market-update tbody').html('');
                 $.each(sorted_comp, function (i, item) {
-                    $('#pre-selected-options').append($('<option>', {
+                    $('#pre-selected-options, #cma-pre-selected-options').append($('<option>', {
                         value: item.index,
                         text: item.Address + ", Sqft : " + item.SquareFeet + " (" + item.Price + ")",
                         selected: 'selected'
@@ -683,11 +705,20 @@ function get187() {
                 $('.loader1').addClass('hidden');
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
-
+                var req_from = $('#req_from').val();
+                if (req_from === 'cma') {
+                    $("#cma-tbl-list tbody td a").html("CHOOSE");
+                    $("#create-report").show();
+                    $("#run-pma-form").show();
+                    $('html, body').animate({
+                        scrollTop: $("#create-report").offset().top
+                    }, 500);
+                }
                 if (all_comp.length + sorted_comp.length < 4) {
                     $('#changes_req_params_property_search .submit-btn').prop('disabled', false);
                     Notify('Warning', 'Less then 4 comparable found, please change the setting and try again.', 'warning');
                     // if (!data.use_rets && (all_comp.length + sorted_comp.length < 4)) {
+                    $('#property_search_model').modal({ backdrop: 'static', keyboard: false })
                     $('#property_search_model').modal('show');
                     $('#changes_req_params_property_search #apn').val(dataObj.apn);
                     // $('#changes_req_params_property_search #property_address').val(dataObj.Address);
@@ -698,7 +729,6 @@ function get187() {
                     return false;
                 } else {
                     $('#property_search_model').modal('hide');
-
                 }
             },
             error: function () {
@@ -736,6 +766,7 @@ $('#property-status').change(function () {
 function parse187() {
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
+    residentialType = $(reportXML).find("PropertyProfile").find("PropertyCharacteristics").find("UseCode").text();
     if (ownerNamePrimary.indexOf(';') !== -1) {
         ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
         ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));

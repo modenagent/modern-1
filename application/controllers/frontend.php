@@ -76,6 +76,16 @@ class Frontend extends CI_Controller
         $this->load->view('frontend/footer_login');
     }
 
+    public function reset_password($token)
+    {
+        if (!$token) {
+            redirect(base_url() . 'login');
+        }
+        $this->load->view('frontend/header_login');
+        $this->load->view('frontend/reset_password', ['token' => $token]);
+        $this->load->view('frontend/footer_login');
+    }
+
     // frontend view
     public function register($package = 0)
     {
@@ -96,13 +106,12 @@ class Frontend extends CI_Controller
         $this->form_validation->set_rules('caddress', 'Company Address', 'trim');
         $this->form_validation->set_rules('ccity', 'Company City', 'trim');
         $this->form_validation->set_rules('czipcode', 'Company Zipcode', 'trim');
-        $this->form_validation->set_rules('uphone', 'Phone no.', 'trim|required|numeric|min_length[10]|max_length[12]');
+        $this->form_validation->set_rules('uphone', 'Phone no.', 'trim|required|min_length[10]|max_length[14]');
         $this->form_validation->set_rules('uemail', 'Email Address', 'trim|required|valid_email|is_unique[lp_user_mst.email]');
         $this->form_validation->set_rules('lname', 'Last Name', 'trim|required');
         $this->form_validation->set_rules('user_pass', 'Password', 'required');
         $this->form_validation->set_rules('cpassword', 'Confirm Password', 'required|matches[user_pass]');
         $this->form_validation->set_error_delimiters('', '');
-
         if ($this->form_validation->run()) {
             // set variables from the form
             $ref_code = $this->input->post('ref_code');
@@ -118,7 +127,7 @@ class Frontend extends CI_Controller
                 'first_name' => $this->input->post('fname'),
                 'last_name' => $this->input->post('lname'),
                 'email' => $this->input->post('uemail'),
-                'phone' => $this->input->post('uphone'),
+                'phone' => unmask_phone_number($this->input->post('uphone')),
                 'parent_id' => $parentId,
                 'company_logo' => '',
                 'company_phone' => '',
@@ -177,6 +186,7 @@ class Frontend extends CI_Controller
     // frontend view
     public function quick_pdf($code = '')
     {
+        $this->load->model('params_adjustment_model');
         if ($this->input->post()) {
             $form = $this->input->post('form-name');
             if ($form == 'ref-form') {
@@ -191,15 +201,31 @@ class Frontend extends CI_Controller
                 $data['user'] = $user;
             }
         }
+        $userId = null;
         if (!empty($code)) {
             $user = $this->user_model->get_user_by_ref($code);
             // print_r($user);die;
             if (!empty($user) && isset($user->agent) && !empty($user->agent)) {
                 $data['agent'] = $user->agent;
+                $userId = $user->user_id_pk;
             }
         }
+
         $data['title'] = "Moder Agent";
         $data['code'] = $code;
+        $adjustmentParams = $this->params_adjustment_model->get_by('user_id', $user->user_id_pk);
+
+        $data['black_knight_radius'] = $data['rets_radius'] = "0.25";
+        $data['black_knight_sqft'] = $data['rets_sqft'] = "0.20";
+        $data['black_knight_flag'] = $data['rets_flag'] = 0;
+        if ($adjustmentParams) {
+            $data['black_knight_radius'] = $adjustmentParams->black_knight_radius ?? "0.25";
+            $data['black_knight_sqft'] = $adjustmentParams->black_knight_sqft ?? "0.20";
+            $data['rets_radius'] = $adjustmentParams->rets_radius ?? "0.25";
+            $data['rets_sqft'] = $adjustmentParams->rets_sqft ?? "0.20";
+            $data['black_knight_flag'] = $adjustmentParams->black_knight_flag ?? 0;
+            $data['rets_flag'] = $adjustmentParams->rets_flag ?? 0;
+        }
         // echo "<pre>";
         // print_r($data);die;
         $this->load->library('session');
@@ -237,7 +263,7 @@ class Frontend extends CI_Controller
         $form = $this->input->post('form-name');
         if ($form == 'ref-form') {
             //Checking Valid 10 digit phone number
-            $phoneNumber = $this->input->post('phone_number');
+            $phoneNumber = unmask_phone_number($this->input->post('phone_number'));
             $phoneNumber = str_replace(" ", "", $phoneNumber);
             $phoneNumber = str_replace("-", "", $phoneNumber);
             if (!is_numeric($phoneNumber) || strlen((string) $phoneNumber) !== 10) {

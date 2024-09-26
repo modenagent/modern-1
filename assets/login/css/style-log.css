@@ -509,6 +509,17 @@ img{
   z-index: 1;
 }
 
+.login-page-section .main-content-box .outer-container .right-column .inner-box .form-group label.error {
+  left: 0;
+  top: 60px;
+  color: #dc3545;
+}
+
+span.register-alert-danger p{
+  top: 0px;
+  color: #dc3545;
+}
+
 .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='text'],
 .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='email'], 
 .login-page-section .main-content-box .outer-container .right-column .inner-box .form-group input[type='password']{
@@ -548,6 +559,10 @@ img{
   cursor: pointer;
   margin-left: 13px;
   z-index: 1;
+}
+
+.register-alert-danger {
+  margin-left: 0px !important;
 }
 
 .login-page-section .main-content-box .outer-container .right-column .inner-box .sec-title{
@@ -629,6 +644,10 @@ width:380px;
 
 img.loglogo2{
 width:831px;
+}
+
+button:disabled {
+  opacity: 0.5;
 }
 
 @media only screen and (max-width: 767px) {

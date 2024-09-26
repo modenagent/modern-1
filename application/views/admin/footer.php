@@ -47,16 +47,16 @@
         Referral Code
       </div>
         <div class="modal-body" >
-          Your referral code is REF<?php 
-          $temp_admin_id = $this->session->userdata('adminid');
-          $temp_admin_id_ref = "";
-          if (strlen($temp_admin_id) < 5) {
-              $temp_admin_id_ref = sprintf("%05d", $temp_admin_id);
-          } else {
-              $temp_admin_id_ref = "0".$temp_admin_id;
-          }
-          echo $temp_admin_id_ref;
-          ?>
+          Your referral code is REF<?php
+$temp_admin_id = $this->session->userdata('adminid');
+$temp_admin_id_ref = "";
+if (strlen($temp_admin_id) < 5) {
+    $temp_admin_id_ref = sprintf("%05d", $temp_admin_id);
+} else {
+    $temp_admin_id_ref = "0" . $temp_admin_id;
+}
+echo $temp_admin_id_ref;
+?>
           <br/> It can be used as coupon code up to 10 times by a user.
         </div>
         <div class="panel-footer">
@@ -66,18 +66,18 @@
   </div>
 </div>
 <!-- common js -->
-<script src="<?php echo base_url('assets/js/jquery-ui/jquery-ui-1.10.1.custom.min.js');  ?>"></script>
-<script src="<?php echo base_url('assets/js/bootstrap.min.js');  ?>"></script>
+<script src="<?php echo base_url('assets/js/jquery-ui/jquery-ui-1.10.1.custom.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/bootstrap.min.js'); ?>"></script>
 <!-- Editor -->
 <script src="<?php echo base_url('assets/js/summernote.js'); ?>"></script>
 <!-- data table js -->
-<script src="<?php echo base_url('assets/js/data-tables/jquery.dataTables.min.js');  ?>"></script>
-<script src="<?php echo base_url('assets/js/data-tables/dataTables.tableTools.js');  ?>"></script>
-<script src="<?php echo base_url('assets/js/data-tables/bootstrap.datatable.js');  ?>"></script>
+<script src="<?php echo base_url('assets/js/data-tables/jquery.dataTables.min.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/data-tables/dataTables.tableTools.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/data-tables/bootstrap.datatable.js'); ?>"></script>
 <!-- charts js -->
-<script src="<?php echo base_url('assets/js/charts/highcharts.js');  ?>"></script>
-<script src="<?php echo base_url('assets/js/charts/charts-highchart-line.js');  ?>"></script>
-<script src="<?php echo base_url('assets/js/charts/charts-highchart-column-bar.js');  ?>"></script>
+<script src="<?php echo base_url('assets/js/charts/highcharts.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/charts/charts-highchart-line.js'); ?>"></script>
+<script src="<?php echo base_url('assets/js/charts/charts-highchart-column-bar.js'); ?>"></script>
 <!-- toastr js -->
 <script src="<?php echo base_url('assets/js/jquery-toastr/toastr.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/jquery-toastr/ui-toastr-notifications.js'); ?>"></script>
@@ -96,52 +96,56 @@
 <!-- Drill Down -->
 <!--<script src="<?php echo base_url(); ?>assets/js/drilldown.js"></script>
 <!-- apps js -->
-<script src="<?php echo base_url('assets/js/apps.js');  ?>"></script>
+<script src="<?php echo base_url('assets/js/apps.js'); ?>"></script>
 <!-- extra js -->
 <script type="text/javascript" src="<?php echo base_url('assets/js/extra.js'); ?>"></script>
 
 <!-- custom js -->
 <?php
-switch ($title){
-  case 'Dashboard':
-  $active = "active";
-  break;
-  case 'Manage Companies':
-  $active3 = "active";
-  echo '<script type="text/javascript" src="'.base_url('assets/js/customjs/user.js').'"></script>';
-  break;
-  case 'Manage Sales Representatives':
-  $active3 = "active";
-  echo '<script type="text/javascript" src="'.base_url('assets/js/customjs/user.js').'"></script>';
-  break;
-  case 'Manage Users':
-  $active3 = "active";
-  echo '<script type="text/javascript" src="'.base_url('assets/js/customjs/user.js').'"></script>';
-  break;
-  case 'Manage Category':
-  $active4 = "active";
-  break;
-  case 'Manage Orders':
-  // echo '<script type="text/javascript" src="'.base_url().'assets/js/customjs/order.js"></script>';
-  break;
-  case 'Manage Coupons':
-  //echo '<script type="text/javascript" src="'.base_url().'assets/js/customjs/coupon.js"></script>';
-  break;
-  case 'Transactions':
-  $active7 = "active";
-  break;
-  case 'Manage Site Contents':
-  $active8 = "active";
-  break;
+switch ($title) {
+    case 'Dashboard':
+        $active = "active";
+        break;
+    case 'Manage Companies':
+        $active3 = "active";
+        echo '<script type="text/javascript" src="' . base_url('assets/js/customjs/user.js') . '"></script>';
+        break;
+    case 'Manage Sales Representatives':
+        $active3 = "active";
+        echo '<script type="text/javascript" src="' . base_url('assets/js/customjs/user.js') . '"></script>';
+        break;
+    case 'Manage Users':
+        $active3 = "active";
+        echo '<script type="text/javascript" src="' . base_url('assets/js/customjs/user.js') . '"></script>';
+        break;
+    case 'Manage Admin Users':
+        $active3 = "active";
+        echo '<script type="text/javascript" src="' . base_url('assets/js/customjs/user.js') . '"></script>';
+        break;
+    case 'Manage Category':
+        $active4 = "active";
+        break;
+    case 'Manage Orders':
+        // echo '<script type="text/javascript" src="'.base_url().'assets/js/customjs/order.js"></script>';
+        break;
+    case 'Manage Coupons':
+        //echo '<script type="text/javascript" src="'.base_url().'assets/js/customjs/coupon.js"></script>';
+        break;
+    case 'Transactions':
+        $active7 = "active";
+        break;
+    case 'Manage Site Contents':
+        $active8 = "active";
+        break;
 }
 ?>
 <script type="text/javascript">
   	$(document).ready(function(){
-            <?php if($this->session->flashdata('success')): ?>
+            <?php if ($this->session->flashdata('success')): ?>
             Notify("Success","<?php echo $this->session->flashdata('success') ?>", 'success');
-            <?php elseif($this->session->flashdata('error')): ?>
+            <?php elseif ($this->session->flashdata('error')): ?>
             Notify("Error","<?php echo $this->session->flashdata('error') ?>", 'error');
-            <?php endif; ?>
+            <?php endif;?>
 	    $('#showpass').click(function(){
 	        console.log($(this).parents('td').find('input').attr('type'));
 	        if($(this).parents('td').find('input').attr('type')=='password'){
@@ -171,9 +175,9 @@ switch ($title){
     $(".datepicker-default").val(date);
     // User list function call
     //userlist();
-    
+
     transactionlist();
-    
+
     // change password form Validate
     $("#change_pass").validate({
       rules:{
@@ -270,7 +274,7 @@ switch ($title){
       }
     });
 
-    
+
     $('#user_edit').validate({
       rules:{
         fname:{
@@ -291,7 +295,7 @@ switch ($title){
         },
         //license: "required",
         cname : "required",
-        cadd : "required" 
+        cadd : "required"
       },
       messages:{
         fname: "Please enter first name.",
@@ -308,7 +312,7 @@ switch ($title){
       }
     });
     // user edit form submit
-    $('#user_edit').submit(function(){        
+    $('#user_edit').submit(function(){
             if(!$(this).valid()){
                 return false;
             }else{
@@ -326,7 +330,7 @@ switch ($title){
                     var obj = JSON.parse(resp);
                     if(obj.status == "success"){
                       Notify('Success', obj.msg, 'success');
-                      setTimeout(function(){ 
+                      setTimeout(function(){
                         location.reload();
                       }, 3000);
                     }else{
@@ -455,11 +459,11 @@ switch ($title){
                   Notify('Success', obj.msg, 'success');
                 }else{
                   Notify('Error', obj.msg, 'error');
-                }           
+                }
             });
             return false;
         }
-    }); 
+    });
 
     $('.numeric').on('input', function (event) {
         this.value = this.value.replace(/[^0-9]/g, '');
@@ -479,7 +483,7 @@ function toggleChevron(e) {
     // $('#accordion','.panel-heading').css('background-color', 'green');
 }
 // delete user
-function deleteuser(str){  
+function deleteuser(str){
   var user_id = str;
   bootbox.confirm("Are you sure you want to delete?", function(result) {
     if(result){
@@ -492,16 +496,15 @@ function deleteuser(str){
       }).success(function(resp){
           var obj = JSON.parse(resp);
           if(obj.status == "success"){
-            <?php if($this->router->fetch_method() == 'manage_companies'): ?>
-            //userlist('2');
-            user_table_datatable.ajax.reload( null, false );
-            <?php elseif($this->router->fetch_method() == 'manage_sales_reps'): ?>
-            //userlist('3');
-            user_table_datatable.ajax.reload( null, false );
+            <?php if ($this->router->fetch_method() == 'manage_companies'): ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php elseif ($this->router->fetch_method() == 'manage_sales_reps'): ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php elseif ($this->router->fetch_method() == 'manage_admin_user'): ?>
+              admin_user_table_datatable.ajax.reload( null, false );
             <?php else: ?>
-            //userlist('4');
-            user_table_datatable.ajax.reload( null, false );
-            <?php endif; ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php endif;?>
             Notify('Success', obj.msg, 'success');
           }else{
             Notify('Error', 'Invalid Request.', 'error');
@@ -526,16 +529,15 @@ function verifyuser(str){
       }).success(function(resp){
           var obj = JSON.parse(resp);
           if(obj.status == "success"){
-            <?php if($this->router->fetch_method() == 'manage_companies'): ?>
-            //userlist('2');
-            user_table_datatable.ajax.reload( null, false );
-            <?php elseif($this->router->fetch_method() == 'manage_sales_reps'): ?>
-            //userlist('3');
-            user_table_datatable.ajax.reload( null, false );
+            <?php if ($this->router->fetch_method() == 'manage_companies'): ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php elseif ($this->router->fetch_method() == 'manage_sales_reps'): ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php elseif ($this->router->fetch_method() == 'manage_admin_user'): ?>
+              admin_user_table_datatable.ajax.reload( null, false );
             <?php else: ?>
-            //userlist('4');
-            user_table_datatable.ajax.reload( null, false );
-            <?php endif; ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php endif;?>
             Notify('Success', obj.msg, 'success');
           }else{
             Notify('Error', 'Invalid Request.', 'error');
@@ -560,16 +562,15 @@ function unverifyuser(str){
       }).success(function(resp){
           var obj = JSON.parse(resp);
           if(obj.status == "success"){
-            <?php if($this->router->fetch_method() == 'manage_companies'): ?>
-            //userlist('2');
-            user_table_datatable.ajax.reload( null, false );
-            <?php elseif($this->router->fetch_method() == 'manage_sales_reps'): ?>
-            //userlist('3');
-            user_table_datatable.ajax.reload( null, false );
+            <?php if ($this->router->fetch_method() == 'manage_companies'): ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php elseif ($this->router->fetch_method() == 'manage_sales_reps'): ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php elseif ($this->router->fetch_method() == 'manage_admin_user'): ?>
+              admin_user_table_datatable.ajax.reload( null, false );
             <?php else: ?>
-            //userlist('4');
-            user_table_datatable.ajax.reload( null, false );
-            <?php endif; ?>
+              user_table_datatable.ajax.reload( null, false );
+            <?php endif;?>
             Notify('Success', obj.msg, 'success');
           }else{
             Notify('Error', 'Invalid Request.', 'error');
@@ -626,7 +627,7 @@ function couponlist()
             "emptyTable": "<div align='center'>Record(s) not found.</div>"
         },
         //Set column definition initialisation properties
-        "columnDefs": [{ 
+        "columnDefs": [{
             "orderable": false,
             "targets": "no-sort"
         }],
@@ -679,14 +680,14 @@ function orderlist(){
         var obj = JSON.parse(resp);
         if(obj.status == "success"){
           var order_list = obj.orderlist_table;
-          $("#order_table").html(order_list);  
+          $("#order_table").html(order_list);
           $(".table").dataTable();
           $("[data-toggle='tooltip']").tooltip();
         }else{
           Notify('Error', 'Invalid Request.', 'error');
-        }                 
-    }); 
-    return false; 
+        }
+    });
+    return false;
 }
 function online_users_count(){
 	$.ajax({
@@ -755,7 +756,7 @@ function transactionlist()
             "emptyTable": "<div align='center'>Record(s) not found.</div>"
         },
         //Set column definition initialisation properties
-        "columnDefs": [{ 
+        "columnDefs": [{
             "orderable": false,
             "targets": "no-sort"
         }],
@@ -794,14 +795,14 @@ function reports_count()
         method:'GET'
     }).success(function(resp){
         var obj = JSON.parse(resp);
-        if(obj.status == "success"){          
+        if(obj.status == "success"){
           var count = obj.count;
-          $("#reports_count").html(count);          
+          $("#reports_count").html(count);
         }else{
           Notify('Error', 'Invalid Request.', 'error');
-        }                 
-    }); 
-    return false; 
+        }
+    });
+    return false;
 }
 // new sign up count
 // available flyers
@@ -815,14 +816,14 @@ function new_signup()
         }
     }).success(function(resp){
         var obj = JSON.parse(resp);
-        if(obj.status == "success"){          
+        if(obj.status == "success"){
           var new_user = obj.new_user;
-          $("#newuser_count").html(new_user);          
+          $("#newuser_count").html(new_user);
         }else{
           Notify('Error', 'Invalid Request.', 'error');
-        }                 
-    }); 
-    return false; 
+        }
+    });
+    return false;
 }
 
 // ajax call for chart data
@@ -835,14 +836,14 @@ function revenue(){
         }
     }).success(function(resp){
         var obj = JSON.parse(resp);
-        
-        if(obj.status == "success"){          
+
+        if(obj.status == "success"){
           revenue_chart(obj.inv_date,obj.inv_amt);
         }else{
 
-        }                 
-    }); 
-    return false; 
+        }
+    });
+    return false;
 }
 // revenue chart
 function revenue_chart(invdate,invdata){
@@ -852,7 +853,7 @@ function revenue_chart(invdate,invdata){
             text: '',
             x: -20 //center
         },
-        
+
         xAxis: {
             categories: invdate,
             labels: {
@@ -877,14 +878,14 @@ function revenue_chart(invdate,invdata){
             valueSuffix: '$'
         },
         legend: {
-            
+
         },
     credits:true,
         series: [{
             name: 'Revenue',
             data: invdata
         }]
-  
+
     });
 }
 

@@ -70,7 +70,7 @@
             <li class="nav-item <?php if ($current == 'recentlp') {echo 'current';}?>"> <a href="<?php echo site_url('user/recentlp'); ?>" class="nav-link">Recent</a> </li>
 
             <li class="nav-item <?php if ($current == 'leads') {echo 'current';}?>"> <a href="<?php echo site_url('user/leads'); ?>" class="nav-link">My Leads</a> </li>
-         <!--   <li class="nav-item <?php if ($current == 'guests') {echo 'current';}?>"> <a href="<?php echo site_url('user/guests'); ?>" class="nav-link">My Guests</a> </li>-->
+            <li class="nav-item <?php if ($current == 'guests') {echo 'current';}?>"> <a href="<?php echo site_url('user/guests'); ?>" class="nav-link">My Guests</a> </li>
 
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >Account <!-- <span class="caret"></span> --></a>
