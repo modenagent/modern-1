@@ -25,10 +25,10 @@
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample2.png" alt="..." class="img-fluid d-block mx-auto">
                               Market Update<span class="subtitle">Report</span>
                             </button>
-                            <button class="impression_block" type="button" onclick="choose_presentation('registry');">
+                         <!--   <button class="impression_block" type="button" onclick="choose_presentation('registry');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/Sample3.png" alt="..." class="img-fluid d-block mx-auto">
                               Smart Registry<span class="subtitle">Report<span class="beta"> (Beta)</span></span>
-                            </button>
+                            </button>-->
                         </div>
                     </div>
                 </div>
