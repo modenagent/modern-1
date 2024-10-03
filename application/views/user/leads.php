@@ -26,7 +26,7 @@
 
               <?php if ($ref_code): ?>
               <p class="leads">Your unique referral code: <span id="ref-code"> <?php echo $ref_code; ?></span></p>
-		          <p class=""><span class="link-span" >www.modernagent.io/mkt/<?php echo $ref_code; ?></span></p>
+		          <p class=""><span class="link-span" ><?php echo $_ENV['APP_URL'] . 'mkt/' . $ref_code; ?></span></p>
               <?php endif;?>
             </div>
 
@@ -52,7 +52,7 @@ $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?ur
               <p> Use this QR code to direct your prospects to your CMA landing page.</p>
               <?php if ($ref_code): ?>
               <p class="leads">Your unique referral code: <span id="ref-code"> <?php echo $ref_code; ?></span></p>
-		          <p class=""><span class="link-span" >www.modernagent.io/cma/<?php echo $ref_code; ?></span></p>
+		          <p class=""><span class="link-span" ><?php echo $_ENV['APP_URL'] . 'cma/' . $ref_code; ?></span></p>
               <?php endif;?>
             </div>
             <?php if ($ref_code): ?>
@@ -61,8 +61,6 @@ $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?ur
 $url = urlencode(base_url("cma/" . $ref_code));
 list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
 $rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
-// echo "Hellooooooooo";
-// print_r($rgb_color_front);die;
 $rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
 $image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
 ?>
