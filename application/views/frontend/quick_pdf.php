@@ -22,7 +22,7 @@
                         <form method="" id="ref-form">
                             <div class="agent-info cmawhite">
                                 <div class="profile-info">
-                                    <img class="profile_img mb-2" src="https://dev.modernagent.io/<?=$agent->company_logo?>">
+                                    <img class="profile_img mb-2" src="<?=$_ENV['APP_URL'] . $agent->company_logo?>">
                                 </div>
                             </div>
                         </form>
@@ -38,7 +38,7 @@
                         <form method="post" id="ref-form">
                             <div class="agent-info cmawhite">
                                 <div class="profile-info">
-                                    <img class="profile_img mb-2" src="https://dev.modernagent.io/<?=$agent->profile_image?>">
+                                    <img class="profile_img mb-2" src="<?=$_ENV['APP_URL'] . $agent->profile_image?>">
                                     <div class="mb-2">
                                         <p class="headquick">
                                             <?=$agent->first_name . ' ' . $agent->last_name;?>
