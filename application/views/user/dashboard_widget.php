@@ -25,7 +25,7 @@
           height: auto;
         }
         #cma-widget-container .invoice .invoice-table tbody td {
-           text-align: center !important; 
+           text-align: center !important;
         }
         #cma-widget-container .invoice .invoice-table tbody tr td:last-child {
           text-align: left !important;
@@ -50,20 +50,20 @@
         #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current, #cma-widget-container .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
           background-color: rgba(255, 255, 255, 0.4);
         }
-        
+
       </style>
    </head>
    <?php
-   if(empty($widget_bg_color)) {
+if (empty($widget_bg_color)) {
     $widget_bg_color = 'rgba(0,0,0,0.8)';
-   }
-   ?>
+}
+?>
    <style type="text/css">
      body {
           background: <?php echo $widget_bg_color ?>;
           /*background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/94551543-3be0-4822-94bc-5b918283ef4e.jpg'); */
           background-position: center;
-          background-repeat: no-repeat; 
+          background-repeat: no-repeat;
           background-size:cover;
         }
    </style>
@@ -85,7 +85,7 @@
             <!--Features section -->
             <section id="steps">
                 <!-- Smart Wizard -->
-                <div class="">                         
+                <div class="">
                     <div id="choose-presentation" class="clearfix" style="">
                         <div class="row">
                             <div class="col-md-12">
@@ -112,27 +112,27 @@
                     <div id="wizard" class="swMain loader-back" style="display:none;">
                         <ul>
                             <li id="step-1-link">
-                                <a href="#step-1"> 
-                                    <span class="stepNumber">01</span> 
-                                    <span class="stepDesc"> Step 1<br /><small class="little">Find Your Property</small></span> 
+                                <a href="#step-1">
+                                    <span class="stepNumber">01</span>
+                                    <span class="stepDesc"> Step 1<br /><small class="little">Find Your Property</small></span>
                                 </a>
                             </li>
                             <li id="step-2-link">
-                                <a href="#step-2"> 
-                                    <span class="stepNumber">02</span> 
+                                <a href="#step-2">
+                                    <span class="stepNumber">02</span>
                                     <span class="stepDesc"> Step 2<br /><small class="little">Enter Your Information</small></span>
                                 </a>
                             </li>
                             <li id="step-3-link">
-                                <a href="#step-3"> 
-                                    <span class="stepNumber">03</span> 
+                                <a href="#step-3">
+                                    <span class="stepNumber">03</span>
                                     <span class="stepDesc marketUpdateHide"> Step 3<br /><small class="little">Review Pages</small></span>
                                     <span class="stepDesc marketUpdateShow"> Step 3<br /><small class="little">Choose Your Comps</small></span>
                                 </a>
                             </li>
                             <li id="step-4-link">
-                                <a href="#step-4"> 
-                                    <span class="stepNumber">04</span> 
+                                <a href="#step-4">
+                                    <span class="stepNumber">04</span>
                                     <span class="stepDesc"> Step 4<br /><small class="little">Download</small></span>
                                 </a>
                             </li>
@@ -156,7 +156,7 @@
 
                                                     <span class="input-group-btn">
                                                         <button class="btn btn-lp" type="button" id="search-btn"> Search </button>
-                                                    </span> 
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="pma-error alert alert-danger payment-errors" style="display:none"></div>
@@ -197,19 +197,18 @@
                                             <div class="col-md-3">
                                               <div class="leftpic"> <a href="javascript:;">
                                                 <?php
-                                                if(empty($user['profile_image'])){
-                                                ?>
+if (empty($user['profile_image'])) {
+    ?>
                                                 <i class="icon-camera"></i>
                                                 <br>
                                                 Upload Picture
                                                 <?php
-                                                }
-                                                else{
-                                                ?>
-                                                <img  src="<?php echo base_url().$user['profile_image']; ?>" width="100%" >
+} else {
+    ?>
+                                                <img  src="<?php echo base_url() . $user['profile_image']; ?>" width="100%" >
                                                 <?php
-                                                }
-                                                ?>
+}
+?>
                                               </a>
                                               <input type="file"  class="file-type hidden" >
                                               <input type="text" id="fileimage" class="hidden file-path" name="user[profile_image]" value="<?php echo $user['profile_image']; ?>" >
@@ -217,7 +216,7 @@
                                           </div>
                                           <div class="col-md-6">
                                             <input type="hidden" class="form-control"   name="user_image"      id="user_image" value=""    />
-                                            <input type="text" class="form-control"   name="user[fullname]"   id="" placeholder="Name"    value="<?php echo $user['first_name'].' '.$user['last_name']; ?>" />
+                                            <input type="text" class="form-control"   name="user[fullname]"   id="" placeholder="Name"    value="<?php echo $user['first_name'] . ' ' . $user['last_name']; ?>" />
                                             <input type="text" class="form-control"   name="user[title]"      id="" placeholder="Title"   value="<?php echo $user['title']; ?>"/>
                                             <input type="text" class="form-control"   name="user[phone]"      id="" placeholder="Phone"   value="<?php echo $user['phone']; ?>"/>
                                             <input type="text" class="form-control"   name="user[email]"      id="" placeholder="Email"   value="<?php echo $user['email']; ?>"/>
@@ -232,19 +231,18 @@
                                         <div class="col-md-3">
                                           <div class="rightpic"> <a href="javascript:void(0);">
                                             <?php
-                                            if(empty($company['company_logo'])){
-                                            ?>
+if (empty($company['company_logo'])) {
+    ?>
                                             <i class="icon-camera"></i>
                                             <br>
                                             Upload Picture
                                             <?php
-                                            }
-                                            else{
-                                            ?>
-                                            <img src="<?php echo base_url().$company['company_logo']; ?>" width="100%" >
+} else {
+    ?>
+                                            <img src="<?php echo base_url() . $company['company_logo']; ?>" width="100%" >
                                             <?php
-                                            }
-                                            ?>
+}
+?>
                                           </a>
                                           <input type="file" class="file-type hidden">
                                           <input type="text" class="hidden file-path" name="user[company_logo]" value="<?php echo $company['company_logo']; ?>" >
@@ -303,97 +301,93 @@
                             <a id="btn-testimonial" class="" data-toggle="modal" data-target="#update-testimonial" title="Testimonial" >Testimonials</a>&nbsp; | &nbsp;
                             <a id="config-comps-btn" class="comps"  target="_blank" data-toggle="modal" data-target="#select-comps" title="configure comparables" >Review Comps</a>
                             <?php
-                            $load_view = 'user/widget/additional_fields/'.$report_dir_name.'/index';
-                            if(is_file(APPPATH.'views/' . $load_view . EXT)) {
-                                  $this->load->view($load_view);
-                              }
-                            ?>
+$load_view = 'user/widget/additional_fields/' . $report_dir_name . '/index';
+if (is_file(APPPATH . 'views/' . $load_view . EXT)) {
+    $this->load->view($load_view);
+}
+?>
                           </div>
                             </div>
                           </div>
                             <div class="carousel-container marketUpdateHide">
                           <div id="owl-example" class="owl-carousel seller_template">
                             <?php
-                            // echo $report_dir_name;die;
-                            //check if seller preview images exist
-                            
-                              $check_dir = 'assets/reports/widget/'.$report_dir_name.'/preview/seller/';
-                              $load_dir = FCPATH.$check_dir;
+// echo $report_dir_name;die;
+//check if seller preview images exist
 
+$check_dir = 'assets/reports/widget/' . $report_dir_name . '/preview/seller/';
+$load_dir = FCPATH . $check_dir;
 
-                              if(!empty($report_dir_name) && (is_dir($load_dir))) {
-                            // var_dump(FCPATH."$load_dir/" . $load_view);die;
+if (!empty($report_dir_name) && (is_dir($load_dir))) {
+    // var_dump(FCPATH."$load_dir/" . $load_view);die;
 
-                                $images = glob($load_dir . "*.jpg");
+    $images = glob($load_dir . "*.jpg");
 
-                                $count_imgs = count($images);
-                                for ($seller_images=1; $seller_images <= $count_imgs ; $seller_images++) {
-                                  if(is_file($check_dir.$seller_images.'.jpg')) {?>
+    $count_imgs = count($images);
+    for ($seller_images = 1; $seller_images <= $count_imgs; $seller_images++) {
+        if (is_file($check_dir . $seller_images . '.jpg')) {?>
 
                                   <div class="item">
 
                                    <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $seller_images; ?>">
                                   <label class="user-heading alt gray-bg" for="pb">
-                                    <div class="text-center"> 
-                                      <img class="seller_template" src="<?php echo base_url().$check_dir.$seller_images.'.jpg?'.time(); ?>" alt="">
+                                    <div class="text-center">
+                                      <img class="seller_template" src="<?php echo base_url() . $check_dir . $seller_images . '.jpg?' . time(); ?>" alt="">
                                     </div>
 
                                   </label>
                                 </div>
 
                                   <?php
-                                  }
-                                  else {
-                                    if($count_imgs<100) {
+} else {
+            if ($count_imgs < 100) {
 
-                                      $count_imgs++;
-                                    }
-                                  }
-                                }
+                $count_imgs++;
+            }
+        }
+    }
 
-                              }
-                            
-                            // $reportTemplates = array();
-                            elseif(isset($reportTemplates) && !empty($reportTemplates))
-                            {
-                              $buyer_i = 0;
-                              foreach ($reportTemplates as $key => $report) {
-                                $buyer_i ++;
-                                // if($report->template_color != ''){
-                            ?>
+}
+
+// $reportTemplates = array();
+elseif (isset($reportTemplates) && !empty($reportTemplates)) {
+    $buyer_i = 0;
+    foreach ($reportTemplates as $key => $report) {
+        $buyer_i++;
+        // if($report->template_color != ''){
+        ?>
                               <div class="item">
 
-                                 <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $key+1; ?>">
+                                 <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $key + 1; ?>">
                                 <label class="user-heading alt gray-bg" for="pb">
-                                  <div class="text-center"> 
-                                    <img class="seller_template" src="<?php echo base_url().$report->template_icon; ?>" alt="">
+                                  <div class="text-center">
+                                    <img class="seller_template" src="<?php echo base_url() . $report->template_icon; ?>" alt="">
                                   </div>
 
                                 </label>
                               </div>
-                            <?php 
-                                  // }
-                                }
-                            } ?>
+                            <?php
+// }
+    }
+}?>
                           </div>
                           <div id="owl-example-buyer" class="owl-carousel buyer_template">
                             <?php
-                            $check_dir = 'assets/reports/widget/'.$report_dir_name.'/preview/buyer/';
-                              $load_dir = FCPATH.$check_dir;
+$check_dir = 'assets/reports/widget/' . $report_dir_name . '/preview/buyer/';
+$load_dir = FCPATH . $check_dir;
 
+if (!empty($report_dir_name) && (is_dir($load_dir))) {
 
-                              if(!empty($report_dir_name) && (is_dir($load_dir))) {
+    $images = glob($load_dir . "*.jpg");
 
-                                $images = glob($load_dir . "*.jpg");
-
-                                $count_imgs = count($images);
-                                for ($buyer_images=1; $buyer_images <= $count_imgs ; $buyer_images++) { ?>
+    $count_imgs = count($images);
+    for ($buyer_images = 1; $buyer_images <= $count_imgs; $buyer_images++) {?>
 
                                   <div class="item ">
                                     <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_images; ?>">
                                     <label class="user-heading alt gray-bg" for="pb">
                                       <div class="text-center">
-                                        <img class="buyer_template" style="display:none;" src="<?php echo base_url().$check_dir.$buyer_images.'.jpg?'.time(); ?>" alt="">
+                                        <img class="buyer_template" style="display:none;" src="<?php echo base_url() . $check_dir . $buyer_images . '.jpg?' . time(); ?>" alt="">
                                       </div>
                                     </label>
                                   </div>
@@ -401,22 +395,21 @@
 
 
                               <?php }
-                            }
-                              else {
+} else {
 
-                            for ($buyer_i=1; $buyer_i <= 18 ; $buyer_i++) { ?>
+    for ($buyer_i = 1; $buyer_i <= 18; $buyer_i++) {?>
                               <div class="item ">
                                 <input type="checkbox" class="custom-checkbox" name="page[]" value="<?php echo $buyer_i; ?>">
                                 <label class="user-heading alt gray-bg" for="pb">
                                   <div class="text-center">
-                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url('assets/reports/buyer/page_'.$buyer_i.'.png'); ?>" alt="">
+                                    <img class="buyer_template" style="display:none;" src="<?php echo base_url('assets/reports/buyer/page_' . $buyer_i . '.png'); ?>" alt="">
                                   </div>
                                 </label>
                               </div>
                             <?php
-                          } 
-                        }
-                            ?>
+}
+}
+?>
                           </div>
                             <input type="hidden" name="pdf_pages" value="" id="pdf_pages">
 
@@ -434,7 +427,7 @@
                                    </table>
                                </div>
                                <div class="col-md-6">
-                                   <table id="comparables-market-update" class="comparables-market-update">   
+                                   <table id="comparables-market-update" class="comparables-market-update">
                                        <thead>
                                             <tr>
                                                <th>Comparables</th>
@@ -448,7 +441,7 @@
                                 <div>
                                     <select id='comparable-pre-selected-options' multiple='multiple'></select>
                                 </div>
-                               
+
                                 <!-- <div class="text-center">
                                     <button type="button" class="btn btn-default">Save</button>
                                 </div> -->
@@ -477,7 +470,7 @@
                                         <div id="details" class="clearfix">
                                           <div id="client">
                                             <!-- <div class="to">INVOICE TO:</div>
-                                            <h2 class="name"><?php  echo $user['first_name'].' '.$user['last_name']; ?></h2> -->
+                                            <h2 class="name"><?php echo $user['first_name'] . ' ' . $user['last_name']; ?></h2> -->
                                             <!-- <div class="address"><?php // echo $user['address_line_1'].' '.$user['state_code'].' '.$user['country_code']; ?></div> -->
                                           </div>
                                           <div id="invoice">
@@ -532,7 +525,7 @@
                                         <hr>
                                         <div class="clearfix"></div>
                                     </article>
-                                </section>                            
+                                </section>
                             </div>
                             <div style="display: none!important;">
                             <form id="payment-form">
@@ -544,7 +537,7 @@
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr class="invoice-header">
                                         <td width="45%" bgcolor="#fff"><img src="<?php echo base_url(); ?>assets/images/logo.png"/></td>
-                                        <td width="40%" bgcolor="#fff"  align="right" id="payment_total"><strong>Total: $<?php echo number_format($report_price,2,".",""); ?></strong></td>
+                                        <td width="40%" bgcolor="#fff"  align="right" id="payment_total"><strong>Total: $<?php echo number_format($report_price, 2, ".", ""); ?></strong></td>
                                         <td width="15%" class="text-right" bgcolor="#fff"><button class="btn btn-sm btn-gray btn-review">Review Order</button></td>
                                     </tr>
                                 </table>
@@ -609,7 +602,7 @@
                     </div>
                     <div id="checkout"></div>
                 </div>
-            <!-- End SmartWizard Content --> 
+            <!-- End SmartWizard Content -->
             </section>
             <!-- Features section -->
         </div>
@@ -620,7 +613,7 @@
                     <h1 class="page-header">Recently Created Presentations</h1>
                     <p>We have stored all of your recently created reports so you can access them at anytime. From here you can download, print, and email them.</p>
                     <p>&nbsp;</p>
-                    <?php $this->load->view('user/listing_table',array('reports'=>$reports)); ?>
+                    <?php $this->load->view('user/listing_table', array('reports' => $reports));?>
                 </div>
             </section>
             <!-- Screenshots section -->
@@ -630,19 +623,19 @@
         <div id="myLeads" class="tab-pane fade">
             <section id="my-leads">
                 <div class="">
-                    <h1 class="page-header">Leads 
-                      <?php if($ref_code) : ?>
+                    <h1 class="page-header">Leads
+                      <?php if ($ref_code): ?>
                       <span class="pull-right" style="font-size: 22px;margin: 5px;">Your unique referral code: <?php echo $ref_code ?></span>
-                    <?php endif; ?>
+                    <?php endif;?>
                     </h1>
                     <p style="color:#ffffff;">We have stored all of your leads here so you can access them at anytime. </p>
-                    <?php if(!empty($cma_url)): ?>
+                    <?php if (!empty($cma_url)): ?>
                     <p style="color:#ffffff;">Send potential home sellers to <a target="_blank" href="<?php echo $cma_url; ?>"> <?php echo $cma_url; ?></a> to get a free home pricing evaluation. Make sure to promote your unique reference code. To add this leads form to your personal website please use this iFrame code for any website you would like to homeowners to generate their free CMA report -<?php echo htmlspecialchars('<iframe src="https://devwidget.modernagent.io/cma.php" width="100%" height="600px"></iframe>'); ?></p>
-                  <?php endif; ?>
+                  <?php endif;?>
                     <p>&nbsp;</p>
                     <?php
-                        $this->load->view('user/widget_leads',array('leads'=>$leads)); 
-                    ?>
+$this->load->view('user/widget_leads', array('leads' => $leads));
+?>
                 </div>
             </section>
         </div>
@@ -661,12 +654,12 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <?php if($company['use_rets_api'] ==1 ): ?>
+                    <?php if ($company['use_rets_api'] == 1): ?>
                     <div class="search-mls-div" style="float: right;">
                       <input type="text" placeholder="Enter Mls # or Address" name="mls_id" id="mls_id" >
                       <button type="button" id="mls_search">Search</button>
                     </div>
-                  <?php endif; ?>
+                  <?php endif;?>
                     <h4 class="modal-title">Select Minimum 4 and up to 8 Comparables</h4>
                     <a href="#" class="hide" id="refresh">Refresh Selection</a>
                 </div>
@@ -695,30 +688,30 @@
                 <div class="modal-body">
                   <div class="row">
                   <?php
-                    if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
-                          $report_seller_data = $page_contents['seller'];
-                          if(!empty($report_seller_data['testimonials'])) {
-                            $testimonials = $report_seller_data['testimonials'];
-                          }
-                      }
-                    foreach ($testimonials as $testimonial_i => $testimonial) :
-                      if(is_array($testimonial)):
-                        $testimonial = (object)$testimonial;
-                      endif; 
-                      if($testimonial_i == 2) :
-                        echo '<div class="row" style="margin-top:10px;">';
-                      endif;
-                      ?>
-                        <div class="col-md-6">
-                            <textarea class="form-control" rows="5" id="testimonial-<?=($testimonial_i+1)?>"><?=$testimonial->content?></textarea>
-                            <input type="text" class="form-control" name="testimonial_name_<?=($testimonial_i+1)?>" id="testimonial-name-<?=($testimonial_i+1)?>" style="margin-top: 5px;" placeholder="Enter Name" value="<?=$testimonial->name?>">
-                        </div>
-                    <?php 
-                      if($testimonial_i == 1) :
-                        echo '</div>';
-                      endif;
-                    endforeach;
-                  ?>
+if (isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+    $report_seller_data = $page_contents['seller'];
+    if (!empty($report_seller_data['testimonials'])) {
+        $testimonials = $report_seller_data['testimonials'];
+    }
+}
+foreach ($testimonials as $testimonial_i => $testimonial):
+    if (is_array($testimonial)):
+        $testimonial = (object) $testimonial;
+    endif;
+    if ($testimonial_i == 2):
+        echo '<div class="row" style="margin-top:10px;">';
+    endif;
+    ?>
+	                        <div class="col-md-6">
+	                            <textarea class="form-control" rows="5" id="testimonial-<?=($testimonial_i + 1)?>"><?=$testimonial->content?></textarea>
+	                            <input type="text" class="form-control" name="testimonial_name_<?=($testimonial_i + 1)?>" id="testimonial-name-<?=($testimonial_i + 1)?>" style="margin-top: 5px;" placeholder="Enter Name" value="<?=$testimonial->name?>">
+	                        </div>
+	                    <?php
+    if ($testimonial_i == 1):
+        echo '</div>';
+    endif;
+endforeach;
+?>
                   </div>
                 </div>
                 <div class="modal-footer text-center">
@@ -742,15 +735,15 @@
                     <div class="row">
                         <div class="col-md-12">
                           <?php
-                          $bio = 'Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.';
-                          if(isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
-                                $report_seller_data = $page_contents['seller'];
-                                if(!empty($report_seller_data['bio'])) {
-                                  $bio = $report_seller_data['bio'];
-                                }
-                            } ?>
-                            <textarea data-rows-count="true" max-rows="28" class="form-control" rows="5" id="agent-bio"><?php echo $bio;?></textarea>
-                        </div>                        
+$bio = 'Ad renatuasta, con vignonferor horum in dem morunt. Scibull atiam. Uli, conlostil ta iti, quod di sentem mum, sentesimis?Patis etili, quo aperfi nia viricii speriore noverem eretius cus, vis etemquem dent? Ici ine audees parbemus, consulistra consis. Aritra acre faciendius et? que furi tum non. Tion cus periate ctatemolut laute quam as ea coribearum quam, autate si tem quiae porrundionet quas etur sequatur moloreperum sequost.';
+if (isset($page_contents) && count($page_contents) && !empty($page_contents['seller'])) {
+    $report_seller_data = $page_contents['seller'];
+    if (!empty($report_seller_data['bio'])) {
+        $bio = $report_seller_data['bio'];
+    }
+}?>
+                            <textarea data-rows-count="true" max-rows="28" class="form-control" rows="5" id="agent-bio"><?php echo $bio; ?></textarea>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer text-center">
@@ -763,17 +756,17 @@
 
     <!-- modals for Additional page configs -->
     <?php
-      $load_view = 'user/widget/additional_fields/'.$report_dir_name.'/modals';
-      if(is_file(APPPATH.'views/' . $load_view . EXT)) {
-            $this->load->view($load_view);
-        }
-      ?>
+$load_view = 'user/widget/additional_fields/' . $report_dir_name . '/modals';
+if (is_file(APPPATH . 'views/' . $load_view . EXT)) {
+    $this->load->view($load_view);
+}
+?>
     <!-- modals for Additional page configs -->
 </div>
-</div>      
+</div>
       <!-- footer js and other stuff starts here -->
       <style type="text/css">
-         #cma-widget-container {background-attachment: scroll;  background-size: auto auto;background-size: cover;background-attachment: fixed;} 
+         #cma-widget-container {background-attachment: scroll;  background-size: auto auto;background-size: cover;background-attachment: fixed;}
          input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
          background-color: none !importent;
          background-image: none;
@@ -839,36 +832,36 @@
          float: right;
          }
       </style>
-      <!-- Bootstrap Core JavaScript --> 
+      <!-- Bootstrap Core JavaScript -->
       <script type="text/javascript">
         var use_rets_api = "<?php echo $company['use_rets_api']; ?>";
         var report_dir = "<?php echo $company['report_dir_name']; ?>";
       </script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script> 
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/bootstrap.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/data-tables/jquery.dataTables.min.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0_widget.min.js"></script> 
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0_widget.min.js"></script>
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
-      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
+      <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
       <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
       <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.30"></script>
-      
+
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript">
   // This identifies your website in the createToken call below
   // Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
   Stripe.setPublishableKey("<?=getStripeKey()?>");
 
-  
+
   // ...
 </script>
       <script type="text/javascript">
@@ -880,13 +873,13 @@ jQuery(document).ready(function() {
         // choosing the seller report type to create
         // choose_presentation('seller');
         $('#widgetContent').show();
-        $('#loadingPlugin').hide();        
+        $('#loadingPlugin').hide();
     }, 500);
     // run pre selected options
     var _max = 8;
     var _min = 4;
     var firstOpen = true;
-     
+
 
     $('#refresh').on('click', function(){
         $('#pre-selected-options').multiSelect('refresh');
@@ -909,13 +902,13 @@ jQuery(document).ready(function() {
     });
 
 
-        
-    
+
+
     $('#select-comps').on('shown.bs.modal', function() {
         $('#pre-selected-options').multiSelect({
         selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
         selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-        });  
+        });
         if(firstOpen)
         // If received list is not greater than min value than set our min value to received list length
         if($('#pre-selected-options').val() && _min>$('#pre-selected-options').val().length){
@@ -926,7 +919,7 @@ jQuery(document).ready(function() {
         $('#pre-selected-options').change(function(event) {
             if ($(this).val().length > _max) {
                 //$(this).val(last_valid_selection);
-            } 
+            }
             else {
             //last_valid_selection = $(this).val();$(this).trigger('change');
             }
@@ -943,7 +936,7 @@ jQuery(document).ready(function() {
             alert('Please do not select more than '+_max+' comparables');
             event.stopPropagation();
             return false;
-        }             
+        }
     });
 
     //BEGIN CHECKBOX & RADIO
@@ -953,7 +946,7 @@ jQuery(document).ready(function() {
         increaseArea: '20%' // optional
     });
 
-    // Smart Wizard   
+    // Smart Wizard
     $('#wizard').smartWizard({
         keyNavigation:false,
         onLeaveStep:function(obj){
@@ -971,12 +964,12 @@ jQuery(document).ready(function() {
                     if(_min>$('#comparable-pre-selected-options').val().length){
                         _min = $('#comparable-pre-selected-options').val().length;
                     }
-                    
+
                     var last_valid_selection = $('#comparable-pre-selected-options').val();
                     $('#comparable-pre-selected-options').change(function(event) {
                         if ($(this).val().length > _max) {
                             //$(this).val(last_valid_selection);
-                        } 
+                        }
                         else {
                         //last_valid_selection = $(this).val();$(this).trigger('change');
                         }
@@ -999,7 +992,7 @@ jQuery(document).ready(function() {
                   var page_length = $("#owl-example .custom-checkbox:checked").length;
                   var comparable_length = $('#pre-selected-options option:selected').length;
                   if(comparable_length > 0 && comparable_length < 5) {
-                    page_length--; 
+                    page_length--;
                   }
                   if(page_length%2 != 0) {
                     var confirm_go = confirm("If you intend to print and bind the presentation, please make sure you keep the total page count to an even number. Only remove pages in multiples of 2. \n Press OK to continue. \n Press Cancel to update selection of pages.");
@@ -1102,7 +1095,7 @@ jQuery(document).ready(function() {
             $(document).scrollTop(0);
         },500);
     });
-    
+
     $(".btn-review").click(function(){
         $(this).parents("#step-4").find('.order-detail').show("slow");
         $(this).parents("#step-4").find('.order-summary').hide("slow");
@@ -1123,7 +1116,7 @@ jQuery(document).ready(function() {
     $(document).on('ifChecked', '.custom-checkbox', function(event) {
         selected_pdf_pages.push($(this).val());
         var pages = selected_pdf_pages.toString();
-        $('#pdf_pages').val(pages); 
+        $('#pdf_pages').val(pages);
     });
 
     $(document).on('ifUnchecked', '.custom-checkbox', function(event) {
@@ -1132,7 +1125,7 @@ jQuery(document).ready(function() {
           return value != removeItem;
         });
         var pages = selected_pdf_pages.toString();
-        $('#pdf_pages').val(pages); 
+        $('#pdf_pages').val(pages);
     });
 
     $('.custom-checkbox').iCheck('check');
@@ -1169,7 +1162,7 @@ function choose_presentation(presentation)
         $("#presentation").val("seller");
         $('#wizard').smartWizard("seller");
         $('#wizard').removeClass('marketUpdate');
-        
+
         $('.buyer_template').hide(function(){
             $('.seller_template').show();
         });
@@ -1185,7 +1178,7 @@ function choose_presentation(presentation)
             $(".swMain ul.anchor li a").addClass(presentation);
         });
     });
-} 
+}
 
 //Function to convert hex format to a rgb color
 function rgb2hex(rgb) {
@@ -1261,7 +1254,7 @@ function doSubmit()
     }
     else
     {
-        submitFormAndGetReport(); 
+        submitFormAndGetReport();
     }
 }
 
@@ -1283,7 +1276,7 @@ function submitFormAndGetReport()
         dataType: "json",
         success: function(data) {
             console.log(data);
-            var obj = data;                
+            var obj = data;
             var today = new Date();
             var dd = today.getDate();
             var mm = today.getMonth()+1; //January is 0!
@@ -1291,11 +1284,11 @@ function submitFormAndGetReport()
 
             if(dd<10) {
                 dd = '0'+dd
-            } 
+            }
 
             if(mm<10) {
                 mm = '0'+mm
-            } 
+            }
 
             today = mm + '/' + dd + '/' + yyyy;
 
@@ -1309,14 +1302,14 @@ function submitFormAndGetReport()
             // prepending a new row in the table and switch to the the tab
             // console.log(new_row);
             $('#recent-lp #table-dt tbody').prepend(new_row);
-            
+
             // making the report download now
             window.open($('#downloadReport_'+obj.project_id_pk).attr('href'), '_blank');
 
             // switching the tab to show the latest reports
             $('#recentReportsTab').click();
 
-            // var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id='.$user_id); ?>";
+            // var jsonp_url = "<?php echo base_url('user/dashboard_widget?callback=dashboard_widget&ac_id=' . $user_id); ?>";
             var jsonp_url = "<?php echo base_url('widget/getWidgetData'); ?>?tab=list";
             var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/assets/images-2/home/header2.jpg) no-repeat 0 0;background-attachment: scroll;background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
 
@@ -1359,10 +1352,10 @@ function submitFormAndGetReport()
       }
     }
 
-    
 
-    
-    
+
+
+
 
     $('#payment-form').submit(function(event) {
       //alert("hell ya");
@@ -1376,11 +1369,11 @@ function submitFormAndGetReport()
       $form.find('button').prop('disabled', true);
 
       Stripe.card.createToken($form, stripeResponseHandler);
-      
+
       // Prevent the form from submitting with the default action
       return false;
     });
-    
+
     $('#apply_coupon').click(function(){
       $('.loader1').show();
       $('.loader1').removeClass('hidden');
@@ -1422,32 +1415,32 @@ function submitFormAndGetReport()
           $('.loader1').hide();
           $('.backwrap').hide();
         }
-      }); 
+      });
     });
 
-    
+
 
     function onFinishCallback(){
       $('#wizard').smartWizard('showMessage','Finish Clicked');
     }
-   
-    
-    $(".leftpic a").click(function() {    
-        console.log("trigger");                                            
+
+
+    $(".leftpic a").click(function() {
+        console.log("trigger");
           $(this).parents(".leftpic").find(".file-type").trigger("click");
     });
 
-    $(".rightpic a").click(function() {                                                
+    $(".rightpic a").click(function() {
           $(this).parents(".rightpic").find(".file-type").trigger("click");
     });
-    
+
     $(".leftpic .file-type").change(function(){
       var ele = this;
       var file_data = $(this).prop('files')[0];
       var form_data = new FormData();
-      form_data.append('fileToUpload', file_data)                           
+      form_data.append('fileToUpload', file_data)
       $.ajax({
-        url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
+        url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script
         dataType: 'text', // what to expect back from the PHP script, if anything
         cache: false,
         contentType: false,
@@ -1471,7 +1464,7 @@ function submitFormAndGetReport()
               console.log(element);
               console.log(element[0]);
               $(element[0]).val('<?php echo base_url(); ?>'+object.fileuri);
-              
+
               if($('#agent_profile_image')){
                 $('#agent_profile_image').attr('value',object.fileuri);
               }
@@ -1485,9 +1478,9 @@ function submitFormAndGetReport()
     $(".rightpic .file-type").change(function(){
         var file_data = $(this).prop('files')[0];
           var form_data = new FormData();
-          form_data.append('fileToUpload', file_data)                    
+          form_data.append('fileToUpload', file_data)
           $.ajax({
-              url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>user/upload_file', // point to server-side PHP script
               dataType: 'text', // what to expect back from the PHP script, if anything
               cache: false,
               contentType: false,
@@ -1495,12 +1488,12 @@ function submitFormAndGetReport()
               data: form_data,
               type: 'post',
               success: function(php_script_response) {
-                  
+
                   console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status) {
                       $('.rightpic a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
-                      
+
             if(object.status == 'success'){
                         $("#company_image").val(object.fileuri);
             }else{
@@ -1516,7 +1509,7 @@ function submitFormAndGetReport()
                   } else {
 
                   }
-                  
+
               }
           });
     });
@@ -1527,7 +1520,7 @@ function submitFormAndGetReport()
       jQuery(".loader1").removeClass('hidden');
       jQuery(".backwrap").show();
       jQuery(".backwrap").removeClass('hidden');
-    
+
       Stripe.card.createToken($subs_form, stripeResponseHandlerSubs);
       // Prevent the form from submitting with the default action
       return false;
@@ -1551,26 +1544,26 @@ function submitFormAndGetReport()
         subscribeSubmit();
       }
     }
-   
-    
-    
+
+
+
   });
 
-  
 
-  
-  
-  
-  
+
+
+
+
+
   //Display Notification/Error/Success
   $(document).ready(function(){
       <?php if ($this->session->flashdata('success')): ?>
       Notify('Success', '<?php echo $this->session->flashdata('success') ?>', 'success');
-      <?php endif; ?>
-      <?php if ($this->session->flashdata('error')) : ?>
+      <?php endif;?>
+      <?php if ($this->session->flashdata('error')): ?>
       Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
-      <?php endif; ?>
-     
+      <?php endif;?>
+
   });
 
 
@@ -1578,7 +1571,7 @@ function submitFormAndGetReport()
         $($.fn.dataTable.tables(true)).DataTable()
            .columns.adjust();
            // .responsive.recalc();
-    });  
+    });
 
   $(document).on('click','#mls_search',function(){
     var mlsId = $("#mls_id").val();
@@ -1586,7 +1579,7 @@ function submitFormAndGetReport()
     if(report_dir == 'maxa_hometown') {
       is_simply_rets = 1;
     }
-    getRetsApiDataByMlsId(mlsId,is_simply_rets) 
+    getRetsApiDataByMlsId(mlsId,is_simply_rets)
   });
 
   $(document).on('change','.featured_file_input',function(){
@@ -1597,7 +1590,7 @@ function submitFormAndGetReport()
         if(file) {
           // var upload_img = $(this);
           // console.log("File uplaoded for "+$(this).attr("id"));
-     
+
           data = new FormData();
           data.append('file', $(this)[0].files[0]);
 
@@ -1655,7 +1648,7 @@ function submitFormAndGetReport()
         if(file) {
           // var upload_img = $(this);
           // console.log("File uplaoded for "+$(this).attr("id"));
-     
+
           data = new FormData();
           data.append('file', $(this)[0].files[0]);
 
@@ -1743,7 +1736,7 @@ function submitFormAndGetReport()
     $('textarea[data-rows-count=true]')
     .on('keyup', function (event) {
         var textarea = $(this);
-        
+
         checkForMaxChar(textarea)
   });
 
@@ -1789,20 +1782,20 @@ function submitFormAndGetReport()
         $("#"+check_alert_div).hide();
       }
     }
-          
+
   }
   <?php
-  if(isset($_GET['tab']) && $_GET['tab'] == 'list') { ?>
+if (isset($_GET['tab']) && $_GET['tab'] == 'list') {?>
    $(document).ready(function(){
     setTimeout(function() {
      // alert("Hello");
      $('#recentReportsTab').trigger('click');
     }, 1500);
     });
-     
+
 
   <?php }
-  ?>
+?>
 </script>
 
 </body>

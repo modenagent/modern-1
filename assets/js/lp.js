@@ -513,7 +513,7 @@ function compileRequest(dataObj, neighbourhood, retry) {
 
 // run api query 
 function runQueries(request, dataObj, neighbourhood, retry) {
-
+    console.log('runQueries--------', $("#wizard #presentation").val());
     $('.loader1').show();
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
@@ -527,7 +527,7 @@ function runQueries(request, dataObj, neighbourhood, retry) {
         dataType: 'xml'
     })
         .done(function (response, textStatus, jqXHR) {
-
+            console.log('in done ==', $("#wizard #presentation").val());
             var responseStatus = $(response).find('StatusCode').text();
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
 
@@ -563,6 +563,7 @@ function runQueries(request, dataObj, neighbourhood, retry) {
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
                 compileXmlUrls(response, '187');
+                console.log('last else ===', $("#wizard #presentation").val());
                 get187();
                 // listResults(response);
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
@@ -620,7 +621,7 @@ function get187() {
                 requrl: reportData.report187,
                 getsortedresults: getSordrtedProperties,
                 address: $('#state').val(),
-                presentation: $('#presentation').val(),
+                presentation: $('#wizard #presentation').val(),
                 user_id: $("#user-id").val(),
                 propertyStatus: propertyType,
                 sqft: defaultSqft,
@@ -671,7 +672,7 @@ function get187() {
 
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                if ($('#pre-selected-options').length && ($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate")) {
+                if ($('#pre-selected-options').length && ($("#wizard #presentation").val() == "seller" || $("#wizard #presentation").val() == "marketUpdate")) {
                     // $('.buyer-cls').hide();
                     $('#pre-selected-options').multiSelect({
                         selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
@@ -764,9 +765,11 @@ $('#property-status').change(function () {
 });
 
 function parse187() {
+    console.log('reportXML ===========================', reportXML);
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
     residentialType = $(reportXML).find("PropertyProfile").find("PropertyCharacteristics").find("UseCode").text();
+    console.log("residentialType =======", residentialType);
     if (ownerNamePrimary.indexOf(';') !== -1) {
         ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
         ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));
@@ -840,7 +843,12 @@ function multipleResults(response) {
         var state = $(this).find('State').text();
         var zip = $(this).find('ZIP').text();
         apnInfo[apn]['fips'] = $(this).find('FIPS').text();
-        $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
+        let presentation = $("#wizard #presentation").val();
+        if (presentation == 'marketUpdate') {
+            $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="themePreview(this)">Choose</a></td></tr>');
+        } else {
+            $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
+        }
         $('.search-result table > tbody').find('tr').eq(i).find('.result-apn').text(apn);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-unitNumber').text(unitNumber);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-address').text(address);
@@ -895,6 +903,22 @@ function addResultToRepData(address, city, state, zip, apn) {
     reportData.apn = apn;
 }
 
+function themePreview(e) {
+    setTimeout(function () {
+        jQuery('.buttonNext').click();
+    }, 400);
+
+    isNewSearch = false;
+    $('#lp_invoice .desc').html('<h3>' + $(e).closest('tr').find('.result-address').text() + '</h3>' + $(e).closest('tr').find('.result-apn').text() + ' ' + $(e).closest('tr').find('.result-address').text() + ' ' + $(e).closest('tr').find('.result-city').text());
+    var apn = $(e).closest('tr').find('.result-apn').text();
+    var fips = apnInfo[apn]['fips'];
+    dataObj = {};
+    dataObj.apn = apn;
+    dataObj.FIPS = fips;
+    dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
+    console.log('appdata ===', dataObj);
+    // compileAPNRequest(dataObj);
+}
 // compile data for APN search
 function apnData(e) {
 
@@ -910,7 +934,7 @@ function apnData(e) {
     dataObj.apn = apn;
     dataObj.FIPS = fips;
     dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
-
+    console.log('appdata ===', dataObj);
     compileAPNRequest(dataObj);
 }
 
@@ -1061,7 +1085,7 @@ function widgetRunPMA(agentPath, logoPath) {
     }
 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
-    var presentation = $("#presentation").val();
+    var presentation = $("#wizard #presentation").val();
     if ($('#comparable-pre-selected-options').length && presentation == 'marketUpdate') {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }
