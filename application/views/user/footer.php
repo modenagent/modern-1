@@ -280,11 +280,11 @@
   // });
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
-    $(".owl-carousel").owlCarousel({
-      items:4,
-      margin:15,
-      autoWidth:true,
-      });
+    // $(".owl-carousel").owlCarousel({
+    //   items:4,
+    //   margin:15,
+    //   autoWidth:true,
+    //   });
     // $("#owl-example").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
@@ -292,14 +292,22 @@
     // Smart Wizard
     $('#wizard').smartWizard({
       onLeaveStep:function(obj){
+        var presentation = $("#wizard #presentation").val();
+        console.log('on leave steps ===', obj.attr('rel') , presentation);
         if(obj.attr('rel')==1){
+          $("#wizard .owl-carousel").owlCarousel({
+            items:4,
+            margin:15,
+            autoWidth:true,
+          });
+          $('.nav li').localScroll();
+          $('.nav').onePageNav({filter: ':not(.external)'});
           setTimeout(function(){
             $(document).scrollTop(50);
           },500);
           return true;
         }
-        if(obj.attr('rel')==2) {
-          var presentation = $("#presentation").val();
+        if(obj.attr('rel')==2 && presentation != "marketUpdate") {
           if(presentation == "seller" || presentation == "marketUpdate") {
             var pre_selected_options = $.trim($('#pre-selected-options').html());
             if (pre_selected_options!='') {
@@ -338,8 +346,19 @@
             }
           }
         }
-        if(obj.attr('rel')==3){
-          var presentation = $("#presentation").val();
+        if((obj.attr('rel') == 2) && (presentation == "marketUpdate")){
+          var presentation = $("#wizard #presentation").val();
+
+            var _theme = $('.custom-checkbox:checked').val();
+            if(typeof _theme==='undefined'){
+                alert("Please choose a theme");
+                return false;
+            }
+            compileAPNRequest(dataObj);
+        }
+
+        if((obj.attr('rel') == 3) && (presentation != "marketUpdate")){
+          var presentation = $("#wizard #presentation").val();
           if (presentation == "seller") {
             var selectedPage = [];
             $('.page-checkbox:checked').each(function(){
@@ -357,11 +376,37 @@
             }
           }
         }
+
+        if((obj.attr('rel') == 3) && (presentation == "marketUpdate")){
+          var pre_selected_options = $.trim($('#pre-selected-options').html());
+          if (pre_selected_options!='') {
+            if ($('#pre-selected-options').val()==null) {
+                alert('Please select '+_min+' comparables');
+                // event.stopPropagation();
+                return false;
+            } else if ($('#pre-selected-options').val().length < _min) {
+                alert('Please select '+_min+' comparables');
+                // event.stopPropagation();
+                return false;
+            }
+            _max = 8;
+            let themeNumner = $('.mu_radio:checked').val();
+            if (themeNumner == '6') {
+              _max = 9;
+            }
+            if($('#pre-selected-options').val().length > _max){
+                alert('Please do not select more than '+_max+' comparables');
+                // event.stopPropagation();
+                return false;
+            }
+          }
+        }
         return true;
       },
       onShowStep:function(obj){
+        console.log('on show steps ===', obj.attr('rel'), $("#wizard #presentation").val());
         if(obj.attr('rel')==2){
-          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+          if($("#wizard #presentation").val() == "seller" || $("#wizard #presentation").val() == "marketUpdate") {
 
             $('.buyer-cls').hide();
 
@@ -1073,7 +1118,7 @@
           $(document).scrollTop(0);
         },500);
         //Call Session id
-        var presentation_type = $("#presentation").val().toLowerCase();
+        var presentation_type = $("#wizard #presentation").val().toLowerCase();
         $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
         $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
         // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);

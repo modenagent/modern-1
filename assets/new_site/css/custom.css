@@ -1049,7 +1049,8 @@ input[type="checkbox"]:checked + label::before{
 #step-2 h2 {
     /* margin-bottom: 70px; */
 }
-#step-2 h2, #step-3 h2 {
+#step-2 h2, 
+#step-3 h2 {
     font-size: 25px;
     font-weight: 700;
     font-family: 'Rubik', sans-serif;
@@ -1058,6 +1059,7 @@ input[type="checkbox"]:checked + label::before{
 #step-2 h2 span {
     font-size: 20px;
 }
+#step-2 .owl-theme .item, 
 #step-3 .owl-theme .item {
     margin: 0px 10px;
     background: #F4F4F9;
@@ -1078,14 +1080,17 @@ form#run-pma-form {
     border: none;
     width: auto;
 }
+#step-2 label, 
 #step-3 label{
     /*position: relative;*/
     cursor: pointer;
 }
-#step-3 input[type="radio"]{
+
+#step-2 input[type="radio"], #step-3 input[type="radio"]{
     display: none;
 }
-#step-3 input[type="radio"] + label::before{
+
+#step-2 input[type="radio"] + label::before, #step-3 input[type="radio"] + label::before{
     content: "";
     position: absolute;
     top: 14px;
@@ -1096,13 +1101,16 @@ form#run-pma-form {
     background-size: contain;
     transition: all 0.3s ease;
 }
+#step-2 input[type="radio"]:checked + label::before,
 #step-3 input[type="radio"]:checked + label::before{
     background: url(../img/check.svg) no-repeat;
     background-size: contain;
 }
+#step-2 input[type="checkbox"], 
 #step-3 input[type="checkbox"]{
     display: none;
 }
+#step-2 input[type="checkbox"] + label::before,
 #step-3 input[type="checkbox"] + label::before{
     content: "";
     position: absolute;
@@ -1115,6 +1123,7 @@ form#run-pma-form {
     background-size: contain;
     transition: all 0.3s ease;
 }
+#step-2 input[type="checkbox"]:checked + label::before,
 #step-3 input[type="checkbox"]:checked + label::before{
     background: url(../img/check.svg) no-repeat;
     background-size: contain;
@@ -1462,9 +1471,11 @@ body.home.loaded.modal-open #steps {
     .owl-item .item {
         margin: 0 5px;
     }
+    #step-2 label,
     #step-3 label {
         padding: 12px;
     }
+    #step-2 input[type="radio"] + label::before,
     #step-3 input[type="radio"] + label::before {
         top: 6px;
         right: 6px;
@@ -1520,10 +1531,13 @@ body.home.loaded.modal-open #steps {
     .btn_box {
         font-size: 12px;
     }
-    #step-3 h2, #step-4 h2 {
+    #step-2 h2, 
+    #step-3 h2, 
+    #step-4 h2 {
         font-size: 25px;
     }
-    #step-2 h2, #step-3 h2 {
+    #step-2 h2, 
+    #step-3 h2 {
         margin-bottom: 20px;
     }
     .rightpic,.leftpic {
@@ -1730,7 +1744,9 @@ body.home.loaded.modal-open #steps {
     #step-2 h2 {
         font-size: 18px;
     }
-    #step-3 h2,#step-4 h2{
+    #step-2 h2,
+    #step-3 h2,
+    #step-4 h2{
         font-size: 22px;
         margin-bottom: 10px;
     }
