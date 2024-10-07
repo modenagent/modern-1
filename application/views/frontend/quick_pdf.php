@@ -67,7 +67,7 @@
 
                             <div class="form-group email_field">
                                 <div class="cma_label">Enter Valid Phone Number</div>
-                                <input type="text" class="form-control" maxlength="10"  name="phone_number" id="phone_number" data-mask="(999) 999-9999" placeholder="10 Digit Phone Number" value="<?=$agent->phone;?>" required>
+                                <input type="text" class="form-control" maxlength="10"  name="phone_number" id="phone_number" data-mask="(999) 999-9999" placeholder="10 Digit Phone Number" value="" required>
                             </div>
                             <div>
                                 <input class="btn btn-lp save" name="ref-submit" id="ref-submit" type="submit" value="Proceed">
