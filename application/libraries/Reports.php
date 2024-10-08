@@ -773,8 +773,8 @@ class Reports
             }
             $bedrooms = (int) $compareableProperty['Bedrooms'];
             $baths = (int) $compareableProperty['Baths'];
-            $sqft = (int) $compareableProperty['SquareFeet'];
-
+            $sqft = (int) str_replace(',', '', $compareableProperty['SquareFeet']);
+            // echo 'sqft = ' . $sqft . ' variation =' . $variable;die;
             if (($type == 'sqft' && ($sqft >= $variable)) || ($key == 'bedroom' && ($bedrooms >= $variable)) || ($key == 'bathroom' && ($baths >= $variable))) {
                 array_push($comparable, $compareableProperty);
                 unset($_comparableTemp[$key]);
