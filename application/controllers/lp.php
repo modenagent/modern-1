@@ -149,7 +149,7 @@ class Lp extends CI_Controller
                 if (isset($response) && !empty($response)) {
                     $retsData = $this->reports->get_all_rets_properties($response);
                     usort($retsData, function ($a, $b) {
-                        return (int) $b['SquareFeet'] <=> (int) $a['SquareFeet'];
+                        return (int) str_replace(',', '', $b['SquareFeet']) <=> (int) str_replace(',', '', $a['SquareFeet']);
                     });
                     // echo "<pre>";
                     $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
