@@ -9,7 +9,7 @@
                     <div class="col-md-12">
                         <h1 class="main_title">Choose Your Report</h1>
                         <div class="impression_block_list">
-                         <!--   <button class="impression_block" type="button" onclick="choose_presentation('buyer');">
+                            <!-- <button class="impression_block" type="button" onclick="choose_presentation('buyer');">
                               <img src="<?php echo base_url(); ?>assets/new_site/img/buyer_presentation.png" alt="..." class="img-fluid d-block mx-auto">
                               Buyers Presentation
                             </button>  -->
@@ -46,16 +46,16 @@
                 <li id="step-2-link">
                     <a href="#step-2">
                         <b>Step 2</b>
-                        <span class="marketUpdateHide">Enter Your Information</span>
-                        <span class="marketUpdateShow">Branding</span>
+                        <span class="marketUpdateHide">Select Your Comps</span>
+                        <span class="marketUpdateShow">Choose Your Theme</span>
 
                     </a>
                 </li>
                 <li id="step-3-link">
                     <a href="#step-3">
                         <b>Step 3</b>
-                        <span class="marketUpdateHide">Branding & Options</span>
-                        <span class="marketUpdateShow">Enter Your Information</span>
+                        <span class="marketUpdateHide">Choose Your Theme</span>
+                        <span class="marketUpdateShow">Select Your Comps</span>
                     </a>
                 </li>
                 <li id="step-4-link">
@@ -508,12 +508,12 @@ if (is_dir($load_dir)):
     $count_imgs = count($images);
 
     for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
-																												                                        <div class="item">
-																												                                            <div class="text-center">
-																												                                                <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
-																												                                            </div>
-																												                                        </div>
-																												                                <?php endfor;
+	    <div class="item">
+	        <div class="text-center">
+	            <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
+	        </div>
+	    </div>
+	    <?php endfor;
 endif;
 ?>
                 </div>
