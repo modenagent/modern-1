@@ -44,6 +44,8 @@ class Lp extends CI_Controller
             if (empty($userId)) {
                 $userId = $this->input->get('user_id');
             }
+            $this->load->model('user_model');
+            $userInfo = $this->user_model->getUserDetails($userId, ['user_id_pk', 'email', 'auto_comparable_flag']);
 
             if ($check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
                 $this->load->model('params_adjustment_model');
@@ -152,29 +154,16 @@ class Lp extends CI_Controller
                         return (int) str_replace(',', '', $b['SquareFeet']) <=> (int) str_replace(',', '', $a['SquareFeet']);
                     });
                     // echo "<pre>";
-                    $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
+                    if ($userInfo['auto_comparable_flag'] == 1) {
+                        $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
+                        $properties['all'] = $propertiesComparableData['all'];
+                        $properties['sorted'] = $propertiesComparableData['sorted'];
+                    } else {
+                        $properties['all'] = $retsData;
+                        $properties['sorted'] = [];
+                    }
                     // print_r($propertiesComparableData);die;
-                    $properties['all'] = $propertiesComparableData['all'];
-                    $properties['sorted'] = $propertiesComparableData['sorted'];
-                    // foreach ($response as $key => $value) {
-                    //     if ($key <= 7) {
-                    //         $sorted[$value['mlsId']] = array(
-                    //             'index' => $value['mlsId'],
-                    //             'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
-                    //             'Price' => $value['listPrice'],
-                    //             'Latitude' => $value['geo']['lat'],
-                    //             'Longitude' => $value['geo']['lng'],
-                    //         );
-                    //     } else {
-                    //         $all[$value['mlsId']] = array(
-                    //             'index' => $value['mlsId'],
-                    //             'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
-                    //             'Price' => $value['listPrice'],
-                    //             'Latitude' => $value['geo']['lat'],
-                    //             'Longitude' => $value['geo']['lng'],
-                    //         );
-                    //     }
-                    // }
+
                 }
                 // $file = simplexml_load_file($request);
                 // $file = json_decode(file_get_contents($req_send));

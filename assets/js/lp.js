@@ -513,7 +513,6 @@ function compileRequest(dataObj, neighbourhood, retry) {
 
 // run api query 
 function runQueries(request, dataObj, neighbourhood, retry) {
-    console.log('runQueries--------', $("#wizard #presentation").val());
     $('.loader1').show();
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
@@ -527,7 +526,6 @@ function runQueries(request, dataObj, neighbourhood, retry) {
         dataType: 'xml'
     })
         .done(function (response, textStatus, jqXHR) {
-            console.log('in done ==', $("#wizard #presentation").val());
             var responseStatus = $(response).find('StatusCode').text();
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
 
@@ -563,7 +561,6 @@ function runQueries(request, dataObj, neighbourhood, retry) {
                 $('.backwrap').hide();
                 $('.backwrap').addClass('hidden');
                 compileXmlUrls(response, '187');
-                console.log('last else ===', $("#wizard #presentation").val());
                 get187();
                 // listResults(response);
                 $("#search-btn").parents("form").find("table").removeClass("hidden");
@@ -765,11 +762,9 @@ $('#property-status').change(function () {
 });
 
 function parse187() {
-    console.log('reportXML ===========================', reportXML);
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
     residentialType = $(reportXML).find("PropertyProfile").find("PropertyCharacteristics").find("UseCode").text();
-    console.log("residentialType =======", residentialType);
     if (ownerNamePrimary.indexOf(';') !== -1) {
         ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
         ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));
@@ -916,7 +911,6 @@ function themePreview(e) {
     dataObj.apn = apn;
     dataObj.FIPS = fips;
     dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
-    console.log('appdata ===', dataObj);
     // compileAPNRequest(dataObj);
 }
 // compile data for APN search
@@ -934,7 +928,6 @@ function apnData(e) {
     dataObj.apn = apn;
     dataObj.FIPS = fips;
     dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
-    console.log('appdata ===', dataObj);
     compileAPNRequest(dataObj);
 }
 

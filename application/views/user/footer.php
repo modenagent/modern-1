@@ -965,6 +965,27 @@
       return false;
     });
 
+    $('#configForm').submit(function(){
+      var form_data = $(this).serializeArray();
+      $.ajax({
+              url: '<?php echo base_url(); ?>index.php?/user/saveConfig', // point to server-side PHP script
+              data: form_data,
+              method: 'post',
+              success: function(php_script_response) {
+                  var object = JSON.parse(php_script_response);
+                  if (object.status=="success") {
+                      $('#configForm .alert').html(object.message).show();
+                      setTimeout(function(){
+                        $('#configForm .alert').fadeOut(1500);
+                      },2000);
+                  } else {
+
+                  }
+              }
+      });
+      return false;
+    });
+
     $("#agentBillingInfo").validate({
         rules:{
           billing_cvv_code:{
