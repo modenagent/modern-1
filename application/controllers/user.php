@@ -811,8 +811,10 @@ class User extends CI_Controller
                 $rets_api_data['user_name'] = $_ENV['RETS_API_USERNAME'];
                 $rets_api_data['user_password'] = openssl_encrypt($_ENV['RETS_API_PASSWORD'], "AES-128-ECB", $this->config->item('encryption_key'));
             }
-
             $data['rets_api_data'] = $rets_api_data;
+            $this->load->model('user_model');
+            $userInfo = $this->user_model->getUserDetails($userId, ['user_id_pk', 'email', 'auto_comparable_flag']);
+            $data['user_data'] = $userInfo;
             //Check for active content
             $valid_tabs = [
                 'login', 'agent', 'company', 'theme', 'membership', 'retsapi',
@@ -885,6 +887,24 @@ class User extends CI_Controller
             } else {
                 redirect('user/adjust_params/rets');
             }
+        }
+    }
+
+    public function saveConfig()
+    {
+        $userId = $this->session->userdata('userid');
+        if ($userId) {
+
+            $input = $this->input->post();
+            $auto_comparable_flag = isset($input['auto_comparable_flag']) && !empty($input['auto_comparable_flag']) ? 1 : 0;
+            $autoSelectCompsFlag = array(
+                'auto_comparable_flag' => $auto_comparable_flag,
+            );
+            $this->db->update('lp_user_mst', $autoSelectCompsFlag, array('user_id_pk' => $userId));
+
+            echo json_encode(array('status' => 'success', 'message' => 'Config Parameters updated successfully!'));
+        } else {
+            echo json_encode(array('status' => 'failed', 'message' => 'unauthrized access'));
         }
     }
 
