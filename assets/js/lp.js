@@ -767,6 +767,7 @@ function parse187() {
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
     residentialType = $(reportXML).find("PropertyProfile").find("PropertyCharacteristics").find("UseCode").text();
+    console.log('residentialType ===', residentialType);
     if (ownerNamePrimary.indexOf(';') !== -1) {
         ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
         ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));
