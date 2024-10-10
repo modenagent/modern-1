@@ -21,6 +21,7 @@ class Lp extends CI_Controller
 
         $getsortedresults = isset($_GET['getsortedresults']) ? $_GET['getsortedresults'] : 'false';
         $residentialType = isset($_GET['residentialType']) ? $_GET['residentialType'] : false;
+        $req_from = isset($_GET['req_from']) ? $_GET['req_from'] : '';
         // if($getsortedresults != 'true') {
 
         //     $req_send= "https://dev.modernagent.io/index.php?/lp/getSearchResults?&requrl=".urlencode($request);
@@ -47,7 +48,7 @@ class Lp extends CI_Controller
             $this->load->model('user_model');
             $userInfo = $this->user_model->getUserDetails($userId, ['user_id_pk', 'email', 'auto_comparable_flag']);
 
-            if ($check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
+            if (($check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) || ($req_from == 'cma')) {
                 $this->load->model('params_adjustment_model');
                 // $retsRadius = $this->input->get('radius') ?? "0.25";
                 $retsSqft = $this->input->get('sqft') ?? "0.20";
@@ -154,7 +155,7 @@ class Lp extends CI_Controller
                         return (int) str_replace(',', '', $b['SquareFeet']) <=> (int) str_replace(',', '', $a['SquareFeet']);
                     });
                     // echo "<pre>";
-                    if ($userInfo['auto_comparable_flag'] == 1) {
+                    if ($userInfo['auto_comparable_flag'] == 1 && $req_from != '') {
                         $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
                         $properties['all'] = $propertiesComparableData['all'];
                         $properties['sorted'] = $propertiesComparableData['sorted'];
