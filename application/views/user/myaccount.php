@@ -40,18 +40,13 @@
             Select a plan
           </a>
         </li>
-        <li class="nav-item" role="presentation">
+        <!-- <li class="nav-item hidden" role="presentation">
           <a class="nav-link <?php if ($active_tab == 'retsapi') {echo 'active';}?>" id="api-tab" data-bs-toggle="tab" href="#retsApi" role="tab" aria-controls="plan" aria-selected="false">
             <b>API</b>
             Simply Rets API
           </a>
-        </li>
-        <li class="nav-item" role="presentation">
-          <a class="nav-link <?php if ($active_tab == 'config') {echo 'active';}?>" id="config-tab" data-bs-toggle="tab" href="#config" role="tab" aria-controls="plan" aria-selected="false">
-            <b>Setting</b>
-            Config Switch
-          </a>
-        </li>
+        </li> -->
+
       </ul>
       <div class="loader1 hidden lp-loader1-myaccount"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
       <div class="backwrap hidden"></div>
@@ -330,9 +325,7 @@ endif;
 ?>
           </div>
         </div>
-        <div class="tab-pane fade <?php if ($active_tab == 'config') {echo 'show active';}?>" id="config" role="tabpanel" aria-labelledby="config-tab">
-          <?php $this->load->view('user/site_config');?>
-        </div>
+
       </div>
     </div>
   </div>
