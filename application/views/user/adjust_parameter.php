@@ -1,6 +1,6 @@
 <style>
     .myaccount_tabs .nav li {
-        width: 50%;
+        width: 33.33%;
     }
     .input-margin {
         margin: 0 auto;
@@ -42,6 +42,12 @@
                 <a class="nav-link <?php if ($active_tab == 'rets') {echo 'active';}?>" id="rets-tab" data-bs-toggle="tab" href="#rets" role="tab" aria-controls="rets" aria-selected="true">
                     <b>Adjust Comps CRMLS Listed Data</b>
 					This is on properties that are currently listed.
+                </a>
+            </li>
+            <li class="nav-item" role="presentation">
+                <a class="nav-link <?php if ($active_tab == 'config') {echo 'active';}?>" id="config-tab" data-bs-toggle="tab" href="#config" role="tab" aria-controls="plan" aria-selected="false">
+                    <b>Setting</b>
+                    Config Switch
                 </a>
             </li>
         </ul>
@@ -181,6 +187,9 @@
                                 </form>
                             </div>
                         </div>
+                    </div>
+                    <div class="tab-pane fade <?php if ($active_tab == 'config') {echo 'show active';}?>" id="config" role="tabpanel" aria-labelledby="config-tab">
+                        <?php $this->load->view('user/site_config');?>
                     </div>
                 </div>
             </div>
