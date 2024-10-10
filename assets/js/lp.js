@@ -611,6 +611,7 @@ function get187() {
         $('.backwrap').removeClass('hidden');
         let propertyType = ($('#property-status').prop('checked') == true) ? 'Active' : 'Closed';
         activeRequest = true;
+        let req_from = $('#req_from').val();
         $.ajax({
             type: "GET",
             url: base_url + 'index.php?/lp/getSearchResults?',
@@ -622,7 +623,8 @@ function get187() {
                 user_id: $("#user-id").val(),
                 propertyStatus: propertyType,
                 sqft: defaultSqft,
-                residentialType: residentialType
+                residentialType: residentialType,
+                req_from: req_from
 
             },
             dataType: "json",
