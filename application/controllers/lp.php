@@ -155,7 +155,7 @@ class Lp extends CI_Controller
                         return (int) str_replace(',', '', $b['SquareFeet']) <=> (int) str_replace(',', '', $a['SquareFeet']);
                     });
                     // echo "<pre>";
-                    if ($userInfo['auto_comparable_flag'] == 1 && $req_from != '') {
+                    if ($userInfo['auto_comparable_flag'] == 1 || $req_from != '') {
                         $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
                         $properties['all'] = $propertiesComparableData['all'];
                         $properties['sorted'] = $propertiesComparableData['sorted'];
