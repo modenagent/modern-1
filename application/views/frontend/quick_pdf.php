@@ -132,9 +132,11 @@
                             <?php
 $marketPresentation = '';
 $sellerPresentation = '';
+// $presentation = 'cma';
 $currentUrl = $this->uri->uri_string();
 if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($currentUrl), 'mkt') !== false) {
     $marketPresentation = 'selected';
+    // $presentation = 'mkt';
 } else {
     $sellerPresentation = 'selected';
 }
@@ -198,7 +200,7 @@ if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($cu
                     </div>
                 </form>
                 <button type="button" style="display:none;" class="btn btn-lp save" id="create-report">Create Complimentary Report</button>
-                <div class="loader1 cma-loader" style="display: none;">
+                <div class="loader1 cma-loader hidden">
                     <img src="<?php echo base_url(); ?>assets/images/gears.gif">
                     <p class="loader-text">Please wait while report gets ready ....</p>
                 </div>
@@ -480,7 +482,7 @@ if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($cu
 
             $("#create-report").click(function () {
                 $('#create-report').addClass('disabled');
-
+                $('.cma-loader').show();
                 pmaRes = runPMA('', '');
                 // doSubmit();
 
