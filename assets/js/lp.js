@@ -612,6 +612,7 @@ function get187() {
         let propertyType = ($('#property-status').prop('checked') == true) ? 'Active' : 'Closed';
         activeRequest = true;
         let req_from = $('#req_from').val();
+        console.log('residentialType get187===', residentialType);
         $.ajax({
             type: "GET",
             url: base_url + 'index.php?/lp/getSearchResults?',
