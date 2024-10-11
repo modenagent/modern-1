@@ -353,6 +353,7 @@ function runPMA(agentPath, logoPath) {
             }
             activeRequest = false;
             $('#create-report').removeClass('disabled');
+            $('.cma-loader').hide();
         })
         .fail(function () {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
@@ -585,6 +586,7 @@ function runQueries(request, dataObj, neighbourhood, retry) {
 
 // gets 187 for client-side parsing
 function get187() {
+    console.log('getSordrtedProperties ===', getSordrtedProperties);
     if (!getSordrtedProperties) {
         getSordrtedProperties = true;
         $.ajax({
