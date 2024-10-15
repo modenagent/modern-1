@@ -185,7 +185,7 @@ $default_sub_type = 1;
 $default_theme_color = 1;
 if ($theme_data) {
     foreach ($theme_data as $key => $theme_data_val) {
-        if ($theme_data_val->theme_type == 'buyer') {
+        if ($theme_data_val->theme_type == 'seller') {
             $default_sub_type = $theme_data_val->theme_sub_type;
             $default_theme_color = $theme_data_val->theme_color;
         }
@@ -202,7 +202,7 @@ if ($theme_data) {
                   <div class="theme_selection_div">
 
                     <select class="select_theme_type select_change" id="select-theme-type">
-                      <option value="buyer" selected="">Buyer</option>
+                      <!-- <option value="buyer" selected="">Buyer</option> -->
                       <option value="seller">Seller</option>
                       <option value="marketUpdate">Market Update</option>
                     </select>
