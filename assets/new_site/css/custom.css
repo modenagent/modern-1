@@ -1173,11 +1173,17 @@ a#config-comps-btn.comps {
 body.home.loaded.modal-open #steps {
     filter: blur(11px);
 }
+
+#map-modal .modal-dialog, #subscription-modal .modal-dialog {
+    margin: 8.75rem auto;
+}
+
 #select-comps .modal-dialog {
     max-width: 1310px;
     margin-top: 150px;
     border-radius: 0px;
     width: 100%;
+    margin: 8.75rem auto;
 }
 #select-comps .modal-content {
     border: 0;

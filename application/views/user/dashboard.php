@@ -589,6 +589,24 @@ endif;
         </div>
       </div>
     </div>
+
+    <div class="modal" tabindex="-1" id="subscription-modal">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Please subscribe <span class='reportName'></span></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h5 class="text-center">To create <span class='reportName'></span> report. You have to purchase subsciption. Click below button to subscribe.</h5>
+          </div>
+          <div class="modal-footer">
+            <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+            <a href="<?php echo site_url('user/myaccount/membership'); ?>" type="button" class="btn btn-primary">Subscribe</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- property_search_model -->
     <div id="property_search_model" class="modal fade" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -785,6 +803,10 @@ endif;
 
         console.log("presentation ====", presentation);
         if(presentation === 'buyer'){
+            <?php if ($packages['buyer']['active'] == 0 && $packages['all']['active'] == 0): ?>
+                window.location = '<?php echo site_url(); ?>/user/myaccount/membership';
+                return;
+            <?php endif;?>
             $("#config-comps-btn").parent().hide();
             $("#presentation").val("buyer");
             $('#wizard').smartWizard("buyer");
@@ -811,19 +833,22 @@ endif;
 
             });
         }else if(presentation === 'marketUpdate'){
-            console.log('market update condition');
+            <?php if ($packages['marketupdate']['active'] == 0 && $packages['all']['active'] == 0): ?>
+                $('.reportName').text('Market Update');
+                $('#subscription-modal').modal('show');
+                // window.location = '<?php echo site_url(); ?>/user/myaccount/membership';
+                return;
+            <?php endif;?>
             $("#presentation").val("marketUpdate");
             $('#wizard').smartWizard("marketUpdate");
             let comparableHtml = $("#wizard-step-2").html();
             let brandingHtml = $("#wizard-step-3").html();
             $("#step-2").html(brandingHtml);
             $("#step-3").html(comparableHtml);
-            console.log('market update condition ===', $("#wizard #presentation").val());
             // adding class marketUpdate so that we can manipulate the visibility of different steps
             $('#wizard').addClass('marketUpdate');
             var stepTwoHtml = $("#wizard-step-2").html();
             var stepThreeHtml = $("#wizard-step-3").html();
-
             $('.buyer_template').hide(function(){
                 $('.seller_template').hide();
                 $('.marketUpdate_template').show();
@@ -872,6 +897,12 @@ endif;
             let brandingHtml = $("#wizard-step-3").html();
             $("#step-2").html(comparableHtml);
             $("#step-3").html(brandingHtml);
+            <?php if ($packages['seller']['active'] == 0 && $packages['all']['active'] == 0): ?>
+                $('.reportName').text('Property CMA');
+                $('#subscription-modal').modal('show');
+                return;
+                // window.location = '<?php echo site_url(); ?>/user/myaccount/membership';
+            <?php endif;?>
             $('.buyer_template').hide(function(){
                 $('.seller_template').show();
                 $('.marketUpdate_template').hide();
