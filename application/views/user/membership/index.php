@@ -7,7 +7,7 @@
       <?php
 $active_lable = false;
 foreach ($packages as $package) {?>
-          <div class="col-lg-4 col-md-6">
+          <div class="col-lg-4 col-md-6 <?php if (!in_array($package->package, ['seller', 'all'])) {echo 'hidden';}?> ">
             <div class="pricing_box">
               <h4><?php echo $package->title; ?></h4>
               <?php
