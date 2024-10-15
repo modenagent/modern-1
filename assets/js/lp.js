@@ -586,7 +586,6 @@ function runQueries(request, dataObj, neighbourhood, retry) {
 
 // gets 187 for client-side parsing
 function get187() {
-    console.log('getSordrtedProperties ===', getSordrtedProperties);
     if (!getSordrtedProperties) {
         getSordrtedProperties = true;
         $.ajax({
@@ -614,7 +613,6 @@ function get187() {
         let propertyType = ($('#property-status').prop('checked') == true) ? 'Active' : 'Closed';
         activeRequest = true;
         let req_from = $('#req_from').val();
-        console.log('residentialType get187===', residentialType);
         $.ajax({
             type: "GET",
             url: base_url + 'index.php?/lp/getSearchResults?',
@@ -770,7 +768,6 @@ function parse187() {
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
     residentialType = $(reportXML).find("PropertyProfile").find("PropertyCharacteristics").find("UseCode").text();
-    console.log('residentialType ===', residentialType);
     if (ownerNamePrimary.indexOf(';') !== -1) {
         ownerNameSecondary = ownerNamePrimary.substr(ownerNamePrimary.indexOf(";") + 1)
         ownerNamePrimary = ownerNamePrimary.slice(0, ownerNamePrimary.indexOf(";"));

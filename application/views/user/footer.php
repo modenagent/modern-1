@@ -293,7 +293,6 @@
     $('#wizard').smartWizard({
       onLeaveStep:function(obj){
         var presentation = $("#wizard #presentation").val();
-        console.log('on leave steps ===', obj.attr('rel') , presentation);
         if(obj.attr('rel')==1){
           $("#wizard .owl-carousel").owlCarousel({
             items:4,
@@ -404,7 +403,6 @@
         return true;
       },
       onShowStep:function(obj){
-        console.log('on show steps ===', obj.attr('rel'), $("#wizard #presentation").val());
         if(obj.attr('rel')==2){
           if($("#wizard #presentation").val() == "seller" || $("#wizard #presentation").val() == "marketUpdate") {
 
