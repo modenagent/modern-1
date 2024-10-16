@@ -508,12 +508,12 @@ if (is_dir($load_dir)):
     $count_imgs = count($images);
 
     for ($img_cnt = 1; $img_cnt <= $count_imgs; $img_cnt++): ?>
-	    <div class="item">
-	        <div class="text-center">
-	            <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
-	        </div>
+	<div class="item">
+	    <div class="text-center">
+	        <img class="registry_template1" src="<?php echo base_url($check_dir . $img_cnt . '.jpg'); ?>" alt="Seller">
 	    </div>
-	    <?php endfor;
+	</div>
+	<?php endfor;
 endif;
 ?>
                 </div>
@@ -594,15 +594,20 @@ endif;
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Please subscribe <span class='reportName'></span></h5>
+            <h5 class="modal-title">Subscribe to Unlock Your Full Experience!</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <h5 class="text-center">To create <span class='reportName'></span> report. You have to purchase subsciption. Click below button to subscribe.</h5>
+            <h5 class="">
+            It looks like you're ready to check out. To complete your purchase and enjoy all the benefits, please subscribe to one of our plans. We’ve got options designed just for you!
+            <br/>
+            <br/>
+            Choose a plan and let’s get you started on your journey!
+            </h5>
           </div>
           <div class="modal-footer">
             <a type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
-            <a href="<?php echo site_url('user/myaccount/membership'); ?>" type="button" class="btn btn-primary">Subscribe</a>
+            <a type="button"  class="btn btn-primary"  href="<?php echo site_url('user/myaccount/membership'); ?>">Subscribe</a>
           </div>
         </div>
       </div>

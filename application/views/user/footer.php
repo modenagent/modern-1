@@ -1450,17 +1450,7 @@
                 }
               }
             }
-
-            var theme_type = $("#select-theme-type").val();
-            var theme_sub_type = $("#select-theme").val();
-            $.ajax({
-              url:base_url + 'user/getPreviews',
-              method:'POST',
-              data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
-              success:function(resp){
-                $('.myaccount #preview_pages').html(resp)
-              }
-            });
+            getPreview();
           });
 
           $('#agentDefaultTheme_save').click(function(){
@@ -1506,7 +1496,25 @@
 
           });
         }
-    });
+        console.log('test');
+
+      });
+      $(document).on('click', '.marketupdate_theme_select', function() {
+        $("#select-theme").val($(this).val());
+      });
+
+    function getPreview() {
+      var theme_type = $("#select-theme-type").val();
+      var theme_sub_type = $("#select-theme").val();
+      $.ajax({
+        url:base_url + 'user/getPreviews',
+        method:'POST',
+        data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
+        success:function(resp){
+          $('.myaccount #preview_pages').html(resp)
+        }
+      });
+    }
     </script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.30"></script>
 </body>
