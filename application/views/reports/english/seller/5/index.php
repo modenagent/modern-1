@@ -1,9 +1,18 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/4/css/style.css") ?>">
+
+    <title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/5/css/style.css") ?>">
 
     <style type="text/css" media="print">
     .page_container
@@ -12,6 +21,7 @@
         page-break-inside: avoid;
     }
     </style>
+
 </head>
 
 <body>
@@ -67,15 +77,27 @@ $rangeDiff = (int) $_priceMaxRange - (int) $_priceMinRange;
 $_sliderStartPoint = (int) $_priceMinRange - round($rangeDiff / 8);
 $_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
 
+?>
+
+    <?php
+// $pageList = array_map(function ($val) {
+//     if ($val > 19) {
+//         return $val + 3;
+//     }
+//     if ($val > 2) {
+//         return $val + 2;
+//     }
+//     return $val;
+// }, $pageList);
+
 for ($i = 1; $i <= 8; $i++) {
+
     $report_id = $i;
 
     $data = array();
-
     if ($i == 6 || $i == 7) {
 
         $comparable = isset($areaSalesAnalysis['comparable']) && !empty($areaSalesAnalysis['comparable']) ? $areaSalesAnalysis['comparable'] : array();
-
         if (isset($comparable) && !empty($comparable)) {
             list($comparable_1, $comparable_2) = array_chunk($comparable, 4, true);
 
@@ -93,14 +115,10 @@ for ($i = 1; $i <= 8; $i++) {
         $data = $rangeOfSales;
     }
 
-    $this->load->view('reports/english/seller/4/pages/' . $report_id, $data);
+    $this->load->view('reports/english/seller/5/pages/' . $report_id, $data);
 }
-?>
-
-<?php
 
 ?>
-
 </body>
 
 </html>
