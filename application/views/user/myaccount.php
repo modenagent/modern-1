@@ -210,7 +210,7 @@ if ($theme_data) {
                   <div class="theme_selection_div">
 
                     <select class="select_theme select_change" id="select-theme">
-                      <?php for ($select_theme_sub_type = 1; $select_theme_sub_type <= 3; $select_theme_sub_type++) {?>
+                      <?php for ($select_theme_sub_type = 1; $select_theme_sub_type <= 5; $select_theme_sub_type++) {?>
                         <option <?=($select_theme_sub_type == $default_sub_type) ? 'selected' : ''?> value="<?=$select_theme_sub_type?>">Theme <?=$select_theme_sub_type?></option>
 
                       <?php }?>
