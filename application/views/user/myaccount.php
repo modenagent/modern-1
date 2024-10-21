@@ -234,7 +234,7 @@ if ($theme_data) {
             <div class="subscribe_notice" style="display: none;"><span class="alert-warning">Please subscribe for <span id="rep_type"></span> to view all themes</span></div>
             <div class="select_theme_form">
               <?php
-$data_theme['type'] = 'buyer';
+$data_theme['type'] = 'seller';
 $data_theme['sub_type'] = $default_sub_type;
 ?>
               <form id="agentDefaultThemeForm" action="#" method="post">
