@@ -15,7 +15,7 @@ if (is_dir($load_dir)) {
       <?php if ($displayCheckbox) {?>
         <input type="checkbox" <?php if ($img_cnt <= 8) {echo 'checked';}?>  class="page-checkbox" id="page-<?php echo $img_cnt; ?>" value="<?php echo $img_cnt; ?>" name="pageNumber[]">
       <?php }?>
-      <label class="theme_bg" for="page-<?php echo $img_cnt; ?>">
+      <label class="theme_bg text-center" for="page-<?php echo $img_cnt; ?>">
         <img src="<?php echo base_url() . $check_dir . $img_cnt . '.jpg'; ?>" alt="..." class="img-fluid">
         <h5><?php echo 'Page ' . $img_cnt; ?></h5>
       </label>
@@ -27,7 +27,7 @@ if (is_dir($load_dir)) {
   <div class="col-lg-3 col-md-6 market-update-wrapper">
       <input type="radio" <?php if ($mu_i == $sub_type) {echo 'checked';}?>  class="mu_radio marketupdate_theme_select" id="mu_page_<?php echo $mu_i; ?>" value="<?php echo $mu_i; ?>" name="cover_mu">
 
-    <label class="theme_bg" for="mu_page_<?php echo $mu_i; ?>">
+    <label class="theme_bg text-center" for="mu_page_<?php echo $mu_i; ?>">
       <img src="<?php echo base_url("assets/reports/english/marketUpdate/preview/{$mu_i}.jpg"); ?>" alt="..." class="img-fluid">
       <h5><?php echo 'Theme - ' . $mu_i; ?></h5>
     </label>
