@@ -375,6 +375,10 @@ class Reports
                 } else if ($_POST['seller_theme'] == 2) {
                     // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
                     $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+                } else if ($_POST['seller_theme'] == 4) {
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                } else if ($_POST['seller_theme'] == 5) {
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
                 } else {
                     // $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
                     $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -384,6 +388,12 @@ class Reports
             if ($_POST['seller_theme'] == 3) {
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
             } else if ($_POST['seller_theme'] == 2) {
+                // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+            } else if ($_POST['seller_theme'] == 4) {
+                // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+            } else if ($_POST['seller_theme'] == 5) {
                 // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
             } else {
@@ -397,8 +407,8 @@ class Reports
         $data['seller_theme'] = ((!empty($_POST['seller_theme']) && $_POST['seller_theme'] != 'undefined') ? $_POST['seller_theme'] : ((!empty($default_sub_type['seller'])) ? $default_sub_type['seller'] : 1));
         $data['mu_theme'] = ((!empty($_POST['mu_theme']) && $_POST['mu_theme'] != 'undefined') ? $_POST['mu_theme'] : ((!empty($default_sub_type['mu'])) ? $default_sub_type['mu'] : 1));
 
-        // echo "<pre>";
-        // print_r($data);die;
+        echo "<pre>";
+        print_r($data);die;
         $PdfGenResponse = $this->preparePdf($reportLang, $data, $_POST['presentation'], $report187->PropertyProfile->SiteAddress);
         $pdfFileName = $PdfGenResponse['pdf_filename'];
         $reportGenerated = $PdfGenResponse['report_generated'];
