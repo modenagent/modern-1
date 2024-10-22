@@ -120,6 +120,10 @@
     .mt-20{
         margin-top: 20px;
     }
+    .page6-grid .property-tile .img-fluid {
+        max-height: 215px;
+        width: 100%;
+    }
 </style>
 
 <div class="page_container">
@@ -129,173 +133,77 @@
         </div>
         <div class="pdf-body">
             <div class="page6-grid">
-                <div class="col-6">
+            <?php
+if (isset($comparables) && !empty($comparables)) {
+    $count = 0;
+
+    foreach ($comparables as $key => $value) {
+        if ($key > 8) {
+            break;
+        }
+        ?>
+                <div class="col-6 <?php echo ($count > 1) ? 'mt-20' : '' ?> ">
                     <div class="property-tile blue">
-                        <img src="<?php echo base_url("assets/reports/english/seller/5/img/home1.png"); ?>" class="img-fluid" alt="">
+                    <?php if (!empty($value['img'])) {?>
+                                <img src="<?php echo $value['img']; ?>" alt="<?php echo $value['Address']; ?>" class="img-fluid">
+                        <?php } else {?>
+                                <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=180x100&maptype=roadmap&markers=color:0x<?php echo str_replace("#", "", $theme) ?>%7C<?php echo $value['Latitude'] . ',' . $value['Longitude']; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg"  class="img-fluid">
+                        <?php }?>
+                        <!-- <img src="<?php echo base_url("assets/reports/english/seller/5/img/home1.png"); ?>" class="img-fluid" alt=""> -->
                         <div class="page6-property-name">
-                            <div class="page6-address"><img src="<?php echo base_url("assets/reports/english/seller/5/img/location-pin.png"); ?>" alt=""> 2404 PEPPER STREET</div>
-                            <div class="sale-price" style="margin-left: 28px;">Sale Price <b>$425,000</b></div>
+                            <div class="page6-address"><img src="<?php echo base_url("assets/reports/english/seller/5/img/location-pin.png"); ?>" alt=""> <?php echo isset($value['Address']) && !empty($value['Address']) ? $value['Address'] : '-'; ?></div>
+                            <div class="sale-price" style="margin-left: 28px;">Sale Price <b><?php echo isset($value['Price']) && !empty($value['Price']) ? $value['Price'] : '-'; ?></b></div>
                         </div>
                         <div class="page6-property-detail">
                             <table>
                                 <tr>
                                     <td>
-                                        Sold Date<br>03/13/2024
+                                        Sold Date<br><?php echo isset($value['Date']) && !empty($value['Date']) ? $value['Date'] : '-'; ?>
                                     </td>
                                     <td>
-                                        Dist<br>-
+                                        Dist<br> <?php echo isset($value['Distance']) && !empty($value['Distance']) ? $value['Distance'] : '-'; ?>
                                     </td>
                                     <td>
-                                        Sq.ft<br>758
+                                        Sq.ft<br> <?php echo isset($value['SquareFeet']) && !empty($value['SquareFeet']) ? $value['SquareFeet'] : '-'; ?>
                                     </td>
                                     <td>
-                                        $/Sqft<br>-
+                                        $/Sqft<br> <?php echo isset($value['PricePerSQFT']) && !empty($value['PricePerSQFT']) ? '$' . $value['PricePerSQFT'] : '-'; ?>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        Bed/Bath<br>2/1
+                                        Bed/Bath<br> <?php echo isset($value['Beds']) && !empty($value['Beds']) ? $value['Beds'] : '-';
+        echo isset($value['Baths']) && !empty($value['Baths']) ? '/' . $value['Baths'] : '-'; ?>
                                     </td>
                                     <td>
-                                        Year Bit<br>1970
+                                        Year Bit<br> <?php echo isset($value['Year']) && !empty($value['Year']) ? $value['Year'] : '-'; ?>
                                     </td>
                                     <td>
-                                        Lot Area<br>6,742
+                                        Lot Area<br> <?php echo isset($value['LotSize']) && !empty($value['LotSize']) ? $value['LotSize'] : '-'; ?>
                                     </td>
                                     <td>
-                                        Pool<br>Association,<br>Community
+                                        Pool<br>Association,<br> <?php echo isset($value['Pool']) && !empty($value['Pool']) ? $value['Pool'] : '-'; ?>
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
-                    <div class="property-tile orange">
-                        <img src="<?php echo base_url("assets/reports/english/seller/5/img/home2.png"); ?>" class="img-fluid" alt="">
-                        <div class="page6-property-name">
-                            <div class="page6-address"><img src="<?php echo base_url("assets/reports/english/seller/5/img/location-pin.png"); ?>" alt=""> 3361 BUTTERFIELD</div>
-                            <div class="sale-price" style="margin-left: 28px;">Sale Price <b>$1,700</b></div>
-                        </div>
-                        <div class="page6-property-detail">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Sold Date<br>11/27/2023
-                                    </td>
-                                    <td>
-                                        Dist<br>-
-                                    </td>
-                                    <td>
-                                        Sq.ft<br>750
-                                    </td>
-                                    <td>
-                                        $/Sqft<br>-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Bed/Bath<br>1/1
-                                    </td>
-                                    <td>
-                                        Year Bit<br>1969
-                                    </td>
-                                    <td>
-                                        Lot Area<br>750
-                                    </td>
-                                    <td>
-                                        Pool<br>None<br>&nbsp;
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="page6-grid mt-20">
-                <div class="col-6">
-                    <div class="property-tile orange">
-                        <img src="<?php echo base_url("assets/reports/english/seller/5/img/home3.png"); ?>" class="img-fluid" alt="">
-                        <div class="page6-property-name">
-                            <div class="page6-address"><img src="<?php echo base_url("assets/reports/english/seller/5/img/location-pin.png"); ?>" alt="">473 JUNIPER STREET</div>
-                            <div class="sale-price" style="margin-left: 28px;">Sale Price <b>$3,000</b></div>
-                        </div>
-                        <div class="page6-property-detail">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Sold Date<br>01/29/2024
-                                    </td>
-                                    <td>
-                                        Dist<br>-
-                                    </td>
-                                    <td>
-                                        Sq.ft<br>1,179
-                                    </td>
-                                    <td>
-                                        $/Sqft<br>-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Bed/Bath<br>3/2
-                                    </td>
-                                    <td>
-                                        Year Bit<br>1984
-                                    </td>
-                                    <td>
-                                        Lot Area<br>3,485
-                                    </td>
-                                    <td>
-                                        Pool<br>None<br>&nbsp;<br>&nbsp;
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6">
-                    <div class="property-tile blue">
-                        <img src="<?php echo base_url("assets/reports/english/seller/5/img/home4.png"); ?>" class="img-fluid" alt="">
-                        <div class="page6-property-name">
-                            <div class="page6-address"><img src="<?php echo base_url("assets/reports/english/seller/5/img/location-pin.png"); ?>" alt=""> 4692 CANYON PARK LANE</div>
-                            <div class="sale-price" style="margin-left: 28px;">Sale Price <b>$700,000</b></div>
-                        </div>
-                        <div class="page6-property-detail">
-                            <table>
-                                <tr>
-                                    <td>
-                                        Sold Date<br>02/09/2024
-                                    </td>
-                                    <td>
-                                        Dist<br>-
-                                    </td>
-                                    <td>
-                                        Sq.ft<br>1,144
-                                    </td>
-                                    <td>
-                                        $/Sqft<br>-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Bed/Bath<br>2/2
-                                    </td>
-                                    <td>
-                                        Year Bit<br>1983
-                                    </td>
-                                    <td>
-                                        Lot Area<br>1,575
-                                    </td>
-                                    <td>
-                                        Pool<br>Association,<br>Community,<br>Gas Heat
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+<?php
+$count++;
+    }
+} else {
+    ?>
+    <div class="d-flex">
+        <div class="col-12">
+            <h4 class="m-0 sub_title">No Comparables Found.</h4>
+        </div>
+    </div>
+    <?php
+}
+?>
             </div>
         </div>
+
     </div>
 </div>

@@ -9,15 +9,15 @@ else: ?>
 <!DOCTYPE html>
 <html>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/bootstrap.min.css") ?>">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/main.css") ?>">
-</head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/bootstrap.min.css") ?>">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/reports/english/seller/css/main.css") ?>">
+    </head>
 
-<body>
-<?php
+    <body>
+        <?php
 $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
 $rangeOfSales['avaiProperty'] = 0;
 $rangeOfSales['sQFootage'] = 0;
