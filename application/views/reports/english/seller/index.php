@@ -1,6 +1,6 @@
 <?php
 $default_theme = 1;
-if ($seller_theme >= 1 && $seller_theme <= 3) {
+if ($seller_theme >= 1 && $seller_theme <= 5) {
     $default_theme = (int) $seller_theme;
 }
 if ($default_theme > 1):
