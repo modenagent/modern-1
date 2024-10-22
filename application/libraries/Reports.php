@@ -965,6 +965,9 @@ class Reports
         // }
         else {
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
+            if ($data['seller_theme'] == 4 || $data['seller_theme'] == 5) {
+                $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
+            }
             // $checkLastPages = array_filter($data['pageList'], function ($page) {
             //     return in_array($page, [13, 14, 15, 16, 17, 18, 19, 20]);
             // });

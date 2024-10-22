@@ -209,7 +209,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
             <div class="the-agency">
                 <div class="grid">
                     <div class="col-4">
-                        <img src="<?php echo base_url($user['company_logo']); ?>; ?>" class="img-fluid" alt="">
+                        <img src="<?php echo base_url($user['company_logo']); ?>" class="img-fluid" alt="">
                     </div>
                     <div class="col-8">
                         <div class="authenticity">
