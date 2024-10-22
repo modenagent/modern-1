@@ -195,7 +195,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <img src="<?php echo base_url($user['company_logo']); ?>; ?>" class="img-fluid" alt="">
+                    <img src="<?php echo base_url($user['company_logo']); ?>" class="img-fluid" alt="">
                     <!-- <img src="<?php echo base_url("assets/reports/english/seller/4/img/flare.png"); ?>" class="img-fluid img-flare" alt=""> -->
                 </div>
             </div>
