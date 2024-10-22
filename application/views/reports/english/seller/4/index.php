@@ -116,9 +116,9 @@ for ($i = 1; $i <= 8; $i++) {
     }
 
     $this->load->view('reports/english/seller/4/pages/' . $report_id, $data);
-    if ($report_id == 8) {
-        die;
-    }
+    // if ($report_id == 8) {
+    //     die;
+    // }
 }
 ?>
 
