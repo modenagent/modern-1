@@ -1,5 +1,11 @@
 <style>
-    .pdf_page > img{
+    .pdf1_page {
+        margin: 0 auto;
+        box-sizing: border-box;
+        background-color: #fff;
+        position: relative;
+    }
+    .pdf1_page > img{
         height: 870px;
         width: 100%;
     }
@@ -132,17 +138,22 @@
     .img-flare{
         width: 160px;
     }
+
 </style>
 
 <div class="page_container">
-    <div class="pdf_page size_letter">
+    <div class="pdf1_page size_letter">
         <img src="<?php echo base_url("assets/reports/english/seller/4/img/image1.png"); ?>" alt="" class="img-fluid">
         <div class="pdf_header">
             <h1 class="seller-report"><b class="d-block">SELLERS</b> REPORT</h1>
             <div class="address">
                 <img src="<?php echo base_url("assets/reports/english/seller/4/img/marker.png"); ?>" alt="">
-                <b>1358 5TH ST</b>
-                <span>LA VERNE, CA 91 750</span>
+                <b>
+                    <?php if (isset($site_address) && !empty($site_address)) {?>
+                    <p><?php echo ucwords(strtolower($site_address)) . ','; ?></p>
+                    <?php }?>
+                </b>
+                <span><?php echo ucwords(strtolower($city)); ?>, <?php echo ucwords(strtolower($state)); ?>, <?php echo ucwords(strtolower($zip)); ?></span>
             </div>
         </div>
         <div class="pdf_footer">
@@ -150,18 +161,33 @@
                 <div class="col-8">
                     <div class="grid">
                         <div class="col-4">
-                            <img src="<?php echo base_url("assets/reports/english/seller/4/img/zoe.png"); ?>" class="img-fluid zoe-dp" alt="">
+                        <?php if ($user['profile_image'] != '' && $user['profile_image'] != 'no') {?>
+                            <img src="<?php echo (($callFromApi == 1) ? $user['profile_image'] : (base_url() . $user['profile_image'])); ?>" alt="<?php echo $user['fullname']; ?>" class="img-fluid zoe-dp">
+                        <?php }?>
+                            <!-- <img src="<?php echo base_url("assets/reports/english/seller/4/img/zoe.png"); ?>" class="img-fluid zoe-dp" alt=""> -->
                         </div>
                         <div class="col-8">
-                            <div class="zoe-noelle">ZOE NOELLE</div>
-                            <div class="realtor">Realtor</div>
+                            <div class="zoe-noelle">
+                            <?php if (isset($user['fullname']) && !empty($user['fullname'])) {?>
+                                <?php echo $user['fullname']; ?>
+                            <?php }?>
+                            </div>
+                            <div class="realtor">
+                                <?php if (isset($user['title']) && !empty($user['title'])) {?>
+                                    <?php echo $user['title']; ?>
+                                <?php }?>
+                            </div>
                             <div class="license">CA BRE#0123456789</div>
-                            <div class="contact-detail">
-                                <img src="<?php echo base_url("assets/reports/english/seller/4/img/phone.png"); ?>" alt=""> 2133097286
-                            </div>
-                            <div class="contact-detail">
-                                <img src="<?php echo base_url("assets/reports/english/seller/4/img/share.png"); ?>" alt=""> infp@modernagent.io
-                            </div>
+                            <?php if (isset($user['phone']) && !empty($user['phone'])) {?>
+                                <div class="contact-detail">
+                                    <img src="<?php echo base_url("assets/reports/english/seller/5/img/phone.png"); ?>" alt=""> O <span><?php echo $user['phone']; ?></span>
+                                </div>
+                            <?php }?>
+                            <?php if (isset($user['email']) && !empty($user['email'])) {?>
+                                <div class="contact-detail">
+                                    <img src="<?php echo base_url("assets/reports/english/seller/5/img/email.png"); ?>" alt=""> <?php echo $user['email']; ?>
+                                </div>
+                            <?php }?>
                             <div class="contact-detail">
                                 <img src="<?php echo base_url("assets/reports/english/seller/4/img/address.png"); ?>" alt=""> 985 Success ave sucess, CA 91252
                             </div>
@@ -169,7 +195,8 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <img src="<?php echo base_url("assets/reports/english/seller/4/img/flare.png"); ?>" class="img-fluid img-flare" alt="">
+                    <img src="<?php echo base_url($user['company_logo']); ?>; ?>" class="img-fluid" alt="">
+                    <!-- <img src="<?php echo base_url("assets/reports/english/seller/4/img/flare.png"); ?>" class="img-fluid img-flare" alt=""> -->
                 </div>
             </div>
         </div>

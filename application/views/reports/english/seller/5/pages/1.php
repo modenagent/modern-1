@@ -143,6 +143,14 @@
         width: 67%;
     }
 </style>
+<?php
+$site_address = $property->PropertyProfile->SiteAddress;
+
+$city = ucwords(strtolower($property->PropertyProfile->SiteCity));
+$state = strtoupper($property->PropertyProfile->SiteState);
+$zip = strtoupper($property->PropertyProfile->SiteZip);
+
+?>
 <div class="page_container">
     <div class="pdf_page size_letter">
         <div class="pdf_header">
@@ -156,9 +164,11 @@
             <div class="address">
                 <img src="<?php echo base_url("assets/reports/english/seller/5/img/marker.png"); ?>" alt="">
                 <b>
-                    13585TH ST,<br>
-                    LAVER NE,<br>
-                    CA, 91750
+                <?php if (isset($site_address) && !empty($site_address)) {?>
+                    <p><?php echo ucwords(strtolower($site_address)) . ','; ?></p>
+            <?php }?>,<br>
+                    <?php echo ucwords(strtolower($city)); ?>,<br>
+                    <?php echo ucwords(strtolower($state)); ?>, <?php echo ucwords(strtolower($zip)); ?>
                 </b>
                 <div class="contact-me">For more information, please contact me.</div>
 
@@ -166,24 +176,40 @@
             <div class="realtor-info">
                 <div class="grid">
                     <div class="col-4">
-                        <img src="<?php echo base_url("assets/reports/english/seller/5/img/jerry.png"); ?>" class="img-fluid jerry-dp" alt="">
+                    <?php if ($user['profile_image'] != '' && $user['profile_image'] != 'no') {?>
+                            <img src="<?php echo (($callFromApi == 1) ? $user['profile_image'] : (base_url() . $user['profile_image'])); ?>" alt="<?php echo $user['fullname']; ?>" class="img-fluid jerry-dp">
+                    <?php }?>
+                        <!-- <img src="<?php echo base_url("assets/reports/english/seller/5/img/jerry.png"); ?>" class="img-fluid jerry-dp" alt=""> -->
                     </div>
                     <div class="col-8">
-                        <div class="jerry-hernandez">Jerry Hernandez</div>
-                        <div class="realtor">Realtor</div>
-                        <div class="contact-detail">
-                            <img src="<?php echo base_url("assets/reports/english/seller/5/img/phone.png"); ?>" alt=""> 2133097296
-                        </div>
-                        <div class="contact-detail">
-                            <img src="<?php echo base_url("assets/reports/english/seller/5/img/email.png"); ?>" alt=""> info@modernagent.io
-                        </div>
+                        <div class="jerry-hernandez">
+                        <?php if (isset($user['fullname']) && !empty($user['fullname'])) {?>
+
+                                <?php echo $user['fullname']; ?>
+
+                        <?php }?></div>
+                        <div class="realtor">
+                        <?php if (isset($user['title']) && !empty($user['title'])) {?>
+                                <?php echo $user['title']; ?>
+
+                        <?php }?></div>
+                        <?php if (isset($user['phone']) && !empty($user['phone'])) {?>
+                            <div class="contact-detail">
+                                <img src="<?php echo base_url("assets/reports/english/seller/5/img/phone.png"); ?>" alt=""> O <span><?php echo $user['phone']; ?></span>
+                            </div>
+                        <?php }?>
+                        <?php if (isset($user['email']) && !empty($user['email'])) {?>
+                            <div class="contact-detail">
+                                <img src="<?php echo base_url("assets/reports/english/seller/5/img/email.png"); ?>" alt=""> <?php echo $user['email']; ?>
+                            </div>
+                        <?php }?>
                     </div>
                 </div>
             </div>
             <div class="the-agency">
                 <div class="grid">
                     <div class="col-4">
-                        <img src="<?php echo base_url("assets/reports/english/seller/5/img/agency.png"); ?>" class="img-fluid" alt="">
+                        <img src="<?php echo base_url($user['company_logo']); ?>; ?>" class="img-fluid" alt="">
                     </div>
                     <div class="col-8">
                         <div class="authenticity">

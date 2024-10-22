@@ -18,16 +18,16 @@
     .text-right{
         text-align: right;
     }
-    .page6-title {
+    .page-title {
         font-size: 40px;
         font-weight: 700;
         color: #3fbfb0;
-        background: url(<?php echo base_url("assets/reports/english/seller/4/img/title-decoration.png"); ?>) no-repeat;
+        background: url(img/title-decoration.png) no-repeat;
         background-size: 350px;
         background-position: center right;
         line-height: 50px
     }
-    .pdf6_header p {
+    .pdf_header p {
         font-size: 18px;
         color: #000;
         font-weight: 500;
@@ -57,18 +57,18 @@
         font-size: 24px;
         margin-left: 20px;
     }
-    .page6-grid > .col-6:first-child .property-tile{
+    .grid > .col-6:first-child .property-tile{
         margin-right: 10px;
     }
-    .page6-grid > .col-6:last-child .property-tile{
+    .grid > .col-6:last-child .property-tile{
         margin-left: 10px;
     }
-    .page6-grid::after{
+    .grid::after{
         display: table;
         content: '';
         width: 100%;
     }
-    .page6-grid > .col-6 {
+    .grid > .col-6 {
         float: left;
         width: 50%;
     }
@@ -92,10 +92,6 @@
     .mt-20{
         margin-top: 20px;
     }
-    .page6-grid .property-tile .img-fluid {
-        max-height: 215px;
-        width: 100%;
-    }
 </style>
 <div class="page_container">
     <div class="pdf_page size_letter">
@@ -104,7 +100,7 @@
             <p>PROPERTIES THAT HAVE RECENTLY SOLD</p>
         </div>
         <div class="pdf-body">
-            <div class="page6-grid">
+            <div class="grid">
             <?php
 if (isset($comparables) && !empty($comparables)) {
     $count = 0;
