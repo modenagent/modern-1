@@ -1015,7 +1015,7 @@ class Reports
             // }
             // echo "else";
         }
-        print_r($zoom);die;
+        // print_r($zoom);die;
         $snappy = new Pdf($wkhtmltopdfPath);
         //$snappy = new Pdf($this->binaryPath);
         $options = [
@@ -1048,6 +1048,7 @@ class Reports
                 'pdf_filename' => '',
             );
         }
+        print_r($pdfFileName);die;
         if ($turboMode) {
             $qpdf_path = $CI->config->item('qpdf_path');
             //Merging Static pdf pages with dynamic pdf pages
