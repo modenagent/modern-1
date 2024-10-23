@@ -11,6 +11,7 @@
     .pdf_page3_header p{
         margin-bottom: 40px;
         margin-top: 10px;
+        color: #ffff;
     }
     .page3-title {
         font-size: 35px;
