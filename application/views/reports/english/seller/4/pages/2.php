@@ -30,7 +30,7 @@
         }
         .index-list {
         max-width: 433px;
-        margin: 120px 40px 0 auto;
+        margin: 120px 55px 0 auto;
         padding: 0 30px;
         list-style: none;
         text-align: left;
@@ -41,7 +41,7 @@
         }
         .index-list b{
         color: #fff;
-        font-size: 32px;
+        font-size: 28px;
         }
         .pdf_page > img {
             height: auto;
