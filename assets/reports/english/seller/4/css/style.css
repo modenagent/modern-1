@@ -10,7 +10,6 @@ body{
 .size_a4 { width: 8.3in; height: 11.7in; }
 /* .size_letter { width: 8.5in; height: 11in; } */
 .size_letter { 
-    padding: 45px 50px;
     width: 816px;
     height: 1056px;
 }
@@ -29,4 +28,6 @@ body{
 {
     page-break-after: always;
     page-break-inside: avoid;
+    margin: 0 auto;
+    padding: 45px 50px;
 }
