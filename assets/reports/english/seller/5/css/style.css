@@ -28,6 +28,6 @@ body{
 {
     page-break-after: always;
     page-break-inside: avoid;
-    padding: 45px 50px;
+    padding: 25px;
     margin: 0 auto;
 }

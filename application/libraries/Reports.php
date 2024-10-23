@@ -42,7 +42,7 @@ class Reports
     public function getPropertyData($callFromApi = 0, $reportData = array())
     {
         $_POST = [
-            "report187" => "https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dOmgb6JCbWI242AyDWFnnSELy1yzNmvKYsYIpJGOxO3atbzeS7rXS7sFfhict_pALSZyY2QZNgKRqzevX8FieKHqNWCClVvxghZ8TIWiL_DpYeDi5rJGU7o_UO2WxIkBV9NeLooHzITcjrowhzhlMeV90&filter=<CustCompFilter><SQFT>0.20</SQFT><Radius>0.25</Radius></CustCompFilter>",
+            "report187" => "https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dOlYbKJCcWLeYG4ivwdY9G-GWSiAWvMjiCGtVZePQKctV9KMY9h_4Ju7xzwe10tq6sek4BSYT3LhwE-gpQqhLAEkk282xQ9NcuSKpBzybcWxb-9jcHEWwMUtIPyOL_FeSr1_yNfedpe_rAKpCqtoweZ90&filter=<CustCompFilter><SQFT>0.20</SQFT><Radius>0.25</Radius></CustCompFilter>",
             "use_rets" => "true",
             "req_from" => "wizard",
             "user_image" => "",
@@ -70,7 +70,7 @@ class Reports
             "selected_pages" => '["1", "2", "3", "4", "5", "6", "7", "8"]',
             "pdf_page" => "1",
             "mu_theme" => "3",
-            "seller_theme" => "5",
+            "seller_theme" => "4",
             "buyer_theme" => "undefined",
             "custom_comps" => '["216001810", "214388530", "217096959", "217015210", "215695965", "206614148", "215945245", "214735960"]',
             "selected_theme" => "#0f0f0f",
@@ -100,7 +100,8 @@ class Reports
         // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
         // $report187 = simplexml_load_file("sample.xml");
         // changes for local version ends here
-
+        // echo "<pre>";
+        // print_r($report187);die;
         $data['mapinfo'] = $report111;
         $data['property'] = $report187;
         $data['report_lang'] = $reportLang;
@@ -1003,7 +1004,7 @@ class Reports
         else {
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
             if ($data['seller_theme'] == 4 || $data['seller_theme'] == 5) {
-                // $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
+                $zoom = 1.1;
             }
             // $checkLastPages = array_filter($data['pageList'], function ($page) {
             //     return in_array($page, [13, 14, 15, 16, 17, 18, 19, 20]);

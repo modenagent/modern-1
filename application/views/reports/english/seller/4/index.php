@@ -30,8 +30,8 @@
     <style type="text/css" media="print">
     .page_container
     {
-        page-break-after: always;
-        page-break-inside: avoid;
+        /* page-break-after: always;
+        page-break-inside: avoid; */
     }
     </style>
 </head>

@@ -166,7 +166,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                 <b>
                 <?php if (isset($site_address) && !empty($site_address)) {?>
                     <p><?php echo ucwords(strtolower($site_address)) . ','; ?></p>
-            <?php }?>,<br>
+            <?php }?><br>
                     <?php echo ucwords(strtolower($city)); ?>,<br>
                     <?php echo ucwords(strtolower($state)); ?>, <?php echo ucwords(strtolower($zip)); ?>
                 </b>

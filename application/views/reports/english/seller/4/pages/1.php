@@ -138,9 +138,19 @@
     .img-flare{
         width: 160px;
     }
+    .mt-20 {
+        margin-top: 20px;
+    }
 
 </style>
+<?php
+$site_address = $property->PropertyProfile->SiteAddress;
 
+$city = ucwords(strtolower($property->PropertyProfile->SiteCity));
+$state = strtoupper($property->PropertyProfile->SiteState);
+$zip = strtoupper($property->PropertyProfile->SiteZip);
+// echo $site_address;die;
+?>
 <div class="page_container">
     <div class="pdf1_page size_letter">
         <img src="<?php echo base_url("assets/reports/english/seller/4/img/image1.png"); ?>" alt="" class="img-fluid">
@@ -150,23 +160,23 @@
                 <img src="<?php echo base_url("assets/reports/english/seller/4/img/marker.png"); ?>" alt="">
                 <b>
                     <?php if (isset($site_address) && !empty($site_address)) {?>
-                    <p><?php echo ucwords(strtolower($site_address)) . ','; ?></p>
+                    <?php echo ucwords(strtolower($site_address) . ','); ?>
                     <?php }?>
                 </b>
-                <span><?php echo ucwords(strtolower($city)); ?>, <?php echo ucwords(strtolower($state)); ?>, <?php echo ucwords(strtolower($zip)); ?></span>
+                <span><?php echo ucwords(strtolower($city)); ?> <?php echo ', ' . ucwords(strtolower($state)); ?> <?php echo ', ' . ucwords(strtolower($zip)); ?></span>
             </div>
         </div>
         <div class="pdf_footer">
             <div class="grid">
-                <div class="col-8">
-                    <div class="grid">
+                <div class="col-8 ">
+                    <div class="grid mt-20">
                         <div class="col-4">
                         <?php if ($user['profile_image'] != '' && $user['profile_image'] != 'no') {?>
                             <img src="<?php echo (($callFromApi == 1) ? $user['profile_image'] : (base_url() . $user['profile_image'])); ?>" alt="<?php echo $user['fullname']; ?>" class="img-fluid zoe-dp">
                         <?php }?>
                             <!-- <img src="<?php echo base_url("assets/reports/english/seller/4/img/zoe.png"); ?>" class="img-fluid zoe-dp" alt=""> -->
                         </div>
-                        <div class="col-8">
+                        <div class="col-8 ">
                             <div class="zoe-noelle">
                             <?php if (isset($user['fullname']) && !empty($user['fullname'])) {?>
                                 <?php echo $user['fullname']; ?>
@@ -195,7 +205,7 @@
                     </div>
                 </div>
                 <div class="col-4">
-                    <img src="<?php echo base_url($user['company_logo']); ?>" class="img-fluid" alt="">
+                    <img src="<?php echo base_url($user['company_logo']); ?>" class="img-fluid img-flare" alt="">
                     <!-- <img src="<?php echo base_url("assets/reports/english/seller/4/img/flare.png"); ?>" class="img-fluid img-flare" alt=""> -->
                 </div>
             </div>
