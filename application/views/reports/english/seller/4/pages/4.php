@@ -42,16 +42,17 @@
     }
     .section-title{
         background-color: #152170;
-        font-size: 23px;
+        font-size: 20px;
         font-weight: 700;
         padding: 12px 20px;
         position: relative;
         display: inline-block;
         color: #fff;
+        width: 55%;
         margin-top: 20px;
         margin-bottom: 10px;
     }
-    .section-title::before {
+    /* .section-title::before {
         content: '';
         border-top: 17px solid #fff;
         border-left: 18px solid transparent;
@@ -70,7 +71,7 @@
         right: -15px;
         bottom: -6px;
         transform: rotate(-38deg);
-    }
+    } */
     .properties{
         background-color: #e9eaf2;
         padding: 5px 20px;
