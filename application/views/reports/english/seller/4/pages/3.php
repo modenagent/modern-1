@@ -28,13 +28,13 @@
         <img src="<?php echo base_url("assets/reports/english/seller/4/img/bg.png"); ?>" alt="" class="img-fluid">
         <div class="pdf_page3_header">
             <div class="page3-title">AERIAL VIEW</div>
-            <p>
+            <p style="color: #fff;" >
                 This is an aerial view of the neighborhood in which you prospective <br>
                 property is located. This will give you the opportunity to get a birds eye  <br>
                 view of any local parks, major streets, & highways.
             </p>
             <div class="page3-title">WHY A 1/4-MILE RADIUS</div>
-            <p>
+            <p style="color: #fff;">
                 A quarter mile radius has proven to yield that best results <br>
                 when it comes to properties that best match yours.
             </p>
