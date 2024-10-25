@@ -8,6 +8,7 @@
         text-align: left;
         color: #ffff;
         height: 120px;
+        padding: 40px 0px 20px;
     }
     .pdf-body{
         position: absolute;
@@ -20,8 +21,8 @@
     }
     .page6-title {
         font-family: 'BebasNeue Book';
-        font-size: 80px;
-        line-height: 70px;
+        font-size: 65px;
+        line-height: 60px;
         color: #152270;
         text-align: center;
     }
@@ -124,6 +125,9 @@
         max-height: 215px;
         width: 100%;
     }
+    .page6-body-margin {
+        margin: 40px 20px 0px;
+    }
 </style>
 
 <div class="page_container">
@@ -131,7 +135,7 @@
         <div class="page6_pdf_header">
             <div class="page6-title">SALES <span>COMPARABLES</span></div>
         </div>
-        <div class="pdf-body">
+        <div class="pdf-body page6-body-margin">
             <div class="page6-grid">
             <?php
 if (isset($comparables) && !empty($comparables)) {
