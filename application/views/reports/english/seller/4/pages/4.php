@@ -42,9 +42,9 @@
     }
     .section-title{
         background-color: #152170;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
-        padding: 12px 20px;
+        padding: 10px 20px;
         position: relative;
         display: inline-block;
         color: #fff;
@@ -76,6 +76,7 @@
         background-color: #e9eaf2;
         padding: 5px 20px;
         margin-bottom: 10px;
+        font-size: 15px;
     }
     .grid > .col-6:first-child .properties{
         margin-right: 10px;
@@ -99,14 +100,20 @@
         float: left;
         width: 33%;
     }
+    .ml-20 {
+        margin-left: 20px;
+    }
+    .body-margin {
+        margin: 0px 20px;
+    }
 </style>
 <div class="page_container">
     <div class="pdf_page size_letter">
-        <div class="pdf_header">
+        <div class="pdf_header ml-20">
             <div class="page4-title">PROSPECTIVE PROPERTY</div>
             <p>OVERVIEW OF YOUR PROPERTY</p>
         </div>
-        <div class="pdf-body">
+        <div class="pdf-body body-margin">
             <div class="section-title">OWNER, ADDRESS & LEGAL DESCRIPTION</div>
             <div class="grid">
                 <div class="col-6">

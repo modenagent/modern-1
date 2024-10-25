@@ -1,13 +1,14 @@
 <style>
-    .pdf_header {
+    .pdf6_header {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        padding-bottom: 20px;
+        /* padding-bottom: 20px; */
         text-align: left;
         color: #ffff;
         height: 120px;
+        padding: 40px 0px 20px;
     }
     .pdf-body{
         position: absolute;
@@ -18,16 +19,16 @@
     .text-right{
         text-align: right;
     }
-    .page-title {
+    .page6-title {
         font-size: 40px;
         font-weight: 700;
         color: #3fbfb0;
-        background: url(img/title-decoration.png) no-repeat;
+        background: url(<?php echo base_url("assets/reports/english/seller/4/img/title-decoration.png"); ?>) no-repeat;
         background-size: 350px;
         background-position: center right;
         line-height: 50px
     }
-    .pdf_header p {
+    .pdf6_header p {
         font-size: 18px;
         color: #000;
         font-weight: 500;
@@ -57,18 +58,18 @@
         font-size: 24px;
         margin-left: 20px;
     }
-    .grid > .col-6:first-child .property-tile{
+    .page6-grid > .col-6:first-child .property-tile{
         margin-right: 10px;
     }
-    .grid > .col-6:last-child .property-tile{
+    .page6-grid > .col-6:last-child .property-tile{
         margin-left: 10px;
     }
-    .grid::after{
+    .page6-grid::after{
         display: table;
         content: '';
         width: 100%;
     }
-    .grid > .col-6 {
+    .page6-grid > .col-6 {
         float: left;
         width: 50%;
     }
@@ -92,15 +93,26 @@
     .mt-20{
         margin-top: 20px;
     }
+    .ml-20 {
+        margin-left: 20px;
+    }
+    .page6-body-margin {
+        margin: 0px 20px;
+    }
+    .page6-grid .property-tile .img-fluid {
+        max-height: 215px;
+        width: 100%;
+    }
+
 </style>
 <div class="page_container">
     <div class="pdf_page size_letter">
-        <div class="pdf6_header">
+        <div class="pdf6_header ml-20">
             <div class="page6-title">SALES COMPARABLES</div>
             <p>PROPERTIES THAT HAVE RECENTLY SOLD</p>
         </div>
-        <div class="pdf-body">
-            <div class="grid">
+        <div class="pdf-body page6-body-margin">
+            <div class="page6-grid">
             <?php
 if (isset($comparables) && !empty($comparables)) {
     $count = 0;

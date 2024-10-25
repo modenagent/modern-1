@@ -8,6 +8,7 @@
         text-align: left;
         color: #ffff;
         height: 120px;
+        padding: 40px 0px;
     }
     .pdf5-body{
         position: absolute;
@@ -64,6 +65,12 @@
         color: #000;
         padding: 10px 20px;
     }
+    .ml-20 {
+        margin-left: 20px;
+    }
+    .body-margin {
+        margin: 20px 20px 0px;
+    }
     /* .page1_table {
         width: 100%;
         border-collapse: collapse;
@@ -73,11 +80,11 @@
 </style>
 <div class="page_container">
     <div class="pdf_page size_letter">
-        <div class="pdf5_header">
+        <div class="pdf5_header ml-20">
             <div class="page5-title">AREA SALES ANALYSIS</div>
             <p>SALES IN THE PAST 12 MONTHS</p>
         </div>
-        <div class="pdf5-body">
+        <div class="pdf5-body body-margin">
 <?php
 $series = $areaSalesAnalysis['chart']['series'];
 $date = $areaSalesAnalysis['chart']['date'];

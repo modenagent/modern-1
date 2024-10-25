@@ -29,5 +29,5 @@ body{
     page-break-after: always;
     page-break-inside: avoid;
     margin: 0 auto;
-    padding: 25px;
+    /* padding: 25px; */
 }
