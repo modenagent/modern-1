@@ -6,8 +6,8 @@
     .text-center{
         text-align: center;
     }
-    .f14{
-        font-size: 14px;
+    .f13{
+        font-size: 13px;
     }
     .mx-auto{
         margin: 0 auto;
@@ -113,7 +113,7 @@
             </div>
             <!-- <img src="<?php echo base_url("assets/reports/english/seller/5/img/price-range.png"); ?>" class="img-fluid mx-auto d-block" alt=""> -->
             <div id="slider"></div>
-            <p class="text-center f14">
+            <p class="text-center f13">
                 Above are the average property details for homes that are close in proximity to yours AND have been sold within<br>
                 the last 12-months. The range represents the low AND the high sales price for the properties that were sold in the<br>
                 last 12-months. Only the properties that closely match yours were used. The factors that were analzyed were<br>
