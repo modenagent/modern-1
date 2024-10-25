@@ -1,13 +1,14 @@
 <style>
-    .pdf_header {
+    .pdf6_header {
         position: absolute;
         top: 0;
         left: 0;
         right: 0;
-        padding-bottom: 20px;
+        /* padding-bottom: 20px; */
         text-align: left;
         color: #ffff;
         height: 120px;
+        padding: 40px 0px 20px;
     }
     .pdf-body{
         position: absolute;
@@ -92,18 +93,25 @@
     .mt-20{
         margin-top: 20px;
     }
+    .ml-20 {
+        margin-left: 20px;
+    }
+    .page6-body-margin {
+        margin: 0px 20px;
+    }
     .page6-grid .property-tile .img-fluid {
         max-height: 215px;
         width: 100%;
     }
+
 </style>
 <div class="page_container">
     <div class="pdf_page size_letter">
-        <div class="pdf6_header">
+        <div class="pdf6_header ml-20">
             <div class="page6-title">SALES COMPARABLES</div>
             <p>PROPERTIES THAT HAVE RECENTLY SOLD</p>
         </div>
-        <div class="pdf-body">
+        <div class="pdf-body page6-body-margin">
             <div class="page6-grid">
             <?php
 if (isset($comparables) && !empty($comparables)) {

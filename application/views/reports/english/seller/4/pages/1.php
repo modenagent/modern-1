@@ -4,6 +4,8 @@
         box-sizing: border-box;
         background-color: #fff;
         position: relative;
+
+        padding: 0px 25px;
     }
     .pdf1_page > img{
         height: 870px;
@@ -68,6 +70,11 @@
         text-align: left;
         font-size: 16px;
     }
+
+    .pdf1_footer {
+        padding: 10px 25px 10px;
+    }
+
     .pdf_footer p{
         margin: 0;
     }
@@ -166,7 +173,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                 <span><?php echo ucwords(strtolower($city)); ?> <?php echo ', ' . ucwords(strtolower($state)); ?> <?php echo ', ' . ucwords(strtolower($zip)); ?></span>
             </div>
         </div>
-        <div class="pdf_footer">
+        <div class="pdf_footer pdf1_footer">
             <div class="grid">
                 <div class="col-8 ">
                     <div class="grid mt-20">
@@ -204,7 +211,7 @@ $zip = strtoupper($property->PropertyProfile->SiteZip);
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-4 mt-20">
                     <img src="<?php echo base_url($user['company_logo']); ?>" class="img-fluid img-flare" alt="">
                     <!-- <img src="<?php echo base_url("assets/reports/english/seller/4/img/flare.png"); ?>" class="img-fluid img-flare" alt=""> -->
                 </div>
