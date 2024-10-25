@@ -8,6 +8,7 @@
         text-align: left;
         color: #ffff;
         height: 100px;
+        padding: 40px 0px 20px;
     }
     .page5-pdf-body{
         position: absolute;
@@ -20,8 +21,8 @@
     }
     .page-title {
         font-family: 'BebasNeue Book';
-        font-size: 80px;
-        line-height: 70px;
+        font-size: 65px;
+        line-height: 60px;
         color: #152270;
         text-align: center;
     }
@@ -65,6 +66,10 @@
         color: #000;
         padding: 10px 20px;
     }
+    .page5-body-margin {
+        margin: 40px 20px 0px;
+    }
+
 </style>
 
 <div class="page_container">
@@ -72,7 +77,7 @@
         <div class="page5_pdf_header">
             <div class="page-title">AREA SALES <span>ANALYSIS</span></div>
         </div>
-        <div class="page5-pdf-body">
+        <div class="page5-pdf-body page5-body-margin">
 <?php
 $series = $areaSalesAnalysis['chart']['series'];
 $date = $areaSalesAnalysis['chart']['date'];

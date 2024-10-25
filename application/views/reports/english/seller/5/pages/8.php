@@ -24,6 +24,7 @@
         text-align: left;
         color: #ffff;
         height: 110px;
+        padding: 40px 0px;
     }
     .pdf-body{
         position: absolute;
@@ -39,8 +40,8 @@
     }
     .page8-page-title {
         font-family: 'BebasNeue Book';
-        font-size: 80px;
-        line-height: 70px;
+        font-size: 65px;
+        line-height: 60px;
         color: #152270;
         text-align: center;
         }
@@ -83,13 +84,16 @@
     .property-detail + img{
         margin-bottom: 40px;
     }
+    .page8-body-margin {
+        margin: 40px 20px 0px;
+    }
 </style>
 <div class="page_container">
     <div class="pdf_page size_letter">
         <div class="page8_pdf_header">
             <div class="page8-page-title">RANGE OF <span>SALES</span></div>
         </div>
-        <div class="pdf-body">
+        <div class="pdf-body page8-body-margin">
         <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x350&maptype=satelite&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:0x082147%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&style=feature:water|element:geometry.fill|color:0xd3d3d3&style=feature:transit|color:0x808080|visibility:off&style=feature:road.highway|element:geometry.stroke|visibility:on|color:0xb3b3b3&style=feature:road.highway|element:geometry.fill|color:0xffffff&style=feature:road.local|element:geometry.fill|visibility:on|color:0xffffff|weight:1.8&style=feature:road.local|element:geometry.stroke|color:0xd7d7d7&style=feature:poi|element:geometry.fill|visibility:on|color:0xebebeb&style=feature:administrative|element:geometry|color:0xa7a7a7&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:road.arterial|element:geometry.fill|color:0xffffff&style=feature:landscape|element:geometry.fill|visibility:on|color:0xefefef&style=feature:road|element:labels.text.fill|color:0x696969&style=feature:administrative|element:labels.text.fill|visibility:on|color:0x737373&style=feature:poi|element:labels.icon|visibility:off&style=feature:poi|element:labels|visibility:off&style=feature:road.arterial|element:geometry.stroke|color:0xd6d6d6&style=feature:road|element:labels.icon|visibility:off&style=feature:poi|element:geometry.fill|color:0xdadada&key=AIzaSyCABfewmARxxJI0N1SUWOaoS3dfYiXhSDg" alt="map" class="img-fluid location-map">
             <!-- <img src="<?php echo base_url("assets/reports/english/seller/5/img/map.png"); ?>" class="img-fluid location-map" alt=""> -->
             <div class="property-detail">

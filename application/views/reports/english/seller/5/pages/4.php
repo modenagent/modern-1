@@ -8,6 +8,8 @@
     text-align: left;
     color: #ffff;
     height: 75px;
+    padding: 40px 0px 20px;
+
 }
 .pdf-body{
     position: absolute;
@@ -20,8 +22,8 @@
 }
 .page-title {
     font-family: 'BebasNeue Book';
-    font-size: 80px;
-    line-height: 70px;
+    font-size: 65px;
+    line-height: 60px;
     color: #152270;
     text-align: center;
 }
@@ -44,7 +46,7 @@
 }
 .section-title{
     background-color: #152170;
-    font-size: 23px;
+    font-size: 18px;
     font-weight: 700;
     padding: 12px 70px 12px 20px;
     position: relative;
@@ -52,6 +54,7 @@
     color: #fff;
     margin-top: 20px;
     margin-bottom: 10px;
+    width: 75%;
 }
 .section-title::after {
     content: '';
@@ -65,6 +68,7 @@
     background-color: #e9eaf2;
     padding: 5px 20px;
     margin-bottom: 10px;
+    font-size: 15px;
 }
 .page4-grid > .page4-col-6:first-child .properties{
     margin-right: 10px;
@@ -88,6 +92,9 @@
   float: left;
   width: 33%;
 }
+.body-margin {
+    margin: 0px 20px;
+}
 </style>
 
 <div class="page_container">
@@ -95,7 +102,7 @@
         <div class="page4_pdf_header">
             <div class="page-title">PROSPECTIVE <span>PROPERTY</span></div>
         </div>
-        <div class="pdf-body">
+        <div class="pdf-body body-margin">
             <div class="section-title">OWNER, ADDRESS & LEGAL DESCRIPTION</div>
             <div class="page4-grid">
                 <div class="page4-col-6">
