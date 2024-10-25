@@ -97,7 +97,7 @@
         margin-left: 20px;
     }
     .page6-body-margin {
-        margin: 0px 20px;
+        margin: 20px 20px 0px;
     }
     .page6-grid .property-tile .img-fluid {
         max-height: 215px;
