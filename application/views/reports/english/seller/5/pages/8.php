@@ -102,7 +102,7 @@
                         <div class="number"><?php echo isset($avaiProperty) && !empty($avaiProperty) ? round($avaiProperty) : 0; ?></div>Total Comps
                     </div>
                     <div class="col-3">
-                        <div class="number"><?php echo isset($sQFootage) && !empty($sQFootage) ? round($sQFootage) : 0; ?></div>Avg. Soft</div>
+                        <div class="number"><?php echo isset($sQFootage) && !empty($sQFootage) ? round($sQFootage) : 0; ?></div>Avg. Sqft</div>
                     <div class="col-3">
                         <div class="number"><?php echo isset($avgNoOfBeds) && !empty($avgNoOfBeds) ? round($avgNoOfBeds) : 0; ?></div>Avg. #Beds
                     </div>
