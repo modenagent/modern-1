@@ -34,6 +34,24 @@
             ;
             !important;
         }
+        #slider {
+            margin: 35px 0px;
+        }
+        .price-range-min,
+        .price-range-max {
+            position: absolute;
+            top: -20px; /* Adjust to position above slider */
+        }
+
+        /* Offset left handle label slightly left */
+        .ui-slider-handle:first-child .price-range-min {
+            left: -10px;
+        }
+
+        /* Offset right handle label slightly right */
+        .ui-slider-handle:last-child .price-range-max {
+            right: -10px;
+        }
     </style>
     <style type="text/css" media="print">
     .page_container
@@ -55,12 +73,14 @@ $rangeOfSales['avgNoOfBeds'] = 0;
 $rangeOfSales['avgNoOfBaths'] = 0;
 $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
 $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+// echo "<pre>";
+// print_r($areaSalesAnalysis);die;
 foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
     if ($key > 8) {
         break;
     }
     $rangeOfSales['avaiProperty']++;
-    $buildingArea = ($cpmrebl['BuildingArea']) ? $cpmrebl['BuildingArea'] : 0;
+    $buildingArea = ($cpmrebl['SquareFeet']) ? $cpmrebl['SquareFeet'] : 0;
     $bed = ($cpmrebl['Beds']) ? $cpmrebl['Beds'] : 0;
     $baths = ($cpmrebl['Baths']) ? $cpmrebl['Baths'] : 0;
     // $rangeOfSales['sQFootage'] += $cpmrebl['BuildingArea'];
