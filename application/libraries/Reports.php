@@ -42,7 +42,7 @@ class Reports
     public function getPropertyData($callFromApi = 0, $reportData = array())
     {
         /*$_POST = [
-        "report187" => "https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dOlYbKJCcWLeYG4ivwdY9G-GWSiAWvMjiCGtVZePQKctV9KMY9h_4Ju7xzwe10tq6sek4BSYT3LhwE-gpQqhLAEkk282xQ9NcuSKpBzybcWxb-9jcHEWwMUtIPyOL_FeSr1_yNfedpe_rAKpCqtoweZ90&filter=<CustCompFilter><SQFT>0.20</SQFT><Radius>0.25</Radius></CustCompFilter>",
+        "report187" => "https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dOmgb6JCbWI2a2LCuWQCmuCwNR_Fy3UyZgorpJGOxO3atbzQSPrbSfsFehict8tArUZSYxgRNmqBpnXvT8BkeKHq9QHua5kJYpWqGC4AXuOkmEU1iQWL_C8RSaSQvHV_puu6ActPDgcbzabch8eF5qOSYg2&filter=<CustCompFilter><SQFT>1.00</SQFT><Radius>2.00</Radius></CustCompFilter>s",
         "use_rets" => "true",
         "req_from" => "wizard",
         "user_image" => "",
@@ -750,7 +750,7 @@ class Reports
         return $_comparableTemp;
     }
 
-    public function sort_rets_properties($_comparableTemp, $propertyArea, $paramsAdjustment = false)
+    public function sort_rets_properties($_comparableTemp, $propertyArea, $retsSqft, $paramsAdjustment = false)
     {
         $CI = &get_instance();
         $adjustableParams = [];
@@ -759,7 +759,7 @@ class Reports
         }
         $count = 0;
         $comparable = array();
-        $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $propertyArea, 'sqft');
+        $res = $this->getRetsSorts($_comparableTemp, $comparable, $count, $propertyArea, 'sqft', $retsSqft);
 
         $_comparableTemp = $res['comparableTemp'];
         $comparable = $res['comparable'];
@@ -775,14 +775,14 @@ class Reports
 
         if ($count < 7) {
             $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_beds'])) ? $adjustableParams['rets_beds'] : $report187->PropertyProfile->PropertyCharacteristics->Bedrooms);
-            $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, 'bedroom');
+            $res = $this->getRetsSorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, 'bedroom');
             $_comparableTemp = $res['comparableTemp'];
             $comparable = $res['comparable'];
             $count = count($comparable);
 
             if ($count < 7) {
                 $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_baths'])) ? $adjustableParams['rets_baths'] : $report187->PropertyProfile->PropertyCharacteristics->Baths);
-                $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBaths, 'bathroom');
+                $res = $this->getRetsSorts($_comparableTemp, $comparable, $count, $adjustedBaths, 'bathroom');
                 $_comparableTemp = $res['comparableTemp'];
                 $comparable = $res['comparable'];
                 $count = count($comparable);
@@ -808,6 +808,47 @@ class Reports
         // }
 
         return array('sorted' => $comparable, 'all' => $_comparableTemp);
+    }
+
+    public function getRetsSorts($_comparableTemp, $comparable, $count, $variable, $type, $retsSqft = '')
+    {
+        $_maxLimit = 7;
+        $minArea = $variable - ($variable * $retsSqft);
+        $maxArea = $variable + ($variable * $retsSqft);
+
+        if ($type == 'sqft') {
+            // while (count($matches) < $requiredCount) {
+            // Filter the data within the current range
+            $comparable = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
+                $sqft = (int) str_replace(',', '', $item['SquareFeet']);
+                return $sqft >= $minArea && $sqft <= $maxArea;
+            });
+
+            echo "<pre>";
+            print_r($comparable);die;
+
+            // Check if we have enough matches, if not, expand the range
+            // if (count($matches) < $requiredCount) {
+            //     $minArea -= $step; // Decrease minimum
+            //     $maxArea += $step; // Increase maximum
+            // }
+            // }
+        }
+        foreach ($_comparableTemp as $key => $compareableProperty) {
+            if ($count > $_maxLimit) {
+                break;
+            }
+            $bedrooms = (int) $compareableProperty['Bedrooms'];
+            $baths = (int) $compareableProperty['Baths'];
+            $sqft = (int) str_replace(',', '', $compareableProperty['SquareFeet']);
+            // echo 'sqft = ' . $sqft . ' variation =' . $variable;die;
+            if (($type == 'sqft' && ($sqft >= $variable)) || ($key == 'bedroom' && ($bedrooms >= $variable)) || ($key == 'bathroom' && ($baths >= $variable))) {
+                array_push($comparable, $compareableProperty);
+                unset($_comparableTemp[$key]);
+                $count++;
+            }
+        }
+        return ['comparableTemp' => $_comparableTemp, 'comparable' => $comparable];
     }
 
     public function get_rets_sorts($_comparableTemp, $comparable, $count, $variable, $type)
@@ -982,7 +1023,7 @@ class Reports
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/index", $data, true);
 
         }
-        // print_r($html);
+        // print_r($html);die;
         // echo "<pre>Hello"; print_r('reports/'.$reportLang.'/'.$presentationType.'/index');die;//print_r($html); exit;
         //file_put_contents("tmp.html", $html);
         $wkhtmltopdfPath = $CI->config->item('wkhtmltopdf_path');

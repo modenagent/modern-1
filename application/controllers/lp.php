@@ -156,7 +156,7 @@ class Lp extends CI_Controller
                     });
                     // echo "<pre>";
                     if ($userInfo['auto_comparable_flag'] == 1 || $req_from != '') {
-                        $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
+                        $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, $retsSqft, true);
                         $properties['all'] = $propertiesComparableData['all'];
                         $properties['sorted'] = $propertiesComparableData['sorted'];
                     } else {

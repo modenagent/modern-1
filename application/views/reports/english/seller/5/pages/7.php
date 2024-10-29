@@ -122,7 +122,7 @@
         margin-top: 20px;
     }
     .page6-grid .property-tile .img-fluid {
-        max-height: 215px;
+        max-height: 152px;
         width: 100%;
     }
     .page6-body-margin {
