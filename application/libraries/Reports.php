@@ -820,8 +820,8 @@ class Reports
         $minArea = $variable - ($variable * $variation);
         $maxArea = $variable + ($variable * $variation);
         $remainingCount = 7 - count($comparable);
-        echo "<pre>";
-        print_r($_comparableTemp);
+        // echo "<pre>";
+        // print_r($_comparableTemp);
         if ($type == 'sqft') {
             // while (count($matches) < $requiredCount) {
             // Filter the data within the current range
@@ -848,16 +848,16 @@ class Reports
             // });
             $count = count($comparable);
         }
-        echo 'sqft comparable';
+        // echo 'sqft comparable';
 
-        print_r($comparable);
-        echo 'remaining sqft comparable';
+        // print_r($comparable);
+        // echo 'remaining sqft comparable';
 
-        print_r($_comparableTemp);
+        // print_r($_comparableTemp);
 
-        $remainingCount = 7 - $count;
+        // $remainingCount = 7 - $count;
         if ($key == 'bedroom' && $count < 7) {
-            echo 'bed comparable';
+            // echo 'bed comparable';
             $minBed = $variable - ($variable * $variation);
             $maxBed = $variable + ($variable * $variation);
             $bedComparable = array_filter($_comparableTemp, function ($item) use ($minBed, $maxBed) {
@@ -875,20 +875,20 @@ class Reports
                 return ($a['index'] === $b['index']) ? 0 : -1;
             });
             $count = count($comparable);
-            echo 'bed comparable';
+            // echo 'bed comparable';
 
-            print_r($comparable);
-            echo 'remaining bed comparable';
+            // print_r($comparable);
+            // echo 'remaining bed comparable';
 
-            print_r($_comparableTemp);
+            // print_r($_comparableTemp);
             // $_comparableTemp = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
             //     $bedrooms = (int) str_replace(',', '', $item['Bedrooms']);
             //     return $bedrooms < $minArea || $bedrooms > $maxArea;
             // });
         }
-        $remainingCount = 7 - $count;
+        // $remainingCount = 7 - $count;
         if ($key == 'bathroom' && $count < 7) {
-            echo 'in bath comparable';
+            // echo 'in bath comparable';
             $minBath = $variable - ($variable * $variation);
             $maxBath = $variable + ($variable * $variation);
             $bathComparable = array_filter($_comparableTemp, function ($item) use ($minBath, $maxBath) {
@@ -906,14 +906,14 @@ class Reports
                 return ($a['index'] === $b['index']) ? 0 : -1;
             });
             $count = count($comparable);
-            echo 'bath comparable';
+            // echo 'bath comparable';
 
-            print_r($comparable);
-            echo 'remaining bath comparable';
+            // print_r($comparable);
+            // echo 'remaining bath comparable';
 
-            print_r($_comparableTemp);
+            // print_r($_comparableTemp);
         }
-        die;
+        // die;
         return ['comparableTemp' => $_comparableTemp, 'comparable' => $comparable];
     }
 
