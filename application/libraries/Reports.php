@@ -819,15 +819,24 @@ class Reports
         $_maxLimit = 7;
         $minArea = $variable - ($variable * $variation);
         $maxArea = $variable + ($variable * $variation);
+        $remainingCount = 7 - count($comparable);
         echo "<pre>";
         print_r($_comparableTemp);
         if ($type == 'sqft') {
             // while (count($matches) < $requiredCount) {
             // Filter the data within the current range
-            $comparable = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
+            $areaComparable = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
                 $sqft = (int) str_replace(',', '', $item['SquareFeet']);
                 return $sqft >= $minArea && $sqft <= $maxArea;
             });
+
+            usort($areaComparable, function ($a, $b) {
+                $asqft = (int) str_replace(',', '', $a['SquareFeet']);
+                $bsqft = (int) str_replace(',', '', $b['SquareFeet']);
+                return $bsqft - $asqft; // Sorting by bedroom descending
+            });
+
+            $comparable = array_merge($comparable, array_slice($areaComparable, 0, $remainingCount));
 
             $_comparableTemp = array_udiff($_comparableTemp, $comparable, function ($a, $b) {
                 return ($a['index'] === $b['index']) ? 0 : -1;
