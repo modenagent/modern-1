@@ -726,7 +726,7 @@ class Reports
             $_comparableTemp[$index]['ChartLabelVal'] = date('Y-m', strtotime($date));
             $_comparableTemp[$index]['Price'] = $this->dollars(number_format($val['listPrice']));
             $_comparableTemp[$index]['PriceRate'] = (string) $val['listPrice'];
-            $_comparableTemp[$index]['PricePerSQFT'] = round($val['listPrice'] / $val['property']['area'], 2);
+            $_comparableTemp[$index]['PricePerSQFT'] = (isset($val['property']['area']) && ($val['property']['area'] != 0)) ? round($val['listPrice'] / $val['property']['area'], 2) : 0;
             // $_comparableTemp[$index]['TotalRooms'] = $val['mlsId'];
             $_comparableTemp[$index]['Address'] = $val['address']['full'] . ' ' . $val['address']['city'];
             $_comparableTemp[$index]['cityState'] = $val['address']['city'];
@@ -816,11 +816,12 @@ class Reports
 
     public function getRetsSorts($_comparableTemp, $comparable, $count, $variable, $type, $variation = '')
     {
-        $_maxLimit = 7;
+        $_maxLimit = 8;
         $minArea = $variable - ($variable * $variation);
         $maxArea = $variable + ($variable * $variation);
-        $remainingCount = 7 - count($comparable);
+        $remainingCount = $_maxLimit - count($comparable);
         // echo "<pre>";
+        // echo 'variable ---' . $type . ' value ---' . $variable . '--- variations ---' . $variation;die;
         // print_r($_comparableTemp);
         if ($type == 'sqft') {
             // while (count($matches) < $requiredCount) {
@@ -856,7 +857,7 @@ class Reports
         // print_r($_comparableTemp);
 
         // $remainingCount = 7 - $count;
-        if ($key == 'bedroom' && $count < 7) {
+        if ($key == 'bedroom' && $count < $_maxLimit) {
             // echo 'bed comparable';
             $minBed = $variable - ($variable * $variation);
             $maxBed = $variable + ($variable * $variation);
@@ -887,7 +888,7 @@ class Reports
             // });
         }
         // $remainingCount = 7 - $count;
-        if ($key == 'bathroom' && $count < 7) {
+        if ($key == 'bathroom' && $count < $_maxLimit) {
             // echo 'in bath comparable';
             $minBath = $variable - ($variable * $variation);
             $maxBath = $variable + ($variable * $variation);
