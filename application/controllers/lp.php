@@ -116,37 +116,30 @@ class Lp extends CI_Controller
                     // $max_lat = (float) $properties['Lat'] + 0.02;
                     // $max_long = (float) $properties['Long'] + 0.02;
 
-                    $query_1 = $query . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
+                    // $query_1 = $query . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
                     // $query_2 = $query_1 . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
-                    $query_2 = $query_1;
+                    // $query_2 = $query_1;
 
-                    if ($propertyBaths > 0) {
-                        $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
-                    }
+                    // if ($propertyBaths > 0) {
+                    //     $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
+                    // }
 
-                    if ($propertyBeds > 0) {
-                        $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
-                    }
-                    // print_r($query_2);
-                    // echo '<br> ----------------------------------------------------------------';
-                    $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
-                    $response = json_decode($result, true);
-                    if (empty($response) || count($response) <= 1) {
-                        // print_r($query_1);
-                        // echo '<br> ----------------------------------------------------------------';
-                        $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
-                        $response = json_decode($result, true);
-                    }
-                    // echo "<pre>";
-                    // print_r($response);die;
+                    // if ($propertyBeds > 0) {
+                    //     $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
+                    // }
+
+                    // $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
+                    // $response = json_decode($result, true);
+                    // if (empty($response) || count($response) <= 1) {
+                    //     $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
+                    //     $response = json_decode($result, true);
+                    // }
                 }
 
-                if (!isset($response) || empty($response) || count($response) <= 1) {
-                    // print_r($query);
-                    // echo '<br> ----------------------------------------------------------------';
-                    $result = $this->rets->callSimplyRets($user_name, $password, $query);
-                    $response = json_decode($result, true);
-                }
+                // if (!isset($response) || empty($response) || count($response) <= 1) {
+                $result = $this->rets->callSimplyRets($user_name, $password, $query);
+                $response = json_decode($result, true);
+                // }
                 // print_r($response);
                 // die;
                 if (isset($response) && !empty($response)) {
