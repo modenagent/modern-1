@@ -1070,7 +1070,8 @@ class Reports
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/index", $data, true);
 
         }
-        // print_r($html);die;
+        print_r($html);
+        //die;
         // echo "<pre>Hello"; print_r('reports/'.$reportLang.'/'.$presentationType.'/index');die;//print_r($html); exit;
         //file_put_contents("tmp.html", $html);
         $wkhtmltopdfPath = $CI->config->item('wkhtmltopdf_path');
@@ -1136,7 +1137,7 @@ class Reports
                 'pdf_filename' => '',
             );
         }
-        // print_r($pdfFileName);die;
+        print_r($pdfFileName);die;
         if ($turboMode) {
             $qpdf_path = $CI->config->item('qpdf_path');
             //Merging Static pdf pages with dynamic pdf pages
