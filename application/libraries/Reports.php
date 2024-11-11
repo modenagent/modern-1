@@ -41,41 +41,41 @@ class Reports
 
     public function getPropertyData($callFromApi = 0, $reportData = array())
     {
-        $_POST = [
-            "report187" => "https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dOmgb6JCbWI2a2LCuWQCmuCwNR_Fy3UyZgorpJGOxO3atbzQSPrbSfsFehict8tArUZSYxgRNmqBpnXvT8BkeKHq9QHua5kJYpWqGC4AXuOkmEU1iQWL_C8RSaSQvHV_puu6ActPDgcbzabch8eF5qOSYg2&filter=<CustCompFilter><SQFT>1.00</SQFT><Radius>2.00</Radius></CustCompFilter>s",
-            "use_rets" => "true",
-            "req_from" => "wizard",
-            "user_image" => "",
-            "user" => [
-                "profile_image" => "assets/images/user_333_162439511584347.png",
-                "fullname" => "Zoe Noelle",
-                "title" => "Realtor",
-                "phone" => "2133097286",
-                "email" => "info@modernagent.io",
-                "licenceno" => "0123456789",
-                "company_logo" => "assets/images/user_company_333_162439528078174.png",
-                "companyname" => "Modern Agent",
-                "street" => "985 Success Ave",
-                "city" => "Success",
-                "zip" => "91252",
-                "state" => "CA",
-            ],
-            "presentation" => "seller",
-            "seller_cma" => "",
-            "company_image" => "",
-            "pdfID" => "",
-            "showpartner" => "undefined",
-            "showpartner" => "off",
-            "theme" => "#0f0f0f",
-            "selected_pages" => '["1", "2", "3", "4", "5", "6", "7", "8"]',
-            "pdf_page" => "1",
-            "mu_theme" => "3",
-            "seller_theme" => "4",
-            "buyer_theme" => "undefined",
-            "custom_comps" => '["216001810", "214388530", "217096959", "217015210", "215695965", "206614148", "215945245", "214735960"]',
-            "selected_theme" => "#0f0f0f",
-            "subscribe_temp" => ["marketUpdate", "seller", "marketUpdate", "seller"],
-        ];
+        /*$_POST = [
+        "report187" => "https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dOmgb6JCbWI2a2LCuWQCmuCwNR_Fy3UyZgorpJGOxO3atbzQSPrbSfsFehict8tArUZSYxgRNmqBpnXvT8BkeKHq9QHua5kJYpWqGC4AXuOkmEU1iQWL_C8RSaSQvHV_puu6ActPDgcbzabch8eF5qOSYg2&filter=<CustCompFilter><SQFT>1.00</SQFT><Radius>2.00</Radius></CustCompFilter>s",
+        "use_rets" => "true",
+        "req_from" => "wizard",
+        "user_image" => "",
+        "user" => [
+        "profile_image" => "assets/images/user_333_162439511584347.png",
+        "fullname" => "Zoe Noelle",
+        "title" => "Realtor",
+        "phone" => "2133097286",
+        "email" => "info@modernagent.io",
+        "licenceno" => "0123456789",
+        "company_logo" => "assets/images/user_company_333_162439528078174.png",
+        "companyname" => "Modern Agent",
+        "street" => "985 Success Ave",
+        "city" => "Success",
+        "zip" => "91252",
+        "state" => "CA",
+        ],
+        "presentation" => "seller",
+        "seller_cma" => "",
+        "company_image" => "",
+        "pdfID" => "",
+        "showpartner" => "undefined",
+        "showpartner" => "off",
+        "theme" => "#0f0f0f",
+        "selected_pages" => '["1", "2", "3", "4", "5", "6", "7", "8"]',
+        "pdf_page" => "1",
+        "mu_theme" => "3",
+        "seller_theme" => "4",
+        "buyer_theme" => "undefined",
+        "custom_comps" => '["216001810", "214388530", "217096959", "217015210", "215695965", "206614148", "215945245", "214735960"]',
+        "selected_theme" => "#0f0f0f",
+        "subscribe_temp" => ["marketUpdate", "seller", "marketUpdate", "seller"],
+        ]; */
         $CI = &get_instance();
         $errorMsg = "Unexpacted error occured while trying to create " . $_POST['report_lang'] . " " . $_POST['presentation'] . " Report PDF for user account " . $CI->session->userdata('user_email');
         // loading the required helper
@@ -1070,7 +1070,7 @@ class Reports
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/index", $data, true);
 
         }
-        print_r($html);
+        // print_r($html);
         //die;
         // echo "<pre>Hello"; print_r('reports/'.$reportLang.'/'.$presentationType.'/index');die;//print_r($html); exit;
         //file_put_contents("tmp.html", $html);
@@ -1137,7 +1137,7 @@ class Reports
                 'pdf_filename' => '',
             );
         }
-        print_r($pdfFileName);die;
+        // print_r($pdfFileName);die;
         if ($turboMode) {
             $qpdf_path = $CI->config->item('qpdf_path');
             //Merging Static pdf pages with dynamic pdf pages
