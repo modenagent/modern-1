@@ -76,14 +76,15 @@
         background-position: center;
     }
     .property-detail .number{
-        font-size: 84px;
-        line-height: 84px;
+        font-size: 60px;
+        line-height: 60px;
         font-family: 'BebasNeue Regular';
         color: #d79547;
     }
     .property-detail + img{
         margin-bottom: 40px;
     }
+
     .page8-body-margin {
         margin: 40px 20px 0px;
     }

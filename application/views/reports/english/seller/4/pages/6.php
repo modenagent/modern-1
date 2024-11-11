@@ -40,8 +40,9 @@
     }
     .page6-property-name {
         background-color: #152170;
-        padding: 10px 50px;
+        padding: 10px 10px;
         color: #fff;
+        text-align: center;
     }
     .page6-property-name .page6-address {
         font-size: 20px;
