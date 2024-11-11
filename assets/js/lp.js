@@ -598,7 +598,6 @@ function get187() {
             dataType: "xml",
             success: function (xml) {
                 reportXML = xml;
-                console.log('xml ===', xml);
                 parse187();
             },
             error: function () {
