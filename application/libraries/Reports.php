@@ -793,6 +793,12 @@ class Reports
             }
         }
 
+        usort($_comparableTemp, function ($a, $b) {
+            $asqft = (int) str_replace(',', '', $a['SquareFeet']);
+            $bsqft = (int) str_replace(',', '', $b['SquareFeet']);
+            return $asqft - $bsqft; // Sorting by SquareFeet descending
+        });
+
         // $_maxLimit = 8;
 
         // $count = 0;
@@ -821,8 +827,7 @@ class Reports
         $maxArea = $variable + ($variable * $variation);
         $remainingCount = $_maxLimit - count($comparable);
         // echo "<pre>";
-        // echo 'variable ---' . $type . ' value ---' . $variable . '--- variations ---' . $variation;die;
-        // print_r($_comparableTemp);
+        // echo 'variable ---' . $type . ' value ---' . $variable . '--- variations ---' . $variation; die;
         if ($type == 'sqft') {
             // while (count($matches) < $requiredCount) {
             // Filter the data within the current range
@@ -834,7 +839,7 @@ class Reports
             usort($areaComparable, function ($a, $b) {
                 $asqft = (int) str_replace(',', '', $a['SquareFeet']);
                 $bsqft = (int) str_replace(',', '', $b['SquareFeet']);
-                return $bsqft - $asqft; // Sorting by bedroom descending
+                return $asqft - $bsqft; // Sorting by SquareFeet descending
             });
 
             $comparable = array_merge($comparable, array_slice($areaComparable, 0, $remainingCount));
@@ -843,22 +848,11 @@ class Reports
                 return ($a['index'] === $b['index']) ? 0 : -1;
             });
 
-            // $_comparableTemp = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
-            //     $sqft = (int) str_replace(',', '', $item['SquareFeet']);
-            //     return $sqft < $minArea || $sqft > $maxArea;
-            // });
             $count = count($comparable);
         }
-        // echo 'sqft comparable';
-
-        // print_r($comparable);
-        // echo 'remaining sqft comparable';
-
-        // print_r($_comparableTemp);
 
         // $remainingCount = 7 - $count;
         if ($key == 'bedroom' && $count < $_maxLimit) {
-            // echo 'bed comparable';
             $minBed = $variable - ($variable * $variation);
             $maxBed = $variable + ($variable * $variation);
             $bedComparable = array_filter($_comparableTemp, function ($item) use ($minBed, $maxBed) {
@@ -876,12 +870,7 @@ class Reports
                 return ($a['index'] === $b['index']) ? 0 : -1;
             });
             $count = count($comparable);
-            // echo 'bed comparable';
 
-            // print_r($comparable);
-            // echo 'remaining bed comparable';
-
-            // print_r($_comparableTemp);
             // $_comparableTemp = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
             //     $bedrooms = (int) str_replace(',', '', $item['Bedrooms']);
             //     return $bedrooms < $minArea || $bedrooms > $maxArea;
@@ -889,7 +878,6 @@ class Reports
         }
         // $remainingCount = 7 - $count;
         if ($key == 'bathroom' && $count < $_maxLimit) {
-            // echo 'in bath comparable';
             $minBath = $variable - ($variable * $variation);
             $maxBath = $variable + ($variable * $variation);
             $bathComparable = array_filter($_comparableTemp, function ($item) use ($minBath, $maxBath) {
@@ -898,7 +886,7 @@ class Reports
             });
 
             usort($bathComparable, function ($a, $b) {
-                return $b['Baths'] - $a['Baths']; // Sorting by bedroom descending
+                return $b['Baths'] - $a['Baths']; // Sorting by bath descending
             });
 
             $comparable = array_merge($comparable, array_slice($bathComparable, 0, $remainingCount));
@@ -907,14 +895,8 @@ class Reports
                 return ($a['index'] === $b['index']) ? 0 : -1;
             });
             $count = count($comparable);
-            // echo 'bath comparable';
-
-            // print_r($comparable);
-            // echo 'remaining bath comparable';
-
-            // print_r($_comparableTemp);
         }
-        // die;
+
         return ['comparableTemp' => $_comparableTemp, 'comparable' => $comparable];
     }
 
@@ -928,7 +910,7 @@ class Reports
             $bedrooms = (int) $compareableProperty['Bedrooms'];
             $baths = (int) $compareableProperty['Baths'];
             $sqft = (int) str_replace(',', '', $compareableProperty['SquareFeet']);
-            // echo 'sqft = ' . $sqft . ' variation =' . $variable;die;
+
             if (($type == 'sqft' && ($sqft >= $variable)) || ($key == 'bedroom' && ($bedrooms >= $variable)) || ($key == 'bathroom' && ($baths >= $variable))) {
                 array_push($comparable, $compareableProperty);
                 unset($_comparableTemp[$key]);
