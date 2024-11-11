@@ -42,7 +42,9 @@
             position: absolute;
             top: -20px; /* Adjust to position above slider */
         }
-
+        .price-range-both {
+            display: none;
+        }
         /* Offset left handle label slightly left */
         .ui-slider-handle:first-child .price-range-min {
             left: -10px;
