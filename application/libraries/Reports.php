@@ -843,14 +843,12 @@ class Reports
             });
 
             $comparable = array_merge($comparable, array_slice($areaComparable, 0, $remainingCount));
-
             $_comparableTemp = array_udiff($_comparableTemp, $comparable, function ($a, $b) {
-                return ($a['index'] === $b['index']) ? 0 : -1;
+                return $a['index'] <=> $b['index'];
             });
 
             $count = count($comparable);
         }
-
         // $remainingCount = 7 - $count;
         if ($key == 'bedroom' && $count < $_maxLimit) {
             $minBed = $variable - ($variable * $variation);
