@@ -166,15 +166,15 @@ header.overlapping-down {
 }
 
 span.subtitle{
-	    position: relative;
+    position: relative;
     display: block;
     color: #7911F8;
-    font-size: 15px;
+    font-size: 19px;
     /* padding-bottom: 3px; */
     letter-spacing: 0.5px;
     /* text-transform: LOWERCASE; */
     padding-top: 5px;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 span.beta{
