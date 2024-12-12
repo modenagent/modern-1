@@ -8,7 +8,7 @@
                 <div class="left-column">
                     <div class="inner-box">
 
-                      <a href="<?php echo base_url(); ?>"><img class="loglogo" src="<?php echo base_url(); ?>/assets/login/images/LargeLogo.png" alt=""></a>
+                      <a href="<?php echo base_url(); ?>"><img class="loglogo" src="<?php echo base_url(); ?>/assets/login/images/Logo_light.jpeg" alt=""></a>
 
 
                     </div>
