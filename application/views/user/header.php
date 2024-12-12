@@ -57,7 +57,7 @@
   <header class="overlapping">
     <nav class="navbar navbar-expand-lg" >
       <div class="container">
-        <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/new_site/img/logo.png" class="" /></a>
+        <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/frontend/images/Logo_dark.jpeg" class="" style="width: 205px;"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
