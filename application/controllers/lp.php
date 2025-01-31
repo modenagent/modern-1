@@ -142,6 +142,8 @@ class Lp extends CI_Controller
                 // }
                 // print_r($response);
                 // die;
+                $properties['all'] = [];
+                $properties['sorted'] = [];
                 if (isset($response) && !empty($response)) {
                     $retsData = $this->reports->get_all_rets_properties($response);
                     usort($retsData, function ($a, $b) {

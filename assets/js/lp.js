@@ -41,6 +41,22 @@ $(document).ready(function () {
         $('.backwrap').removeClass('hidden');
         isPdfGenerated();
     });
+
+    // $(document).on("click", "#toggle-switch .back .label", function () {
+    //     // let $checkbox = $("#property-status");
+    //     // console.log('toggle switch', $checkbox.prop("checked"));
+
+    //     // Toggle checkbox state manually
+    //     // $checkbox.prop("checked", !$checkbox.prop("checked"));
+
+    //     // Trigger change event
+    //     // $checkbox.trigger("change");
+    //     get187();
+    // });
+
+    $(document).on('change', '#property-status', function () {
+        get187();
+    });
 });
 
 function initateCompSelection() {
@@ -757,10 +773,6 @@ $("#changes_req_params_property_search").submit(function (e) {
     getSordrtedProperties = true;
     $('.ms-container').remove();
     compileAPNRequest(dataObj);
-});
-
-$('#property-status').change(function () {
-    get187();
 });
 
 function parse187() {
