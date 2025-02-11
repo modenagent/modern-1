@@ -40,12 +40,13 @@
             Select a plan
           </a>
         </li>
-        <li class="nav-item" role="presentation">
+        <!-- <li class="nav-item hidden" role="presentation">
           <a class="nav-link <?php if ($active_tab == 'retsapi') {echo 'active';}?>" id="api-tab" data-bs-toggle="tab" href="#retsApi" role="tab" aria-controls="plan" aria-selected="false">
             <b>API</b>
             Simply Rets API
           </a>
-        </li>
+        </li> -->
+
       </ul>
       <div class="loader1 hidden lp-loader1-myaccount"><img src="<?php echo base_url(); ?>assets/images/gears.gif"></div>
       <div class="backwrap hidden"></div>
@@ -84,19 +85,13 @@
             <h2 class="mini_title">Update Agent Info</h2>
             <div class="leftpic">
                 <a href="javascript:;">
-                  <?php
-if (empty($agentInfo->profile_image)) {
-    ?>
+                  <?php if (empty($agentInfo->profile_image)) {?>
                   <i class="icon-camera"></i>
                   <br>
                   Upload Picture
-                  <?php
-} else {
-    ?>
+                  <?php } else {?>
                   <img  src="<?php echo base_url() . $agentInfo->profile_image; ?>" width="100%" >
-                  <?php
-}
-?>
+                  <?php }?>
                 </a>
                 <input type="file"  class="file-type hidden">
             </div>
@@ -141,19 +136,13 @@ if (empty($agentInfo->profile_image)) {
             <h2 class="mini_title">Update Company Info</h2>
             <div class="rightpic">
               <a href="javascript:;">
-                <?php
-if (empty($agentInfo->company_logo)) {
-    ?>
+                <?php if (empty($agentInfo->company_logo)) {?>
                 <i class="icon-camera"></i>
                 <br>
                 Upload Picture
-                <?php
-} else {
-    ?>
+                <?php } else {?>
                 <img  src="<?php echo base_url() . $agentInfo->company_logo; ?>" width="100%" >
-                <?php
-}
-?>
+                <?php }?>
               </a>
               <input type="file" class="file-type hidden">
             </div>
@@ -195,9 +184,8 @@ if (empty($agentInfo->company_logo)) {
 $default_sub_type = 1;
 $default_theme_color = 1;
 if ($theme_data) {
-
     foreach ($theme_data as $key => $theme_data_val) {
-        if ($theme_data_val->theme_type == 'buyer') {
+        if ($theme_data_val->theme_type == 'seller') {
             $default_sub_type = $theme_data_val->theme_sub_type;
             $default_theme_color = $theme_data_val->theme_color;
         }
@@ -214,7 +202,7 @@ if ($theme_data) {
                   <div class="theme_selection_div">
 
                     <select class="select_theme_type select_change" id="select-theme-type">
-                      <option value="buyer" selected="">Buyer</option>
+                      <!-- <option value="buyer" selected="">Buyer</option> -->
                       <option value="seller">Seller</option>
                       <option value="marketUpdate">Market Update</option>
                     </select>
@@ -222,7 +210,7 @@ if ($theme_data) {
                   <div class="theme_selection_div">
 
                     <select class="select_theme select_change" id="select-theme">
-                      <?php for ($select_theme_sub_type = 1; $select_theme_sub_type <= 3; $select_theme_sub_type++) {?>
+                      <?php for ($select_theme_sub_type = 1; $select_theme_sub_type <= 5; $select_theme_sub_type++) {?>
                         <option <?=($select_theme_sub_type == $default_sub_type) ? 'selected' : ''?> value="<?=$select_theme_sub_type?>">Theme <?=$select_theme_sub_type?></option>
 
                       <?php }?>
@@ -231,9 +219,7 @@ if ($theme_data) {
                   <div class="theme_selection_div">
 
                     <select class="select_color" id="select-color">
-                      <?php
-foreach ($reportTemplates as $key => $report):
-?>
+                      <?php foreach ($reportTemplates as $key => $report): ?>
                       <option <?=($report->report_templates_id_pk == $default_theme_color) ? 'selected' : ''?> value="<?=$report->report_templates_id_pk?>" style="color: <?=$report->template_color?>"><?=$report->template_name?></option>
                       <?php endforeach;?>
                     </select>
@@ -248,7 +234,7 @@ foreach ($reportTemplates as $key => $report):
             <div class="subscribe_notice" style="display: none;"><span class="alert-warning">Please subscribe for <span id="rep_type"></span> to view all themes</span></div>
             <div class="select_theme_form">
               <?php
-$data_theme['type'] = 'buyer';
+$data_theme['type'] = 'seller';
 $data_theme['sub_type'] = $default_sub_type;
 ?>
               <form id="agentDefaultThemeForm" action="#" method="post">
@@ -339,6 +325,7 @@ endif;
 ?>
           </div>
         </div>
+
       </div>
     </div>
   </div>

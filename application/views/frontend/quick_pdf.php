@@ -22,7 +22,7 @@
                         <form method="" id="ref-form">
                             <div class="agent-info cmawhite">
                                 <div class="profile-info">
-                                    <img class="profile_img mb-2" src="https://dev.modernagent.io/<?=$agent->company_logo?>">
+                                    <img class="profile_img mb-2" src="<?=$_ENV['APP_URL'] . $agent->company_logo?>">
                                 </div>
                             </div>
                         </form>
@@ -38,7 +38,7 @@
                         <form method="post" id="ref-form">
                             <div class="agent-info cmawhite">
                                 <div class="profile-info">
-                                    <img class="profile_img mb-2" src="https://dev.modernagent.io/<?=$agent->profile_image?>">
+                                    <img class="profile_img mb-2" src="<?=$_ENV['APP_URL'] . $agent->profile_image?>">
                                     <div class="mb-2">
                                         <p class="headquick">
                                             <?=$agent->first_name . ' ' . $agent->last_name;?>
@@ -67,7 +67,7 @@
 
                             <div class="form-group email_field">
                                 <div class="cma_label">Enter Valid Phone Number</div>
-                                <input type="text" class="form-control" maxlength="10"  name="phone_number" id="phone_number" data-mask="(999) 999-9999" placeholder="10 Digit Phone Number" value="<?=$agent->phone;?>" required>
+                                <input type="text" class="form-control" maxlength="10"  name="phone_number" id="phone_number" data-mask="(999) 999-9999" placeholder="10 Digit Phone Number" value="" required>
                             </div>
                             <div>
                                 <input class="btn btn-lp save" name="ref-submit" id="ref-submit" type="submit" value="Proceed">
@@ -132,9 +132,11 @@
                             <?php
 $marketPresentation = '';
 $sellerPresentation = '';
+// $presentation = 'cma';
 $currentUrl = $this->uri->uri_string();
 if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($currentUrl), 'mkt') !== false) {
     $marketPresentation = 'selected';
+    // $presentation = 'mkt';
 } else {
     $sellerPresentation = 'selected';
 }
@@ -198,7 +200,7 @@ if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($cu
                     </div>
                 </form>
                 <button type="button" style="display:none;" class="btn btn-lp save" id="create-report">Create Complimentary Report</button>
-                <div class="loader1 cma-loader" style="display: none;">
+                <div class="loader1 cma-loader hidden">
                     <img src="<?php echo base_url(); ?>assets/images/gears.gif">
                     <p class="loader-text">Please wait while report gets ready ....</p>
                 </div>
@@ -480,7 +482,7 @@ if (strpos(strtolower($currentUrl), 'market') !== false || strpos(strtolower($cu
 
             $("#create-report").click(function () {
                 $('#create-report').addClass('disabled');
-
+                $('.cma-loader').show();
                 pmaRes = runPMA('', '');
                 // doSubmit();
 

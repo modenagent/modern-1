@@ -41,6 +41,41 @@ class Reports
 
     public function getPropertyData($callFromApi = 0, $reportData = array())
     {
+        /*$_POST = [
+        "report187" => "https://api.sitexdata.com/187/1E0F8F50-6300-4d9f-BA0F-180ADAEDF187.asmx/GetXML?reportInfo=dOmgb6JCbWI2a2LCuWQCmuCwNR_Fy3UyZgorpJGOxO3atbzQSPrbSfsFehict8tArUZSYxgRNmqBpnXvT8BkeKHq9QHua5kJYpWqGC4AXuOkmEU1iQWL_C8RSaSQvHV_puu6ActPDgcbzabch8eF5qOSYg2&filter=<CustCompFilter><SQFT>1.00</SQFT><Radius>2.00</Radius></CustCompFilter>s",
+        "use_rets" => "true",
+        "req_from" => "wizard",
+        "user_image" => "",
+        "user" => [
+        "profile_image" => "assets/images/user_333_162439511584347.png",
+        "fullname" => "Zoe Noelle",
+        "title" => "Realtor",
+        "phone" => "2133097286",
+        "email" => "info@modernagent.io",
+        "licenceno" => "0123456789",
+        "company_logo" => "assets/images/user_company_333_162439528078174.png",
+        "companyname" => "Modern Agent",
+        "street" => "985 Success Ave",
+        "city" => "Success",
+        "zip" => "91252",
+        "state" => "CA",
+        ],
+        "presentation" => "seller",
+        "seller_cma" => "",
+        "company_image" => "",
+        "pdfID" => "",
+        "showpartner" => "undefined",
+        "showpartner" => "off",
+        "theme" => "#0f0f0f",
+        "selected_pages" => '["1", "2", "3", "4", "5", "6", "7", "8"]',
+        "pdf_page" => "1",
+        "mu_theme" => "3",
+        "seller_theme" => "4",
+        "buyer_theme" => "undefined",
+        "custom_comps" => '["216001810", "214388530", "217096959", "217015210", "215695965", "206614148", "215945245", "214735960"]',
+        "selected_theme" => "#0f0f0f",
+        "subscribe_temp" => ["marketUpdate", "seller", "marketUpdate", "seller"],
+        ]; */
         $CI = &get_instance();
         $errorMsg = "Unexpacted error occured while trying to create " . $_POST['report_lang'] . " " . $_POST['presentation'] . " Report PDF for user account " . $CI->session->userdata('user_email');
         // loading the required helper
@@ -65,7 +100,8 @@ class Reports
         // changes for local version starts here and comment above line => $report187 = simplexml_load_file($rep187);
         // $report187 = simplexml_load_file("sample.xml");
         // changes for local version ends here
-
+        // echo "<pre>";
+        // print_r($report187);die;
         $data['mapinfo'] = $report111;
         $data['property'] = $report187;
         $data['report_lang'] = $reportLang;
@@ -375,6 +411,10 @@ class Reports
                 } else if ($_POST['seller_theme'] == 2) {
                     // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
                     $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+                } else if ($_POST['seller_theme'] == 4) {
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                } else if ($_POST['seller_theme'] == 5) {
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
                 } else {
                     // $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
                     $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -384,6 +424,12 @@ class Reports
             if ($_POST['seller_theme'] == 3) {
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
             } else if ($_POST['seller_theme'] == 2) {
+                // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+            } else if ($_POST['seller_theme'] == 4) {
+                // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+            } else if ($_POST['seller_theme'] == 5) {
                 // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
             } else {
@@ -680,7 +726,7 @@ class Reports
             $_comparableTemp[$index]['ChartLabelVal'] = date('Y-m', strtotime($date));
             $_comparableTemp[$index]['Price'] = $this->dollars(number_format($val['listPrice']));
             $_comparableTemp[$index]['PriceRate'] = (string) $val['listPrice'];
-            $_comparableTemp[$index]['PricePerSQFT'] = round($val['listPrice'] / $val['property']['area'], 2);
+            $_comparableTemp[$index]['PricePerSQFT'] = (isset($val['property']['area']) && ($val['property']['area'] != 0)) ? round($val['listPrice'] / $val['property']['area'], 2) : 0;
             // $_comparableTemp[$index]['TotalRooms'] = $val['mlsId'];
             $_comparableTemp[$index]['Address'] = $val['address']['full'] . ' ' . $val['address']['city'];
             $_comparableTemp[$index]['cityState'] = $val['address']['city'];
@@ -704,7 +750,7 @@ class Reports
         return $_comparableTemp;
     }
 
-    public function sort_rets_properties($_comparableTemp, $propertyArea, $paramsAdjustment = false)
+    public function sort_rets_properties($_comparableTemp, $propertyArea, $retsSqft, $paramsAdjustment = false)
     {
         $CI = &get_instance();
         $adjustableParams = [];
@@ -713,7 +759,7 @@ class Reports
         }
         $count = 0;
         $comparable = array();
-        $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $propertyArea, 'sqft');
+        $res = $this->getRetsSorts($_comparableTemp, $comparable, $count, $propertyArea, 'sqft', $retsSqft);
 
         $_comparableTemp = $res['comparableTemp'];
         $comparable = $res['comparable'];
@@ -728,20 +774,30 @@ class Reports
         }
 
         if ($count < 7) {
-            $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_beds'])) ? $adjustableParams['rets_beds'] : $report187->PropertyProfile->PropertyCharacteristics->Bedrooms);
-            $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBedrooms, 'bedroom');
+            $propertyBedroom = $report187->PropertyProfile->PropertyCharacteristics->Bedrooms;
+            // $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_beds'])) ? $adjustableParams['rets_beds'] : $report187->PropertyProfile->PropertyCharacteristics->Bedrooms);
+            $adjustedBedrooms = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_beds'])) ? $adjustableParams['rets_beds'] : 1);
+            $res = $this->getRetsSorts($_comparableTemp, $comparable, $count, $propertyBedroom, 'bedroom', $adjustedBedrooms);
             $_comparableTemp = $res['comparableTemp'];
             $comparable = $res['comparable'];
             $count = count($comparable);
 
             if ($count < 7) {
-                $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_baths'])) ? $adjustableParams['rets_baths'] : $report187->PropertyProfile->PropertyCharacteristics->Baths);
-                $res = $this->get_rets_sorts($_comparableTemp, $comparable, $count, $adjustedBaths, 'bathroom');
+                $propertyBaths = $report187->PropertyProfile->PropertyCharacteristics->Baths;
+                // $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_baths'])) ? $adjustableParams['rets_baths'] : $report187->PropertyProfile->PropertyCharacteristics->Baths);
+                $adjustedBaths = ((int) ($paramsAdjustment && !empty($adjustableParams) && isset($adjustableParams['rets_baths'])) ? $adjustableParams['rets_baths'] : 1);
+                $res = $this->getRetsSorts($_comparableTemp, $comparable, $count, $propertyBaths, 'bathroom', $adjustedBaths);
                 $_comparableTemp = $res['comparableTemp'];
                 $comparable = $res['comparable'];
                 $count = count($comparable);
             }
         }
+
+        usort($_comparableTemp, function ($a, $b) {
+            $asqft = (int) str_replace(',', '', $a['SquareFeet']);
+            $bsqft = (int) str_replace(',', '', $b['SquareFeet']);
+            return $asqft - $bsqft; // Sorting by SquareFeet descending
+        });
 
         // $_maxLimit = 8;
 
@@ -764,6 +820,84 @@ class Reports
         return array('sorted' => $comparable, 'all' => $_comparableTemp);
     }
 
+    public function getRetsSorts($_comparableTemp, $comparable, $count, $variable, $type, $variation = '')
+    {
+        $_maxLimit = 8;
+        $minArea = $variable - ($variable * $variation);
+        $maxArea = $variable + ($variable * $variation);
+        $remainingCount = $_maxLimit - count($comparable);
+        // echo "<pre>";
+        // echo 'variable ---' . $type . ' value ---' . $variable . '--- variations ---' . $variation; die;
+        if ($type == 'sqft') {
+            // while (count($matches) < $requiredCount) {
+            // Filter the data within the current range
+            $areaComparable = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
+                $sqft = (int) str_replace(',', '', $item['SquareFeet']);
+                return $sqft >= $minArea && $sqft <= $maxArea;
+            });
+
+            usort($areaComparable, function ($a, $b) {
+                $asqft = (int) str_replace(',', '', $a['SquareFeet']);
+                $bsqft = (int) str_replace(',', '', $b['SquareFeet']);
+                return $asqft - $bsqft; // Sorting by SquareFeet descending
+            });
+
+            $comparable = array_merge($comparable, array_slice($areaComparable, 0, $remainingCount));
+            $_comparableTemp = array_udiff($_comparableTemp, $comparable, function ($a, $b) {
+                return $a['index'] <=> $b['index'];
+            });
+
+            $count = count($comparable);
+        }
+        // $remainingCount = 7 - $count;
+        if ($key == 'bedroom' && $count < $_maxLimit) {
+            $minBed = $variable - ($variable * $variation);
+            $maxBed = $variable + ($variable * $variation);
+            $bedComparable = array_filter($_comparableTemp, function ($item) use ($minBed, $maxBed) {
+                $bedrooms = (int) str_replace(',', '', $item['Bedrooms']);
+                return $bedrooms >= $minBed && $bedrooms <= $maxBed;
+            });
+
+            usort($bedComparable, function ($a, $b) {
+                return $b['Bedrooms'] - $a['Bedrooms']; // Sorting by bedroom descending
+            });
+
+            $comparable = array_merge($comparable, array_slice($bedComparable, 0, $remainingCount));
+
+            $_comparableTemp = array_udiff($_comparableTemp, $comparable, function ($a, $b) {
+                return ($a['index'] === $b['index']) ? 0 : -1;
+            });
+            $count = count($comparable);
+
+            // $_comparableTemp = array_filter($_comparableTemp, function ($item) use ($minArea, $maxArea) {
+            //     $bedrooms = (int) str_replace(',', '', $item['Bedrooms']);
+            //     return $bedrooms < $minArea || $bedrooms > $maxArea;
+            // });
+        }
+        // $remainingCount = 7 - $count;
+        if ($key == 'bathroom' && $count < $_maxLimit) {
+            $minBath = $variable - ($variable * $variation);
+            $maxBath = $variable + ($variable * $variation);
+            $bathComparable = array_filter($_comparableTemp, function ($item) use ($minBath, $maxBath) {
+                $baths = (int) $item['Baths'];
+                return $baths >= $minBath && $baths <= $maxBath;
+            });
+
+            usort($bathComparable, function ($a, $b) {
+                return $b['Baths'] - $a['Baths']; // Sorting by bath descending
+            });
+
+            $comparable = array_merge($comparable, array_slice($bathComparable, 0, $remainingCount));
+
+            $_comparableTemp = array_udiff($_comparableTemp, $comparable, function ($a, $b) {
+                return ($a['index'] === $b['index']) ? 0 : -1;
+            });
+            $count = count($comparable);
+        }
+
+        return ['comparableTemp' => $_comparableTemp, 'comparable' => $comparable];
+    }
+
     public function get_rets_sorts($_comparableTemp, $comparable, $count, $variable, $type)
     {
         $_maxLimit = 7;
@@ -773,7 +907,7 @@ class Reports
             }
             $bedrooms = (int) $compareableProperty['Bedrooms'];
             $baths = (int) $compareableProperty['Baths'];
-            $sqft = (int) $compareableProperty['SquareFeet'];
+            $sqft = (int) str_replace(',', '', $compareableProperty['SquareFeet']);
 
             if (($type == 'sqft' && ($sqft >= $variable)) || ($key == 'bedroom' && ($bedrooms >= $variable)) || ($key == 'bathroom' && ($baths >= $variable))) {
                 array_push($comparable, $compareableProperty);
@@ -936,6 +1070,8 @@ class Reports
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/index", $data, true);
 
         }
+        // print_r($html);
+        //die;
         // echo "<pre>Hello"; print_r('reports/'.$reportLang.'/'.$presentationType.'/index');die;//print_r($html); exit;
         //file_put_contents("tmp.html", $html);
         $wkhtmltopdfPath = $CI->config->item('wkhtmltopdf_path');
@@ -949,12 +1085,16 @@ class Reports
             if (empty($checkLastPages)) {
                 $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
             }
+            // echo "else if";
         }
         // else if ($presentationType == 'marketUpdate' && in_array($data['mu_theme'], [4, 5, 6, 7])) {
         //     $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
         // }
         else {
             $zoom = $CI->config->item('wkhtmltopdf_zoom');
+            if ($data['seller_theme'] == 4 || $data['seller_theme'] == 5) {
+                // $zoom = 1.1;
+            }
             // $checkLastPages = array_filter($data['pageList'], function ($page) {
             //     return in_array($page, [13, 14, 15, 16, 17, 18, 19, 20]);
             // });
@@ -962,8 +1102,9 @@ class Reports
             // if (empty($checkLastPages)) {
             //     $zoom = $CI->config->item('wkhtmltopdf_zoom_seller');
             // }
+            // echo "else";
         }
-
+        // print_r($zoom);die;
         $snappy = new Pdf($wkhtmltopdfPath);
         //$snappy = new Pdf($this->binaryPath);
         $options = [
@@ -996,6 +1137,7 @@ class Reports
                 'pdf_filename' => '',
             );
         }
+        // print_r($pdfFileName);die;
         if ($turboMode) {
             $qpdf_path = $CI->config->item('qpdf_path');
             //Merging Static pdf pages with dynamic pdf pages

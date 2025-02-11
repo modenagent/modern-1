@@ -280,11 +280,11 @@
   // });
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
-    $(".owl-carousel").owlCarousel({
-      items:4,
-      margin:15,
-      autoWidth:true,
-      });
+    // $(".owl-carousel").owlCarousel({
+    //   items:4,
+    //   margin:15,
+    //   autoWidth:true,
+    //   });
     // $("#owl-example").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
@@ -292,14 +292,21 @@
     // Smart Wizard
     $('#wizard').smartWizard({
       onLeaveStep:function(obj){
+        var presentation = $("#wizard #presentation").val();
         if(obj.attr('rel')==1){
+          $("#wizard .owl-carousel").owlCarousel({
+            items:4,
+            margin:15,
+            autoWidth:true,
+          });
+          $('.nav li').localScroll();
+          $('.nav').onePageNav({filter: ':not(.external)'});
           setTimeout(function(){
             $(document).scrollTop(50);
           },500);
           return true;
         }
-        if(obj.attr('rel')==2) {
-          var presentation = $("#presentation").val();
+        if(obj.attr('rel')==2 && presentation != "marketUpdate") {
           if(presentation == "seller" || presentation == "marketUpdate") {
             var pre_selected_options = $.trim($('#pre-selected-options').html());
             if (pre_selected_options!='') {
@@ -338,8 +345,19 @@
             }
           }
         }
-        if(obj.attr('rel')==3){
-          var presentation = $("#presentation").val();
+        if((obj.attr('rel') == 2) && (presentation == "marketUpdate")){
+          var presentation = $("#wizard #presentation").val();
+
+            var _theme = $('.custom-checkbox:checked').val();
+            if(typeof _theme==='undefined'){
+                alert("Please choose a theme");
+                return false;
+            }
+            compileAPNRequest(dataObj);
+        }
+
+        if((obj.attr('rel') == 3) && (presentation != "marketUpdate")){
+          var presentation = $("#wizard #presentation").val();
           if (presentation == "seller") {
             var selectedPage = [];
             $('.page-checkbox:checked').each(function(){
@@ -357,11 +375,36 @@
             }
           }
         }
+
+        if((obj.attr('rel') == 3) && (presentation == "marketUpdate")){
+          var pre_selected_options = $.trim($('#pre-selected-options').html());
+          if (pre_selected_options!='') {
+            if ($('#pre-selected-options').val()==null) {
+                alert('Please select '+_min+' comparables');
+                // event.stopPropagation();
+                return false;
+            } else if ($('#pre-selected-options').val().length < _min) {
+                alert('Please select '+_min+' comparables');
+                // event.stopPropagation();
+                return false;
+            }
+            _max = 8;
+            let themeNumner = $('.mu_radio:checked').val();
+            if (themeNumner == '6') {
+              _max = 9;
+            }
+            if($('#pre-selected-options').val().length > _max){
+                alert('Please do not select more than '+_max+' comparables');
+                // event.stopPropagation();
+                return false;
+            }
+          }
+        }
         return true;
       },
       onShowStep:function(obj){
         if(obj.attr('rel')==2){
-          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+          if($("#wizard #presentation").val() == "seller" || $("#wizard #presentation").val() == "marketUpdate") {
 
             $('.buyer-cls').hide();
 
@@ -920,6 +963,27 @@
       return false;
     });
 
+    $('#configForm').submit(function(){
+      var form_data = $(this).serializeArray();
+      $.ajax({
+              url: '<?php echo base_url(); ?>index.php?/user/saveConfig', // point to server-side PHP script
+              data: form_data,
+              method: 'post',
+              success: function(php_script_response) {
+                  var object = JSON.parse(php_script_response);
+                  if (object.status=="success") {
+                      $('#configForm .alert').html(object.message).show();
+                      setTimeout(function(){
+                        $('#configForm .alert').fadeOut(1500);
+                      },2000);
+                  } else {
+
+                  }
+              }
+      });
+      return false;
+    });
+
     $("#agentBillingInfo").validate({
         rules:{
           billing_cvv_code:{
@@ -1073,7 +1137,7 @@
           $(document).scrollTop(0);
         },500);
         //Call Session id
-        var presentation_type = $("#presentation").val().toLowerCase();
+        var presentation_type = $("#wizard #presentation").val().toLowerCase();
         $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
         $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
         // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
@@ -1386,17 +1450,7 @@
                 }
               }
             }
-
-            var theme_type = $("#select-theme-type").val();
-            var theme_sub_type = $("#select-theme").val();
-            $.ajax({
-              url:base_url + 'user/getPreviews',
-              method:'POST',
-              data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
-              success:function(resp){
-                $('.myaccount #preview_pages').html(resp)
-              }
-            });
+            getPreview();
           });
 
           $('#agentDefaultTheme_save').click(function(){
@@ -1442,8 +1496,26 @@
 
           });
         }
-    });
+        console.log('test');
+
+      });
+      $(document).on('click', '.marketupdate_theme_select', function() {
+        $("#select-theme").val($(this).val());
+      });
+
+    function getPreview() {
+      var theme_type = $("#select-theme-type").val();
+      var theme_sub_type = $("#select-theme").val();
+      $.ajax({
+        url:base_url + 'user/getPreviews',
+        method:'POST',
+        data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
+        success:function(resp){
+          $('.myaccount #preview_pages').html(resp)
+        }
+      });
+    }
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.30"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.31"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/responsive.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/dataTables.bootstrap4.min.css">
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.12">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.13">
 
 </head>
 

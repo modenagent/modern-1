@@ -166,15 +166,15 @@ header.overlapping-down {
 }
 
 span.subtitle{
-	    position: relative;
+    position: relative;
     display: block;
     color: #7911F8;
-    font-size: 15px;
+    font-size: 19px;
     /* padding-bottom: 3px; */
     letter-spacing: 0.5px;
     /* text-transform: LOWERCASE; */
     padding-top: 5px;
-    font-weight: 100;
+    font-weight: 400;
 }
 
 span.beta{
@@ -669,7 +669,7 @@ footer a:hover{
 .myaccount_tabs .nav li {
     margin-right: 0;
     padding: 0;
-    width: 16.66%;
+    width: 20%;
     text-align: center;
 }
 .myaccount_tabs .nav li:not(:last-child){
@@ -1049,7 +1049,8 @@ input[type="checkbox"]:checked + label::before{
 #step-2 h2 {
     /* margin-bottom: 70px; */
 }
-#step-2 h2, #step-3 h2 {
+#step-2 h2, 
+#step-3 h2 {
     font-size: 25px;
     font-weight: 700;
     font-family: 'Rubik', sans-serif;
@@ -1058,6 +1059,7 @@ input[type="checkbox"]:checked + label::before{
 #step-2 h2 span {
     font-size: 20px;
 }
+#step-2 .owl-theme .item, 
 #step-3 .owl-theme .item {
     margin: 0px 10px;
     background: #F4F4F9;
@@ -1078,13 +1080,18 @@ form#run-pma-form {
     border: none;
     width: auto;
 }
+#step-2 label, 
 #step-3 label{
     /*position: relative;*/
     cursor: pointer;
 }
-#step-3 input[type="radio"]{
+
+#step-2 input[type="radio"], #step-3 input[type="radio"]{
     display: none;
 }
+
+#preview_pages input[type="radio"] + label.theme_bg::before,
+#step-2 input[type="radio"] + label::before, 
 #step-3 input[type="radio"] + label::before{
     content: "";
     position: absolute;
@@ -1096,13 +1103,20 @@ form#run-pma-form {
     background-size: contain;
     transition: all 0.3s ease;
 }
+
+#preview_pages input[type="radio"]:checked + label.theme_bg::before,
+#step-2 input[type="radio"]:checked + label::before,
 #step-3 input[type="radio"]:checked + label::before{
     background: url(../img/check.svg) no-repeat;
     background-size: contain;
 }
+#step-2 input[type="checkbox"], 
 #step-3 input[type="checkbox"]{
     display: none;
 }
+
+#preview_pages input[type="radio"] + label.theme_bg::before,
+#step-2 input[type="checkbox"] + label::before,
 #step-3 input[type="checkbox"] + label::before{
     content: "";
     position: absolute;
@@ -1115,6 +1129,9 @@ form#run-pma-form {
     background-size: contain;
     transition: all 0.3s ease;
 }
+
+#preview_pages input[type="radio"]:checked + label.theme_bg::before,
+#step-2 input[type="checkbox"]:checked + label::before,
 #step-3 input[type="checkbox"]:checked + label::before{
     background: url(../img/check.svg) no-repeat;
     background-size: contain;
@@ -1164,11 +1181,17 @@ a#config-comps-btn.comps {
 body.home.loaded.modal-open #steps {
     filter: blur(11px);
 }
+
+#map-modal .modal-dialog, #subscription-modal .modal-dialog {
+    margin: 8.75rem auto;
+}
+
 #select-comps .modal-dialog {
     max-width: 1310px;
     margin-top: 150px;
     border-radius: 0px;
     width: 100%;
+    margin: 8.75rem auto;
 }
 #select-comps .modal-content {
     border: 0;
@@ -1462,9 +1485,12 @@ body.home.loaded.modal-open #steps {
     .owl-item .item {
         margin: 0 5px;
     }
+    #step-2 label,
     #step-3 label {
         padding: 12px;
     }
+    #preview_pages input[type="radio"] + label.theme_bg::before,
+    #step-2 input[type="radio"] + label::before,
     #step-3 input[type="radio"] + label::before {
         top: 6px;
         right: 6px;
@@ -1520,10 +1546,13 @@ body.home.loaded.modal-open #steps {
     .btn_box {
         font-size: 12px;
     }
-    #step-3 h2, #step-4 h2 {
+    #step-2 h2, 
+    #step-3 h2, 
+    #step-4 h2 {
         font-size: 25px;
     }
-    #step-2 h2, #step-3 h2 {
+    #step-2 h2, 
+    #step-3 h2 {
         margin-bottom: 20px;
     }
     .rightpic,.leftpic {
@@ -1730,7 +1759,9 @@ body.home.loaded.modal-open #steps {
     #step-2 h2 {
         font-size: 18px;
     }
-    #step-3 h2,#step-4 h2{
+    #step-2 h2,
+    #step-3 h2,
+    #step-4 h2{
         font-size: 22px;
         margin-bottom: 10px;
     }

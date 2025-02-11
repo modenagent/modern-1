@@ -131,7 +131,7 @@ if (isset($user['email']) && !empty($user['email'])) {
                     <div class="mr-90 text-right">
 
                         <?php
-$parsed_url = 'https://modernagent.io';
+$parsed_url = $_ENV['APP_URL'];
 
 $company_display_url = preg_replace("(^https?://)", "", $parsed_url);
 ?>

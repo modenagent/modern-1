@@ -241,6 +241,6 @@ if ($seller_theme == 2) {
         </div>
     </section>
     <footer>
-        <div class="credits"><a href="www.modernagent.io" target="_blank">Modern Agent</a>All Rights Reserved.</div>
+        <div class="credits"><a href="<?=$_ENV['APP_URL']?>" target="_blank">Modern Agent</a>All Rights Reserved.</div>
     </footer>
 </div>

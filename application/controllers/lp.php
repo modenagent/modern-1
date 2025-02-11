@@ -21,6 +21,7 @@ class Lp extends CI_Controller
 
         $getsortedresults = isset($_GET['getsortedresults']) ? $_GET['getsortedresults'] : 'false';
         $residentialType = isset($_GET['residentialType']) ? $_GET['residentialType'] : false;
+        $req_from = isset($_GET['req_from']) ? $_GET['req_from'] : '';
         // if($getsortedresults != 'true') {
 
         //     $req_send= "https://dev.modernagent.io/index.php?/lp/getSearchResults?&requrl=".urlencode($request);
@@ -44,8 +45,10 @@ class Lp extends CI_Controller
             if (empty($userId)) {
                 $userId = $this->input->get('user_id');
             }
+            $this->load->model('user_model');
+            $userInfo = $this->user_model->getUserDetails($userId, ['user_id_pk', 'email', 'auto_comparable_flag']);
 
-            if ($check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) {
+            if (($check_presentaion && ($check_presentaion == 'seller' || $check_presentaion == 'marketUpdate')) || ($req_from == 'cma')) {
                 $this->load->model('params_adjustment_model');
                 // $retsRadius = $this->input->get('radius') ?? "0.25";
                 $retsSqft = $this->input->get('sqft') ?? "0.20";
@@ -113,68 +116,50 @@ class Lp extends CI_Controller
                     // $max_lat = (float) $properties['Lat'] + 0.02;
                     // $max_long = (float) $properties['Long'] + 0.02;
 
-                    $query_1 = $query . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
+                    // $query_1 = $query . '&minarea=' . $minPropertyBuildingArea . '&maxarea=' . $maxPropertyBuildingArea;
                     // $query_2 = $query_1 . '&points=' . $min_lat . ',' . $min_long . '&points=' . $max_lat . ',' . $max_long;
-                    $query_2 = $query_1;
+                    // $query_2 = $query_1;
 
-                    if ($propertyBaths > 0) {
-                        $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
-                    }
+                    // if ($propertyBaths > 0) {
+                    //     $query_2 = $query_2 . '&minbaths=' . $propertyBaths; // . '&maxbaths=' . $propertyBaths;
+                    // }
 
-                    if ($propertyBeds > 0) {
-                        $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
-                    }
-                    // print_r($query_2);
-                    // echo '<br> ----------------------------------------------------------------';
-                    $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
-                    $response = json_decode($result, true);
-                    if (empty($response) || count($response) <= 1) {
-                        // print_r($query_1);
-                        // echo '<br> ----------------------------------------------------------------';
-                        $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
-                        $response = json_decode($result, true);
-                    }
-                    // echo "<pre>";
-                    // print_r($response);die;
+                    // if ($propertyBeds > 0) {
+                    //     $query_2 = $query_2 . '&minbeds=' . $propertyBeds; // . '&maxbeds=' . $propertyBeds;
+                    // }
+
+                    // $result = $this->rets->callSimplyRets($user_name, $password, $query_2);
+                    // $response = json_decode($result, true);
+                    // if (empty($response) || count($response) <= 1) {
+                    //     $result = $this->rets->callSimplyRets($user_name, $password, $query_1);
+                    //     $response = json_decode($result, true);
+                    // }
                 }
 
-                if (!isset($response) || empty($response) || count($response) <= 1) {
-                    // print_r($query);
-                    // echo '<br> ----------------------------------------------------------------';
-                    $result = $this->rets->callSimplyRets($user_name, $password, $query);
-                    $response = json_decode($result, true);
-                }
+                // if (!isset($response) || empty($response) || count($response) <= 1) {
+                $result = $this->rets->callSimplyRets($user_name, $password, $query);
+                $response = json_decode($result, true);
+                // }
                 // print_r($response);
                 // die;
+                $properties['all'] = [];
+                $properties['sorted'] = [];
                 if (isset($response) && !empty($response)) {
                     $retsData = $this->reports->get_all_rets_properties($response);
                     usort($retsData, function ($a, $b) {
-                        return (int) $b['SquareFeet'] <=> (int) $a['SquareFeet'];
+                        return (int) str_replace(',', '', $b['SquareFeet']) <=> (int) str_replace(',', '', $a['SquareFeet']);
                     });
                     // echo "<pre>";
-                    $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, true);
+                    if ($userInfo['auto_comparable_flag'] == 1 || $req_from != '') {
+                        $propertiesComparableData = $this->reports->sort_rets_properties($retsData, $propertyBuildingArea, $retsSqft, true);
+                        $properties['all'] = $propertiesComparableData['all'];
+                        $properties['sorted'] = $propertiesComparableData['sorted'];
+                    } else {
+                        $properties['all'] = $retsData;
+                        $properties['sorted'] = [];
+                    }
                     // print_r($propertiesComparableData);die;
-                    $properties['all'] = $propertiesComparableData['all'];
-                    $properties['sorted'] = $propertiesComparableData['sorted'];
-                    // foreach ($response as $key => $value) {
-                    //     if ($key <= 7) {
-                    //         $sorted[$value['mlsId']] = array(
-                    //             'index' => $value['mlsId'],
-                    //             'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
-                    //             'Price' => $value['listPrice'],
-                    //             'Latitude' => $value['geo']['lat'],
-                    //             'Longitude' => $value['geo']['lng'],
-                    //         );
-                    //     } else {
-                    //         $all[$value['mlsId']] = array(
-                    //             'index' => $value['mlsId'],
-                    //             'Address' => $value['address']['full'] . ' ' . $value['address']['city'],
-                    //             'Price' => $value['listPrice'],
-                    //             'Latitude' => $value['geo']['lat'],
-                    //             'Longitude' => $value['geo']['lng'],
-                    //         );
-                    //     }
-                    // }
+
                 }
                 // $file = simplexml_load_file($request);
                 // $file = json_decode(file_get_contents($req_send));

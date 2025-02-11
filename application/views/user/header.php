@@ -43,7 +43,7 @@
   <link rel="stylesheet" type="text/css" href="<?php echo base_url("assets/css/header_user.css"); ?>">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/responsive.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.12">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.13">
   <!-- toastr css -->
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-toastr/toastr.min.css" />
 </head>
@@ -57,7 +57,7 @@
   <header class="overlapping">
     <nav class="navbar navbar-expand-lg" >
       <div class="container">
-        <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/new_site/img/logo.png" class="" /></a>
+        <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/frontend/images/Logo_dark.jpeg" class="" style="width: 27%;"/></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -70,7 +70,7 @@
             <li class="nav-item <?php if ($current == 'recentlp') {echo 'current';}?>"> <a href="<?php echo site_url('user/recentlp'); ?>" class="nav-link">Recent</a> </li>
 
             <li class="nav-item <?php if ($current == 'leads') {echo 'current';}?>"> <a href="<?php echo site_url('user/leads'); ?>" class="nav-link">My Leads</a> </li>
-            <li class="nav-item <?php if ($current == 'guests') {echo 'current';}?>"> <a href="<?php echo site_url('user/guests'); ?>" class="nav-link">My Guests</a> </li>
+            <li class="nav-item <?php if ($current == 'guests') {echo 'current';}?> hidden"> <a href="<?php echo site_url('user/guests'); ?>" class="nav-link">My Guests</a> </li>
 
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" >Account <!-- <span class="caret"></span> --></a>

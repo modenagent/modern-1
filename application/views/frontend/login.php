@@ -7,10 +7,10 @@
             <div class="outer-container clearfix">
                 <div class="left-column">
                     <div class="inner-box">
-                      
-                      <a href="<?php echo base_url();?>"><img class="loglogo" src="<?php echo base_url();?>/assets/login/images/LargeLogo.png" alt=""></a>
-                      
-                      
+
+                      <a href="<?php echo base_url(); ?>"><img class="loglogo" src="<?php echo base_url(); ?>/assets/login/images/Logo_light.jpeg" alt=""></a>
+
+
                     </div>
                 </div>
                 <div class="right-column clearfix">
@@ -36,7 +36,7 @@
                                                 <input type="checkbox" name="checkbox" checked="checked">
                                                 <span>Remember Password</span>
                                             </label>
-                                        </div>  
+                                        </div>
                                     </div> -->
                                     <div class="">
                                         <button id="login-form-submit-btn" type="submit" class="theme-btn">Login Account</button>

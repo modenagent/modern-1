@@ -41,6 +41,22 @@ $(document).ready(function () {
         $('.backwrap').removeClass('hidden');
         isPdfGenerated();
     });
+
+    // $(document).on("click", "#toggle-switch .back .label", function () {
+    //     // let $checkbox = $("#property-status");
+    //     // console.log('toggle switch', $checkbox.prop("checked"));
+
+    //     // Toggle checkbox state manually
+    //     // $checkbox.prop("checked", !$checkbox.prop("checked"));
+
+    //     // Trigger change event
+    //     // $checkbox.trigger("change");
+    //     get187();
+    // });
+
+    $(document).on('change', '#property-status', function () {
+        get187();
+    });
 });
 
 function initateCompSelection() {
@@ -353,6 +369,7 @@ function runPMA(agentPath, logoPath) {
             }
             activeRequest = false;
             $('#create-report').removeClass('disabled');
+            $('.cma-loader').hide();
         })
         .fail(function () {
             $('#apply-coupan-alert').html(errorMsg).removeClass('alert-success').addClass('alert-danger').show();
@@ -513,7 +530,6 @@ function compileRequest(dataObj, neighbourhood, retry) {
 
 // run api query 
 function runQueries(request, dataObj, neighbourhood, retry) {
-
     $('.loader1').show();
     $('.loader1').removeClass('hidden');
     $('.backwrap').show();
@@ -527,7 +543,6 @@ function runQueries(request, dataObj, neighbourhood, retry) {
         dataType: 'xml'
     })
         .done(function (response, textStatus, jqXHR) {
-
             var responseStatus = $(response).find('StatusCode').text();
             $("#search-btn").parents("form").find(".search-loader").addClass("hidden");
 
@@ -599,7 +614,6 @@ function get187() {
             dataType: "xml",
             success: function (xml) {
                 reportXML = xml;
-                console.log('xml ===', xml);
                 parse187();
             },
             error: function () {
@@ -613,6 +627,7 @@ function get187() {
         $('.backwrap').removeClass('hidden');
         let propertyType = ($('#property-status').prop('checked') == true) ? 'Active' : 'Closed';
         activeRequest = true;
+        let req_from = $('#req_from').val();
         $.ajax({
             type: "GET",
             url: base_url + 'index.php?/lp/getSearchResults?',
@@ -620,11 +635,12 @@ function get187() {
                 requrl: reportData.report187,
                 getsortedresults: getSordrtedProperties,
                 address: $('#state').val(),
-                presentation: $('#presentation').val(),
+                presentation: $('#wizard #presentation').val(),
                 user_id: $("#user-id").val(),
                 propertyStatus: propertyType,
                 sqft: defaultSqft,
-                residentialType: residentialType
+                residentialType: residentialType,
+                req_from: req_from
 
             },
             dataType: "json",
@@ -671,7 +687,7 @@ function get187() {
 
                     /*$('#comparables-market-update tbody').append('<tr><td>'+item.Address+" ("+item.Price+")"+'</td></tr>');*/
                 });
-                if ($('#pre-selected-options').length && ($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate")) {
+                if ($('#pre-selected-options').length && ($("#wizard #presentation").val() == "seller" || $("#wizard #presentation").val() == "marketUpdate")) {
                     // $('.buyer-cls').hide();
                     $('#pre-selected-options').multiSelect({
                         selectableHeader: "<div class='multiselect-header'>Available Comparables</div>",
@@ -759,10 +775,6 @@ $("#changes_req_params_property_search").submit(function (e) {
     compileAPNRequest(dataObj);
 });
 
-$('#property-status').change(function () {
-    get187();
-});
-
 function parse187() {
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
@@ -840,7 +852,12 @@ function multipleResults(response) {
         var state = $(this).find('State').text();
         var zip = $(this).find('ZIP').text();
         apnInfo[apn]['fips'] = $(this).find('FIPS').text();
-        $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
+        let presentation = $("#wizard #presentation").val();
+        if (presentation == 'marketUpdate') {
+            $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="themePreview(this)">Choose</a></td></tr>');
+        } else {
+            $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
+        }
         $('.search-result table > tbody').find('tr').eq(i).find('.result-apn').text(apn);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-unitNumber').text(unitNumber);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-address').text(address);
@@ -895,6 +912,21 @@ function addResultToRepData(address, city, state, zip, apn) {
     reportData.apn = apn;
 }
 
+function themePreview(e) {
+    setTimeout(function () {
+        jQuery('.buttonNext').click();
+    }, 400);
+
+    isNewSearch = false;
+    $('#lp_invoice .desc').html('<h3>' + $(e).closest('tr').find('.result-address').text() + '</h3>' + $(e).closest('tr').find('.result-apn').text() + ' ' + $(e).closest('tr').find('.result-address').text() + ' ' + $(e).closest('tr').find('.result-city').text());
+    var apn = $(e).closest('tr').find('.result-apn').text();
+    var fips = apnInfo[apn]['fips'];
+    dataObj = {};
+    dataObj.apn = apn;
+    dataObj.FIPS = fips;
+    dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
+    // compileAPNRequest(dataObj);
+}
 // compile data for APN search
 function apnData(e) {
 
@@ -910,7 +942,6 @@ function apnData(e) {
     dataObj.apn = apn;
     dataObj.FIPS = fips;
     dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
-
     compileAPNRequest(dataObj);
 }
 
@@ -1061,7 +1092,7 @@ function widgetRunPMA(agentPath, logoPath) {
     }
 
     query += '&' + 'custom_comps=' + JSON.stringify($('#pre-selected-options').val());
-    var presentation = $("#presentation").val();
+    var presentation = $("#wizard #presentation").val();
     if ($('#comparable-pre-selected-options').length && presentation == 'marketUpdate') {
         query += '&' + 'comparable_custom_comps=' + JSON.stringify($('#comparable-pre-selected-options').val());
     }

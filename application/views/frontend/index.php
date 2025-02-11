@@ -1,18 +1,18 @@
             <!-- HERO-10
-            ============================================= -->   
+            ============================================= -->
             <section id="hero-10" class="bg-scroll rel hero-section division">
-                <div class="container"> 
+                <div class="container">
                     <div class="row d-flex align-items-center">
                         <div class="col text-center">
 
 
                             <!-- HERO TEXT -->
                             <div class="hero-10-txt white-color">
-                        
+
                                 <!-- Title -->
                                 <h2 class="h2-md wow fadeInUp">
-                                   Helping You Create Beautiful <br> Real Estate CMA's
-                                </h2>   
+                                   Property CMA'S <br> Made Easy.
+                                </h2>
 
                                 <!-- Buttons Group -->
                                 <div class="btns-group wow fadeInUp">
@@ -20,29 +20,29 @@
                                     <a href="https://calendly.com/book-with-modern/tools?month=2021-12" class="btn btn-orange-red tra-white-hover">Book a Demo</a>
                                 </div>
 
-                            </div>  
+                            </div>
 
 
                             <!-- HERO IMAGE -->
                             <div class="hero-10-img video-preview wow fadeInUp">
 
-                                <!-- Play Icon --> 
-                                <a class="video-popup1" href="https://www.youtube.com/embed/vukzb4lMtsM">               
-                                    <div class="video-btn video-btn-xl bg-orange-red ico-90">   
+                                <!-- Play Icon -->
+                                <a class="video-popup1" href="https://www.youtube.com/embed/vukzb4lMtsM">
+                                    <div class="video-btn video-btn-xl bg-orange-red ico-90">
                                         <div class="video-block-wrapper"><span class="flaticon-play-button"></span></div>
                                     </div>
                                 </a>
 
-                                <!-- Preview Image --> 
-                                <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/dashboard-07-a.png" alt="video-preview">
+                                <!-- Preview Image -->
+                                <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/dashboard-07-a.png" alt="video-preview">
 
                             </div>
 
 
-                        </div>  
-                    </div>    <!-- End row -->  
-                </div>     <!-- End container -->   
-            </section>  <!-- END HERO-10 -->    
+                        </div>
+                    </div>    <!-- End row -->
+                </div>     <!-- End container -->
+            </section>  <!-- END HERO-10 -->
 
 
 
@@ -53,24 +53,24 @@
                 <div class="container">
 
 
-                    <!-- SECTION TITLE -->  
-                    <div class="row justify-content-center">    
+                    <!-- SECTION TITLE -->
+                    <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
-                            <div class="section-title title-01 mb-70">      
+                            <div class="section-title title-01 mb-70">
 
-                                <!-- Title -->  
-                                <h2 class="h2-md">We’re Better. Here’s Why…</h2>    
+                                <!-- Title -->
+                                <h2 class="h2-md">We’re Better. Here’s Why…</h2>
 
-                                <!-- Text -->   
-                                <p class="p-xl">We take pride in being amongst the best of CMA platforms. Below you will find just a few reasons why agents love using Modern Agent.    
+                                <!-- Text -->
+                                <p class="p-xl">We take pride in being amongst the best of CMA platforms. Below you will find just a few reasons why agents love using Modern Agent.
                                 </p>
-                                    
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
 
 
-                    <!-- FEATURES-8 WRAPPER --> 
+                    <!-- FEATURES-8 WRAPPER -->
                     <div class="fbox-8-wrapper text-center">
                         <div class="row row-cols-1 row-cols-md-3">
 
@@ -81,12 +81,12 @@
 
                                     <!-- Image -->
                                     <div class="fbox-img bg-whitesmoke-gradient">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-21.png" alt="feature-icon" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-21.png" alt="feature-icon" />
                                     </div>
 
                                     <!-- Title -->
                                     <h5 class="h5-md">Friendly Interface</h5>
-                                            
+
                                     <!-- Text -->
                                     <p class="p-lg">We have a super easy to use interface so you can quickly generate your personalized reports.
                                     </p>
@@ -101,12 +101,12 @@
 
                                     <!-- Image -->
                                     <div class="fbox-img bg-whitesmoke-gradient">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-22.png" alt="feature-icon" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-22.png" alt="feature-icon" />
                                     </div>
 
                                     <!-- Title -->
                                     <h5 class="h5-md">Beautiful Designs</h5>
-                                            
+
                                     <!-- Text -->
                                     <p class="p-lg">Our beautiful designs help give your presentation a very high-end and professional look.
                                     </p>
@@ -121,26 +121,26 @@
 
                                     <!-- Image -->
                                     <div class="fbox-img bg-whitesmoke-gradient">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-24.png" alt="feature-icon" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-24.png" alt="feature-icon" />
                                     </div>
 
                                     <!-- Title -->
                                     <h5 class="h5-md">MLS + Assessor Data</h5>
-                                            
+
                                     <!-- Text -->
                                     <p class="p-lg">We incoporate real-time property data. We also give you the ability to incoporate your MLS comps.
                                     </p>
 
                                 </div>
-                            </div>  
+                            </div>
 
 
-                        </div>  <!-- End row -->    
-                    </div>  <!-- END FEATURES-8 WRAPPER --> 
+                        </div>  <!-- End row -->
+                    </div>  <!-- END FEATURES-8 WRAPPER -->
 
 
-                </div>     <!-- End container -->       
-            </section>  <!-- END FEATURES-8 --> 
+                </div>     <!-- End container -->
+            </section>  <!-- END FEATURES-8 -->
 
 
 
@@ -153,50 +153,50 @@
                         <div class="row d-flex align-items-center">
 
 
-                            <!-- TEXT BLOCK --> 
+                            <!-- TEXT BLOCK -->
                             <div class="col-md-7 col-lg-6">
                                 <div class="txt-block left-column wow fadeInRight">
 
-                                    <!-- Section ID --> 
+                                    <!-- Section ID -->
                                     <span class="section-id purple-color txt-upcase">Our platform has</span>
 
-                                    <!-- Title -->  
+                                    <!-- Title -->
                                     <h2 class="h2-xs">Beautiful Designs with Real Time Data.</h2>
 
-                                    <!-- List -->   
+                                    <!-- List -->
                                     <ul class="simple-list">
 
-                                        
+
                                             <p class="p-lg">Marketing Plan + Property Info + MLS Comps
                                             </p>
-                                        
 
-                                        
+
+
                                             <p class="p-lg">We have created the perfect combination of data and elegance for all of our reports. Whether it's a Buyers Presentation, Listing Presentation, or Market Update you can rest assured that you will always look sharp.</p>
-                                        
 
-                                        
-                                        
+
+
+
                                         <!-- Button -->
-                                    <a href="https://calendly.com/book-with-modern/tools?month=<?php echo date('Y-m');?>" class="btn btn-orange-red tra-orange-red-hover">Book a 15 Min Demo</a>
+                                    <a href="https://calendly.com/book-with-modern/tools?month=<?php echo date('Y-m'); ?>" class="btn btn-orange-red tra-orange-red-hover">Book a 15 Min Demo</a>
 
                                     </ul>
 
                                 </div>
-                            </div>  <!-- END TEXT BLOCK --> 
+                            </div>  <!-- END TEXT BLOCK -->
 
 
                             <!-- IMAGE BLOCK -->
                             <div class="col-md-5 col-lg-6">
                                 <div class="img-block right-column wow fadeInLeft">
-                                    <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/SampleSlides.jpg" alt="content-image">
+                                    <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/SampleSlides.jpg" alt="content-image">
                                 </div>
                             </div>
 
 
                         </div>
                     </div>    <!-- End row -->
-                </div>     <!-- End container -->   
+                </div>     <!-- End container -->
             </section>  <!-- END CONTENT-5 -->
 
 
@@ -208,19 +208,19 @@
                 <div class="container">
 
 
-                    <!-- SECTION TITLE -->  
-                    <div class="row justify-content-center">    
+                    <!-- SECTION TITLE -->
+                    <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
-                            <div class="section-title title-01 mb-70">      
+                            <div class="section-title title-01 mb-70">
 
-                                <!-- Title -->  
-                                <h2 class="h2-md">Beautiful Creative Solutions</h2> 
+                                <!-- Title -->
+                                <h2 class="h2-md">Beautiful Creative Solutions</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                 <p class="p-xl">Our reports we customly designed to make sure you can present information elegantly to your buyers and sellers. Below are the reports that you can create using our platform.
                                 </p>
-                                    
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
 
@@ -233,28 +233,28 @@
                             <!-- IMAGE BLOCK -->
                             <div class="col-md-5 col-lg-6">
                                 <div class="img-block left-column wow fadeInRight">
-                                    <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-06.jpg" alt="content-image">
+                                    <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-06.jpg" alt="content-image">
                                 </div>
                             </div>
 
 
-                            <!-- TEXT BLOCK --> 
+                            <!-- TEXT BLOCK -->
                             <div class="col-md-7 col-lg-6">
                                 <div class="txt-block right-column wow fadeInLeft">
 
-                                    <!-- Section ID --> 
+                                    <!-- Section ID -->
                                     <span class="section-id rounded-id bg-tra-purple purple-color txt-upcase">
                                         Fast Performance
                                     </span>
 
-                                    <!-- Title -->  
+                                    <!-- Title -->
                                     <h2 class="h2-xs">Listing Presentation</h2>
 
-                                    <!-- Text -->   
+                                    <!-- Text -->
                                     <p class="p-lg">Combines the perfect mix of property information, sales statistics, marketing plan and elegance.
                                     </p>
 
-                                    <!-- List -->   
+                                    <!-- List -->
                                     <ul class="simple-list">
 
 
@@ -263,24 +263,24 @@
                                         </li>
 
                                         <li class="list-item">
-                                            <p class="p-lg">Real Time Data & Comparables 
+                                            <p class="p-lg">Real Time Data & Comparables
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg">Expert Marketing PLan
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg">Fully Automated
                                             </p>
                                         </li>
 
-                                    </ul>   
+                                    </ul>
 
                                 </div>
-                            </div>  <!-- END TEXT BLOCK --> 
+                            </div>  <!-- END TEXT BLOCK -->
 
 
                         </div>
@@ -292,24 +292,24 @@
                         <div class="row d-flex align-items-center">
 
 
-                            <!-- TEXT BLOCK --> 
+                            <!-- TEXT BLOCK -->
                         <div class="col-md-7 col-lg-6 order-last order-md-2">
                             <div class="txt-block left-column wow fadeInRight">
 
-                                <!-- Section ID --> 
+                                <!-- Section ID -->
                                     <span class="section-id rounded-id bg-tra-purple purple-color txt-upcase">
                                         Fast Performance
                                     </span>
 
-                                <!-- Title -->  
+                                <!-- Title -->
                                 <h2 class="h2-xs">Market Update</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                     <p class="p-lg">Inform your farm area about recent sales in the area with the ability to generate leads.
                                     </p>
 
-                                    
-                                    <!-- List -->   
+
+                                    <!-- List -->
                                     <ul class="simple-list">
 
 
@@ -318,37 +318,37 @@
                                         </li>
 
                                         <li class="list-item">
-                                            <p class="p-lg">Real Time Data & Comparables 
+                                            <p class="p-lg">Real Time Data & Comparables
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg">Lead Collection QR Code
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg">Automatic Text Alerts
                                             </p>
                                         </li>
 
-                                    </ul>                        
+                                    </ul>
 
                             </div>
-                        </div>  <!-- END TEXT BLOCK --> 
+                        </div>  <!-- END TEXT BLOCK -->
 
 
                         <!-- IMAGE BLOCK -->
                         <div class="col-md-5 col-lg-6 order-first order-md-2">
                             <div class="rel img-block right-column wow fadeInLeft">
-                                <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-07.jpg" alt="content-image">
+                                <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-07.jpg" alt="content-image">
                             </div>
                         </div>
 
 
                         </div>
                     </div>  <!-- END BOTTOM ROW -->
-                    
+
                     <!-- TOP ROW -->
                     <div class="top-row pb-50">
                         <div class="row d-flex align-items-center">
@@ -357,29 +357,29 @@
                             <!-- IMAGE BLOCK -->
                             <div class="col-md-5 col-lg-6">
                                 <div class="img-block left-column wow fadeInRight">
-                                    <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-08.jpg" alt="content-image">
+                                    <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-08.jpg" alt="content-image">
                                 </div>
                             </div>
 
 
-                            <!-- TEXT BLOCK --> 
+                            <!-- TEXT BLOCK -->
                             <div class="col-md-7 col-lg-6">
                                 <div class="txt-block right-column wow fadeInLeft">
 
-                                    <!-- Section ID --> 
+                                    <!-- Section ID -->
                                     <span class="section-id rounded-id bg-tra-purple purple-color txt-upcase">
                                         Fast Performance
                                     </span>
 
-                                    <!-- Title -->  
+                                    <!-- Title -->
                                     <h2 class="h2-xs">Buyers Presentation</h2>
 
-                                    <!-- Text -->   
+                                    <!-- Text -->
                                     <p class="p-lg">Got Buyers? Use our presentation to inform them about their prospective home and the surrounding neighborhood.
                                     </p>
 
-                                    
-                                    <!-- List -->   
+
+                                    <!-- List -->
                                     <ul class="simple-list">
 
 
@@ -388,24 +388,24 @@
                                         </li>
 
                                         <li class="list-item">
-                                            <p class="p-lg">Real Time Data & Comparables 
+                                            <p class="p-lg">Real Time Data & Comparables
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg">Local Demographics
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg">Send Via Email or Text
                                             </p>
                                         </li>
 
-                                    </ul>   
+                                    </ul>
 
                                 </div>
-                            </div>  <!-- END TEXT BLOCK --> 
+                            </div>  <!-- END TEXT BLOCK -->
 
 
                         </div>
@@ -417,24 +417,24 @@
                         <div class="row d-flex align-items-center">
 
 
-                        <!-- TEXT BLOCK --> 
+                        <!-- TEXT BLOCK -->
                         <div class="col-md-7 col-lg-6 order-last order-md-2">
                             <div class="txt-block left-column wow fadeInRight">
 
-                                <!-- Section ID --> 
+                                <!-- Section ID -->
                                     <span class="section-id rounded-id bg-tra-purple purple-color txt-upcase">
                                         Fast Performance
                                     </span>
 
-                                <!-- Title -->  
+                                <!-- Title -->
                                 <h2 class="h2-xs">Digital Guest Registry</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                     <p class="p-lg">Never lose a lead again. Our digital guest registry helps your visitors signin electronically.
                                     </p>
 
-                                    
-                                    <!-- List -->   
+
+                                    <!-- List -->
                                     <ul class="simple-list">
 
 
@@ -446,27 +446,27 @@
                                             <p class="p-lg">QR code or Ipad Signin
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg">Email or Export visitor data
                                             </p>
                                         </li>
-                                        
+
                                         <li class="list-item">
                                             <p class="p-lg"> Automated thank you texts
                                             </p>
                                         </li>
 
-                                    </ul>                         
+                                    </ul>
 
                             </div>
-                        </div>  <!-- END TEXT BLOCK --> 
+                        </div>  <!-- END TEXT BLOCK -->
 
 
                         <!-- IMAGE BLOCK -->
                         <div class="col-md-5 col-lg-6 order-first order-md-2">
                             <div class="rel img-block right-column wow fadeInLeft">
-                                <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-09.jpg" alt="content-image">
+                                <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-09.jpg" alt="content-image">
                             </div>
                         </div>
 
@@ -492,31 +492,31 @@
                         <div class="col-md-5 col-lg-6">
                             <div class="rel img-block left-column video-preview wow fadeInRight">
 
-                                <!-- Play Icon --> 
-                                <a class="video-popup1" href="https://www.youtube.com/embed/SZEflIVnhH8">               
-                                    <div class="video-btn video-btn-xl bg-violet-red ico-90">   
+                                <!-- Play Icon -->
+                                <a class="video-popup1" href="https://www.youtube.com/embed/SZEflIVnhH8">
+                                    <div class="video-btn video-btn-xl bg-violet-red ico-90">
                                         <div class="video-block-wrapper"><span class="flaticon-play-button"></span></div>
                                     </div>
                                 </a>
 
-                                <!-- Preview Image --> 
-                                <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-08-a.png" alt="video-preview">
+                                <!-- Preview Image -->
+                                <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-08-a.png" alt="video-preview">
 
                             </div>
                         </div>
 
 
-                        <!-- TEXT BLOCK --> 
+                        <!-- TEXT BLOCK -->
                         <div class="col-md-7 col-lg-6">
                             <div class="txt-block right-column white-color wow fadeInLeft">
 
-                                <!-- Section ID --> 
+                                <!-- Section ID -->
                                 <span class="section-id white-color txt-upcase">View Demo</span>
 
-                                <!-- Title -->  
+                                <!-- Title -->
                                 <h2 class="h2-xs">Real Time Text Alerts</h2>
 
-                                <!-- List -->   
+                                <!-- List -->
                                 <ul class="simple-list">
 
                                     <li class="list-item">
@@ -529,7 +529,7 @@
                                     </li>
 
                                     <li class="list-item">
-                                        <p class="p-lg">Our Digital Guest Registry will help you keep track and send thank you texts automatically on your behalf. 
+                                        <p class="p-lg">Our Digital Guest Registry will help you keep track and send thank you texts automatically on your behalf.
                                         </p>
                                     </li>
 
@@ -537,7 +537,7 @@
                                 <a href="https://calendly.com/book-with-modern/tools?month=2021-12" class="btn btn-orange-red tra-orange-red-hover">Book a 15 Min Demo</a>
 
                             </div>
-                        </div>  <!-- END TEXT BLOCK --> 
+                        </div>  <!-- END TEXT BLOCK -->
 
 
                     </div>     <!-- End row -->
@@ -553,36 +553,36 @@
                 <div class="container">
                     <div class="row d-flex align-items-center">
 
-                                
-                        <!-- TEXT BLOCK -->     
+
+                        <!-- TEXT BLOCK -->
                         <div class="col-md-6 order-last order-md-2">
                             <div class="txt-block left-column wow fadeInLeft">
 
-                                <!-- TEXT BOX -->   
+                                <!-- TEXT BOX -->
                                 <div class="txt-box mb-25">
-                                <!-- Section ID --> 
+                                <!-- Section ID -->
                                 <span class="section-id white-color txt-upcase">View Demo</span>
 
-                                <!-- Title -->  
+                                <!-- Title -->
                                 <h2 class="h2-xs">Create in Seconds</h2>
 
-                                    <!-- Text -->   
+                                    <!-- Text -->
                                     <p class="p-lg">We have carefully tailored our platform to help you quickly generate you reports. Your time is valuable so we want to make sure we make it as easy and quick as possible.
                                     </p>
 
                                 </div>
 
-                                <!-- TEXT BOX -->   
+                                <!-- TEXT BOX -->
                                 <div class="txt-box">
 
-                                    <!-- Title -->  
+                                    <!-- Title -->
                                 <!--    <h5 class="h5-lg">Multiplatform. Always Synced</h5>-->
 
-                                    <!-- List -->   
+                                    <!-- List -->
                                     <ul class="simple-list">
 
                                         <li class="list-item">
-                                            <p class="p-lg">Your account information such as picture, logo, name, license, etc. is all stored for quick report generation. 
+                                            <p class="p-lg">Your account information such as picture, logo, name, license, etc. is all stored for quick report generation.
                                             </p>
                                         </li>
 
@@ -593,17 +593,17 @@
 
                                     </ul>
 
-                                </div>  <!-- END TEXT BOX -->   
+                                </div>  <!-- END TEXT BOX -->
 
-                            </div>  
-                        </div>  <!-- END TEXT BLOCK -->     
+                            </div>
+                        </div>  <!-- END TEXT BLOCK -->
 
 
-                        <!-- IMAGE BLOCK -->    
+                        <!-- IMAGE BLOCK -->
                         <div class="col-md-6 order-first order-md-2">
                             <div class="content-7-img wow fadeInRight">
-                                <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/featureHighlights-4a.png" alt="content-image">
-                            </div>  
+                                <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/featureHighlights-4a.png" alt="content-image">
+                            </div>
                         </div>
 
 
@@ -620,19 +620,19 @@
                 <div class="container">
 
 
-                    <!-- SECTION TITLE -->  
-                    <div class="row justify-content-center">    
+                    <!-- SECTION TITLE -->
+                    <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
-                            <div class="section-title title-01 mb-70">      
+                            <div class="section-title title-01 mb-70">
 
-                                <!-- Title -->  
-                                <h2 class="h2-md">User Friendly + Powerful Features</h2>    
+                                <!-- Title -->
+                                <h2 class="h2-md">User Friendly + Powerful Features</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                 <p class="p-xl">Below are some of the powerful features that our Modern Agent platform provides. We give you the flexability to create and deliver your reports in your preferred method.
                                 </p>
-                                    
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
 
@@ -649,17 +649,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                            
+
                                             <span class="flaticon-dashboard"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">Real Time Property Data</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">We display real-time data the shows all of the current property characteristics and ownership.
                                         </p>
@@ -667,7 +667,7 @@
                                     </div>
 
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <!-- FEATURE BOX #2 -->
@@ -677,17 +677,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                            
+
                                             <span class="flaticon-browser"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">MLS Comparables</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">Got an SimplyRets account? Great you can integrate to pull comparables from your local area.
                                         </p>
@@ -695,7 +695,7 @@
                                     </div>
 
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <!-- FEATURE BOX #3 -->
@@ -705,17 +705,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                        
+
                                             <span class="flaticon-increase-1"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">Lead Collection</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">We not only help you look good but help you collect leads aswell via our market update & guest registries.
                                         </p>
@@ -723,7 +723,7 @@
                                     </div>
 
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <!-- FEATURE BOX #4 -->
@@ -733,17 +733,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                            
+
                                             <span class="flaticon-smartphone-1"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">Text Alerts</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">Never worry about losing a potential lead. We instantly text you the leads information once it's collected.
                                         </p>
@@ -752,7 +752,7 @@
                                     </div>
 
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <!-- FEATURE BOX #5 -->
@@ -762,17 +762,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                            
+
                                             <span class="flaticon-share"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">Share Reports</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">We can me it extremely easy to share your recently created reports via email, text message, or PDF.
                                         </p>
@@ -780,7 +780,7 @@
                                     </div>
 
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <!-- FEATURE BOX #6 -->
@@ -790,17 +790,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                            
+
                                             <span class="flaticon-algorithm"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">Professional Marketing Plan</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">With the help if industry professionals we crafted a marekting plan that you can use to wow your clients.
                                         </p>
@@ -817,17 +817,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                            
+
                                             <span class="flaticon-filter-1"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">Buyers Demographics</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">Our buyers report includes important demographics that your prospective buyers would want to be aware of.
                                         </p>
@@ -845,17 +845,17 @@
                                     <!-- Icon -->
                                     <div class="fbox-ico">
                                         <div class="ico-60 shape-ico purple-color">
-                                            
+
                                             <span class="flaticon-pantone"></span>
                                         </div>
                                     </div>
 
                                     <!-- Text -->
                                     <div class="fbox-txt">
-        
+
                                         <!-- Title -->
                                         <h5 class="h5-md">Personalized Branding</h5>
-                                            
+
                                         <!-- Text -->
                                         <p class="p-lg">All of our reports allow for you to add your picture, your logo, contact information, and brand color.
                                         </p>
@@ -870,11 +870,11 @@
                     </div>    <!-- END FEATURES-4 WRAPPER -->
 
 
-                </div>     <!-- End container -->   
+                </div>     <!-- End container -->
             </section>  <!-- END FEATURES-4 -->
-			
-			
-			
+
+
+
 				<!-- CONTENT-1
 			============================================= -->
 			<section id="content-1" class="content-1 bg-02 wide-60 content-section division">
@@ -882,25 +882,25 @@
 					<div class="row d-flex align-items-center">
 
 
-						<!-- TEXT BLOCK -->	
+						<!-- TEXT BLOCK -->
 						<div class="col-md-7 col-lg-6 order-last order-md-2">
 							<div class="txt-block left-column white-color wow fadeInRight">
 
-								<!-- Section ID -->	
+								<!-- Section ID -->
 					 			<span class="section-id rounded-id bg-tra-white white-color txt-upcase">
 					 				SIMPLYRETS INTEGRATED
 					 			</span>
 
-								<!-- Title -->	
+								<!-- Title -->
 								<h2 class="h2-xs">Get Real-Time Listing Pictures</h2>
-								
-								
-								<!-- Text -->	
+
+
+								<!-- Text -->
 									<p class="p-lg">Got a SIMPLYRETS account? Awesome, you can use your credentials to pull real-time property pictures of active listings and have them inserted into your report. Using your credentials you will be able to use the following property types in your report:
 									</p>
-								
 
-								<!-- List -->	
+
+								<!-- List -->
 								<ul class="simple-list">
 
 									<li class="list-item">
@@ -913,7 +913,7 @@
 									</li>
 
 									<li class="list-item">
-										<p class="p-lg">Rental Listings 
+										<p class="p-lg">Rental Listings
 										</p>
 									</li>
 
@@ -922,13 +922,13 @@
 								<a href="https://calendly.com/book-with-modern/tools?month=2021-12" class="btn btn-orange-red tra-orange-red-hover">Book a 15 Min Demo</a>
 
 							</div>
-						</div>	<!-- END TEXT BLOCK -->	
+						</div>	<!-- END TEXT BLOCK -->
 
 
 						<!-- IMAGE BLOCK -->
 						<div class="col-md-5 col-lg-6 order-first order-md-2">
 							<div class="rel img-block right-column wow fadeInLeft">
-								<img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-07-a.png" alt="content-image">
+								<img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-07-a.png" alt="content-image">
 							</div>
 						</div>
 
@@ -936,8 +936,8 @@
 					</div>	   <!-- End row -->
 				</div>	   <!-- End container -->
 			</section>	<!-- END CONTENT-1 -->
-			
-			
+
+
 
 
 
@@ -954,7 +954,7 @@
                     <div class="row d-flex align-items-center">
 
 
-                        <!-- TEXT BLOCK --> 
+                        <!-- TEXT BLOCK -->
                         <div class="col-lg-6">
                             <div class="txt-block right-column wow fadeInLeft">
                                 <h3 class="h3-xs">More than 2,000 users nationwide are already using Modern Agent actively</h3>
@@ -963,20 +963,20 @@
 
 
                         <!-- STATISTIC BLOCK #1 -->
-                        <div class="col-sm-5 col-md-4 col-lg-3 offset-sm-1 offset-md-2 offset-lg-1">                        
-                            <div class="statistic-block wow fadeInUp">  
+                        <div class="col-sm-5 col-md-4 col-lg-3 offset-sm-1 offset-md-2 offset-lg-1">
+                            <div class="statistic-block wow fadeInUp">
 
                                 <!-- Text -->
                                 <h2 class="h2-title-xs statistic-number"><span class="count-element">65</span>K</h2>
-                                <p class="p-lg mt-20">Reports Created <br /> since our launch</p>       
+                                <p class="p-lg mt-20">Reports Created <br /> since our launch</p>
 
-                            </div>                      
+                            </div>
                         </div>
 
 
                         <!-- STATISTIC BLOCK #2 -->
-                        <div class="col-sm-5 col-md-4 col-lg-2">                        
-                            <div class="statistic-block wow fadeInUp">  
+                        <div class="col-sm-5 col-md-4 col-lg-2">
+                            <div class="statistic-block wow fadeInUp">
 
                                 <!-- Text -->
                                 <h2 class="h2-title-xs statistic-number">
@@ -989,16 +989,16 @@
                                     <span class="flaticon-star-1"></span>
                                     <span class="flaticon-star-1"></span>
                                     <span class="flaticon-star-1"></span>
-                                    <span class="flaticon-star-half-empty"></span>  
+                                    <span class="flaticon-star-half-empty"></span>
                                 </div>
 
-                                <p class="p-lg txt-400">1,376 Rating</p>                                                                                                    
-                            </div>                              
+                                <p class="p-lg txt-400">1,376 Rating</p>
+                            </div>
                         </div>
 
 
                     </div>    <!-- End row -->
-                </div>     <!-- End container -->       
+                </div>     <!-- End container -->
             </section>  <!-- END STATISTIC-2 -->
 
 
@@ -1015,20 +1015,20 @@
             <section id="reviews-4" class="rel pt-100 reviews-section division">
 
 
-                <!-- SECTION TITLE -->  
+                <!-- SECTION TITLE -->
                 <div class="container">
-                    <div class="row justify-content-center">    
+                    <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
-                            <div class="section-title title-01">        
+                            <div class="section-title title-01">
 
-                                <!-- Title -->  
-                                <h2 class="h2-md">Some of Our Customers</h2>    
+                                <!-- Title -->
+                                <h2 class="h2-md">Some of Our Customers</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                 <p class="p-xl">Below are some of the clients who are currently using our platform to create stunning listing presentations, signup sheets, & more.
                                 </p>
-                                    
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1041,10 +1041,10 @@
             <!-- BRANDS-2
             ============================================= -->
             <div id="brands-2" class="wide-701 brands-section division">
-                <div class="container"> 
+                <div class="container">
 
 
-                    <!-- BRANDS TITLE 
+                    <!-- BRANDS TITLE
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
                             <div class="brands-title text-center">
@@ -1063,7 +1063,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-1.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-1.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1073,7 +1073,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-2.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-2.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1083,7 +1083,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-3.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-3.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1093,7 +1093,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-4.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-4.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1103,7 +1103,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-5.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-5.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1113,7 +1113,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-8.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-8.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1123,7 +1123,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-7.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-7.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1133,7 +1133,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-5.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-5.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1143,7 +1143,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-8.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-8.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1153,7 +1153,7 @@
                             <div class="col">
                                 <div class="brand-logo">
                                     <a href="#">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/brand-2.png" alt="brand-logo" />
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/brand-2.png" alt="brand-logo" />
                                     </a>
                                 </div>
                             </div>
@@ -1177,18 +1177,18 @@
                 <div class="container">
 
 
-                    <!-- SECTION TITLE -->  
-                    <div class="row justify-content-center">    
+                    <!-- SECTION TITLE -->
+                    <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
-                            <div class="section-title title-01 mb-80">      
+                            <div class="section-title title-01 mb-80">
 
-                                <!-- Title -->  
-                                <h2 class="h2-md">Simple And Flexible Pricing</h2>  
+                                <!-- Title -->
+                                <h2 class="h2-md">Simple And Flexible Pricing</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                 <p class="p-xl">No credit card required. Change or cancel your plan anytime</p>
-                                    
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
 
@@ -1200,8 +1200,8 @@
 
                             <!-- BASIC PLAN -->
                             <div class="col">
-                                <div class="pricing-2-table bg-white mb-40 wow fadeInUp">   
-                                                    
+                                <div class="pricing-2-table bg-white mb-40 wow fadeInUp">
+
                                     <!-- Plan Price -->
                                     <div class="pricing-plan">
 
@@ -1209,29 +1209,29 @@
                                         <div class="pricing-plan-title">
                                             <h5 class="h5-xs">Agent Build</h5>
                                             <!--<h6 class="h6-sm bg-lightgrey">Save 30%</h6>-->
-                                            
-                                        </div>  
+
+                                        </div>
 
                                         <!-- Price -->
-                                        <sup class="dark-color">$</sup>   
-                                        <?php $whole = floor($single_package);      // 1
-                                        $fraction = $single_package - $whole; // .25  
-                                        $fraction = str_pad($fraction, 2, "0", STR_PAD_RIGHT);
-                                        ?>                        
+                                        <sup class="dark-color">$</sup>
+                                        <?php $whole = floor($single_package); // 1
+$fraction = $single_package - $whole; // .25
+$fraction = str_pad($fraction, 2, "0", STR_PAD_RIGHT);
+?>
                                         <span class="dark-color"><?php echo $whole ?></span>
                                         <sup class="validity dark-color"><span>.<?php echo $fraction ?></span> / month</sup>
                                         <p class="p-md">For Unlimited 1 Report Type</p>
 
-                                    </div>  
+                                    </div>
 
                                     <!-- Plan Features  -->
                                     <ul class="features">
                                         <li><p class="p-md">Perfect for the agent who only wants a specific type of report.</p></li>
-                                        
+
                                     </ul>
 
                                     <!-- Pricing Plan Button -->
-                                    <a href="<?php echo base_url('frontend/register/package/1');?>" class="btn btn-sm btn-tra-grey tra-skyblue-hover">Select Plan</a>
+                                    <a href="<?php echo base_url('frontend/register/package/1'); ?>" class="btn btn-sm btn-tra-grey tra-skyblue-hover">Select Plan</a>
 
                                 </div>
                             </div>  <!-- END BASIC PLAN -->
@@ -1239,7 +1239,7 @@
 
                             <!-- AGENCY PLAN -->
                             <div class="col">
-                                <div class="pricing-2-table bg-white mb-40 wow fadeInUp">   
+                                <div class="pricing-2-table bg-white mb-40 wow fadeInUp">
 
                                     <!-- Plan Price -->
                                     <div class="pricing-plan highlight">
@@ -1248,20 +1248,20 @@
                                         <div class="pricing-plan-title">
                                             <h5 class="h5-xs">Agent Monthly</h5>
                                             <h6 class="h6-sm bg-skyblue white-color">Popular</h6>
-                                            
-                                        </div>  
+
+                                        </div>
 
                                         <!-- Price -->
                                         <sup class="dark-color">$</sup>
-                                        <?php $whole = floor($all_package);      // 1
-                                        $fraction = $all_package - $whole; // .25 
-                                        $fraction = str_pad($fraction, 2, "0", STR_PAD_RIGHT); 
-                                        ?>                             
+                                        <?php $whole = floor($all_package); // 1
+$fraction = $all_package - $whole; // .25
+$fraction = str_pad($fraction, 2, "0", STR_PAD_RIGHT);
+?>
                                         <span class="dark-color"><?php echo $whole ?></span>
                                         <sup class="validity dark-color"><span>.<?php echo $fraction ?></span> / month</sup>
                                         <p class="p-md">For Unlimited All Reports</p>
 
-                                    </div>  
+                                    </div>
 
                                     <!-- Plan Features  -->
                                     <ul class="features">
@@ -1269,8 +1269,8 @@
                                     </ul>
 
                                     <!-- Pricing Plan Button -->
-                                    
-                                    <a href="<?php echo base_url('frontend/register/package/2');?>" class="btn btn-sm btn-skyblue tra-grey-hover">Select Plan</a>
+
+                                    <a href="<?php echo base_url('frontend/register/package/2'); ?>" class="btn btn-sm btn-skyblue tra-grey-hover">Select Plan</a>
 
                                 </div>
                             </div>  <!-- END AGENCY PLAN  -->
@@ -1286,19 +1286,19 @@
                                         <!-- Plan Title -->
                                         <div class="pricing-plan-title">
                                             <h5 class="h5-xs">Brokerage</h5><h6 class="h6-sm bg-lightgrey">Call Us</h6>
-                                            
-                                        </div>  
+
+                                        </div>
 
                                         <!-- Price -->
-                                        <sup class="dark-color">$</sup>                             
+                                        <sup class="dark-color">$</sup>
                                         <span class="dark-color">?</span>
                                         <sup class="validity dark-color"><span>.??</span> / agent</sup>
                                         <p class="p-md">Per Agent Unlimited All Reports</p>
-                                    </div>  
+                                    </div>
 
                                     <!-- Plan Features  -->
                                     <ul class="features">
-                                        <li><p class="p-md">Perfect for a brokerage that is looking to help their agents acheive success.</p></li>  
+                                        <li><p class="p-md">Perfect for a brokerage that is looking to help their agents acheive success.</p></li>
                                     </ul>
 
                                     <!-- Pricing Plan Button -->
@@ -1317,10 +1317,10 @@
                         <div class="row">
                             <div class="col">
 
-                                <!-- Title -->  
+                                <!-- Title -->
                                 <h3 class="h3-sm text-center">Compare Pricing Packages</h3>
 
-                                <!-- Table -->  
+                                <!-- Table -->
                                 <div class="table-responsive">
                                     <table class="table text-center">
 
@@ -1409,7 +1409,7 @@
                                         </tbody>
 
                                     </table>
-                                </div>  <!-- End Table -->  
+                                </div>  <!-- End Table -->
 
                             </div>
                         </div>
@@ -1419,17 +1419,17 @@
                     <!-- PRICING NOTICE TEXT -->
                     <div class="row">
                         <div class="col-lg-10 offset-lg-1">
-                            <div class="pricing-notice text-center mb-40">                  
+                            <div class="pricing-notice text-center mb-40">
                                 <p class="p-md">The above prices do not include applicable taxes based on your billing address.
                                    The final price will be displayed on the checkout page, before the payment is completed
                                 </p>
-                            </div>  
+                            </div>
                         </div>
                     </div>
 
 
                     <!-- PAYMENT METHODS -->
-                    <div class="payment-methods pc-30"> 
+                    <div class="payment-methods pc-30">
                         <div class="row row-cols-1 row-cols-md-3">
 
                             <!-- Payment Methods -->
@@ -1441,15 +1441,15 @@
 
                                     <!-- Payment Icons -->
                                     <ul class="payment-icons ico-50">
-                                        <li><img src="<?php echo base_url();?>/assets/frontend/images/png-icons/visa.png" alt="payment-icon" /></li>
-                                        <li><img src="<?php echo base_url();?>/assets/frontend/images/png-icons/am.png" alt="payment-icon" /></li>
-                                        <li><img src="<?php echo base_url();?>/assets/frontend/images/png-icons/discover.png" alt="payment-icon" /></li>
-                                        <li><img src="<?php echo base_url();?>/assets/frontend/images/png-icons/mc.png" alt="payment-icon" /></li>   
-                                        
+                                        <li><img src="<?php echo base_url(); ?>/assets/frontend/images/png-icons/visa.png" alt="payment-icon" /></li>
+                                        <li><img src="<?php echo base_url(); ?>/assets/frontend/images/png-icons/am.png" alt="payment-icon" /></li>
+                                        <li><img src="<?php echo base_url(); ?>/assets/frontend/images/png-icons/discover.png" alt="payment-icon" /></li>
+                                        <li><img src="<?php echo base_url(); ?>/assets/frontend/images/png-icons/mc.png" alt="payment-icon" /></li>
+
                                     </ul>
 
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <!-- Payment Guarantee -->
@@ -1461,9 +1461,9 @@
 
                                     <!-- Text -->
                                     <p>If you are not happy with our Modern Agent platform you cancel anytime.</p>
-                                    
+
                                 </div>
-                            </div>  
+                            </div>
 
 
                             <!-- Payment Encrypted -->
@@ -1477,7 +1477,7 @@
                                     <p>Your information is protected by 256-bit SSL encryption.</p>
 
                                 </div>
-                            </div>  
+                            </div>
 
                         </div>
                     </div>  <!-- END PAYMENT METHODS -->
@@ -1491,31 +1491,31 @@
 
             <!-- FAQs-2
             ============================================= -->
-            <section id="faqs-2" class="pb-60 pt-100 faqs-section division">                
+            <section id="faqs-2" class="pb-60 pt-100 faqs-section division">
                 <div class="container">
 
 
-                    <!-- SECTION TITLE -->  
-                    <div class="row justify-content-center">    
+                    <!-- SECTION TITLE -->
+                    <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
-                            <div class="section-title title-01 mb-80">      
+                            <div class="section-title title-01 mb-80">
 
-                                <!-- Title -->  
-                                <h2 class="h2-md">Got Questions? Look Here</h2> 
+                                <!-- Title -->
+                                <h2 class="h2-md">Got Questions? Look Here</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                 <p class="p-xl">Below are a few questions that we are usually asked. If you do not see the answer to your question click on the contact us down at the bottom.
                                 </p>
-                                    
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
 
 
-                    <!-- FAQs-2 QUESTIONS -->   
+                    <!-- FAQs-2 QUESTIONS -->
                     <div class="faqs-2-questions">
                         <div class="row row-cols-1 row-cols-lg-2">
-                        
+
 
                             <!-- QUESTIONS HOLDER -->
                             <div class="col">
@@ -1532,23 +1532,23 @@
                                         <p class="p-lg">Yes we are more than happy to setup a quick demo so you can see how our reports are generated.
                                         </p>
 
-                                    </div>  
+                                    </div>
 
 
-                                    <!-- QUESTION #2 -->                    
+                                    <!-- QUESTION #2 -->
                                     <div class="question wow fadeInUp">
 
                                         <!-- Question -->
                                         <h5 class="h5-md">What are the requirements for using Modern Agent?</h5>
 
                                         <!-- Answer -->
-                                        <p class="p-lg">There are no requirements. Typically it's reserved for Real Estate Agents. 
+                                        <p class="p-lg">There are no requirements. Typically it's reserved for Real Estate Agents.
                                         </p>
 
                                     </div>
 
 
-                                    <!-- QUESTION #3 -->                    
+                                    <!-- QUESTION #3 -->
                                     <div class="question wow fadeInUp">
 
                                         <!-- Question -->
@@ -1557,7 +1557,7 @@
                                         <!-- Answer -->
                                         <p class="p-lg">Modern Agent typically renders very well on your desktop, laptops, and ipads. We have our app launching soon.
                                                 </p>
-                                            
+
 
 
                                     </div>
@@ -1571,8 +1571,8 @@
                             <div class="col">
                                 <div class="questions-holder pl-15">
 
-                                
-                                    <!-- QUESTION #4 -->                    
+
+                                    <!-- QUESTION #4 -->
                                     <div class="question wow fadeInUp">
 
                                         <!-- Question -->
@@ -1584,7 +1584,7 @@
 
                                     </div>
 
-                                        
+
                                     <!-- QUESTION #5 -->
                                     <div class="question wow fadeInUp">
 
@@ -1618,12 +1618,12 @@
 
 
                         </div>  <!-- End row -->
-                    </div>  <!-- END FAQs-2 QUESTIONS -->     
+                    </div>  <!-- END FAQs-2 QUESTIONS -->
 
 
-                    <!-- MORE QUESTIONS BUTTON -->  
+                    <!-- MORE QUESTIONS BUTTON -->
                     <!-- <div class="row">
-                        <div class="col">   
+                        <div class="col">
                             <div class="more-questions">
                                 <h5 class="h5-sm">Have more questions? <a href="#">Ask your question here</a></h5>
                             </div>
@@ -1631,7 +1631,7 @@
                     </div> -->
 
 
-                </div>     <!-- End container -->       
+                </div>     <!-- End container -->
             </section>  <!-- END FAQs-2 -->
 
 
@@ -1649,7 +1649,7 @@
                             <div class="col-lg-7 col-lg-7">
                                 <div class="cta-11-txt">
 
-                                    <!-- Title -->  
+                                    <!-- Title -->
                                     <h2 class="h2-xs">Wanna Book a Demo?</h2>
 
                                     <!-- Text -->
@@ -1667,15 +1667,15 @@
                             <div class="col-lg-5">
                                 <div class="text-end">
                                     <div class="cta-11-img text-center">
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/img-25.png" alt="cta-image">
-                                    </div>  
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/img-25.png" alt="cta-image">
+                                    </div>
                                 </div>
                             </div>
 
 
                         </div>
                     </div>    <!-- End row -->
-                </div>     <!-- End container -->   
+                </div>     <!-- End container -->
             </section>  <!-- END CALL TO ACTION-11 -->
 
 
@@ -1683,23 +1683,23 @@
 
             <!-- BLOG-1
             ============================================= -->
-            <section id="blog-1" class="wide-60 blog-section division">             
+            <section id="blog-1" class="wide-60 blog-section division">
                 <div class="container">
 
 
-                    <!-- SECTION TITLE -->  
-                    <div class="row justify-content-center">    
+                    <!-- SECTION TITLE -->
+                    <div class="row justify-content-center">
                         <div class="col-lg-10 col-xl-8">
-                            <div class="section-title title-01 mb-70">      
+                            <div class="section-title title-01 mb-70">
 
-                                <!-- Title -->  
-                                <h2 class="h2-md">Integrations & Widgets</h2>   
+                                <!-- Title -->
+                                <h2 class="h2-md">Integrations & Widgets</h2>
 
-                                <!-- Text -->   
+                                <!-- Text -->
                                 <p class="p-xl">Below are the integrations that we can make available to selected clients. Ready to talk integrations? Click on the contact button below.
                                 </p>
-                                    
-                            </div>  
+
+                            </div>
                         </div>
                     </div>
 
@@ -1714,8 +1714,8 @@
 
                                 <!-- BLOG POST IMAGE -->
                                 <div class="blog-post-img">
-                                    <div class="hover-overlay"> 
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/blog/Asset3.png" alt="blog-post-image" />
+                                    <div class="hover-overlay">
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/blog/Asset3.png" alt="blog-post-image" />
                                         <div class="item-overlay"></div>
                                     </div>
                                 </div>
@@ -1724,7 +1724,7 @@
                                 <div class="blog-post-txt">
 
                                     <!-- Post Tag -->
-                                    <p class="p-md post-tag">Integration</p>    
+                                    <p class="p-md post-tag">Integration</p>
 
                                     <!-- Post Link -->
                                     <h5 class="h5-md">
@@ -1735,7 +1735,7 @@
                                     <p class="p-lg">Want a report widget for your website? We got you covered.</p>
 
                                     <!-- Post Meta -->
-                                    <div class="post-meta"><p class="p-md"><a href="#" class="btn btn-tra-orange-red orange-red-hover mr-15">Contact Us</a></p></div>    
+                                    <div class="post-meta"><p class="p-md"><a href="#" class="btn btn-tra-orange-red orange-red-hover mr-15">Contact Us</a></p></div>
 
                                 </div>  <!-- END BLOG POST TEXT -->
 
@@ -1749,8 +1749,8 @@
 
                                 <!-- BLOG POST IMAGE -->
                                 <div class="blog-post-img">
-                                    <div class="hover-overlay"> 
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/blog/Asset1.png" alt="blog-post-image" />
+                                    <div class="hover-overlay">
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/blog/Asset1.png" alt="blog-post-image" />
                                         <div class="item-overlay"></div>
                                     </div>
                                 </div>
@@ -1759,7 +1759,7 @@
                                 <div class="blog-post-txt">
 
                                     <!-- Post Tag -->
-                                    <p class="p-md post-tag">Integration</p>    
+                                    <p class="p-md post-tag">Integration</p>
 
                                     <!-- Post Link -->
                                     <h5 class="h5-md">
@@ -1770,7 +1770,7 @@
                                     <p class="p-lg">Looking to integrate our us with your platform? Our API has you covered.</p>
 
                                     <!-- Post Meta -->
-                                    <div class="post-meta"><p class="p-md"><a href="#" class="btn btn-tra-orange-red orange-red-hover mr-15">Contact Us</a></p></div>    
+                                    <div class="post-meta"><p class="p-md"><a href="#" class="btn btn-tra-orange-red orange-red-hover mr-15">Contact Us</a></p></div>
 
                                 </div>  <!-- END BLOG POST TEXT -->
 
@@ -1784,8 +1784,8 @@
 
                                 <!-- BLOG POST IMAGE -->
                                 <div class="blog-post-img">
-                                    <div class="hover-overlay"> 
-                                        <img class="img-fluid" src="<?php echo base_url();?>/assets/frontend/images/blog/Asset4.png" alt="blog-post-image" />
+                                    <div class="hover-overlay">
+                                        <img class="img-fluid" src="<?php echo base_url(); ?>/assets/frontend/images/blog/Asset4.png" alt="blog-post-image" />
                                         <div class="item-overlay"></div>
                                     </div>
                                 </div>
@@ -1794,7 +1794,7 @@
                                 <div class="blog-post-txt">
 
                                     <!-- Post Tag -->
-                                    <p class="p-md post-tag">Feature</p>    
+                                    <p class="p-md post-tag">Feature</p>
 
                                     <!-- Post Link -->
                                     <h5 class="h5-md">
@@ -1816,7 +1816,7 @@
                     </div>  <!-- END BLOG POSTS -->
 
 
-                </div>     <!-- End container -->       
+                </div>     <!-- End container -->
             </section>  <!-- END BLOG-1 -->
 
 
@@ -1835,33 +1835,32 @@
                     <div class="row d-flex align-items-center row-cols-1 row-cols-lg-2">
 
 
-                        <!-- NEWSLETTER TEXT -->    
+                        <!-- NEWSLETTER TEXT -->
                         <div class="col">
-                            <div class="newsletter-txt pr-20">  
-                                <h3 class="h3-xs">Stay up to date with our news, ideas and updates</h3> 
-                            </div>                              
+                            <div class="newsletter-txt pr-20">
+                                <h3 class="h3-xs">Stay up to date with our news, ideas and updates</h3>
+                            </div>
                         </div>
 
 
                         <!-- NEWSLETTER FORM -->
                         <div class="col">
                             <form class="newsletter-form">
-                                        
+
                                 <div class="input-group">
-                                    <input type="email" autocomplete="off" class="form-control" placeholder="Your email address" required id="s-email">                             
+                                    <input type="email" autocomplete="off" class="form-control" placeholder="Your email address" required id="s-email">
                                     <span class="input-group-btn">
                                         <button type="submit" class="btn btn-orange-red tra-orange-red-hover">Subscribe Now</button>
-                                    </span>                                     
+                                    </span>
                                 </div>
 
-                                <!-- Newsletter Form Notification -->   
+                                <!-- Newsletter Form Notification -->
                                 <label for="s-email" class="form-notification"></label>
-                                            
-                            </form>                         
+
+                            </form>
                         </div>    <!-- END NEWSLETTER FORM -->
 
 
                     </div>    <!-- End row -->
-                </div>     <!-- End container -->   
+                </div>     <!-- End container -->
             </section>  <!-- END NEWSLETTER-2 -->
- 
