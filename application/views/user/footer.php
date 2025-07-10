@@ -6,7 +6,7 @@
           <div class="col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
             <div class="footer_content">
               <div>
-                <a href="index.html"><img src="<?php echo base_url(); ?>assets/new_site/img/logo.png" alt="Modern Agent"></a>
+                <a href="index.html"><img src="<?php echo base_url(); ?>assets/new_site/img/Logo_dark.jpeg" alt="Modern Agent"></a>
                 <p class="mt-3 mb-0">We are all about helping real estate agents <br> make the perfect impression.</p>
               </div>
               <a href="<?php echo base_url(); ?>" target="_blank" class="d-block text-center web_link"><?php echo base_url(); ?></a>

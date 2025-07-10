@@ -423,6 +423,11 @@ footer a:hover{
     margin: 0 auto;
 }
 
+.footer_content img {
+    width: 204px;
+    height: 21px;
+}
+
 /* wizard_steps */
 .wizard_steps{
     padding: 90px 0 100px;

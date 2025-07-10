@@ -70,7 +70,7 @@ $config['enable_emulate_request'] = true;
 |    E.g: My Secret REST API
 |
  */
-$config['rest_realm'] = 'Modern Agent';
+$config['rest_realm'] = 'CMA';
 
 /*
 |--------------------------------------------------------------------------

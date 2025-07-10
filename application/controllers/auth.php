@@ -204,7 +204,7 @@ class Auth extends REST_Controller
                     $mail_data['phone'] = $this->input->post('uphone');
                     $message = $this->load->view('mails/registration_success', $mail_data, true);
 
-                    $send = $this->base_model->queue_mail($this->input->post('uemail'), 'Modern Agent Registration', $message);
+                    $send = $this->base_model->queue_mail($this->input->post('uemail'), 'CMA Registration', $message);
                 }
                 $response = array(
                     'status' => 'success',
@@ -310,7 +310,7 @@ class Auth extends REST_Controller
                     $client = new Client($sid, $token);
 
                     // Use the client to do fun stuff like send text messages!
-                    $smsText = "Your New Password is: {$random_password}. \n Regards, \n Modern Agent Team";
+                    $smsText = "Your New Password is: {$random_password}. \n Regards, \n CMA Team";
                     try {
                         $smsRes = $client->messages->create(
                             // the number you'd like to send the message to
@@ -377,7 +377,7 @@ class Auth extends REST_Controller
                     $reset_password_link = site_url() . '/frontend/reset_password/' . $token;
                     $mail_data = ['reset_password_link' => $reset_password_link];
                     $message = $this->load->view('mails/reser_password', $mail_data, true);
-                    $send = $this->base_model->queue_mail($pemail, 'Modern Agent Reset Password', $message);
+                    $send = $this->base_model->queue_mail($pemail, 'CMA Reset Password', $message);
                     if ($send) {
                         $status = 'success';
                         $msg = 'Password has been sent to your registered email.';

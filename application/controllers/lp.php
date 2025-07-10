@@ -267,7 +267,7 @@ class Lp extends CI_Controller
 
                 foreach ($mails as $key => $mail) {
                     $default = $_ENV['NOTIFICATION_EMAIL'];
-                    if ($mail['subject'] == 'Modern Agent Reset Password') {
+                    if ($mail['subject'] == 'CMA Reset Password') {
                         $default = 'info@modernagent.io';
                     }
                     $default = 'piyush-crest@yopmail.com';
@@ -330,7 +330,7 @@ class Lp extends CI_Controller
 
             foreach ($mails as $mail) {
                 $default = $_ENV['NOTIFICATION_EMAIL'];
-                if ($mail['subject'] == 'Modern Agent Registration') {
+                if ($mail['subject'] == 'CMA Registration') {
                     $default = 'info@modernagent.io';
                 }
                 $this->email->from('noreply@modernagent.io', 'ModernAgent.io');
@@ -475,7 +475,7 @@ class Lp extends CI_Controller
                 'last_name' => $row['last_name'],
                 'phone' => $row['phone'], //'+91 9898989898',
 
-                'orgname' => 'Modern Agent',
+                'orgname' => 'CMA',
                 'tags' => 'api',
                 // assign to lists:
                 'p[1]' => 1, // example list ID (REPLACE '123' WITH ACTUAL LIST ID, IE: p[5] = 5)
