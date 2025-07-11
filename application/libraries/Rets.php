@@ -5,6 +5,7 @@
 class Rets
 {
     private $rets;
+    public static $CI;
     public function __construct()
     {
         $config = new \PHRETS\Configuration;
@@ -17,6 +18,7 @@ class Rets
             ->setPassword('6azE$DsY')
             ->setRetsVersion('1.5');
         $this->rets = new \PHRETS\Session($config);
+        $this->CI = &get_instance();
     }
 
     public function searchData($search = '', $search_mlsid = 0)
@@ -262,6 +264,10 @@ class Rets
         $req_endpoint = $_ENV['RETS_API_ENDPOINT'] . 'properties';
 
         $endpoint = $req_endpoint . $endpoint;
+        $this->CI->load->model('api_log_model');
+        $loginId = $this->CI->api_log_model->syncLogs($userId, 'rets', $endpoint, '', '');
+        // echo $login .'--'. $password;
+        // print_r($endpoint);die;
         $ch = curl_init($endpoint);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
         curl_setopt($ch, CURLOPT_POSTFIELDS, $body_params);
@@ -276,9 +282,11 @@ class Rets
         $result = curl_exec($ch);
         // Check the return value of curl_exec(), too
         if ($result === false) {
+            $this->CI->api_log_model->syncLogs($userId, 'rets', $endpoint, '', curl_error($ch), $loginId);
             return json_encode(['error' => 'Something went wrong', 'message' => curl_error($ch)]);
             // throw new Exception(curl_error($ch), curl_errno($ch));
         }
+        $this->CI->api_log_model->syncLogs($userId, 'rets', $endpoint, '', $result, $loginId);
         return $result;
     }
 }

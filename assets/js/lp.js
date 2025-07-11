@@ -775,6 +775,7 @@ $("#changes_req_params_property_search").submit(function (e) {
     compileAPNRequest(dataObj);
 });
 
+var isOwnerDetailsFetched = false;
 function parse187() {
     var ownerNamePrimary = $(reportXML).find("PropertyProfile").find("PrimaryOwnerName").text();
     var ownerNameSecondary = $(reportXML).find("PropertyProfile").find("SecondaryOwnerName").text();
@@ -797,6 +798,7 @@ function parse187() {
     }
     $('.js-lp-seller-name').val(ownerNamePrimary + ownerNameSecondary);
     $('.search-result table .result-owner').html(ownerNamePrimary + ownerNameSecondary);
+    isOwnerDetailsFetched = true;
 }
 
 // run query for plat map report 
@@ -856,7 +858,7 @@ function multipleResults(response) {
         if (presentation == 'marketUpdate') {
             $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="themePreview(this)">Choose</a></td></tr>');
         } else {
-            $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
+            $('.search-result table > tbody').append('<tr><td><span class="result-apn"></span></td><td><span class="result-unitNumber"></span></td><td><span class="result-address"></span></td><td><span class="result-owner"> <strong> Fetching owner details ... </strong></span></td><td><span class="result-city"></span></td><td><a href="javascript:;" class="btn btn-sm btn-default" onclick="apnData(this)">Choose</a></td></tr>');
         }
         $('.search-result table > tbody').find('tr').eq(i).find('.result-apn').text(apn);
         $('.search-result table > tbody').find('tr').eq(i).find('.result-unitNumber').text(unitNumber);
@@ -928,20 +930,34 @@ function themePreview(e) {
     // compileAPNRequest(dataObj);
 }
 // compile data for APN search
-function apnData(e) {
+function apnData(event) {
+    const BUTTON_CLICK_DELAY = 400;
+    const ALERT_MESSAGE = "Please wait while we fetch owner details.";
+    const DESC_SELECTOR = '#lp_invoice .desc';
 
-    setTimeout(function () {
-        jQuery('.buttonNext').click();
-    }, 400);
+    if (!isOwnerDetailsFetched) {
+        alert(ALERT_MESSAGE);
+        return false;
+    }
+
+    setTimeout(() => {
+        $('.buttonNext').click();
+    }, BUTTON_CLICK_DELAY);
 
     isNewSearch = false;
-    $('#lp_invoice .desc').html('<h3>' + $(e).closest('tr').find('.result-address').text() + '</h3>' + $(e).closest('tr').find('.result-apn').text() + ' ' + $(e).closest('tr').find('.result-address').text() + ' ' + $(e).closest('tr').find('.result-city').text());
-    var apn = $(e).closest('tr').find('.result-apn').text();
-    var fips = apnInfo[apn]['fips'];
-    dataObj = {};
-    dataObj.apn = apn;
-    dataObj.FIPS = fips;
-    dataObj.ClientReference = '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'; //'<CustCompFilter><SQFT>0.20</SQFT><Radius>0.75</Radius></CustCompFilter>';
+    const row = $(event).closest('tr');
+    const address = row.find('.result-address').text();
+    const apn = row.find('.result-apn').text();
+    const city = row.find('.result-city').text();
+    const fips = apnInfo[apn]['fips'];
+
+    $(DESC_SELECTOR).html(`<h3>${address}</h3>${apn} ${address} ${city}`);
+
+    dataObj = {
+        apn: apn,
+        FIPS: fips,
+        ClientReference: '<CustCompFilter><SQFT>' + defaultSqft + '</SQFT><Radius>' + defaultRadius + '</Radius></CustCompFilter>'
+    };
     compileAPNRequest(dataObj);
 }
 
