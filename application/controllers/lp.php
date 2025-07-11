@@ -63,15 +63,17 @@ class Lp extends CI_Controller
                 $citi = $file->PropertyProfile->SiteCity;
                 $address = $this->input->get('address');
                 // $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&limit=50';
-                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&type=residential&type=rental&type=multifamil' . '&limit=50';
+                $query = '?q=' . urlencode($address) . '&postalCodes=' . $postalCode . '&status=' . $propertyStatus . '&type=residential' . '&limit=30';
                 if (!empty($residentialType)) {
                     $subType = null;
                     if (strtolower($residentialType) == 'single family residential') {
                         $subType = 'singlefamilyresidence';
                     } else if (strtolower($residentialType) == 'condominium' || strtolower($residentialType) == 'condo') {
                         $subType = 'condominium';
+                        $query = $query . '&type=multifamily';
                     } else if (strtolower($residentialType) == 'townhouse') {
                         $subType = 'townhouse';
+                        $query = $query . '&type=multifamily';
                     }
 
                     if (str_contains(strtolower($residentialType), 'commercial') || str_contains(strtolower($residentialType), 'warehouse')) {
@@ -267,7 +269,7 @@ class Lp extends CI_Controller
 
                 foreach ($mails as $key => $mail) {
                     $default = $_ENV['NOTIFICATION_EMAIL'];
-                    if ($mail['subject'] == 'Modern Agent Reset Password') {
+                    if ($mail['subject'] == 'CMA Reset Password') {
                         $default = 'info@modernagent.io';
                     }
                     $default = 'piyush-crest@yopmail.com';
@@ -330,7 +332,7 @@ class Lp extends CI_Controller
 
             foreach ($mails as $mail) {
                 $default = $_ENV['NOTIFICATION_EMAIL'];
-                if ($mail['subject'] == 'Modern Agent Registration') {
+                if ($mail['subject'] == 'CMA Registration') {
                     $default = 'info@modernagent.io';
                 }
                 $this->email->from('noreply@modernagent.io', 'ModernAgent.io');
@@ -475,7 +477,7 @@ class Lp extends CI_Controller
                 'last_name' => $row['last_name'],
                 'phone' => $row['phone'], //'+91 9898989898',
 
-                'orgname' => 'Modern Agent',
+                'orgname' => 'CMA',
                 'tags' => 'api',
                 // assign to lists:
                 'p[1]' => 1, // example list ID (REPLACE '123' WITH ACTUAL LIST ID, IE: p[5] = 5)

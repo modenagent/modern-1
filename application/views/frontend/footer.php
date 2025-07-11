@@ -18,7 +18,7 @@
 						<!-- FOOTER INFO -->
 						<div class="col-lg-3">
 							<div class="footer-info mb-40 mt-100">
-								<img class="footer-logo" src="<?php echo base_url(); ?>/assets/frontend/images/LargeLogoDark.png" alt="footer-logo">
+								<img class="footer-logo" src="<?php echo base_url(); ?>/assets/frontend/images/Logo_dark.jpeg" alt="footer-logo">
 							</div>
 						</div>
 
@@ -111,7 +111,7 @@
                             <!-- FOOTER COPYRIGHT -->
                             <div class="col">
                                 <div class="footer-copyright">
-                                    <p>&copy; 2021-2022 MODERN AGENT. All Rights Reserved</p>
+                                    <p>&copy; 2021-2022 CMA. All Rights Reserved</p>
                                 </div>
                             </div>
 

@@ -154,7 +154,7 @@ class Frontend extends CI_Controller
                 $mail_data['phone'] = $this->input->post('uphone');
                 $message = $this->load->view('mails/registration_success', $mail_data, true);
 
-                $send = $this->base_model->queue_mail($this->input->post('uemail'), 'Modern Agent Registration', $message);
+                $send = $this->base_model->queue_mail($this->input->post('uemail'), 'CMA Registration', $message);
                 $doSubscribe = $this->input->post('package');
                 if ($doSubscribe) {
                     redirect(site_url('user/myaccount/membership'));
