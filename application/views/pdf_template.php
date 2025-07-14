@@ -784,7 +784,7 @@ if (($key % 3) == 0 && $key > 0) {
                                         </tr>
                                         <tr>
 
-                                          <td><?php echo $item['Date']; ?></td>
+                                          <td><?php echo $item['DaysOnMarket']; ?></td>
                                           <td><?php echo $item['Distance']; ?></td>
                                           <td><?php echo $item['SquareFeet']; ?></td>
                                           <td>$<?php echo $item['PricePerSQFT']; ?></td>

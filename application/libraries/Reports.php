@@ -231,6 +231,7 @@ class Reports
                             $mls_comparables[$m_key]['Price'] = isset($response['listPrice']) && !empty($response['listPrice']) ? dollars(number_format((string) $response['listPrice'])) : '';
                             $mls_comparables[$m_key]['PriceRate'] = isset($response['listPrice']) && !empty($response['listPrice']) ? (float) $response['listPrice'] : 0.00;
                             $mls_comparables[$m_key]['Date'] = isset($response['listDate']) && !empty($response['listDate']) ? date('m/d/Y', strtotime($response['listDate'])) : '';
+                            $mls_comparables[$m_key]['DaysOnMarket'] = isset($response['mls']['daysOnMarket']) && !empty($response['mls']['daysOnMarket']) ? $response['mls']['daysOnMarket'] : '';
                             $mls_comparables[$m_key]['Distance'] = 0;
                             $mls_comparables[$m_key]['SquareFeet'] = isset($response['property']['area']) && !empty($response['property']['area']) ? number_format((string) $response['property']['area']) : '';
                             $mls_comparables[$m_key]['PricePerSQFT'] = isset($response['property']['area']) && !empty($response['property']['area']) ? round($response['listPrice'] / $response['property']['area'], 2) : '-';

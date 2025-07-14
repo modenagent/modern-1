@@ -139,7 +139,7 @@ if (isset($comparables) && !empty($comparables)) {
                             <table>
                                 <tr>
                                     <td>
-                                        Days on Market<br><?php echo isset($value['Date']) && !empty($value['Date']) ? $value['Date'] : '-'; ?>
+                                        Days on Market<br><?php echo isset($value['DaysOnMarket']) && !empty($value['DaysOnMarket']) ? $value['DaysOnMarket'] : '-'; ?>
                                     </td>
                                     <td>
                                         Dist<br> <?php echo isset($value['Distance']) && !empty($value['Distance']) ? $value['Distance'] : '-'; ?>
