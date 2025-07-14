@@ -53,6 +53,7 @@
 
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade <?php if ($active_tab == 'login') {echo 'show active';}?>" id="login" role="tabpanel" aria-labelledby="login-tab">
+          <div class="alert alert-success" style="display:none"></div>
           <div class="tab_white_box">
             <h2 class="mini_title">Update Login Info</h2>
             <div class="login_info_form">
@@ -73,7 +74,6 @@
                   <label for="exampleInputPassword1">Confirm Password</label>
                   <input type="password" class="form-control" name="confirm_password" placeholder="Password">
                 </div>
-                <div class="alert alert-success" style="display:none"></div>
                 <button type="submit" class="btn btn-lp save">Save</button>
               </form>
             </div>
@@ -81,6 +81,7 @@
         </div>
 
         <div class="tab-pane fade <?php if ($active_tab == 'agent') {echo 'show active';}?>" id="agent" role="tabpanel" aria-labelledby="agent-tab">
+          <div class="alert alert-success" style="display:none"></div>
           <div class="tab_white_box">
             <h2 class="mini_title">Update Agent Info</h2>
             <div class="leftpic">
@@ -124,7 +125,6 @@
                 <div class="row">
                   <div class="col-md-12">
                     <input type="submit" class="btn btn-lp save" id="" value="Save" />
-                    <div class="alert alert-success" style="display:none"></div>
                   </div>
                 </div>
               </form>
@@ -132,6 +132,7 @@
           </div>
         </div>
         <div class="tab-pane fade <?php if ($active_tab == 'company') {echo 'show active';}?>" id="company" role="tabpanel" aria-labelledby="company-tab">
+          <div class="alert alert-success" style="display:none"></div>
           <div class="tab_white_box">
             <h2 class="mini_title">Update Company Info</h2>
             <div class="rightpic">
@@ -172,7 +173,6 @@
                 <div class="row">
                   <div class="col-md-12">
                     <input type="submit" class="btn btn-lp save" id="" value="Save" />
-                    <div class="alert alert-success" style="display:none"></div>
                   </div>
                 </div>
               </form>
@@ -180,6 +180,7 @@
           </div>
         </div>
         <div class="tab-pane fade <?php if ($active_tab == 'theme') {echo 'show active';}?>" id="theme" role="tabpanel" aria-labelledby="theme-tab">
+          <div class="alert alert-success" style="display:none"></div>
           <?php
 $default_sub_type = 1;
 $default_theme_color = 1;
@@ -243,7 +244,7 @@ $data_theme['sub_type'] = $default_sub_type;
                 </div>
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="alert alert-success" style="display:none"></div>
+                    
                   </div>
                 </div>
               </form>
