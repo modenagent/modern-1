@@ -1068,7 +1068,6 @@ class Reports
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/dynamic", $data, true);
         } else {
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/index", $data, true);
-
         }
         // print_r($html);
         //die;
