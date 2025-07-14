@@ -21,7 +21,7 @@
         	<table class="table table-top-sales">
         		<tbody>
         			<tr class="gray-color">
-        				<td style="padding-right: 80px;">Sold Date</td>
+        				<td style="padding-right: 80px;">Days on Market</td>
         				<td> Dist. </td>
         				<td> Sqft. </td>
         				<td> $/Sqft </td>
@@ -68,7 +68,7 @@
         	<table class="table table-top-sales">
         		<tbody>
         			<tr class="gray-color">
-        				<td style="padding-right: 80px;">Sold Date</td>
+        				<td style="padding-right: 80px;">Days on Market</td>
         				<td> Dist. </td>
         				<td> Sqft. </td>
         				<td> $/Sqft </td>
@@ -118,7 +118,7 @@
         	<table class="table table-top-sales">
         		<tbody>
         			<tr class="gray-color">
-        				<td style="padding-right: 80px;">Sold Date</td>
+        				<td style="padding-right: 80px;">Days on Market</td>
         				<td> Dist. </td>
         				<td> Sqft. </td>
         				<td> $/Sqft </td>
@@ -165,7 +165,7 @@
         	<table class="table table-top-sales">
         		<tbody>
         			<tr class="gray-color">
-        				<td style="padding-right: 80px;">Sold Date</td>
+        				<td style="padding-right: 80px;">Days on Market</td>
         				<td> Dist. </td>
         				<td> Sqft. </td>
         				<td> $/Sqft </td>

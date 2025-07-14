@@ -44,14 +44,14 @@ else:
                         <table class="table table-top-sales responsive-100">
                             <tbody>
                                 <tr class="gray-color">
-                                        <td style="padding-right: 80px;">Sold Date</td>
+                                        <td style="padding-right: 80px;">Days on Market</td>
                                         <td> Dist. </td>
                                         <td> Sqft. </td>
                                         <td> $/Sqft </td>
                                 </tr>
 
                                 <tr class="text-mybold">
-                                        <td style="padding-right: 80px;"> <?php echo $item['Date']; ?> </td>
+                                        <td style="padding-right: 80px;"> <?php echo $item['DaysOnMarket']; ?> </td>
                                         <td><?php echo isset($value['Distance']) && !empty($value['Distance']) ? $value['Distance'] : '-'; ?></td>
                                         <td><?php echo isset($value['SquareFeet']) && !empty($value['SquareFeet']) ? $value['SquareFeet'] : '-'; ?></td>
                                         <td> <?php echo isset($value['PricePerSQFT']) && !empty($value['PricePerSQFT']) ? '$' . $value['PricePerSQFT'] : '-'; ?> </td>

@@ -28,13 +28,13 @@
 			                </ul>
 			                <table class="reverse_bg">
 			                    <tr>
-			                        <td>Sold Date</td>
+			                        <td>Days on Market</td>
 			                        <td>Dist</td>
 			                        <td>Sq.ft.</td>
 			                        <td>$/Sqft</td>
 			                    </tr>
 			                    <tr>
-	                                <td><?php echo isset($value['Date']) && !empty($value['Date']) ? $value['Date'] : '-'; ?></td>
+	                                <td><?php echo isset($value['DaysOnMarket']) && !empty($value['DaysOnMarket']) ? $value['DaysOnMarket'] : '-'; ?></td>
 	                                <td><?php echo isset($value['Distance']) && !empty($value['Distance']) ? $value['Distance'] : '-'; ?></td>
 	                                <td><?php echo isset($value['SquareFeet']) && !empty($value['SquareFeet']) ? $value['SquareFeet'] : '-'; ?></td>
 	                                <td><?php echo isset($value['PricePerSQFT']) && !empty($value['PricePerSQFT']) ? '$'.$value['PricePerSQFT'] : '-'; ?></td>

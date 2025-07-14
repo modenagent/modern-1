@@ -11,7 +11,7 @@
                 </li>
                 <li>
                     <span><?php echo isset($sQFootage) && !empty($sQFootage) ? round($sQFootage) : 0; ?></span>
-                    Avg. Soft
+                    Avg. Sqft
                 </li>
                 <li>
                     <span><?php echo isset($avgNoOfBeds) && !empty($avgNoOfBeds) ? round($avgNoOfBeds) : 0; ?></span>
