@@ -134,7 +134,9 @@ $_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
 // }, $pageList);
 
 for ($i = 1; $i <= 8; $i++) {
-
+    if (!in_array($i, $pageList)) {
+        continue;
+    }
     $report_id = $i;
 
     $data = array();
