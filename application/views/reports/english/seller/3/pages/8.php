@@ -48,7 +48,7 @@ if (!empty($value['img'])) {
                         </ul>
                         <table>
                             <tr>
-                                <td>Sold Date</td>
+                                <td>Days on Market</td>
                                 <td>Dist</td>
                                 <td>Sq.ft.</td>
                                 <td>$/Sqft</td>

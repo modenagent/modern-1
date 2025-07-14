@@ -777,7 +777,7 @@ if (($key % 3) == 0 && $key > 0) {
                                       </tr>
                                        <tr>
 
-                                          <td bgcolor="#f8f8f8">Sold Date</td>
+                                          <td bgcolor="#f8f8f8">Days on Market</td>
                                           <td bgcolor="#f8f8f8">Dist.</td>
                                           <td bgcolor="#f8f8f8">Sqft.</td>
                                           <td bgcolor="#f8f8f8">$/Sqft</td>

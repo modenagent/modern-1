@@ -38,8 +38,8 @@
                 Avg. Sale Price<br>$<?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianValue; ?>
             </li>
             <li>
-                <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/img8.png"); ?>" alt="Avg. Soft">
-                Avg. Soft<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianLivingArea; ?>
+                <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/img8.png"); ?>" alt="Avg. Sqft">
+                Avg. Sqft<br><?php echo (string)$property->ComparableSalesReport->AreaSalesAnalysisInfo->MedianLivingArea; ?>
             </li>
             <li>
                 <img src="<?php echo base_url("assets/reports/widget/$report_dir_name/$presentation_type/images/img9.png"); ?>" alt="Avg. Beds">

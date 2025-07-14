@@ -32,7 +32,7 @@ else:
 			                </ul>
 			                <table class="reverse_bg">
 			                    <tr>
-			                        <td>Sold Date</td>
+			                        <td>Days on Market</td>
 			                        <td>Dist</td>
 			                        <td>Sq.ft.</td>
 			                        <td>$/Sqft</td>

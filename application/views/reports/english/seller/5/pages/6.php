@@ -162,7 +162,7 @@ if (isset($comparables) && !empty($comparables)) {
                             <table>
                                 <tr>
                                     <td>
-                                        Sold Date<br><?php echo isset($value['Date']) && !empty($value['Date']) ? $value['Date'] : '-'; ?>
+                                        Days on Market<br><?php echo isset($value['Date']) && !empty($value['Date']) ? $value['Date'] : '-'; ?>
                                     </td>
                                     <td>
                                         Dist<br> <?php echo isset($value['Distance']) && !empty($value['Distance']) ? $value['Distance'] : '-'; ?>
