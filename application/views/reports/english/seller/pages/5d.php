@@ -52,9 +52,9 @@ else:
 
                                 <tr class="text-mybold">
                                         <td style="padding-right: 80px;"> <?php echo $item['DaysOnMarket']; ?> </td>
-                                        <td><?php echo isset($value['Distance']) && !empty($value['Distance']) ? $value['Distance'] : '-'; ?></td>
-                                        <td><?php echo isset($value['SquareFeet']) && !empty($value['SquareFeet']) ? $value['SquareFeet'] : '-'; ?></td>
-                                        <td> <?php echo isset($value['PricePerSQFT']) && !empty($value['PricePerSQFT']) ? '$' . $value['PricePerSQFT'] : '-'; ?> </td>
+                                        <td><?php echo isset($item['Distance']) && !empty($item['Distance']) ? $item['Distance'] : '-'; ?></td>
+                                        <td><?php echo isset($item['SquareFeet']) && !empty($item['SquareFeet']) ? $item['SquareFeet'] : '-'; ?></td>
+                                        <td> <?php echo isset($item['PricePerSQFT']) && !empty($item['PricePerSQFT']) ? '$' . $item['PricePerSQFT'] : '-'; ?> </td>
                                 </tr>
 
                                 <tr class="gray-color">
