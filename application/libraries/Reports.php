@@ -851,7 +851,7 @@ class Reports
             $count = count($comparable);
         }
         // $remainingCount = 7 - $count;
-        if ($key == 'bedroom' && $count < $_maxLimit) {
+        if ($type == 'bedroom' && $count < $_maxLimit) {
             $minBed = $variable - ($variable * $variation);
             $maxBed = $variable + ($variable * $variation);
             $bedComparable = array_filter($_comparableTemp, function ($item) use ($minBed, $maxBed) {
@@ -876,7 +876,7 @@ class Reports
             // });
         }
         // $remainingCount = 7 - $count;
-        if ($key == 'bathroom' && $count < $_maxLimit) {
+        if ($type == 'bathroom' && $count < $_maxLimit) {
             $minBath = $variable - ($variable * $variation);
             $maxBath = $variable + ($variable * $variation);
             $bathComparable = array_filter($_comparableTemp, function ($item) use ($minBath, $maxBath) {
