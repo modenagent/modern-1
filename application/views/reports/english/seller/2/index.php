@@ -123,7 +123,7 @@ $pageList = array_map(function ($val) {
 
 // $pdfPages
 $skip_pages = [3, 4, 22];
-for ($i = 1; $i <= 24; $i++) {
+for ($i = 1; $i <= 25; $i++) {
     // if(in_array($i, $pdfPages) || true)
     // {
     if (!in_array($i, $pageList)) {
@@ -162,7 +162,9 @@ for ($i = 1; $i <= 24; $i++) {
         // $this->load->view('reports/english/seller/2/pages/11', $data);
     }
 
-    $this->load->view('reports/english/seller/2/pages/' . $report_id, $data);
+    if ($i < 25 || ($i == 25 && isset($ai_summary))) {
+        $this->load->view('reports/english/seller/2/pages/' . $report_id, $data);
+    }
     // if ($i == 1) {
     //     $this->load->view('reports/english/seller/2/pages/1', $data);
     // $this->load->view('reports/english/seller/2/pages/2', $data);
