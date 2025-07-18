@@ -120,7 +120,7 @@
                                             </tr>
                                             <tr>
                                                 <td align="center" class="center-text">
-                                                    <img style="width:280px;border:0px;display:inline!important;" src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/75b7872f-78b8-2d85-697a-17058e03a705.png" width="280" border="0" alt="Modern Agent">
+                                                    <img style="width:280px;border:0px;display:inline!important;" src="https://dev.cmapro.io/assets/new_site/img/Logo_dark.jpeg" width="280" border="0" alt="Modern Agent">
                                                 </td>
                                             </tr>
                                             <tr>

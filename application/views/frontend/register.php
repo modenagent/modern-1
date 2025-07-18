@@ -18,6 +18,11 @@
                             <h2>Create Account</h2>
                             <p>Fill the fields below to create your account.</p>
                         </div>
+                        <?php if (isset($errors) && $errors !== ''): ?>
+                            <div class="alert alert-danger">
+                                <?php echo $errors; ?>
+                            </div>
+                        <?php endif; ?>
                         <div class="login-form">
                             <form id="register-form" method="post">
                                 <div class="form-group">

@@ -160,22 +160,21 @@
                                                     <!-- content -->
                                                     <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
                                                         <tbody>
-                                                            <tr>
+                                                            <!-- <tr>
                                                                 <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:14px;line-height:24px;font-weight:900;font-style:normal;color:rgb(88, 42, 130);text-decoration:none;letter-spacing:1px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
-                                                                        ORDER PLACED
+                                                                        <p style="margin: 0px; padding: 0px;">THANK YOU</p>
                                                                     </div>
 
                                                                 </td>
-                                                            </tr>
+                                                            </tr> -->
                                                             <tr>
                                                                 <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:48px;line-height:54px;font-weight:900;font-style:normal;color:#222222;text-decoration:none;letter-spacing:0px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
                                                                         <p style="margin: 0px; padding: 0px;">
-                                                                            Thank You for your order!
-                                                                        </p>
+                                                                            Order List.</p>
                                                                     </div>
 
                                                                 </td>
@@ -188,125 +187,11 @@
 
                                                                     <div style="margin: 0px; padding: 0px;">
                                                                         <p style="margin: 0px; padding: 0px;">
-                                                                            For your convenience we have also attached your report and your invoice.</p>
+                                                                            For your convenience below you can find the details of your orders.</p>
                                                                     </div>
 
                                                                 </td>
                                                             </tr>
-                                                            <tr>
-                                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
-
-                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                        <p style="margin: 0px; padding: 0px;">
-                                                                            [ Your Report # Here ]</p>
-                                                                    </div>
-
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td align="center">
-                                                                    <img style="display:block;width:100%;max-width:32px;border:0px;" width="32" src="https://modulescomposer.s3.us-east-2.amazonaws.com/blue/arrow-bl.png" border="0" alt="icon">
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td align="center">
-                                                                    <a href="<?php echo $report_url; ?>">
-                                                                    <!-- Use Code -->
-                                                                    <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center" class="row" width="80%" style="width:80%;max-width:80%;">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td align="center" bgcolor="#F8F8F8" style="border-radius:0px;">
-                                                                                    <!-- Content -->
-                                                                                    <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center" class="row" width="100%" style="width:100%;max-width:100%;">
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:22px;line-height:26px;font-weight:700;font-style:normal;color:rgb(255, 82, 61);text-decoration:none;letter-spacing:4px;">
-
-                                                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                                                        <p style="margin: 0px; padding: 0px;">
-                                                                                                            DOWNLOAD REPORT</p>
-                                                                                                    </div>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                            <tr>
-                                                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                    <!-- Content -->
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    </a>
-                                                                    <!-- User Code -->
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td height="60" style="font-size:60px;line-height:60px;">&nbsp;</td>
-                                                            </tr>
-                                                            <tr style="">
-                                                                <td align="center">
-                                                                    <!-- rwd-col -->
-                                                                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="container-padding" width="100%" style="width:100%;max-width:100%;">
-                                                                        <tbody>
-                                                                            <tr>
-                                                                                <td class="rwd-col" align="center" valign="top" width="31.03%" style="width:31.03%;max-width:31.03%;">
-                                                                                    <!-- column -->
-                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="center-text" align="right" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:20px;line-height:24px;font-weight:700;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
-
-                                                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                                                        <p style="margin: 0px; padding: 0px;">Property Details
-                                                                                                        </p>
-                                                                                                    </div>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                    <!-- column -->
-                                                                                </td>
-                                                                                <td class="rwd-col" align="center" width="3.45%" height="10" style="width:3.45%;max-width:3.45%;height:10px;">&nbsp;</td>
-                                                                                <td class="rwd-col" align="center" valign="top" width="65.52%" style="width:65.52%;max-width:65.52%;">
-                                                                                    <!-- column -->
-                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
-                                                                                        <tbody>
-                                                                                            <tr>
-                                                                                                <td class="hide-mobile" align="center" width="20" style="width:20px;max-width:20px;border-left:1px solid #000000;"></td>
-                                                                                                <td class="center-text" align="left" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
-
-                                                                                                    <div style="margin: 0px; padding: 0px;">
-                                                                                                        <p style="margin: 0px; padding: 0px;">
-                                                                                                        <?php echo $address; ?>
-                                                                                                        </p>
-                                                                                                    </div>
-
-                                                                                                </td>
-                                                                                            </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                    <!-- column -->
-                                                                                </td>
-                                                                            </tr>
-                                                                        </tbody>
-                                                                    </table>
-                                                                    <!-- rwd-col -->
-                                                                </td>
-                                                            </tr>
-                                                            <tr style="">
-                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
-                                                            </tr>
-
                                                         </tbody>
                                                     </table>
                                                     <!-- content -->
@@ -322,6 +207,250 @@
                             <!-- blue-preface-13 -->
                         </tbody>
                     </table>
+                    <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="640" style="width:800px;max-width:800px;">
+                        <!-- blue-title -->
+                        <tbody>
+                            <tr>
+                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="center" bgcolor="#FFFFFF" class="container-padding">
+                                    <!-- Content -->
+                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:24px;line-height:36px;font-weight:700;font-style:normal;color:rgb(255, 82, 61);text-decoration:none;letter-spacing:0px;">
+
+                                                    <div style="margin: 0px; padding: 0px;">
+                                                        Purchased products
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- Content -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="5" style="font-size:5px;line-height:5px;">&nbsp;</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <?php 
+                    // echo "hdhsfk";
+                    // print_r($data);die; 
+                    // ?>
+                    <!-- blue-title -->
+                    <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="640" style="width:800px;max-width:800px;">
+                        <!-- blue-invoice-product-2 -->
+                        <tbody>
+                            <tr>
+                                <td height="5" style="font-size:5px;line-height:5px;">&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td align="center" bgcolor="#FFFFFF" class="container-padding">
+                                    <!-- Content -->
+                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" bgcolor="#F8F8F8">
+                                                    <!-- rwd-col -->
+                                                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="row container-padding" width="95%" style="width:95%;max-width:95%;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td height="30" style="font-size:30px;line-height:30px;">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="rwd-col" align="center" valign="top" width="95%" style="width:95%;max-width:95%;">
+                                                                    <!-- column -->
+                                                                    <table border="0" cellpadding="0" cellspacing="0" align="left" class="row container-padding" width="100%" style="width:100%;max-width:100%;">
+                                                                        <thead>
+                                                                            <tr style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:15px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+                                                                                <th class="" align="left" style="line-height: 24px;" >Order Date</th>
+                                                                                <th class="" align="left">Property Address</th>
+                                                                                <th class="" align="left">APN</th>
+                                                                                <th class="" align="left">Report Type</th>
+                                                                                <th class="" align="center">Action</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody>
+                                                                            <?php foreach ($data as $k => $report) { 
+                                                                                // print_r($report);die;
+                                                                                ?>
+                                                                            <tr style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:12px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+                                                                                <td class="center-text" align="left">
+                                                                                    <div style="margin: 0px; padding: 0px;"><?php echo date('m-d-Y', strtotime($report['project_date']));?></div>
+                                                                                </td>
+                                                                                <td class="center-text" align="left">
+                                                                                    <div style="margin: 0px; padding: 0px;"><?php echo $report['property_address'];?></div>
+                                                                                </td>
+                                                                                <td class="center-text" align="left">
+                                                                                    <div style="margin: 0px; padding: 0px;"><?php echo $report['property_apn'];?></div>
+                                                                                </td>
+                                                                                <td class="center-text" align="left">
+                                                                                    <div style="margin: 0px; padding: 0px;"><?php echo $report['report_type'];?></div>
+                                                                                </td>
+                                                                                <td class="center-text" align="center">
+                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                        <a href="https://dev.cmapro.io/<?php echo $report['report_path'];?>" download="" target="_blank">
+                                                                                            <img src="https://cmapro.io/assets/new_site/img/cloud-computing.svg" class="w20" style="width: 20px;" alt="...">
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                            </tr>
+                                                                            <?php } ?>
+                                                                            
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- column -->
+                                                                </td>
+                                                                
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="30" style="font-size:30px;line-height:30px;">&nbsp;</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- rwd-col -->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- Content -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                            </tr>
+                            <!-- blue-invoice-product-2 -->
+                        </tbody>
+                    </table>
+                    <!-- <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="640" style="width:800px;max-width:800px;">
+                        
+                        <tbody>
+                            <tr>
+                                <td align="center" bgcolor="#FFFFFF" class="container-padding">
+                                    <table data-inner-table="" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="inner-table row" width="580" style="width:580px;max-width:580px;">
+                                        <tbody>
+                                            <tr>
+                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" bgcolor="#FFFFFF">
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="container-padding" width="100%" style="width:100%;max-width:100%;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="rwd-col" align="center" valign="top" width="50%" style="width:50%;max-width:50%;">
+                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="center-text" align="right" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:20px;line-height:24px;font-weight:700;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                                        Payment method
+                                                                                                    </div>
+
+                                                                                                </td>
+                                                                                                <td class="hide-mobile" align="center" width="20" height="40" style="width:20px;max-width:20px;height:40px;"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                                <td class="rwd-col" align="center" valign="top" width="50%" style="width:50%;max-width:50%;">
+                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="m-padding-top10" width="100%" style="width:100%;max-width:100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="hide-mobile" align="center" width="20" height="40" style="width:20px;max-width:20px;border-left:1px solid #000000;height:40px;"></td>
+                                                                                                <td class="center-text" align="left" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                                        Mastercard ending in <?php echo $last4; ?>
+                                                                                                    </div>
+
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="10" style="font-size:10px;line-height:10px;">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="container-padding" width="100%" style="width:100%;max-width:100%;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="rwd-col" align="center" valign="top" width="50%" style="width:50%;max-width:50%;">
+                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="center-text" align="right" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:20px;line-height:24px;font-weight:700;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                                                            Monthly Charge</p>
+                                                                                                    </div>
+
+                                                                                                </td>
+                                                                                                <td class="hide-mobile" align="center" width="20" height="40" style="width:20px;max-width:20px;height:40px;"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                                <td class="rwd-col" align="center" valign="top" width="50%" style="width:50%;max-width:50%;">
+                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="m-padding-top10" width="100%" style="width:100%;max-width:100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="hide-mobile" align="center" width="20" height="40" style="width:20px;max-width:20px;border-left:1px solid #000000;height:40px;"></td>
+                                                                                                <td class="center-text" align="left" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                                        $<?php echo $price_per_month; ?>
+                                                                                                    </div>
+
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="10" style="font-size:10px;line-height:10px;">&nbsp;</td>
+                                                            </tr>
+
+
+
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table> -->
                     <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
                         <!-- blue-footer -->
                         <tbody>
@@ -337,7 +466,7 @@
                                                 <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:21px;line-height:28px;font-weight:700;font-style:normal;color:#444444;text-decoration:none;letter-spacing:0px;">
 
                                                     <div style="margin: 0px; padding: 0px;">
-                                                        <p style="margin: 0px; padding: 0px;">ModernAgent.io</p>
+                                                        <p style="margin: 0px; padding: 0px;">CMA.io</p>
                                                     </div>
 
                                                 </td>
@@ -470,7 +599,7 @@
                                                                 <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
 
                                                                     <div style="margin: 0px; padding: 0px;">
-                                                                        2024 ModernAgent.io. All Rights Reserved.
+                                                                        2024 CMA.io. All Rights Reserved.
                                                                         <br> 440 Rte. 66 Glendora, CA 91740</div>
 
                                                                 </td>

@@ -397,6 +397,13 @@ class Reports
         $reportItems['totalMonthsReport'] = $totalMonthsReport;
         $data['areaSalesAnalysis'] = $reportItems;
 
+        $chatGptJsonRes = $this->getAIAnalysis($reportItems);
+        $chatGptRes    = json_decode($chatGptJsonRes, true);
+        $markdown = $chatGptRes['choices'][0]['message']['content'] ?? '';
+        $CI->load->library('parsedown');
+        $parsedown = new Parsedown();
+        $data['ai_summary'] = (!empty($markdown)) ? $parsedown->text($markdown) : '';
+
         if ($CI->input->post('presentation') == 'registry') {
             $data['unique_key'] = time() . substr(md5(rand()), 0, 10);
             $data['pdf_page'] = $CI->input->post('pdf_page');
@@ -408,17 +415,29 @@ class Reports
             $pageList = json_decode($_POST['selected_pages']);
             if (empty($pageList)) {
                 if ($_POST['seller_theme'] == 3) {
-                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
                 } else if ($_POST['seller_theme'] == 2) {
                     // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
-                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
                 } else if ($_POST['seller_theme'] == 4) {
-                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
                 } else if ($_POST['seller_theme'] == 5) {
-                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
                 } else {
                     // $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
-                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+                    $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+                }
+            } else {
+                if ($_POST['seller_theme'] == 3) {
+                    array_push($pageList, 19);
+                } else if ($_POST['seller_theme'] == 2) {
+                    array_push($pageList, 22);
+                } else if ($_POST['seller_theme'] == 4) {
+                    array_push($pageList, 9);
+                } else if ($_POST['seller_theme'] == 5) {
+                    array_push($pageList, 9);
+                } else {
+                    array_push($pageList, 21);
                 }
             }
         } else {
@@ -426,13 +445,13 @@ class Reports
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18];
             } else if ($_POST['seller_theme'] == 2) {
                 // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
-                $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
             } else if ($_POST['seller_theme'] == 4) {
                 // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
             } else if ($_POST['seller_theme'] == 5) {
                 // $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 21];
-                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21];
+                $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
             } else {
                 // $pageList = [1, 2, 3, 4, 5, 6, 7, 8];
                 $pageList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
@@ -500,6 +519,25 @@ class Reports
         } else {
             return array("status" => false, "msg" => $errorMsg);
         }
+    }
+
+    private function getAIAnalysis($request) {
+        $reportJson = json_encode($request, JSON_PRETTY_PRINT);
+        // print_r($reportJson);die;
+        $prompt = "You are a real estate marketing assistant generating a polished, one-page seller report summary. Based on structured property and comparable sales data, write a clear, persuasive summary in the following layout and tone.\n\n";
+        $prompt .= "Start with a compelling section called 'Key Summary & Strategic Positioning' that highlights the key value of the property, its location, opportunity, and potential. Use real market context to compare it favorably to comps while acknowledging unique features like lot size, charm, or expansion potential. End with a motivating line like: 'This is more than a property — it’s a lifestyle opportunity in one of [City]'s most livable pockets.\n\n";
+        $prompt .= "Below is the Report JSON data:\n\n";
+        $prompt .= $reportJson . "\n\n";
+        $prompt .= "Then follow this structure:\n";
+        $prompt .= "(Pin Icon) Property Snapshot: owner name(s), property type, square footage, lot size, beds/baths, year built, zoning, assessed value, property taxes\n";
+        $prompt .= "(Summary Icon) Market Insights: summary of comparable sales within a 5-mile radius, including average specs and price range.\n";
+        $prompt .= "(Home Icon) Sample Comparable Sales: a clean 4-row table showing address, beds/baths, sq. ft., sale price, $/sq ft, and pool status.\n";
+        
+        $prompt .= "Tone: Friendly, data-informed, confident, and optimistic — designed to be directly included in a seller report or digital CMA.\n";
+        $prompt .= "Input data will be structured and include: property specs, tax info, and a list of 8-10 recent comparable sales (with sale price, address, beds/baths, size, $/sqft, and pool status). Format output for easy copy-paste into a report or export to PDF.\n";
+        $prompt .= "Goal: Output should be easy to scan and ready for rendering in a web dashboard or client-facing PDF report. ";
+
+        return $this->ai_request($prompt);
     }
 
     public function get_all_properties($report187)
@@ -1064,14 +1102,14 @@ class Reports
         /**
          * END Code to fetch customized text data of user
          */
-
         if ($turboMode) {
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/dynamic", $data, true);
         } else {
+            // print_r("reports/" . $reportLang . "/" . $presentationType . "/index");die;
             $html = $CI->load->view("reports/" . $reportLang . "/" . $presentationType . "/index", $data, true);
         }
         // print_r($html);
-        //die;
+        // die;
         // echo "<pre>Hello"; print_r('reports/'.$reportLang.'/'.$presentationType.'/index');die;//print_r($html); exit;
         //file_put_contents("tmp.html", $html);
         $wkhtmltopdfPath = $CI->config->item('wkhtmltopdf_path');
@@ -1780,6 +1818,33 @@ class Reports
 
         $result = curl_exec($ch);
         return $result;
+    }
+
+    public function ai_request($prompt, $data = array())
+    {
+        $postData = [
+            'model' => 'gpt-4o-mini',
+            'messages' => [
+                ['role' => 'user', 'content' => $prompt]
+            ],
+            "temperature" => 0.7
+        ];
+        $apiKey = $_ENV['CHAT_GPT_API_KEY'];
+        $chatGPTUrl = $_ENV['CHAT_GPT_URL'];
+        $ch = curl_init($chatGPTUrl);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            'Content-Type: application/json',
+            'Authorization: Bearer ' . $apiKey
+        ]);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
+
+        $error_msg = curl_error($ch);
+        $response = curl_exec($ch);
+        curl_close($ch);
+        // print_r($response);die;
+        return $response;
     }
 
 }

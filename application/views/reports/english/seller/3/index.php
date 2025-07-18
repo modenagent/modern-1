@@ -186,7 +186,7 @@ $pageList = array_map(function ($val) {
 // print_r($pageList);
 // die;
 $skip_pages = [2, 3];
-for ($i = 1; $i <= 20; $i++) {
+for ($i = 1; $i <= 21; $i++) {
     $report_id = $i;
     if (!in_array($i, $pageList)) {
         continue;
@@ -223,7 +223,9 @@ for ($i = 1; $i <= 20; $i++) {
         $this->load->view('reports/english/seller/3/pages/1', $data);
 
     } else {
-        $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
+        if ($i < 21 || ($i == 21 && isset($ai_summary))) {
+            $this->load->view('reports/english/seller/3/pages/' . $report_id, $data);
+        }
     }
 }
 

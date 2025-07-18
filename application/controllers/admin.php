@@ -156,7 +156,7 @@ class Admin extends CI_Controller
                              ModernAgent
 MSG;
 
-                    $send = $this->base_model->queue_mail($pemail, 'ModernAgent Reset Password', $message);
+                    $send = $this->base_model->queue_mail($pemail, 'CMA Reset Password', $message);
                     $resp = array(
                         'status' => 'success',
                         'msg' => 'Password has been sent to your registered email.',

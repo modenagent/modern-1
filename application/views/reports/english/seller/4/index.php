@@ -116,7 +116,7 @@ $_sliderEndPoint = (int) $_priceMaxRange + round($rangeDiff / 8);
 // echo "<pre>";
 // print_r($rangeOfSales);die;
 
-for ($i = 1; $i <= 8; $i++) {
+for ($i = 1; $i <= 9; $i++) {
     if (!in_array($i, $pageList)) {
         continue;
     }
@@ -145,7 +145,9 @@ for ($i = 1; $i <= 8; $i++) {
         $data = $rangeOfSales;
     }
 
-    $this->load->view('reports/english/seller/4/pages/' . $report_id, $data);
+    if ($i < 9 || ($i == 9 && isset($ai_summary))) {
+        $this->load->view('reports/english/seller/4/pages/' . $report_id, $data);
+    }
     // if ($report_id == 8) {
     //     die;
     // }

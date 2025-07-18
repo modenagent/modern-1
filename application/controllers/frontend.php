@@ -166,6 +166,9 @@ class Frontend extends CI_Controller
             } else {
                 $data['err_message'] = !isset($data['err_message']) ? $data['err_message'] : 'Insert faild.';
             }
+        } else {
+            // Validation failed, prepare the errors to be passed to the view
+            $data['errors'] = validation_errors();
         }
         $data['package'] = $package;
         $this->load->view('frontend/header_login');
@@ -410,6 +413,30 @@ class Frontend extends CI_Controller
                     echo '<br/>File deleted : ' . $file;
                 }
             }
+        }
+    }
+
+    public function sendReportEmails() {
+        $this->db->select('*');
+        $this->db->from('lp_my_listing');
+        $this->db->join('lp_user_mst','lp_user_mst.user_id_pk = lp_my_listing.user_id_fk','left');
+        $this->db->where('project_date >=', date('Y-m-d H:i:s', strtotime('-15 days')));
+        // $this->db->group_by("user_id_fk"); 
+        $query = $this->db->get();
+        $result = $query->result_array();
+        $response = [];
+        
+        foreach ($result as $key => $value) {
+            $user_id = $value['user_id_fk'];
+            $response[$user_id][] = $value;
+        }
+
+        foreach($response as $user_id => $data){
+            $message = $this->load->view('mails/report_list', ['data' => $data], true);
+            // print_r($message);die;
+            $emailAddress = $data[0]['email'];
+            $emailAddress = 'piyush-crest@yopmail.com';
+            $send = $this->base_model->queue_mail($emailAddress, 'CMA Order Reports', $message);
         }
     }
 }

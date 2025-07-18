@@ -176,6 +176,10 @@ if (in_array("20", $pageList)) {
     $this->load->view('reports/english/seller/pages/15');
 }
 
+if (in_array("20", $pageList)) {
+    $this->load->view('reports/english/seller/pages/21');
+}
+
 ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
