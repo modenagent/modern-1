@@ -26,6 +26,15 @@ class Dompdf_gen {
 		
 		$pdf = new DOMPDF();
 		
+		// Performance and security optimizations
+		$pdf->set_option('isHtml5ParserEnabled', true);
+		$pdf->set_option('isPhpEnabled', false); // Security: disable PHP execution in PDFs
+		$pdf->set_option('isRemoteEnabled', false); // Security: disable remote content loading  
+		$pdf->set_option('defaultMediaType', 'print'); // Optimize for print media
+		$pdf->set_option('debugPng', false); // Disable debug output for performance
+		$pdf->set_option('debugKeepTemp', false); // Clean up temp files
+		$pdf->set_option('debugCss', false); // Disable CSS debugging for performance
+		
 		$CI =& get_instance();
 		$CI->dompdf = $pdf;
 		
