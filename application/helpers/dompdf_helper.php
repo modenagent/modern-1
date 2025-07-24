@@ -8,6 +8,7 @@ if (!defined('BASEPATH'))
  * - Increased memory limit from 32M to 512M for complex PDFs
  * - Added execution time limit of 300 seconds
  * - Enhanced error handling and performance monitoring
+ * - Added optional caching capabilities
  */
 ini_set("memory_limit", "512M");
 ini_set("max_execution_time", "300");
@@ -20,6 +21,12 @@ if(!function_exists('pdf_create')){
         $start_memory = memory_get_usage(true);
         
         try {
+            // Ensure cache directory exists
+            $cache_dir = APPPATH . '../cache/pdf_cache';
+            if (!is_dir($cache_dir)) {
+                mkdir($cache_dir, 0755, true);
+            }
+            
             require_once("dompdf/dompdf_config.inc.php");
 
             $dompdf = new DOMPDF();
@@ -30,6 +37,7 @@ if(!function_exists('pdf_create')){
             $dompdf->set_option('default_media_type', 'print'); // Optimize for print
             $dompdf->set_option('enable_css_float', true); // Better CSS support
             $dompdf->set_option('enable_html5_parser', true); // Better HTML parsing
+            $dompdf->set_option('temp_dir', $cache_dir); // Use cache directory for temp files
             
             $dompdf->set_paper("a4", $orientation);
             $dompdf->load_html($html);
@@ -53,6 +61,33 @@ if(!function_exists('pdf_create')){
         } catch (Exception $e) {
             error_log("PDF Generation Error - File: {$filename}, Error: " . $e->getMessage());
             throw $e;
+        }
+    }
+}
+
+if(!function_exists('pdf_cleanup_cache')){
+    /**
+     * Clean up old cache files (optional utility function)
+     */
+    function pdf_cleanup_cache($hours = 24) {
+        $cache_dir = APPPATH . '../cache/pdf_cache';
+        if (!is_dir($cache_dir)) {
+            return;
+        }
+        
+        $cutoff_time = time() - ($hours * 3600);
+        $files = glob($cache_dir . '/*');
+        $cleaned = 0;
+        
+        foreach ($files as $file) {
+            if (is_file($file) && filemtime($file) < $cutoff_time) {
+                unlink($file);
+                $cleaned++;
+            }
+        }
+        
+        if ($cleaned > 0) {
+            error_log("PDF Cache Cleanup: Removed {$cleaned} old files");
         }
     }
 }
