@@ -2,7 +2,14 @@
 // die;
 include('../simplesaml/lib/_autoload.php');
 if(empty($_GET['site_id'])) {
-    echo "Invalid request";die;
+    $error_message = json_encode(array(
+        'status' => 'error',
+        'message' => 'Invalid request - missing site ID parameter',
+        'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Configuration Error</h3><p>Invalid request - missing site ID parameter.</p></div>'
+    ));
+    header('Content-Type: application/json');
+    echo $error_message;
+    exit;
 }
 
 
@@ -11,13 +18,27 @@ if(!empty($auth_id)) {
     	$auth = new \SimpleSAML\Auth\Simple($auth_id);
 }
 else {
-    echo "Invalid request.";die;
+    $error_message = json_encode(array(
+        'status' => 'error',
+        'message' => 'Invalid request - authentication configuration error',
+        'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Authentication Error</h3><p>Invalid request - authentication configuration error.</p></div>'
+    ));
+    header('Content-Type: application/json');
+    echo $error_message;
+    exit;
 }
 
 if (!$auth->isAuthenticated()) {
    $auth->requireAuth();
-    // echo "Please login to use widget";
-    die;
+   // Graceful handling for unauthenticated users
+   $error_message = json_encode(array(
+       'status' => 'error',
+       'message' => 'Authentication required',
+       'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Authentication Required</h3><p>Please login to use this widget.</p></div>'
+   ));
+   header('Content-Type: application/json');
+   echo $error_message;
+   exit;
 }
 else {
 
@@ -81,7 +102,14 @@ else {
                 $comp_info = $CI->base_model->get_record_by_id('lp_user_mst',$get_where);
                 // var_dump($comp_info);die;
                 if($idp_data->company_id != $user->parent_id && $idp_data->unique_id != '1613127833MWAI1583MYPL' && $idp_data->unique_id != '1613123268USXC86GYBN') {
-                    die("You are already registered with other company.Please contact Administrator");
+                    $error_message = json_encode(array(
+                        'status' => 'error',
+                        'message' => 'Company association error',
+                        'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Access Denied</h3><p>You are already registered with another company. Please contact your administrator for assistance.</p></div>'
+                    ));
+                    header('Content-Type: application/json');
+                    echo $error_message;
+                    exit;
                 }
 
                 $update_data = array();
@@ -180,7 +208,14 @@ else {
                     }
 
                     elseif(empty($_GET['company'])) {
-                        echo "Invalid request";die;
+                        $error_message = json_encode(array(
+                            'status' => 'error',
+                            'message' => 'Missing company parameter',
+                            'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Configuration Error</h3><p>Invalid request - missing company parameter.</p></div>'
+                        ));
+                        header('Content-Type: application/json');
+                        echo $error_message;
+                        exit;
                     }
                     else {
 
@@ -192,13 +227,27 @@ else {
                             $parent_id = $comp_info->user_id_pk;
                         }
                         else {
-                            echo 'You are not authorize'; die;
+                            $error_message = json_encode(array(
+                                'status' => 'error',
+                                'message' => 'Authorization failed',
+                                'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Access Denied</h3><p>You are not authorized to access this widget.</p></div>'
+                            ));
+                            header('Content-Type: application/json');
+                            echo $error_message;
+                            exit;
                         }
                     }
 
                 }
                 else {
-                    echo 'You are not authorize'; die;
+                    $error_message = json_encode(array(
+                        'status' => 'error',
+                        'message' => 'Authorization failed',
+                        'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Access Denied</h3><p>You are not authorized to access this widget.</p></div>'
+                    ));
+                    header('Content-Type: application/json');
+                    echo $error_message;
+                    exit;
                 }
 
                 
@@ -257,7 +306,14 @@ else {
     		        );
     	        }
     	        else {
-    	        	echo "You are not Registered";die;
+    	        	$error_message = json_encode(array(
+                        'status' => 'error',
+                        'message' => 'Registration failed',
+                        'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Registration Error</h3><p>You are not registered. Please contact support for assistance.</p></div>'
+                    ));
+                    header('Content-Type: application/json');
+                    echo $error_message;
+                    exit;
     	        }
             }
             $sessionData = $CI->session->set_userdata($newdata);
@@ -286,7 +342,14 @@ else {
             
         }
         else {
-            echo "Email not found";die;
+            $error_message = json_encode(array(
+                'status' => 'error',
+                'message' => 'Email not found',
+                'html' => '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;"><h3>Authentication Error</h3><p>Email not found in authentication attributes.</p></div>'
+            ));
+            header('Content-Type: application/json');
+            echo $error_message;
+            exit;
         }
         ?>
         <script type="text/javascript">

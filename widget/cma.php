@@ -79,26 +79,36 @@ $domain_url = 'https://'.$_ENV['APP_DOMAIN'].'/';
 	});
 	function loadWidget()
 	{
-	    // var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/../assets/images-2/home/->ReplaceImage<-) no-repeat 0 0;background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
 	    var custom_css = "";
-	    // var custom_css = "<style>#cma-widget-container {background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed; background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/7218d6f3-e7b7-4051-a604-9f43ceaaf4fc.jpg'); height:820px;}</style>";
 
 	    jQuery.ajax({
 	        url: app_check_url,
-	        type: "GET",//type of posting the data
+	        type: "GET",
 	        xhrFields: { 
-        withCredentials: true 
-    },
-	        // dataType: "json",
+	            withCredentials: true 
+	        },
 	        success: function (response) {
-	          // if(response.status == true) {
-	          	// location.href = app_main_url
-	          $('#cma-widget-container').html(custom_css+response);
-
-	          // }
+	            try {
+	                // Try to parse as JSON first (for error responses)
+	                var jsonResponse = JSON.parse(response);
+	                if (jsonResponse.status === 'error') {
+	                    jQuery('#cma-widget-container').html(jsonResponse.html);
+	                } else {
+	                    jQuery('#cma-widget-container').html(custom_css + response);
+	                }
+	            } catch (e) {
+	                // If not JSON, treat as HTML (normal widget content)
+	                jQuery('#cma-widget-container').html(custom_css + response);
+	            }
 	        },
 	        error: function(xhr, ajaxOptions, thrownError){
-	          
+	            console.error('Widget loading failed:', thrownError);
+	            var errorMessage = '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;">' +
+	                              '<h3>Widget Loading Error</h3>' +
+	                              '<p>Unable to load the CMA widget. Please try again later.</p>' +
+	                              '<p><small>Error: ' + (thrownError || 'Network error') + '</small></p>' +
+	                              '</div>';
+	            jQuery('#cma-widget-container').html(errorMessage);
 	        },
 	    });
 	}

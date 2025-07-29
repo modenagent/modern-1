@@ -1,27 +1,31 @@
-location.href = app_main_url;
-// jQuery(document).ready(function() {
-//     loadWidget();
-// });
+// Removed blocking redirect - widget should load in place
+jQuery(document).ready(function() {
+    loadWidget();
+});
 
-// function loadWidget()
-// {
-//     // var custom_css = "<style>#cma-widget-container {background: url("+base_url+"/../assets/images-2/home/->ReplaceImage<-) no-repeat 0 0;background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed;}</style>";
-//     var custom_css = "<style>#cma-widget-container {background-attachment: scroll; background-color:black; background-size: auto auto;background-size: cover;background-attachment: fixed; background-image: url('https://mcusercontent.com/b10d88eb10799345e0303a43d/images/7218d6f3-e7b7-4051-a604-9f43ceaaf4fc.jpg'); height:820px;}</style>";
-
-//     $.ajax({
-//         url: base_url+'/../getWidgetData',
-//         type: "POST",//type of posting the data
-//         data: {
-//             user_id: user_id
-//         },
-//         dataType: "json",
-//         success: function (response) {
-//         console.log(response);    
-//           $('#cma-widget-container').html(custom_css+response.res);
-//         },
-//         error: function(xhr, ajaxOptions, thrownError){
-          
-//         },
-//     });
-// }
+function loadWidget()
+{
+    var custom_css = "";
+    
+    jQuery.ajax({
+        url: app_main_url,
+        type: "GET",
+        xhrFields: { 
+            withCredentials: true 
+        },
+        success: function (response) {
+            console.log('Widget loaded successfully');    
+            jQuery('#cma-widget-container').html(custom_css + response);
+        },
+        error: function(xhr, ajaxOptions, thrownError){
+            console.error('Widget loading failed:', thrownError);
+            var errorMessage = '<div style="padding: 20px; text-align: center; color: #e74c3c; font-family: Arial, sans-serif;">' +
+                              '<h3>Widget Loading Error</h3>' +
+                              '<p>Unable to load the CMA widget. Please try again later.</p>' +
+                              '<p><small>Error: ' + (thrownError || 'Network error') + '</small></p>' +
+                              '</div>';
+            jQuery('#cma-widget-container').html(errorMessage);
+        },
+    });
+}
 
