@@ -548,7 +548,7 @@ h3.h3-xl { font-size: 3rem; }       /* 48px */
 
 /* Header H2 */
 h2.h2-xs { font-size: 3.125rem; }   /* 50px */
-h2.h2-sm { font-size: 3.25rem; }    /* 52px */
+h2.h2-sm { font-size: 3.25rem; font-weight: 300;}    /* 52px */
 h2.h2-md { font-size: 3.375rem; }   /* 54px */
 h2.h2-lg { font-size: 3.5rem; }     /* 56px */ 
 h2.h2-xl { font-size: 3.75rem; }    /* 60px */
@@ -715,10 +715,10 @@ ol.digit-list p {
 .btn {
   background-color: transparent;
   color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   line-height: 1;
-  font-weight: 500;
-  padding: 16px 32px;
+  font-weight: 400;
+  padding: 22px 43px;
   border: 1px solid transparent;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -2317,7 +2317,7 @@ p.terms-txt a,
 .desktoplogo img {
   width: auto;
   max-width: inherit;
-  max-height: 26px;
+  max-height: 29px;
 }
 
 /*------------------------------------------*/
@@ -3164,7 +3164,8 @@ p.terms-txt a,
 
 #hero-10 {
   position: relative;
-  background-image: url(../images/hero-24-img-a.jpg);
+  /* background-image: url(../images/hero-24-img-b.jpg); */
+  background-image: url(../images/bg-04.jpg);
   padding-top: 170px;
   margin-bottom: 100px;
 }
@@ -3174,9 +3175,13 @@ p.terms-txt a,
 }
 
 .hero-10-txt h2 {
-  padding:  4% 6% 0%;
+  padding:  4% 6% 4%;
   margin-bottom: 30px;
-  
+  /* font-size: 5.375rem; */
+  font-size: 4.375rem;
+  letter-spacing: -0.5px;
+  line-height: 81px;
+  font-weight: 700;  
 }
 
 .hero-10-txt h5, 

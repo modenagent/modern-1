@@ -1,281 +1,530 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="x-apple-disable-message-reformatting">
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+
+<head>
+    <!--[if (gte mso 9)|(IE)]>
+  <xml>
+    <o:OfficeDocumentSettings>
+    <o:AllowPNG/>
+    <o:PixelsPerInch>96</o:PixelsPerInch>
+  </o:OfficeDocumentSettings>
+</xml>
+<![endif]-->
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- So that mobile will display zoomed in -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Download Ready</title>
+    <!-- enable media queries for windows phone 8 -->
+    <meta name="format-detection" content="telephone=no">
+    <!-- disable auto telephone linking in iOS -->
+    <meta name="format-detection" content="date=no">
+    <!-- disable auto date linking in iOS -->
+    <meta name="format-detection" content="address=no">
+    <!-- disable auto address linking in iOS -->
+    <meta name="format-detection" content="email=no">
+    <!-- disable auto email linking in iOS -->
+    <meta name="color-scheme" content="only">
+    <title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200;300;400;500;600;700;800;900&amp;family=Rubik:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
     <style type="text/css">
-      a { text-decoration: none; outline: none; }
-      @media (max-width: 649px) {
-        .o_col-full { max-width: 100% !important; }
-        .o_col-half { max-width: 50% !important; }
-        .o_hide-lg { display: inline-block !important; font-size: inherit !important; max-height: none !important; line-height: inherit !important; overflow: visible !important; width: auto !important; visibility: visible !important; }
-        .o_hide-xs, .o_hide-xs.o_col_i { display: none !important; font-size: 0 !important; max-height: 0 !important; width: 0 !important; line-height: 0 !important; overflow: hidden !important; visibility: hidden !important; height: 0 !important; }
-        .o_xs-center { text-align: center !important; }
-        .o_xs-left { text-align: left !important; }
-        .o_xs-right { text-align: left !important; }
-        table.o_xs-left { margin-left: 0 !important; margin-right: auto !important; float: none !important; }
-        table.o_xs-right { margin-left: auto !important; margin-right: 0 !important; float: none !important; }
-        table.o_xs-center { margin-left: auto !important; margin-right: auto !important; float: none !important; }
-        h1.o_heading { font-size: 32px !important; line-height: 41px !important; }
-        h2.o_heading { font-size: 26px !important; line-height: 37px !important; }
-        h3.o_heading { font-size: 20px !important; line-height: 30px !important; }
-        .o_xs-py-md { padding-top: 24px !important; padding-bottom: 24px !important; }
-        .o_xs-pt-xs { padding-top: 8px !important; }
-        .o_xs-pb-xs { padding-bottom: 8px !important; }
-      }
-      @media screen {
-        @font-face {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 400;
-          src: local("Roboto"), local("Roboto-Regular"), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format("woff2");
-          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-        @font-face {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 400;
-          src: local("Roboto"), local("Roboto-Regular"), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2");
-          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-        @font-face {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 700;
-          src: local("Roboto Bold"), local("Roboto-Bold"), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfChc4EsA.woff2) format("woff2");
-          unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF; }
-        @font-face {
-          font-family: 'Roboto';
-          font-style: normal;
-          font-weight: 700;
-          src: local("Roboto Bold"), local("Roboto-Bold"), url(https://fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmWUlfBBc4.woff2) format("woff2");
-          unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
-        .o_sans, .o_heading { font-family: "Roboto", sans-serif !important; }
-        .o_heading, strong, b { font-weight: 700 !important; }
-        a[x-apple-data-detectors] { color: inherit !important; text-decoration: none !important; }
-      }
+        /*Basics*/
+        body {margin:0px!important;padding:0px!important;display:block!important;min-width:100%!important;width:100%!important;-webkit-text-size-adjust:none;}
+        table {border-spacing:0;mso-table-lspace:0pt;mso-table-rspace:0pt;}
+        table td {border-collapse:collapse;mso-line-height-rule:exactly;}
+        td img {-ms-interpolation-mode:bicubic;width:auto;max-width:auto;height:auto;margin:auto;display:block!important;border:0px;}
+        td p {margin:0;padding:0;}
+        td div {margin:0;padding:0;}
+        td a {text-decoration:none;color:inherit;}
+        /*Outlook*/
+        .ExternalClass {width:100%;}
+        .ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div {line-height:inherit;}
+        .ReadMsgBody {width:100%;background-color:#ffffff;}
+        /* iOS BLUE LINKS */
+        a[x-apple-data-detectors] {color:inherit!important;text-decoration:none!important;font-size:inherit!important;font-family:inherit!important;font-weight:inherit!important;line-height:inherit!important;}
+        /*Gmail blue links*/
+        u + #body a {color:inherit;text-decoration:none;font-size:inherit;font-family:inherit;font-weight:inherit;line-height:inherit;}
+        /*Buttons fix*/
+        .undoreset a, .undoreset a:hover {text-decoration:none!important;}
+        .yshortcuts a {border-bottom:none!important;}
+        .ios-footer a {color:#aaaaaa!important;text-decoration:none;}
+        /*Responsive-Tablet*/
+        @media only screen and (max-width:799px) and (min-width:601px) {
+          .outer-table.row {width:640px!important;max-width:640px!important;}
+          .inner-table.row {width:580px!important;max-width:580px!important;}
+        }
+        /*Responsive-Mobile*/
+        @media only screen and (max-width:600px) and (min-width:320px) {
+          table.row {width:100%!important;max-width:100%!important;}
+          td.row {width:100%!important;max-width:100%!important;}
+          .img-responsive img {width:100%!important;max-width:100%!important;height:auto!important;margin:auto;}
+          .center-float {float:none!important;margin:auto!important;}
+          .center-text{text-align:center!important;}
+          .container-padding {width:100%!important;padding-left:15px!important;padding-right:15px!important;}
+          .container-padding10 {width:100%!important;padding-left:10px!important;padding-right:10px!important;}
+          .hide-mobile {display:none!important;}
+          .menu-container {text-align:center!important;}
+          .autoheight {height:auto!important;}
+          .m-padding-10 {margin:10px 0!important;}
+          .m-padding-15 {margin:15px 0!important;}
+          .m-padding-20 {margin:20px 0!important;}
+          .m-padding-30 {margin:30px 0!important;}
+          .m-padding-40 {margin:40px 0!important;}
+          .m-padding-50 {margin:50px 0!important;}
+          .m-padding-60 {margin:60px 0!important;}
+          .m-padding-top10 {margin:30px 0 0 0!important;}
+          .m-padding-top15 {margin:15px 0 0 0!important;}
+          .m-padding-top20 {margin:20px 0 0 0!important;}
+          .m-padding-top30 {margin:30px 0 0 0!important;}
+          .m-padding-top40 {margin:40px 0 0 0!important;}
+          .m-padding-top50 {margin:50px 0 0 0!important;}
+          .m-padding-top60 {margin:60px 0 0 0!important;}
+          .m-height10 {font-size:10px!important;line-height:10px!important;height:10px!important;}
+          .m-height15 {font-size:15px!important;line-height:15px!important;height:15px!important;}
+          .m-height20 {font-size:20px!important;line-height:20px!important;height:20px!important;}
+          .m-height25 {font-size:25px!important;line-height:25px!important;height:25px!important;}
+          .m-height30 {font-size:30px!important;line-height:30px!important;height:30px!important;}
+          .radius6 {border-radius:6px!important;}
+          .fade-white {background-color:rgba(255, 255, 255, 0.8)!important;}
+          .rwd-on-mobile {display:inline-block!important;padding:5px!important;}
+          .center-on-mobile {text-align:center!important;}
+          .rwd-col {width:100%!important;max-width:100%!important;display:inline-block!important;}
+        }
     </style>
-    <!--[if mso]>
-    <style>
-      table { border-collapse: collapse; }
-      .o_col { float: left; }
-    </style>
-    <xml>
-      <o:OfficeDocumentSettings>
-        <o:PixelsPerInch>96</o:PixelsPerInch>
-      </o:OfficeDocumentSettings>
-    </xml>
-    <![endif]-->
-  </head>
-  <body class="o_body o_bg-light" style="width: 100%;margin: 0px;padding: 0px;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;background-color: #dcdde1;">
-    <!-- preview-text -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_hide" align="center" style="display: none;font-size: 0;max-height: 0;width: 0;line-height: 0;overflow: hidden;mso-hide: all;visibility: hidden;">Email Summary (Hidden)</td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- header-white -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs o_pt-lg o_xs-pt-xs" align="center" style="background-color: #dcdde1;padding-left: 8px;padding-right: 8px;padding-top: 32px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-white o_px o_py-md o_br-t o_sans o_text" align="center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;background-color: #ffffff;border-radius: 4px 4px 0px 0px;padding-left: 16px;padding-right: 16px;padding-top: 24px;padding-bottom: 24px;">
-                    <p style="margin-top: 0px;margin-bottom: 0px;"><a class="o_text-primary" href="<?php echo base_url(); ?>" style="text-decoration: none;outline: none;color: #126de5;"><img src="<?php echo base_url('assets/new_site/img/logo.png');?>" width="210" height="36" alt="SimpleApp" style="max-width: 210px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;"></a></p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- hero-icon -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs" align="center" style="background-color: #dcdde1 ;padding-left: 8px;padding-right: 8px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-ultra_light o_px-md o_py-xl o_xs-py-md o_sans o_text-md o_text-light" align="center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 19px;line-height: 28px;background-color: #F4F4F9;color: #82899a;padding-left: 24px;padding-right: 24px;padding-top: 64px;padding-bottom: 64px;">
-                    <table cellspacing="0" cellpadding="0" border="0" role="presentation">
-                      <tbody>
-                        <tr>
-                          <td class="o_sans o_text o_text-white o_bg-primary o_px o_py o_br-max" align="center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;background-color: #DED4E6;color: #ffffff;border-radius: 96px;padding-left: 10px;padding-right: 10px;padding-top: 10px;padding-bottom: 10px;">
-                            <img src="<?php echo base_url('assets/new_site/img/ma-logo.png');?>" width="105" height="105" alt="" style="max-width: 105px;-ms-interpolation-mode: bicubic;vertical-align: middle;border: 0;line-height: 100%;height: auto;outline: none;text-decoration: none;">
-                          </td>
-                        </tr>
-                        <tr>
-                          <td style="font-size: 24px; line-height: 24px; height: 24px;">&nbsp; </td>
-                        </tr>
-                      </tbody>
+
+</head>
+
+<body style="margin-top:0;margin-bottom:0;padding-top:0;padding-bottom:0;width:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;" bgcolor="#FFFFFF">
+    <span class="preheader-text" style="color:transparent;height:0;max-height:0;max-width:0;opacity:0;overflow:hidden;visibility:hidden;width:0;display:none;mso-hide:all;"></span>
+    <!-- Preheader white space hack -->
+    <div style="display:none;max-height:0px;overflow:hidden;">
+        ‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;‌&nbsp;
+    </div>
+
+    <table border="0" align="center" cellpadding="0" cellspacing="0" width="100%" style="width:100%;max-width:100%;">
+        <tbody>
+            <tr>
+                <!-- Outer Table -->
+                <td align="center" bgcolor="#FFFFFF">
+                    <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="800" style="width:800px;max-width:800px;">
+                        <!-- blue-logo -->
+                        <tbody>
+                            <tr>
+                                <td align="center" bgcolor="#FFFFFF" class="container-padding">
+                                    <!-- Content -->
+                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                        <tbody>
+                                            <tr>
+                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" class="center-text">
+                                                    <img style="width:280px;border:0px;display:inline!important;" src="https://dev.cmapro.io/assets/new_site/img/Logo_dark.jpeg" width="280" border="0" alt="Modern Agent">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- Content -->
+                                </td>
+                            </tr>
+                            <!-- blue-logo -->
+                        </tbody>
                     </table>
-                    <h2 class="o_heading o_text-dark o_mb-xxs" style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 4px;color: #242b3d;font-size: 30px;line-height: 39px;">Your Report Is Ready!</h2>
-                    <p style="margin-top: 0px;margin-bottom: 0px;">Please see below for the details of your recently created report.</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- spacer-lg -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs" align="center" style="background-color: #dcdde1;padding-left: 8px;padding-right: 8px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-white" style="font-size: 48px;line-height: 48px;height: 48px;background-color: #ffffff;">&nbsp; </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- file-row -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs" align="center" style="background-color: #dcdde1;padding-left: 8px;padding-right: 8px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-white o_px-md" align="center" style="background-color: #ffffff;padding-left: 24px;padding-right: 24px;">
-                    <table cellspacing="0" cellpadding="0" border="0" role="presentation">
-                      <tbody>
-                        <tr>
-                          <td width="300" class="o_py o_sans o_text o_text-light o_bb-light" align="center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;color: #82899a;border-bottom: 1px solid #d3dce0;padding-top: 16px;padding-bottom: 16px;">
-                            <p style="margin-top: 0px;margin-bottom: 0px;"><span class="img_fix" style="mso-text-raise: 6px;display: inline;"><?php echo $address; ?></span></p>
-                          </td>
-                        </tr>
-                      </tbody>
+                    <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" width="800" style="width:800px;max-width:800px;">
+                        <!-- blue-header -->
+                        <tbody>
+                            <tr>
+                                <td align="center" class="img-responsive container-padding">
+                                    <img class="auto-width" style="display:block;width:100%;max-width:100%;border:0px;" width="800" src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/158fef30-5e09-1527-1566-0c738b00f52c.jpg" border="0" alt="picture">
+                                </td>
+                            </tr>
+                            <!-- blue-header -->
+                        </tbody>
                     </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-   
-   
-    <!-- spacer -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs" align="center" style="background-color: #dcdde1;padding-left: 8px;padding-right: 8px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-white" style="font-size: 24px;line-height: 24px;height: 24px;background-color: #ffffff;">&nbsp; </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- button-primary -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs" align="center" style="background-color: #dcdde1;padding-left: 8px;padding-right: 8px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-white o_px-md o_py-xs" align="center" style="background-color: #ffffff;padding-left: 24px;padding-right: 24px;padding-top: 8px;padding-bottom: 8px;">
-                    <table align="center" cellspacing="0" cellpadding="0" border="0" role="presentation">
-                      <tbody>
-                        <tr>
-                          <td width="300" class="o_btn o_bg-primary o_br o_heading o_text" align="center" style="font-family: Helvetica, Arial, sans-serif;font-weight: bold;margin-top: 0px;margin-bottom: 0px;font-size: 16px;line-height: 24px;mso-padding-alt: 12px 24px;background-color: #582A82;border-radius: 4px;">
-                            <a class="o_text-white" href="<?php echo $report_url; ?>" style="text-decoration: none;outline: none;color: #ffffff;display: block;padding: 12px 24px;mso-text-raise: 3px;">Download Report</a>
-                          </td>
-                        </tr>
-                      </tbody>
+                    <table data-outer-table="" border="0" align="center" cellpadding="0" cellspacing="0" class="outer-table row" role="presentation" width="640" style="width:800px;max-width:800px;">
+                        <!-- blue-preface-13 -->
+                        <tbody>
+                            <tr>
+                                <td align="center" bgcolor="#FFFFFF" class="container-padding">
+                                    <table data-inner-table="" border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="inner-table row" width="580" style="width:580px;max-width:580px;">
+                                        <tbody>
+                                            <tr>
+                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center" bgcolor="#FFFFFF">
+                                                    <!-- content -->
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:14px;line-height:24px;font-weight:900;font-style:normal;color:rgb(88, 42, 130);text-decoration:none;letter-spacing:1px;">
+
+                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                        ORDER PLACED
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:48px;line-height:54px;font-weight:900;font-style:normal;color:#222222;text-decoration:none;letter-spacing:0px;">
+
+                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            Thank You for your order!
+                                                                        </p>
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="15" style="font-size:15px;line-height:15px;">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="">
+                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:16px;line-height:26px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            For your convenience we have also attached your report and your invoice.</p>
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                            [ Your Report # Here ]</p>
+                                                                    </div>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <img style="display:block;width:100%;max-width:32px;border:0px;" width="32" src="https://modulescomposer.s3.us-east-2.amazonaws.com/blue/arrow-bl.png" border="0" alt="icon">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <a href="<?php echo $report_url; ?>">
+                                                                    <!-- Use Code -->
+                                                                    <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center" class="row" width="80%" style="width:80%;max-width:80%;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td align="center" bgcolor="#F8F8F8" style="border-radius:0px;">
+                                                                                    <!-- Content -->
+                                                                                    <table border="0" cellspacing="0" cellpadding="0" role="presentation" align="center" class="row" width="100%" style="width:100%;max-width:100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td class="center-text" align="center" style="font-family:Barlow, Arial, Helvetica, sans-serif;font-size:22px;line-height:26px;font-weight:700;font-style:normal;color:rgb(255, 82, 61);text-decoration:none;letter-spacing:4px;">
+
+                                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                                                            DOWNLOAD REPORT</p>
+                                                                                                    </div>
+
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr>
+                                                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <!-- Content -->
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    </a>
+                                                                    <!-- User Code -->
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td height="60" style="font-size:60px;line-height:60px;">&nbsp;</td>
+                                                            </tr>
+                                                            <tr style="">
+                                                                <td align="center">
+                                                                    <!-- rwd-col -->
+                                                                    <table border="0" cellpadding="0" cellspacing="0" align="center" class="container-padding" width="100%" style="width:100%;max-width:100%;">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td class="rwd-col" align="center" valign="top" width="31.03%" style="width:31.03%;max-width:31.03%;">
+                                                                                    <!-- column -->
+                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="center-text" align="right" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:20px;line-height:24px;font-weight:700;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                                        <p style="margin: 0px; padding: 0px;">Property Details
+                                                                                                        </p>
+                                                                                                    </div>
+
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <!-- column -->
+                                                                                </td>
+                                                                                <td class="rwd-col" align="center" width="3.45%" height="10" style="width:3.45%;max-width:3.45%;height:10px;">&nbsp;</td>
+                                                                                <td class="rwd-col" align="center" valign="top" width="65.52%" style="width:65.52%;max-width:65.52%;">
+                                                                                    <!-- column -->
+                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td class="hide-mobile" align="center" width="20" style="width:20px;max-width:20px;border-left:1px solid #000000;"></td>
+                                                                                                <td class="center-text" align="left" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:18px;line-height:24px;font-weight:400;font-style:normal;color:#333333;text-decoration:none;letter-spacing:0px;">
+
+                                                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                                                        <p style="margin: 0px; padding: 0px;">
+                                                                                                        <?php echo $address; ?>
+                                                                                                        </p>
+                                                                                                    </div>
+
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                    <!-- column -->
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <!-- rwd-col -->
+                                                                </td>
+                                                            </tr>
+                                                            <tr style="">
+                                                                <td height="20" style="font-size:20px;line-height:20px;">&nbsp;</td>
+                                                            </tr>
+
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- content -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <!-- blue-preface-13 -->
+                        </tbody>
                     </table>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-      </tbody>
+                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                        <!-- blue-footer -->
+                        <tbody>
+                            <tr>
+                                <td align="center" bgcolor="#F8F8F8" class="container-padding" style="border-top:10px solid #F1F1F1;">
+                                    <!-- Content -->
+                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="row" width="520" style="width:520px;max-width:520px;">
+                                        <tbody>
+                                            <tr>
+                                                <td height="60" style="font-size:60px;line-height:60px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:21px;line-height:28px;font-weight:700;font-style:normal;color:#444444;text-decoration:none;letter-spacing:0px;">
+
+                                                    <div style="margin: 0px; padding: 0px;">
+                                                        <p style="margin: 0px; padding: 0px;">ModernAgent.io</p>
+                                                    </div>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="30" style="font-size:30px;line-height:30px;">&nbsp;</td>
+                                            </tr>
+
+
+                                            <tr>
+                                                <td align="center">
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                        <tbody>
+                                                            <tr class="center-on-mobile">
+                                                                <td class="rwd-on-mobile center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
+                                                                    <!-- Links -->
+
+                                                                    <a href="#" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>HOME</span></a>
+
+                                                                    <!-- Links -->
+                                                                </td>
+
+
+                                                                <td class="hide-mobile" align="center" valign="middle">
+                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="5"></td>
+                                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">|</td>
+                                                                                <td width="5"></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td class="rwd-on-mobile center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
+                                                                    <!-- Links -->
+
+                                                                    <a href="#" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>CONTACT US</span></a>
+
+                                                                    <!-- Links -->
+                                                                </td>
+                                                                <td class="hide-mobile" align="center" valign="middle" style="">
+                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="5"></td>
+                                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">|</td>
+                                                                                <td width="5"></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td class="rwd-on-mobile center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
+                                                                    <!-- Links -->
+
+                                                                    <a href="#" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>PRIVACY POLICY</span></a>
+
+                                                                    <!-- Links -->
+                                                                </td>
+                                                                <td class="hide-mobile" align="center" valign="middle" style="">
+                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="5"></td>
+                                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">|</td>
+                                                                                <td width="5"></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td class="rwd-on-mobile center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
+                                                                    <!-- Links -->
+
+                                                                    <a href="#" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:400;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;display:inline-block;vertical-align:middle;"><span>TERMS</span></a>
+
+                                                                    <!-- Links -->
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="50" style="font-size:60px;line-height:50px;">&nbsp;</td>
+                                            </tr>
+                                            <tr>
+                                                <td align="center">
+                                                    <!-- Social Icons -->
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" width="100%" style="width:100%;max-width:100%;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td align="center">
+                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                                        <tbody>
+                                                                            <tr>
+
+                                                                                <td class="rwd-on-mobile" align="center" valign="middle" height="36" style="height:36px;">
+                                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                                                        <tbody>
+                                                                                            <tr>
+                                                                                                <td width="10"></td>
+                                                                                                <td align="center">
+                                                                                                    <img style="width:36px;border:0px;display:inline!important;" src="https://modulescomposer.s3.us-east-2.amazonaws.com/blue/Instagram.png" width="36" border="0" alt="icon">
+                                                                                                </td>
+                                                                                                <td width="10"></td>
+                                                                                            </tr>
+                                                                                        </tbody>
+                                                                                    </table>
+                                                                                </td>
+
+
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- Social Icons -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="50" style="font-size:60px;line-height:50px;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="">
+                                                <td align="center">
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation" class="row" width="480" style="width:480px;max-width:480px;">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
+
+                                                                    <div style="margin: 0px; padding: 0px;">
+                                                                        2024 ModernAgent.io. All Rights Reserved.
+                                                                        <br> 440 Rte. 66 Glendora, CA 91740</div>
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr style="">
+                                                <td height="30" style="font-size:40px;line-height:30px;">&nbsp;</td>
+                                            </tr>
+                                            <tr style="">
+                                                <td align="center">
+                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                        <tbody>
+                                                            <tr class="center-on-mobile">
+                                                                <td class="rwd-on-mobile center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">
+                                                                    <a href="#" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;font-weight:300;line-height:24px;color:#666666;text-decoration:none;">Unsubscribe</a>
+                                                                </td>
+
+
+                                                                <td class="hide-mobile" align="center" valign="middle">
+                                                                    <table border="0" align="center" cellpadding="0" cellspacing="0" role="presentation">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td width="5"></td>
+                                                                                <td class="center-text" align="center" style="font-family:'Barlow',Arial,Helvetica,sans-serif;font-size:14px;line-height:24px;font-weight:300;font-style:normal;color:#666666;text-decoration:none;letter-spacing:0px;">|</td>
+                                                                                <td width="5"></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="40" style="font-size:40px;line-height:40px;">&nbsp;</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- Content -->
+                                </td>
+                            </tr>
+                            <!-- blue-footer -->
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
+            <!-- Outer-Table -->
+        </tbody>
     </table>
-    <!-- spacer-lg -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs" align="center" style="background-color: #dcdde1;padding-left: 8px;padding-right: 8px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-white" style="font-size: 48px;line-height: 48px;height: 48px;background-color: #ffffff;">&nbsp; </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- footer-light -->
-    <table width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation">
-      <tbody>
-        <tr>
-          <td class="o_bg-light o_px-xs o_pb-lg o_xs-pb-xs" align="center" style="background-color: #dcdde1;padding-left: 8px;padding-right: 8px;padding-bottom: 32px;">
-            <!--[if mso]><table width="632" cellspacing="0" cellpadding="0" border="0" role="presentation"><tbody><tr><td><![endif]-->
-            <table class="o_block" width="100%" cellspacing="0" cellpadding="0" border="0" role="presentation" style="max-width: 632px;margin: 0 auto;">
-              <tbody>
-                <tr>
-                  <td class="o_bg-white o_br-b o_sans" style="font-size: 8px;line-height: 8px;height: 8px;font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;background-color: #ffffff;border-radius: 0px 0px 4px 4px;">&nbsp; </td>
-                </tr>
-                <tr>
-                  <td class="o_px-md o_py-lg o_br-b o_sans o_text-xs o_text-light" align="center" style="font-family: Helvetica, Arial, sans-serif;margin-top: 0px;margin-bottom: 0px;font-size: 14px;line-height: 21px;color: #82899a;border-radius: 0px 0px 4px 4px;padding-left: 24px;padding-right: 24px;padding-top: 32px;padding-bottom: 32px;">
-                   
-                    <p class="o_mb" style="margin-top: 0px;margin-bottom: 16px;">©2021-2022 Modern Agent</p>
-                    <p class="o_mb" style="margin-top: 0px;margin-bottom: 16px;">
-                      440 Rte. 66,<br>
-                      Glendora CA 91750, USA
-                    </p>
-                    <p style="margin-top: 0px;margin-bottom: 0px;">
-                      
-                      <a class="o_text-light o_underline" href="<?php echo base_url(); ?>" style="text-decoration: underline;outline: none;color: #82899a;">Visit Us</a> <span class="o_hide-xs">&nbsp; • &nbsp;</span><br class="o_hide-lg" style="display: none;font-size: 0;max-height: 0;width: 0;line-height: 0;overflow: hidden;mso-hide: all;visibility: hidden;">
-                      <a class="o_text-light o_underline" href="<?php echo base_url(); ?>" style="text-decoration: underline;outline: none;color: #82899a;">Unsubscribe</a> <span class="o_hide-xs">&nbsp; • &nbsp;</span><br class="o_hide-lg" style="display: none;font-size: 0;max-height: 0;width: 0;line-height: 0;overflow: hidden;mso-hide: all;visibility: hidden;">
-					   <a class="o_text-light o_underline" href="<?php echo base_url(); ?>" style="text-decoration: underline;outline: none;color: #82899a;">Contact Us</a>
-                    </p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <!--[if mso]></td></tr></table><![endif]-->
-            <div class="o_hide-xs" style="font-size: 64px; line-height: 64px; height: 64px;">&nbsp; </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </body>
+</body>
+
 </html>

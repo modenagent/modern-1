@@ -1,21 +1,22 @@
 
 
 <!-- jequery plugins -->
-<script src="<?php echo base_url();?>/assets/login/js/jquery.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/popper.min.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/jquery.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/popper.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/bootstrap.min.js"></script>
 
 
-<script src="<?php echo base_url();?>/assets/login/js/jquery.fancybox.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/appear.js"></script>
-<script src="<?php echo base_url();?>/assets/login/js/jquery.paroller.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/jquery.fancybox.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/appear.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/jquery.paroller.min.js"></script>
 
 <!-- main-js -->
-<script src="<?php echo base_url();?>/assets/login/js/script.js"></script>
-<!-- 
-<script src="<?php echo base_url();?>/assets/js/jquery-toastr/toastr.min.js"></script>
-<script src="<?php echo base_url();?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script> -->
-<script src="<?php echo base_url();?>/assets/frontend/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/login/js/script.js"></script>
+
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/toastr.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script>
+<script src="<?php echo base_url(); ?>/assets/frontend/js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/frontend/js/jasny-bootstrap.min.js"></script>
 
 <script type="text/javascript">
 	function Notify(title,message,type) {
@@ -33,6 +34,7 @@
 		  }
 		}, 5000);
 	}
+
     // stopping form from submitting on enter key press
     $(document).ready(function() {
         $(window).keydown(function(event){
@@ -49,8 +51,56 @@
                 $("header.overlapping").removeClass("overlapping-down");
             }
         });
+
+        // $("input[name='uphone']").keyup(function() {
+        //     $(this).val($(this).val().replace(/^(\d{3})(\d{3})(\d+)$/, "($1)$2-$3"));
+        // });
+        // $(document).on('keypress', '#uphone', function(e) {
+        //     console.log('Test');
+        //     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        //         return false;
+        //     }
+        //     var curchr = this.value.length;
+        //     var curval = $(this).val();
+        //     console.log('curchr ==', curchr);
+        //     console.log('curval ==', curval);
+        //     if (curchr == 3 && curval.indexOf("(") <= -1) {
+        //         $(this).val("(" + curval + ")" + "-");
+        //         console.log('in first if');
+        //     } else if (curchr == 4 && curval.indexOf("(") > -1) {
+        //         $(this).val(curval + ")-");
+        //     } else if (curchr == 5 && curval.indexOf(")") > -1) {
+        //         $(this).val(curval + "-");
+        //     } else if (curchr == 9) {
+        //         $(this).val(curval + "-");
+        //         $(this).attr('maxlength', '14');
+        //     }
+        // });
+
+        // $(document).on('blur', '#uphone', function(e) {
+            //     var x = e.target.value.replace(/\D/g, '').match(/(\d{3})(\d{3})(\d{4})/);
+            //     e.target.value = '(' + x[1] + ') ' + x[2] + '-' + x[3];
+            // });
     });
-    // show the forgot password form
+
+    $("#uphone").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+        return false;
+        }
+        var curchr = this.value.length;
+        var curval = $(this).val();
+        if (curchr == 3 && curval.indexOf("(") <= -1) {
+        $(this).val("(" + curval + ")" + "-");
+        } else if (curchr == 4 && curval.indexOf("(") > -1) {
+        $(this).val(curval + ")-");
+        } else if (curchr == 5 && curval.indexOf(")") > -1) {
+        $(this).val(curval + "-");
+        } else if (curchr == 9) {
+        $(this).val(curval + "-");
+        $(this).attr('maxlength', '14');
+        }
+    });
+        // show the forgot password form
     $('.fp-link').click(function(){
         $('#login-form').hide();
         $('#forgot-form').show();
@@ -64,13 +114,13 @@
 
         $("#forgot-form").validate({
             rules:{
-                f_uemail:{
+                email:{
                     required:true,
                     email: true
                 }
             },
             messages:{
-                f_uemail: {
+                email: {
                     required: "Please enter email address",
                     email: "Please enter valid email address"
                 }
@@ -81,30 +131,32 @@
         $("#forgot_submit").click(function() {
             if ( !$("#forgot-form").valid() ) {
                 return false;
-            } else { 
+            } else {
                 $('#forgot_submit').val('Processing Request...');
                 $('#forgot_submit').attr('disabled',true);
 
                 var postData = $('#forgot-form').serialize();
-                var user_email = $("#f_uemail").val();
+                var user_email = $("#email").val();
 
                 $.ajax ({
                     url: "<?php echo site_url('auth/userforgotpass/format/json/'); ?>",
                     method: 'post',
                     dataType: "json",
                     data: {
-                        uemail: user_email
+                        email: user_email
                     }
                 })
                 .success(function(resp) {
                     var obj = resp;var msg = obj.msg;
                     if (obj.status == "success") {
-                        // submit button disable 
+                        // submit button disable
                         // $('#login-form').show();
                         // $('#forgot-form').hide();
                         // $('#forgot-form').trigger("reset");
                         Notify('Password reset', msg, 'success');
-                        location.href="<?php echo base_url('frontend/login');?>";
+                        setTimeout(() => {
+                            // location.href="<?php echo base_url('frontend/login'); ?>";
+                        }, 2000);
                     }
                     if (obj.status == "error" || obj.status == "failed") {
                         var msg = obj.msg;
@@ -112,6 +164,56 @@
                     }
                     $('#forgot_submit').val('Recover Password');
                     $('#forgot_submit').attr('disabled',false);
+                    $('.preloader').fadeOut(200);
+                });
+
+                return false;
+            }
+        });
+
+        // forgot form submit
+        $("#reset-password-submit-btn").click(function() {
+            if ( !$("#reset-password-submit-btn").valid() ) {
+                return false;
+            } else {
+                $('#reset-password-submit-btn').val('Processing Request...');
+                $('#reset-password-submit-btn').attr('disabled',true);
+
+                var password = $("#password").val();
+                var confirm_password = $("#confirm_password").val();
+                if ($.trim(password) == '' || $.trim(confirm_password) == '') {
+                    return false;
+                }
+                $('.preloader').fadeIn(200);
+
+                var postData = $('#reset-password-form').serialize();
+                var token = $("#token").val();
+
+                $.ajax ({
+                    url: "<?php echo site_url('auth/resetpassword/format/json/'); ?>",
+                    method: 'post',
+                    dataType: "json",
+                    data: {
+                        token: token,
+                        password: password,
+                        confirm_password: confirm_password
+                    }
+                })
+                .success(function(resp) {
+                    var obj = resp;var msg = obj.msg;
+                    if (obj.status == "success") {
+                        Notify('Password reset', msg, 'success');
+                        setTimeout(() => {
+                            location.href="<?php echo base_url('frontend/login'); ?>";
+                        }, 2000);
+                    }
+                    if (obj.status == "error" || obj.status == "failed") {
+                        var msg = obj.msg;
+                        Notify('Error', msg, 'error');
+                    }
+                    $('#reset-password-submit-btn').text('Update Password');
+                    $('#reset-password-submit-btn').attr('disabled',false);
+                    $('.preloader').fadeOut(200);
                 });
 
                 return false;
@@ -149,17 +251,15 @@
 
         // login form submit
         $("#login-form").submit(function(e) {
-            e.preventDefault(); 
-            console.log("clicked");
-            // if ( !$(this).valid() ) {
-            //     return false;
-            // } else {   
+            e.preventDefault();
+
                 var uname = $("#uemail").val();
                 var upass = $("#upass").val();
                 if ($.trim(uname) == '' || $.trim(upass) == '') {
                     return false;
                 }
-                $('#login-form-submit-btn').val('Please wait...');
+                $('.preloader').fadeIn(200);
+                $('#login-form-submit-btn').text('Please wait...');
                 $.ajax({
                     url: '<?php echo site_url('auth/userlogin/format/json/'); ?>',
                     method: 'post',
@@ -168,7 +268,6 @@
                         upass: upass
                     }
                 }).success(function(resp) {
-                    $('#login-form-submit-btn').val('Login');
                     var obj = resp;
                     if (obj.status == "success") {
                         window.location = '<?php echo site_url('user/dashboard'); ?>';
@@ -177,6 +276,8 @@
                         var msg = obj.msg;
                         Notify('Login Error', msg, 'error');
                     }
+                    $('#login-form-submit-btn').text('Login Account');
+                    $('.preloader').fadeOut(200);
                 });
                 return false;
             // }
@@ -193,9 +294,9 @@
 	            },
 	            uphone:{
 	                required: true,
-	                number:true,
+	                number:false,
 	                minlength: 10,
-	                maxlength: 12
+	                maxlength: 14
 	            },
 	            uemail:{
 	                required: true,
@@ -233,11 +334,17 @@
 	        }
 	    });
 
-	    $('#register-form').submit(function() {
-	        if ( !$(this).valid() ) {
+	    $('#create-account').click(function() {
+	        if ( !$('#register-form').valid() ) {
 	            return false;
 	        } else {
-	            $(this).submit();
+                console.log('Register stat');
+                $('.preloader').fadeIn(200);
+                $('#create-account').prop('disabled', true);
+                $('#create-account').text('Please wait...');
+                // alert('test registration');
+                // return false;
+	            $('#register-form').submit();
 	        }
 	    });
 
@@ -248,7 +355,7 @@
 	    $('.alphanumeric').on('input', function (event) {
 	        this.value = this.value.replace(/[^a-zA-Z0-9 ]/g, '');
 	    });
-        
+
     });
 </script>
 

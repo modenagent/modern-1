@@ -1,42 +1,38 @@
-  <?php 
-    $availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
-                            $sQFootage=0;
-                            $avgNoOfBeds = 0;
-                            $avgNoOfBaths = 0;
-                            $minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-                            $maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
-                            foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
-                              if($key>8){
-                                break;
-                              }
-
-                              if($minRange> $cpmrebl['PriceRate']){
-                                $maxRange= $cpmrebl['PriceRate'];
-                              }
-
-                              if($maxRange< $cpmrebl['PriceRate']){
-                                $maxRange= $cpmrebl['PriceRate'];
-                              }
-                            }
-                            
-
-
-    $no_of_pages =0 ;
-    
-    $no_of_pages =intval($availableCompareAble/3) ;
-    if(($no_of_pages*3)<$availableCompareAble){
-      $no_of_pages++;
+  <?php
+$availableCompareAble = sizeof($areaSalesAnalysis['comparable']);
+$sQFootage = 0;
+$avgNoOfBeds = 0;
+$avgNoOfBaths = 0;
+$minRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+$maxRange = $areaSalesAnalysis['comparable'][0]['PriceRate'];
+foreach ($areaSalesAnalysis['comparable'] as $key => $cpmrebl) {
+    if ($key > 8) {
+        break;
     }
-    if($no_of_pages>3){
-      $no_of_pages=3;
-    }else{
 
-    }  
-    $no_of_pages+=5;
+    if ($minRange > $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
+    }
 
+    if ($maxRange < $cpmrebl['PriceRate']) {
+        $maxRange = $cpmrebl['PriceRate'];
+    }
+}
 
+$no_of_pages = 0;
 
-  ?>
+$no_of_pages = intval($availableCompareAble / 3);
+if (($no_of_pages * 3) < $availableCompareAble) {
+    $no_of_pages++;
+}
+if ($no_of_pages > 3) {
+    $no_of_pages = 3;
+} else {
+
+}
+$no_of_pages += 5;
+
+?>
       <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -51,7 +47,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 .cf:after {clear:both;}
 .cf {zoom:1;}
 
-  
+
 /* Old Styling */
 
  .grey-bg{background-color:#f5f7f8; color:#000;}
@@ -59,38 +55,38 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
  .red-t-border{border-top:2px solid <?php echo $theme ?>;}
  .red-b-border{border-top:2px solid <?php echo $theme ?>;}
  .grey-t-border, .grey-t-border td{border-top:1px solid #d9dbe0;color:#818285;text-transform: uppercase;}
-    
-     
-	  
+
+
+
 /* page-1 */
 .page-1{}
 	/* pg-1-header */
 	.page-1 .pg-1-header{ padding:62px 50px 30px 50px;}
 	.page-1 .pg-1-header h2{ font-size:42px; font-family:museosansrounded-300-7h; color:<?php echo $theme ?>;}
 	.page-1 .pg-1-header h1{ font-size:70px; font-family: museosansrounded-900-7g; color: #c0cace; letter-spacing:-0.6px; line-height:52px;}
-	
+
 	/* pg-1-map */
 	.page-1 .pg-1-map{ text-align:center; margin:0 0 50px 0;}
-	
+
 	/* pg-1-clients */
 	.page-1 .pg-1-clients{ margin:0 50px 10px 50px;width:100%;}
 	.page-1 .pg-1-clients .client-name{ letter-spacing:0.7px; font-size:21px; font-family:museosansrounded-900-7g; color:#636466; padding:0 7px;}
 	.page-1 .pg-1-clients .client-detail{ font-family:museosansrounded-300-7h; color:#636466; font-size:18px; padding:0 7px;}
-	
+
 	/* pg-1-footer */
 	.pg-1-footer{ background:<?php echo $theme ?>; padding:25px 50px; clear:both; margin:0;}
     .pg-1-footer .fwrape{ font-size:21px; font-family:museosansrounded-300-7h; color:#fff;}
-	
+
 	/* page-2 */
 .page-2{}
 	/* pg-2-header */
 	.page-2 .pg-2-header{ padding:70px 50px 90px 50px;}
 	.page-2 .pg-2-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-2 .pg-2-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-2-content */
 	.page-2 .pg-2-content{ padding:10px 30px 90px 30px;font-family:museosansrounded-300-7h; font-size:18px; color:#818285;line-height:44px; }
-	
+
 	/* page-3 */
 .page-3{}
 	/* pg-3-header */
@@ -98,36 +94,36 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 	.page-3 .pg-3-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-3 .pg-3-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
 	.page-3 .pg-3-header h3{ font-size:47px; font-family:noterapersonaluseonly-6i; color:#231f20; line-height:130px;}
-	
+
 	/* pg-3-content */
 	.page-3 .pg-3-content{ padding:0 50px 90px 50px;}
 	.page-3 .pg-3-content .page-3-detail{ font-family:museosansrounded-300-7h; font-size:18px; color:#818285; padding:0;}
-   
-	
-	
-	
-	
+
+
+
+
+
 	/* page-4 */
 .page-4{}
 	/* pg-4-header */
 	.page-4 .pg-4-header{ padding:50px 50px 0 50px;}
 	.page-4 .pg-4-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-4 .pg-4-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-4-content */
 	.page-4 .pg-4-content{ padding:30px 70px 90px 70px;}
 	.page-4 .pg-4-content h4{ font-size:22px; font-family:museosansrounded-900-7g; color:#818285; line-height:40px;}
 	.page-4 .pg-4-content .page-4-table-main{ margin:0 0 30px 0; }
 	.page-4 .pg-4-content .page-4-table-main .tbl-text{ font-family:museosansrounded-300-7h; font-size:14px; color:#818285; line-height:20px; padding:5px 0px 5px 5px;}
-	
-	
+
+
 	/* page-5 */
 .page-5{}
 	/* pg-5-header */
 	.page-5 .pg-5-header{ padding:70px 50px 0 50px;}
 	.page-5 .pg-5-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-5 .pg-5-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-5-content */
 	.page-5 .pg-5-content{ padding:50px 50px 50px 50px;}
         .page-5 .pg-5-content h4{ font-size:22px; font-family:museosansrounded-900-7g; color:#818285; line-height:40px;}
@@ -141,51 +137,51 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         .page-5 .pg-5-content table td.red-t-border{font-family: museosansrounded-900-7g; color:#818285;}
         .page-5 .pg-5-content .inner-table td{ font-family:museosansrounded-300-7h; font-size:14px; color:#818285; line-height:20px; padding:5px 0px 5px 5px;}
 	.page-5 .pg-5-content .full-img {padding-left:25px;}
-	
-	
+
+
 		/* page-5A */
 .page-5A{}
 	/* pg-5A-header */
 	.page-5A .pg-5A-header{ padding:70px 50px 0 50px;}
 	.page-5A .pg-5A-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-5A .pg-5A-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-5A-content */
 	.page-5A .pg-5A-content{ padding:50px 50px 50px 50px;}
 	.page-5A .pg-5A-content .full-img {padding-left:15px;}
-	
-	
 
-	
-	
+
+
+
+
 	.page-6{}
 	/* pg-6-header */
 	.page-6 .pg-6-header{ padding:70px 50px 0 50px;}
         .page-6 .pg-6-content table td{ font-family:museosansrounded-300-7h;color:#818285;}
 	.page-6 .pg-6-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-6 .pg-6-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-6-content */
 	.page-6 .pg-6-content{ padding:50px 50px 50px 50px;}
-	
-	
+
+
 	    /* page-9a */
 .page-9{}
 	/* pg-9-header */
 	.page-9 .pg-9-header{ padding:70px 50px 0 50px;}
 	.page-9 .pg-9-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-9 .pg-9-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-9-content */
 	.page-9 .pg-9-content{ padding:50px 50px 50px 50px;}
-	
+
 	/* page-9 */
 .page-9{}
 	/* pg-9-header */
 	.page-9a .pg-9a-header{ padding:70px 50px 0 50px;}
 	.page-9a .pg-9a-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-9a .pg-9a-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-9-content */
 	.page-9a .pg-9a-content{ padding:40px 50px;}
 	.page-9a .pg-9a-content .pg9a-blk{ width:50%; float:left;}
@@ -194,73 +190,73 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 	.page-9a .pg-9a-content .pg9a-pit-image{ text-align:center;}
 	.page-9a .pg-9a-content .pg9a-fixprice{ font-family: museosansrounded-900-7g; font-size:16px; color:#fff; border-bottom:#fff 2px solid; line-height:54px; text-align:center; background:#a6cd3a;}
 	.grph-prx img{ width:100%; height:auto; float:left;}
-	
+
 		    /* page-10 */
 .page-10{}
 	/* pg-10-header */
 	.page-10 .pg-10-header{ padding:70px 50px 0 50px;}
 	.page-10 .pg-10-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-10 .pg-10-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-10-content */
 	.page-10 .pg-10-content{ padding:50px 50px 50px 50px;}
-	
+
 	.page-11{}
 	/* pg-11-header */
 	.page-11 .pg-11-header{ padding:70px 50px 0 50px;}
 	.page-11 .pg-11-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-11 .pg-11-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-11-content */
 	.page-11 .pg-11-content{ padding:50px 50px 50px 50px;}
 	.page-11 .pg-11-content p{ font-size:16px; font-family:museosansrounded-300-7h; color: #76777b;}
 	.page-11 .pg-11-content table h4{ font-size:18px; font-family:museosansrounded-300-7h; color:<?php echo $theme ?>;}
-	
-	
+
+
 	.page-12{}
 	/* pg-12-header */
 	.page-12 .pg-12-header{ padding:70px 50px 0 50px;}
 	.page-12 .pg-12-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-12 .pg-12-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-12-content */
 	.page-12 .pg-12-content{ padding:50px 50px 50px 50px;}
 	.page-12 .pg-12-content p{ font-size:16px; font-family:museosansrounded-300-7h; color: #76777b;}
 	.page-12 table tr h4{ font-size:18px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-12 table tr p{ font-size:16px; font-family:museosansrounded-900-7g; color:#76777b;}
-	
-	
+
+
 	.page-13{}
 	/* pg-13-header */
 	.page-13 .pg-13-header{ padding:70px 50px 0 50px;}
 	.page-13 .pg-13-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-13 .pg-13-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-13-content */
 	.page-13 .pg-13-content{ padding:50px 50px 50px 50px;}
 	.page-13 .pg-13-content p { font-size:16px; font-family:museosansrounded-300-7h; color: #76777b;}
     .page-13 .pg-13-content table { font-size:16px; font-family:museosansrounded-300-7h; color: #76777b;}
 	.page-13 .pg-13-content table p{ font-size:17px; font-family:museosansrounded-300-7h; color: #76777b;}
 	.page-13 .pg-13-content table td{ font-size:13px; font-family:museosansrounded-300-7h; color: #76777b;}
-	
-	
+
+
 	.page-14{}
 	/* pg-14-header */
 	.page-14 .pg-14-header{ padding:70px 50px 0 50px;}
 	.page-14 .pg-14-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-14 .pg-14-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-14-content */
 	.page-14 .pg-14-content{ padding:50px 50px 50px 50px;}
 	.page-14 .pg-14-content p{ font-size:12px; font-family:museosansrounded-900-7g; color: #76777b;}
-	
-	
+
+
 	.page-15{}
 	/* pg-15-header */
 	.page-15 .pg-15-header{ padding:70px 50px 0 50px;}
 	.page-15 .pg-15-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-15 .pg-15-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-15-content */
 	.page-15 .pg-15-content{ padding:50px 50px 50px 50px;}
 	.page-15 .pg-15-content p{ font-size:16px; font-family:museosansrounded-300-7h; color: #76777b;}
@@ -270,36 +266,36 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
     .page-15 .pg-15-content .tg .tg-yw4l{vertical-align:middle;}
 	.page-15 .pg-15-content .tg .tg-yw42{vertical-align:middle; background:#76777b; padding: 12px 0px 12px 0px; font-size:15px;}
 	.page-15 .pg-15-content h3{ font-size:19px; font-family:museosansrounded-900-7g; color: #76777b;}
-	
-	
-	
+
+
+
 	.page-16{}
 	/* pg-16-header */
 	.page-16 .pg-16-header{ padding:70px 50px 0 50px;}
 	.page-16 .pg-16-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-16 .pg-16-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-16-content */
 		.page-16 .pg-16-content{ padding:50px 50px 50px 50px;}
-	
-	
+
+
 	.page-17{}
 	/* pg-17-header */
 	.page-17 .pg-17-header{ padding:70px 50px 0 50px;}
 	.page-17 .pg-17-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-17 .pg-17-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-17-content */
 	.page-17 .pg-17-content{ padding:50px 50px 50px 50px;}
 	.page-17 .pg-17-content p{ font-size:12px; font-family:museosansrounded-900-7g; color: #76777b;}
-	
-	
+
+
 	.page-18{}
 	/* pg-18-header */
 	.page-18 .pg-18-header{ padding:70px 50px 0 50px;}
 	.page-18 .pg-18-header h1{ font-size:45px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;}
 	.page-18 .pg-18-header h2{ font-size:22px; font-family:museosansrounded-300-7h; color:#818285;}
-	
+
 	/* pg-18-content */
 	.page-18 .pg-18-content{ padding:50px 50px 50px 50px;}
 	.page-18 .pg-18-content h2{ font-size:23px; font-family:museosansrounded-300-7h; color:<?php echo $theme ?>;margin:0px; margin-top:25px;}
@@ -307,87 +303,87 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 	.page-18 .pg-18-content p{ font-size:16px; font-family:museosansrounded-300-7h; color: #76777b; margin: 0px;}
 	.pg9a-detail-area{font-family: museosansrounded-300-7h; font-size:16px; color: #76777b;}
         .pg9a-title{font-family: museosansrounded-900-7g; font-size:18px;}
-	
+
       </style>
     </head>
     <body>
         <htmlpagefooter name="MyFooter1" style="margin:0;">
-    
+
       <div class="pg-1-footer cf" style="margin:0;">
           <table class="fwrape" width="100%">
             <tr>
                 <td width="80%" align="left">
-                  <?php echo $property->PropertyProfile->SiteAddress.', '.$property->PropertyProfile->SiteCity.', '.$property->PropertyProfile->SiteState ; ?>
+                  <?php echo $property->PropertyProfile->SiteAddress . ', ' . $property->PropertyProfile->SiteCity . ', ' . $property->PropertyProfile->SiteState; ?>
                 </td>
                 <td width="20%" align="right">
                   Page {PAGENO}
                 </td>
             </tr>
           </table>
-      </div>      
-    
+      </div>
+
 
        </htmlpagefooter>
 
 
 
-<article>      
+<article>
                    <!-- Page 1 -->
 				   <div class="page-1">
 				   <div class="pg-1-header">
                   <h2>LISTING PROPOSAL</h2>
-				  <h1><?php echo $property->PropertyProfile->SiteAddress ; ?></h1>
-				  <h2><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState ; ?> <?php echo $property->PropertyProfile->SiteZip; ?></h2>
+				  <h1><?php echo $property->PropertyProfile->SiteAddress; ?></h1>
+				  <h2><?php echo $property->PropertyProfile->SiteCity; ?>, <?php echo $property->PropertyProfile->SiteState; ?> <?php echo $property->PropertyProfile->SiteZip; ?></h2>
 				  </div><!-- .pg-1-header -->
                  <div class="pg-1-map"><img width="750px;" src="assets/images/lpcov.png" alt="" style="background-color:<?php echo $theme ?>;" /></div><!-- .pg-1-map -->
-                 
-                  
+
+
                     <table class="pg-1-clients cf">
             <tr>
                 <td>
 			<table width="350" border="0" align="left" cellpadding="0" cellspacing="0">
                 <tr>
-                    <td width="64px" rowspan="2" align="center" valign="top"><?php if($user['profile_image'] != '' && $user['profile_image'] != 'no'):?><img src="<?php echo base_url().$user['profile_image']; ?>" style="max-width:64px; height:120px;" alt="" /><?php endif; ?></td>
+                    <td width="64px" rowspan="2" align="center" valign="top"><?php if ($user['profile_image'] != '' && $user['profile_image'] != 'no'): ?><img src="<?php echo base_url() . $user['profile_image']; ?>" style="max-width:64px; height:120px;" alt="" /><?php endif;?></td>
                     <td width="245" class="client-name"><?php echo $user['fullname']; ?></td>
                 </tr>
                 <tr>
                     <td width="245" align="left" valign="top" class="client-detail"><?php echo $user['title']; ?><br />CaBRE#<?php echo $user['licenceno']; ?><br />Direct: <?php echo $user['phone']; ?><br /><?php echo $user['email']; ?><br /><?php echo $user['website']; ?></td>
                 </tr>
-                <?php if($partner): ?>
+                <?php if ($partner): ?>
                 <tr>
-                    <td colspan="2" align="left" valign="top"><?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:75px;max-width:185px;padding-top: 5px;"  alt="Logo Image"/><?php endif; ?></td>
+                    <td colspan="2" align="left" valign="top"><?php if ($user['company_logo'] != ''): ?><img src="<?php echo base_url() . $user['company_logo']; ?>" style="max-height:75px;max-width:185px;padding-top: 5px;"  alt="Logo Image"/><?php endif;?></td>
                 </tr>
-                <?php endif; ?>
+                <?php endif;?>
                 </table>
                 </td>
-                <td <?php echo (!$partner)?'valign="bottom"':''; ?>>
+                <td <?php echo (!$partner) ? 'valign="bottom"' : ''; ?>>
             <table width="350" border="0" align="right" cellpadding="0" cellspacing="0">
-            <?php if($partner): ?>
+            <?php if ($partner): ?>
             <tr>
             <td width="245" align="right" valign="top" class="client-name"><?php echo $partner['fullname']; ?></td>
-            <td rowspan="2" align="right" width="64px" valign="top"><img src="<?php echo base_url().$partner['profile_image']; ?>"   style="max-width:64px; max-height:115px; height:115px;" alt=""/></td>
+            <td rowspan="2" align="right" width="64px" valign="top"><img src="<?php echo base_url() . $partner['profile_image']; ?>"   style="max-width:64px; max-height:115px; height:115px;" alt=""/></td>
             </tr>
             <tr>
             <td width="245" align="right" valign="top" class="client-detail"><?php echo $partner['title']; ?><br />CaBRE#<?php echo $partner['licenceno']; ?><br />Direct: <?php echo $partner['phone']; ?><br /><?php echo $partner['email']; ?><br /><?php echo $partner['website']; ?></td>
             </tr>
             <tr>
-            <td colspan="2" align="right" valign="top"><?php if($partner['company_image']): ?><img src="<?php echo base_url().$partner['company_image']; ?>" style="max-height:75px;max-width:185px;padding-top: 5px;"  alt="Logo Image"/><?php endif; ?></td>
+            <td colspan="2" align="right" valign="top"><?php if ($partner['company_image']): ?><img src="<?php echo base_url() . $partner['company_image']; ?>" style="max-height:75px;max-width:185px;padding-top: 5px;"  alt="Logo Image"/><?php endif;?></td>
             </tr>
             <?php else: ?>
                 <tr>
-                    <td colspan="2" align="right" valign="top"><?php if($user['company_logo'] != ''):?><img src="<?php echo base_url().$user['company_logo']; ?>" style="max-height:75px;max-width:185px;padding-bottom: 10px;"  alt="Logo Image"/><?php endif; ?></td>
+                    <td colspan="2" align="right" valign="top"><?php if ($user['company_logo'] != ''): ?><img src="<?php echo base_url() . $user['company_logo']; ?>" style="max-height:75px;max-width:185px;padding-bottom: 10px;"  alt="Logo Image"/><?php endif;?></td>
                 </tr>
-            <?php endif; ?>
+            <?php endif;?>
             </table>
-            
+
         </td></tr>
-            
+
         </table>
       </div><!-- .pg-1-clients -->
     <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
     </div><!-- .page-1 -->
 </article>
-            
+
                   <!-- Page 2 -->
 <article>
 	<div class="page-2">
@@ -462,7 +458,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
     </div><!-- .page-2 -->
 </article>
                   <!-- page 2 end -->
- 
+
  <article>
                   <!-- page 3 -->
                   <div class="page-5">
@@ -470,14 +466,14 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 						<h1>AERIAL VIEW</h1>
 						<h2>Area we will be analyzing</h2>
 					</div><!-- .pg-5-header -->
-                    
+
 					<div class="pg-5-content cf">
                       <div class="full-img">
-                      <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x519&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:6.9in; height:5.4in;" /></div>
-                      
+                      <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x519&maptype=roadmap&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:6.9in; height:5.4in;" /></div>
+
 					  <div class="page-5-map-detail">
 					  <h3>Why a 2-Mile Radius</h3>
-                 
+
                       A 2-Mile radius gives the ideal range to accurately research properties that either have been recently sold and are similar to yours in regards to the number of bedrooms, bathrooms, living area (sqft), and property lot size.
 					  </div>
                     </div>
@@ -485,7 +481,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                   </div>
                   <!-- page 3 end -->
 </article>
-              
+
 <article style="">
 	<div class="page-4">
 		<div class="pg-4-header">
@@ -503,10 +499,10 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                     <td bgcolor="#d1d2d4" class="tbl-text">Secondary Owner: <?php echo $secondary_owner; ?></td>
                     </tr>
                     <tr>
-                    <td class="tbl-text">Site Address: <?php echo $property->PropertyProfile->SiteAddress.', '. $property->PropertyProfile->SiteCity.', '. $property->PropertyProfile->SiteState.' '.$property->PropertyProfile->SiteZip; ?></td>
+                    <td class="tbl-text">Site Address: <?php echo $property->PropertyProfile->SiteAddress . ', ' . $property->PropertyProfile->SiteCity . ', ' . $property->PropertyProfile->SiteState . ' ' . $property->PropertyProfile->SiteZip; ?></td>
                     </tr>
                     <tr>
-                    <td bgcolor="#d1d2d4" class="tbl-text">Mailing Address: <?php echo $property->PropertyProfile->MailAddress.', '. $property->PropertyProfile->MailCity.', '. $property->PropertyProfile->MailState.' '.$property->PropertyProfile->MailZip; ?></td>
+                    <td bgcolor="#d1d2d4" class="tbl-text">Mailing Address: <?php echo $property->PropertyProfile->MailAddress . ', ' . $property->PropertyProfile->MailCity . ', ' . $property->PropertyProfile->MailState . ' ' . $property->PropertyProfile->MailZip; ?></td>
                     </tr>
                     <tr>
                     <td>
@@ -533,7 +529,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                     </tr>
 				</table>
             </div><!-- .page-4-table-main -->
-        	<h4>BEDS, BATHS, & SQUARE FOOTAGE</h4>
+        	<h4></h4>
             <div class="page-4-table-main cf">
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
@@ -603,8 +599,25 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 						<h2>Sales in the past 12 months</h2>
 						</div><!-- .pg-5A-header -->
                     <div class="pg-5-content cf">
-                      <div class="full-img"><img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:3.31in;" /></div>
-                      
+                      <div class="full-img">
+<?php
+$series = $areaSalesAnalysis['chart']['series'];
+$date = $areaSalesAnalysis['chart']['date'];
+$color = $areaSalesAnalysis['chart']['color'];
+$chartImageUrl = "https://quickchart.io/chart?cht=bvs&chd=t:$series&chs=700x400&chl=$date&chbh=40,30,45&chco=$color&chds=a&chxt=y";
+
+/** Check chart image exist or not */
+$headers = get_headers($chartImageUrl);
+$httpStatus = intval(substr($headers[0], 9, 3));
+
+// Check if the HTTP status code indicates success (200 OK)
+if ($httpStatus === 200) {?>
+    <img src="<?=$chartImageUrl?>"  alt="graph" style="margin:auto; width:100%; height:3.31in;">
+<?php }?>
+                        <!-- Google chart image api deprecated so we have implemented quickchart.io as an alternative  -->
+                        <!-- <img src="https://chart.googleapis.com/chart?cht=bvs&chd=t:<?php echo $areaSalesAnalysis['chart']['series']; ?>&chs=700x400&chl=<?php echo $areaSalesAnalysis['chart']['date']; ?>&chbh=40,30,45&chco=<?php echo $areaSalesAnalysis['chart']['color']; ?>&chds=a&chxt=y" alt="" style="margin:auto; width:100%; height:3.31in;" /> -->
+                      </div>
+
                       <h4 style="text-align:center;">MONTHLY SALES OVERVIEW</h4>
                       <table width="100%" border="0" cellspacing="0" cellpadding="6">
                         <tr>
@@ -614,7 +627,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                           <td width="20%" class="red-title">MEDIAN</td>
                           <td width="20%" class="red-title">HIGH</td>
                         </tr>
-                        
+
 
 
                         <tr class="grey-t-border">
@@ -682,7 +695,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                         </tr>
                         <tr>
                           <td class="red-t-border">SALES PRICE:</td>
-                          <td class="red-t-border"><?php echo ($areaSalesAnalysis['propertySalePrice']  != '')?"$".$areaSalesAnalysis['propertySalePrice']:''; ?></td>
+                          <td class="red-t-border"><?php echo ($areaSalesAnalysis['propertySalePrice'] != '') ? "$" . $areaSalesAnalysis['propertySalePrice'] : ''; ?></td>
                           <td class="red-t-border">$<?php echo trim($areaSalesAnalysis['propertySalePriceLow']); ?></td>
                           <td class="red-t-border">$<?php echo trim($areaSalesAnalysis['propertySalePriceMedian']); ?></td>
                           <td class="red-t-border">$<?php echo trim($areaSalesAnalysis['propertySalePriceLowHigh']); ?></td>
@@ -694,8 +707,8 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                   </div>
                   <!-- page 5A end -->
 </article>
-				 
-                    
+
+
                   <!-- page 6 -->
                  <!--  <div class="sales-comparables">
                       <h1>SALES COMPARABLES</h1>
@@ -703,48 +716,47 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                       <div class="inner-content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="8"> -->
                           <?php
-                            if(sizeof($areaSalesAnalysis['comparable'])>0)
-                            {
-                                                      $avaiProperty = 0;
-                              foreach ($areaSalesAnalysis['comparable'] as $key => $item) {
-                                if($key>8){
-                                  break;
-                              }
-							$sQFootage+=$item['BuildingArea'];
-							$avgNoOfBeds+=$item['Beds'];
-							$avgNoOfBaths +=$item['Baths'];
-                            ?>
+if (sizeof($areaSalesAnalysis['comparable']) > 0) {
+    $avaiProperty = 0;
+    foreach ($areaSalesAnalysis['comparable'] as $key => $item) {
+        if ($key > 8) {
+            break;
+        }
+        $sQFootage += $item['BuildingArea'];
+        $avgNoOfBeds += $item['Beds'];
+        $avgNoOfBaths += $item['Baths'];
+        ?>
 
                             <?php
-                              if(($key%3)==0 && $key>0){
+if (($key % 3) == 0 && $key > 0) {
 
-                                       echo  '</table>
+            echo '</table>
                                                                     </div>
                                                                     <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                                                     </div>
 
                                                                     ';
-                              }
-                              if(($key%3)==0){
+        }
+        if (($key % 3) == 0) {
 
-                                echo '<div class="page-5"> <div class="pg-5-header">
+            echo '<div class="page-5"> <div class="pg-5-header">
                                                           <h1>SALES COMPARABLES</h1>
                                                           <h2>Properties that have recently sold.</h2>
                                                           </div>
                                                           <div class="pg-5-content cf">
                                                             <table width="100%" border="0" cellspacing="0" cellpadding="8" class="page-5-table-main">
                                                       ';
-                              }
-                            ?>
-                              
+        }
+        ?>
+
                               <tr>
                                 <td width="30%">
-                                
+
                                     <table width="100%" border="0" cellspacing="2" cellpadding="2" style="font-size:14px;">
-                      
+
                                   <tr>
                                       <td colspan="2">
-                                        <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=180x100&maptype=roadmap&markers=color:f15d3e%7Clabel:S%7C<?php echo $item['Latitude'].','.$item['Longitude']; ?>" 
+                                        <img src="https://maps.googleapis.com/maps/api/staticmap?zoom=14&size=180x100&maptype=roadmap&markers=color:f15d3e%7Clabel:S%7C<?php echo $item['Latitude'] . ',' . $item['Longitude']; ?>"
                                         style="width:2.23in; height:1.3in;"   alt=""/>
 
                                       </td>
@@ -752,95 +764,95 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                   <tr>
                                       <td style="-webkit-print-color-adjust: exact; background:<?php echo $theme ?> -webkit-print-color-adjust: exact; color:#fff; font-size:12px;  height:0.30in; " bgcolor="<?php echo $theme ?>"> &nbsp;&nbsp;Sale Price:</td>
                                       <td bordercolor="<?php echo $theme ?>" style="border:1px solid <?php echo $theme ?>; font-size:14px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>; text-align:center;"><?php echo $item['Price']; ?></td>
-                                    
+
                                   </tr>
                                 </table>
 
                                 </td>
                                 <td width="70%" >
-                                  
+
                                 <table class="inner-table" width="100%" border="0" cellspacing="2" cellpadding="5" style=" font-size:18px; text-align:center;" >
                                       <tr>
                                           <td align="left" colspan="4" class="table-title"><?php echo $item['Address']; ?></td>
                                       </tr>
                                        <tr>
-                                          
-                                          <td bgcolor="#f8f8f8">Sold Date</td>
+
+                                          <td bgcolor="#f8f8f8">Days on Market</td>
                                           <td bgcolor="#f8f8f8">Dist.</td>
                                           <td bgcolor="#f8f8f8">Sqft.</td>
                                           <td bgcolor="#f8f8f8">$/Sqft</td>
                                         </tr>
                                         <tr>
-                                          
-                                          <td><?php echo $item['Date']; ?></td>
+
+                                          <td><?php echo $item['DaysOnMarket']; ?></td>
                                           <td><?php echo $item['Distance']; ?></td>
                                           <td><?php echo $item['SquareFeet']; ?></td>
                                           <td>$<?php echo $item['PricePerSQFT']; ?></td>
-                                          
+
                                         </tr>
                                         <tr>
-                                          
+
                                           <td bgcolor="#f8f8f8">Bed/Bath</td>
                                           <td bgcolor="#f8f8f8">Year Blt</td>
                                           <td bgcolor="#f8f8f8">Lot Area</td>
                                           <td bgcolor="#f8f8f8">Pool</td>
                                         </tr>
                                         <tr>
-                                         
+
                                           <td><?php echo $item['Beds']; ?>/<?php echo $item['Baths']; ?></td>
                                           <td><?php echo $item['Year']; ?></td>
                                           <td><?php echo $item['LotSize']; ?></td>
                                           <td><?php echo $item['Pool']; ?></td>
                                         </tr>
-                                        
-                                    
+
+
                                   </table>
                                 </td>
                               </tr>
 
-                              
+
                               <tr>
                                             <td  width="100%" colspan="2">
                                               <table  width="100%" border="0" cellspacing="2" cellpadding="5" >
                                                 <tr>
                                                   <td width="3%"></td>
-                                                  <td class="red-b-border" style="line-height: 0.5;" width="94%"  ></td>                                              
+                                                  <td class="red-b-border" style="line-height: 0.5;" width="94%"  ></td>
                                                   <td width="3%"></td>
                                                 </tr>
                                               </table>
                                             </td>
 
                               </tr>
-                                        
-                             
+
+
                             <?php
 
-                                $avaiProperty++;
-                              }
-                              $sQFootage = $sQFootage/$avaiProperty;
+        $avaiProperty++;
+    }
+    $sQFootage = $sQFootage / $avaiProperty;
 
-                              $avgNoOfBeds = $avgNoOfBeds/$avaiProperty;
-                              $avgNoOfBaths = $avgNoOfBaths/$avaiProperty;
-                              ?>
+    $avgNoOfBeds = $avgNoOfBeds / $avaiProperty;
+    $avgNoOfBaths = $avgNoOfBaths / $avaiProperty;
+    ?>
 
 
                         </table>
                       </div>
                       <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
-                      <?php 
+                      <?php
 
-                      }
-                          ?>
+}
+?>
 
                   </div>
                   <!-- page 6 end -->
-                      
+
                   <!-- page 7  Reated Data Removed page 7-->
                   <!-- page 7 end -->
-                        
+
                   <!-- page 8 -->
                   <!-- page 8 end -->
-<article>                          
+<article>
                   <!-- page 9 -->
                   <div class="page-9">
 							<div class="pg-9-header">
@@ -848,8 +860,8 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 							<h2>Based on recent comparable sales.</h2>
 							</div><!-- .pg-9-header -->
                             <div class="pg-9-content cf">
-                              <div class="full-img"><img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x420&maptype=satelite&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude.','.$property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:100%; height:3.5in;" /></div><br><br>
-                             
+                              <div class="full-img"><img src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&size=663x420&maptype=satelite&center=<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>&markers=color:f15d3e%7Clabel:S%7C<?php echo $property->PropertyProfile->PropertyCharacteristics->Latitude . ',' . $property->PropertyProfile->PropertyCharacteristics->Longitude; ?>" alt="" style="width:100%; height:3.5in;" /></div><br><br>
+
                               <div style='background: url("<?php echo base_url(); ?>pdf/images/factor.png") 50% 0 no-repeat;'>
                               <img src="<?php echo base_url(); ?>pdf/images/factor.png" width="100%" alt=""/>
                               <table width="100%" cellspacing="0" cellpadding="8" border="0" style="margin-top:-100px;">
@@ -943,7 +955,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
     <path fill="#A7A9AC" d="M693.7,90.7c8.5,0,15.1,6.9,15.1,15.1c0,8.5-6.9,15.1-15.1,15.1c-8.5,0-15.1-6.9-15.1-15.1
       C678.6,97.6,685.3,90.7,693.7,90.7 M693.7,87.9c-9.8,0-17.9,8.1-17.9,17.9c0,9.8,8.1,17.9,17.9,17.9s17.9-8.1,17.9-17.9
       C711.6,96,703.6,87.9,693.7,87.9L693.7,87.9z"/>
-    <polygon fill="#A7A9AC" points="701.2,103.1 695.9,103.1 695.9,97.6 690.4,97.6 690.4,103.1 684.9,103.1 684.9,108.4 690.4,108.4 
+    <polygon fill="#A7A9AC" points="701.2,103.1 695.9,103.1 695.9,97.6 690.4,97.6 690.4,103.1 684.9,103.1 684.9,108.4 690.4,108.4
       690.4,113.9 695.9,113.9 695.9,108.4 701.2,108.4   "/>
   </g>
   <g>
@@ -1050,7 +1062,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
   </g>
   </svg>
 
-                              
+
           </div>
   </div>
   <div style="margin-top:-80px; position:relative; ">
@@ -1058,16 +1070,16 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                 <tbody>
                                   <tr>
                                     <td align="left" width="50%"><h3 style="font-size:35px;font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;">
-                                      $<?php 
-                                      
-                                        echo round($areaSalesAnalysis['priceMinRange']).'K'; ?></h3>
+                                      $<?php
+
+echo round($areaSalesAnalysis['priceMinRange']) . 'K'; ?></h3>
                                     </td>
                                     <td align="right" width="50%">
                                       <h3 style="font-size:35px;font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;">
-                                        $<?php 
-                                         
-                                          echo round($areaSalesAnalysis['priceMaxRange']).'K'; 
-                                        ?>
+                                        $<?php
+
+echo round($areaSalesAnalysis['priceMaxRange']) . 'K';
+?>
                                       </h3>
                                     </td>
                                   </tr>
@@ -1123,7 +1135,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <polygon fill="#F79421" points="415.5,412.6 411.7,416.5 411.7,436.3 417.1,436.3 417.1,416.1 415.5,416.1       "/>
       </g>
       <g>
-        <polygon fill="#F79421" points="410.9,405.3 410.9,407.1 414,407.1 403.7,417.4 393.6,407.2 382.9,418 385.3,420.5 393.6,412.1 
+        <polygon fill="#F79421" points="410.9,405.3 410.9,407.1 414,407.1 403.7,417.4 393.6,407.2 382.9,418 385.3,420.5 393.6,412.1
           403.7,422.3 416.7,409.5 416.7,413.9 418.4,413.9 418.4,405.3       "/>
       </g>
     </g>
@@ -1293,7 +1305,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
       </g>
       <g>
         <g>
-          <polygon fill="#1072BA" points="373.2,696.3 373.2,698.099 376.3,698.099 366,708.4 355.9,698.201 345.2,709 347.6,711.5 
+          <polygon fill="#1072BA" points="373.2,696.3 373.2,698.099 376.3,698.099 366,708.4 355.9,698.201 345.2,709 347.6,711.5
             355.9,703.201 366,713.4 379,700.5 379,704.9 380.7,704.9 380.7,696.3         "/>
         </g>
       </g>
@@ -2364,14 +2376,14 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 
 
                             </div>
-                            
+
                           </div>
                           <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                           </div>
                           <!-- page 10 end -->
 </article>
 
-<article>                          
+<article>
                           <!-- page 11 -->
                           <div class="page-11">
 							<div class="pg-11-header">
@@ -2381,9 +2393,9 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                             <div class="pg-11-content cf">
                               <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/fnd-a-home_896p.png" alt="" style="width:100%; height:4.447in; margin-top:-20px; " /></div>
                               <p >Most buyers now begin their search online either at home, on their break at work, but more often than not on their mobile device.  Since more than 80% of buyers begin their home search online they are simultaneously taking the opportunity to educate themselves on the buying process. So today’s buyer is now more informed than every but will still rely on a realtor to guide them through the transaction. The typical home buyer takes about 3 months to purchase his home which means they have been looking for 2 months before your decided to sell your home</p>
-                              
+
                               <table width="100%" border="0" cellspacing="0" cellpadding="3" valign="top">
-                                
+
                                 <tbody>
                                   <tr>
                                     <td width="60%">
@@ -2395,7 +2407,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                           <tbody>
                                             <tr>
                                               <td align="left" valign="top">
-                                                
+
                                                 <img src="<?php echo base_url(); ?>pdf/images/place-2.png" alt=""  style="margin-bottom:-150px" />
                                                 <br>
                                                 <table width="100%" align="center"  cellspacing="1" cellpadding="1" border="0" valign="top" >
@@ -2409,16 +2421,16 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                                     </p></td></tr>
                                                   </tbody>
                                                 </table>
-                                                
+
                                               </td></tr>
                                             </tbody></table>
-                                            
-                                            
+
+
                                           </td>
                                         </tr>
                                       </tbody>
                                     </table>
-                                    
+
                                   </div>
                                   <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                   </div>
@@ -2437,7 +2449,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                       </p>
                                       <div class="full-img" align="center">
 
-  <!-- 
+  <!--
                                       <img src="<?php echo base_url(); ?>pdf/images/pricing-money.png" alt="" style="width:90%;  " /> -->
 
                                       <svg version="1.1"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
@@ -3272,7 +3284,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="75" y="59" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 135.9598 156.7278)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="85" y="67" transform="matrix(0.3389 -0.9408 0.9408 0.3389 -7.5621 125.7632)" width="1.5" height="2.5"/>
@@ -3283,7 +3295,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="87.5" y="63.5" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 158.7022 169.6866)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="97.4" y="71.5" transform="matrix(0.3385 -0.941 0.941 0.3385 -3.5131 140.4974)" width="1.5" height="2.5"/>
@@ -3294,7 +3306,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="100" y="68" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 181.445 182.6579)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="110" y="76" transform="matrix(0.3392 -0.9407 0.9407 0.3392 0.4964 155.1784)" width="1.5" height="2.5"/>
@@ -3305,7 +3317,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="112.5" y="72.5" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 204.1841 195.6167)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="122.5" y="80.5" transform="matrix(0.3389 -0.9408 0.9408 0.3389 4.5295 169.9621)" width="1.5" height="2.5"/>
@@ -3316,7 +3328,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="125" y="77" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 226.9063 208.615)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="134.9" y="85" transform="matrix(0.3388 -0.9409 0.9409 0.3388 8.5508 184.6697)" width="1.5" height="2.5"/>
@@ -3327,7 +3339,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="137.5" y="81.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 249.6414 221.5675)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="147.5" y="89.5" transform="matrix(0.3385 -0.941 0.941 0.3385 12.6477 199.4885)" width="1.5" height="2.5"/>
@@ -3338,7 +3350,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="150" y="86" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 272.3985 234.5144)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="159.9" y="94" transform="matrix(0.3389 -0.9408 0.9408 0.3389 16.5979 214.123)" width="1.5" height="2.5"/>
@@ -3349,7 +3361,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="162.5" y="90.5" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 295.1217 247.4977)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="172.4" y="98.5" transform="matrix(0.3389 -0.9408 0.9408 0.3389 20.6569 228.8803)" width="1.5" height="2.5"/>
@@ -3360,7 +3372,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="175" y="95" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 317.8483 260.4687)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="184.9" y="103" transform="matrix(0.3389 -0.9408 0.9408 0.3389 24.6913 243.628)" width="1.5" height="2.5"/>
@@ -3371,7 +3383,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="187.5" y="99.5" transform="matrix(-0.9409 -0.3388 0.3388 -0.9409 340.5761 273.4655)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="197.4" y="107.5" transform="matrix(0.3382 -0.9411 0.9411 0.3382 28.7979 258.4563)" width="1.5" height="2.5"/>
@@ -3382,7 +3394,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="200" y="104" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 363.3438 286.3997)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="209.9" y="112" transform="matrix(0.3389 -0.9408 0.9408 0.3389 32.7548 273.0964)" width="1.5" height="2.5"/>
@@ -3393,7 +3405,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="212.5" y="108.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 386.0804 299.369)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="222.4" y="116.4" transform="matrix(0.3389 -0.9408 0.9408 0.3389 36.8472 287.7728)" width="1.5" height="2.5"/>
@@ -3404,7 +3416,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="225" y="113" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 408.8092 312.3608)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="235" y="121" transform="matrix(0.3392 -0.9407 0.9407 0.3392 40.764 302.5054)" width="1.5" height="2.5"/>
@@ -3415,7 +3427,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="237.5" y="117.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 431.535 325.3199)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="247.5" y="125.5" transform="matrix(0.3389 -0.9408 0.9408 0.3389 44.8574 317.3246)" width="1.5" height="2.5"/>
@@ -3426,7 +3438,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="250" y="122" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 454.3012 338.2672)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="259.9" y="129.9" transform="matrix(0.3386 -0.9409 0.9409 0.3386 48.9767 332.0634)" width="1.5" height="2.5"/>
@@ -3437,7 +3449,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="262.5" y="126.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 477.0071 351.2575)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="272.5" y="134.5" transform="matrix(0.3389 -0.9408 0.9408 0.3389 52.9012 346.7971)" width="1.5" height="2.5"/>
@@ -3448,7 +3460,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="275" y="131" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 499.7619 364.2105)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="285" y="139" transform="matrix(0.3383 -0.941 0.941 0.3383 57.0858 361.6734)" width="1.5" height="2.5"/>
@@ -3459,7 +3471,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="287.5" y="135.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 522.4956 377.1778)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="297.5" y="143.5" transform="matrix(0.3392 -0.9407 0.9407 0.3392 60.9038 376.2002)" width="1.5" height="2.5"/>
@@ -3470,7 +3482,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="300" y="140" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 545.2307 390.14)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="309.9" y="147.9" transform="matrix(0.3385 -0.941 0.941 0.3385 65.1292 391.0445)" width="1.5" height="2.5"/>
@@ -3481,7 +3493,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="312.5" y="144.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 567.9933 403.1087)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="322.5" y="152.5" transform="matrix(0.3385 -0.941 0.941 0.3385 69.105 405.8519)" width="1.5" height="2.5"/>
@@ -3492,7 +3504,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="325" y="149" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 590.7167 416.1027)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="335" y="157" transform="matrix(0.3386 -0.9409 0.9409 0.3386 73.1555 420.5507)" width="1.5" height="2.5"/>
@@ -3503,7 +3515,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="337.5" y="153.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 613.4165 429.062)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="347.5" y="161.5" transform="matrix(0.3385 -0.941 0.941 0.3385 77.1918 435.321)" width="1.5" height="2.5"/>
@@ -3514,7 +3526,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="350" y="158" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 636.2133 441.9778)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="359.9" y="165.9" transform="matrix(0.3392 -0.9407 0.9407 0.3392 81.0995 449.7627)" width="1.5" height="2.5"/>
@@ -3525,7 +3537,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="362.5" y="162.5" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 658.9353 454.924)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="372.5" y="170.5" transform="matrix(0.3392 -0.9407 0.9407 0.3392 85.0778 464.5647)" width="1.5" height="2.5"/>
@@ -3536,7 +3548,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="375" y="167" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 681.6293 467.9931)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="385" y="175" transform="matrix(0.3394 -0.9406 0.9406 0.3394 89.0332 479.2433)" width="1.5" height="2.5"/>
@@ -3547,7 +3559,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="387.5" y="171.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 704.3844 480.9241)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="397.5" y="179.5" transform="matrix(0.3398 -0.9405 0.9405 0.3398 92.9551 493.8456)" width="1.5" height="2.5"/>
@@ -3558,7 +3570,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="399.9" y="176" transform="matrix(-0.9409 -0.3388 0.3388 -0.9409 726.9192 493.9192)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="410" y="184" transform="matrix(0.3378 -0.9412 0.9412 0.3378 97.6177 509.2365)" width="1.5" height="2.5"/>
@@ -3569,7 +3581,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="412.5" y="180.5" transform="matrix(-0.941 -0.3385 0.3385 -0.941 749.9562 506.7626)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="422.4" y="188.5" transform="matrix(0.3386 -0.9409 0.9409 0.3386 101.3564 523.689)" width="1.5" height="2.5"/>
@@ -3580,7 +3592,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="425" y="185" transform="matrix(-0.9409 -0.3388 0.3388 -0.9409 772.542 519.8681)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="434.9" y="193" transform="matrix(0.3384 -0.941 0.941 0.3384 105.4683 538.5005)" width="1.5" height="2.5"/>
@@ -3591,7 +3603,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="437.5" y="189.5" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 795.3939 532.7028)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="447.4" y="197.5" transform="matrix(0.3384 -0.941 0.941 0.3384 109.5038 553.2403)" width="1.5" height="2.5"/>
@@ -3602,7 +3614,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="450" y="194" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 818.0464 545.7804)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="460" y="202" transform="matrix(0.3392 -0.9407 0.9407 0.3392 113.2334 567.713)" width="1.5" height="2.5"/>
@@ -3613,7 +3625,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="462.5" y="198.5" transform="matrix(-0.9409 -0.3386 0.3386 -0.9409 840.8589 558.6603)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="472.5" y="206.5" transform="matrix(0.3378 -0.9412 0.9412 0.3378 117.8335 582.9591)" width="1.5" height="2.5"/>
@@ -3624,7 +3636,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="474.9" y="203.1" transform="matrix(-0.9409 -0.3388 0.3388 -0.9409 863.2751 571.8895)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="485" y="211" transform="matrix(0.3386 -0.9409 0.9409 0.3386 121.5318 597.4147)" width="1.5" height="2.5"/>
@@ -3635,7 +3647,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         <g>
           <g>
             <g>
-              
+
                 <rect x="487.5" y="207.5" transform="matrix(-0.9409 -0.3387 0.3387 -0.9409 886.2727 584.6688)" fill="none" width="13.3" height="15"/>
             </g>
             <rect x="497.5" y="215.5" transform="matrix(0.339 -0.9408 0.9408 0.339 125.3826 612.021)" width="1.5" height="2.5"/>
@@ -3669,34 +3681,34 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
     </g>
     <g>
       <g>
-        
+
           <rect x="46.4" y="16.8" transform="matrix(0.7215 0.6924 -0.6924 0.7215 44.5485 -34.8459)" fill="#C7B89D" width="38.3" height="42.3"/>
         <g>
-          
+
             <rect x="53.5" y="32.1" transform="matrix(0.7215 0.6924 -0.6924 0.7215 42.6005 -38.8922)" fill="#FFFFFF" width="32.3" height="2.9"/>
-          
+
             <rect x="50.1" y="35.7" transform="matrix(0.7215 0.6924 -0.6924 0.7215 44.1778 -35.4901)" fill="#FFFFFF" width="32.3" height="2.9"/>
-          
+
             <rect x="46.7" y="39.3" transform="matrix(0.7215 0.6924 -0.6924 0.7215 45.7038 -32.1721)" fill="#FFFFFF" width="32.3" height="2.9"/>
-          
+
             <rect x="43.2" y="42.7" transform="matrix(0.7215 0.6924 -0.6924 0.7215 47.1408 -28.8119)" fill="#FFFFFF" width="32.3" height="2.9"/>
-          
+
             <rect x="40.5" y="44.8" transform="matrix(0.7215 0.6924 -0.6924 0.7215 47.1182 -24.7019)" fill="#FFFFFF" width="27.6" height="2.9"/>
         </g>
       </g>
       <g>
-        
+
           <rect x="34.2" y="6.8" transform="matrix(0.908 0.419 -0.419 0.908 17.8549 -20.5122)" fill="#DDCCAD" width="42.8" height="47.2"/>
         <g>
-          
+
             <rect x="40.3" y="22.8" transform="matrix(0.908 0.419 -0.419 0.908 15.6164 -22.2077)" fill="#FFFFFF" width="36.1" height="3.3"/>
-          
+
             <rect x="38" y="27.9" transform="matrix(0.908 0.419 -0.419 0.908 17.5218 -20.7534)" fill="#FFFFFF" width="36.1" height="3.3"/>
-          
+
             <rect x="35.6" y="32.9" transform="matrix(0.908 0.419 -0.419 0.908 19.4075 -19.2889)" fill="#FFFFFF" width="36.1" height="3.3"/>
-          
+
             <rect x="33.3" y="37.9" transform="matrix(0.908 0.419 -0.419 0.908 21.2914 -17.8738)" fill="#FFFFFF" width="36.1" height="3.3"/>
-          
+
             <rect x="31.2" y="41.8" transform="matrix(0.908 0.419 -0.419 0.908 22.4873 -15.5539)" fill="#FFFFFF" width="30.9" height="3.3"/>
         </g>
       </g>
@@ -3704,7 +3716,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
     <g>
       <g>
         <g>
-          
+
             <rect x="43.5" y="31.9" transform="matrix(0.7411 -0.6714 0.6714 0.7411 -11.1376 51.0063)" fill="#4FBE96" width="34.2" height="16.1"/>
         </g>
         <g>
@@ -3712,35 +3724,35 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
             L53.5,55.2z"/>
         </g>
         <g>
-          
+
             <ellipse transform="matrix(0.7411 -0.6714 0.6714 0.7411 -11.2102 51.0459)" fill="#145B47" cx="60.6" cy="40.1" rx="4.8" ry="5.9"/>
         </g>
         <g>
           <g>
             <g>
-              
+
                 <rect x="63" y="31.5" transform="matrix(0.7411 -0.6714 0.6714 0.7411 -4.1124 53.3698)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="64.2" y="32.7" transform="matrix(0.7411 -0.6714 0.6714 0.7411 -4.6393 54.4462)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="66.5" y="34.1" transform="matrix(0.7411 -0.6714 0.6714 0.7411 -5.2189 55.5755)" fill="#FFFFFF" width="5.9" height="1"/>
             </g>
           </g>
           <g>
             <g>
-              
+
                 <rect x="48" y="45.1" transform="matrix(0.7411 -0.6714 0.6714 0.7411 -17.1486 46.8016)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="49" y="46.4" transform="matrix(0.7411 -0.6714 0.6714 0.7411 -17.6989 47.8058)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="51.3" y="47.7" transform="matrix(0.7411 -0.6714 0.6714 0.7411 -18.2924 48.9241)" fill="#FFFFFF" width="5.9" height="1"/>
             </g>
           </g>
@@ -3756,42 +3768,42 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
       </g>
       <g>
         <g>
-          
+
             <rect x="47.9" y="44.3" transform="matrix(0.9882 -0.1531 0.1531 0.9882 -7.245 10.5672)" fill="#4FBE96" width="34.2" height="16.1"/>
         </g>
         <g>
           <path fill="#145B47" d="M82.1,57.1l-32.1,5l-2.2-14.5l32.1-5L82.1,57.1z M50.7,61.2l30.5-4.7l-2-12.9l-30.5,4.7L50.7,61.2z"/>
         </g>
         <g>
-          
+
             <ellipse transform="matrix(0.9882 -0.1531 0.1531 0.9882 -7.2568 10.5742)" fill="#145B47" cx="65" cy="52.4" rx="4.8" ry="5.9"/>
         </g>
         <g>
           <g>
             <g>
-              
+
                 <rect x="70.7" y="48.8" transform="matrix(0.9882 -0.1532 0.1532 0.9882 -6.666 12.0419)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="70.9" y="50.5" transform="matrix(0.9882 -0.1533 0.1533 0.9882 -6.927 12.0973)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="72.4" y="52.2" transform="matrix(0.9882 -0.1533 0.1533 0.9882 -7.1821 12.1711)" fill="#FFFFFF" width="5.9" height="1"/>
             </g>
           </g>
           <g>
             <g>
-              
+
                 <rect x="50.6" y="51.9" transform="matrix(0.9882 -0.1531 0.1531 0.9882 -7.3756 8.9911)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="50.8" y="53.6" transform="matrix(0.9882 -0.153 0.153 0.9882 -7.6267 9.0324)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="52.3" y="55.3" transform="matrix(0.9882 -0.1529 0.1529 0.9882 -7.8769 9.1002)" fill="#FFFFFF" width="5.9" height="1"/>
             </g>
           </g>
@@ -3807,42 +3819,42 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
       </g>
       <g>
         <g>
-          
+
             <rect x="43.4" y="56.9" transform="matrix(0.9177 0.3973 -0.3973 0.9177 30.7817 -18.6836)" fill="#4FBE96" width="34.2" height="16.1"/>
         </g>
         <g>
           <path fill="#145B47" d="M72.5,78.1L42.7,65.2l5.8-13.4l29.8,12.9L72.5,78.1z M43.8,64.8l28.3,12.3l5.2-12L49,52.8L43.8,64.8z"/>
         </g>
         <g>
-          
+
             <ellipse transform="matrix(0.9177 0.3973 -0.3973 0.9177 30.7655 -18.6936)" fill="#145B47" cx="60.5" cy="64.9" rx="4.8" ry="5.9"/>
         </g>
         <g>
           <g>
             <g>
-              
+
                 <rect x="66.4" y="67" transform="matrix(0.9178 0.3971 -0.3971 0.9178 32.5958 -22.4583)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="65.7" y="68.6" transform="matrix(0.9177 0.3973 -0.3973 0.9177 33.1901 -22.0551)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="66.2" y="70.3" transform="matrix(0.9177 0.3972 -0.3972 0.9177 33.8046 -21.6373)" fill="#FFFFFF" width="5.9" height="1"/>
             </g>
           </g>
           <g>
             <g>
-              
+
                 <rect x="47.7" y="58.9" transform="matrix(0.9177 0.3973 -0.3973 0.9177 27.8539 -15.7016)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="47" y="60.5" transform="matrix(0.9177 0.3973 -0.3973 0.9177 28.4251 -15.2921)" fill="#FFFFFF" width="8.2" height="1"/>
             </g>
             <g>
-              
+
                 <rect x="47.5" y="62.1" transform="matrix(0.9177 0.3972 -0.3972 0.9177 29.0106 -14.9038)" fill="#FFFFFF" width="5.9" height="1"/>
             </g>
           </g>
@@ -3868,7 +3880,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         </g>
       </g>
       <g>
-        
+
           <rect x="6.8" y="63.3" transform="matrix(0.331 0.9436 -0.9436 0.331 74.8254 26.1765)" fill="#F1F2F2" width="24.3" height="5.2"/>
       </g>
       <g>
@@ -4150,9 +4162,9 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 
 
                                       </div><br>
-                                      
+
                                       <table width="100%" border="0" cellspacing="0" cellpadding="8">
-                                        
+
                                         <tbody>
                                           <tr>
                                             <td width="50%">
@@ -4165,7 +4177,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                               <p style="font-size:16px; font-family:museosansrounded-300-7h; color: #76777b;">Time lost in waiting for an offer can be time spent accepting
                                                 offers, conducting inspections & opening escrow.</p>
                                             </td>
-                                            
+
                                           </tr>
 
                                           <tr>
@@ -4179,11 +4191,11 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                               <p style="font-size:16px; font-family:museosansrounded-300-7h; color: #76777b;">As buyers see the property advertised over and over again,
   they will start wondering if there’s something wrong with it.</p>
                                             </td>
-                                            
+
                                           </tr>
                                         </tbody>
                                       </table>
-                                      
+
                                     </div>
                                     <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                     </div>
@@ -4198,11 +4210,11 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 									  </div><!-- .pg-13-header -->
                                       <div class="pg-13-content cf">
                                         <table width="100%" cellspacing="0" class="days" cellpadding="8" border="0" style="margin-top:-20px; margin-botton:-20px;">
-                                          
+
                                           <tbody>
                                             <tr>
                                               <td width="40%" align="center" valign="top" >
-                                                
+
                                                 <table width="100%" cellspacing="0" cellpadding="0" border="0" valign="top" >
                                                   <tr>
                                                     <td align="center" valign="top" height="250px"><img src="<?php echo base_url(); ?>pdf/images/bg-round.png" style="margin-bottom:-200px;">
@@ -4214,10 +4226,10 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                                         <h4 style="font-size:18px; font-family:museosansrounded-900-7g; color:<?php echo $theme ?>;"><b>Avg. Days On Market</b></h4>
                                                       </td></tr>
                                                     </table>
-                                                    
-                                                    
-                                                    
-                                                    
+
+
+
+
                                                   </td>
                                                   <td width="60%">
                                                     <p style="font-size:16px; font-family:museosansrounded-300-7h; color: #76777b; padding-top:15px;">Days on market has a direct correlation with a buyers interest level
@@ -4225,9 +4237,9 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                                         the number of days that your home is on the market can vary.
                                                         Currently the market is in an upswing and the shortage of
                                                         inventory is leading to homes flying off the market
-                                                      <br>         <br> 
+                                                      <br>         <br>
                                                       There are a few factors that come into play when attempting to
-                                                      determine how long it will take these factors are    <br>      <br> 
+                                                      determine how long it will take these factors are    <br>      <br>
                                                     </p><table width="100%" cellspacing="0" cellpadding="0" border="0">
                                                     <thead style="">
                                                       <tr bgcolor="#e7e7e8">
@@ -4248,7 +4260,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                                   </table>
                                                   <p></p>
                                                 </td>
-                                                
+
                                               </tr>
                                             </tbody>
                                           </table>
@@ -4259,7 +4271,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
   <svg version="1.1" x="0px" y="0px" width="612px" height="367.8px" viewBox="0 0 612 367.8" enable-background="new 0 0 612 367.8"
      xml:space="preserve">
   <polygon fill="<?php echo $theme ?>" points="0,-0.3 167,8.6 308.1,83.5 433.9,165.9 479.9,261.7 608.7,327.6 612.1,367.8 0.4,367.8 "/>
-  <polygon fill="#A7A9AC" stroke="#A7A9AC" stroke-width="0.5" stroke-miterlimit="10" points="0.3,6.7 144.5,68.5 251.8,182.4 
+  <polygon fill="#A7A9AC" stroke="#A7A9AC" stroke-width="0.5" stroke-miterlimit="10" points="0.3,6.7 144.5,68.5 251.8,182.4
     307.1,257.2 399.4,329.7 610.7,359.1 614.1,367.8 0.4,367.8 "/>
   <line fill="none" stroke="#A7A9AC" stroke-width="0.5" stroke-miterlimit="10" x1="545.7" y1="296.1" x2="5.5" y2="296.1"/>
   <line fill="none" stroke="#A7A9AC" stroke-width="0.5" stroke-miterlimit="10" x1="463.2" y1="229.2" x2="2.8" y2="229.2"/>
@@ -4273,23 +4285,23 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
   <path fill="#2A4D83" d="M349.8,183.8"/>
   </svg>
 
-                                          
+
 
                                           </div>
   <div class="down-img" style="position:relative; margin-left:10px; margin-top:-36px; display:block; z-index:350;">
-    
 
-  <img src="<?php echo base_url(); ?>pdf/images/down-data.png" alt=""  /> 
+
+  <img src="<?php echo base_url(); ?>pdf/images/down-data.png" alt=""  />
   </div>
                                           <br>
-                                          
-                                          
-                                          
+
+
+
                                         </div>
                                         <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                         </div>
                                         <!-- page 12 end -->
-</article>                  
+</article>
 <article>
 	<div class="page-9a">
 		<div class="pg-9a-header">
@@ -4300,7 +4312,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 			<div class="pg9a-blk cf">
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#28b1e3;">Imagery</div>
                     <div>
-                        Did you know that listings with professional photos sell for more money? Not only that, but they sell quicker. Since 92% of buyers are home shopping online the importance of good photos has never been more apparent. We will incorporate the photos that will be enhanced to show your home in the best light possible. This should lead to more inquiries in a shorter amount of time. 
+                        Did you know that listings with professional photos sell for more money? Not only that, but they sell quicker. Since 92% of buyers are home shopping online the importance of good photos has never been more apparent. We will incorporate the photos that will be enhanced to show your home in the best light possible. This should lead to more inquiries in a shorter amount of time.
                     </div>
                 </div><!-- .pg9-detail-area -->
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#6dccd5;">MLS & More</div>
@@ -4316,14 +4328,14 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 
             </div><!-- .pg9-blk -->
 			<div class="pg9a-blk cf">
-               
+
                 <div class="grph-prx"><img src="assets/images/synd4.jpg" alt="" width="325"/></div>
             </div><!-- .pg9-blk -->
   	  	</div><!-- .pg-9-content -->
             <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
     </div><!-- .page-7 -->
 </article>
-									   
+
 <article>
 	<div class="page-9a">
 		<div class="pg-9a-header">
@@ -4334,12 +4346,12 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 			<div class="pg9a-blk cf">
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#28b1e3;">Just Listed Postcards</div>
                     <div>
-                       We will prepare just listed postcards which we will use to let the surround homes that your home has officially gone on the market. This is great resource to generate buyers leads since many people usually have friends or family that might want to move in the neighborhood. The designed postcard, flyers,a door hangers will all contain pictures, property details, pricing information. We will answer all inquiries from interested parties. 
+                       We will prepare just listed postcards which we will use to let the surround homes that your home has officially gone on the market. This is great resource to generate buyers leads since many people usually have friends or family that might want to move in the neighborhood. The designed postcard, flyers,a door hangers will all contain pictures, property details, pricing information. We will answer all inquiries from interested parties.
                     </div>
                 </div><!-- .pg9-detail-area -->
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#6dccd5;">Just Listed Flyers</div>
                     <div>
-                        We will prepare just listed flyers in addition to the postcards which we will post on the boards of surrounding businesses, real estate offices, escrow offices, & other parties within the real estate industry. This initiative will help us get some additional property exposure and prospective buyer inquiries. 
+                        We will prepare just listed flyers in addition to the postcards which we will post on the boards of surrounding businesses, real estate offices, escrow offices, & other parties within the real estate industry. This initiative will help us get some additional property exposure and prospective buyer inquiries.
                     </div>
                 </div><!-- .pg9-detail-area -->
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#105481;">Door Hangers</div>
@@ -4355,7 +4367,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 
             </div><!-- .pg9-blk -->
 			<div class="pg9a-blk cf">
-               
+
                 <div class="grph-prx"><img src="assets/images/newsample.png" style="background-color:<?php echo $theme ?>;" alt="" width="325"/></div>
             </div><!-- .pg9-blk -->
   	  	</div><!-- .pg-9-content -->
@@ -4378,12 +4390,12 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                 </div><!-- .pg9-detail-area -->
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#6dccd5;">Social Media Marketing</div>
                     <div>
-                       We will leverage Facebook, Instagram, LinkedIn & Twitter to increase awareness about your property. These social media sites have a combined user base of over 1.3 billion spread-out across the world. On a local level the numbers are much more scaled down but just as massive relative to size of the neighborhood. We want to maximize property exposure by placing the enhanced pictures along with videos to help prospective buyers get a closer look of your property. 
+                       We will leverage Facebook, Instagram, LinkedIn & Twitter to increase awareness about your property. These social media sites have a combined user base of over 1.3 billion spread-out across the world. On a local level the numbers are much more scaled down but just as massive relative to size of the neighborhood. We want to maximize property exposure by placing the enhanced pictures along with videos to help prospective buyers get a closer look of your property.
                     </div>
                 </div><!-- .pg9-detail-area -->
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#105481;">Open Houses & Showings</div>
                     <div>
-                       Depending on your availability and willingness we will schedule both open houses and private viewings of your property. Open house events are a great way to showcase your property as well as generate prospective buyer leads. 
+                       Depending on your availability and willingness we will schedule both open houses and private viewings of your property. Open house events are a great way to showcase your property as well as generate prospective buyer leads.
                     </div>
                 </div><!-- .pg9-detail-area -->
             	<div class="pg9a-detail-area"><div class="pg9a-title" style="color:#231f20;">Broker 2 Broker Networking</div>
@@ -4392,7 +4404,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 
             </div><!-- .pg9-blk -->
 			<div class="pg9a-blk cf">
-               
+
                 <div class="grph-prx"><img src="assets/images/social4.png" style="background-color:<?php echo $theme ?>;" alt="" width="325"/></div>
             </div><!-- .pg9-blk -->
   	  	</div><!-- .pg-9-content -->
@@ -4400,7 +4412,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
     </div><!-- .page-7 -->
 </article>
 
-<article>                                        
+<article>
 										<!-- page 14 -->
                                         <div class="page-15">
 										<div class="pg-15-header">
@@ -4411,7 +4423,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                             <p>When your property first hits the market the entire audience which consists of realtors, prospective buyers, and  sellers all place eyes on your listing. They all make rapid judgements as to it’s price, current condition, and location. How they first perceive it will determine the viewing activity over the next few weeks. If we receive no viewings initially, we are facing the possibility that that market as a whole is rejecting the value proposition of your listing. Our
                                             solution? Reduce the price.</p>
                                             <p>Reducing the price of your home is never an easy call but often time is a necessary one that might need to be made in order to get your home sold. Many homeowners feel that they are giving up hard won equity which they have built up. In reality a slight reduction can help avoid problems down the line. The question is, When is the best time? From the time the property is first placed on the market the rule of thumb is 30-45 days.</p>
-                                            
+
                                              <h3>At Listing Time</h3>
                                             <table class="tg">
 												  <tr>
@@ -4420,7 +4432,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 													<th class="tg-yw4l">Jane & Joe</th>
 													<th class="tg-yw4l">Home D</th>
 													<th class="tg-yw4l">Home E</th>
-													
+
 												  </tr>
 												  <tr>
 													<td class="tg-yw4l">$368,000</td>
@@ -4428,7 +4440,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 													<td class="tg-yw4l">$345,000</td>
 													<td class="tg-yw4l">$341,000</td>
 													<td class="tg-yw4l">$333,000</td>
-													
+
 												  </tr>
 												</table>
                                             <br><br>
@@ -4441,7 +4453,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 													<th class="tg-yw42">Home D</th>
 													<th class="tg-yw42">Home E</th>
 													<th class="tg-yw42">Home F</th>
-													
+
 												  </tr>
 												  <tr>
 													<td class="tg-yw4l">Expired</td>
@@ -4450,7 +4462,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 													<td class="tg-yw4l">$341,000</td>
 													<td class="tg-yw4l">$333,000</td>
 													<td class="tg-yw4l">$332,500</td>
-													
+
 												  </tr>
 												  <tr>
 													<td class="tg-yw4l"></td>
@@ -4459,12 +4471,12 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 													<td class="tg-yw4l">Sold</td>
 													<td class="tg-yw4l">Sold</td>
 													<td class="tg-yw4l">Just Added</td>
-													
+
 												  </tr>
 												</table>
-												
-                                            
-                                            
+
+
+
                                             <p>Joe and Jane went from being very competitively priced to being the highest property in their price range. From a buyer’s perspective, their home now offers the worst value proposition in the marketplace.
                                             </p>
 											<div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/3hse.png" alt="" style="width:100%; background-color:<?php echo $theme ?>;  " /></div>
@@ -4480,14 +4492,14 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 											</div><!-- .pg-16-header -->
                                             <div class="pg-16-content cf">
                                               <table width="100%" cellspacing="0" cellpadding="8" border="0" >
-                                                
+
                                                 <tbody>
                                                   <tr>
                                                   <td width="60%" valign="top">
-                                                      
+
                                                       <p style="font-size:19px; font-family:museosansrounded-300-7h; color: #76777b;">In a perfect world, every homebuyer and every home seller would get exactly the deal they want for their real estate transaction. In reality, the best deals are the ones in which each side feels they got most of what they wanted and didn’t have to up too much
                                                       </p><br>
-                                                      
+
                                                       <p style="font-size:19px; font-family:museosansrounded-300-7h; color: #76777b;">The negotiating portion of a real estate transaction can be exciting, frustrating, and tedious. As a seller you want to get you feel your home is worth and I want to help make that happen. My qualifications will help keep the negotiating terms in your favor.
                                                       </p><br>
                                                        <p style="font-size:20px; font-family:museosansrounded-300-7h; color: #76777b;">The goal is to make sure you avoid pitfalls that many sellers are faced when selling their home. The most common are:</p>
@@ -4496,9 +4508,9 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                                       <ul style="">
                                                         <li style="font-size:20px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>;">Not making sure buyers are qualified</li> <br>
                                                         <li style="font-size:20px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>;">Not understanding contract and forms</li> <br>
-                                                        <li style="font-size:20px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>;">Failing to disclose all property facts </li><br> 
+                                                        <li style="font-size:20px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>;">Failing to disclose all property facts </li><br>
                                                         <li style="font-size:20px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>;">Setting up contingencies</li> <br>
-                                                        <li style="font-size:20px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>;">Handling the buyers deposit</li> 
+                                                        <li style="font-size:20px; font-family:museosansrounded-900-7g; color: <?php echo $theme ?>;">Handling the buyers deposit</li>
                                                       </ul>
                                                       </p>
                                                       <br><br>
@@ -4521,34 +4533,34 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
   <text transform="matrix(1 0 0 1 118.3066 50.25)" fill="<?php echo $theme ?>" font-family="'museosansrounded-300-7h'" font-size="36"><b>As your agent </b></text>
   <text transform="matrix(1 0 0 1 191.7065 93.4502)" fill="<?php echo $theme ?>" font-family="'museosansrounded-300-7h'"   font-size="36"><b>I will...</b></text>
   <g>
-    
+
       <rect x="17.4" y="154" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -57.0537 296.4814)" fill="#A3A3A3" width="30.9" height="12.2"/>
-    
+
       <rect x="27.7" y="146.9" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 199.0102 223.6034)" fill="#A3A3A3" width="51" height="12.2"/>
   </g>
   <g>
-    
+
       <rect x="17.5" y="236.5" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -115.3544 437.352)" fill="#A3A3A3" width="30.9" height="12.2"/>
-    
+
       <rect x="27.7" y="229.4" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 257.312 364.4696)" fill="#A3A3A3" width="51" height="12.2"/>
   </g>
   <g>
-    
+
       <rect x="17.4" y="322" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -175.9566 583.404)" fill="#A3A3A3" width="30.9" height="12.2"/>
-    
+
       <rect x="27.7" y="315" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 317.9131 510.5261)" fill="#A3A3A3" width="51" height="12.2"/>
   </g>
   <g>
-    
+
       <rect x="17.4" y="410.6" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -238.5105 734.5133)" fill="#A3A3A3" width="30.9" height="12.2"/>
-    
+
       <rect x="27.7" y="403.5" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 380.4775 661.61)" fill="#A3A3A3" width="51" height="12.2"/>
   </g>
   <circle fill="none" stroke="<?php echo $theme ?>" stroke-width="6" stroke-miterlimit="10" cx="35.9" cy="504.8" r="30.1"/>
   <g>
-    
+
       <rect x="17.4" y="497.6" transform="matrix(-0.7071 -0.7071 0.7071 -0.7071 -300.03 883.0311)" fill="#A3A3A3" width="30.9" height="12.2"/>
-    
+
       <rect x="27.7" y="490.5" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 441.9915 810.1338)" fill="#A3A3A3" width="51" height="12.2"/>
   </g>
   <rect x="103.8" y="134.3" fill="none" width="279" height="71"/>
@@ -4569,7 +4581,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
   <text transform="matrix(1 0 0 1 103.75 517.3145)" font-family="'museosansrounded-300-7h'" font-size="18">quickest time possible</text>
   <rect x="175.2" y="569.5" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 622.1417 1263.2134)" fill="#939598" width="137.4" height="190.4"/>
   <g>
-    
+
       <rect x="175.7" y="567.2" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 622.6498 1258.5688)" fill="#FFFFFF" stroke="#D1D3D4" stroke-miterlimit="10" width="137.4" height="190.4"/>
     <path fill="#B7B7B8" d="M327.9,723.9c-0.4,0.3-0.8,0.6-1.2,0.9c-2.8-2.8-5.4-4.7-6.3-5.3c-4.1,0.3-6.7,5.7-5.4,9.3l-0.1,0.1
       l-0.7-1.3c0,0,3-3.9-7.3-7c-0.3,11.1,5.3,8.3,5.3,8.3l1,1.1l-19.8,14.3l0.9,4.8l24.7-5.3c0.4-0.8,0.7-1.7,0.8-2.5l1.4,2.1l10.6-2.3
@@ -4623,33 +4635,33 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
         c-0.2,0.1-0.5,0.2-0.7,0.2s-0.4,0.1-0.6,0.2c-0.8,0.2-1.4,0.2-1.9,0.1c-0.5-0.1-0.9-0.2-1.2-0.5c-0.3-0.2-0.5-0.5-0.7-0.8
         c-0.1-0.3-0.2-0.7-0.4-1l-0.8-3.9l-1.2,0.2l-0.4-1.8l1.3-0.7l0.3-2.4L264.1,587.9z"/>
     </g>
-    
+
       <rect x="168.4" y="580.2" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 469.8535 1127.1688)" fill="#A7A9AC" width="13.1" height="16.8"/>
-    
+
       <rect x="183.9" y="584.1" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 505.6013 1116.0177)" fill="#BCBEC0" width="19" height="1.7"/>
-    
+
       <rect x="184.7" y="587.6" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 507.8717 1122.8398)" fill="#BCBEC0" width="19" height="1.7"/>
-    
+
       <rect x="185.4" y="591.2" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 510.0883 1129.6741)" fill="#BCBEC0" width="19" height="1.7"/>
-    
+
       <rect x="193.8" y="617" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 594.9244 1174.2972)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="195.2" y="623.6" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 599.0931 1186.9208)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="196.6" y="630.1" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 603.2696 1199.6198)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="198" y="636.7" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 607.4323 1212.2456)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="199.5" y="643.3" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 611.6246 1224.9355)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="200.9" y="649.8" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 615.7774 1237.5668)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="208.1" y="683.6" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 637.2739 1302.8173)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="209.6" y="690.2" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 641.4669 1315.6624)" fill="#BCBEC0" width="82.3" height="3.5"/>
-    
+
       <rect x="216.9" y="728.1" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 608.246 1393.7378)" fill="#A7A9AC" width="26" height="2.3"/>
-    
+
       <rect x="217.9" y="732.4" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 610.9835 1402.0652)" fill="#A7A9AC" width="26" height="2.3"/>
     <g>
       <g>
@@ -4671,15 +4683,15 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
           C214.7,725.7,212.4,726.4,210.1,726.4z M210.1,705.8c-1.9,0-3.8,0.6-5.3,1.7c-2,1.4-3.4,3.6-3.8,6c-0.4,2.4,0.1,4.9,1.6,7
           c1.7,2.5,4.6,4,7.6,4c1.9,0,3.8-0.6,5.3-1.7c2-1.4,3.4-3.6,3.8-6c0.4-2.4-0.1-4.9-1.6-7C216,707.3,213.2,705.8,210.1,705.8z"/>
       </g>
-      
+
         <rect x="201.7" y="711.6" transform="matrix(-0.8186 0.5743 -0.5743 -0.8186 788.602 1176.7405)" fill="<?php echo $theme ?>" width="13.7" height="2.6"/>
-      
+
         <rect x="203.7" y="714.5" transform="matrix(-0.8187 0.5743 -0.5743 -0.8187 794.0521 1180.8645)" fill="<?php echo $theme ?>" width="13.7" height="2.6"/>
-      
+
         <rect x="205.8" y="717.4" transform="matrix(-0.8187 0.5742 -0.5742 -0.8187 799.4325 1185.0779)" fill="<?php echo $theme ?>" width="13.7" height="2.6"/>
     </g>
     <g>
-      
+
         <rect x="268" y="723.6" transform="matrix(-0.9776 0.2105 -0.2105 -0.9776 713.403 1371.981)" fill="<?php echo $theme ?>" width="31.3" height="0.7"/>
     </g>
     <g>
@@ -4743,8 +4755,8 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
                                             </div>
                                             <!-- page 15 end -->
 </article>
-                                            
-<article>											
+
+<article>
 											<!-- page 16 -->
                                             <div class="page-17">
 											<div class="pg-17-header">
@@ -4753,7 +4765,7 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 											   </div><!-- .pg-17-header -->
                                               <div class="pg-17-content cf">
                                                 <div class="full-img"><img src="<?php echo base_url(); ?>pdf/images/typ-trans_896p.png" alt="" style="width:100%;  " /></div>
-                                                
+
                                               </div>
                                               <sethtmlpagefooter name="MyFooter1" value="on" /><pagebreak type="NEXT-ODD" pagenumstyle="1" />
                                               </div>
@@ -4788,14 +4800,14 @@ h1, h2, h3, h4, h5, h6, h7{ margin:0; padding:0;}
 
 
 
-                                                  
+
 
 
 
                                                   </p>
-                                                  
+
                                                 </div>
-                                                
+
                                               </div>
                                               <!-- page 16 end -->
 </article>

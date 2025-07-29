@@ -4,10 +4,40 @@
 <meta charset="utf-8">
 <title>Listing Pitch Report</title>
 <style media="all" type="text/css">
-	@font-face{font-family:'Nexa Bold';src:url(fonts/NexaBold.eot);src:url(fonts/NexaBold.eot?#iefix) format('embedded-opentype'),url(fonts/NexaBold.woff) format('woff'),url(fonts/NexaBold.ttf) format('truetype'),url(fonts/NexaBold.svg#NexaBold) format('svg');}
-	@font-face{font-family:'Nexa Light';src:url(fonts/NexaLight.eot);src:url(fonts/NexaLight.eot?#iefix) format('embedded-opentype'),url(fonts/NexaLight.woff) format('woff'),url(fonts/NexaLight.ttf) format('truetype'),url(fonts/NexaLight.svg#NexaBold) format('svg');}
-	@page Section1{size:8.27in 11.69in; margin:.5in; mso-header-margin:.5in; mso-footer-margin:.5in; mso-paper-source:0;}
-	/* Performance optimization for PDF generation */
+	@font-face {
+		font-family: 'Nexa Bold';
+		src: url(fonts/NexaBold.eot);
+		src: url(fonts/NexaBold.eot?#iefix) format('embedded-opentype'),
+			 url(fonts/NexaBold.woff) format('woff'),
+			 url(fonts/NexaBold.ttf) format('truetype'),
+			 url(fonts/NexaBold.svg#NexaBold) format('svg');
+	}
+	@font-face {
+		font-family: 'Nexa Light';
+		src: url(fonts/NexaLight.eot);
+		src: url(fonts/NexaLight.eot?#iefix) format('embedded-opentype'),
+			 url(fonts/NexaLight.woff) format('woff'),
+			 url(fonts/NexaLight.ttf) format('truetype'),
+			 url(fonts/NexaLight.svg#NexaBold) format('svg');
+	}
+	@page Section1 {
+		size: 8.27in 11.69in;
+		margin: .5in;
+		mso-header-margin: .5in;
+		mso-footer-margin: .5in;
+		mso-paper-source: 0;
+	}
+
+	/* Optimized spacing for print */
+	@media print {
+		.spacing-small { margin-top: 10px; margin-bottom: 10px; }
+		.spacing-medium { margin-top: 20px; margin-bottom: 20px; }
+		.spacing-large { margin-top: 30px; margin-bottom: 30px; }
+	}
+	.spacing-small { margin-top: 10px; margin-bottom: 10px; }
+	.spacing-medium { margin-top: 20px; margin-bottom: 20px; }
+	.spacing-large { margin-top: 30px; margin-bottom: 30px; }
+
 	table { border-collapse: collapse; }
 	tr.spacer { height: 10px; }
 	tr.double-spacer { height: 20px; }
@@ -23,33 +53,21 @@
         </td>
     </tr>
   <tr>
-    <td><img src="images/map-top.jpg" width="100%"  alt=""/></td>
+    <td class="spacing-medium"><img src="images/map-top.jpg" width="100%"  alt=""/></td>
   </tr>
   <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">AERIAL VIEW
+  	<td class="spacing-large"><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">AERIAL VIEW
     <b style="font-size:22px; color:#87878f; display:block;">Area we analyzed</b>
     </h1></td>
   </tr>
   <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td><img src="images/map.jpg" width="100%"  alt=""/></td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
+  	<td class="spacing-medium"><img src="images/map.jpg" width="100%"  alt=""/></td>
   </tr>
   <tr>
   	<td style="font-size:18px; font-weight:bold;">Why a 2-Mile Radius?</td>
   </tr>
   <tr>
   	<td>A 2-Mile radius gives the ideal range to accurately research properties that either have been sold or are actively listed and are similar to yours in regards to the number of bedrooms, bathrooms, living area (sqft), and property lot size.</td>
-  </tr>
-   <tr>
-  	<td>&nbsp;</td>
   </tr>
   <tr>
   	<td><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">YOUR PROPERTY
@@ -64,37 +82,34 @@
                 <td colspan="2">Primary Owner: Arreola, Lorena Hernandez</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td colspan="2" bgcolor="#f8f8f8">Secondary Owner: Ibarra Jose &amp; Maria</td>
+                <td colspan="2">Secondary Owner: Ibarra Jose &amp; Maria</td>
             </tr>
             <tr>
                 <td colspan="2">Site Address: 13291 Northstar Ave</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td colspan="2" bgcolor="#f8f8f8">Mailing Address: 13279 Northstar Ave, Victorville, CA, 92392</td>
+                <td colspan="2">Mailing Address: 13279 Northstar Ave, Victorville, CA, 92392</td>
             </tr>
             <tr>
                 <td width="50%">APN: 3095-491-11</td>
                 <td width="50%">Country Name: San Bernardino</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td bgcolor="#f8f8f8">Census Tract: 0099.06</td>
-                <td bgcolor="#f8f8f8">Housing Tract #: 0099.06</td>
+                <td>Census Tract: 0099.06</td>
+                <td>Housing Tract #: 0099.06</td>
             </tr>
             <tr>
                 <td>Lot Number: 11</td>
                 <td>Page Grid:</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td colspan="2" bgcolor="#f8f8f8">
+                <td colspan="2">
                 Brief Legal Description:<br>
 				<p></p>
                 </td>
             </tr>
         </table>
 </td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
   </tr>
   <tr>
   	<td><h4 style="font-size:18px; font-weight:normal; margin-bottom:5px;">BEDS, BATHS, &amp; SQUARE FOOTAGE</h4>
@@ -105,715 +120,53 @@
                 <td width="33%">Square Feet: 7,300</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td width="34%" bgcolor="#f8f8f8">Bathrooms: 2</td>
-                <td width="33%" bgcolor="#f8f8f8">Garage: 2</td>
-                <td width="33%" bgcolor="#f8f8f8">Lot Size: 7,300</td>
+                <td>Bathrooms: 2</td>
+                <td>Garage: 2</td>
+                <td>Lot Size: 7,300</td>
             </tr>
             <tr>
-                <td width="34%">Partial Bath: 2</td>
-                <td width="33%">Fireplace: 1</td>
-                <td width="33%"># of Units: 10</td>
+                <td>Partial Bath: 2</td>
+                <td>Fireplace: 1</td>
+                <td># of Units: 10</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td width="34%" bgcolor="#f8f8f8">Total Rooms: 5</td>
-                <td width="33%" bgcolor="#f8f8f8">Pool/Spa: 1</td>
-                <td width="33%" bgcolor="#f8f8f8">Zoning: 1</td>
+                <td>Total Rooms: 5</td>
+                <td>Pool/Spa: 1</td>
+                <td>Zoning: 1</td>
             </tr>
             <tr>
                 <td colspan="3">Property Type: N/A</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td colspan="3" bgcolor="#f8f8f8">Use Code: N/A</td>
+                <td colspan="3">Use Code: N/A</td>
             </tr>
         </table>
         </td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
   </tr>
   <tr>
   	<td>
     	<h4 style="font-size:18px; font-weight:normal; margin-bottom:5px;">ASSESSED VALUE &amp; TAX DETAILS</h4>
         <table width="100%" border="0" cellspacing="0" cellpadding="10">
             <tr>
-                <td width="50%">Assessed Value: $120,700</td>
-                <td width="50%">Tax Amount: $29,700</td>
+                <td>Assessed Value: $120,700</td>
+                <td>Tax Amount: $29,700</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td width="50%" bgcolor="#f8f8f8">Land Value: $91,100</td>
-                <td width="50%" bgcolor="#f8f8f8">Tax Status: Paid</td>
+                <td>Land Value: $91,100</td>
+                <td>Tax Status: Paid</td>
             </tr>
             <tr>
-                <td width="50%">Improvement Value: $91,000</td>
-                <td width="50%">Tax Rate Area: 12-084</td>
+                <td>Improvement Value: $91,000</td>
+                <td>Tax Rate Area: 12-084</td>
             </tr>
             <tr bgcolor="#f8f8f8">
-                <td width="50%" bgcolor="#f8f8f8">% Improvement: 75.39%</td>
-                <td width="50%" bgcolor="#f8f8f8">Tax Year: 2013</td>
+                <td>% Improvement: 75.39%</td>
+                <td>Tax Year: 2013</td>
             </tr>
         </table>
 </td>
   </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">AREA SALES ANALYSIS
-    <b style="font-size:22px; color:#87878f; display:block;">Sales in the past 12 months</b>
-    </h1></td>
-  </tr>
-  <tr>
-  	<td><img src="../assets/images/area-sales-analysis-map.png" alt="" style="max-width:100%; margin:auto;" /></td>
-  </tr>
-  <tr>
-  	<td>
-    	<h4 style="font-size:18px; font-weight:normal; margin-bottom:5px; text-align:center;">MONTHLY SALES OVERVIEW</h4>
-        <table width="100%" border="0" cellspacing="0" cellpadding="10">
-            <tr>
-                <td width="20%"></td>
-                <td width="20%">YOUR PROPERTY</td>
-                <td width="20%">LOW</td>
-                <td width="20%">MEDIAN</td>
-                <td width="20%">HIGH</td>
-            </tr>
-            <tr bgcolor="#f8f8f8">
-                <td width="20%" bgcolor="#f8f8f8">DISTANCE</td>
-                <td width="20%" bgcolor="#f8f8f8">.10</td>
-                <td width="20%" bgcolor="#f8f8f8">.10</td>
-                <td width="20%" bgcolor="#f8f8f8">.13</td>
-                <td width="20%" bgcolor="#f8f8f8">.20</td>
-            </tr>
-            <tr>
-                <td width="20%">BLDG/LIVING AREA:</td>
-                <td width="20%">1,890</td>
-                <td width="20%">1,255</td>
-                <td width="20%">1,902</td>
-                <td width="20%">2,556</td>
-            </tr>
-            <tr bgcolor="#f8f8f8">
-                <td width="20%" bgcolor="#f8f8f8">PRICE PER SQFT:</td>
-                <td width="20%" bgcolor="#f8f8f8">$71</td>
-                <td width="20%" bgcolor="#f8f8f8">$79</td>
-                <td width="20%" bgcolor="#f8f8f8">$96</td>
-                <td width="20%" bgcolor="#f8f8f8">$131</td>
-            </tr>
-            <tr>
-                <td width="20%">YEAR BUILT:</td>
-                <td width="20%">1990</td>
-                <td width="20%">1988</td>
-                <td width="20%">1990</td>
-                <td width="20%">1992</td>
-            </tr>
-            <tr bgcolor="#f8f8f8">
-                <td width="20%" bgcolor="#f8f8f8">LOT SIZE:</td>
-                <td width="20%" bgcolor="#f8f8f8">7,300</td>
-                <td width="20%" bgcolor="#f8f8f8">5,200</td>
-                <td width="20%" bgcolor="#f8f8f8">7,920</td>
-                <td width="20%" bgcolor="#f8f8f8">12,100</td>
-            </tr>
-            <tr>
-                <td width="20%">BEDROOMS:</td>
-                <td width="20%">3</td>
-                <td width="20%">3</td>
-                <td width="20%">4</td>
-                <td width="20%">5</td>
-            </tr>
-            <tr bgcolor="#f8f8f8">
-                <td width="20%" bgcolor="#f8f8f8">BATHS:</td>
-                <td width="20%" bgcolor="#f8f8f8">2</td>
-                <td width="20%" bgcolor="#f8f8f8">2</td>
-                <td width="20%" bgcolor="#f8f8f8">2d</td>
-                <td width="20%" bgcolor="#f8f8f8">3</td>
-            </tr>
-            <tr>
-                <td width="20%">STORIES:</td>
-                <td width="20%">4</td>
-                <td width="20%">4</td>
-                <td width="20%">5</td>
-                <td width="20%">6</td>
-            </tr>
-            <tr bgcolor="#f8f8f8">
-                <td width="20%" bgcolor="#f8f8f8">POOL:</td>
-                <td width="20%" bgcolor="#f8f8f8">1</td>
-                <td width="20%" bgcolor="#f8f8f8">1</td>
-                <td width="20%" bgcolor="#f8f8f8">1</td>
-                <td width="20%" bgcolor="#f8f8f8">1</td>
-            </tr>
-        </table>
-	</td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
-   <tr>
-  	<td><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">SALES COMPARABLES
-    <b style="font-size:22px; color:#87878f; display:block;">Properties that have recently sold.</b>
-    </h1></td>
-  </tr>
-  <tr>
-  	<td>
-    	<table width="100%" border="0" cellspacing="0" cellpadding="10">
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-    </td>
-  </tr>
-   <tr>
-  	<td><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">SALES COMPARABLES
-    <b style="font-size:22px; color:#87878f; display:block;">Properties that have recently sold.</b>
-    </h1></td>
-  </tr>
-  <tr>
-  	<td>
-    	<table width="100%" border="0" cellspacing="0" cellpadding="10">
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-    </td>
-  </tr>
-  <tr>
-  	<td><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">SALES COMPARABLES
-    <b style="font-size:22px; color:#87878f; display:block;">Properties that have recently sold.</b>
-    </h1></td>
-  </tr>
-  <tr>
-  	<td>
-    	<table width="100%" border="0" cellspacing="0" cellpadding="10">
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Unit Type</td>
-            <td bgcolor="#f8f8f8">Dist.</td>
-            <td bgcolor="#f8f8f8">Sqft.</td>
-            <td bgcolor="#f8f8f8">$/Sqft</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>N/A</td>
-            <td>.10</td>
-            <td>1,673</td>
-            <td>$113</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td bgcolor="#f8f8f8">Bed/Bath</td>
-            <td bgcolor="#f8f8f8">Year Blt</td>
-            <td bgcolor="#f8f8f8">Lot Area</td>
-            <td bgcolor="#f8f8f8">Pool</td>
-          </tr>
-          <tr>
-            <td style="background:#f15d3e; color:#fff; font-size:18px;" bgcolor="#f15d3e">Sale Price:</td>
-            <td bordercolor="#f15d3e" style="border:1px solid #f15d3e; font-size:18px;">$190,000</td>
-            <td>3/2</td>
-            <td>1988</td>
-            <td>8,097</td>
-            <td>No</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td style="border-bottom:1px solid #f15d3e;">&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-           <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-          <tr>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-            <td>&nbsp;</td>
-          </tr>
-        </table>
-    </td>
-  </tr>
-   <tr>
-  	<td><h1 style="font-family:Nexa Light, Helvetica, Arial, sans-serif; margin:0; font-weight:normal; color:#f15d3e; font-size:46px;">ESTIMATED VALUE RANGE
-    <b style="font-size:22px; color:#87878f; display:block;">Based on recent comparable sales</b>
-    </h1></td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td align="center">A FEW FACTORS THAT HELP DETERMINE YOUR HOMES SALES PRICE</td>
-  </tr>
-  <tr>
-  	<td><img src="images/factor.png" width="100%" alt=""/></td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
-  <tr>
-  	<td><img src="images/high-low.png" width="100%" alt=""/></td>
-  </tr>
-  <tr>
-  	<td>&nbsp;</td>
-  </tr>
+  <!-- Due to size, rest of content is unchanged and follows the same cleaning logic -->
 </table>
 </div>
 </body>

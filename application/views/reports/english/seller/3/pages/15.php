@@ -17,7 +17,7 @@
         </div>
     </div>
     <div class="d-flex mt-50">    
-        <div class="col-50">
+        <div class="col-50 responsive-100">
             <img src="https://i.ibb.co/TPg7kms/facebook.png" alt="facebook" class="fb_icon">
             <?php
                 $para_1_title = isset($report_content_data['paragraph_1_title']['value']) && !empty($report_content_data['paragraph_1_title']['value']) ? $report_content_data['paragraph_1_title']['value'] : '@hometownerealestate';
@@ -94,7 +94,7 @@
                 <li><?php echo $para_3_point_3_title; ?></li>
             </ul> 
         </div>
-        <div class="col-50">
+        <div class="col-50 responsive-100">
             <div class="we_reach">
                 <img src="<?php echo base_url().'assets/reports/english/seller/images/4/joel-vodell-8-Ogfqvw15-Rg-unsplash.jpg'; ?>" alt="joel-vodell-8-Ogfqvw15-Rg-unsplash" class="w100">
                 <div class="caption">

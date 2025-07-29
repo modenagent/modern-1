@@ -78,8 +78,9 @@
                     <?php
                         }
                     ?>
-                    <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
                 </div>
+                <img src="<?php echo base_url().'assets/reports/english/seller/images/1/line.png'; ?>" alt="line" class="bordered_img">
+                
                 <div class="address">
                 <?php 
                     $site_address = $property->PropertyProfile->SiteAddress;
@@ -97,7 +98,7 @@
                 <?php
                     }
                 ?>
-                    <p class="m-0"><?php echo $city.' ,'.$state.' '.$zip; ?></p>
+                    <p class="mt-2"><?php echo $city.' ,'.$state.' '.$zip; ?></p>
                     <div class="visit_us">
                         Visit Us Online at<br>
                         <a href="<?php echo base_url(); ?>"><?php echo base_url(); ?></a>
@@ -106,20 +107,15 @@
                 <!-- <img src="https://i.ibb.co/H4g6bs3/logo-here.png" alt="logo-here" class="logo_here"> -->
             </div>
         </div>
-        <div class="footer">
-            <div class="d-flex">
-                <div class="logo">
-                    <img src="<?php echo base_url($user['company_logo']); ?>" alt="company-logo" border="0">
-                </div>
-                <div class="copy_right_text">
-                    This material is intended as informational only and not as a solicitation. All information contained has been provided
-                    by the
-                    Realtor and even where intended to be reliable is in no case a guarantee to accuracy of the information contained
-                    including
-                    but not limited to condition, lot size, square footage, or other features of the property. All of this information
-                    should be
-                    independently verifi ed by personal inspection and by hiring the appropriate professionals.
-                </div>
+        <div class="footer"  style="display:flex;gap:50px;position:relative">
+            <div class="blue-overlay"></div>
+            <div class="logo">
+                <img src="<?php echo base_url($user['company_logo']); ?>" alt="company-logo" border="0"  style="background-color:#fff">
+            </div>
+            <div class="copy_right_text">
+                <p style="color:#fff">
+                This material is intended as informational only and not as a solicitation. All information contained has been provided by the Realtor and even where intended to be reliable is in no case a guarantee to accuracy of the information contained including but not limited to condition, lot size, square footage, or other features of the property. All of this information should be independently verifi ed by personal inspection and by hiring the appropriate professionals.
+                </p>
             </div>
         </div>
     </div>

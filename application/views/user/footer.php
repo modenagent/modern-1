@@ -6,8 +6,8 @@
           <div class="col-lg-10 offset-lg-1 col-xxl-8 offset-xxl-2">
             <div class="footer_content">
               <div>
-                <a href="index.html"><img src="<?php echo base_url(); ?>assets/new_site/img/logo.png" alt="Modern Agent"></a>
-                <p class="mt-3 mb-0">we are all about helping real estate agents <br> make the perfect impression./2018</p>
+                <a href="index.html"><img src="<?php echo base_url(); ?>assets/new_site/img/Logo_dark.jpeg" alt="Modern Agent"></a>
+                <p class="mt-3 mb-0">We are all about helping real estate agents <br> make the perfect impression.</p>
               </div>
               <a href="<?php echo base_url(); ?>" target="_blank" class="d-block text-center web_link"><?php echo base_url(); ?></a>
               <ul class="list-inline mb-0">
@@ -20,7 +20,7 @@
       </div>
         <div class="row">
             <div class="col-md-12">
-                <p class="mb-0 copyright">© <?php echo date('Y');?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
+                <p class="mb-0 copyright">© <?php echo date('Y'); ?>. MODERN AGENT. ALL RIGHTS RESERVED.</p>
             </div>
         </div>
     </div>
@@ -43,12 +43,12 @@
                   <input type="email" class="form-control" required name="email_to">
               </div>
               <div class="form-group">
-                  <input type="checkbox" name="cc" id="cc_me"> 
+                  <input type="checkbox" name="cc" id="cc_me">
                   <label for="cc_me">CC to me</label>
               </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-lp external">Send</button>              
+                <button type="submit" class="btn btn-lp external">Send</button>
             </div>
         </form>
     </div>
@@ -73,7 +73,7 @@
               </div>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-lp external">Send</button>              
+                <button type="submit" class="btn btn-lp external">Send</button>
             </div>
         </form>
     </div>
@@ -102,7 +102,7 @@
 <!-- END Modals -->
 
 <style type="text/css">
-  
+
   input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
     background-color: none !important;
       background-image: none;
@@ -119,28 +119,30 @@
   // Stripe.setPublishableKey("pk_live_kWtXKplBdNqXQMeBWHuHYZDx");
   Stripe.setPublishableKey("<?=getStripeKey()?>");
 
-  
+
   // ...
 </script>
 
-<!-- Bootstrap Core JavaScript --> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script> 
+<!-- Bootstrap Core JavaScript -->
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/bootstrap.bundle.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/jquery.dataTables.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.responsive.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/new_site/js/dataTables.bootstrap4.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.localscroll-1.2.7-min.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.flexslider.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/carousel.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.prettyphoto.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.validate.min.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/additional-methods.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js?v=0.1"></script> 
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script> 
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.nav.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartWizard-2.0.min.js?v=0.1"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/jquery.smartTab.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/icheck.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script> 
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/toastr.min.js"></script>
+<script src="<?php echo base_url(); ?>/assets/js/jquery-toastr/ui-toastr-notifications.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/custom.js"></script>
 <script src="<?php echo base_url("assets/js/jquery.multi-select.js"); ?>"></script>
 <script type="text/javascript">
   // run pre selected options
@@ -148,7 +150,6 @@
   var _min = 4;
   var firstOpen = true;
   $('#refresh').on('click', function(){
-      console.log("refreshing");
     $('#pre-selected-options').multiSelect('refresh');
     return false;
   });
@@ -156,7 +157,7 @@
       // $('#pre-selected-options').multiSelect({
       //     selectableHeader: "<div class='multiselect-header2'>Available Comparables</div>",
       //     selectionHeader: "<div class='multiselect-header'>Comparables You Want To Use</div>",
-      // });  
+      // });
       // if(firstOpen) {
       //     // If received list is not greater than min value than set our min value to received list length
       //     var pre_selected_options = $.trim($('#pre-selected-options').html());
@@ -195,7 +196,7 @@
     //       event.stopPropagation();
     //       return false;
     //   }
-    // } 
+    // }
   });
 </script>
 <script type="text/javascript">
@@ -203,6 +204,16 @@
   var base_url = '<?php echo base_url(); ?>';
   var map;
   var loc_marker;
+  defaultSqft = "0.20";
+  defaultRadius = "0.25";
+  defaultBKFlag = "<?php echo $black_knight_flag; ?>";
+  defaultRetsFlag = "<?php echo $rets_flag; ?>";
+  if (defaultBKFlag == 1) {
+    defaultSqft = "<?php echo $black_knight_sqft; ?>";
+    defaultRadius = "<?php echo $black_knight_radius; ?>";
+  } else if (defaultRetsFlag == 1) {
+    defaultSqft = "<?php echo $rets_sqft; ?>";
+  }
 
   function changeCaptcha(){
       $.ajax({
@@ -219,16 +230,15 @@
   }
 
   function selected_listing()
-  { 
-    console.log(this.value);
+  {
   }
   var hexDigits = new Array
-          ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
+          ("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f");
 
   //Function to convert hex format to a rgb color
   function rgb2hex(rgb) {
     if(rgb != undefined) {
-      
+
      rgb = rgb.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
      return "#" + hex(rgb[1]) + hex(rgb[2]) + hex(rgb[3]);
     }
@@ -245,7 +255,7 @@
             map = new google.maps.Map(document.getElementById('map-canvas'), {
               zoom: 8,
               center: latlng
-            });    
+            });
             marker = new google.maps.Marker({
                 position: latlng,
                 map: map,
@@ -257,7 +267,7 @@
           zoom: 8,
           center: {lat: -34.397, lng: 150.644}
         });
-      
+
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   }
@@ -270,33 +280,41 @@
   // });
   $(function() {
     $("a[class^='prettyPhoto']").prettyPhoto({theme:'pp_default'});
-    $(".owl-carousel").owlCarousel({
-      items:4,
-      margin:15,
-      autoWidth:true,
-      });
+    // $(".owl-carousel").owlCarousel({
+    //   items:4,
+    //   margin:15,
+    //   autoWidth:true,
+    //   });
     // $("#owl-example").owlCarousel();
     $('.nav li').localScroll();
     $('.nav').onePageNav({filter: ':not(.external)'});
 
-    // Smart Wizard   
+    // Smart Wizard
     $('#wizard').smartWizard({
       onLeaveStep:function(obj){
+        var presentation = $("#wizard #presentation").val();
         if(obj.attr('rel')==1){
+          $("#wizard .owl-carousel").owlCarousel({
+            items:4,
+            margin:15,
+            autoWidth:true,
+          });
+          $('.nav li').localScroll();
+          $('.nav').onePageNav({filter: ':not(.external)'});
           setTimeout(function(){
             $(document).scrollTop(50);
           },500);
           return true;
         }
-        if(obj.attr('rel')==2) {
-          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+        if(obj.attr('rel')==2 && presentation != "marketUpdate") {
+          if(presentation == "seller" || presentation == "marketUpdate") {
             var pre_selected_options = $.trim($('#pre-selected-options').html());
             if (pre_selected_options!='') {
               if ($('#pre-selected-options').val()==null) {
                   alert('Please select '+_min+' comparables');
                   // event.stopPropagation();
                   return false;
-              } else if ($('#pre-selected-options').val().length < _min){
+              } else if ($('#pre-selected-options').val().length < _min) {
                   alert('Please select '+_min+' comparables');
                   // event.stopPropagation();
                   return false;
@@ -307,48 +325,122 @@
                   return false;
               }
             }
+            if (presentation == "seller") {
+              var theme_type = $("#select-theme-type").val();
+              var defaultSubType = <?php echo json_encode($default_sub_type); ?>;
+              var theme_sub_type = defaultSubType[presentation];
+
+              $.ajax({
+                url:base_url + 'user/getPreviews',
+                method:'POST',
+                data : {theme_type:presentation,theme_sub_type,theme_sub_type,displayCheckboxes: true},
+                success:function(resp){
+                  if(presentation == "seller" && $('#step-3 .carousel-container.seller_template .preview_pages').length > 0){
+                    $('#step-3 .carousel-container.seller_template .preview_pages').html(resp)
+                  } else {
+                    $('#step-3 .carousel-container.common_template .preview_pages').html(resp)
+                  }
+                }
+              });
+            }
           }
         }
-        if(obj.attr('rel')==3){
-          var _theme = $('.custom-checkbox:checked').val();
-          console.log(_theme);
-          console.log(typeof _theme);
-          if(typeof _theme==='undefined'){
-              alert("Please choose a theme");
+        if((obj.attr('rel') == 2) && (presentation == "marketUpdate")){
+          var presentation = $("#wizard #presentation").val();
+
+            var _theme = $('.custom-checkbox:checked').val();
+            if(typeof _theme==='undefined'){
+                alert("Please choose a theme");
+                return false;
+            }
+            compileAPNRequest(dataObj);
+        }
+
+        if((obj.attr('rel') == 3) && (presentation != "marketUpdate")){
+          var presentation = $("#wizard #presentation").val();
+          if (presentation == "seller") {
+            var selectedPage = [];
+            $('.page-checkbox:checked').each(function(){
+              selectedPage.push($(this).val());
+            });
+            if(selectedPage.length == 0){
+              alert("Please select atleast one page");
               return false;
+            }
+          } else {
+            var _theme = $('.custom-checkbox:checked').val();
+            if(typeof _theme==='undefined'){
+                alert("Please choose a theme");
+                return false;
+            }
+          }
+        }
+
+        if((obj.attr('rel') == 3) && (presentation == "marketUpdate")){
+          var pre_selected_options = $.trim($('#pre-selected-options').html());
+          if (pre_selected_options!='') {
+            if ($('#pre-selected-options').val()==null) {
+                alert('Please select '+_min+' comparables');
+                // event.stopPropagation();
+                return false;
+            } else if ($('#pre-selected-options').val().length < _min) {
+                alert('Please select '+_min+' comparables');
+                // event.stopPropagation();
+                return false;
+            }
+            _max = 8;
+            let themeNumner = $('.mu_radio:checked').val();
+            if (themeNumner == '6') {
+              _max = 9;
+            }
+            if($('#pre-selected-options').val().length > _max){
+                alert('Please do not select more than '+_max+' comparables');
+                // event.stopPropagation();
+                return false;
+            }
           }
         }
         return true;
       },
       onShowStep:function(obj){
         if(obj.attr('rel')==2){
-          if($("#presentation").val() == "seller" || $("#presentation").val() == "marketUpdate") {
+          if($("#wizard #presentation").val() == "seller" || $("#wizard #presentation").val() == "marketUpdate") {
 
             $('.buyer-cls').hide();
-            
+
           }
           else {
             $('.buyer-cls').show();
           }
         }
         if(obj.attr('rel')==4){
-          if($('.custom-checkbox:checked').val()){
+          var selectedPage = [];
+          $('.page-checkbox:checked').each(function(){
+            selectedPage.push($(this).val());
+          });
+          // if(selectedPage.length == 0){
+          //   $.ajax({
+          //     url:base_url + 'index.php?/user/generateInvoiceWithSelectedPage',
+          //     method:'POST',
+          //     data: selectedPage
+          // })
+          // if(selectedPage.length > 0){
             $.ajax({
               url:base_url + 'index.php?/user/generateInvoice',
               method:'GET'
           })
             .success(function(resp){
-              
+
               runPMA('','');
             });
-          }
+          // }
           $('.loader1').show();
           $('.loader1').removeClass('hidden');
           $('.backwrap').show();
           $('.backwrap').removeClass('hidden');
           // check_subscription();
           // manage_checkout_btn();
-        } 
+        }
         if(obj.attr('rel')!=4){
           $(".actionBar").show("slow");
           $(".btn-checkout").show("slow");
@@ -373,7 +465,6 @@
     // function stripeResponseHandler(status, response) {
     //   if (response.error) {
     //     // Show the errors on the form
-    //     console.log(response.error);
     //     $form.find('.payment-errors').text(response.error.message).show();
     //     $form.find('button').prop('disabled', false);
     //     jQuery(".loader1").hide();
@@ -442,11 +533,11 @@
               $(this).find('button').prop('disabled', true);
 
               // Stripe.card.createToken($form, stripeResponseHandler);
-              
+
               // Prevent the form from submitting with the default action
               return false;
     });
-    
+
     $('#apply_coupon').click(function(){
       $('.loader1').show();
       $('.loader1').removeClass('hidden');
@@ -482,18 +573,17 @@
                 $('.btn-checkout').data("download",1);
             }
           }else{
-            console.log(resp);
             $('#apply-coupan-alert').html(resp.message).removeClass('alert-success').addClass('alert-danger').show();
           }
           $('.loader1').hide();
           $('.backwrap').hide();
         }
-      }); 
+      });
     });
 
     function onFinishCallback(){
       $('#wizard').smartWizard('showMessage','Finish Clicked');
-    }     
+    }
 
     $('#addNewPartner').hide();
     $('.btn.add-partner').on('click', function (event) {
@@ -531,7 +621,6 @@
       $('#addNewPartner').append(itemHtml);
     });
     $('#addNewPartner').on('click','.remove-partner',function(){
-        console.log("Tru to remove");
         $(this).closest('div').remove();
     });
 
@@ -576,7 +665,7 @@
         //               if(data.company_plan !== undefined && data.company_plan){
         //                   $('#cancelBtnWrap').hide();
         //               }
-                      
+
         //           } else {
         //               $('#subscriptionForm-wraper').show();
         //               if(data.message !== undefined){
@@ -589,27 +678,24 @@
         // return true;
       }
     });
-    /** Tabs content was messedup for a second before smartTab initialization 
-     * So hide it initially and show it once smartTab initialized 
+    /** Tabs content was messedup for a second before smartTab initialization
+     * So hide it initially and show it once smartTab initialized
      */
     $('#tabs').show();
-    
-    $(".leftpic a").click(function() {    
-        console.log("trigger");                                            
+
+    $(".leftpic a").click(function() {
           $(this).parents(".leftpic").find(".file-type").trigger("click");
     });
 
-    $(".rightpic a").click(function() {                                                
+    $(".rightpic a").click(function() {
           $(this).parents(".rightpic").find(".file-type").trigger("click");
     });
-    
-    $("#addNewPartner").on('click','.partnerpic a',function() {    
-        console.log("trigger partner");                                            
+
+    $("#addNewPartner").on('click','.partnerpic a',function() {
           $(this).parents(".partnerpic").find(".file-type").trigger("click");
     });
 
-    $("#addNewPartner").on('click','.partner_companypic a',function() {    
-        console.log("trigger");                                            
+    $("#addNewPartner").on('click','.partner_companypic a',function() {
           $(this).parents(".partner_companypic").find(".file-type").trigger("click");
     });
     $("#addNewPartner").on('change','.partnerpic .file-type',function(){
@@ -617,9 +703,9 @@
       var file_data = $(this).prop('files')[0];
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)
-      // alert(form_data);                             
+      // alert(form_data);
       $.ajax({
-          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script 
+          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script
           dataType: 'text', // what to expect back from the PHP script, if anything
           cache: false,
           contentType: false,
@@ -627,7 +713,6 @@
           data: form_data,
           type: 'post',
           success: function(php_script_response) {
-              console.log(JSON.parse(php_script_response));
               var object = JSON.parse(php_script_response);
               var picEle = $(ele).closest('.partnerpic');
               if(object.status == 'success'){
@@ -644,17 +729,16 @@
       var file_data = $(this).prop('files')[0];
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)
-      // alert(form_data);                             
+      // alert(form_data);
       $.ajax({
-          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script 
+          url: '<?php echo base_url(); ?>index.php?/user/upload_file', // point to server-side PHP script
           dataType: 'text', // what to expect back from the PHP script, if anything
           cache: false,
           contentType: false,
           processData: false,
           data: form_data,
           type: 'post',
-          success: function(php_script_response) { 
-            console.log(JSON.parse(php_script_response));
+          success: function(php_script_response) {
             var object = JSON.parse(php_script_response);
             var picEle = $(ele).closest('.partner_companypic');
             if(object.status == 'success'){
@@ -666,15 +750,15 @@
           }
       });
     });
-    
+
     $(".leftpic .file-type").change(function(){
       var ele = this;
       var file_data = $(this).prop('files')[0];
       var form_data = new FormData();
       form_data.append('fileToUpload', file_data)
-      // alert(form_data);                             
+      // alert(form_data);
       $.ajax({
-        url: '<?php echo base_url(); ?>index.php?/user/upload_file/profile-image', // point to server-side PHP script 
+        url: '<?php echo base_url(); ?>index.php?/user/upload_file/profile-image', // point to server-side PHP script
         dataType: 'text', // what to expect back from the PHP script, if anything
         cache: false,
         contentType: false,
@@ -695,7 +779,7 @@
               */
               var element = $(ele).closest('.leftpic' ).find('#fileimage');
               $(element[0]).val('<?php echo base_url(); ?>'+object.fileuri);
-              
+
               if($('#agent_profile_image')){
                 $('#agent_profile_image').attr('value',object.fileuri);
               }
@@ -709,9 +793,9 @@
     $(".rightpic .file-type").change(function(){
         var file_data = $(this).prop('files')[0];
           var form_data = new FormData();
-          form_data.append('fileToUpload', file_data)                   
+          form_data.append('fileToUpload', file_data)
           $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/upload_file/company-image', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/upload_file/company-image', // point to server-side PHP script
               dataType: 'text', // what to expect back from the PHP script, if anything
               cache: false,
               contentType: false,
@@ -722,7 +806,7 @@
                   var object = JSON.parse(php_script_response);
                   if (object.status=='success') {
                       $('.rightpic a').html("<img src='<?php echo base_url(); ?>"+object.fileuri+"' style='width:100%'>");
-                      
+
                       if(object.status == 'success'){
                         $("#company_image").val(object.fileuri);
                       }else{
@@ -756,7 +840,7 @@
       }else{
         var form_data = $(this).serializeArray();
         $.ajax({
-                url: '<?php echo base_url(); ?>index.php?/user/update_password', // point to server-side PHP script 
+                url: '<?php echo base_url(); ?>index.php?/user/update_password', // point to server-side PHP script
                 // dataType: 'text', // what to expect back from the PHP script, if anything
                 // cache: false,
                 // contentType: false,
@@ -764,8 +848,6 @@
                 data: form_data,
                 method: 'post',
                 success: function(php_script_response) {
-                    
-                    console.log(JSON.parse(php_script_response));
                     var object = JSON.parse(php_script_response);
                     if (object.status=="success") {
                         $('#loginInfoForm .alert').html(object.message).show();
@@ -806,14 +888,13 @@
     });
 
     $('#agentInfoForm').submit(function(){
-      // console.log($(this).serialize());
       if( !$(this).valid() ){
            return false;
       }else{
 
         var form_data = $(this).serializeArray();
         $.ajax({
-                url: '<?php echo base_url(); ?>index.php?/user/update_agentinfo', // point to server-side PHP script 
+                url: '<?php echo base_url(); ?>index.php?/user/update_agentinfo', // point to server-side PHP script
                 // dataType: 'text', // what to expect back from the PHP script, if anything
                 // cache: false,
                 // contentType: false,
@@ -821,8 +902,6 @@
                 data: form_data,
                 method: 'post',
                 success: function(php_script_response) {
-                    
-                    console.log(JSON.parse(php_script_response));
                     var object = JSON.parse(php_script_response);
                     if (object.status=="success") {
                         $('#agentInfoForm .alert').html(object.message).show();
@@ -866,17 +945,36 @@
     $('#companyInfoForm').submit(function(){
       var form_data = $(this).serializeArray();
       $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script
               data: form_data,
               method: 'post',
               success: function(php_script_response) {
-                  
-                  console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
                       $('#companyInfoForm .alert').html(object.message).show();
                       setTimeout(function(){
                         $('#companyInfoForm .alert').fadeOut(1500);
+                      },2000);
+                  } else {
+
+                  }
+              }
+      });
+      return false;
+    });
+
+    $('#configForm').submit(function(){
+      var form_data = $(this).serializeArray();
+      $.ajax({
+              url: '<?php echo base_url(); ?>index.php?/user/saveConfig', // point to server-side PHP script
+              data: form_data,
+              method: 'post',
+              success: function(php_script_response) {
+                  var object = JSON.parse(php_script_response);
+                  if (object.status=="success") {
+                      $('#configForm .alert').html(object.message).show();
+                      setTimeout(function(){
+                        $('#configForm .alert').fadeOut(1500);
                       },2000);
                   } else {
 
@@ -914,12 +1012,10 @@
     $('#agentBillingInfo').submit(function(){
       var form_data = $(this).serializeArray();
       $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/update_copmpanyinfo', // point to server-side PHP script
               data: form_data,
               method: 'post',
               success: function(php_script_response) {
-                  
-                  console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
                       $('#companyInfoForm .alert').html(object.message).show();
@@ -935,14 +1031,11 @@
     });
 
     $('#agentDefaultTheme').click(function(){
-      console.log($('.custom-checkbox:checked').val());
       $.ajax({
-              url: '<?php echo base_url(); ?>index.php?/user/update_defaulttheme', // point to server-side PHP script 
+              url: '<?php echo base_url(); ?>index.php?/user/update_defaulttheme', // point to server-side PHP script
               data: {theme:$('.custom-checkbox:checked').val()},
               method: 'post',
               success: function(php_script_response) {
-                  
-                  console.log(JSON.parse(php_script_response));
                   var object = JSON.parse(php_script_response);
                   if (object.status=="success") {
                       $('#agentDefaultThemeForm .alert').html(object.message).show();
@@ -961,7 +1054,7 @@
       jQuery(".loader1").removeClass('hidden');
       jQuery(".backwrap").show();
       jQuery(".backwrap").removeClass('hidden');
-    
+
       Stripe.card.createToken($subs_form, stripeResponseHandlerSubs);
       // Prevent the form from submitting with the default action
       return false;
@@ -969,7 +1062,6 @@
     function stripeResponseHandlerSubs(status, response) {
       if (response.error) {
         // Show the errors on the form
-        console.log(response.error);
         $('#subscriptionForm .alert').html(response.error.message).show();
         setTimeout(function(){
           $('#subscriptionForm .alert').fadeOut(1500);
@@ -989,7 +1081,7 @@
         $('#subscriptionForm').get(0).submit = function() {
             var form_data = $(this).serializeArray();
             $.ajax({
-                    url: '<?php echo site_url('user/pay_subscription'); ?>', // point to server-side PHP script 
+                    url: '<?php echo site_url('user/pay_subscription'); ?>', // point to server-side PHP script
                     data: form_data,
                     method: 'post',
                     dataType: 'json',
@@ -1021,7 +1113,7 @@
             });
         }
     }
-    
+
     $(".btn-checkout").click(function(){
       var isDirectDownload = parseInt($(this).data('download'));
       if(isDirectDownload){
@@ -1045,11 +1137,11 @@
           $(document).scrollTop(0);
         },500);
         //Call Session id
-        var presentation_type = $("#presentation").val().toLowerCase();
+        var presentation_type = $("#wizard #presentation").val().toLowerCase();
         $('.selected_pkg_val').text(pkg_prices[presentation_type].val);
         $('.selected_pkg_val').val(pkg_prices[presentation_type].val);
         // $('.selected_pkg_title').html(pkg_prices[presentation_type].title);
-        
+
         if(!(pkg_prices[presentation_type].active == 1 || pkg_prices['all'].active == 1)) {
 
             // $('.loader1').show();
@@ -1090,15 +1182,15 @@
               }
             });
 
-            
+
             document.getElementById("stripe-submit").disabled = true;
 
             const btn = document.querySelector('#stripe-submit');
             btn.addEventListener('click', async (e) => {
               e.preventDefault();
               loading(true);
-              let nameInput = '<?php echo $this->session->userdata('username')?>';
-              
+              let nameInput = '<?php echo $this->session->userdata('username') ?>';
+
               let coupon_id = $("#coupon-id").val();
               fetch('<?php echo base_url("user/createPaymentIntent"); ?>', {
                 method: 'POST',
@@ -1147,12 +1239,11 @@
               });
 
             });
-            
+
         }
 
         //$("#stripe_chk_btn").trigger("click");
       }
-      // console.log("Bypassed");
       // $(this).parents("#step-4").find('.order-detail').hide("slow");
       // $(this).parents("#step-4").find('.order-summary').show("slow");
       // $(".actionBar").hide("slow");
@@ -1163,7 +1254,7 @@
       //   $(document).scrollTop(0);
       // },500);
     });
-    
+
     $(".btn-review").click(function(){
       $(this).parents("#step-4").find('.order-detail').show("slow");
       $(this).parents("#step-4").find('.order-summary').hide("slow");
@@ -1216,7 +1307,6 @@
               if(resp.status){
                   var discount = parseFloat($('#invoice-amount').val());
                   amount  =   0;
-                  console.log(discount);
                   $('#coupandiscount td:last').html('$'+discount.toFixed(2));
                   $('#invoice-amount').val(amount);
                   if ($('#order-amount').length) {
@@ -1239,10 +1329,10 @@
   $(document).ready(function(){
       <?php if ($this->session->flashdata('success')): ?>
       Notify('Success', '<?php echo $this->session->flashdata('success') ?>', 'success');
-      <?php endif; ?>
-      <?php if ($this->session->flashdata('error')) : ?>
+      <?php endif;?>
+      <?php if ($this->session->flashdata('error')): ?>
       Notify('Error', '<?php echo $this->session->flashdata('error') ?>', 'error');
-      <?php endif; ?>
+      <?php endif;?>
       $(".btn-user-logout-click").click(function() {
           $.ajax({
               url: '<?php echo site_url('auth/logout/format/json/'); ?>',
@@ -1282,14 +1372,28 @@
 
         if($('.myaccount  #preview_pages ').length) {
 
-          
+
           $('.myaccount .theme_selection_div .select_change').change(function() {
 
             if($(this).attr('id') == "select-theme-type") {
-              $("#select-theme option[value='2']").prop('disabled', false);
-              $("#select-theme option[value='3']").prop('disabled', false);
+              var $el = $("#select-theme");
+              $el.empty(); // remove old options
+
+              let newOptions = {
+                "Theme 1": "1",
+                "Theme 2": "2",
+                "Theme 3": "3"
+              };
+
+              $.each(newOptions, function(key,value) {
+                $el.append($("<option></option>")
+                  .attr("value", value).text(key));
+              });
+
               $(".subscribe_notice").hide();
               if($(this).val() == 'buyer') {
+                $("#select-theme option[value='2']").prop('disabled', false);
+                $("#select-theme option[value='3']").prop('disabled', false);
                 $("#select-theme").val(default_sub_type_buyer);
                 $("#select-color").val(default_color_buyer);
                 if(active_buyer == 0 && active_all == 0) {
@@ -1312,28 +1416,41 @@
                 }
               }
               else if($(this).val() == 'marketUpdate') {
+                let addOptions = {
+                  "Theme 4": "4",
+                  "Theme 5": "5",
+                  "Theme 6": "6",
+                  "Theme 7": "7"
+                };
+
+                $.each(addOptions, function(key,value) {
+                  $el.append($("<option></option>")
+                    .attr("value", value).text(key));
+                });
+
+                $("#select-theme option[value='2']").prop('disabled', false);
+                $("#select-theme option[value='3']").prop('disabled', false);
+                $("#select-theme option[value='4']").prop('disabled', false);
+                $("#select-theme option[value='5']").prop('disabled', false);
+                $("#select-theme option[value='6']").prop('disabled', false);
+                $("#select-theme option[value='7']").prop('disabled', false);
                 $("#select-theme").val(default_sub_type_mu);
                 $("#select-color").val(default_color_mu);
+
                 if(active_mu == 0 && active_all == 0) {
                   $("#select-theme").val(1);
                   $("#select-theme option[value='2']").prop('disabled', true);
                   $("#select-theme option[value='3']").prop('disabled', true);
+                  $("#select-theme option[value='4']").prop('disabled', true);
+                  $("#select-theme option[value='5']").prop('disabled', true);
+                  $("#select-theme option[value='6']").prop('disabled', true);
+                  $("#select-theme option[value='7']").prop('disabled', true);
                   $("#rep_type").html('Market Update');
                   $(".subscribe_notice").show();
                 }
               }
             }
-
-            var theme_type = $("#select-theme-type").val();
-            var theme_sub_type = $("#select-theme").val();
-            $.ajax({
-              url:base_url + 'user/getPreviews',
-              method:'POST',
-              data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
-              success:function(resp){
-                $('.myaccount #preview_pages').html(resp)
-              }
-            });
+            getPreview();
           });
 
           $('#agentDefaultTheme_save').click(function(){
@@ -1379,8 +1496,26 @@
 
           });
         }
-    });
+        console.log('test');
+
+      });
+      $(document).on('click', '.marketupdate_theme_select', function() {
+        $("#select-theme").val($(this).val());
+      });
+
+    function getPreview() {
+      var theme_type = $("#select-theme-type").val();
+      var theme_sub_type = $("#select-theme").val();
+      $.ajax({
+        url:base_url + 'user/getPreviews',
+        method:'POST',
+        data : {theme_type:theme_type,theme_sub_type,theme_sub_type},
+        success:function(resp){
+          $('.myaccount #preview_pages').html(resp)
+        }
+      });
+    }
     </script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.19"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/js/lp.js?v=0.32"></script>
 </body>
 </html>

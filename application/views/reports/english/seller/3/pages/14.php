@@ -18,7 +18,7 @@
 	    </div>
 	</div>
 	<div class="d-flex">    
-	    <div class="col-50">
+	    <div class="col-50 responsive-100">
 	    	<?php
                 $para_1_title = isset($report_content_data['paragraph_1_title']['value']) && !empty($report_content_data['paragraph_1_title']['value']) ? $report_content_data['paragraph_1_title']['value'] : 'Email and Social Media Marketing:';
             ?>
@@ -43,7 +43,7 @@
 	        </ul>
 	        <img src="<?php echo base_url().'assets/reports/english/seller/images/14/mockup-1.jpg'; ?>" alt="<?php echo $para_1_title; ?>" class="web_design"> 
 	    </div>
-	    <div class="col-50">
+	    <div class="col-50 responsive-100">
 	    	<?php
                 $para_2_title = isset($report_content_data['paragraph_2_title']['value']) && !empty($report_content_data['paragraph_2_title']['value']) ? $report_content_data['paragraph_2_title']['value'] : 'Video Social Media Ads:';
             ?>

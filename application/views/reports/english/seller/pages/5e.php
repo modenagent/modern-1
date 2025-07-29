@@ -26,7 +26,7 @@
             
           <div class="text-content">
 
-           <div class="col-xs-3">
+           <div class="col-xs-3 responsive-100">
                
               <div class="text-box text-box1">
 
@@ -37,7 +37,7 @@
           
            </div>
 
-           <div class="col-xs-3">
+           <div class="col-xs-3 responsive-100">
 
             <div class="text-box text-box2">
 
@@ -48,7 +48,7 @@
 
        </div>
 
-           <div class="col-xs-3">
+           <div class="col-xs-3 responsive-100">
 
             <div class="text-box text-box3">
 
@@ -59,7 +59,7 @@
 
        </div>
 
-           <div class="col-xs-3">
+           <div class="col-xs-3 responsive-100">
 
             <div class="text-box text-box4">
 

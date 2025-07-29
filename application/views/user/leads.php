@@ -1,29 +1,77 @@
- 
 <!-- Recent LP's section -->
 <section class="impression">
-     
-  <div class="container">
+
+  <div class="container leads-container">
     <?php if ($this->session->flashdata('success')): ?>
-    <div class="alert alert-success">
-        <a href="#" class="close" data-dismiss="alert">&times;</a> 
+      <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Success! </strong>
         <?php echo $this->session->flashdata('success') ?>
-    </div>
-    <?php endif; ?>
-    <?php if ($this->session->flashdata('error')) : ?>
-    <div class="alert alert-danger">
-        <a href="#" class="close" data-dismiss="alert">&times;</a> 
+      </div>
+    <?php endif;?>
+    <?php if ($this->session->flashdata('error')): ?>
+      <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert">&times;</a>
         <strong>Error! </strong>
-    <?php echo $this->session->flashdata('error') ?>
-    </div>
-    <?php endif; ?>
+        <?php echo $this->session->flashdata('error') ?>
+      </div>
+    <?php endif;?>
     <h1 class="main_title mb-4">Leads</h1>
-    <?php if($ref_code): ?>
-    <p class="">Your unique referral code: <span style="font-size:15px; font-weight:bold;" id="ref-code"><?php echo $ref_code; ?></span></p><br>
-	 <p class="">Put this link on your marketing material:  <span style="font-size:15px; font-weight:bold;">www.modernagent.io/cma</span></p>
-    <?php else: ?>
-    <p>This feature is not available to you.
-    <?php endif; ?>
+	    <p class="subline">Below you can find your marketing code along with your leads and downloadable QR coded.</p>
+
+        <div class="row barcode-wrapper">
+          <div class="col-md-6 qr-wrapper border-none ">
+            <div class="qr-text">
+              <p> Use this QR code to direct your prospects to your Market Update landing page.</p>
+
+              <?php if ($ref_code): ?>
+              <p class="leads">Your unique referral code: <span id="ref-code"> <?php echo $ref_code; ?></span></p>
+		          <p class=""><span class="link-span" ><?php echo $_ENV['APP_URL'] . 'mkt/' . $ref_code; ?></span></p>
+              <?php endif;?>
+            </div>
+
+            <?php if ($ref_code): ?>
+            <div class="qr-code-container">
+              <?php
+$url = urlencode(base_url("mkt/" . $ref_code));
+list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
+$rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
+$rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
+$image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
+?>
+                <!-- <img src="https://mcusercontent.com/b10d88eb10799345e0303a43d/images/a2e8eeff-1b35-ab88-2ffd-ae0fadd6bbf2.png"> -->
+                <img src="<?php echo $image; ?>">
+            </div>
+              <?php else: ?>
+                <p>This feature is not available to you.
+              <?php endif;?>
+          </div>
+
+          <div class="col-md-6 qr-wrapper ">
+            <div class="qr-text">
+              <p> Use this QR code to direct your prospects to your CMA landing page.</p>
+              <?php if ($ref_code): ?>
+              <p class="leads">Your unique referral code: <span id="ref-code"> <?php echo $ref_code; ?></span></p>
+		          <p class=""><span class="link-span" ><?php echo $_ENV['APP_URL'] . 'cma/' . $ref_code; ?></span></p>
+              <?php endif;?>
+            </div>
+            <?php if ($ref_code): ?>
+            <div class="qr-code-container">
+                <?php
+$url = urlencode(base_url("cma/" . $ref_code));
+list($r, $g, $b) = sscanf("#ff523d", "#%02x%02x%02x");
+$rgb_color_front = urlencode(json_encode(array($r, $g, $b)));
+$rgb_color_back = urlencode(json_encode(array(255, 255, 255)));
+$image = base_url("user/generate_qr_code/0/5/$rgb_color_back/$rgb_color_front?url=" . $url);
+?>
+                <img src="<?php echo $image; ?>">
+            </div>
+              <?php else: ?>
+                <p>This feature is not available to you.
+              <?php endif;?>
+          </div>
+        </div>
+
     <div class="table-responsive">
       <table class="table table-hover responsive nowrap" style="width:100%" id="leads-table-dt">
         <thead>
@@ -42,63 +90,63 @@
     </div>
   </div>
   <script type="text/javascript">
-$(document).ready(function(){
-  if ($('#leads-table-dt').length) {
-    $('#leads-table-dt').DataTable({
-        "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
-        aaSorting: [],
-        responsive: true,
-        'columnDefs': [ {
-            'targets': [4,4], // column index (start from 0)
+    $(document).ready(function () {
+      if ($('#leads-table-dt').length) {
+        $('#leads-table-dt').DataTable({
+          "dom": '<"table_filter"fl>rt<"table_navigation"ip>',
+          aaSorting: [],
+          responsive: true,
+          'columnDefs': [{
+            'targets': [4, 4], // column index (start from 0)
             'orderable': false, // set orderable false for selected columns
-        }],
-        // Processing indicator
-        "processing": true,
-        // DataTables server-side processing mode
-        "serverSide": true,
-        // Initial no order.
-        
-        "order": [
-          [0, "DESC"]
-        ],
-        // Load data from an Ajax source
-        "ajax": {
+          }],
+          // Processing indicator
+          "processing": true,
+          // DataTables server-side processing mode
+          "serverSide": true,
+          // Initial no order.
+
+          "order": [
+            [0, "DESC"]
+          ],
+          // Load data from an Ajax source
+          "ajax": {
             "url": "<?php echo base_url('/user/getLeadListing'); ?>",
             "type": "POST"
-        },
-        "initComplete": function () {
+          },
+          "initComplete": function () {
             var input = $('.dataTables_filter input').unbind(),
-                self = this.api(),
-                $searchButton = $('<button class="btn_search">')
+              self = this.api(),
+              $searchButton = $('<button class="btn_search">')
                 .text('Search')
                 .click(function () {
-                    self.search(input.val()).draw();
+                  self.search(input.val()).draw();
                 }),
-                $clearButton = $('<button class="btn_clear">')
+              $clearButton = $('<button class="btn_clear">')
                 .text('Clear')
                 .click(function () {
-                    input.val('');
-                    $searchButton.click();
+                  input.val('');
+                  $searchButton.click();
                 })
             // $('div.dataTables_filter input').addClass('lp-datatable-custom-search');
             // $('div.dataTables_length select').addClass('lp-datatable-custom-page-length');
             $('.dataTables_filter').append($searchButton, $clearButton);
-        },
-        "language": {
+          },
+          "language": {
             "processing": "<div class='text-center'><i class='fa fa-spinner fa-spin admin-fa-spin ma-font-24'></div>",
             "emptyTable": "<div align='center'>Record(s) not found.</div>"
-        },
-        //Set column definition initialisation properties
-        // "columnDefs": [{ 
-        //     "orderable": false,
-        //     "targets": "no-sort"
-        // }],
-        "drawCallback": function( settings ) {
-          $("[data-toggle='tooltip']").tooltip({placement:'left'});
-        }
+          },
+          //Set column definition initialisation properties
+          // "columnDefs": [{
+          //     "orderable": false,
+          //     "targets": "no-sort"
+          // }],
+          "drawCallback": function (settings) {
+            $("[data-toggle='tooltip']").tooltip({ placement: 'left' });
+          }
+        });
+      }
     });
-  }
-});
-</script>
+  </script>
 </section>
 <!-- Screenshots section -->

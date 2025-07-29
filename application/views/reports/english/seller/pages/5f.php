@@ -2,7 +2,7 @@
 	<div class="section page5">
 	
 		<header>
-			<h2 class="underline title-bold">
+			<h2 class="underline title-bold res-fs-h2">
 			<?php 
 			if (isset($report_content_data['title']['value']) && !empty($report_content_data['title']['value'])) {
 				echo $report_content_data['title']['value'];
@@ -26,7 +26,7 @@
 
           <div class="col-xs-12">
             
-          <h3 class="text-uppercase">
+          <h3 class="text-uppercase res-fs-h3">
 			<?php 
 			if (isset($report_content_data['paragraph_1_title']['value']) && !empty($report_content_data['paragraph_1_title']['value'])) {
 				echo $report_content_data['paragraph_1_title']['value'];
@@ -69,7 +69,7 @@
       <div class="home-top">
         
       
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
        
 		<h4 class="home">
 		<?php 
@@ -97,7 +97,7 @@
      </div>
 
 
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
         
       <h4 class="home">
 		<?php 

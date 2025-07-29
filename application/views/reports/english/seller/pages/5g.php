@@ -54,9 +54,9 @@
 
     <div class="market-content-top">
       
-    <div class="row">
+    <div class="row vertical-align">
     
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
        
 		<h4 class="home" style="color:<?php echo $theme ?>;">
 		<?php 
@@ -82,7 +82,7 @@
      </div>
 
 
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
         
 		<h4 class="home" style="color:<?php echo $theme ?>;">
 		<?php 
@@ -110,7 +110,7 @@
 
     <div class="row">
       
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
        
 		<h4 class="home" style="color:<?php echo $theme ?>;">
 		<?php 
@@ -136,7 +136,7 @@
      </div>
 
 
-     <div class="col-xs-6">
+     <div class="col-xs-6 responsive-100">
         
 		<h4 class="home" style="color:<?php echo $theme ?>;">
 		<?php 

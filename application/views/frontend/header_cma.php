@@ -9,7 +9,7 @@
 
         <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
         <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/images/favicon.ico" type="image/x-icon" />
+        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/frontend/images/favicon.ico" type="image/x-icon" />
 
         <!-- <link href="<?php echo base_url('assets/font-awesome/css/font-awesome.min.css'); ?>" rel="stylesheet" type="text/css" /> -->
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/bootstrap.min.css">
@@ -17,17 +17,16 @@
         <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/responsive.dataTables.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/dataTables.bootstrap4.min.css">
 
-        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.7">
+        <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/new_site/css/custom.css?v=0.13">
 
 </head>
 
 <body class="cma-body">
-    <header class="overlapping">
+   <!-- <header class="overlapping">
         <nav class="navbar navbar-expand-lg" >
           <div class="container">
-            <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/new_site/img/logo.png" class="" /></a>
-             
+            <a class="navbar-brand" href="<?php echo site_url(); ?>"><img id="" src="<?php echo base_url(); ?>assets/frontend/images/LargeLogo.png" class="cmalogo" /></a>
+
             </div>
         </nav>
-        
-      </header>
+      </header> -->

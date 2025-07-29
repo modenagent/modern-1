@@ -4,54 +4,54 @@
     <div class="monthly_subscription"><span>Monthly Subscription</span></div>
     <script src="https://js.stripe.com/v3"></script>
     <div class="row justify-content-center">
-      <?php 
-          $active_lable = false;
-          foreach ($packages as $package) { ?>
-          <div class="col-lg-4 col-md-6">
+      <?php
+$active_lable = false;
+foreach ($packages as $package) {?>
+          <div class="col-lg-4 col-md-6 <?php if (!in_array($package->package, ['seller', 'all'])) {echo 'hidden';}?> ">
             <div class="pricing_box">
               <h4><?php echo $package->title; ?></h4>
               <?php
-                if(isset($active_plans[$package->id])) {
-                  echo '<span class="active_plan_badge">Active</span>';
-                  $active_lable = true;
-                }
-              ?>
+if (isset($active_plans[$package->id])) {
+    echo '<span class="active_plan_badge">Active</span>';
+    $active_lable = true;
+}
+    ?>
               <p><?php echo $package->description; ?></p>
-              <h4 class="block-price">$<?php echo number_format($package->price_per_month,2); ?>/month</h4>
+              <h4 class="block-price">$<?php echo number_format($package->price_per_month, 2); ?>/month</h4>
               <div class="block-footer">
-                <?php if(isset($active_plans[$package->id])): ?>
-                  <?php if(isset($cancel_plans[$package->id])): ?>
+                <?php if (isset($active_plans[$package->id])): ?>
+                  <?php if (isset($cancel_plans[$package->id])): ?>
                         <div class="label-info" >Active untill : <?php echo $cancel_plans[$package->id]; ?></div>
                   <?php else: ?>
                         <form action="<?php echo base_url('user/cancel_subscribe') ?>" method="post">
                           <input type="hidden" name="sub_id" value="<?php echo $active_plans[$package->id]->id; ?>">
                           <button  type="button" class="btn btn-danger  cancel_subscription"><span>Cancel Subscription</span></button>
                         </form>
-                  <?php endif; ?>
-                <?php else : ?>
-                  <button type="button" class="btn btn-default subscription_select" id="checkout-button-<?php echo $package->id;?>" <?php echo ($active_all)?'disabled':''; ?> data-price-id="<?php echo $package->stripe_price_id;?>" data-plan-name="<?php echo $package->title;?>" data-plan-price="<?php echo number_format($package->price_per_month,2);?>">Subscribe</button>
+                  <?php endif;?>
+                <?php else: ?>
+                  <button type="button" class="btn btn-default subscription_select" id="checkout-button-<?php echo $package->id; ?>" <?php echo ($active_all) ? 'disabled' : ''; ?> data-price-id="<?php echo $package->stripe_price_id; ?>" data-plan-name="<?php echo $package->title; ?>" data-plan-price="<?php echo number_format($package->price_per_month, 2); ?>">Subscribe</button>
                   <script type="text/javascript">
                     // var stripe = Stripe('<?php echo getStripeKey(); ?>');
-                    // var checkoutButton = document.querySelector('#checkout-button-<?php echo $package->id;?>');
+                    // var checkoutButton = document.querySelector('#checkout-button-<?php echo $package->id; ?>');
                     // checkoutButton.addEventListener('click', function () {
                     //   stripe.redirectToCheckout({
                     //     lineItems: [{
-                    //       price: '<?php echo $package->stripe_price_id;?>',
+                    //       price: '<?php echo $package->stripe_price_id; ?>',
                     //       quantity: 1
                     //     }],
                     //     customerEmail: '<?php echo $agentInfo->email; ?>',
-                    //     clientReferenceId: '<?php echo $this->session->userdata("userid")."_".$package->id;?>',
+                    //     clientReferenceId: '<?php echo $this->session->userdata("userid") . "_" . $package->id; ?>',
                     //     mode: 'subscription',
                     //     successUrl: '<?php echo base_url("user/myaccount?payment=success") ?>',
                     //     cancelUrl: '<?php echo base_url("user/myaccount?payment=cancel") ?>'
                     //   });
                     // });
                   </script>
-                <?php endif; ?>
+                <?php endif;?>
               </div>
             </div>
           </div>
-        <?php } ?>
+        <?php }?>
     </div>
   </div>
 
@@ -75,7 +75,7 @@
               <div class="col-sm-6">$ <span id="selected_plan_value"></span> / month </div>
             </div>
           </div>
-          
+
           <form id="subscription-form">
             <input type="hidden" name="stripe_price_id" id="stripe_price_id">
             <div id="card-element">
@@ -95,11 +95,11 @@
         </div>
       </div>
 
-      
-      
+
+
     </div>
   </div>
-  
+
 </div>
 
 <script type="text/javascript">
@@ -122,6 +122,7 @@
       $('.membership_box').addClass('tab_white_box');
       $('.package-div').hide();
     });
+
     $('.back-subscribe').click(function(){
       $('.stripe-div').hide();
       $('.membership_box').removeClass('tab_white_box');
@@ -131,6 +132,7 @@
 
     });
 
+    var stripe_secret_key = '<?php echo getStripeKey(); ?>';
     var stripe = Stripe('<?php echo getStripeKey(); ?>');
     let elements = stripe.elements();
 
@@ -166,17 +168,18 @@
         }
       });
 
-      
+
       document.getElementById("stripe-submit").disabled = true;
 
       const btn = document.querySelector('#stripe-submit');
       btn.addEventListener('click', async (e) => {
         e.preventDefault();
         loading(true);
-        const nameInput = '<?php echo $this->session->userdata('username')?>';
+        const nameInput = '<?php echo $this->session->userdata('username') ?>';
         let priceId = document.getElementById('stripe_price_id').value;
         const customerId = '<?php echo $customer_id ?>';
-
+        var id = "ctl03_Tabs1";
+        var lastFive = id.substr(id.length - 5);
         fetch('<?php echo base_url("user/createSubscription"); ?>', {
           method: 'POST',
           headers: {
@@ -189,6 +192,8 @@
         })
         .then(response => response.json())
         .then(data => {
+          console.log('data =====', data);
+
           if(data.status == true) {
             stripe.confirmCardPayment(data.clientSecret, {
               payment_method: {
@@ -198,13 +203,37 @@
                 },
               }
             }).then((result) => {
+
               if(result.error) {
                 showError(result.error.message);
               } else {
-                $("#payment-success").html("You have sucessfully Subscribed");
-                // location.reload();
-                location.replace('<?php echo base_url("user/myaccount/membership"); ?>');
-                // Successful subscription payment
+                const paymentMethodId = result.paymentIntent.payment_method;
+                // Fetch the payment method details from Stripe
+                fetch('<?php echo base_url("user/fetchCardDetails"); ?>', {
+                  method: 'POST',
+                  headers: {
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({
+                    paymentMethodId: paymentMethodId,
+                    subscriptionId: data.subscriptionId,
+                    priceId: priceId,
+                  }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                  console.log('data ==', data);
+                  if (data.status === true) {
+                    $("#payment-success").html("You have successfully subscribed");
+                    location.replace('<?php echo base_url("user/myaccount/membership"); ?>');
+                  } else {
+                    showError(data.message);
+                  }
+                  // Successful subscription payment
+                })
+                .catch((error) => {
+                  console.error('Error:', error);
+                });
               }
             });
           }

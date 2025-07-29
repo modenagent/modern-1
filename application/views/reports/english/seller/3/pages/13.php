@@ -15,7 +15,7 @@
 		    ?>
             <span><?php echo $avg_text; ?></span>
         	<?php
-		        $avg_days = isset($report_content_data['average_days']['value']) && !empty($report_content_data['average_days']['value']) ? $report_content_data['average_days']['value'] : '52';
+		        $avg_days = isset($report_content_data['average_days']['value']) && !empty($report_content_data['average_days']['value']) ? $report_content_data['average_days']['value'] : '37';
 		    ?>
             <div class="number"><?php echo $avg_days; ?></div>
         </div>
@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="d-flex mt-20 steps">
-        <div class="col-50">
+        <div class="col-50 responsive-100">
             <?php
                 $para_1_title = isset($report_content_data['paragraph_1_title']['value']) && !empty($report_content_data['paragraph_1_title']['value']) ? $report_content_data['paragraph_1_title']['value'] : 'Market';
             ?>
@@ -47,7 +47,7 @@
                 <li><?php echo $point_2; ?></li>
             </ul>
         </div> 
-        <div class="col-50">
+        <div class="col-50 responsive-100">
         	<?php
                 $para_2_title = isset($report_content_data['paragraph_2_title']['value']) && !empty($report_content_data['paragraph_2_title']['value']) ? $report_content_data['paragraph_2_title']['value'] : 'Season';
             ?>
@@ -66,6 +66,6 @@
             <p><?php echo $para_3_content; ?></p>
         </div>
     </div>
-    <div style="background:url(<?php echo base_url().'assets/reports/english/seller/images/13/gray-chart.png'; ?>) no-repeat;background-size: contain;height: 340px;margin-top: -120px;"></div>
+    <div class="gray-chart" style="background:url(<?php echo base_url().'assets/reports/english/seller/images/13/gray-chart.png'; ?>) no-repeat;background-size: contain;margin-top: -120px;"></div>
     
 </page>
