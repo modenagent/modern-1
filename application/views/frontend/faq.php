@@ -14,30 +14,30 @@
                                     <div class="subpage-title">
                                         <h5>Frequently Asked Questions</h5>
                                     </div>
-                                    <div class="panel-group">
+                                    <div class="panel-group" role="tablist" aria-multiselectable="true">
                                         <div class="panel panel-default">
-                                            <div class="panel-heading">
+                                            <div class="panel-heading" role="tab" id="heading1">
                                                 <h4 class="panel-title">
-                                                    <a href="#collapse1" data-toggle="collapse" class="accordion-toggle collapsed">
+                                                    <a href="#collapse1" data-toggle="collapse" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse1">
                                                    What Format Do They Flyers Come In?
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div class="panel-collapse collapse" id="collapse1">
+                                            <div class="panel-collapse collapse" id="collapse1" role="tabpanel" aria-labelledby="heading1">
                                                 <div class="panel-body">
                                                    All flyers are in PDF format. In the near future we will be adding the ability to export in other formats.
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="panel panel-default">
-                                            <div class="panel-heading">
+                                            <div class="panel-heading" role="tab" id="heading2">
                                                 <h4 class="panel-title">
-                                                    <a href="#collapse2" data-toggle="collapse" class="accordion-toggle collapsed">
+                                                    <a href="#collapse2" data-toggle="collapse" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse2">
                                                    Are the Images High Resolution?
                                                     </a>
                                                 </h4>
                                             </div>
-                                            <div class="panel-collapse collapse" id="collapse2">
+                                            <div class="panel-collapse collapse" id="collapse2" role="tabpanel" aria-labelledby="heading2">
                                                 <div class="panel-body">
                                                    Yes. All of our images are high resolution to allow for the best printing possible.
                                                 </div>

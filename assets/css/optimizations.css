@@ -1,0 +1,119 @@
+/* Modern Agent - Security and Performance Optimizations */
+
+/* Invoice template styles - moved from inline */
+.invoice-container {
+    background-color: rgb(255,255,255);
+    padding-top: 140px;
+    text-align: center;
+}
+
+.invoice-content {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 35px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+.invoice-title {
+    text-align: center;
+    font-size: 30px;
+    font-family: Montserrat, Arial, sans-serif;
+    color: rgb(0,0,0);
+    font-weight: bold;
+    line-height: 36px;
+    margin: 20px 0;
+}
+
+.invoice-subtitle {
+    text-align: center;
+    font-size: 12px;
+    font-family: Montserrat, Arial, sans-serif;
+    color: rgb(0,0,0);
+    font-weight: normal;
+    text-transform: uppercase;
+    line-height: 18px;
+    margin-bottom: 25px;
+}
+
+.invoice-body-text {
+    text-align: left;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(34, 34, 34);
+    line-height: 24px;
+    font-weight: normal;
+}
+
+/* Accessibility improvements */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Form improvements */
+.form-security {
+    position: relative;
+}
+
+.form-security input[type="hidden"] {
+    display: none;
+}
+
+/* Performance optimizations */
+.lazy-load {
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lazy-load.loaded {
+    opacity: 1;
+}
+
+/* Modern responsive grid - alternative to table layouts */
+.modern-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .modern-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .modern-grid {
+        grid-template-columns: 3fr 1fr;
+    }
+}
+
+/* Security indicator styles */
+.security-badge {
+    display: inline-block;
+    padding: 2px 6px;
+    background-color: #28a745;
+    color: white;
+    font-size: 10px;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+
+.security-badge.warning {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.security-badge.error {
+    background-color: #dc3545;
+}

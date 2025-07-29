@@ -14,19 +14,19 @@
         <div class="workplace">
         <?php if(isset($_GET['msg']))
                 { 
-                  if($_GET['msg'] == "removed"){
+                  if(html_escape($_GET['msg']) == "removed"){
                   ?>
-                  <div class='alert alert-success fade-in span4'>
-                    <button data-dismiss='alert' class='close' type='button'>×</button>
+                  <div class='alert alert-success fade-in span4' role="alert">
+                    <button data-dismiss='alert' class='close' type='button' aria-label="Close">×</button>
                          <strong id = 'success'>Product has been removed from deals.</strong>
                          </div>                  
            <?php } }?>
             <?php if(isset($_GET['msg']))
                 { 
-                  if($_GET['msg'] == "deals_update"){
+                  if(html_escape($_GET['msg']) == "deals_update"){
                   ?>
-                  <div class='alert alert-success fade-in span4'>
-                    <button data-dismiss='alert' class='close' type='button'>×</button>
+                  <div class='alert alert-success fade-in span4' role="alert">
+                    <button data-dismiss='alert' class='close' type='button' aria-label="Close">×</button>
                          <strong id = 'success'>Product has been Updated.</strong>
                          </div>                  
            <?php } }?>

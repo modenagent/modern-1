@@ -27,6 +27,7 @@
                     
 
                         <form method="post" autocomplete="off" action="" class="omb_loginForm" id="adminlogin-form">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
                         <div class="row"> 
                         <div class="col-md-12"> 
                           <div class="input-group">

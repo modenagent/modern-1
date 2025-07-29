@@ -1,13 +1,15 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Invoice - ModernAgent</title>
+<style>
+@page {background:rgb(255,255,255);}
+body {background:rgb(255,255,255); margin: 0; padding: 0; font-family: Arial, sans-serif;}
+</style>
 </head>
-<style>@page {background:rgb(255,255,255);}
-                      body {background:rgb(255,255,255);}
-                    </style>
-<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" yahoo="fix">
+<body>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" align="center" bgcolor="#ecf0f1"style="background-color: rgb(255,255,255);">
 	<tr>
 		<td bgcolor="#ecf0f1"align="center" style="background-color: rgb(255,255,255); padding-top:140px;">
