@@ -135,16 +135,39 @@
   
   <div class="panel-body">
 <!--  <button id="btnExExcel" class="btn btn-info">Export Excel</button>-->
+    <!-- Search/Filter Bar -->
+    <div class="admin-table-search">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="users-search" class="sr-only">Search users</label>
+                    <input type="text" id="users-search" class="form-control" placeholder="Search by name, email, or company..." aria-label="Search users">
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-primary" onclick="searchUsers()">
+                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                </button>
+                <button type="button" class="btn btn-default" onclick="clearUsersSearch()">
+                    <i class="fa fa-times" aria-hidden="true"></i> Clear
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <!-- user list shows here -->
-    <div class="table-head table-responsive" id="user_table">
-      <table class="" id="user-table">
+    <div class="table-head table-responsive admin-table-container" id="user_table">
+      <table class="admin-table" id="user-table" role="table" aria-label="Users management table">
         <thead>
-            <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Company</th>
-                <th>Creation Date</th>
-                <th class="no-sort">Actions</th>
+            <tr role="row">
+                <th tabindex="0" role="columnheader" aria-sort="none">Name</th>
+                <th tabindex="0" role="columnheader" aria-sort="none">Email</th>
+                <th tabindex="0" role="columnheader" aria-sort="none">Company</th>
+                <th tabindex="0" role="columnheader" aria-sort="none">Creation Date</th>
+                <th class="no-sort" role="columnheader">
+                    <span class="sr-only">Actions for each user</span>
+                    Actions
+                </th>
             </tr>
         </thead>
       </table>
@@ -360,4 +383,32 @@ function addressAutoComplete() {
 
     });
 }
+
+// Search functionality for users
+function searchUsers() {
+    var searchTerm = document.getElementById('users-search').value;
+    if (window.user_table_datatable && user_table_datatable.search) {
+        user_table_datatable.search(searchTerm).draw();
+    }
+}
+
+function clearUsersSearch() {
+    document.getElementById('users-search').value = '';
+    if (window.user_table_datatable && user_table_datatable.search) {
+        user_table_datatable.search('').draw();
+    }
+}
+
+// Allow Enter key to trigger search  
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('users-search');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchUsers();
+            }
+        });
+    }
+});
 </script>

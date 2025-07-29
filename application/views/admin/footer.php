@@ -74,6 +74,8 @@ echo $temp_admin_id_ref;
 <script src="<?php echo base_url('assets/js/data-tables/jquery.dataTables.min.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/data-tables/dataTables.tableTools.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/data-tables/bootstrap.datatable.js'); ?>"></script>
+<!-- admin tables js -->
+<script src="<?php echo base_url('assets/js/admin-tables.js'); ?>"></script>
 <!-- charts js -->
 <script src="<?php echo base_url('assets/js/charts/highcharts.js'); ?>"></script>
 <script src="<?php echo base_url('assets/js/charts/charts-highchart-line.js'); ?>"></script>

@@ -35,39 +35,71 @@
                     </div>
                     </div>
                     <div class="panel-body">
-                        <table class="display table table-bordered table-striped" id="dynamic-table">
-                            <thead>
-                                <tr>
-                                    
-                                    <th >Sr. no.</th>
-                                        <th  >Status name </th>
-                                        <th>Actions</th>
-                                        
-                                </tr>
-                            </thead>
-                            <tbody>
-                               
-                                <?php $i = 1;foreach($status_list as $info)   { 
-                                    if($info->id != 0){
-                                  ?> 
-                                    <tr>
-                                        <td> <?php print_r($i);?>   </td>
-                                        
-                                        <td id="name<?=$info->id?>"><?php print_r($info->status_name);?></td>
-                                       
-                                       
-                                        <td >
-<div class="btn-group">
-                                         <a class="btn btn-warning" href="#edit_form"   onclick = "status_edit(<?=$info->id?>)" data-toggle="modal"><i class="fa fa-edit"></i></a>
-                                          <a class="btn btn-danger" href = "delete_status/<?=$info->id?>" onclick="return confirm('Really want to delete ??')"><i class="fa fa-times"></i> </a>
-</div>
-                                       </td>
-                                       
-                                        
+                        <!-- Search/Filter Bar -->
+                        <div class="admin-table-search">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="status-search" class="sr-only">Search status</label>
+                                        <input type="text" id="status-search" class="form-control" placeholder="Search status by name..." aria-label="Search status">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <button type="button" class="btn btn-primary" onclick="searchStatus()">
+                                        <i class="fa fa-search" aria-hidden="true"></i> Search
+                                    </button>
+                                    <button type="button" class="btn btn-default" onclick="clearStatusSearch()">
+                                        <i class="fa fa-times" aria-hidden="true"></i> Clear
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-table-container">
+                            <table class="table admin-table table-striped table-hover" id="status-table" role="table" aria-label="Status management table">
+                                <thead>
+                                    <tr role="row">
+                                        <th tabindex="0" role="columnheader" aria-sort="none">
+                                            <span class="sr-only">Serial number column</span>
+                                            Sr. no.
+                                        </th>
+                                        <th tabindex="0" role="columnheader" aria-sort="none">Status name</th>
+                                        <th class="no-sort" role="columnheader">
+                                            <span class="sr-only">Actions for each status</span>
+                                            Actions
+                                        </th>
                                     </tr>
-                                    <?php  $i++;} }?>                                
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                   
+                                    <?php $i = 1; foreach($status_list as $info) { 
+                                        if($info->id != 0) {
+                                      ?> 
+                                        <tr role="row">
+                                            <td data-label="Sr. no."><?php echo $i; ?></td>
+                                            <td data-label="Status name" id="name<?=$info->id?>"><?php echo htmlspecialchars($info->status_name); ?></td>
+                                            <td data-label="Actions">
+                                                <div class="btn-group" role="group" aria-label="Status actions">
+                                                    <a class="btn btn-sm btn-warning" 
+                                                       href="#edit_form" 
+                                                       onclick="status_edit(<?=$info->id?>)" 
+                                                       data-toggle="modal"
+                                                       aria-label="Edit status <?php echo htmlspecialchars($info->status_name); ?>">
+                                                        <i class="fa fa-edit" aria-hidden="true"></i> Edit
+                                                    </a>
+                                                    <a class="btn btn-sm btn-danger" 
+                                                       href="delete_status/<?=$info->id?>" 
+                                                       onclick="return confirm('Are you sure you want to delete this status?')"
+                                                       aria-label="Delete status <?php echo htmlspecialchars($info->status_name); ?>">
+                                                        <i class="fa fa-times" aria-hidden="true"></i> Delete
+                                                    </a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php $i++; } } ?>                                
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>                                
                 
@@ -149,6 +181,34 @@ function status_edit (id)
   $("#status_val").val(a);
   $("#status_id").val(id);
 }
+
+// Search functionality for status
+function searchStatus() {
+    var searchTerm = document.getElementById('status-search').value;
+    if (window.AdminTables && $('#status-table').DataTable()) {
+        $('#status-table').DataTable().search(searchTerm).draw();
+    }
+}
+
+function clearStatusSearch() {
+    document.getElementById('status-search').value = '';
+    if (window.AdminTables && $('#status-table').DataTable()) {
+        $('#status-table').DataTable().search('').draw();
+    }
+}
+
+// Allow Enter key to trigger search
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('status-search');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchStatus();
+            }
+        });
+    }
+});
 
 
 

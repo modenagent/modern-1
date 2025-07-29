@@ -11,6 +11,8 @@
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
         <!-- data table -->
         <link href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+        <!-- admin tables css -->
+        <link href="<?php echo base_url(); ?>assets/css/admin-tables.css" rel="stylesheet" type="text/css">
         <!-- toastr css -->
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-toastr/toastr.min.css">
         <!-- Custom styles for this template -->
