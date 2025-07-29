@@ -1,258 +1,340 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title><?php echo $title; ?></title>
-        <!-- favicon -->
-        <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/img/favicon.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/bootstrap.min.css">
-        <link href="<?php echo base_url(); ?>assets/js/jquery-ui/jquery-ui-1.10.1.custom.min.css" rel="stylesheet">
-        <link href="<?php echo base_url(); ?>assets/css/bootstrap-reset.css" rel="stylesheet">
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
-        <!-- data table -->
-        <link href="<?php echo base_url(); ?>assets/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
-        <!-- toastr css -->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-toastr/toastr.min.css">
-        <!-- Custom styles for this template -->
-        <link href="<?php echo base_url(); ?>assets/admin/admin-style.css" rel="stylesheet">
-        <!-- Optimization styles -->
-        <link href="<?php echo base_url(); ?>assets/css/optimizations.css" rel="stylesheet">
-        <!-- admin css ends -->
-        <!-- Combobox -->
-        <link href="<?php echo base_url(); ?>assets/css/bootstrap-combobox.css" rel="stylesheet"/>
-        <!-- Editer -->
-        <link href="<?php echo base_url(); ?>assets/css/summernote.css" rel="stylesheet"/>
-        <link href="<?php echo base_url(); ?>assets/css/datepicker.css" rel="stylesheet"/>
-        <!-- js  -->
-        <script src="<?php echo base_url(); ?>assets/editor/js/prism.js"></script>
-        <script src="<?php echo base_url(); ?>assets/editor/js/fabric.js"></script>
-        <script src="<?php echo base_url(); ?>assets/editor/js/master.js"></script>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-        <script type="text/javascript">
-           var BASE_URL= '<?php echo base_url(); ?>';
-           // var CanvasJson = <?php echo $flyerhtml; ?>;
-        </script>
-        <script src="<?php echo base_url('assets/js/jquery.js'); ?>"></script>
-        <script src="<?php echo base_url('assets/js/customjs/common.js'); ?>"></script>
-    </head>
-    <body ng-app="kitchensink"  ng-controller="CanvasControls">
-        <header class="header fixed-top clearfix">
-            <div class="top-navbar">
-                <div class="top-navbar-inner">
-                <!--logo start-->
-                    <div class="logo-brand">
-                        <a class="logo" href="<?php echo site_url('admin/dashboard/'); ?>">
-                            <img src="<?php echo base_url('assets/images-2/logo.png'); ?>"></a>
-                        </a>
-                    </div>
-                    <!--logo end-->
-                    <div class="top-nav-content clearfix">
-                        <!--search & user info start-->
-                        <div class="btn-collapse-sidebar-left navbar-toggle collapsed" id="menu-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse"> <i class="fa fa-bars icon-dinamic"></i>
-                        </div>
-                        <div class="navbar-collapse pull-right" id="main-fixed-nav">
-                            <ul class="nav-user navbar-right">
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <img class="user-top img-circle" src="<?php echo base_url('assets/admin/images/chat-avatar2.jpg'); ?>" alt="">
-                                        <span class="username"> Hi <?php echo $this->session->userdata('name') . ','; //$user_name      ?> </span>
-                                        <b class="caret"></b>
-                                    </a>
-                                    <ul class="dropdown-menu extended logout">
-                                        <li><a href="#change_password" role="button"  data-toggle="modal"><i class="fa fa-cog"></i> Change Password</a></li>
-                                        <?php if ($this->role_lib->is_sales_rep()): ?>
-                                        <li><a href="#ref_code_modal" role="button"  data-toggle="modal"><i class="fa fa-share"></i> Referral Code</a></li>
-                                        <?php endif;?>
-                                        <li><a href="<?php echo base_url('admin/logout'); ?>"><i class="fa fa-key"></i> Log Out</a></li>
-                                    </ul>
-                                </li>
-                                <!-- user login dropdown end -->
-                            </ul>
-                        </div>
-                        <!--search & user info end-->
-                    </div>
-                </div>
-            </div>
-        </header>
-        <aside>
-            <?php
-switch ($title) {
-    case 'Dashboard':
-        $active = "active";
-        break;
-    case 'Manage Products':
-        $active2 = "active";
-        break;
-    case 'Manage Users':
-        $active3 = "active";
-        break;
-    case 'Manage Category':
-        $active4 = "active";
-        break;
-    case 'Manage Orders':
-        $active5 = "active";
-        break;
-    case 'Manage Coupons':
-        $active6 = "active";
-        break;
-    case 'Manage Transaction':
-        $active7 = "active";
-        break;
-    case 'Order History':
-        $active8 = "active";
-        break;
-    case 'Manage Content':
-        $active9 = "active";
-        break;
-    case 'Manage Leads':
-        $active10 = "active";
-        break;
-    case 'Manage Packages':
-        $active11 = "active";
-        break;
-    case 'Manage Admin Users':
-        $active12 = "active";
-        break;
-}
+// Load security helper for CSRF token
+$this->load->helper('security');
+$csrf_token = $this->security->get_csrf_hash();
+
+// Template data (merged from previous context)
+$template_data = array(
+    'title' => isset($title) ? $title : 'Manage Deals', // Fallback title
+    'csrf_token' => $csrf_token,
+    'breadcrumbs' => array(
+        array('title' => 'Dashboard', 'url' => site_url('admin/dashboard')),
+        array('title' => 'Manage Deals', 'url' => '')
+    ),
+    'additional_css' => array(),
+    'additional_js' => array()
+);
 ?>
-            <div class="sidebar-left">
-                <div class="list-group sidebar-menu collapse navbar-collapse">
-                    <ul>
-                        <li class="list-group-item <?php echo $active; ?>">
-                            <a class="" href="<?php echo site_url('admin/dashboard'); ?>">
-                                <i class="fa fa-dashboard icon-sidebar"></i>
-                                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-grid"></span><span class="text">Dashboard</span>
-                            </a>
-                        </li>
-                        <?php /*
-<li class="list-group-item <?php echo $active2; ?>">
-<a class="" href="<?php echo base_url(); ?>index.php?/admin/manage_product">
-<i class="fa fa-eye icon-sidebar"></i>
-<i class="fa fa-angle-right chevron-icon-sidebar"></i>
-<span class="isw-folder"></span><span class="text">Manage Products</span>
-</a>
 
-</li>
- */?>
-                        <?php if ($this->role_lib->has_access('manage_companies')): ?>
-                        <li class="list-group-item <?php echo ($title == 'Manage Companies') ? 'active' : ''; ?>">
-                            <a class="" href="<?php echo site_url('admin/manage_companies'); ?>">
-                            <i class="fa fa-building-o icon-sidebar"></i>
-                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-mail"></span><span class="text">Companies</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
-                        <?php if ($this->role_lib->has_access('manage_sales_reps')): ?>
-                        <li class="list-group-item <?php echo ($title == 'Manage Sales Representatives') ? 'active' : ''; ?>">
-                            <a class="" href="<?php echo site_url('admin/manage_sales_reps'); ?>">
-                            <i class="fa fa-users icon-sidebar"></i>
-                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-mail"></span><span class="text">Sales Representatives</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
-                        <?php if ($this->role_lib->has_access('view_all_user')): ?>
-                        <li class="list-group-item <?php echo $active3; ?>">
-                            <a class="" href="<?php echo site_url('admin/manage_user'); ?>">
-                            <i class="fa fa-users icon-sidebar"></i>
-                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-mail"></span><span class="text">Users</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
-                        <?php if ($this->role_lib->has_access('view_all_admin_user')): ?>
-                        <li class="list-group-item <?php echo $active12; ?>">
-                            <a class="" href="<?php echo site_url('admin/manage_admin_user'); ?>">
-                            <i class="fa fa-users icon-sidebar"></i>
-                            <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-mail"></span><span class="text">Admin Users</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
-                        <?php if ($this->role_lib->is_sales_rep()): ?>
-                        <li class="list-group-item <?php echo $active10; ?>">
-                            <a class="" href="<?php echo site_url('admin/manage_leads'); ?>">
-                                <i class="fa fa-anchor icon-sidebar"></i>
-                                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-chat"></span><span class="text">Leads</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
-                        <?php /*
-<li class="list-group-item <?php echo $active4; ?>">
-<a class="" href="<?php echo base_url(); ?>index.php?/admin/manage_category">
-<i class="fa fa-cogs icon-sidebar"></i>
-<i class="fa fa-angle-right chevron-icon-sidebar"></i>
-<span class="isw-chat"></span><span class="text">Manage Category</span>
-</a>
-</li>
- */?>
-						 <?php if ($this->role_lib->is_admin()): ?>
-                        <li class="list-group-item <?php echo $active6; ?>">
-                            <a class="" href="<?php echo site_url('admin/manage_coupon'); ?>">
-                                <i class="fa fa-anchor icon-sidebar"></i>
-                                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-chat"></span><span class="text">Coupons</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
-                         <?php if (!$this->role_lib->is_manager_l1()): ?>
-                        <li class="list-group-item <?php echo $active5; ?>">
-                            <a class="" href="<?php echo site_url('admin/order_history'); ?>">
-                                <i class="fa fa-archive icon-sidebar"></i>
-                                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-chat"></span><span class="text">Order History</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($template_data['title']); ?></title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
+    <!-- CSS Assets -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.min.css'); ?>"> <!-- Updated to latest jQuery UI -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-reset.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome-6.6.0/css/all.min.css'); ?>"> <!-- Localized and updated Font Awesome -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.dataTables.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-toastr/toastr.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/admin-style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/optimizations.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-combobox.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/summernote.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/datepicker.css'); ?>">
+    <!-- JavaScript Assets (deferred for performance) -->
+    <script defer src="<?php echo base_url('assets/editor/js/prism.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/editor/js/fabric.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/editor/js/master.js'); ?>"></script>
+  
 
-                        <?php if ($this->role_lib->is_admin()): ?>
-                        <li class="list-group-item <?php echo $active7; ?>">
-                            <a class="" href="<?php echo site_url('admin/transaction'); ?>">
-                                <i class="fa fa-exchange icon-sidebar"></i>
-                                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-chat"></span><span class="text">Recent Orders</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
+// Generate CSRF token for any forms on the page
+$csrf_token = hash('sha256', uniqid() . time());
 
-                        <?php if ($this->role_lib->is_admin()): ?>
-                        <li class="list-group-item <?php echo $active11; ?>">
-                            <a class="" href="<?php echo site_url('admin/packages'); ?>">
-                                <i class="fa fa-usd icon-sidebar"></i>
-                                <i class="fa fa-angle-right chevron-icon-sidebar"></i>
-                                <span class="isw-chat"></span><span class="text">Packages</span>
-                            </a>
-                        </li>
-                        <?php endif;?>
+// Get user information with proper escaping
+$user_name = htmlspecialchars($this->session->userdata('name') ?? 'User', ENT_QUOTES, 'UTF-8');
+$user_avatar = base_url('assets/admin/images/chat-avatar2.jpg');
 
-                        <?php /*
-<!--  <li class="list-group-item <?php echo $active8; ?>">
-<a href="<?php echo base_url(); ?>index.php?/admin/order_history">
-<i class="fa fa-history icon-sidebar"></i>
-<i class="fa fa-angle-right chevron-icon-sidebar"></i>
-<span class="isw-chat"></span><span class="text">Order History</span>
-</a>
-</li>  -->
+// Page title for navigation highlighting
+$page_title = isset($title) ? $title : '';
+?><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="<?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?> - Modern Agent Admin Panel">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Security Headers -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maxcdn.bootstrapcdn.com; style-src 'self' 'unsafe-inline' https://maxcdn.bootstrapcdn.com https://fonts.googleapis.com; font-src 'self' https://maxcdn.bootstrapcdn.com https://fonts.gstatic.com; img-src 'self' data: https:;">
+    
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
+    
+    <title><?php echo htmlspecialchars($page_title, ENT_QUOTES, 'UTF-8'); ?> - Admin Panel | Modern Agent</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="<?php echo base_url('assets/css/optimized-styles.css'); ?>" as="style">
+    <link rel="preload" href="<?php echo base_url('assets/js/security.js'); ?>" as="script">
+    
+    <!-- CSS Files - Consolidated and optimized loading -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/optimized-styles.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/admin-style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-reset.css'); ?>">
+    
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.dataTables.min.css'); ?>">
+    
+    <!-- jQuery UI CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui-1.10.1.custom.min.css'); ?>">
+    
+    <!-- Toastr CSS -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-toastr/toastr.min.css'); ?>">
+    
+    <!-- Additional components -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-combobox.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/summernote.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/datepicker.css'); ?>">
+    
+    <!-- Font Awesome -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- JavaScript - Core files loaded early for admin functionality -->
+    <script src="<?php echo base_url('assets/js/jquery.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/js/customjs/common.js'); ?>"></script>
+    
+    <!-- Editor Scripts -->
+    <script src="<?php echo base_url('assets/editor/js/prism.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/editor/js/fabric.js'); ?>"></script>
+    <script src="<?php echo base_url('assets/editor/js/master.js'); ?>"></script>
 
-<!-- <li class="list-group-item <?php echo $active9; ?>">
-<a class="" href="<?php echo base_url(); ?>index.php?/admin/manage_contents">
-<i class="fa fa-edit icon-sidebar"></i>
-<i class="fa fa-angle-right chevron-icon-sidebar"></i>
-<span class="isw-chat"></span><span class="text">Manage Site Contents</span>
-</a>
-</li> -->
- */?>
-
-                    </ul>
+    <!-- Global Configuration -->
+    <script>
+        // Global configuration variables
+        var BASE_URL = '<?php echo base_url(); ?>';
+        var CSRF_TOKEN = '<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>';
+        
+        // Canvas JSON configuration (if needed for editor)
+        <?php if (isset($flyerhtml)): ?>
+        var CanvasJson = <?php echo $flyerhtml; ?>;
+        <?php endif; ?>
+    </script>
+</head>
+<body ng-app="kitchensink" ng-controller="CanvasControls" class="admin-body">
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="sr-only sr-only-focusable">Skip to main content</a>
+    
+    <!-- Alert Container for notifications -->
+    <div class="alert-container" id="alert-container"></div>
+    
+    <!-- Admin Header -->
+    <header class="header fixed-top clearfix" role="banner">
+        <div class="top-navbar">
+            <div class="top-navbar-inner">
+                <!-- Logo Section -->
+                <div class="logo-brand">
+                    <a class="logo" href="<?php echo site_url('admin/dashboard/'); ?>" aria-label="Go to Admin Dashboard">
+                        <img src="<?php echo base_url('assets/images-2/logo.png'); ?>" alt="Modern Agent Logo" class="logo-img">
+                    </a>
                 </div>
-                <!-- sidebar menu end-->
+                
+                <!-- Top Navigation Content -->
+                <div class="top-nav-content clearfix">
+                    <!-- Mobile Menu Toggle -->
+                    <button class="btn-collapse-sidebar-left navbar-toggle collapsed" 
+                            id="menu-toggle" 
+                            data-toggle="collapse" 
+                            data-target=".navbar-ex1-collapse"
+                            aria-label="Toggle navigation menu"
+                            aria-expanded="false">
+                        <i class="fa fa-bars icon-dinamic" aria-hidden="true"></i>
+                    </button>
+                    
+                    <!-- User Navigation -->
+                    <nav class="navbar-collapse pull-right" id="main-fixed-nav" role="navigation" aria-label="User navigation">
+                        <ul class="nav-user navbar-right">
+                            <li class="dropdown">
+                                <a href="#" 
+                                   class="dropdown-toggle" 
+                                   data-toggle="dropdown"
+                                   aria-haspopup="true"
+                                   aria-expanded="false"
+                                   aria-label="User menu">
+                                    <img class="user-top img-circle" 
+                                         src="<?php echo htmlspecialchars($user_avatar, ENT_QUOTES, 'UTF-8'); ?>" 
+                                         alt="User avatar"
+                                         loading="lazy">
+                                    <span class="username">Hi <?php echo $user_name; ?>,</span>
+                                    <span class="caret" aria-hidden="true"></span>
+                                </a>
+                                <ul class="dropdown-menu extended logout" role="menu">
+                                    <li role="menuitem">
+                                        <a href="#change_password" 
+                                           role="button"  
+                                           data-modal-target="change_password"
+                                           aria-label="Change password">
+                                            <i class="fa fa-cog" aria-hidden="true"></i> Change Password
+                                        </a>
+                                    </li>
+                                    <?php if ($this->role_lib->is_sales_rep()): ?>
+                                    <li role="menuitem">
+                                        <a href="#ref_code_modal" 
+                                           role="button"  
+                                           data-modal-target="ref_code_modal"
+                                           aria-label="View referral code">
+                                            <i class="fa fa-share" aria-hidden="true"></i> Referral Code
+                                        </a>
+                                    </li>
+                                    <?php endif; ?>
+                                    <li role="menuitem">
+                                        <a href="<?php echo site_url('admin/logout'); ?>" aria-label="Log out">
+                                            <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </aside>
-        <!--sidebar end-->
+        </div>
+    </header>
 
-        <section id="main-content" class="page-content">
-            <div class="wrapper">
+    <!-- Admin Sidebar -->
+    <aside class="sidebar-left" role="complementary" aria-label="Admin navigation">
+        <nav class="list-group sidebar-menu collapse navbar-collapse" role="navigation">
+            <ul class="nav nav-sidebar">
+                <li class="list-group-item <?php echo ($page_title == 'Dashboard') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/dashboard'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Dashboard') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-dashboard icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Dashboard</span>
+                    </a>
+                </li>
+
+                <?php if ($this->role_lib->has_access('manage_companies')): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Companies') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/manage_companies'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Companies') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-building-o icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Companies</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if ($this->role_lib->has_access('manage_sales_reps')): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Sales Representatives') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/manage_sales_reps'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Sales Representatives') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-users icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Sales Representatives</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if ($this->role_lib->has_access('view_all_user')): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Users') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/manage_user'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Users') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-users icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Users</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if ($this->role_lib->has_access('view_all_admin_user')): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Admin Users') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/manage_admin_user'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Admin Users') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-users icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Admin Users</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if ($this->role_lib->is_sales_rep()): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Leads') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/manage_leads'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Leads') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-anchor icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Leads</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if ($this->role_lib->is_admin()): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Coupons') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/manage_coupon'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Coupons') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-tag icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Coupons</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if (!$this->role_lib->is_manager_l1()): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Order History') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/order_history'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Order History') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-archive icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Order History</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if ($this->role_lib->is_admin()): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Transaction') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/transaction'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Transaction') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-exchange icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Recent Orders</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if ($this->role_lib->is_admin()): ?>
+                <li class="list-group-item <?php echo ($page_title == 'Manage Packages') ? 'active' : ''; ?>">
+                    <a href="<?php echo site_url('admin/packages'); ?>" 
+                       class="nav-link"
+                       <?php echo ($page_title == 'Manage Packages') ? 'aria-current="page"' : ''; ?>>
+                        <i class="fa fa-usd icon-sidebar" aria-hidden="true"></i>
+                        <i class="fa fa-angle-right chevron-icon-sidebar" aria-hidden="true"></i>
+                        <span class="text">Packages</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main id="main-content" class="page-content" role="main">
+        <div class="wrapper">
             <div class="row-padding">
