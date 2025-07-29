@@ -29,8 +29,8 @@
             <?php
             foreach ($packages as $package_key=>$package) { ?>
                 <tr>
-                    <td><?php echo ($package_key+1) ?></td>
-                    <td><?php echo $package->title; ?></td>
+                    <td><?php echo html_escape($package_key+1) ?></td>
+                    <td><?php echo html_escape($package->title); ?></td>
                     <td><?php echo '$'.number_format($package->price,2); ?></td>
                     <td><?php echo '$'.number_format($package->price_per_month,2); ?></td>
                     <td><?php

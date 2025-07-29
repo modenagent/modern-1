@@ -6,18 +6,18 @@
     <p>&nbsp;</p>
     <div class="row">
         <div class="col-md-4">
-        <div class="blog-wrap">
-          <img src="<?php echo base_url(); ?>assets/images/blog/1.jpg" alt="" class="img-responsive">
+        <article class="blog-wrap">
+          <img src="<?php echo base_url(); ?>assets/images/blog/1.jpg" alt="Version 1.024 release image" class="img-responsive">
           <div class="blog-content">
-              <div class="meta">OCT 12, 2013</div>
+              <time class="meta" datetime="2013-10-12">OCT 12, 2013</time>
               <a href="javascript:;"><h3>Version 1.024 released</h3></a>
               <p>Nunc at velit quis lectus nonummy eleifend. Curabitur eros. Aenean ligula dolor, gravida auctor, auctor et, suscipit in, erat. Sed malesuada...</p>
-              <a class="rmore" href="javascript:;"><i class="icon-plus"></i></a>
+              <a class="rmore" href="javascript:;" aria-label="Read more about Version 1.024 released"><i class="icon-plus"></i></a>
           </div>
-        </div>
+        </article>
         </div>
         <div class="col-md-4">
-          <div class="blog-wrap">
+          <article class="blog-wrap">
               <img src="<?php echo base_url(); ?>assets/images/blog/2.jpg" alt="" class="img-responsive">
               <div class="blog-content">
                   <div class="meta">OCT 12, 2013</div>

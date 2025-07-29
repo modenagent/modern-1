@@ -15,7 +15,7 @@
     <div class="col-sm-5 col-md-4">
       <div class="user-left">
         <div class="text-center">
-          <h4><?php echo ucfirst($users->first_name) . " " . ucfirst($users->last_name); ?></h4>
+          <h4><?php echo html_escape(ucfirst($users->first_name) . " " . ucfirst($users->last_name)); ?></h4>
           <div class="fileupload fileupload-new">
             <div class="user-image">
              <?php

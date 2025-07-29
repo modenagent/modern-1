@@ -9,10 +9,10 @@
 <div class="clearfix">
   <?php if(isset($_GET['msg']))
   {
-  if($_GET['msg'] == "true"){
+  if(html_escape($_GET['msg']) == "true"){
   ?>
-  <div class='alert alert-success fade-in span4'>
-    <button data-dismiss='alert' class='close' type='button'>×</button>
+  <div class='alert alert-success fade-in span4' role="alert">
+    <button data-dismiss='alert' class='close' type='button' aria-label="Close">×</button>
     <strong id = 'success'>your Shopping Center has been added.</strong>
   </div>
   <?php } }?>
