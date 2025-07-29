@@ -1,8 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// Generate CSRF token
-$csrf_token = hash('sha256', uniqid() . time());
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+// Load security helper for CSRF token
+$this->load->helper('security');
+$csrf_token = $this->security->get_csrf_hash();
 
 // Template data for admin base
 $template_data = array(
@@ -13,7 +17,11 @@ $template_data = array(
         array('title' => 'Manage Packages', 'url' => '')
     ),
     'additional_css' => array(),
-    'additional_js' => array()
+    'additional_js' => array(
+        'assets/js/jquery.validate.min.js',
+        'assets/js/jquery-toastr/toastr.min.js',
+        'assets/js/jquery-toastr/ui-toastr-notifications.js'
+    )
 );
 
 // Capture the packages content
@@ -56,7 +64,7 @@ ob_start();
             <div class="card-body">
                 <?php if (!empty($packages)): ?>
                 <div class="table-responsive">
-                    <table class="table data-table" id="packages-table">
+                    <table class="table table-hover data-table" id="packages-table">
                         <thead>
                             <tr>
                                 <th scope="col" class="no-sort" width="5%">#</th>
@@ -97,25 +105,25 @@ ob_start();
                                 </td>
                                 <td>
                                     <?php if (($package->is_active ?? 0) == 1): ?>
-                                        <span class="badge badge-success" aria-label="Package is active">
+                                        <span class="label-primary badge" aria-label="Package is active">
                                             <i class="fa fa-check" aria-hidden="true"></i>
                                             Active
                                         </span>
                                     <?php else: ?>
-                                        <span class="badge badge-danger" aria-label="Package is inactive">
+                                        <span class="label-danger badge" aria-label="Package is inactive">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                             Inactive
                                         </span>
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                    <?php if (($package->refferral_status ?? 0) == 1): ?>
-                                        <span class="badge badge-success" aria-label="Referral program is active">
+                                    <?php if (($package->referral_status ?? 0) == 1): ?>
+                                        <span class="label-primary badge" aria-label="Referral program is active">
                                             <i class="fa fa-check" aria-hidden="true"></i>
                                             Active
                                         </span>
                                     <?php else: ?>
-                                        <span class="badge badge-secondary" aria-label="Referral program is inactive">
+                                        <span class="label-danger badge" aria-label="Referral program is inactive">
                                             <i class="fa fa-times" aria-hidden="true"></i>
                                             Inactive
                                         </span>
@@ -124,14 +132,13 @@ ob_start();
                                 <td>
                                     <div class="action-buttons">
                                         <a href="<?php echo site_url('admin/edit_package/' . urlencode($package->id ?? '')); ?>" 
-                                           class="btn btn-sm btn-warning"
+                                           class="btn btn-sm btn-warning admin-ml-5"
                                            data-toggle="tooltip"
                                            title="Edit package"
                                            aria-label="Edit package <?php echo htmlspecialchars($package->title ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                                             <i class="fa fa-edit" aria-hidden="true"></i>
                                             <span class="sr-only">Edit</span>
                                         </a>
-                                        
                                         <a href="<?php echo site_url('admin/view_package/' . urlencode($package->id ?? '')); ?>" 
                                            class="btn btn-sm btn-info"
                                            data-toggle="tooltip"
@@ -140,13 +147,13 @@ ob_start();
                                             <i class="fa fa-eye" aria-hidden="true"></i>
                                             <span class="sr-only">View</span>
                                         </a>
-                                        
                                         <?php if (($package->is_active ?? 0) == 1): ?>
                                         <form method="post" 
                                               action="<?php echo site_url('admin/deactivate_package/' . urlencode($package->id ?? '')); ?>" 
                                               class="inline-form"
                                               onsubmit="return confirm('Are you sure you want to deactivate this package?');">
-                                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
+                                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" 
+                                                   value="<?php echo htmlspecialchars($this->security->get_csrf_hash(), ENT_QUOTES, 'UTF-8'); ?>">
                                             <button type="submit" 
                                                     class="btn btn-sm btn-secondary confirm-action"
                                                     data-confirm-message="Are you sure you want to deactivate this package?"
@@ -162,7 +169,8 @@ ob_start();
                                               action="<?php echo site_url('admin/activate_package/' . urlencode($package->id ?? '')); ?>" 
                                               class="inline-form"
                                               onsubmit="return confirm('Are you sure you want to activate this package?');">
-                                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
+                                            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" 
+                                                   value="<?php echo htmlspecialchars($this->security->get_csrf_hash(), ENT_QUOTES, 'UTF-8'); ?>">
                                             <button type="submit" 
                                                     class="btn btn-sm btn-success confirm-action"
                                                     data-confirm-message="Are you sure you want to activate this package?"
@@ -197,61 +205,12 @@ ob_start();
             </div>
         </div>
     </section>
+</div>
 
-    <!-- Package Statistics -->
-    <?php if (!empty($packages)): ?>
-    <section class="content-section">
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fa fa-check-circle text-success" aria-hidden="true"></i>
-                </div>
-                <div class="stat-info">
-                    <h3 class="stat-value">
-                        <?php echo count(array_filter($packages, function($p) { return ($p->is_active ?? 0) == 1; })); ?>
-                    </h3>
-                    <p class="stat-label">Active Packages</p>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fa fa-pause-circle text-warning" aria-hidden="true"></i>
-                </div>
-                <div class="stat-info">
-                    <h3 class="stat-value">
-                        <?php echo count(array_filter($packages, function($p) { return ($p->is_active ?? 0) == 0; })); ?>
-                    </h3>
-                    <p class="stat-label">Inactive Packages</p>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fa fa-share-alt text-info" aria-hidden="true"></i>
-                </div>
-                <div class="stat-info">
-                    <h3 class="stat-value">
-                        <?php echo count(array_filter($packages, function($p) { return ($p->refferral_status ?? 0) == 1; })); ?>
-                    </h3>
-                    <p class="stat-label">Referral Enabled</p>
-                </div>
-            </div>
-            
-            <div class="stat-card">
-                <div class="stat-icon">
-                    <i class="fa fa-dollar text-success" aria-hidden="true"></i>
-                </div>
-                <div class="stat-info">
-                    <h3 class="stat-value">
-                        $<?php echo number_format(array_sum(array_map(function($p) { return (float)($p->price ?? 0); }, $packages)), 2); ?>
-                    </h3>
-                    <p class="stat-label">Total Package Value</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <?php endif; ?>
+<?php
+$template_data['content'] = ob_get_clean();
+$this->load->view('templates/admin_base', $template_data);
+?>
 </div>
 
 <?php

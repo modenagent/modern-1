@@ -85,12 +85,51 @@ $template_data = array(
 ob_start();
 ?>
 
-<!-- How-To Page Header -->
-<header class="page-hero" role="banner">
+<section class="content" id="how-to">
     <div class="container">
-        <div class="hero-content">
-            <h1 class="hero-title">How-To Guides & Tutorials</h1>
-            <p class="hero-description">Master Modern Agent with our comprehensive video tutorials and step-by-step guides. From beginner basics to advanced techniques, we've got you covered.</p>
+        <header class="page-header">
+            <h1 class="page-header">How-To Guides & Tutorials</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vulputate nisl eu odio porttitor, ac pulvinar nunc congue.</p>
+        </header>
+        <div class="row">
+            <?php foreach ($tutorials as $tutorial): ?>
+                <div class="col-md-4">
+                    <article class="blog-wrap">
+                        <img src="<?php echo base_url($tutorial['image']); ?>" 
+                             alt="<?php echo htmlspecialchars($tutorial['title'], ENT_QUOTES, 'UTF-8'); ?>" 
+                             class="img-responsive">
+                        <div class="blog-content">
+                            <time class="meta" datetime="<?php echo date('Y-m-d', strtotime($tutorial['date'])); ?>">
+                                <?php echo date('M d, Y', strtotime($tutorial['date'])); ?>
+                            </time>
+                            <h3>
+                                <a href="<?php echo htmlspecialchars($tutorial['video_url'], ENT_QUOTES, 'UTF-8'); ?>" 
+                                   aria-label="Watch tutorial: <?php echo htmlspecialchars($tutorial['title'], ENT_QUOTES, 'UTF-8'); ?>">
+                                    <?php echo htmlspecialchars($tutorial['title'], ENT_QUOTES, 'UTF-8'); ?>
+                                </a>
+                            </h3>
+                            <p><?php echo htmlspecialchars($tutorial['description'], ENT_QUOTES, 'UTF-8'); ?></p>
+                            <p>
+                                <span class="badge badge-info"><?php echo htmlspecialchars($tutorial['duration'], ENT_QUOTES, 'UTF-8'); ?></span>
+                                <span class="badge badge-secondary"><?php echo htmlspecialchars($tutorial['difficulty'], ENT_QUOTES, 'UTF-8'); ?></span>
+                            </p>
+                            <a class="rmore" 
+                               href="<?php echo htmlspecialchars($tutorial['video_url'], ENT_QUOTES, 'UTF-8'); ?>" 
+                               aria-label="Read more about <?php echo htmlspecialchars($tutorial['title'], ENT_QUOTES, 'UTF-8'); ?>">
+                                <i class="fa fa-play" aria-hidden="true"></i> Watch Now
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<?php
+$template_data['content'] = ob_get_clean();
+$this->load->view('templates/base', $template_data);
+?>
         </div>
     </div>
 </header>

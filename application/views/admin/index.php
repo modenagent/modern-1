@@ -6,7 +6,7 @@ $csrf_token = hash('sha256', uniqid() . time());
 // Store in session for validation (you'd implement this in your controller)
 // $this->session->set_userdata('csrf_token', $csrf_token);
 
-// Template variables
+// Template data
 $template_data = array(
     'title' => isset($title) ? $title : 'Admin Login',
     'csrf_token' => $csrf_token,
@@ -22,6 +22,16 @@ $template_data = array(
         'assets/js/extra.js'
     )
 );
+?>
+                       <form method="post" autocomplete="off" action="<?php echo site_url('admin/login'); ?>" class="omb_loginForm" id="adminlogin-form">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" placeholder="Username" class="form-control" name="aname" id="aname">
+                                </div>
+                                <label id="error_aname" for="aname" class="error"></label>
 
 // Capture the login page content
 ob_start();

@@ -1,8 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-// Generate CSRF token
-$csrf_token = hash('sha256', uniqid() . time());
+// Generate CSRF token using CodeIgniter's security helper
+$this->load->helper('security');
+$csrf_token = $this->security->get_csrf_hash();
 
 // Template data for admin base
 $template_data = array(
@@ -15,6 +16,47 @@ $template_data = array(
     'additional_css' => array(),
     'additional_js' => array()
 );
+
+// Load the header template (assuming a template system is in use)
+$this->load->view('admin/templates/header', $template_data);
+?>
+
+<div class="content">
+    <div class="breadLine">
+        <ul class="breadcrumb">
+            <li><a href="<?= base_url('index.php/admin/dashboard') ?>">Dashboard</a> <span class="divider">&gt;</span></li>
+            <li class="active">Manage Deals</li>
+        </ul>
+    </div>
+
+    <div class="workplace">
+        <?php
+        // Handle success messages
+        if (isset($_GET['msg'])) {
+            $msg = html_escape($_GET['msg']);
+            $message = '';
+            if ($msg === 'removed') {
+                $message = 'Product has been removed from deals.';
+            } elseif ($msg === 'deals_update') {
+                $message = 'Product has been updated.';
+            }
+            if ($message) {
+                ?>
+                <div class="alert alert-success fade-in span4" role="alert">
+                    <button data-dismiss="alert" class="close" type="button" aria-label="Close alert">&times;</button>
+                    <strong id="success"><?= $message ?></strong>
+                </div>
+                <?php
+            }
+        }
+        ?>
+    </div>
+</div>
+
+<?php
+// Load the footer template (assuming a template system is in use)
+$this->load->view('admin/templates/footer');
+?>
 
 // Capture the deals content
 ob_start();

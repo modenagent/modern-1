@@ -1,6 +1,50 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+// Load security helper for CSRF token
+$this->load->helper('security');
+$csrf_token = $this->security->get_csrf_hash();
+
+// Template data (merged from previous context)
+$template_data = array(
+    'title' => isset($title) ? $title : 'Manage Deals', // Fallback title
+    'csrf_token' => $csrf_token,
+    'breadcrumbs' => array(
+        array('title' => 'Dashboard', 'url' => site_url('admin/dashboard')),
+        array('title' => 'Manage Deals', 'url' => '')
+    ),
+    'additional_css' => array(),
+    'additional_js' => array()
+);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($template_data['title']); ?></title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
+    <!-- CSS Assets -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.min.css'); ?>"> <!-- Updated to latest jQuery UI -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-reset.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome-6.6.0/css/all.min.css'); ?>"> <!-- Localized and updated Font Awesome -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.dataTables.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-toastr/toastr.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/admin-style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/optimizations.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-combobox.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/summernote.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/datepicker.css'); ?>">
+    <!-- JavaScript Assets (deferred for performance) -->
+    <script defer src="<?php echo base_url('assets/editor/js/prism.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/editor/js/fabric.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/editor/js/master.js'); ?>"></script>
+  
+
 // Generate CSRF token for any forms on the page
 $csrf_token = hash('sha256', uniqid() . time());
 

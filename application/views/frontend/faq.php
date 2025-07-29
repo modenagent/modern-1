@@ -71,7 +71,556 @@ $faq_items = array(
     array(
         'id' => 'training',
         'question' => 'Are there training videos?',
-        'answer' => 'Yes we have training videos that show you how to navigate around our website as well as use our online designer.'
+        'answer' => 'Yes we have training videos that show you how to navigate around our website as well as use our online designer.'<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+// Load security helper for CSRF token
+$this->load->helper('security');
+$csrf_token = $this->security->get_csrf_hash();
+
+// Template data
+$template_data = array(
+    'title' => 'User Profile',
+    'csrf_token' => $csrf_token,
+    'breadcrumbs' => array(
+        array('title' => 'Dashboard', 'url' => site_url('admin/dashboard')),
+        array('title' => 'User Profile', 'url' => '')
+    ),
+    'additional_css' => array(),
+    'additional_js' => array(
+        'assets/js/jquery.validate.min.js',
+        'assets/js/jquery-toastr/toastr.min.js',
+        'assets/js/jquery-toastr/ui-toastr-notifications.js',
+        'assets/js/extra.js'
+    )
+);
+
+// Helper function for role-specific back URL
+function getRoleBackUrl($roleId) {
+    switch ($roleId) {
+        case '1': return site_url('admin/manage_admin_user');
+        case '2': return site_url('admin/manage_companies');
+        case '3': return site_url('admin/manage_sales_reps');
+        case '4': return site_url('admin/manage_user');
+        default: return site_url('admin/dashboard');
+    }
+}
+
+// Secure user data with proper escaping
+$safe_user = array(
+    'first_name' => htmlspecialchars($users->first_name ?? '', ENT_QUOTES, 'UTF-8'),
+    'last_name' => htmlspecialchars($users->last_name ?? '', ENT_QUOTES, 'UTF-8'),
+    'email' => htmlspecialchars($users->email ?? '', ENT_QUOTES, 'UTF-8'),
+    'phone' => htmlspecialchars($users->phone ?? '', ENT_QUOTES, 'UTF-8'),
+    'user_name' => htmlspecialchars($users->user_name ?? '', ENT_QUOTES, 'UTF-8'),
+    'license_no' => htmlspecialchars($users->license_no ?? '', ENT_QUOTES, 'UTF-8'),
+    'company_name' => htmlspecialchars($users->company_name ?? '', ENT_QUOTES, 'UTF-8'),
+    'company_add' => htmlspecialchars($users->company_add ?? '', ENT_QUOTES, 'UTF-8'),
+    'role_id_fk' => (int)($users->role_id_fk ?? 0),
+    'is_active' => $users->is_active ?? 'N',
+    'user_id_pk' => (int)($users->user_id_pk ?? 0)
+);
+
+// Profile image handling with validation
+$profile_image = 'assets/img/user.jpg'; // Default image
+if (!empty($users->profile_image) && file_exists($users->profile_image)) {
+    $profile_image = htmlspecialchars($users->profile_image, ENT_QUOTES, 'UTF-8');
+}
+
+// Sample question data (assuming from a database or controller)
+$questions = array(
+    array(
+        'question' => 'Can I order printing?',
+        'answer' => 'Yes, you can order printing through our platform. Please contact support for details.',
+        'id' => 1
+    )
+);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo htmlspecialchars($template_data['title']); ?></title>
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
+    <!-- CSS Assets -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-reset.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome-6.6.0/css/all.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.dataTables.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-toastr/toastr.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/admin-style.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/optimizations.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-combobox.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/summernote.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/datepicker.css'); ?>">
+    <!-- JavaScript Assets (deferred for performance) -->
+    <script defer src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/editor/js/prism.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/editor/js/fabric.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/editor/js/master.js'); ?>"></script>
+    <?php foreach ($template_data['additional_js'] as $js): ?>
+        <script defer src="<?php echo base_url($js); ?>"></script>
+    <?php endforeach; ?>
+    <!-- Inline CSS -->
+    <style>
+        .profile-container { display: flex; flex-wrap: wrap; gap: 20px; }
+        .profile-sidebar { flex: 0 0 300px; }
+        .profile-main { flex: 1; min-width: 0; }
+        .profile-card { background: #fff; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; text-align: center; }
+        .avatar-img { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
+        .avatar-edit-btn { position: absolute; bottom: 0; right: 0; background: #007bff; color: #fff; border: none; border-radius: 50%; padding: 8px; cursor: pointer; }
+        .status-badge { display: inline-flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 12px; font-size: 0.9em; }
+        .status-active { background: #dff0d8; color: #3c763d; }
+        .status-inactive { background: #f2dede; color: #a94442; }
+        .info-section { margin-bottom: 20px; }
+        .info-label { font-weight: bold; color: #555; }
+        .info-value { color: #333; }
+        .subscription-card { background: #fff; border-radius: 8px; padding: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .subscription-header { display: flex; justify-content: space-between; align-items: center; }
+        .subscription-badge { padding: 5px 10px; border-radius: 12px; font-size: 0.9em; }
+        .subscription-badge.active { background: #dff0d8; color: #3c763d; }
+        .subscription-badge.inactive { background: #f2dede; color: #a94442; }
+        .modal-content { border-radius: 8px; }
+        .image-preview img { max-width: 100%; height: auto; margin-top: 10px; }
+        .questions-section table { margin-top: 10px; }
+        @media (max-width: 768px) { .profile-sidebar { flex: 0 0 100%; } }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <!-- Breadcrumbs -->
+        <div class="breadLine">
+            <ul class="breadcrumb">
+                <?php foreach ($template_data['breadcrumbs'] as $crumb): ?>
+                    <?php if ($crumb['url']): ?>
+                        <li><a href="<?php echo $crumb['url']; ?>"><?php echo htmlspecialchars($crumb['title']); ?></a></li>
+                    <?php else: ?>
+                        <li class="active"><?php echo htmlspecialchars($crumb['title']); ?></li>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="clearfix"></div>
+
+        <!-- Profile Content -->
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h4 class="panel-title">User Profile</h4>
+            </div>
+            <div class="panel-body">
+                <div class="profile-container">
+                    <!-- Profile Sidebar -->
+                    <aside class="profile-sidebar col-sm-5 col-md-4" role="complementary">
+                        <div class="profile-card user-left text-center">
+                            <div class="profile-avatar">
+                                <img src="<?php echo base_url($profile_image); ?>" 
+                                     alt="Profile picture of <?php echo $safe_user['first_name'] . ' ' . $safe_user['last_name']; ?>"
+                                     class="avatar-img img-responsive"
+                                     loading="lazy">
+                                <button type="button" class="avatar-edit-btn" aria-label="Change profile picture">
+                                    <i class="fa fa-camera" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <h4><?php echo ucfirst($safe_user['first_name']) . ' ' . ucfirst($safe_user['last_name']); ?></h4>
+                            <p class="profile-username">@<?php echo $safe_user['user_name']; ?></p>
+                            <div class="profile-status">
+                                <?php if ($safe_user['is_active'] === 'Y'): ?>
+                                    <span class="status-badge status-active" aria-label="User is active">
+                                        <i class="fa fa-check-circle" aria-hidden="true"></i> Active
+                                    </span>
+                                <?php else: ?>
+                                    <span class="status-badge status-inactive" aria-label="User is inactive">
+                                        <i class="fa fa-times-circle" aria-hidden="true"></i> Inactive
+                                    </span>
+                                <?php endif; ?>
+                            </div>
+                            <hr>
+                            <div class="page-actions">
+                                <a href="<?php echo getRoleBackUrl($safe_user['role_id_fk']); ?>" class="btn btn-secondary">
+                                    <i class="fa fa-arrow-left" aria-hidden="true"></i> Back to List
+                                </a>
+                                <a href="<?php echo site_url('admin/edit_user/' . $safe_user['user_id_pk']); ?>" class="btn btn-primary">
+                                    <i class="fa fa-edit" aria-hidden="true"></i> Edit Profile
+                                </a>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Profile Details -->
+                    <main class="profile-main col-sm-7 col-md-8" role="main">
+                        <!-- Personal Information -->
+                        <section class="info-section" aria-labelledby="personal-info-heading">
+                            <header class="section-header">
+                                <h3 id="personal-info-heading" class="section-title">Personal Information</h3>
+                            </header>
+                            <table class="table table-condensed table-hover">
+                                <tbody>
+                                    <tr>
+                                        <td class="info-label">Name</td>
+                                        <td class="info-value"><?php echo ucfirst($safe_user['first_name']) . ' ' . ucfirst($safe_user['last_name']); ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="info-label">Email</td>
+                                        <td class="info-value">
+                                            <a href="mailto:<?php echo $safe_user['email']; ?>" 
+                                               class="email-link"
+                                               aria-label="Send email to <?php echo $safe_user['email']; ?>">
+                                                <?php echo $safe_user['email']; ?>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="info-label">Phone</td>
+                                        <td class="info-value">
+                                            <?php if (!empty($safe_user['phone'])): ?>
+                                                <a href="tel:<?php echo $safe_user['phone']; ?>" 
+                                                   class="phone-link"
+                                                   aria-label="Call <?php echo $safe_user['phone']; ?>">
+                                                    <?php echo $safe_user['phone']; ?>
+                                                </a>
+                                            <?php else: ?>
+                                                <span class="text-muted">Not provided</span>
+                                            <?php endif; ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="info-label">Username</td>
+                                        <td class="info-value"><?php echo $safe_user['user_name']; ?></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <!-- Professional Information -->
+                        <?php if ($safe_user['role_id_fk'] != 1): ?>
+                            <section class="info-section" aria-labelledby="professional-info-heading">
+                                <header class="section-header">
+                                    <h3 id="professional-info-heading" class="section-title">Professional Information</h3>
+                                </header>
+                                <table class="table table-condensed table-hover">
+                                    <tbody>
+                                        <?php if (!empty($safe_user['license_no'])): ?>
+                                            <tr>
+                                                <td class="info-label">License Number</td>
+                                                <td class="info-value"><?php echo $safe_user['license_no']; ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if (!empty($safe_user['company_name'])): ?>
+                                            <tr>
+                                                <td class="info-label">Company Name</td>
+                                                <td class="info-value"><?php echo $safe_user['company_name']; ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if (!empty($safe_user['company_add'])): ?>
+                                            <tr>
+                                                <td class="info-label">Company Address</td>
+                                                <td class="info-value"><?php echo $safe_user['company_add']; ?></td>
+                                            </tr>
+                                        <?php endif; ?>
+                                        <?php if ($this->role_lib->is_sales_rep($safe_user['role_id_fk']) && isset($ref_code_obj)): ?>
+                                            <tr>
+                                                <td class="info-label">Referral Code</td>
+                                                <td class="info-value">
+                                                    <code class="referral-code"><?php echo htmlspecialchars($ref_code_obj->coupon_code ?? '', ENT_QUOTES, 'UTF-8'); ?></code>
+                                                    <button type="button" 
+                                                            class="btn btn-sm btn-secondary copy-btn"
+                                                            data-copy-text="<?php echo htmlspecialchars($ref_code_obj->coupon_code ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                                                            aria-label="Copy referral code">
+                                                        <i class="fa fa-copy" aria-hidden="true"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
+                            </section>
+                        <?php endif; ?>
+
+                        <!-- Subscription Information -->
+                        <?php if (isset($subscription_data) && $subscription_data || $this->role_lib->is_manager_l1($safe_user['role_id_fk'])): ?>
+                            <section class="info-section" aria-labelledby="subscription-info-heading">
+                                <header class="section-header">
+                                    <h3 id="subscription-info-heading" class="section-title">Subscription Information</h3>
+                                </header>
+                                <?php if (isset($subscription_data) && $subscription_data): ?>
+                                    <div class="subscription-card active">
+                                        <div class="subscription-header">
+                                            <h4 class="subscription-plan"><?php echo htmlspecialchars($subscription_data['plan_title'] ?? '', ENT_QUOTES, 'UTF-8'); ?></h4>
+                                            <span class="subscription-badge active">Active</span>
+                                        </div>
+                                        <table class="table table-condensed table-hover">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="info-label">Billing Cycle</td>
+                                                    <td class="info-value"><?php echo htmlspecialchars($subscription_data['interval'] ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info-label">Current Period Ends</td>
+                                                    <td class="info-value">
+                                                        <time datetime="<?php echo date('Y-m-d', $subscription_data['current_period_end'] ?? time()); ?>">
+                                                            <?php echo date("M d, Y", $subscription_data['current_period_end'] ?? time()); ?>
+                                                        </time>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="info-label">Auto-Renewal</td>
+                                                    <td class="info-value">
+                                                        <?php if (isset($subscription_data['cancel_at_period_end']) && $subscription_data['cancel_at_period_end']): ?>
+                                                            <span class="text-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Disabled</span>
+                                                        <?php else: ?>
+                                                            <span class="text-success"><i class="fa fa-check" aria-hidden="true"></i> Enabled</span>
+                                                        <?php endif; ?>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                <?php elseif ($this->role_lib->is_sales_rep($safe_user['role_id_fk']) || $this->role_lib->is_manager_l1($safe_user['role_id_fk'])): ?>
+                                    <div class="subscription-card inactive">
+                                        <div class="subscription-header">
+                                            <h4 class="subscription-plan">No Active Subscription</h4>
+                                            <span class="subscription-badge inactive">Inactive</span>
+                                        </div>
+                                        <div class="subscription-actions">
+                                            <p class="subscription-message">This user can subscribe to one of our available monthly plans.</p>
+                                            <a href="<?php echo site_url('admin/subscribe/' . $safe_user['user_id_pk']); ?>" 
+                                               class="btn btn-primary subscription-btn">
+                                                <i class="fa fa-credit-card" aria-hidden="true"></i> Set Up Subscription
+                                            </a>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            </section>
+                        <?php endif; ?>
+
+                        <!-- Questions Section (new feature for "Can I order printing?") -->
+                        <section class="info-section questions-section" aria-labelledby="questions-heading">
+                            <header class="section-header">
+                                <h3 id="questions-heading" class="section-title">User Questions</h3>
+                            </header>
+                            <table class="table table-condensed table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Question</th>
+                                        <th>Answer</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($questions as $question): ?>
+                                        <tr>
+                                            <td class="info-value"><?php echo htmlspecialchars($question['question'], ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="info-value"><?php echo htmlspecialchars($question['answer'] ?? 'Not answered yet', ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td class="info-value">
+                                                <a href="<?php echo site_url('admin/edit_question/' . $question['id']); ?>" 
+                                                   class="btn btn-sm btn-primary" 
+                                                   aria-label="Edit question">
+                                                    <i class="fa fa-edit" aria-hidden="true"></i>
+                                                </a>
+                                                <a href="<?php echo site_url('admin/delete_question/' . $question['id']); ?>" 
+                                                   class="btn btn-sm btn-danger" 
+                                                   aria-label="Delete question"
+                                                   onclick="return confirm('Are you sure you want to delete this question?');">
+                                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <!-- Form to add new question -->
+                            <form method="post" action="<?php echo site_url('admin/add_question/' . $safe_user['user_id_pk']); ?>" 
+                                  class="question-form" data-validate="true">
+                                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" 
+                                       value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                <div class="form-group">
+                                    <label for="new_question" class="form-label">Add New Question</label>
+                                    <input type="text" id="new_question" name="question" class="form-control" 
+                                           placeholder="Enter a question" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="answer" class="form-label">Answer (optional)</label>
+                                    <textarea id="answer" name="answer" class="form-control" 
+                                              placeholder="Enter an answer"></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Add Question
+                                </button>
+                            </form>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Image Upload Modal -->
+        <div class="modal" id="image-upload-modal" aria-hidden="true" role="dialog" aria-labelledby="image-upload-title">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <header class="modal-header">
+                        <h2 class="modal-title" id="image-upload-title">Change Profile Picture</h2>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </header>
+                    <form method="post" 
+                          action="<?php echo site_url('admin/update_profile_image/' . $safe_user['user_id_pk']); ?>" 
+                          enctype="multipart/form-data"
+                          class="image-upload-form"
+                          data-validate="true">
+                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" 
+                               value="<?php echo $this->security->get_csrf_hash(); ?>">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="profile_image" class="form-label">Select Image</label>
+                                <input type="file" 
+                                       id="profile_image" 
+                                       name="profile_image" 
+                                       class="form-input"
+                                       accept="image/jpeg,image/png,image/gif,image/webp"
+                                       required
+                                       aria-describedby="image-help">
+                                <div id="image-help" class="form-help">Maximum file size: 2MB. Supported formats: JPEG, PNG, GIF, WebP</div>
+                            </div>
+                            <div class="image-preview" id="image-preview" style="display: none;">
+                                <img src="" alt="Preview" class="preview-img">
+                            </div>
+                        </div>
+                        <footer class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fa fa-upload" aria-hidden="true"></i> Upload Image
+                            </button>
+                        </footer>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inline JavaScript -->
+    <script>
+        $(document).ready(function() {
+            const ProfileManager = {
+                init: function() {
+                    this.bindEvents();
+                    this.setupImageUpload();
+                    this.setupQuestionForm();
+                },
+                bindEvents: function() {
+                    $('.avatar-edit-btn').on('click', function(e) {
+                        e.preventDefault();
+                        $('#image-upload-modal').modal('show');
+                    });
+                    $('.copy-btn').on('click', function(e) {
+                        e.preventDefault();
+                        const text = $(this).data('copy-text');
+                        ProfileManager.copyToClipboard(text);
+                    });
+                },
+                setupImageUpload: function() {
+                    const fileInput = $('#profile_image');
+                    const preview = $('#image-preview');
+                    fileInput.on('change', function(e) {
+                        const file = e.target.files[0];
+                        if (file) {
+                            if (!ProfileManager.validateImageFile(file)) {
+                                return;
+                            }
+                            const reader = new FileReader();
+                            reader.onload = function(e) {
+                                preview.find('.preview-img').attr('src', e.target.result);
+                                preview.show();
+                            };
+                            reader.readAsDataURL(file);
+                        } else {
+                            preview.hide();
+                        }
+                    });
+                },
+                validateImageFile: function(file) {
+                    const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+                    const maxSize = 2 * 1024 * 1024; // 2MB
+                    if (!allowedTypes.includes(file.type)) {
+                        toastr.error('Please select a valid image file (JPEG, PNG, GIF, or WebP).');
+                        return false;
+                    }
+                    if (file.size > maxSize) {
+                        toastr.error('File size must be less than 2MB.');
+                        return false;
+                    }
+                    return true;
+                },
+                copyToClipboard: function(text) {
+                    if (navigator.clipboard && window.isSecureContext) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            toastr.success('Referral code copied to clipboard!');
+                        }).catch(function(err) {
+                            console.error('Could not copy text: ', err);
+                            ProfileManager.fallbackCopyToClipboard(text);
+                        });
+                    } else {
+                        ProfileManager.fallbackCopyToClipboard(text);
+                    }
+                },
+                fallbackCopyToClipboard: function(text) {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    textArea.style.position = 'fixed';
+                    textArea.style.left = '-999999px';
+                    textArea.style.top = '-999999px';
+                    document.body.appendChild(textArea);
+                    textArea.focus();
+                    textArea.select();
+                    try {
+                        const successful = document.execCommand('copy');
+                        if (successful) {
+                            toastr.success('Referral code copied to clipboard!');
+                        } else {
+                            toastr.warning('Unable to copy referral code. Please copy manually.');
+                        }
+                    } catch (err) {
+                        console.error('Fallback copy failed:', err);
+                        toastr.warning('Unable to copy referral code. Please copy manually.');
+                    }
+                    document.body.removeChild(textArea);
+                },
+                setupQuestionForm: function() {
+                    $('.question-form').validate({
+                        rules: {
+                            question: {
+                                required: true,
+                                minlength: 5
+                            },
+                            answer: {
+                                minlength: 5
+                            }
+                        },
+                        messages: {
+                            question: {
+                                required: 'Please enter a question.',
+                                minlength: 'Question must be at least 5 characters long.'
+                            },
+                            answer: {
+                                minlength: 'Answer must be at least 5 characters long if provided.'
+                            }
+                        },
+                        submitHandler: function(form) {
+                            form.submit();
+                        }
+                    });
+                }
+            };
+            ProfileManager.init();
+        });
+    </script>
+</body>
+</html>
     ),
     array(
         'id' => 'customization',
@@ -109,7 +658,163 @@ ob_start();
             <p class="hero-description">Find answers to common questions about our real estate flyer service</p>
         </div>
     </div>
-</header>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="site-content" id="primary">
+                <section class="section type2">
+                    <div class="subpage-title">
+                        <h5>Frequently Asked Questions</h5>
+                    </div>
+                    <div class="panel-group" id="faqAccordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading1">
+                                <h4 class="panel-title">
+                                    <a href="#collapse1" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse1">
+                                        What Format Do The Flyers Come In?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                                <div class="panel-body">
+                                    All flyers are in PDF format. In the near future we will be adding the ability to export in other formats.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading2">
+                                <h4 class="panel-title">
+                                    <a href="#collapse2" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse2">
+                                        Are the Images High Resolution?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                <div class="panel-body">
+                                    Yes. All of our images are high resolution to allow for the best printing possible.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading3">
+                                <h4 class="panel-title">
+                                    <a href="#collapse3" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse3">
+                                        Is the flyer print ready?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                                <div class="panel-body">
+                                    Yes. All the flyers generated by listing-pitch.com are print ready.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading4">
+                                <h4 class="panel-title">
+                                    <a href="#collapse4" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse4">
+                                        Can I edit after finalizing?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                                <div class="panel-body">
+                                    After a flyer has been finalized it cannot be edited. We have included a recreate button that automatically recreates the flyer and places it in to our editor. From here you can make the necessary changes and finalize it.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading5">
+                                <h4 class="panel-title">
+                                    <a href="#collapse5" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse5">
+                                        Can I save a flyer?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                                <div class="panel-body">
+                                    Yes. You can save a flyer that you are working on. You can come back to it at a different date and finalize it.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading6">
+                                <h4 class="panel-title">
+                                    <a href="#collapse6" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse6">
+                                        Can I order printing?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading6">
+                                <div class="panel-body">
+                                    Yes, we give our users the ability to order high quality color copies directly from us.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading7">
+                                <h4 class="panel-title">
+                                    <a href="#collapse7" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse7">
+                                        How do I get my printed flyers?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading7">
+                                <div class="panel-body">
+                                    After printing we ship them to you in one of our cool colorful envelopes.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading8">
+                                <h4 class="panel-title">
+                                    <a href="#collapse8" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse8">
+                                        How long does it take to receive printed flyers?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading8">
+                                <div class="panel-body">
+                                    If you order printing before our 4pm cut-off time, you will receive your flyers the next day before 5pm.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading9">
+                                <h4 class="panel-title">
+                                    <a href="#collapse9" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse9">
+                                        Does it cost anything to sign up?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading9">
+                                <div class="panel-body">
+                                    No. You can sign up for free.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default">
+                            <div class="panel-heading" role="tab" id="heading10">
+                                <h4 class="panel-title">
+                                    <a href="#collapse10" data-toggle="collapse" data-parent="#faqAccordion" class="accordion-toggle collapsed" role="button" aria-expanded="false" aria-controls="collapse10">
+                                        How much is each flyer?
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading10">
+                                <div class="panel-body">
+                                    You have two options:<br>
+                                    <strong>1) Pay-As-You-Go</strong> - This option allows you to purchase a single flyer at $2.<br>
+                                    <strong>2) Buy Credits (Best Bargain)</strong> – This feature allows you to buy credits. Each flyer will cost you 1 credit. So $5 = 5 Credits.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Main Content -->
 <main class="main-content" role="main">

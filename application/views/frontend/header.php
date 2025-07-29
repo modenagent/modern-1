@@ -52,6 +52,9 @@
 
         <!-- TEMPLATE CSS -->
         <link href="<?php echo base_url(); ?>/assets/frontend/css/style.css" rel="stylesheet">
+        
+        <!-- OPTIMIZATION CSS -->
+        <link href="<?php echo base_url(); ?>/assets/css/optimizations.css" rel="stylesheet">
 
         <!-- RESPONSIVE CSS -->
         <link href="<?php echo base_url(); ?>/assets/frontend/css/responsive.css" rel="stylesheet">

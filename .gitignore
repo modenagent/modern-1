@@ -29,5 +29,7 @@ application/logs/
 development/
 beta/
 
+# Optimization test files
+optimization_test.php
 
 #application/config/database.php
