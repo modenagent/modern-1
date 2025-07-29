@@ -24,26 +24,30 @@ $template_data = array(
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php echo htmlspecialchars($template_data['title']); ?></title>
+    <title><?php echo htmlspecialchars($template_data['title'] ?? $title ?? 'Modern Agent'); ?></title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
     <!-- CSS Assets -->
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap.min.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.min.css'); ?>"> <!-- Updated to latest jQuery UI -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/js/jquery-ui/jquery-ui.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-reset.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome-6.6.0/css/all.min.css'); ?>"> <!-- Localized and updated Font Awesome -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/fontawesome-6.6.0/css/all.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery.dataTables.min.css'); ?>">
+    <link rel="stylesheet" href="<?php echo base_url('assets/css/admin-tables.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/jquery-toastr/toastr.min.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/admin/admin-style.css'); ?>">
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/optimizations.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/bootstrap-combobox.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/summernote.css'); ?>">
     <link rel="stylesheet" href="<?php echo base_url('assets/css/datepicker.css'); ?>">
     <!-- JavaScript Assets (deferred for performance) -->
+    <script defer src="<?php echo base_url('assets/js/jquery.min.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/js/jquery.dataTables.min.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/js/jquery.validate.min.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/js/jquery-toastr/toastr.min.js'); ?>"></script>
+    <script defer src="<?php echo base_url('assets/js/jquery-toastr/ui-toastr-notifications.js'); ?>"></script>
     <script defer src="<?php echo base_url('assets/editor/js/prism.js'); ?>"></script>
     <script defer src="<?php echo base_url('assets/editor/js/fabric.js'); ?>"></script>
     <script defer src="<?php echo base_url('assets/editor/js/master.js'); ?>"></script>
-  
 
 // Generate CSRF token for any forms on the page
 $csrf_token = hash('sha256', uniqid() . time());

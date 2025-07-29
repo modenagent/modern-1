@@ -93,90 +93,165 @@ ob_start();
         <?php endif; ?>
     <?php endif; ?>
 
-    <!-- Deals Table Section -->
-    <section class="content-section">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">
-                    <i class="fa fa-table" aria-hidden="true"></i>
-                    Current Deals
-                </h2>
-                <div class="card-actions">
-                    <button type="button" class="btn btn-primary" id="add-deal-btn">
-                        <i class="fa fa-plus" aria-hidden="true"></i>
-                        Add New Deal
-                    </button>
-                </div>
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+// Load security helper for CSRF token
+$this->load->helper('security');
+$csrf_token = $this->security->get_csrf_hash();
+
+// Template data for admin base
+$template_data = array(
+    'title' => 'Manage Deals',
+    'csrf_token' => $csrf_token,
+    'breadcrumbs' => array(
+        array('title' => 'Dashboard', 'url' => site_url('admin/dashboard')),
+        array('title' => 'Manage Deals', 'url' => '')
+    ),
+    'additional_css' => array(),
+    'additional_js' => array(
+        'assets/js/jquery.min.js',
+        'assets/js/jquery.dataTables.min.js',
+        'assets/js/jquery.validate.min.js',
+        'assets/js/jquery-toastr/toastr.min.js',
+        'assets/js/jquery-toastr/ui-toastr-notifications.js'
+    )
+);
+
+// Capture the deals content
+ob_start();
+?>
+
+<section class="content-section">
+    <div class="card">
+        <div class="card-header">
+            <h2 class="card-title">
+                <i class="fa fa-table" aria-hidden="true"></i>
+                Current Deals
+            </h2>
+            <div class="card-actions">
+                <a href="<?php echo site_url('admin/add_deal'); ?>" class="btn btn-primary" id="add-deal-btn">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Add New Deal
+                </a>
             </div>
-            
-            <div class="card-body">
-                <?php if (!empty($deals)): ?>
-                <div class="table-responsive">
-                    <table class="table data-table" id="deals-table">
-                        <thead>
-                            <tr>
-                                <th scope="col" width="5%">#</th>
-                                <th scope="col" width="25%">Product Name</th>
-                                <th scope="col" width="20%">Store Name</th>
-                                <th scope="col" width="25%">Pricing</th>
-                                <th scope="col" width="25%">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $i = 1; foreach ($deals as $deal): ?>
-                            <tr>
-                                <td><?php echo $i; ?></td>
-                                <td>
-                                    <strong><?php echo htmlspecialchars($deal->product_name ?? '', ENT_QUOTES, 'UTF-8'); ?></strong>
-                                </td>
-                                <td>
-                                    <?php echo htmlspecialchars($deal->store_name ?? '', ENT_QUOTES, 'UTF-8'); ?>
-                                </td>
-                                <td>
-                                    <div class="pricing-info">
-                                        <span class="actual-price">
-                                            <del>$<?php echo number_format((float)($deal->selling_price ?? 0), 2); ?></del>
-                                        </span>
-                                        <span class="offer-price text-success">
-                                            <strong>$<?php echo number_format((float)($deal->offer_price ?? 0), 2); ?></strong>
-                                        </span>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="action-buttons">
-                                        <button type="button" 
-                                                class="btn btn-sm btn-primary edit-deal-btn" 
-                                                data-deal-id="<?php echo htmlspecialchars($deal->id ?? '', ENT_QUOTES, 'UTF-8'); ?>"
-                                                data-modal-target="edit-deal-modal"
-                                                aria-label="Edit deal">
-                                            <i class="fa fa-edit" aria-hidden="true"></i>
-                                            Edit
+        </div>
+        
+        <div class="card-body">
+            <!-- Search/Filter Bar -->
+            <div class="admin-table-search">
+                <form method="get" action="<?php echo site_url('admin/manage_deals'); ?>" class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="deals-search" class="sr-only">Search deals</label>
+                            <input type="text" id="deals-search" name="search" class="form-control" 
+                                   placeholder="Search deals by product name, store name, or price..." 
+                                   aria-label="Search deals" 
+                                   value="<?php echo htmlspecialchars($this->input->get('search', TRUE) ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-search" aria-hidden="true"></i> Search
+                        </button>
+                        <a href="<?php echo site_url('admin/manage_deals'); ?>" class="btn btn-default">
+                            <i class="fa fa-times" aria-hidden="true"></i> Clear
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <?php if (!empty($deals)): ?>
+            <div class="table-responsive">
+                <table class="table table-hover data-table" id="deals-table" role="table" aria-label="Deals management table">
+                    <thead>
+                        <tr role="row">
+                            <th scope="col" class="no-sort" width="5%" tabindex="0" role="columnheader" aria-sort="none">
+                                <span class="sr-only">Serial number column</span>
+                                Sr. no.
+                            </th>
+                            <th scope="col" width="25%" tabindex="0" role="columnheader" aria-sort="none">Product Name</th>
+                            <th scope="col" width="20%" tabindex="0" role="columnheader" aria-sort="none">Store Name</th>
+                            <th scope="col" width="25%" tabindex="0" role="columnheader" aria-sort="none">Pricing</th>
+                            <th scope="col" class="no-sort" width="25%" role="columnheader">
+                                <span class="sr-only">Actions for each deal</span>
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i = 1; foreach ($deals as $deal): ?>
+                        <tr role="row">
+                            <td data-label="Sr. no."><?php echo $i; ?></td>
+                            <td data-label="Product Name">
+                                <strong><?php echo htmlspecialchars($deal->product_name ?? '', ENT_QUOTES, 'UTF-8'); ?></strong>
+                            </td>
+                            <td data-label="Store Name">
+                                <?php echo htmlspecialchars($deal->store_name ?? '', ENT_QUOTES, 'UTF-8'); ?>
+                            </td>
+                            <td data-label="Pricing">
+                                <div class="pricing-info">
+                                    <span class="actual-price">
+                                        <del>$<?php echo number_format((float)($deal->selling_price ?? 0), 2); ?></del>
+                                    </span>
+                                    <span class="offer-price text-success">
+                                        <strong>$<?php echo number_format((float)($deal->offer_price ?? 0), 2); ?></strong>
+                                    </span>
+                                </div>
+                            </td>
+                            <td data-label="Actions">
+                                <div class="action-buttons">
+                                    <button type="button" 
+                                            class="btn btn-sm btn-primary edit-deal-btn" 
+                                            data-deal-id="<?php echo htmlspecialchars($deal->id ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                                            data-toggle="modal"
+                                            data-target="#edit-deal-modal"
+                                            aria-label="Edit deal for <?php echo htmlspecialchars($deal->product_name ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                        Edit
+                                    </button>
+                                    <form method="post" 
+                                          action="<?php echo site_url('admin/remove_deals/' . urlencode($deal->id ?? '')); ?>" 
+                                          class="inline-form"
+                                          onsubmit="return confirm('Are you sure you want to remove this deal?');">
+                                        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" 
+                                               value="<?php echo htmlspecialchars($this->security->get_csrf_hash(), ENT_QUOTES, 'UTF-8'); ?>">
+                                        <button type="submit" 
+                                                class="btn btn-sm btn-danger confirm-action"
+                                                data-confirm-message="Are you sure you want to remove this deal?"
+                                                aria-label="Remove deal for <?php echo htmlspecialchars($deal->product_name ?? '', ENT_QUOTES, 'UTF-8'); ?>">
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            Remove
                                         </button>
-                                        
-                                        <form method="post" 
-                                              action="<?php echo site_url('admin/remove_deals/' . urlencode($deal->id ?? '')); ?>" 
-                                              class="inline-form"
-                                              onsubmit="return confirm('Are you sure you want to remove this deal?');">
-                                            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8'); ?>">
-                                            <button type="submit" 
-                                                    class="btn btn-sm btn-danger confirm-action"
-                                                    data-confirm-message="Are you sure you want to remove this deal?"
-                                                    aria-label="Remove deal">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                                Remove
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                            <?php $i++; endforeach; ?>
-                        </tbody>
-                    </table>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php $i++; endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php else: ?>
+            <div class="empty-state">
+                <div class="empty-state-icon">
+                    <i class="fa fa-handshake-o fa-4x text-muted" aria-hidden="true"></i>
                 </div>
-                <?php else: ?>
-                <div class="empty-state">
-                    <div class="empty-state-icon">
-                        <i class="fa fa-handshake-o fa-4x text-muted" aria-hidden="true"></i>
+                <h3 class="empty-state-title">No Deals Found</h3>
+                <p class="empty-state-text">There are currently no deals configured. Start by creating your first deal.</p>
+                <a href="<?php echo site_url('admin/add_deal'); ?>" class="btn btn-primary">
+                    <i class="fa fa-plus" aria-hidden="true"></i>
+                    Create Your First Deal
+                </a>
+            </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
+<?php
+$template_data['content'] = ob_get_clean();
+$this->load->view('templates/admin_base', $template_data);
+?>
                     </div>
                     <h3 class="empty-state-title">No Deals Found</h3>
                     <p class="empty-state-text">There are currently no deals available. Start by adding your first deal.</p>
@@ -240,9 +315,9 @@ ob_start();
 <?php
 $template_data['content'] = ob_get_clean();
 
+<?php
 // Add inline JavaScript for deals functionality
 $template_data['inline_js'] = '
-// Deals management functionality
 (function() {
     "use strict";
     
@@ -253,6 +328,17 @@ $template_data['inline_js'] = '
         },
         
         bindEvents: function() {
+            // Search input keypress
+            const searchInput = document.getElementById("deals-search");
+            if (searchInput) {
+                searchInput.addEventListener("keypress", function(e) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        DealsManager.searchDeals();
+                    }
+                });
+            }
+            
             // Edit deal buttons
             document.addEventListener("click", function(e) {
                 if (e.target.closest(".edit-deal-btn")) {
@@ -263,9 +349,9 @@ $template_data['inline_js'] = '
                 }
             });
             
-            // Add deal buttons
+            // Add deal button
             document.addEventListener("click", function(e) {
-                if (e.target.closest("#add-deal-btn, #add-first-deal-btn")) {
+                if (e.target.closest("#add-deal-btn")) {
                     e.preventDefault();
                     DealsManager.showAddDealForm();
                 }
@@ -275,8 +361,7 @@ $template_data['inline_js'] = '
             document.addEventListener("submit", function(e) {
                 const form = e.target;
                 if (form.classList.contains("inline-form")) {
-                    // Let the form submit naturally for now
-                    return true;
+                    return true; // Let form submit naturally
                 }
             });
         },
@@ -307,71 +392,121 @@ $template_data['inline_js'] = '
             }
         },
         
+        searchDeals: function() {
+            const searchTerm = document.getElementById("deals-search").value;
+            if (typeof $ !== "undefined" && $.fn.DataTable && $("#deals-table").DataTable()) {
+                $("#deals-table").DataTable().search(searchTerm).draw();
+            } else {
+                toastr.warning("Search functionality is not available. Please ensure DataTables is loaded.");
+            }
+        },
+        
+        clearSearch: function() {
+            const searchInput = document.getElementById("deals-search");
+            if (searchInput) {
+                searchInput.value = "";
+                if (typeof $ !== "undefined" && $.fn.DataTable && $("#deals-table").DataTable()) {
+                    $("#deals-table").DataTable().search("").draw();
+                }
+            }
+        },
+        
         loadEditDeal: function(dealId) {
             if (!dealId) {
-                ModernAgentSecurity.showAlert("Invalid deal ID", "danger");
+                toastr.error("Invalid deal ID");
                 return;
             }
             
-            const modal = document.getElementById("edit-deal-modal");
-            const content = document.getElementById("edit-deal-content");
+            const modal = $("#edit-deal-modal");
+            const content = $("#edit-deal-content");
+            
+            if (!modal.length || !content.length) {
+                toastr.error("Edit modal not found. Please contact support.");
+                return;
+            }
             
             // Show loading state
-            content.innerHTML = `
+            content.html(`
                 <div class="loading-state text-center">
                     <i class="fa fa-spinner fa-spin fa-2x" aria-hidden="true"></i>
                     <p>Loading deal information...</p>
                 </div>
-            `;
+            `);
             
             // Open modal
-            ModernAgentModal.openModal({ target: modal });
+            modal.modal("show");
             
             // Load deal data via AJAX
-            fetch(`${BASE_URL}admin/edit_deals/${encodeURIComponent(dealId)}`, {
+            $.ajax({
+                url: `' . base_url('admin/edit_deals/') . '` + encodeURIComponent(dealId),
                 method: "POST",
                 headers: {
                     "X-Requested-With": "XMLHttpRequest",
-                    "X-CSRF-Token": CSRF_TOKEN
+                    "X-CSRF-Token": `' . htmlspecialchars($csrf_token, ENT_QUOTES, 'UTF-8') . '`
+                },
+                success: function(data) {
+                    content.html(data);
+                    const form = content.find("form");
+                    if (form.length) {
+                        form.validate({
+                            rules: {
+                                product_name: { required: true, minlength: 3 },
+                                store_name: { required: true, minlength: 3 },
+                                selling_price: { required: true, number: true, min: 0 },
+                                offer_price: { required: true, number: true, min: 0 }
+                            },
+                            messages: {
+                                product_name: {
+                                    required: "Please enter a product name",
+                                    minlength: "Product name must be at least 3 characters"
+                                },
+                                store_name: {
+                                    required: "Please enter a store name",
+                                    minlength: "Store name must be at least 3 characters"
+                                },
+                                selling_price: {
+                                    required: "Please enter the selling price",
+                                    number: "Please enter a valid number",
+                                    min: "Price cannot be negative"
+                                },
+                                offer_price: {
+                                    required: "Please enter the offer price",
+                                    number: "Please enter a valid number",
+                                    min: "Price cannot be negative"
+                                }
+                            }
+                        });
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("Error loading deal:", error);
+                    content.html(`
+                        <div class="alert alert-danger">
+                            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+                            <strong>Error:</strong> Unable to load deal information. Please try again.
+                        </div>
+                    `);
                 }
-            })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.text();
-            })
-            .then(data => {
-                content.innerHTML = data;
-                
-                // Initialize form validation for the loaded form
-                const form = content.querySelector("form");
-                if (form) {
-                    form.setAttribute("data-validate", "true");
-                    ModernAgentSecurity.addCSRFToForms();
-                }
-            })
-            .catch(error => {
-                console.error("Error loading deal:", error);
-                content.innerHTML = `
-                    <div class="alert alert-danger">
-                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                        <strong>Error:</strong> Unable to load deal information. Please try again.
-                    </div>
-                `;
             });
         },
         
         showAddDealForm: function() {
-            // For now, redirect to add deal page or show a message
-            ModernAgentSecurity.showAlert("Add deal functionality will be available soon.", "info");
-            // Could redirect to: window.location.href = BASE_URL + "admin/add_deal";
-        },
-        
-        confirmRemoveDeal: function(dealId) {
-            return confirm("Are you sure you want to remove this deal? This action cannot be undone.");
+            window.location.href = `' . site_url('admin/add_deal') . '`;
         }
     };
+    
+    // Initialize when DOM is ready
+    document.addEventListener("DOMContentLoaded", function() {
+        DealsManager.init();
+    });
+})();
+';
+?>
+
+<?php
+$template_data['content'] = ob_get_clean();
+$this->load->view('templates/admin_base', $template_data);
+?>
     
     // Initialize when DOM is ready
     document.addEventListener("DOMContentLoaded", function() {

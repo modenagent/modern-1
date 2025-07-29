@@ -10,15 +10,41 @@
     <h4 class="panel-title">Order History</h4>
   </div>
   <div class="panel-body">
-    <div class="table-responsive" id="order_history">
-      <table class="table table-hover" id="order-history-count-table">
+    <!-- Search/Filter Bar -->
+    <div class="admin-table-search">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="order-history-search" class="sr-only">Search order history</label>
+                    <input type="text" id="order-history-search" class="form-control" placeholder="Search by name or status..." aria-label="Search order history">
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-primary" onclick="searchOrderHistory()">
+                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                </button>
+                <button type="button" class="btn btn-default" onclick="clearOrderHistorySearch()">
+                    <i class="fa fa-times" aria-hidden="true"></i> Clear
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="table-responsive admin-table-container" id="order_history">
+      <table class="table table-hover admin-table" id="order-history-count-table" role="table" aria-label="Order history table">
         <thead>
-          <tr>          
-            <th class="no-sort">Sr. No.</th> 
-            <th>Name</th>  
-            <th>Status</th> 
-            <th>Total Orders</th>   
-            <th class="no-sort">Action</th>
+          <tr role="row">          
+            <th class="no-sort" role="columnheader">
+                <span class="sr-only">Serial number column</span>
+                Sr. No.
+            </th> 
+            <th tabindex="0" role="columnheader" aria-sort="none">Name</th>  
+            <th tabindex="0" role="columnheader" aria-sort="none">Status</th> 
+            <th tabindex="0" role="columnheader" aria-sort="none">Total Orders</th>   
+            <th class="no-sort" role="columnheader">
+                <span class="sr-only">Actions for each order</span>
+                Action
+            </th>
           </tr>
         </thead>
       </table>
@@ -79,5 +105,33 @@ $(document).ready(function(){
         }
     });
   }
+});
+
+// Search functionality for order history
+function searchOrderHistory() {
+    var searchTerm = document.getElementById('order-history-search').value;
+    if ($('#order-history-count-table').DataTable()) {
+        $('#order-history-count-table').DataTable().search(searchTerm).draw();
+    }
+}
+
+function clearOrderHistorySearch() {
+    document.getElementById('order-history-search').value = '';
+    if ($('#order-history-count-table').DataTable()) {
+        $('#order-history-count-table').DataTable().search('').draw();
+    }
+}
+
+// Allow Enter key to trigger search
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('order-history-search');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchOrderHistory();
+            }
+        });
+    }
 });
 </script>
