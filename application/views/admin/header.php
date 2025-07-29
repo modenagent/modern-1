@@ -15,6 +15,8 @@
         <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/jquery-toastr/toastr.min.css">
         <!-- Custom styles for this template -->
         <link href="<?php echo base_url(); ?>assets/admin/admin-style.css" rel="stylesheet">
+        <!-- Optimization styles -->
+        <link href="<?php echo base_url(); ?>assets/css/optimizations.css" rel="stylesheet">
         <!-- admin css ends -->
         <!-- Combobox -->
         <link href="<?php echo base_url(); ?>assets/css/bootstrap-combobox.css" rel="stylesheet"/>

@@ -5,6 +5,10 @@
     background-color: rgb(255,255,255);
     padding-top: 140px;
     text-align: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
 }
 
 .invoice-content {
@@ -43,6 +47,118 @@
     color: rgb(34, 34, 34);
     line-height: 24px;
     font-weight: normal;
+}
+
+/* Invoice action button */
+.action-button {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.login-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgb(204,153,100);
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 3px;
+    border: 1px solid #fff;
+}
+
+.login-button:hover {
+    opacity: 0.9;
+}
+
+/* Order details section */
+.order-details {
+    margin-top: 30px;
+}
+
+.order-header {
+    background-color: rgb(204,153,100);
+    color: rgb(255, 255, 255);
+    padding: 15px 25px;
+    border-radius: 3px 3px 0 0;
+}
+
+.order-header h2 {
+    margin: 0;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 24px;
+}
+
+.order-content {
+    background-color: rgb(255, 255, 255);
+    padding: 15px;
+    border-radius: 0 0 3px 3px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.address-section {
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(34, 34, 34);
+    line-height: 24px;
+}
+
+.property-address {
+    color: rgb(163,109,52);
+    font-weight: bold;
+}
+
+.order-summary {
+    text-align: right;
+}
+
+.summary-table {
+    width: 100%;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(34, 34, 34);
+    border-collapse: collapse;
+}
+
+.summary-table td {
+    padding: 5px;
+    line-height: 24px;
+}
+
+.summary-table .total-row {
+    border-top: 1px solid #ccc;
+    margin-top: 10px;
+}
+
+.summary-table .total-row td {
+    padding-top: 10px;
+}
+
+.contact-info {
+    margin: 30px 0;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(34, 34, 34);
+    line-height: 24px;
+    text-align: left;
+}
+
+.invoice-footer {
+    background-color: rgb(204,153,100);
+    color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 3px;
+    text-align: center;
+    font-family: Montserrat, Arial, sans-serif;
+    font-size: 13px;
+    margin-top: 30px;
 }
 
 /* Accessibility improvements */
