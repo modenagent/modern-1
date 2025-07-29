@@ -248,4 +248,8 @@ $(document).ready(function() {
         // );
         AdminTables.initBasicTable('#orders-table');
     }
+
+    // Note: Transaction and Order History tables have their own specific
+    // DataTables initialization in their respective PHP files due to 
+    // server-side AJAX requirements
 });

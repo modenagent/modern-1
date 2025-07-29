@@ -12,21 +12,44 @@
   </div>
   
   <div class="panel-body">
+    <!-- Search/Filter Bar -->
+    <div class="admin-table-search">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="transaction-search" class="sr-only">Search transactions</label>
+                    <input type="text" id="transaction-search" class="form-control" placeholder="Search by invoice, type, or address..." aria-label="Search transactions">
+                </div>
+            </div>
+            <div class="col-md-6 text-right">
+                <button type="button" class="btn btn-primary" onclick="searchTransactions()">
+                    <i class="fa fa-search" aria-hidden="true"></i> Search
+                </button>
+                <button type="button" class="btn btn-default" onclick="clearTransactionSearch()">
+                    <i class="fa fa-times" aria-hidden="true"></i> Clear
+                </button>
+            </div>
+        </div>
+    </div>
+    
     <div class="bs-example bs-example-tabs">
       
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade active in" id="home">
-          <div class="table-head table-responsive" id="transactionlist">
-            <table id="all_transaction_table">
+          <div class="table-head table-responsive admin-table-container" id="transactionlist">
+            <table class="admin-table" id="all_transaction_table" role="table" aria-label="Transactions table">
               <thead>
-                  <tr style="color: black;">
-                      <th>Invoice Date</th>
-                      <th>Invoice No.</th>
-                      <th>Type</th>
-                      <th class="no-sort">Property Address</th>
-                      <th>Invoice To</th> 
-                      <th>Sales Rep</th>                                
-                      <th class="no-sort">Action</th>
+                  <tr style="color: black;" role="row">
+                      <th tabindex="0" role="columnheader" aria-sort="none">Invoice Date</th>
+                      <th tabindex="0" role="columnheader" aria-sort="none">Invoice No.</th>
+                      <th tabindex="0" role="columnheader" aria-sort="none">Type</th>
+                      <th class="no-sort" role="columnheader">Property Address</th>
+                      <th tabindex="0" role="columnheader" aria-sort="none">Invoice To</th> 
+                      <th tabindex="0" role="columnheader" aria-sort="none">Sales Rep</th>                                
+                      <th class="no-sort" role="columnheader">
+                          <span class="sr-only">Actions for each transaction</span>
+                          Action
+                      </th>
                   </tr>
               </thead>
 
@@ -89,5 +112,33 @@ $(document).ready(function(){
         }
     });
   }
+});
+
+// Search functionality for transactions
+function searchTransactions() {
+    var searchTerm = document.getElementById('transaction-search').value;
+    if ($('#all_transaction_table').DataTable()) {
+        $('#all_transaction_table').DataTable().search(searchTerm).draw();
+    }
+}
+
+function clearTransactionSearch() {
+    document.getElementById('transaction-search').value = '';
+    if ($('#all_transaction_table').DataTable()) {
+        $('#all_transaction_table').DataTable().search('').draw();
+    }
+}
+
+// Allow Enter key to trigger search
+document.addEventListener('DOMContentLoaded', function() {
+    var searchInput = document.getElementById('transaction-search');
+    if (searchInput) {
+        searchInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                searchTransactions();
+            }
+        });
+    }
 });
 </script>

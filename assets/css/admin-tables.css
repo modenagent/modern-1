@@ -81,6 +81,9 @@
         float: left;
         font-weight: bold;
         text-transform: uppercase;
+        display: block;
+        width: 100%;
+        margin-bottom: 5px;
     }
     
     .admin-table tbody td:last-child {
