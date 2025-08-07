@@ -1,308 +1,324 @@
-<!-- Property Overview Section -->
+<?php
+/**
+ * Property Overview Component
+ * 
+ * Mobile-optimized property overview with hero image, 
+ * key details grid, and interactive map
+ */
+
+// Extract property data safely
+$address = isset($property->PropertyProfile->SiteAddress) ? $property->PropertyProfile->SiteAddress : 'Unknown Address';
+$city = isset($property->PropertyProfile->SiteCity) ? $property->PropertyProfile->SiteCity : '';
+$state = isset($property->PropertyProfile->SiteState) ? $property->PropertyProfile->SiteState : '';
+$zip = isset($property->PropertyProfile->SiteZip) ? $property->PropertyProfile->SiteZip : '';
+$price = isset($property->PropertyProfile->LastSalePrice) ? $property->PropertyProfile->LastSalePrice : 'N/A';
+$bedrooms = isset($property->PropertyProfile->Bedrooms) ? $property->PropertyProfile->Bedrooms : 'N/A';
+$bathrooms = isset($property->PropertyProfile->Bathrooms) ? $property->PropertyProfile->Bathrooms : 'N/A';
+$sqft = isset($property->PropertyProfile->BuildingArea) ? number_format($property->PropertyProfile->BuildingArea) : 'N/A';
+$year_built = isset($property->PropertyProfile->YearBuilt) ? $property->PropertyProfile->YearBuilt : 'N/A';
+$lot_size = isset($property->PropertyProfile->LotSize) ? $property->PropertyProfile->LotSize : 'N/A';
+
+// Format price
+$formatted_price = 'N/A';
+if ($price !== 'N/A' && is_numeric($price)) {
+    $formatted_price = '$' . number_format($price);
+}
+
+// Property image URL (fallback to placeholder)
+$property_image = isset($property->PropertyProfile->PropertyImage) ? 
+    $property->PropertyProfile->PropertyImage : 
+    base_url('assets/reports/mobile/images/property-placeholder.jpg');
+
+// Map URL
+$latitude = isset($property->PropertyProfile->Latitude) ? $property->PropertyProfile->Latitude : '';
+$longitude = isset($property->PropertyProfile->Longitude) ? $property->PropertyProfile->Longitude : '';
+$theme_color = str_replace('#', '', $theme);
+
+$map_url = '';
+if ($latitude && $longitude) {
+    $map_url = "https://maps.googleapis.com/maps/api/staticmap?" .
+               "size=800x400&zoom=15&maptype=roadmap&" .
+               "center={$latitude},{$longitude}&" .
+               "markers=color:0x{$theme_color}|{$latitude},{$longitude}&" .
+               "key=" . (getenv('GOOGLE_MAPS_API_KEY') ?: 'demo_key');
+}
+?>
+
 <div class="property-overview">
     
-    <!-- Hero Image Section -->
-    <div class="hero-image-container">
-        <?php if (!empty($propertyImages) && is_array($propertyImages)): ?>
-            <!-- Image Carousel for Multiple Images -->
-            <div id="propertyCarousel" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <?php foreach ($propertyImages as $index => $image): ?>
-                        <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
-                            <img src="<?php echo htmlspecialchars($image['url']); ?>" 
-                                 class="d-block w-100 property-img" 
-                                 alt="Property Image <?php echo $index + 1; ?>"
-                                 loading="<?php echo $index === 0 ? 'eager' : 'lazy'; ?>">
-                        </div>
-                    <?php endforeach; ?>
-                </div>
-                
-                <?php if (count($propertyImages) > 1): ?>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#propertyCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#propertyCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                    
-                    <!-- Image Counter -->
-                    <div class="image-counter">
-                        <span id="current-image">1</span> / <?php echo count($propertyImages); ?>
-                    </div>
-                <?php endif; ?>
-            </div>
+    <!-- Hero Section -->
+    <div class="hero-section">
+        <?php if ($property_image): ?>
+            <img src="<?php echo $property_image; ?>" 
+                 alt="Property at <?php echo $address; ?>" 
+                 class="hero-image"
+                 onerror="this.src='<?php echo base_url('assets/reports/mobile/images/property-placeholder.jpg'); ?>'">
         <?php else: ?>
-            <!-- Placeholder Image -->
-            <div class="placeholder-image">
+            <div class="hero-placeholder">
                 <i class="fas fa-home"></i>
-                <p>No property image available</p>
             </div>
         <?php endif; ?>
         
-        <!-- Hero Overlay with Property Info -->
         <div class="hero-overlay">
-            <h1 class="property-address">
-                <?php echo htmlspecialchars($property->PropertyProfile->SiteAddress ?? 'Property Address Not Available'); ?>
-            </h1>
-            <div class="property-price">
-                <?php 
-                $price = $property->PropertyProfile->LastSalePrice ?? $property->PropertyProfile->EstimatedValue ?? 0;
-                echo $price ? '$' . number_format($price) : 'Price Not Available';
-                ?>
-            </div>
-            <div class="property-status">
-                <span class="badge bg-success">
-                    <?php echo ucfirst($property->PropertyProfile->PropertyType ?? 'Residential'); ?>
-                </span>
-            </div>
+            <h2 class="property-address"><?php echo htmlspecialchars($address); ?></h2>
+            <?php if ($city || $state || $zip): ?>
+                <p class="property-location">
+                    <?php echo htmlspecialchars($city . ($city && ($state || $zip) ? ', ' : '') . $state . ($state && $zip ? ' ' : '') . $zip); ?>
+                </p>
+            <?php endif; ?>
+            <div class="property-price"><?php echo $formatted_price; ?></div>
         </div>
     </div>
     
-    <!-- Quick Facts Grid -->
-    <div class="property-facts-grid">
-        <div class="fact-card">
+    <!-- Property Details Grid -->
+    <div class="property-details-grid">
+        
+        <div class="detail-card">
             <i class="fas fa-bed"></i>
-            <div class="fact-content">
-                <span class="fact-label">Bedrooms</span>
-                <span class="fact-value"><?php echo $property->PropertyProfile->Bedrooms ?? 'N/A'; ?></span>
-            </div>
+            <span class="detail-label">Bedrooms</span>
+            <span class="detail-value"><?php echo $bedrooms; ?></span>
         </div>
         
-        <div class="fact-card">
+        <div class="detail-card">
             <i class="fas fa-bath"></i>
-            <div class="fact-content">
-                <span class="fact-label">Bathrooms</span>
-                <span class="fact-value"><?php echo $property->PropertyProfile->Bathrooms ?? 'N/A'; ?></span>
-            </div>
+            <span class="detail-label">Bathrooms</span>
+            <span class="detail-value"><?php echo $bathrooms; ?></span>
         </div>
         
-        <div class="fact-card">
+        <div class="detail-card">
             <i class="fas fa-ruler-combined"></i>
-            <div class="fact-content">
-                <span class="fact-label">Living Area</span>
-                <span class="fact-value">
-                    <?php 
-                    $area = $property->PropertyProfile->BuildingArea ?? $property->PropertyProfile->LivingArea ?? 0;
-                    echo $area ? number_format($area) . ' sq ft' : 'N/A';
-                    ?>
-                </span>
-            </div>
+            <span class="detail-label">Square Feet</span>
+            <span class="detail-value"><?php echo $sqft; ?></span>
         </div>
         
-        <div class="fact-card">
+        <div class="detail-card">
             <i class="fas fa-calendar-alt"></i>
-            <div class="fact-content">
-                <span class="fact-label">Year Built</span>
-                <span class="fact-value"><?php echo $property->PropertyProfile->YearBuilt ?? 'N/A'; ?></span>
-            </div>
+            <span class="detail-label">Year Built</span>
+            <span class="detail-value"><?php echo $year_built; ?></span>
         </div>
         
-        <div class="fact-card">
+        <?php if ($lot_size !== 'N/A'): ?>
+        <div class="detail-card">
             <i class="fas fa-expand-arrows-alt"></i>
-            <div class="fact-content">
-                <span class="fact-label">Lot Size</span>
-                <span class="fact-value">
-                    <?php 
-                    $lotSize = $property->PropertyProfile->LotSize ?? 0;
-                    echo $lotSize ? number_format($lotSize, 2) . ' acres' : 'N/A';
-                    ?>
-                </span>
+            <span class="detail-label">Lot Size</span>
+            <span class="detail-value"><?php echo $lot_size; ?> acres</span>
+        </div>
+        <?php endif; ?>
+        
+        <?php if (isset($property->PropertyProfile->PropertyType)): ?>
+        <div class="detail-card">
+            <i class="fas fa-home"></i>
+            <span class="detail-label">Property Type</span>
+            <span class="detail-value"><?php echo htmlspecialchars($property->PropertyProfile->PropertyType); ?></span>
+        </div>
+        <?php endif; ?>
+        
+    </div>
+    
+    <!-- Interactive Map -->
+    <?php if ($map_url): ?>
+    <div class="map-section">
+        <h3 class="section-title">
+            <i class="fas fa-map-marker-alt"></i>
+            Location
+        </h3>
+        
+        <div class="map-container">
+            <img src="<?php echo $map_url; ?>" 
+                 alt="Property location map" 
+                 class="map-image"
+                 onclick="openFullscreenMap()">
+            
+            <div class="map-overlay">
+                <button class="map-fullscreen-btn" 
+                        onclick="openFullscreenMap()" 
+                        aria-label="View full map">
+                    <i class="fas fa-expand"></i>
+                    <span>Full Map</span>
+                </button>
             </div>
         </div>
         
-        <div class="fact-card">
-            <i class="fas fa-dollar-sign"></i>
-            <div class="fact-content">
-                <span class="fact-label">Price/Sq Ft</span>
-                <span class="fact-value">
-                    <?php 
-                    $price = $property->PropertyProfile->LastSalePrice ?? 0;
-                    $area = $property->PropertyProfile->BuildingArea ?? 0;
-                    if ($price && $area) {
-                        echo '$' . number_format($price / $area, 0);
-                    } else {
-                        echo 'N/A';
-                    }
-                    ?>
-                </span>
-            </div>
+        <!-- Map Actions -->
+        <div class="map-actions" style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <?php if ($latitude && $longitude): ?>
+            <a href="https://www.google.com/maps?q=<?php echo $latitude; ?>,<?php echo $longitude; ?>" 
+               target="_blank" 
+               class="map-action-btn">
+                <i class="fas fa-external-link-alt"></i>
+                Google Maps
+            </a>
+            <a href="https://maps.apple.com/?q=<?php echo $latitude; ?>,<?php echo $longitude; ?>" 
+               target="_blank" 
+               class="map-action-btn">
+                <i class="fas fa-map"></i>
+                Apple Maps
+            </a>
+            <a href="https://www.waze.com/ul?ll=<?php echo $latitude; ?>%2C<?php echo $longitude; ?>&navigate=yes" 
+               target="_blank" 
+               class="map-action-btn">
+                <i class="fas fa-route"></i>
+                Waze
+            </a>
+            <?php endif; ?>
         </div>
     </div>
+    <?php endif; ?>
     
-    <!-- Interactive Map Section -->
-    <div class="map-section">
-        <h3>Property Location</h3>
-        <div class="map-container">
-            <div class="interactive-map">
-                <?php if (!empty($mapUrl)): ?>
-                    <img src="<?php echo htmlspecialchars($mapUrl); ?>" 
-                         alt="Property Location Map" 
-                         class="map-image"
-                         loading="lazy">
-                    <div class="map-overlay">
-                        <button class="btn btn-sm btn-light map-fullscreen-btn" onclick="openFullscreenMap()">
-                            <i class="fas fa-expand"></i> View Full Map
-                        </button>
-                    </div>
-                <?php else: ?>
-                    <div class="map-placeholder">
-                        <i class="fas fa-map"></i>
-                        <p>Map not available</p>
-                    </div>
-                <?php endif; ?>
-            </div>
+    <!-- Property Description -->
+    <?php if (isset($property->PropertyProfile->Description) && !empty($property->PropertyProfile->Description)): ?>
+    <div class="description-section">
+        <h3 class="section-title">
+            <i class="fas fa-align-left"></i>
+            Property Description
+        </h3>
+        
+        <div class="description-content">
+            <p><?php echo nl2br(htmlspecialchars($property->PropertyProfile->Description)); ?></p>
         </div>
     </div>
+    <?php endif; ?>
     
-    <!-- Property Details Expandable Section -->
-    <div class="expandable-section">
-        <button class="expand-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#propertyDetails" aria-expanded="false">
-            <span>Property Details</span>
-            <i class="fas fa-chevron-down"></i>
-        </button>
-        <div class="collapse" id="propertyDetails">
-            <div class="details-content">
-                <div class="row g-3">
-                    
-                    <!-- Basic Information -->
-                    <div class="col-12">
-                        <h5>Basic Information</h5>
-                    </div>
-                    <div class="col-6">
-                        <strong>Property Type:</strong><br>
-                        <?php echo $property->PropertyProfile->PropertyType ?? 'Not specified'; ?>
-                    </div>
-                    <div class="col-6">
-                        <strong>Property Style:</strong><br>
-                        <?php echo $property->PropertyProfile->PropertyStyle ?? 'Not specified'; ?>
-                    </div>
-                    <div class="col-6">
-                        <strong>Stories:</strong><br>
-                        <?php echo $property->PropertyProfile->Stories ?? 'Not specified'; ?>
-                    </div>
-                    <div class="col-6">
-                        <strong>Parking:</strong><br>
-                        <?php echo $property->PropertyProfile->ParkingSpaces ?? 'Not specified'; ?>
-                    </div>
-                    
-                    <!-- Additional Features -->
-                    <?php if (!empty($property->PropertyProfile->Features)): ?>
-                    <div class="col-12 mt-3">
-                        <h5>Features</h5>
-                        <div class="features-list">
-                            <?php 
-                            $features = is_array($property->PropertyProfile->Features) 
-                                      ? $property->PropertyProfile->Features 
-                                      : explode(',', $property->PropertyProfile->Features);
-                            foreach ($features as $feature): 
-                            ?>
-                                <span class="badge bg-secondary me-1 mb-1"><?php echo trim(htmlspecialchars($feature)); ?></span>
-                            <?php endforeach; ?>
-                        </div>
-                    </div>
-                    <?php endif; ?>
-                    
-                </div>
+    <!-- Additional Property Features -->
+    <?php if (isset($property->PropertyProfile->Features) || isset($property->PropertyProfile->Amenities)): ?>
+    <div class="features-section">
+        <h3 class="section-title">
+            <i class="fas fa-star"></i>
+            Features & Amenities
+        </h3>
+        
+        <div class="features-grid">
+            <?php 
+            $features = [];
+            if (isset($property->PropertyProfile->Features)) {
+                $features = array_merge($features, explode(',', $property->PropertyProfile->Features));
+            }
+            if (isset($property->PropertyProfile->Amenities)) {
+                $features = array_merge($features, explode(',', $property->PropertyProfile->Amenities));
+            }
+            
+            foreach (array_slice($features, 0, 8) as $feature): // Limit to 8 features
+                $feature = trim($feature);
+                if (!empty($feature)):
+            ?>
+            <div class="feature-item">
+                <i class="fas fa-check-circle"></i>
+                <span><?php echo htmlspecialchars($feature); ?></span>
             </div>
+            <?php 
+                endif;
+            endforeach; 
+            ?>
         </div>
     </div>
-    
-    <!-- Action Buttons -->
-    <div class="action-buttons">
-        <button class="btn btn-primary" onclick="shareReport()">
-            <i class="fas fa-share-alt"></i> Share Report
-        </button>
-        <button class="btn btn-outline-primary" onclick="downloadReport()">
-            <i class="fas fa-download"></i> Download PDF
-        </button>
-        <button class="btn btn-outline-secondary" onclick="printReport()">
-            <i class="fas fa-print"></i> Print
-        </button>
-    </div>
+    <?php endif; ?>
     
 </div>
 
-<!-- Component-specific JavaScript -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Image carousel counter update
-    const carousel = document.getElementById('propertyCarousel');
-    if (carousel) {
-        carousel.addEventListener('slide.bs.carousel', function(event) {
-            const counter = document.getElementById('current-image');
-            if (counter) {
-                counter.textContent = event.to + 1;
-            }
-        });
-    }
-    
-    // Expand/collapse animation
-    const expandToggles = document.querySelectorAll('.expand-toggle');
-    expandToggles.forEach(toggle => {
-        toggle.addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            const target = document.querySelector(this.dataset.bsTarget);
-            
-            if (target.classList.contains('show')) {
-                icon.classList.remove('fa-chevron-up');
-                icon.classList.add('fa-chevron-down');
-            } else {
-                icon.classList.remove('fa-chevron-down');
-                icon.classList.add('fa-chevron-up');
-            }
-        });
-    });
-    
-    // Touch gestures for image carousel
-    if (carousel && typeof Hammer !== 'undefined') {
-        const hammer = new Hammer(carousel);
-        hammer.on('swipeleft', function() {
-            bootstrap.Carousel.getInstance(carousel).next();
-        });
-        hammer.on('swiperight', function() {
-            bootstrap.Carousel.getInstance(carousel).prev();
-        });
-    }
-});
-
-// Global functions for action buttons
-function openFullscreenMap() {
-    const mapImage = document.querySelector('.map-image');
-    if (mapImage && mapImage.requestFullscreen) {
-        mapImage.requestFullscreen();
-    }
+<!-- Additional CSS for map actions -->
+<style>
+.map-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--theme-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all var(--transition);
 }
 
-function shareReport() {
-    if (navigator.share) {
-        navigator.share({
-            title: 'Property Report',
-            text: 'Check out this property report',
-            url: window.location.href
-        });
-    } else {
-        // Fallback to share modal
-        const shareModal = document.getElementById('shareModal');
-        if (shareModal) {
-            new bootstrap.Modal(shareModal).show();
+.map-action-btn:hover {
+    background: var(--theme-color-dark);
+    transform: translateY(-1px);
+    color: white;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    background: var(--card-background);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    font-size: 0.875rem;
+}
+
+.feature-item i {
+    color: var(--theme-color);
+    font-size: 1rem;
+}
+
+.description-content {
+    background: var(--card-background);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-top: 1rem;
+    line-height: 1.6;
+}
+
+.property-location {
+    margin: 0.5rem 0;
+    opacity: 0.9;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 480px) {
+    .map-actions {
+        justify-content: center;
+    }
+    
+    .map-action-btn {
+        flex: 1;
+        justify-content: center;
+        min-width: 0;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+
+<script>
+// Enhanced fullscreen map function
+function openFullscreenMap() {
+    const mapImage = document.querySelector('.map-image');
+    
+    if (mapImage) {
+        // Try to use fullscreen API first
+        if (mapImage.requestFullscreen) {
+            mapImage.requestFullscreen().catch(() => {
+                // Fallback: open in new window
+                openMapInNewWindow();
+            });
+        } else if (mapImage.webkitRequestFullscreen) {
+            mapImage.webkitRequestFullscreen();
+        } else if (mapImage.msRequestFullscreen) {
+            mapImage.msRequestFullscreen();
+        } else {
+            // Fallback for browsers without fullscreen support
+            openMapInNewWindow();
         }
     }
 }
 
-function downloadReport() {
-    // Trigger PDF download
-    const reportId = window.MobileReportConfig?.reportId;
-    if (reportId) {
-        window.open(`${window.MobileReportConfig.baseUrl}api/reports/download/${reportId}`, '_blank');
-    }
-}
-
-function printReport() {
-    window.print();
+function openMapInNewWindow() {
+    <?php if ($latitude && $longitude): ?>
+    const mapUrl = `https://www.google.com/maps?q=<?php echo $latitude; ?>,<?php echo $longitude; ?>&z=15`;
+    window.open(mapUrl, '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+    <?php endif; ?>
 }
 </script>
-
-<!-- Accessibility enhancements -->
-<div class="sr-only" aria-live="polite" id="overview-announcements"></div> 

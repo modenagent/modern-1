@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Agent API Testing Interface</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fafafa;
+        }
+        .section h2 {
+            color: #007bff;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:disabled {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .response {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .test-results {
+            margin-top: 20px;
+        }
+        .test-item {
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+            border-left: 4px solid;
+        }
+        .test-pass {
+            background-color: #d4edda;
+            border-left-color: #28a745;
+        }
+        .test-fail {
+            background-color: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Modern Agent API Testing Interface</h1>
+        
+        <div class="section">
+            <h2>Configuration</h2>
+            <div class="form-group">
+                <label for="baseUrl">Base URL:</label>
+                <input type="text" id="baseUrl" value="" placeholder="http://localhost/">
+            </div>
+            <button onclick="detectBaseUrl()">Auto-Detect Base URL</button>
+        </div>
+
+        <div class="grid">
+            <div class="section">
+                <h2>1. Create Test User</h2>
+                <div class="form-group">
+                    <label for="testEmail">Email:</label>
+                    <input type="email" id="testEmail" value="test@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="testPassword">Password:</label>
+                    <input type="password" id="testPassword" value="testpassword">
+                </div>
+                <div class="form-group">
+                    <label for="testFirstName">First Name:</label>
+                    <input type="text" id="testFirstName" value="Test">
+                </div>
+                <div class="form-group">
+                    <label for="testLastName">Last Name:</label>
+                    <input type="text" id="testLastName" value="User">
+                </div>
+                <button onclick="createTestUser()">Create Test User</button>
+                <div id="createUserResult"></div>
+            </div>
+
+            <div class="section">
+                <h2>2. Authentication Test</h2>
+                <div class="form-group">
+                    <label for="loginEmail">Email:</label>
+                    <input type="email" id="loginEmail" value="test@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password:</label>
+                    <input type="password" id="loginPassword" value="testpassword">
+                </div>
+                <button onclick="testLogin()">Test Login</button>
+                <button onclick="testInvalidLogin()">Test Invalid Login</button>
+                <div id="authResult"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. API Endpoints Test</h2>
+            <div class="form-group">
+                <label for="authToken">Auth Token (from login):</label>
+                <input type="text" id="authToken" placeholder="Will be auto-filled after login">
+            </div>
+            <button onclick="testGetReports()">Test Get Reports</button>
+            <button onclick="testReportDetails()">Test Report Details</button>
+            <button onclick="testHtmlReport()">Test HTML Report</button>
+            <button onclick="runAllTests()">Run All Tests</button>
+            <div id="apiResult"></div>
+        </div>
+
+        <div class="section">
+            <h2>Test Results Summary</h2>
+            <div id="testSummary"></div>
+            <div class="test-results" id="testResults"></div>
+        </div>
+    </div>
+
+    <script>
+        let authToken = '';
+        let testResults = [];
+        
+        // Auto-detect base URL
+        function detectBaseUrl() {
+            const baseUrl = window.location.origin + '/';
+            document.getElementById('baseUrl').value = baseUrl;
+            logResult('Base URL detected: ' + baseUrl, 'success');
+        }
+
+        // Initialize with detected URL
+        window.addEventListener('load', function() {
+            detectBaseUrl();
+        });
+
+        function getBaseUrl() {
+            return document.getElementById('baseUrl').value || window.location.origin + '/';
+        }
+
+        function logResult(message, type = 'info', containerId = null) {
+            const timestamp = new Date().toLocaleTimeString();
+            const logMessage = `[${timestamp}] ${message}`;
+            
+            if (containerId) {
+                const container = document.getElementById(containerId);
+                const div = document.createElement('div');
+                div.className = type === 'success' ? 'success' : (type === 'error' ? 'error' : '');
+                div.textContent = logMessage;
+                container.appendChild(div);
+            }
+            
+            console.log(logMessage);
+        }
+
+        function addTestResult(testName, passed, message = '') {
+            testResults.push({
+                test: testName,
+                passed: passed,
+                message: message,
+                timestamp: new Date().toISOString()
+            });
+            updateTestSummary();
+        }
+
+        function updateTestSummary() {
+            const total = testResults.length;
+            const passed = testResults.filter(r => r.passed).length;
+            const failed = total - passed;
+            
+            const summaryDiv = document.getElementById('testSummary');
+            summaryDiv.innerHTML = `
+                <div style="display: flex; gap: 20px; margin-bottom: 15px;">
+                    <div>Total: <strong>${total}</strong></div>
+                    <div style="color: #28a745;">Passed: <strong>${passed}</strong></div>
+                    <div style="color: #dc3545;">Failed: <strong>${failed}</strong></div>
+                    <div>Success Rate: <strong>${total > 0 ? Math.round((passed/total)*100) : 0}%</strong></div>
+                </div>
+            `;
+            
+            const resultsDiv = document.getElementById('testResults');
+            resultsDiv.innerHTML = testResults.map(result => `
+                <div class="test-item ${result.passed ? 'test-pass' : 'test-fail'}">
+                    <strong>${result.test}</strong>: ${result.passed ? 'PASS' : 'FAIL'}
+                    ${result.message ? `<br><small>${result.message}</small>` : ''}
+                </div>
+            `).join('');
+        }
+
+        async function makeRequest(url, method = 'GET', data = null, headers = {}) {
+            const options = {
+                method: method,
+                headers: {
+                    'Content-Type': method === 'GET' ? 'application/json' : 'application/x-www-form-urlencoded',
+                    ...headers
+                }
+            };
+
+            if (data && method !== 'GET') {
+                if (method === 'POST' && url.includes('/api/')) {
+                    options.headers['Content-Type'] = 'application/json';
+                    options.body = JSON.stringify(data);
+                } else {
+                    options.body = new URLSearchParams(data).toString();
+                }
+            }
+
+            try {
+                const response = await fetch(url, options);
+                const responseText = await response.text();
+                
+                let responseData;
+                try {
+                    responseData = JSON.parse(responseText);
+                } catch (e) {
+                    responseData = { raw_response: responseText };
+                }
+
+                return {
+                    http_code: response.status,
+                    response: responseText,
+                    data: responseData,
+                    error: null
+                };
+            } catch (error) {
+                return {
+                    http_code: 0,
+                    response: '',
+                    data: null,
+                    error: error.message
+                };
+            }
+        }
+
+        async function createTestUser() {
+            const baseUrl = getBaseUrl();
+            const userData = {
+                uname: 'testuser',
+                fname: document.getElementById('testFirstName').value,
+                lname: document.getElementById('testLastName').value,
+                uemail: document.getElementById('testEmail').value,
+                uphone: '555-123-4567',
+                user_pass: document.getElementById('testPassword').value,
+                role_id: 4,
+                cname: 'Test Real Estate Company',
+                caddress: '123 Test Street',
+                ccity: 'Test City',
+                czipcode: '12345',
+                ulicence: 'TEST123456'
+            };
+
+            logResult('Creating test user...', 'info', 'createUserResult');
+            
+            const response = await makeRequest(baseUrl + 'auth/userregister', 'POST', userData);
+            
+            const resultDiv = document.getElementById('createUserResult');
+            resultDiv.innerHTML += `<div class="response">${JSON.stringify(response, null, 2)}</div>`;
+
+            if (response.data && response.data.status === 'success') {
+                logResult('✅ Test user created successfully!', 'success', 'createUserResult');
+                addTestResult('Create Test User', true, 'User created successfully');
+            } else if (response.data && response.data.msg && response.data.msg.includes('already exists')) {
+                logResult('💡 Test user already exists', 'success', 'createUserResult');
+                addTestResult('Create Test User', true, 'User already exists');
+            } else {
+                logResult('❌ Failed to create test user: ' + (response.data?.msg || response.error || 'Unknown error'), 'error', 'createUserResult');
+                addTestResult('Create Test User', false, response.data?.msg || response.error || 'Unknown error');
+            }
+        }
+
+        async function testLogin() {
+            const baseUrl = getBaseUrl();
+            const loginData = {
+                email: document.getElementById('loginEmail').value,
+                password: document.getElementById('loginPassword').value
+            };
+
+            logResult('Testing login...', 'info', 'authResult');
+            
+            const response = await makeRequest(baseUrl + 'api/auth/login', 'POST', loginData);
+            
+            const resultDiv = document.getElementById('authResult');
+            resultDiv.innerHTML += `<div class="response">${JSON.stringify(response, null, 2)}</div>`;
+
+            if (response.http_code === 200 && response.data && response.data.success) {
+                authToken = response.data.data.token;
+                document.getElementById('authToken').value = authToken;
+                logResult('✅ Login successful! Token received.', 'success', 'authResult');
+                addTestResult('Authentication Login', true, 'Login successful and token received');
+            } else {
+                logResult('❌ Login failed: ' + (response.data?.message || response.error || 'Unknown error'), 'error', 'authResult');
+                addTestResult('Authentication Login', false, response.data?.message || response.error || 'Unknown error');
+            }
+        }
+
+        async function testInvalidLogin() {
+            const baseUrl = getBaseUrl();
+            const loginData = {
+                email: 'invalid@example.com',
+                password: 'wrongpassword'
+            };
+
+            logResult('Testing invalid login...', 'info', 'authResult');
+            
+            const response = await makeRequest(baseUrl + 'api/auth/login', 'POST', loginData);
+            
+            const resultDiv = document.getElementById('authResult');
+            resultDiv.innerHTML += `<div class="response">${JSON.stringify(response, null, 2)}</div>`;
+
+            if (response.http_code === 401) {
+                logResult('✅ Invalid login correctly rejected.', 'success', 'authResult');
+                addTestResult('Invalid Credentials Test', true, 'Correctly rejected invalid credentials');
+            } else {
+                logResult('❌ Invalid login should have been rejected.', 'error', 'authResult');
+                addTestResult('Invalid Credentials Test', false, 'Should have rejected invalid credentials');
+            }
+        }
+
+        async function testGetReports() {
+            const baseUrl = getBaseUrl();
+            const token = document.getElementById('authToken').value || authToken;
+            
+            if (!token) {
+                logResult('❌ No auth token available. Please login first.', 'error', 'apiResult');
+                addTestResult('Get Reports Test', false, 'No auth token available');
+                return;
+            }
+
+            logResult('Testing get reports...', 'info', 'apiResult');
+            
+            const response = await makeRequest(baseUrl + 'api/reports/getUserReports', 'GET', null, {
+                'Authorization': 'Bearer ' + token
+            });
+            
+            const resultDiv = document.getElementById('apiResult');
+            resultDiv.innerHTML += `<div class="response">${JSON.stringify(response, null, 2)}</div>`;
+
+            if (response.http_code === 200) {
+                const reportsCount = response.data?.data?.reports?.length || 0;
+                logResult(`✅ Get reports successful! Found ${reportsCount} reports.`, 'success', 'apiResult');
+                addTestResult('Get User Reports', true, `Retrieved ${reportsCount} reports`);
+            } else {
+                logResult('❌ Get reports failed: ' + (response.data?.message || response.error || 'Unknown error'), 'error', 'apiResult');
+                addTestResult('Get User Reports', false, response.data?.message || response.error || 'Unknown error');
+            }
+        }
+
+        async function testReportDetails() {
+            const baseUrl = getBaseUrl();
+            const token = document.getElementById('authToken').value || authToken;
+            
+            if (!token) {
+                logResult('❌ No auth token available. Please login first.', 'error', 'apiResult');
+                return;
+            }
+
+            // First get a report ID
+            const reportsResponse = await makeRequest(baseUrl + 'api/reports/getUserReports?limit=1', 'GET', null, {
+                'Authorization': 'Bearer ' + token
+            });
+
+            if (reportsResponse.http_code === 200 && reportsResponse.data?.data?.reports?.length > 0) {
+                const reportId = reportsResponse.data.data.reports[0].project_id_pk;
+                
+                logResult(`Testing report details for ID ${reportId}...`, 'info', 'apiResult');
+                
+                const response = await makeRequest(baseUrl + `api/reports/getReportDetails/${reportId}`, 'GET', null, {
+                    'Authorization': 'Bearer ' + token
+                });
+                
+                const resultDiv = document.getElementById('apiResult');
+                resultDiv.innerHTML += `<div class="response">${JSON.stringify(response, null, 2)}</div>`;
+
+                if (response.http_code === 200) {
+                    logResult('✅ Get report details successful!', 'success', 'apiResult');
+                    addTestResult('Get Report Details', true, 'Report details retrieved successfully');
+                } else {
+                    logResult('❌ Get report details failed.', 'error', 'apiResult');
+                    addTestResult('Get Report Details', false, 'Failed to get report details');
+                }
+            } else {
+                logResult('❌ No reports available for testing report details.', 'error', 'apiResult');
+                addTestResult('Get Report Details', false, 'No reports available for testing');
+            }
+        }
+
+        async function testHtmlReport() {
+            const baseUrl = getBaseUrl();
+            const token = document.getElementById('authToken').value || authToken;
+            
+            if (!token) {
+                logResult('❌ No auth token available. Please login first.', 'error', 'apiResult');
+                return;
+            }
+
+            // First get a report ID
+            const reportsResponse = await makeRequest(baseUrl + 'api/reports/getUserReports?limit=1', 'GET', null, {
+                'Authorization': 'Bearer ' + token
+            });
+
+            if (reportsResponse.http_code === 200 && reportsResponse.data?.data?.reports?.length > 0) {
+                const reportId = reportsResponse.data.data.reports[0].project_id_pk;
+                
+                logResult(`Testing HTML report for ID ${reportId}...`, 'info', 'apiResult');
+                
+                const response = await makeRequest(baseUrl + `api/htmlReports/getHtmlReport/${reportId}`, 'GET', null, {
+                    'Authorization': 'Bearer ' + token
+                });
+                
+                const resultDiv = document.getElementById('apiResult');
+                resultDiv.innerHTML += `<div class="response">${JSON.stringify(response, null, 2)}</div>`;
+
+                if (response.http_code === 200) {
+                    logResult('✅ Get HTML report successful!', 'success', 'apiResult');
+                    addTestResult('Get HTML Report', true, 'HTML report retrieved successfully');
+                } else {
+                    logResult('❌ Get HTML report failed.', 'error', 'apiResult');
+                    addTestResult('Get HTML Report', false, 'Failed to get HTML report');
+                }
+            } else {
+                logResult('❌ No reports available for testing HTML functionality.', 'error', 'apiResult');
+                addTestResult('Get HTML Report', false, 'No reports available for testing');
+            }
+        }
+
+        async function runAllTests() {
+            logResult('Starting comprehensive API testing...', 'info', 'apiResult');
+            
+            // Clear previous results
+            testResults = [];
+            
+            // Run tests sequentially
+            await createTestUser();
+            await new Promise(resolve => setTimeout(resolve, 1000)); // Wait 1 second
+            
+            await testLogin();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testInvalidLogin();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testGetReports();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testReportDetails();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            await testHtmlReport();
+            
+            logResult('All tests completed!', 'success', 'apiResult');
+        }
+    </script>
+</body>
+</html>

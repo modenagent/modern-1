@@ -40,16 +40,21 @@ Content-Type: application/json
 #### **Response**
 ```json
 {
-    "status": true,
-    "user": {
-        "user_id_pk": 123,
-        "first_name": "John",
-        "last_name": "Doe",
-        "email": "agent@example.com",
-        "company_name": "Modern Realty"
+    "success": true,
+    "data": {
+        "user": {
+            "user_id_pk": 123,
+            "first_name": "John",
+            "last_name": "Doe",
+            "email": "agent@example.com",
+            "company_name": "Modern Realty",
+            "phone": "+1-555-123-4567",
+            "title": "Senior Real Estate Agent"
+        },
+        "token": "abcd1234567890efgh...",
+        "expires_at": "2024-02-15 14:30:25"
     },
-    "token": "abcd1234567890efgh...",
-    "expires_at": "2024-02-15 14:30:25"
+    "message": "Login successful"
 }
 ```
 
@@ -59,11 +64,69 @@ Include the token in all subsequent API requests:
 Authorization: Bearer abcd1234567890efgh...
 ```
 
+### **Enhanced Authentication Endpoints**
+
+#### **Token Refresh**
+Refresh an existing token without re-authentication:
+```http
+POST /api/auth/refreshToken
+Authorization: Bearer {current_token}
+```
+
+**Response:**
+```json
+{
+    "success": true,
+    "data": {
+        "token": "new_token_here...",
+        "expires_at": "2024-03-15 14:30:25"
+    },
+    "message": "Token refreshed successfully"
+}
+```
+
+#### **Token Validation**
+Validate a token and get current user information:
+```http
+GET /api/auth/validate
+Authorization: Bearer {token}
+```
+
+**Response:**
+```json
+{
+    "success": true,
+    "data": {
+        "valid": true,
+        "user_id": 123,
+        "expires_at": "2024-02-15 14:30:25"
+    },
+    "message": "Token is valid"
+}
+```
+
+#### **Logout**
+Invalidate the current token:
+```http
+POST /api/auth/logout
+Authorization: Bearer {token}
+```
+
+**Response:**
+```json
+{
+    "success": true,
+    "message": "Logged out successfully"
+}
+```
+
 ### **Token Management**
 - **Expiry**: Tokens expire after 30 days
 - **Refresh**: Use `/api/auth/refreshToken` to get new tokens
 - **Storage**: Store tokens securely in your application
 - **Scope**: Tokens are user-specific and inherit user permissions
+- **Security**: Tokens are cryptographically secure (64-character hex)
+- **Automatic Cleanup**: Expired tokens are automatically removed
 
 ## 📡 **Report Generation API**
 
@@ -210,6 +273,110 @@ Authorization: Bearer {token}
     "expires_at": "2024-02-15 14:30:25"
 }
 ```
+
+## 📱 **Mobile HTML Reports API**
+
+### **Get Mobile HTML Report**
+Generate and retrieve a mobile-optimized HTML version of a report for display in mobile apps or browsers.
+
+```http
+GET /api/htmlReports/getHtmlReport/{reportId}
+Authorization: Bearer {token}
+```
+
+#### **Parameters**
+- `reportId` (required): The unique identifier of the report
+
+#### **Response**
+```json
+{
+    "success": true,
+    "data": {
+        "html_url": "https://yourdomain.com/api/htmlReports/getHtmlReport/12345",
+        "report_id": 12345,
+        "mobile_optimized": true,
+        "interactive_charts": true,
+        "theme_color": "#007bff",
+        "generated_at": "2024-01-15 14:30:25"
+    },
+    "message": "Mobile HTML report generated successfully"
+}
+```
+
+#### **Features**
+- **Responsive Design**: Optimized for all screen sizes
+- **Touch Interactions**: Swipe navigation and pinch-to-zoom
+- **Interactive Charts**: Chart.js powered visualizations
+- **PWA Support**: Can be installed as app on mobile devices
+- **Offline Capability**: Service worker for offline viewing
+- **Custom Theming**: Brand colors throughout the interface
+
+#### **Usage in Mobile Apps**
+```javascript
+// Flutter WebView integration
+WebView(
+  initialUrl: 'https://yourdomain.com/api/htmlReports/getHtmlReport/12345',
+  javascriptMode: JavascriptMode.unrestricted,
+  navigationDelegate: (NavigationRequest request) {
+    // Handle navigation
+    return NavigationDecision.navigate;
+  },
+)
+```
+
+### **Share HTML Report (Public Access)**
+Access a shared HTML report using a public share token (no authentication required).
+
+```http
+GET /api/htmlReports/shareHtmlReport/{shareToken}
+```
+
+#### **Parameters**
+- `shareToken` (required): The public share token generated from `/api/reports/shareReport`
+
+#### **Response**
+Returns the complete HTML report page with:
+- Full mobile-responsive interface
+- Interactive charts and navigation
+- Branded styling and theming
+- PWA capabilities for installation
+
+#### **Example Usage**
+```html
+<!-- Embed in iframe for web integration -->
+<iframe 
+    src="https://yourdomain.com/api/htmlReports/shareHtmlReport/xyz789abc123..."
+    width="100%" 
+    height="600px"
+    frameborder="0">
+</iframe>
+```
+
+### **Mobile HTML Report Features**
+
+#### **Progressive Web App (PWA)**
+- **Install Prompts**: "Add to Home Screen" functionality
+- **Offline Support**: Cached assets for offline viewing
+- **Full-Screen Mode**: Native app-like experience
+- **Icon Support**: Custom app icons for various devices
+
+#### **Touch Interactions**
+- **Swipe Navigation**: Left/right swipes between sections
+- **Pinch-to-Zoom**: Chart and image zooming
+- **Touch-Friendly**: 44px minimum touch targets
+- **Gesture Feedback**: Visual feedback for all interactions
+
+#### **Interactive Components**
+- **Chart Interactions**: Tap to highlight comparable properties
+- **Section Navigation**: Smooth transitions between report sections
+- **Image Galleries**: Touch-enabled property photo viewing
+- **Map Integration**: Interactive property location maps
+
+#### **Responsive Design**
+- **Mobile-First**: Optimized for smartphones and tablets
+- **Flexible Layouts**: Adapts to any screen size
+- **Retina Support**: High-DPI display optimization
+- **Dark Mode**: Automatic system theme detection
 
 ## 🌐 **Data Source Integration**
 
