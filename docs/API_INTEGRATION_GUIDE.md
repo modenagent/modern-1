@@ -1,5 +1,7 @@
 # Modern Agent - External API Integration Guide
 
+**Last updated:** December 2024
+
 ## 📋 **Overview**
 
 This comprehensive guide provides everything external platforms need to integrate with the Modern Agent API for automated report generation. The API allows third-party systems to generate professional real estate reports programmatically with full customization options.
@@ -212,6 +214,151 @@ Content-Type: application/json
     "error": "Invalid property data URL",
     "code": 400,
     "details": "The report187 URL returned invalid XML data"
+}
+```
+
+## 🚨 **Error Codes Reference**
+
+### **HTTP Status Codes**
+The API uses standard HTTP status codes to indicate the success or failure of requests:
+
+| Code | Status | Description |
+|------|--------|-------------|
+| 200 | OK | Request successful |
+| 201 | Created | Resource created successfully |
+| 400 | Bad Request | Invalid request parameters |
+| 401 | Unauthorized | Invalid or missing authentication token |
+| 403 | Forbidden | Insufficient permissions |
+| 404 | Not Found | Resource not found |
+| 422 | Unprocessable Entity | Validation errors |
+| 429 | Too Many Requests | Rate limit exceeded |
+| 500 | Internal Server Error | Server error |
+| 503 | Service Unavailable | Service temporarily unavailable |
+
+### **API-Specific Error Codes**
+
+#### **Authentication Errors (401)**
+```json
+{
+    "status": false,
+    "error": "Invalid token",
+    "code": 401,
+    "details": "The provided authentication token is invalid or expired"
+}
+```
+
+```json
+{
+    "status": false,
+    "error": "Token expired",
+    "code": 401,
+    "details": "Authentication token has expired. Please login again."
+}
+```
+
+#### **Validation Errors (422)**
+```json
+{
+    "status": false,
+    "error": "Validation failed",
+    "code": 422,
+    "details": {
+        "report187": ["The report187 field is required"],
+        "user.email": ["Invalid email format"],
+        "presentation": ["Must be one of: seller, buyer, registry"]
+    }
+}
+```
+
+#### **Data Source Errors (400)**
+```json
+{
+    "status": false,
+    "error": "Invalid property data",
+    "code": 400,
+    "details": "Unable to fetch property data from SiteX API. Check report187 URL."
+}
+```
+
+```json
+{
+    "status": false,
+    "error": "Geographic data unavailable",
+    "code": 400,
+    "details": "The report111 URL returned no geographic data for the specified address"
+}
+```
+
+#### **Rate Limiting (429)**
+```json
+{
+    "status": false,
+    "error": "Rate limit exceeded",
+    "code": 429,
+    "details": "Maximum 100 requests per hour exceeded. Try again in 45 minutes.",
+    "retry_after": 2700
+}
+```
+
+#### **Server Errors (500)**
+```json
+{
+    "status": false,
+    "error": "PDF generation failed",
+    "code": 500,
+    "details": "Unable to generate PDF report. Please try again or contact support."
+}
+```
+
+### **Error Handling Best Practices**
+
+1. **Always check the `status` field** before processing response data
+2. **Use HTTP status codes** for general error categorization
+3. **Parse the `details` field** for specific error information
+4. **Implement retry logic** for 5xx errors with exponential backoff
+5. **Handle rate limiting** by respecting `retry_after` values
+6. **Log errors** with request IDs for debugging
+
+#### **Example Error Handling (JavaScript)**
+```javascript
+async function generateReport(reportData) {
+    try {
+        const response = await fetch('/api/report/generateReport', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(reportData)
+        });
+
+        const data = await response.json();
+
+        if (!data.status) {
+            switch (response.status) {
+                case 401:
+                    // Handle authentication error
+                    await refreshToken();
+                    return generateReport(reportData); // Retry
+                case 429:
+                    // Handle rate limiting
+                    const retryAfter = data.retry_after || 60;
+                    setTimeout(() => generateReport(reportData), retryAfter * 1000);
+                    return;
+                case 422:
+                    // Handle validation errors
+                    displayValidationErrors(data.details);
+                    return;
+                default:
+                    throw new Error(data.error || 'Unknown error occurred');
+            }
+        }
+
+        return data;
+    } catch (error) {
+        console.error('Report generation failed:', error);
+        throw error;
+    }
 }
 ```
 
@@ -1149,6 +1296,158 @@ Official SDKs available for:
 - **JavaScript**: `npm install @modern-agent/api-client`
 - **Python**: `pip install modern-agent-api`
 - **C#**: `Install-Package ModernAgent.ApiClient`
+
+## 📦 **Postman Collection**
+
+### **Download API Collection**
+
+We provide a comprehensive Postman collection with all API endpoints, sample requests, and environment variables pre-configured for easy testing and integration.
+
+#### **Collection Contents**
+- ✅ All API endpoints with sample requests
+- ✅ Pre-configured environment variables
+- ✅ Authentication flow examples
+- ✅ Error response examples
+- ✅ Test scripts for automated validation
+
+#### **Download Links**
+- **Postman Collection**: [Download Modern Agent API.postman_collection.json](https://yourdomain.com/api/postman/modern-agent-api.postman_collection.json)
+- **Environment File**: [Download Modern Agent Environment.postman_environment.json](https://yourdomain.com/api/postman/modern-agent.postman_environment.json)
+
+#### **Quick Setup Instructions**
+
+1. **Import Collection**
+   - Open Postman
+   - Click "Import" → "Upload Files"
+   - Select the downloaded collection file
+   - Click "Import"
+
+2. **Import Environment**
+   - Click "Import" → "Upload Files"
+   - Select the environment file
+   - Click "Import"
+
+3. **Configure Environment Variables**
+   ```
+   BASE_URL: https://yourdomain.com
+   API_TOKEN: your_api_token_here
+   USER_EMAIL: your_email@example.com
+   USER_PASSWORD: your_password
+   ```
+
+4. **Test Authentication**
+   - Select "Modern Agent Environment" from the environment dropdown
+   - Run the "Login" request in the "Authentication" folder
+   - The token will be automatically saved to the environment
+
+#### **Collection Structure**
+```
+Modern Agent API Collection/
+├── Authentication/
+│   ├── Login
+│   ├── Validate Token
+│   ├── Refresh Token
+│   └── Logout
+├── Report Generation/
+│   ├── Generate Report (Seller)
+│   ├── Generate Report (Buyer)
+│   ├── Generate Report (Registry)
+│   └── Generate Report (Custom)
+├── Report Management/
+│   ├── Get User Reports
+│   ├── Get Report Details
+│   ├── Share Report
+│   └── Delete Report
+├── Mobile HTML Reports/
+│   ├── Get HTML Report
+│   └── Get Report Metadata
+└── Error Examples/
+    ├── Authentication Errors
+    ├── Validation Errors
+    ├── Rate Limiting
+    └── Server Errors
+```
+
+#### **Alternative: Insomnia Collection**
+
+For Insomnia users, we also provide an Insomnia collection:
+
+- **Download**: [Modern Agent API.insomnia.json](https://yourdomain.com/api/insomnia/modern-agent-api.insomnia.json)
+
+#### **cURL Examples**
+
+If you prefer command-line testing, here are key cURL examples:
+
+**Authentication:**
+```bash
+curl -X POST https://yourdomain.com/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "agent@example.com",
+    "password": "your_password"
+  }'
+```
+
+**Generate Report:**
+```bash
+curl -X POST https://yourdomain.com/api/report/generateReport \
+  -H "Authorization: Bearer YOUR_TOKEN_HERE" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "report187": "https://api.sitexdata.com/187/property-123.xml",
+    "report111": "https://api.mapdata.com/111/location-123.xml",
+    "user": {
+      "fullname": "John Doe",
+      "email": "john@realty.com",
+      "phone": "(555) 123-4567",
+      "company_logo": "https://realty.com/logo.png"
+    },
+    "presentation": "seller"
+  }'
+```
+
+**Get Reports:**
+```bash
+curl -X GET "https://yourdomain.com/api/reports/getUserReports?page=1&limit=10" \
+  -H "Authorization: Bearer YOUR_TOKEN_HERE"
+```
+
+#### **Testing Checklist**
+
+Use this checklist to verify your integration:
+
+- [ ] Authentication flow works correctly
+- [ ] Token validation and refresh work
+- [ ] Report generation succeeds with valid data
+- [ ] Error handling works for invalid requests
+- [ ] Rate limiting is properly handled
+- [ ] Report retrieval and sharing work
+- [ ] Mobile HTML reports are accessible
+- [ ] Logout invalidates tokens properly
+
+#### **Automated Testing**
+
+The Postman collection includes test scripts for automated validation:
+
+```javascript
+// Example test script included in collection
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response has required fields", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('status');
+    pm.expect(jsonData).to.have.property('data');
+});
+
+pm.test("Authentication token is saved", function () {
+    var jsonData = pm.response.json();
+    if (jsonData.status && jsonData.data.token) {
+        pm.environment.set("API_TOKEN", jsonData.data.token);
+    }
+});
+```
 
 ## 📞 **Support & Resources**
 

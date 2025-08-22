@@ -1,5 +1,7 @@
 # Modern Agent - Implementation Roadmap
 
+**Last updated:** December 2024
+
 ## 📋 **Overview**
 
 This roadmap provides a comprehensive, step-by-step implementation plan for all Modern Agent enhancements. It's designed for AI agents and developers to execute the mobile app development, HTML optimization, and API integration features systematically.

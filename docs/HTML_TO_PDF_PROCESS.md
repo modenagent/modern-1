@@ -1,5 +1,7 @@
 # Modern Agent Repository - HTML-to-PDF Generation Process
 
+**Last updated:** December 2024
+
 ## 📋 **Overview**
 
 This document provides a comprehensive guide to the HTML-to-PDF report generation process in the Modern Agent system, detailing all functions, dependencies, data inputs/outputs, and post-generation actions.
@@ -31,6 +33,326 @@ This document provides a comprehensive guide to the HTML-to-PDF report generatio
 - **phpqrcode** - QR code generation for contact information
 - **parsedown** - Markdown to HTML conversion for AI content
 - **SimpleXML** - XML parsing for external API data
+
+## 🛠️ **OS-Specific Installation Guide**
+
+### **Prerequisites**
+Before installing PDF generation tools, ensure you have:
+- PHP 7.4+ with `exec()` function enabled
+- Sufficient disk space (500MB+ for binaries and fonts)
+- Write permissions for temporary directories
+
+### **Windows Installation**
+
+#### **wkhtmltopdf Installation**
+```powershell
+# Method 1: Download installer (Recommended)
+# 1. Download from: https://wkhtmltopdf.org/downloads.html
+# 2. Choose "Windows (MSVC 2015) 64-bit" installer
+# 3. Run installer as Administrator
+# 4. Default install path: C:\Program Files\wkhtmltopdf\
+
+# Method 2: Using Chocolatey
+choco install wkhtmltopdf
+
+# Method 3: Using Scoop
+scoop install wkhtmltopdf
+```
+
+#### **qpdf Installation**
+```powershell
+# Method 1: Download installer
+# 1. Download from: https://github.com/qpdf/qpdf/releases
+# 2. Choose Windows installer (.exe)
+# 3. Run installer as Administrator
+
+# Method 2: Using Chocolatey
+choco install qpdf
+
+# Method 3: Manual installation
+# Download ZIP, extract to C:\Program Files\qpdf\
+```
+
+#### **Environment Variables (Windows)**
+```env
+# Add to .env file
+WKHTMLTOPDF_PATH=C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe
+QPDF_PATH=C:\Program Files\qpdf\bin\qpdf.exe
+```
+
+### **macOS Installation**
+
+#### **wkhtmltopdf Installation**
+```bash
+# Method 1: Using Homebrew (Recommended)
+brew install wkhtmltopdf
+
+# Method 2: Download installer
+# 1. Download from: https://wkhtmltopdf.org/downloads.html
+# 2. Choose "macOS" installer
+# 3. Install to /usr/local/bin/
+
+# Method 3: MacPorts
+sudo port install wkhtmltopdf
+```
+
+#### **qpdf Installation**
+```bash
+# Method 1: Using Homebrew
+brew install qpdf
+
+# Method 2: MacPorts
+sudo port install qpdf
+
+# Method 3: Download and compile
+wget https://github.com/qpdf/qpdf/releases/download/release-qpdf-11.6.3/qpdf-11.6.3.tar.gz
+tar -xzf qpdf-11.6.3.tar.gz
+cd qpdf-11.6.3
+./configure
+make
+sudo make install
+```
+
+#### **Environment Variables (macOS)**
+```env
+# Add to .env file
+WKHTMLTOPDF_PATH=/usr/local/bin/wkhtmltopdf
+QPDF_PATH=/usr/local/bin/qpdf
+```
+
+### **Linux Installation**
+
+#### **Ubuntu/Debian**
+```bash
+# Update package list
+sudo apt update
+
+# Install wkhtmltopdf
+sudo apt install -y wkhtmltopdf
+
+# Install qpdf
+sudo apt install -y qpdf
+
+# Install additional fonts (recommended)
+sudo apt install -y fonts-liberation fonts-dejavu-core fonts-freefont-ttf
+
+# For headless servers, install X virtual framebuffer
+sudo apt install -y xvfb
+```
+
+#### **CentOS/RHEL/Rocky Linux**
+```bash
+# Enable EPEL repository
+sudo dnf install -y epel-release
+
+# Install wkhtmltopdf
+sudo dnf install -y wkhtmltopdf
+
+# Install qpdf
+sudo dnf install -y qpdf
+
+# Install fonts
+sudo dnf install -y liberation-fonts dejavu-sans-fonts
+
+# For headless servers
+sudo dnf install -y xorg-x11-server-Xvfb
+```
+
+#### **Alpine Linux (Docker)**
+```dockerfile
+# Add to Dockerfile
+RUN apk add --no-cache \
+    wkhtmltopdf \
+    qpdf \
+    ttf-liberation \
+    ttf-dejavu \
+    xvfb-run
+```
+
+#### **Environment Variables (Linux)**
+```env
+# Add to .env file
+WKHTMLTOPDF_PATH=/usr/bin/wkhtmltopdf
+QPDF_PATH=/usr/bin/qpdf
+
+# For headless servers with xvfb
+WKHTMLTOPDF_PATH=xvfb-run -a -s "-screen 0 1024x768x24" /usr/bin/wkhtmltopdf
+```
+
+### **Docker Installation**
+
+#### **Dockerfile Example**
+```dockerfile
+FROM php:8.1-apache
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    wkhtmltopdf \
+    qpdf \
+    fonts-liberation \
+    fonts-dejavu-core \
+    xvfb \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set environment variables
+ENV WKHTMLTOPDF_PATH="xvfb-run -a -s '-screen 0 1024x768x24' /usr/bin/wkhtmltopdf"
+ENV QPDF_PATH="/usr/bin/qpdf"
+
+# Copy application files
+COPY . /var/www/html/
+
+# Set permissions
+RUN chown -R www-data:www-data /var/www/html/temp/
+```
+
+#### **Docker Compose Example**
+```yaml
+version: '3.8'
+services:
+  modern-agent:
+    build: .
+    environment:
+      - WKHTMLTOPDF_PATH=xvfb-run -a -s "-screen 0 1024x768x24" /usr/bin/wkhtmltopdf
+      - QPDF_PATH=/usr/bin/qpdf
+    volumes:
+      - ./temp:/var/www/html/temp
+```
+
+## ✅ **Installation Verification**
+
+### **Quick Verification Commands**
+
+#### **Test wkhtmltopdf**
+```bash
+# Check version
+wkhtmltopdf --version
+
+# Test basic functionality
+echo "<html><body><h1>Test PDF</h1></body></html>" | wkhtmltopdf - test.pdf
+
+# Verify output
+ls -la test.pdf
+```
+
+#### **Test qpdf**
+```bash
+# Check version
+qpdf --version
+
+# Test basic functionality (requires existing PDF)
+qpdf --show-pages test.pdf
+```
+
+#### **PHP Integration Test**
+Create a test file `test_pdf_tools.php`:
+```php
+<?php
+// Test wkhtmltopdf path
+$wkhtmltopdf = $_ENV['WKHTMLTOPDF_PATH'] ?? '/usr/bin/wkhtmltopdf';
+$qpdf = $_ENV['QPDF_PATH'] ?? '/usr/bin/qpdf';
+
+echo "Testing PDF tools...\n";
+
+// Test wkhtmltopdf
+$output = shell_exec("$wkhtmltopdf --version 2>&1");
+if (strpos($output, 'wkhtmltopdf') !== false) {
+    echo "✅ wkhtmltopdf: Working\n";
+    echo "   Version: " . trim($output) . "\n";
+} else {
+    echo "❌ wkhtmltopdf: Not working\n";
+    echo "   Error: $output\n";
+}
+
+// Test qpdf
+$output = shell_exec("$qpdf --version 2>&1");
+if (strpos($output, 'qpdf') !== false) {
+    echo "✅ qpdf: Working\n";
+    echo "   Version: " . trim($output) . "\n";
+} else {
+    echo "❌ qpdf: Not working\n";
+    echo "   Error: $output\n";
+}
+
+// Test PHP exec function
+if (function_exists('exec')) {
+    echo "✅ PHP exec(): Enabled\n";
+} else {
+    echo "❌ PHP exec(): Disabled - Enable in php.ini\n";
+}
+
+// Test temp directory permissions
+$tempDir = __DIR__ . '/temp';
+if (is_writable($tempDir)) {
+    echo "✅ Temp directory: Writable\n";
+} else {
+    echo "❌ Temp directory: Not writable - Check permissions\n";
+}
+?>
+```
+
+Run the test:
+```bash
+php test_pdf_tools.php
+```
+
+### **Common Installation Issues**
+
+#### **wkhtmltopdf Issues**
+```bash
+# Issue: "cannot connect to X server"
+# Solution: Use xvfb-run wrapper
+export WKHTMLTOPDF_PATH="xvfb-run -a -s '-screen 0 1024x768x24' /usr/bin/wkhtmltopdf"
+
+# Issue: "libfontconfig" missing
+sudo apt install -y libfontconfig1
+
+# Issue: Fonts not rendering correctly
+sudo apt install -y fonts-liberation fonts-dejavu-core
+```
+
+#### **qpdf Issues**
+```bash
+# Issue: "command not found"
+# Check installation path
+which qpdf
+
+# Issue: Permission denied
+sudo chmod +x /usr/bin/qpdf
+```
+
+#### **PHP Issues**
+```bash
+# Issue: exec() disabled
+# Edit php.ini, remove 'exec' from disable_functions
+sudo nano /etc/php/8.1/apache2/php.ini
+
+# Issue: Insufficient memory
+# Increase memory_limit in php.ini
+memory_limit = 512M
+```
+
+### **Performance Optimization**
+
+#### **Font Caching**
+```bash
+# Create font cache directory
+sudo mkdir -p /var/cache/fontconfig
+sudo chown www-data:www-data /var/cache/fontconfig
+
+# Update font cache
+sudo fc-cache -fv
+```
+
+#### **Temporary Directory Setup**
+```bash
+# Create optimized temp directory
+sudo mkdir -p /tmp/modern-agent-pdf
+sudo chown www-data:www-data /tmp/modern-agent-pdf
+sudo chmod 755 /tmp/modern-agent-pdf
+
+# Add to .env
+TEMP_PDF_DIR=/tmp/modern-agent-pdf
+```
 
 ## 📋 **Complete Step-by-Step Process**
 

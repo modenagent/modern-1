@@ -1,5 +1,7 @@
 # Modern Agent - Mobile App Development Guide
 
+**Last updated:** December 2024
+
 ## 📋 **Overview**
 
 This guide provides complete documentation for creating a mobile app using FlutterFlow that integrates with the Modern Agent platform. The app will serve as an extension of the main site for viewing reports, requesting new reports, and sharing reports.
@@ -512,6 +514,269 @@ CREATE INDEX idx_user_reports ON lp_my_listing(user_id_fk, is_active, project_da
    - App store submission
    - User documentation
    - Support documentation
+
+## 🌐 **Live Device Testing with Tunneling**
+
+### **Overview**
+During development, you'll need to test your FlutterFlow app on real devices while connecting to your local development server. Tunneling services create secure public URLs that forward requests to your local Modern Agent instance.
+
+### **ngrok Setup (Recommended)**
+
+#### **Installation**
+```bash
+# macOS (Homebrew)
+brew install ngrok/ngrok/ngrok
+
+# Windows (Chocolatey)
+choco install ngrok
+
+# Linux (Snap)
+sudo snap install ngrok
+
+# Or download from: https://ngrok.com/download
+```
+
+#### **Authentication**
+```bash
+# Sign up at https://ngrok.com and get your auth token
+ngrok config add-authtoken YOUR_AUTH_TOKEN_HERE
+```
+
+#### **Basic Usage**
+```bash
+# Expose local Modern Agent server (assuming port 80/8080)
+ngrok http 80
+
+# For HTTPS only (recommended for API testing)
+ngrok http --scheme=https 80
+
+# Custom subdomain (requires paid plan)
+ngrok http --subdomain=my-modern-agent 80
+```
+
+#### **Example Output**
+```
+ngrok by @inconshreveable
+
+Session Status                online
+Account                       user@example.com (Plan: Free)
+Version                       3.1.0
+Region                        United States (us)
+Latency                       45ms
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    https://abc123.ngrok.io -> http://localhost:80
+
+Connections                   ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+```
+
+#### **FlutterFlow Configuration**
+In your FlutterFlow app, update API base URLs:
+```
+Development Base URL: https://abc123.ngrok.io
+API Endpoints:
+- Login: https://abc123.ngrok.io/api/auth/login
+- Generate Report: https://abc123.ngrok.io/api/report/generateReport
+- Get Reports: https://abc123.ngrok.io/api/reports/getUserReports
+```
+
+### **Cloudflare Tunnel Setup**
+
+#### **Installation**
+```bash
+# Download cloudflared
+# macOS
+brew install cloudflare/cloudflare/cloudflared
+
+# Windows
+winget install --id Cloudflare.cloudflared
+
+# Linux
+wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb
+sudo dpkg -i cloudflared-linux-amd64.deb
+```
+
+#### **Quick Tunnel (No Account Required)**
+```bash
+# Create temporary tunnel
+cloudflared tunnel --url http://localhost:80
+
+# Example output:
+# Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):
+# https://random-words-1234.trycloudflare.com
+```
+
+#### **Named Tunnel (Persistent)**
+```bash
+# Login to Cloudflare
+cloudflared tunnel login
+
+# Create tunnel
+cloudflared tunnel create modern-agent-dev
+
+# Configure tunnel (create config.yml)
+cat > ~/.cloudflared/config.yml << EOF
+tunnel: modern-agent-dev
+credentials-file: ~/.cloudflared/YOUR_TUNNEL_ID.json
+
+ingress:
+  - hostname: modern-agent-dev.yourdomain.com
+    service: http://localhost:80
+  - service: http_status:404
+EOF
+
+# Run tunnel
+cloudflared tunnel run modern-agent-dev
+```
+
+### **Development Workflow**
+
+#### **1. Start Local Development Server**
+```bash
+# Start your local Modern Agent server
+php -S localhost:80 -t /path/to/modern-agent
+
+# Or using Apache/Nginx
+sudo systemctl start apache2
+```
+
+#### **2. Start Tunnel**
+```bash
+# Terminal 1: Start ngrok
+ngrok http 80
+
+# Or Cloudflare Tunnel
+cloudflared tunnel --url http://localhost:80
+```
+
+#### **3. Update FlutterFlow**
+1. Copy the public URL from tunnel output
+2. Update API base URL in FlutterFlow
+3. Test API endpoints in FlutterFlow's API tester
+
+#### **4. Test on Device**
+1. Preview app in FlutterFlow
+2. Use "Test on Device" feature
+3. App will connect to your local server via tunnel
+
+### **Security Considerations**
+
+#### **ngrok Security**
+```bash
+# Add basic auth to protect your tunnel
+ngrok http 80 --basic-auth="username:password"
+
+# Restrict to specific IPs (paid feature)
+ngrok http 80 --cidr-allow="192.168.1.0/24"
+
+# Use custom domain (paid feature)
+ngrok http 80 --hostname="dev.yourdomain.com"
+```
+
+#### **Environment Variables for Tunneling**
+```env
+# Add to your .env file
+TUNNEL_MODE=development
+ALLOWED_ORIGINS=https://abc123.ngrok.io,https://random-words-1234.trycloudflare.com
+CORS_ENABLED=true
+DEBUG_MODE=true
+```
+
+#### **PHP CORS Configuration**
+```php
+// Add to your API controllers for development
+if ($_ENV['TUNNEL_MODE'] === 'development') {
+    $allowed_origins = explode(',', $_ENV['ALLOWED_ORIGINS']);
+    $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
+    
+    if (in_array($origin, $allowed_origins)) {
+        header("Access-Control-Allow-Origin: $origin");
+        header("Access-Control-Allow-Credentials: true");
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    }
+}
+```
+
+### **Testing Checklist**
+
+#### **API Connectivity**
+- [ ] Login endpoint works via tunnel
+- [ ] Report generation API responds correctly
+- [ ] File uploads work (if applicable)
+- [ ] Authentication tokens are properly handled
+- [ ] CORS headers are set correctly
+
+#### **FlutterFlow Integration**
+- [ ] API calls succeed from FlutterFlow preview
+- [ ] Error handling works correctly
+- [ ] Loading states display properly
+- [ ] Data parsing works as expected
+- [ ] Navigation flows work end-to-end
+
+#### **Device Testing**
+- [ ] App works on iOS simulator/device
+- [ ] App works on Android emulator/device
+- [ ] Network requests succeed on mobile data
+- [ ] App handles network interruptions gracefully
+- [ ] Performance is acceptable on real devices
+
+### **Troubleshooting**
+
+#### **Common ngrok Issues**
+```bash
+# Issue: "tunnel session failed"
+# Solution: Check auth token
+ngrok config add-authtoken YOUR_TOKEN
+
+# Issue: "tunnel not found"
+# Solution: Restart ngrok
+pkill ngrok && ngrok http 80
+
+# Issue: CORS errors
+# Solution: Add proper headers in PHP
+```
+
+#### **Common Cloudflare Issues**
+```bash
+# Issue: "tunnel credentials not found"
+# Solution: Re-authenticate
+cloudflared tunnel login
+
+# Issue: "service unavailable"
+# Solution: Check local server is running
+curl http://localhost:80
+
+# Issue: DNS resolution
+# Solution: Wait 2-3 minutes for DNS propagation
+```
+
+#### **FlutterFlow Issues**
+- **API calls fail**: Check tunnel URL is correct and accessible
+- **Authentication errors**: Verify token format and headers
+- **CORS errors**: Ensure proper CORS headers in PHP
+- **Timeout errors**: Increase timeout in FlutterFlow API settings
+
+### **Production Considerations**
+
+#### **Before Going Live**
+1. **Remove tunnel URLs** from FlutterFlow
+2. **Update to production API URLs**
+3. **Disable debug/development modes**
+4. **Remove CORS development headers**
+5. **Test with production SSL certificates**
+
+#### **Environment Switching**
+```dart
+// FlutterFlow custom code for environment switching
+String getApiBaseUrl() {
+  if (kDebugMode) {
+    return 'https://abc123.ngrok.io'; // Development tunnel
+  } else {
+    return 'https://api.yourdomain.com'; // Production API
+  }
+}
+```
 
 ## 📊 **Error Handling & Edge Cases**
 
